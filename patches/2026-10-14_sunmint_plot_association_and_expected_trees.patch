@@ -1,0 +1,23 @@
+# SunMint — Ask-1 (tree→plot association) + Ask-2 (expected_trees / counted_trees)
+#
+# Target repo: TrueSightDAO/sunmint (API-only data repo — apply via grep/Contents API,
+#   NOT a branch edit).
+# Apply from the sunmint repo root:
+#     git apply patches/2026-10-14_sunmint_plot_association_and_expected_trees.patch
+#   (paths below are script paths relative to the sunmint root, NOT this file's dir;
+#    strip this text header first, or use:
+#       sed -n '/^diff --git/,$p' <thisfile> | git apply - )
+#
+# What it does
+#   Ask-1  build_tree_geojson.py: grade each tree against plots/index.geojson —
+#          plot_assoc ∈ {inside, near(≤50 m), none}; derive plot_id when inside;
+#          sheet Plot ID stays an explicit override. Adds plot_dist_m, nearest_plot_id.
+#   Ask-2  build_plots_geojson.py: emit polygon_ha, expected_trees (default 3.0×3.0 m
+#          grid → 1,111 trees/ha; gated OFF for mature/enrichment/research/nursery/
+#          infrastructure), counted_trees (observed points inside the ring),
+#          tree_spacing_m (optional sheet override).
+#   SCHEMA.md + two new tests/ files.
+#
+# Validation (2026-10-14): full sunmint suite 122 passed; 23 new tests.
+#   Real data → plot_assoc: inside=116, near=9, none=20; estimable total ≈133,920.
+#

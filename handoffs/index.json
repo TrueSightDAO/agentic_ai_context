@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-10T04:01:21Z",
+  "generated_at": "2026-10-20T20:49:26Z",
   "source": "handoffs/HANDOFF_MANIFEST.md",
-  "source_sha256": "af8e907ca7ba4a4f277af1c287b5ca853f9b7c5dc5017cbc947d98e583f89f50",
+  "source_sha256": "3c5911293b8309f2aac317b3ad5b22bb93cb5ab37d1af3f47779147136cc4525",
   "state_enum": [
     "awaiting_kickoff",
     "executing",
@@ -16,10 +16,10 @@
     "done",
     "stale"
   ],
-  "handoff_count": 79,
+  "handoff_count": 88,
   "counts_by_state": {
-    "awaiting_kickoff": 14,
-    "executing": 14,
+    "awaiting_kickoff": 17,
+    "executing": 16,
     "paused_at_gate": 2,
     "sophia_uat": 0,
     "envoy_uat": 0,
@@ -27,11 +27,131 @@
     "prod_merge": 0,
     "blocked_on_human": 17,
     "failed": 0,
-    "done": 29,
+    "done": 33,
     "stale": 1,
     "unknown": 0
   },
   "handoffs": [
+    {
+      "plan_file": "`plans/DISCORD_GATEWAY_RESUME_BACKOFF_FIX_PLAN.md`",
+      "title": "**Discord gateway RESUME + backoff reset** (`truesight_autopilot`) — fixes the \"Sophia hangs and doesn't reply in Discord\" symptom Gary reported. Root-caused against live logs: the gateway WS silently drops every 1–3h (NAT/idle timeout, no close frame); `discord_adapter.py` always sends a fresh `IDENTIFY` on reconnect instead of `RESUME`, so Discord never replays events from the dead window — any governor message sent during that ~5–65s gap is silently lost forever. A second bug (backoff climbs to 60s and never resets on a healthy long-lived connection) widens that window over a process's life. Single-file fix + unit tests, one PR.",
+      "handoff_date": "2026-10-10",
+      "state": "done",
+      "status_raw": "**done — PR0 merged + deployed + operationally verified; contribution reported; PLAN COMPLETE**",
+      "telegram_thread_id": "41950",
+      "telegram_thread_id_source": "message_thread_id",
+      "telegram_thread_id_needs_verification": false,
+      "telegram_topic": "[Exec: Discord gateway RESUME fix](https://t.me/c/3919341801/41950)",
+      "telegram_topic_url": "https://t.me/c/3919341801/41950",
+      "discord_channel_id": null,
+      "discord_thread_id": null,
+      "auto_start": "yes",
+      "last_updated": "2026-10-13",
+      "supervised_by": null
+    },
+    {
+      "plan_file": "`plans/DAPP_ACCESS_RIGHTS_PLAN.md`",
+      "title": "**DApp access rights — UI-slice scope (Julio Almeida enablement)** — Gary narrowed the originally-discussed 5-PR/4-repo per-contributor ACL system to a UI-slice scope: \"so long as record works for Julio to do what he needs to do.\" Pre-flight found the store-edit UI affordances already ship in beta+prod and are signature-gated, not role-gated — Julio's only blocker is that he has no registered Edgar signing identity.",
+      "handoff_date": "2026-10-13",
+      "state": "blocked_on_human",
+      "status_raw": "**blocked_on_human (member action) — RESUME HERE = Unit 0, Julio self-registering a signing identity at create_signature.html; no PR, nothing for Sophia/Envoy to execute**",
+      "telegram_thread_id": null,
+      "telegram_thread_id_source": null,
+      "telegram_thread_id_needs_verification": false,
+      "telegram_topic": "—",
+      "telegram_topic_url": null,
+      "discord_channel_id": "1558887495192805407",
+      "discord_thread_id": null,
+      "auto_start": "no",
+      "last_updated": "2026-10-14",
+      "supervised_by": {
+        "supervisor": "Envoy (nelanco-claude, supervisor loop)",
+        "claimed_at": "2026-10-11T17:11:00Z",
+        "note": "Discord #roles-and-dapp-access, channel 1558887495192805407. Gary narrowed scope from the original 5-PR/4-repo ACL design to a UI-slice: 'so long as record works for Julio to do what he needs to do.' Sophia's pre-flight (PR #1585, merged) found the store-edit UI already ships in beta+prod and is signature-gated not role-gated -- Julio's only blocker is no registered Edgar signing identity. RESUME HERE = Unit 0 (Julio self-registers at create_signature.html) -- a member action, nothing for Sophia or Envoy to execute. Unit 1 (opt-in declarative permissions.json seed entry) not required for Julio, awaiting Gary's call on whether to bother.",
+        "stale": true,
+        "age_minutes": 13178
+      }
+    },
+    {
+      "plan_file": "`brazil/BRAZIL_TO_SF_FREIGHT_PREFLIGHT_CHECKLIST.md` (sub-thread)",
+      "title": "**AGL8 currency-definition / landed-clone metadata build** — Brazil→SF shipment (AGL8): 8 landed-clone `Currencies` rows needed metadata backfill (composition, provenance columns N/O/P/Q/R/S, FDA product code), plus tooling (`tokenomics` GAS handler schema bump + `dao_client` CLI flags) so the metadata is settable without hand-editing raw event text. Tracked separately from the parent freight-lane doc since this is the metadata/tooling slice, not NF-e/customs.",
+      "handoff_date": "2026-10-13",
+      "state": "done",
+      "status_raw": "**✅ done 2026-10-15 — Units A-D all landed and verified; see §5.15 of the parent runbook.**",
+      "telegram_thread_id": null,
+      "telegram_thread_id_source": null,
+      "telegram_thread_id_needs_verification": false,
+      "telegram_topic": "—",
+      "telegram_topic_url": null,
+      "discord_channel_id": "1558544694009532416",
+      "discord_thread_id": null,
+      "auto_start": "no",
+      "last_updated": "2026-10-15",
+      "supervised_by": null
+    },
+    {
+      "plan_file": "`OPEN_FOLLOWUPS.md#currency-conversion-tooling-live-currencies-json-publish-hardening`",
+      "title": "**Currency-conversion tooling: `upload_file_to_github` rate-limited-read hardening** — live BRL→Brazilian Reis currency retirement/conversion work surfaced a real tool bug: `upload_file_to_github`/`upload_local_file_to_github` 422 when `api.github.com` reads are rate-limited (sha HEAD falls through).",
+      "handoff_date": "2026-10-14",
+      "state": "done",
+      "status_raw": "**done — truesight_autopilot#533 merged (own-repo, autonomous); live BRL retirement + currencies.json publish already confirmed correct in production (163 currencies, no BRL, commit 76b18cc)**",
+      "telegram_thread_id": null,
+      "telegram_thread_id_source": null,
+      "telegram_thread_id_needs_verification": false,
+      "telegram_topic": "—",
+      "telegram_topic_url": null,
+      "discord_channel_id": "1559700152510578769",
+      "discord_thread_id": null,
+      "auto_start": "no",
+      "last_updated": "2026-10-14",
+      "supervised_by": null
+    },
+    {
+      "plan_file": "`OPEN_FOLLOWUPS.md#sunmint-tree-plot-association--expected-tree-count-estimation`",
+      "title": "**SunMint: tree↔plot association + expected/counted tree-count estimation** — associate near-plot trees with their plot polygon (`plot_assoc`/derived `plot_id`), estimate `expected_trees` from polygon hectares + a professional 3m-spacing planting-density algorithm, surface both `expected_trees` and `counted_trees` on the public map popups, and (new, Gary 2026-10-14) make `expected_trees` governor-editable via a sheet-column overlay (mirroring the existing `name_localized` pattern) rather than purely geometry-computed.",
+      "handoff_date": "2026-10-14",
+      "state": "executing",
+      "status_raw": "**executing — U1/U2/U3 LIVE (U3: governor-editable via `SunMint Plots` col U `Expected Trees`, corrected 2026-10-14 from a misplaced col T which is now `Farmer` — `tokenomics` #582 — proven end-to-end); U4 (surface both numbers on the public pages) still pending; the \"why we need this\" motivation spun into its own larger plan, see `plans/SUNMINT_PSEUDO_TREE_QR_PLAN.md` row below**",
+      "telegram_thread_id": null,
+      "telegram_thread_id_source": null,
+      "telegram_thread_id_needs_verification": false,
+      "telegram_topic": "—",
+      "telegram_topic_url": null,
+      "discord_channel_id": null,
+      "discord_thread_id": null,
+      "auto_start": "no",
+      "last_updated": "2026-10-14",
+      "supervised_by": {
+        "supervisor": "Envoy (nelanco-claude, supervisor loop)",
+        "claimed_at": "2026-10-14T01:25:00Z",
+        "note": "Discord #sunmint, channel 1559724628862173335. U1/U2/U3 all live and verified end-to-end (U3: governor-editable expected_trees via SunMint Plots col T, proven with a real write/clear round-trip). U4 folded into the pseudo-tree plan's PR7 -- see the dedicated claim below for the larger effort this motivated.",
+        "stale": true,
+        "age_minutes": 9804
+      }
+    },
+    {
+      "plan_file": "`plans/SUNMINT_PSEUDO_TREE_QR_PLAN.md`",
+      "title": "**SunMint: pseudo-tree slots + QR assignment** — Gary's real motivation for `expected_trees`: generate individual, QR-codable pseudo-tree placeholder slots per plot (while CEPOTX's real survey data compiles), cleanly distinguishable from real tree submissions, with a mechanism to reconcile a real tree to its placeholder once real data lands. Answers `SUNMINT_TREE_ESTIMATION_QR_PLOT_PLAN.md`'s open decision D3 with a third option (per-pseudo-tree, not per-plot or per-real-tree).",
+      "handoff_date": "2026-10-14",
+      "state": "executing",
+      "status_raw": "**executing — design v2 (docs PR #1602/#1603 open, pending final settle-all-decisions pass); first code unit merged (`sunmint` PR #6: id scheme + FIFO allocator, 16 tests, Envoy-merged since `sunmint` is policy-walled machine-owned/API-only and Sophia's own merge tool refuses it)**",
+      "telegram_thread_id": null,
+      "telegram_thread_id_source": null,
+      "telegram_thread_id_needs_verification": false,
+      "telegram_topic": "—",
+      "telegram_topic_url": null,
+      "discord_channel_id": null,
+      "discord_thread_id": null,
+      "auto_start": "no",
+      "last_updated": "2026-10-14",
+      "supervised_by": {
+        "supervisor": "Envoy (nelanco-claude, supervisor loop)",
+        "claimed_at": "2026-10-14T01:54:00Z",
+        "note": "Discord #sunmint, channel 1559724628862173335. Gary: 'supervise to completion.' Design v2 converged live: pseudo tree = SunMint Tree Planting row with blank lat/long (sole discriminator, no new column), claim-on-arrival FIFO reconciliation (no spatial matching), id <plot_id>-pseudo-<N>. Envoy caught two real gaps: (1) promotion (pseudo->real) needs its own dedicated event+DApp+CLI, the existing submission mechanism only appends new rows, can't update an existing one by id; (2) Gary's QR-to-plot-link ask is NOT a new surface -- dapp_beta/link_tree_planting.html already has it, and the existing handler (process_tree_planting_link.js) already shows a plot image + blank lat/long on link (confirming Gary's provenance idea is already shipped) but has ZERO capacity limit and reuses the real-tree ASSIGNED_TO_TREE status -- a live, previously-unflagged gap inflating the public tree-planted counter unbounded today. This design fixes that gap too. First code unit merged: sunmint PR #6 (id scheme + FIFO allocator incl. capacity-ceiling rejection, 16 tests, independently re-run by Envoy before merging -- Envoy had to merge since sunmint is policy-walled machine-owned/API-only and Sophia's own merge tool refuses it). RESUME HERE = merge docs PR #1602 (agentic_ai_context, main plan v2) + PR #1603 (D3 addendum) once Sophia's final settle-all-open-decisions pass lands (D2/D4/D5/D8/D9/D10 all effectively answered via chat already), then PR2 (sunmint: teach build_tree_geojson.py to skip blank-K/L rows). Standing gates: GAS/service deploys always human; beta->prod promote human-gated (or Envoy-delegated per SUPERVISOR_LOOP.md section 4a with full verification).",
+        "stale": true,
+        "age_minutes": 9775
+      }
+    },
     {
       "plan_file": "`plans/TRUESIGHT_LEDGER_EXPLORER_PLAN.md`",
       "title": "**TrueSight Ledger Explorer** — a public \"blockchain explorer\" read surface over `TrueSightDAO/verify_public_signatures` (the DAO's existing immutable, per-event-file signed ledger): search by txid/message_id, recent-activity feed, browse by type/contributor, cross-linked with the just-shipped My Trees module, canonical explorer at `truesight_me_beta/ledger/explorer/` (already nav-linked there); cfr/sunmint/dapp nav duplication DROPPED 2026-09-29; prod promotion held for governor approval.",
@@ -120,7 +240,7 @@
         "claimed_at": "2026-09-20T13:00:00Z",
         "note": "thread 33323. PR1-PR6 all independently verified merged (sunmint#2, truesight_me_beta#382/#383/#384/#385/#386/#387/#388). PR7 UAT: Sophia's own R1 pass caught + fixed a real layout bug (unstyled shared nav eating 623px, PR#387); Envoy's independent R2 pass (own puppeteer script via SSH, own screenshots, own click-test -- not Sophia's relayed captures, per the now-canonical SUPERVISOR_LOOP.md §4a point 2a this episode produced) found + required a fix for a real stale-copy defect (PR#388) before signing off. Envoy gave the §4a R3 GO (first real exercise of that delegated authority) -- sync_beta_to_prod(\"truesight_me_prod\") hit a genuine merge-conflict refusal, root-caused via Sophia's rigorous merge-base diff to ONLY the 6 machine-generated stats/*.json files (proven byte-level benign: timestamp/ordering churn only, same cron generator both sides) -- CNAME and the new file were single-sided, not real conflicts. Per SUNMINT_E2E_RUNBOOK.md §5c the documented remedy is a MANUAL GitHub-UI fork-sync (prod repo fork page -> Sync fork -> merge upstream, keep prod's CNAME) -- sync_beta_to_prod has no programmatic resolve path. RESUME HERE = awaiting Gary's manual fork-sync click, then Sophia re-runs sync_beta_to_prod. Gary also confirmed a standing directive: future beta->prod conflicts that are SOLELY the known CNAME divergence, Sophia should fix+proceed without waiting for governor go (see cname_only_sync_conflict_autoresolve memory) -- but the manual-fork-sync mechanical limitation still applies regardless of authorization when the tool truly has no resolve mode. NEW SCOPE 2026-09-20 (agentic_ai_context#1299, merged): PR8 (per-plot satellite history date-picker in the detail panel, using satellite/manifest.json's plot-keyed scenes, full historical range back to ~2017 API floor, genuine date-slider/stepper UX not a static grid) + PR9 (retire the now-redundant ~1-degree-cell satellite widget on sunmint.html marketing page, build-then-cleanup order). PR8b (the explorer stepper UI) shipped + verified merged (truesight_me_beta#389) -- reads the manifest, degrades gracefully to today's 4-scene window, lights up fully once PR8a lands. PR8a (the data backfill) blocked: sunmint is policy-walled as machine-owned/API-only in Sophia's own config.py (api_only_repos), so she mechanically cannot open a PR there -- she designed a sound self-driving-daemon approach (agentic_ai_context#1304, merged) per Gary's direction (extend the existing daily cron to catch up one rate-limited batch per run until full 2017-> history, then settle into steady-state rolling+merge -- no manual trigger ever needed). RESUME HERE = Gary deciding who writes the actual 8a code into sunmint (Envoy's own git credentials aren't bound by Sophia's api_only_repos restriction, so Envoy doing it directly is one live option; Gary loosening the config so Sophia can PR it herself is another) -- still awaiting his call as of last check.",
         "stale": true,
-        "age_minutes": 28261
+        "age_minutes": 43669
       }
     },
     {
@@ -279,7 +399,7 @@
         "claimed_at": "2026-10-09T02:49:00Z",
         "note": "thread 29305. Unit 0+1 now merged. Picked up this WIP loop iteration: manifest + plan doc said 'Unit 0 not yet started' but it had shipped 2026-09-14 (truesight_autopilot#446) -- corrected RESUME HERE to Unit 1 and dispatched Sophia. First turn scoped/recon only (no PR). A follow-up nudge got her to land truesight_autopilot PR #523 (Unit 1: find_open_turn_start/_scan_rounds/default_round_summarizer/compact_open_turn). CI's one test failure on first run (test_reaction_go_does_not_deadlock_on_thread_lock) independently confirmed pre-existing/unrelated flake (PR only touches context_compaction.py + its own test; passed 6/6 locally in isolation, green on CI re-run) -- merged by Envoy (squash 43df6f1). RESUME HERE = Unit 2 (wire compact_open_turn into the existing per-round _maybe_auto_compact call sites -- it exists but nothing calls it yet). Own-repo, autonomous merge authority, no money/prod gate -- not blocked_on_human, just not yet dispatched for Unit 2.",
         "stale": true,
-        "age_minutes": 1512
+        "age_minutes": 16920
       }
     },
     {
@@ -421,7 +541,7 @@
         "claimed_at": "2026-09-20T16:10:00Z",
         "note": "thread 33541. Handed off from the planner session (verified independently before accepting -- PR#1296 state, manifest absence, and topic existence all re-checked directly, not taken on the planner's word alone). Supersedes only the ledger-booking step of the parent SUNMINT_TREE_QR_LINKING_PLAN.md §7. Four-item accrual model (Cacao Tree Purchased-Not Planted / Cacao Tree-To Be Paid For / Cacao Tree Planted-Unassigned, alongside the existing To Be Planted liability), batch allocator for 520 sold-unlinked QRs, nine UAT test cases (TC1-TC9) each with mandatory same-turn cleanup per Gary's explicit instruction (real data already sits in these tabs). PR#1296 (the plan doc itself) opened + hit real merge conflicts on the derived handoffs/index.json (unrelated PRs had moved main in the meantime) -- Sophia correctly resolved by regenerating from the manifest source of truth rather than hand-merging JSON; merged (sha 78c17494), independently verified. Real pre-existing data-integrity finding surfaced in the plan (not yet remediated, proposed only): two unreversed 2026-08-22 test runs (TEST_AGL4_20260822_2/_3) left live main-ledger rows overstating 'Cacao Tree Planted' by +2 units -- plan's §5.10 proposes but does not execute the fix. RESUME HERE = PR1. Two open governor decisions flagged for before PR3/PR4 (§0.7 reconciliation-match automation, §0.8 aging policy / whether the existing CFR payouts handler books real ledger legs or only logs) -- not blocking PR1, worth surfacing to Gary before those units are scoped precisely.",
         "stale": true,
-        "age_minutes": 28071
+        "age_minutes": 43479
       }
     },
     {
@@ -699,7 +819,7 @@
         "claimed_at": "2026-09-15T19:10:52Z",
         "note": "DEPLOY LANDED 2026-09-16T21:12:44Z (5th restart this session, deployed commit 9551ed2). Source-level verified on the live box: app/context.py::get_context_file_fresh() is present and deployed. Live functional re-verification of the actual auto-advance behavior (U5/U1) still pending -- source presence confirmed, not yet re-tested end-to-end against a real stale-vs-fresh plan scenario. blocked_on_human -- 3 of 4 originally-authorized items done: (1) context PR merged agentic_ai_context#1214, (2) tokenomics#494 opened+reviewed (sound), classifier-blocked from Envoy's own merge -- STILL flagged to Gary, unresolved, (4) contribution report filed (verified via journal, avoided a duplicate after a result-display race). Held OPEN pending Gary's merge of #494 + GAS deploy. BONUS: while parked, self-diagnosed and fixed the recurring stale-auto-advance-directive bug that hit this session 5+ times -- root cause was _compute_advance_signal reading the plan from a 300s-synced local clone instead of fresh origin. Fix truesight_autopilot#477 (own-repo, self-merged within standing authority), reviewed independently by Envoy post-hoc and found sound (path-traversal guarded, git-show blob read with no lock/mutation risk, graceful fallback to old behavior, fails closed if truly unreadable, 5 regression tests).",
         "stale": true,
-        "age_minutes": 35090
+        "age_minutes": 50498
       }
     },
     {
@@ -739,7 +859,7 @@
         "claimed_at": "2026-09-15T19:10:52Z",
         "note": "DEPLOY LANDED 2026-09-16T21:12:44Z (5th restart this session, deployed commit 9551ed2). Source-level verified on the live box: app/telegram_adapter.py's _PROGRESS_QUERY_RE is the anchored (fixed) version, not the old bare-alternation bug. blocked_on_human -- U3 regression found + fixed (truesight_autopilot#475 merged 5738db7). Live functional re-verification (an actual Telegram round-trip proving a real instruction sent mid-turn is no longer misclassified as a status ping) still pending -- source presence confirmed, behavior not yet re-tested end-to-end. NOTE: topic 30475 was briefly closed by a queued turn that ran before my retraction reached her (single-worker sequential dispatch); she self-corrected, disclosed it, confirmed it's a reversible archive, and is now treating it as open with no further close attempts. Also flagged a real tool bug (not yet filed, low priority): close_telegram_topic_checked's _TERMINAL_STATUS_MARKERS requires literal \"completed\" but the manifest said \"COMPLETE\" -- false-blocks genuinely-done handoffs (also affects daily_briefing.py).",
         "stale": true,
-        "age_minutes": 35090
+        "age_minutes": 50498
       }
     },
     {
@@ -830,7 +950,7 @@
         "claimed_at": "2026-09-15T19:10:52Z",
         "note": "blocked_on_human -- read-only assessment found 8 real blockers (B1-B8). Held deliberately pending Gary's answers to B2 (sandbox sheet/tab) and B7 (security hygiene: anonymous /proxy/gas/* + SSRF probe logs on the beta box). Remaining work touches dao_protocol/Edgar (outside Envoy's merge authority) and real subscriber billing risk.",
         "stale": true,
-        "age_minutes": 35090
+        "age_minutes": 50498
       }
     },
     {
@@ -1023,7 +1143,7 @@
         "claimed_at": "2026-09-26T21:13:41Z",
         "note": "blocked_on_human -- three sub-tracks live under this one plan file, now spun into its own thread (35944, \"CFR - Payout registration\"). (A) Original vendoring track: parked at PR5/PR6 gate:human, unchanged. (B) Payout-linking P0-P3 (dapp_beta product card, proximity/duplicate-overpay guards, getUnpaidTrees picker, report_payout_event.html rework, payout-event-utils.js): all merged to dapp_beta (#104-#110, 2026-09-25) -- independently verified via CONTEXT_UPDATES + OPEN_FOLLOWUPS records, not yet re-verified live by Envoy directly. NOT promoted to prod: dapp_beta HEAD b16af37e vs dapp_prod HEAD 89ac5009 (stale, 2026-09-17) -- sync_beta_to_prod has not run, P4/P5 human gates open. (C) SS12/txid-dedup convention (new 2026-09-26, conventions/DEDUP_KEY_CONVENTION.md): both the CFR and SunMint payout sinks now key on the signed Request Transaction ID instead of the non-unique transport/message id (tokenomics#563/#564 merged). GATED runbook filed in OPEN_FOLLOWUPS.md ('GATED (governor go required) -- GAS deploy + backfill for BOTH txid-dedup sinks'): PART A (CFR sink, project 1MnAsIQA...) EXECUTED + VERIFIED 2026-09-26 on Gary's go -- deploy rolled @42->@43, backfillCfrTreeTxIds dry-run+apply 18/18 changed then idempotent (changed:0), getTreeRecipientMap now returns pk_hash-carrying rows, duplicate-collapse preview found 0 dupes so the destructive &apply=1 was correctly skipped (nothing to collapse, not a gap). PART B (SunMint sink, project 1Jp8q...) REMAINS GATED -- same two steps (deploy roll-forward + backfillSunMintTreeTxIds dry-run/apply) not yet run, awaiting Gary's explicit go. Also separately: a raw special-token leak observed directly in Sophia's chat output on this thread 2026-09-26 (a mid-tool-call formatting artifact printed as literal text instead of being parsed as a tool call) -- matches a previously-diagnosed-but-unpushed truesight_autopilot bug; worth a fix-and-verify pass, not yet actioned by Envoy. RESUME HERE = Envoy (2026-09-26) now actively supervising thread 35944 per Gary's explicit request ('supervise the telegram thread CFR payout registration to completion'); next actionable unit is Part B of the gated runbook, on Gary's go.",
         "stale": true,
-        "age_minutes": 19127
+        "age_minutes": 34535
       }
     },
     {
@@ -1046,7 +1166,7 @@
         "claimed_at": "2026-09-15T19:10:52Z",
         "note": "blocked_on_human -- PR6 beta shipped, correctly self-stopped at the prod repoint gate. Awaiting Gary's explicit authorization for the truesight_me_prod repoint. HTTPS live.",
         "stale": true,
-        "age_minutes": 35090
+        "age_minutes": 50498
       }
     },
     {
@@ -1206,8 +1326,8 @@
       "plan_file": "`OPEN_FOLLOWUPS.md#agl16-currency-leak`",
       "title": "**AGL16 [Brazilian Reis] currency-code leak in ledger Column E** — `InsertExpenseRecords()` in the AGL16 expense-processor GAS project wrote the raw `[AGL16] Brazilian Reis` prefix verbatim into the target ledger's Column E instead of the clean currency name whenever the ledger was resolved from Column M / the message (the normal path) — the `[ledger]` prefix strip only ran in an `else` fallback branch that path never hits. Explains the governor's repeated hand-cleaning of that column.",
       "handoff_date": "2026-09-15",
-      "state": "blocked_on_human",
-      "status_raw": "**blocked on human — code fix merged, GAS project awaiting deploy GO**",
+      "state": "done",
+      "status_raw": "**done — deployed to GAS prod 2026-10-13 + Column E verified clean**",
       "telegram_thread_id": "23408",
       "telegram_thread_id_source": "message_thread_id",
       "telegram_thread_id_needs_verification": false,
@@ -1216,7 +1336,7 @@
       "discord_channel_id": null,
       "discord_thread_id": null,
       "auto_start": "no",
-      "last_updated": "2026-09-15",
+      "last_updated": "2026-10-13",
       "supervised_by": null
     },
     {
@@ -1307,7 +1427,7 @@
         "claimed_at": "2026-09-18T02:00:00Z",
         "note": "executing -- pre-existing thread 31220. Real security finding, independently verified: a live Wix access token survives in tokenomics' PUBLIC git history despite being redacted from the working tree. Filed agentic_ai_context#1273 (merged) with the governor decision explicitly NOT taken unilaterally: revoke-in-Wix vs. history force-push rewrite. 2026-09-19: Gary explicitly resolved the earlier 'approve 2' bundle-ambiguity Envoy flagged -- confirmed PDF item 2 (governor-gated bundle incl. Wix) and his own list item 2 (deploy the git-ahead set) were different things; instructed 'just ignore WIX' (leave untouched, no revoke, no rewrite, deferred) and 'repoint to updated one' (proceed with the deploy). Sophia then executed a real 7-project GAS deploy batch (tokenomics#523 harness + live pushes, dry-run-then---push guarded, identity-matched) -- independently verified none of the 7 deployed scriptIds touch the Wix project (1Y8sJ22); Wix genuinely untouched. Also shipped tokenomics#524 (fixed a stale-pinned-deployment ReferenceError on 19Wag9x, the same project backing the EXPENSE_PROCESSING webhook -- this incidentally explains a missing-expense-record bug surfaced in the Black King thread, see that claim). RESUME HERE = Wix revoke-vs-rewrite still explicitly deferred by Gary, not resolved -- do not treat 'ignore Wix' as closing the question, only as postponing it.",
         "stale": true,
-        "age_minutes": 31801
+        "age_minutes": 47209
       }
     },
     {
@@ -1413,6 +1533,63 @@
       "supervised_by": null
     },
     {
+      "plan_file": "`plans/TREE_PLANTING_PHOTO_GPS_CAPTURE_PLAN.md`",
+      "title": "**Tree-planting photo GPS — capture at source (A1 + B)** — when a farmer submits a [TREE PLANTING EVENT] via the CFR (`cfr_main.html`) or SunMint (`report_tree_planting.html`) DApp, the burned-in watermark lat/long is **never read**; coords come only from `navigator.geolocation` / EXIF, so a live-camera blob with geolocation denied submits **blank** `- Latitude:`/`- Longitude:` lines. The GAS parser gates on the literal `'N/A'`, so a blank line (`''`) slips through as `NEW` with empty sheet cols K/L instead of `INVALID`. Hit **17/91** CFR Anapu rows 2026-10-15 (hand-backfilled). **A1** = DApp reads the watermark before signing via a new Edgar `/dao/read_watermark_gps` (reuses the tested `read_timemark_watermark`); **B** = GAS parser blank-latitude guard. Constraint: the RSA signature is client-side over the exact text, so coords must be folded in **before** `signText()` — no server-side append. Beta-first; prod promote gate:human.",
+      "handoff_date": "2026-10-15",
+      "state": "awaiting_kickoff",
+      "status_raw": "**awaiting kickoff** — plan + manifest row registered 2026-10-15; A1 PR1 not yet started",
+      "telegram_thread_id": null,
+      "telegram_thread_id_source": null,
+      "telegram_thread_id_needs_verification": false,
+      "telegram_topic": "—",
+      "telegram_topic_url": null,
+      "discord_channel_id": "1560808245948588103",
+      "discord_thread_id": null,
+      "auto_start": "yes",
+      "last_updated": "2026-10-15",
+      "supervised_by": null
+    },
+    {
+      "plan_file": "`plans/SITIO_CATARINENSE_FARM_ONBOARDING_PLAN.md`",
+      "title": "**Sítio Catarinense (Jhordan, Anapu/Pará) — new farm onboarding** — a WhatsApp zip from CFR Anapu student Jhordan (`WhatsApp Chat - Jhordan - Anapu CFR.zip`) surfaced a new, unregistered 150.78 ha family property (KML-computed, matches his 150 ha claim) with no overlap to any existing SunMint plot; the already-paid CFR Anapu tree record (`pk-qkejKJJW3IAD`, 92 trees, R$520, clean ledger) sits on this same land. Roadmap: STEP ZERO naming confirmation → register farm+plot → re-link the full tree registry against the new boundary (flagged one adjacent tree under a different pk_hash, `Edgar_20260924122114_057`, 1.07 km away, for governor review — not auto-linked) → farm profile page (`agroverse_shop_beta`, template `rancho-maranta-para`) → beta UAT → prod promote gate:human. Media is GPS-stripped (WhatsApp recompression) — map placement blocked pending GPS-bearing originals from Jhordan.",
+      "handoff_date": "2026-10-20",
+      "state": "awaiting_kickoff",
+      "status_raw": "**awaiting kickoff — plan + manifest row registered 2026-10-20; STEP ZERO naming question not yet posted**",
+      "telegram_thread_id": null,
+      "telegram_thread_id_source": null,
+      "telegram_thread_id_needs_verification": false,
+      "telegram_topic": "—",
+      "telegram_topic_url": null,
+      "discord_channel_id": "1562002603351736421",
+      "discord_thread_id": null,
+      "auto_start": "yes",
+      "last_updated": "2026-10-20",
+      "supervised_by": {
+        "supervisor": "Envoy (nelanco-claude, interactive)",
+        "claimed_at": "2026-10-20T07:59:00Z",
+        "note": "Gary's explicit directive: 'Make sure she follows up and works on it in this channel' (#sitio-catarinense, Discord channel 1562002603351736421). PR0 merged (agentic_ai_context#1673). Sophia triggered, posted STEP ZERO naming question in-channel (verified live, msg 1562012138321739897), and reinforced that all turns on this plan must land in Discord #sitio-catarinense, not just the Telegram exec topic (thread 42369). RESUME HERE = governor answers STEP ZERO (#1 slug, #2 plot-id prefix) before PR2 (plot registration).",
+        "stale": true,
+        "age_minutes": 770
+      }
+    },
+    {
+      "plan_file": "`plans/ENVOY_MENTION_TRIGGER_PLAN.md`",
+      "title": "**Envoy mention-trigger daemon** — Gary currently has to manually find/prompt an Envoy session to get supervision started; this builds a standing watcher with two trigger sources that wake/inject into the `supervisor` tmux session on `nelanco-claude`: (A) an `@envoy` mention from the governor on Discord or Telegram, and (B) any new activity in a channel/thread currently in `HANDOFF_MANIFEST.md`/`active_supervision.json` (e.g. Sophia posting a status update in a thread Envoy claimed). Telegram inbound capture half-exists already (`@nelanco_claude_bot` / `claude-telegram-monitor.service`, log-only by design) — the new work is the acting layer on top, plus a from-scratch Discord poller (Envoy has no inbound listener today, unlike Sophia's live `discord_adapter.py`). The tmux-injection mechanism itself is unverified and must be de-risked first (PR1 spike) before either watcher is built around it. Hard requirement: all code checked into a real GitHub repo (not left on-box), documented for a future Envoy instance to redeploy clean.",
+      "handoff_date": "2026-10-20",
+      "state": "awaiting_kickoff",
+      "status_raw": "**awaiting kickoff — plan + manifest row registered 2026-10-20; U1 (confirm Discord token location) not yet started**",
+      "telegram_thread_id": null,
+      "telegram_thread_id_source": null,
+      "telegram_thread_id_needs_verification": false,
+      "telegram_topic": "—",
+      "telegram_topic_url": null,
+      "discord_channel_id": null,
+      "discord_thread_id": null,
+      "auto_start": "yes",
+      "last_updated": "2026-10-20",
+      "supervised_by": null
+    },
+    {
       "plan_file": "`brazil/ILHEUS_WAREHOUSE_MANAGEMENT.md`",
       "title": "**Matheus follow up items** — a batch of Ilhéus-warehouse operator follow-ups from Gary direct to Sophia: equipment walkthrough checklist (bean moisture tester, ozone machine, generator, ventilator, insect killer) emailed to Gary + Matheus; Google Calendar invites (one-off walkthrough, a monthly recurring inspection-readiness walk now moved to first-Saturdays, a daily Sophia self-check series); power-of-attorney ask to Matheus; a fumigation-cadence correction (event-triggered on new-cacao-intake-for-long-term-storage, not fixed-clock); an Orlantildes follow-up reminder re: Liz Wong's Santos roasted-bean feedback. Codifies into the warehouse cadence items (B2/B3/C2/C5/E1) in the SSOT doc.",
       "handoff_date": "2026-10-10",
@@ -1431,8 +1608,8 @@
     }
   ],
   "warnings": [
-    "line 63: ragged row has 13 cells, expected 11 — padded/truncated",
-    "line 82: ragged row has 9 cells, expected 11 — padded/truncated",
-    "line 78: blank line splits the handoff table"
+    "line 69: ragged row has 13 cells, expected 11 — padded/truncated",
+    "line 88: ragged row has 9 cells, expected 11 — padded/truncated",
+    "line 84: blank line splits the handoff table"
   ]
 }

@@ -39,6 +39,697 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Scoring pipeline dead since 2026-09-13 — ~24,083 contribution-minutes and $2,226 un-awarded
+**Filed 2026-10-24. Owner: unclaimed. Governor: Gary. HIGH urgency — silent, ongoing, and it eats governor *and* contributor work.**
+
+**Symptom A — no TDG issued for anything since 2026-09-13.** 259 contribution events have accrued with no scoring pass: **~24,083 contribution-minutes** and roughly **$2,226** of TDG un-awarded. Intake reference: `Telegram Chat Logs` row **12408**. Affected contributors include governors and agents, not only third parties.
+
+**Symptom B — `.github/assets` attachment uploads stopped writing on the same date.** Treated as the same root cause pending investigation (a shared credential/scope or a shared GAS execution path). If they are in fact independent, split this entry.
+
+**Why it stayed invisible.** Nothing alerts. Contributions are *recorded* correctly, so every intake-side surface looks healthy; the absence is downstream, where no rows appear. Same fail-silent class as §9c.5a — a correct-looking upstream and a silently stale derived view.
+
+**Note on units.** State this in **minutes** (24,083), not "~401 hours". 24,083 min ÷ 60 = 401.4 h, but "401 hours unpaid" reads as a wage claim and invites a challenge to the *framing* that buries the real finding.
+
+**Next action:** find the last successful scoring run, diff its trigger/credential against today, and add a liveness assertion (if no scoring row in N hours → alert). Backfill the 259 events once the pipeline is proven.
+
+---
+
+### `agroverse-freight-audit` has 34 open PRs from one batch — but they are NOT duplicates, and bulk-close would destroy quote records
+**Filed 2026-10-24. Owner: unclaimed. Governor: Gary. MEDIUM urgency, HIGH risk if the wrong remediation is applied.**
+
+**The numbers (Search API, authoritative).** `agroverse-freight-audit`: **35 open PRs total**, of which **34** are `Freight quote ingest:` PRs `#7`–`#40`. All 34 were created by `garyjob` **on the same day, 2026-04-16**. They have sat open ~6 months. `agentic_ai_context` is far worse: **167 open PRs**. `tokenomics`: 27.
+
+**The trap — this entry exists mainly to record a rejected fix.** The obvious remediation ("they're auto-generated duplicates, bulk-close them") is **wrong and destructive**. Verified by reading the file list of all 34 PRs: each adds a *distinct* pair of artifacts (`quotations/email/<doc>.md` + `snapshots/<doc>_freight-pricing.json`), and the filenames encode **different destinations** (Austin TX, SF, SFO) and **different quote dates** (2025-11-04 → 2026-04-15).
+
+- **34 PRs → 21 distinct quotation documents → 13 redundant re-runs** (same destination *and* same date opened more than once: e.g. `#9`/`#10`, `#18`/`#20`, `#31`/`#32`/`#36`, `#37`/`#38`/`#39`).
+- **Bulk-closing all 34 would discard 21 real freight quotations** — including the quote history that the Black King lane's quote-vs-invoice dispute (§5.13, 5 Continent) depends on.
+
+**Correct remediation.** (1) De-duplicate to one PR per *distinct quotation document* — close the 13 same-date re-runs only, keeping the lowest-numbered; (2) merge the surviving 21 (they are additive, isolated files under `quotations/` and `snapshots/`); (3) fix the *ingest* so one document cannot open two PRs.
+
+**Real finding.** 21 freight quotations — the entire Omega Services quote history — have been sitting unmerged for six months. That is a data-availability problem in the freight lane, not merely a queue-hygiene problem, and it is very likely why quote-vs-invoice reconciliation is manual.
+
+**Also:** "PR #43" is ambiguous across the org — it exists in at least five repos (`agroverse-freight-audit` open, `tokenomics`/`agentic_ai_context`/`dao_protocol`/`agroverse_shop_beta` all merged). Always name the repo. `agroverse-freight-audit#43` (Black King actuals v2 — bond true-up $121.06 + AGL15 definition) is still open and held for review.
+
+**Next action:** de-dup to 21, merge, then gate the ingest. Do **not** bulk-close.
+
+---
+
+### The only per-page visual gate runs *after* deploy, and two of the four prod pairs never assert prod
+**Filed 2026-10-22 (Dorothy Stang / §9a workstream). Owner: unclaimed. Governor: Gary. MEDIUM urgency, HIGH credibility cost — a red check on prod is being ignored as routine.**
+
+**Symptom.** `visual-consistency.yml` is the only thing that renders a deployed page and asserts on it.
+It is `deployment_status`-triggered on every pair that has it, so it **cannot block a bad deploy** — it
+reports afterwards. And the four prod forks are not equivalent:
+
+| Repo | Visual gate | What it actually asserts |
+|---|---|---|
+| `agroverse_shop_prod` | `visual-consistency.yml` | **prod** — `playwright.config.ts` branches on `GITHUB_REPOSITORY` to `https://www.agroverse.shop`. But the job name hardcodes `(beta.agroverse.shop)`, so the run title misstates what it tested. |
+| `truesight_me_prod` | `visual-consistency.yml` | **beta** — hardcodes `PLAYWRIGHT_BASE_URL: https://beta.truesight.me` in the workflow env. Prod is promoted but never visually asserted. |
+| `dapp_prod` | none | `dapp_beta` has `playwright-beta.yml` (beta host only); prod has no copy. |
+| `sunmint_prod` | none | `sunmint_beta` has no `.github` directory at all. |
+
+**Second problem: the check is chronically red, so it is being ignored.** `agroverse_shop_prod` last 30
+runs: `{skipped: 22, failure: 7, in_progress: 1}` — and the failing step is always **"Run Playwright
+against deployed beta"** (`npm test`), on 2026-09-19, 09-26, 10-20, 10-21 and 10-22. A red visual check
+that is red most days trains everyone to skip it, which costs more than not having one.
+
+**Third problem: `skipped` is routinely misread.** A single deploy emits several `deployment_status`
+events; only the one with `state == 'success' && environment == 'github-pages'` satisfies the job `if:`
+guard, so the others record `skipped` (3 skipped : 1 executed, observed on both the beta and prod deploys
+of 2026-10-22). `skipped` therefore means *duplicate event*, **not** *check absent* and **not** *check
+failed*. **I misread this myself during the Dorothy work and reported "prod has no visual gate on any of
+the four pairs" — that was wrong for `agroverse_shop_prod`, and the error came from reading the `skipped`
+runs instead of finding the one run that executed.**
+
+**Evidence.** Read live 2026-10-22: `agroverse_shop_beta` / `agroverse_shop_prod`
+`playwright.config.ts` (identical in both, `GITHUB_REPOSITORY`-branched) and `visual-consistency.yml`
+(identical in both, job name `Visual Consistency (beta.agroverse.shop)`);
+`truesight_me_prod/visual-consistency.yml` line 38 `PLAYWRIGHT_BASE_URL: https://beta.truesight.me`;
+`dapp_beta/.github/workflows/{ci,playwright-beta}.yml`; `sunmint_beta` `.github` → HTTP 404.
+Runs API: `agroverse_shop_prod` run `39725859704` (2026-10-22T05:03:43Z, `head_sha=2c8f725f`) failed at
+step "Run Playwright against deployed beta"; Dorothy prod deploy run `39871448683` (`head_sha=c56ee741`)
+in progress at time of filing.
+
+**Next (needs a governor scope decision).** Three separable fixes, smallest first:
+1. **Fix the labels** — rename `truesight_me_prod`'s job off "beta", and make `agroverse_shop_prod`'s job
+   name report the URL it actually used rather than a hardcoded hostname. ~15 min, no behaviour change,
+   and it removes the most likely source of a wrong conclusion like mine.
+2. **Give `truesight_me_prod`, `dapp_prod` and `sunmint_prod` a real prod assertion** — either their own
+   `deployment_status` workflow or a `PLAYWRIGHT_BASE_URL`/`BASE_URL` derived from the repo name, the way
+   agroverse already does.
+3. **Decide what to do about the 7-in-30 red rate.** Either the Playwright suite is genuinely broken
+   against the live site (investigate) or the assertions are too strict for a live target (loosen).
+   Leaving it red is the worst option — see the anti-pattern this creates.
+
+**Do not** fold this into §9a's scope — §9a documents *what gate applies where*, which now needs
+correcting too (the `skipped` explanation above supersedes the wording currently in PR #1692).
+
+### Signed CRF Anapu Tree Planting Support Agreement carries the Laguna Beach mail-drop as TrueTech's office address
+**Filed 2026-10-22 (Bionpact / OCBC KYC workstream). Owner: unclaimed. Governor: Gary. Low urgency, MEDIUM legal/consistency — the document is signed, so this needs a signed amendment or nothing at all, not an edit.**
+
+**What's wrong.** `CRF_ANAPU_TREE_PLANTING_SUPPORT_AGREEMENT.md` (signed 10 September
+2026, TrueTech Inc ↔ CEPOTX / Casa Familiar Rural de Anapu "Dorothy Stang") states the
+Supporter's address as **1968 South Coast Highway #4616, Laguna Beach, CA 92651** in four
+places — EN line 20 and line 107, PT line 117 and line 204.
+
+On 2026-10-22 the governor confirmed the TrueTech company address is:
+
+> **3041 Taraval St, San Francisco, CA 94116, USA**
+
+and stated earlier (DHL thread, 31 Oct 2025) that Laguna Beach is *"where I receive our
+mails"* — a mail drop, not premises. `BLACK_KING_NFE_TRANSIT_CROSSWALK.md` documents the
+same distinction for the freight corridor: the DANFE *DESTINATARIO* reads
+`TRUETECH INC - TARAVAL ST, 3041` and lands physically at Val Lapidus.
+
+**Why it was not just edited.** The file is a *signed instrument*. Changing an address in a
+transcript of a signed agreement silently alters what the counterparty agreed to. The
+correct fix is either (a) a signed amendment between the parties, or (b) an explicit note
+in the document recording the address correction and its effective date, signed by both.
+An AI editing the markdown is neither.
+
+**Also affects.** `PROSPERA_ENTITY_OPERATING_AGREEMENT.md` references TrueTech as the U.S.
+Import Partner — check whether it carries the address too, and whether it is signed.
+
+**Already fixed (2026-10-22).** `conventions/AGROVERSE_INVOICE_CONVENTION.md` — the
+default-issuer address and the `From:` block were corrected to Taraval, since those govern
+*future* invoices and are not signed instruments.
+
+**Work (~30 min, mostly governor decision).** Decide amendment vs. note-of-correction, then
+generate the EN + PT pair to match. Do **not** touch the signed text without that decision.
+
+### Autopilot pre-push gate uses the wrong interpreter, producing phantom test failures and a false money-adjacent bug report
+**Filed 2026-10-21 (from the Sítio Catarinense workstream). Owner: unclaimed. Governor: Gary. Low urgency, HIGH credibility cost — it caused a fabricated "silently zeroes TDG" bug report that took three turns and an independent governor repro to retract.**
+
+**What happened.** The autopilot pre-push hard rule says to run `python3 -m pytest -q`
+before pushing. On the autopilot EC2 box, bare `python3` resolves to
+`/usr/bin/python3` → `/home/ubuntu/.local/lib/python3.10/site-packages/truesight_dao_client`,
+which is an **older install with no `rubric.py`**. The project venv
+(`/opt/truesight_autopilot/.venv`) has `rubric.py` (61 lines), and **all four production
+services run the venv explicitly**:
+
+```
+truesight-autopilot.service          → /opt/truesight_autopilot/.venv/bin/python -m uvicorn app.main:app
+truesight-autopilot-telegram.service → /opt/truesight_autopilot/.venv/bin/python
+truesight-autopilot-discord.service  → /opt/truesight_autopilot/.venv/bin/python
+truesight-autopilot-watchdog.service → /opt/truesight_autopilot/.venv/bin/python
+```
+
+So the "gate" ran the suite against a dependency set production never uses.
+
+**The false alarm it produced.** `tests/test_resolve_tdg_issued.py` fails 5/8 under bare
+`python3` and passes 8/8 under the venv. Under bare `python3`,
+`_resolve_tdg_issued(None, "Time (Minutes)", "60")` returns `'0.00'` instead of `'100.00'`,
+because the rubric import raises `ModuleNotFoundError` and this `except` swallows it:
+
+```python
+try:
+    from truesight_dao_client.rubric import format_tdg, tdg_for
+    return format_tdg(tdg_for(contribution_type, amount))
+except Exception:
+    return text or "0.00"        # masks ImportError as a plausible business value
+```
+
+That was reported to the governor as a **live money-adjacent bug silently zeroing TDG**.
+It is not a bug: production uses the venv, computes TDG correctly, and **nothing needs
+remediating**. Full suite under the venv: **1647 passed, 0 failed**; under bare `python3`:
+5 failed / 1642 passed. Same commit, same tests.
+
+**Ruled out (so nobody re-investigates).** A governor hypothesis that rubric resolution
+lazily fetches `dao_client` into `CONTEXT_REPOS_DIR` with different network/credential
+access was **disproved**:
+- `rubric.py` is a **static installed file**, no network/urllib/http/git inside it.
+- `CONTEXT_REPOS_DIR` has exactly one reference in the tree (`app/config.py:813`) and is
+  not read by the rubric path.
+- `env -u CONTEXT_REPOS_DIR -u HOME` with the venv → still `'100.00'`.
+- **System python with the venv's site-packages prepended → `'100.00'`.** The interpreter
+  and the environment are irrelevant; only **which `truesight_dao_client` is importable**
+  matters.
+- A `git clone` (not `git worktree`) at the same sha with all `__pycache__` cleared
+  reproduces it, so it is not worktree/pycache contamination.
+
+**Work (~20-30 min).** (1) Change the pre-push hard rule — in the
+`truesight_autopilot` system prompt/tooling — to pin
+`/opt/truesight_autopilot/.venv/bin/python -m pytest -q` (and the same prefix for
+`compileall` / `ruff`) so local gates and CI cannot disagree about dependencies.
+(2) Add a `logger.warning` (not a silent `return`) to the rubrics `except` fallback in
+`_resolve_tdg_issued` so a missing dependency surfaces as an ImportError in the log
+instead of masquerading as a real `0.00`. The broad `except` should stay — it correctly
+keeps a bad turn from crashing — but it must not be silent.
+
+**Related but distinct.** Line ~207 of this file covers missing `Pillow`/`pytesseract` in
+the prod venv being swallowed by lazy imports. Same *class* (missing dep → silent
+degradation), different dependency and different fix.
+
+### `CFR_Anapu_18_trees.pdf` shipped with zero clickable link annotations — tree-report PDF path bypasses the `PAYOUT_REPORT_SOP.md` §4 link check
+**Filed 2026-10-20 (from the Sítio Catarinense packet). Owner: unclaimed. Governor: Gary. Low-medium — no money impact (the 18 trees were paid correctly), but it is a reviewability defect in a document whose whole purpose is reviewability.**
+
+**What happened.** `00000017-CFR_Anapu_18_trees.pdf` — the 18-tree planting report from the
+`WhatsApp Chat - Jhordan - Anapu CFR.zip` packet — carries **zero link annotations**. Scanned the
+PDF bytes with pymupdf: 5 pages, `link_annots=0`, `unique_uris=0`. Every "View tree" reference
+in it is literal dead text, not a `/URI` annotation.
+
+**Control case (same packet, same day).** The two payout schedules are correct:
+`pix_payout_linked_cfr_anapu_20261015 (3).pdf` and `payout_paid (1).pdf` each carry **86/86**
+unique `/URI` annotations, all on `cfr.truesight.me`, none off-domain. So the defect is specific to
+the **tree-report** generator path — not the payout-schedule path, which honours the SOP.
+
+**Why it violates the SOP.** `PAYOUT_REPORT_SOP.md` §4 states plainly that `generate_pdf` renders
+markdown `[text](url)` as literal dead text ("no `/Annots`, no `/Link`, no `/URI`, verified
+2026-10-15") and says *do not use it when the report needs clickable links* — use reportlab with
+`Paragraph(<a href=…>)` instead, then **verify before sending** by scanning for `/Annots`,
+`/Link`, `/URI` and asserting the expected URI count.
+
+**Why it matters more than a cosmetic bug.** The SOP's rationale (§1) is that a schedule listing
+opaque ids is not reviewable — the payee and reviewer must be able to click through and see the
+item being paid for. A report that *looks* linked but isn't is worse than a plainly unlinked one,
+because the reviewer assumes the link is there and stops checking.
+
+**Related but distinct.** The existing `OPEN_FOLLOWUPS.md` note (~line 206) about payout reports
+not presenting a dead link concerns **pseudo trees** (blank lat/lng) being absent from
+`sunmint/trees/index.geojson`, so `my-trees?tree=` shows "not found". That is a *target-resolution*
+problem. This entry is a *render-time annotation* problem: the link isn't an annotation at all,
+so it fails regardless of whether the tree resolves.
+
+**Work (~30-60 min).** (1) Find the generator that produced this report (likely an ad-hoc
+script, not the reportlab payout path) and either switch it to the reportlab + `<a href>` pattern
+from `PAYOUT_REPORT_SOP.md` §4 or route it through the same code path the payout PDFs use.
+(2) Add the post-generation assertion from §4 (scan bytes, assert `/Annots` + expected `/URI`
+count) so a dead-link report cannot be sent. (3) Consider a shared `assert_pdf_links()` helper
+used by every report generator, rather than re-implementing the check per script.
+
+**Blocker.** None — but the generator's whereabouts is not yet established; the packet contains
+the output, not the source. First step is locating the producer.
+
+### `nelanco-claude`: add a disk-utilisation alarm (gc.auto=0 already applied)
+**Filed 2026-10-20 (Envoy box at 100% disk). Owner: unclaimed. Governor: Gary. Medium — `gc.auto=0` has removed the known trigger, but nothing pages if the disk refills for another reason.**
+
+**What happened.** Envoy's box (`nelanco-claude`, `i-01ad5eca707e4445f`) hit **root 100% full**
+(`29G/29G`). Cause: an **interrupted `git repack` of `/opt/claude_workspace/lineage-credentials`**
+left four orphaned `tmp_pack_*` files (~6.8 GB) behind. A repack needs roughly **double the pack
+size** in free space to build the replacement pack, so on a disk that was already tight it
+self-destructed and left the temp files to consume the rest. Removed 2026-10-20; box back to 78%
+used. See the addendum on the `nelanco-claude` reachability entry above for why this is also the
+probable cause of the 2026-09 unreachability incidents (`sshd` cannot write at 100% → SSH
+banner timeout → `InstanceStatus: impaired` while the guest is alive).
+
+**Already done (2026-10-20).** `git config gc.auto 0` set **repo-locally** in
+`/opt/claude_workspace/lineage-credentials` (verified; it was previously unset, i.e. at git's
+default auto-gc threshold). This stops git from spontaneously auto-triggering a repack there, so
+the known refill scenario cannot silently recur. Note this is a **local, host-only** config — it
+is not in the repo and will not survive a rebuild of the box or a fresh clone. Also killed three
+stale multi-day watcher shells under the `analyst` tmux session that were spinning no-op
+`until` loops (harmless, but they had been running 4–6 days).
+
+**Suggested scope (remaining).**
+1. **Add a disk-utilisation CloudWatch alarm** on the nelanco-claude instance — a custom metric
+   via the CloudWatch agent on `disk_used_percent` for `/`, alarm threshold ~85%, notifying the
+   existing Telegram/Discord path (same pattern as `AWS_DIGITAL_INFRASTRUCTURE.md` §8). This is
+   the piece that actually pages someone; a `StatusCheckFailed_Instance` alarm fires only after
+   the box is already unreachable.
+2. **Make `gc.auto=0` durable** — either add it to the box's provisioning/bootstrap so a rebuilt
+   instance gets it, or document it in `ENVOY_TMUX_SESSIONS.md` next to the existing
+   "`.git` is the usual culprit" note so whoever next works on a fresh box re-applies it.
+3. **Periodic reclaim audit** on that box. Known reclaimable at time of writing: `/tmp/claude-1000`
+   (613 MB, untouched since 2026-10-10) and `~/.claude` (~949 MB of shell snapshots / caches).
+   Safe, but nothing prunes them automatically.
+
+**Root refill hazard, for the record.** `lineage-credentials` is roughly **10 GB** of history
+(see `WORKSPACE_CONTEXT.md` — the `build-cv-cache.yml` checkout alone takes 21m44s on a GitHub
+runner). Any operation that wants a second copy on that box — repack, a fresh clone, a full
+bundle — needs ~5–10 GB of headroom against a 29 GB disk shared with several concurrent
+`claude` sessions. Do that maintenance **only** with `df -h /` checked first, and never on a box
+that is already above ~70%.
+
+---
+
+### QR manifest `scan_target` does not describe what the generated QR actually encodes (systemic, all batches)
+**Filed 2026-10-20 (396-label delivery: 8oz nibs AGL4 + ceremonial 200g AGL8). Owner: unclaimed. Medium — no live breakage today, but it makes every provenance document cite a URL its own QR does not resolve to.**
+
+**What.** Every sampled manifest in `lineage-assets/qrs/*.json` carries:
+- `scan_target` = `https://truesight.me/qr/?id=<id>`
+- but the PNG written by `scripts/qr_generator/batch_compiler.py` actually encodes `https://edgar.truesight.me/agroverse/qr-code-check?qr_code=<id>` (the Edgar resolver, which 302s on to `agroverse.shop/shipments/<agl>`)
+
+Confirmed on `2024OSCAR_20250826_NIBS_1` and `2024PAULO_20251001`: manifest `scan_target` and the decoded PNG disagree. Since `scan_target` is the field any downstream consumer naturally reaches for when captioning or linking a QR, the mismatch propagates silently. It reached **396/396** generated provenance pages in this delivery before governor QC decoded the embedded base64 QR out of the HTML and caught it — a caption claiming `Scan targets → truesight.me/qr/?id=X` sitting directly above a QR that resolves somewhere else.
+
+**Why it matters.** These pages exist for auditability. A provenance record that misstates its own scan target is worse than one that says nothing, because it looks authoritative.
+
+**Not fixed at source deliberately.** `scan_target` is consumed by the live `truesight_me` `qr/index.html` renderer, so changing the field or the generator's encoded URL has live-site blast radius and needs a decision: either (a) make `scan_target` the single source of truth and encode it, or (b) keep the Edgar resolver as the encoded payload and add a distinct documented field for the human-facing page. Do not change one side alone.
+
+**Worked around for this delivery.** Provenance captions now read `QR encodes → <decoded payload>` plus `Live provenance page → <truesight.me link>`, generated by decoding the QR rather than trusting any manifest field; `qr_codes.csv` split into `qr_encodes` and `live_page` columns. Verified by headless-browser render + OCR that caption text matches the QR in the rendered page.
+
+**Suggested scope.** Decide (a) vs (b) above; add a generator assertion that the written PNG decodes to the manifest's declared target; extend `--verify` to compare payload identity, not just decodability.
+
+---
+
+### `send_telegram_attachment` silently posts to the Telegram home group from a Discord session
+**Filed 2026-10-20 (396-label delivery). Owner: unclaimed. Medium — cross-platform misdelivery that returns `status: ok`.**
+
+**What.** `send_telegram_attachment` resolves its destination via `_thread_id_from_session()` / `settings.telegram_home_group_id`. On a `dc:` (Discord) session there is no `tg:` key, so it falls back to the Telegram working group. Both 396-label zips were delivered into Telegram chat `-1003919341801` (message ids reported as success) while the governor was reading Discord and saw nothing. Two full rounds of "I don't see them" before the misroute was identified.
+
+**The dangerous part is the return value.** The tool reports `status: ok` with a real `message_id` and `attachment_url` — because it genuinely did deliver, just to the wrong platform. Nothing in the result signals that the destination was a fallback rather than the originating session. An agent reading its own tool output has no way to detect the misdelivery.
+
+**Suggested scope.** (a) If the session has no resolvable destination for the current platform, **refuse** rather than silently falling back to the home group; (b) add `dest_resolution: "explicit" | "fallback"` to the tool result so a fallback is visible to the caller; (c) if the session is `dc:` and the tool is Telegram-only, error with a pointer to `send_discord_attachment` — and vice versa. Also worth checking the sibling helpers (`post_to_telegram_topic`, `send_discord_attachment`) for the same silent-fallback shape.
+
+**Also surfaced in the same delivery.** The zips were initially 25.8 / 26.2 MB, over Discord's 25 MB `sendDocument`-equivalent cap; neither the Discord nor Telegram attachment tool pre-checks the destination's limit, so an oversized file fails at the platform rather than being caught and shrunk locally.
+
+---
+
+### Introduce Lawrence Kwek to the China team once China-side packaging is settled (Agroverse SEA expansion)
+**Filed 2026-10-19 (Singapore in-person strategy session; logged as a [CONTRIBUTION EVENT], 180 min, Gary Teh + Lawrence Kwek). Owner: Gary Teh. Blocked on the China side finishing packaging.**
+
+**What.** Lawrence Kwek (`lawkpsn@gmail.com`, DAO member since 2026-10-19) has his own network in China. Once the China side has **figured out their packaging**, link him up with the China team. He is simultaneously building (a) understanding of the product, (b) understanding of the Singapore market, and (c) understanding of the importing procedure into Singapore; Gary is sharing the Agroverse product portfolio with him.
+
+**Why it matters.** This is the entry path for Southeast Asia — Singapore first. The intro is a one-shot dependency: it is worthless before the China side settles packaging and time-sensitive afterwards.
+
+**Suggested scope.** No code. Trigger: when the China-side packaging decision is recorded, introduce Lawrence to the China team and log a `PARTNER CHECK-IN EVENT` (or `CONTRIBUTION EVENT`) against him so the intro is on the ledger. **Do not** let this rot in a chat transcript — it was deliberately filed here because a contribution description is not a work queue.
+
+---
+
+### Guild roster cannot resolve 25 of 42 legacy Discord bindings — needs governor-supplied IDs
+**Filed 2026-10-19 (membership-record remediation). Owner: unclaimed (blocked on data collection). Medium — 25 contributors stay unattributable.**
+
+**What.** `Contributors contact information` used Discord's **retired `name#NNNN` discriminator format** (killed by Discord in 2023). `discord_adapter._fetch_discord_id_email()` matches **column G against a numeric snowflake**, so every legacy row silently resolved as *unbound* (`email=None` → `role=guest`). 42 rows were affected.
+
+**What was fixed.** 17 rows were re-bound to real snowflakes by matching handles against the live guild roster (59 members, pulled via `discord_adapter.get_token()` from the vault — **the token is NOT in env**, so an env-only lookup 401s) plus the 2026-09-12 roster snapshot for accounts that have since left. Column G backed up to `/tmp/col_g_backup.json` before writing; no duplicate snowflakes introduced. Bindings went 10 → 26.
+
+**The unfixable remainder.** **25 rows have no corresponding account in the guild at all** — the person left, never joined, or their username was never captured: `@_H4N5`, `@ryansjjr`, `@TheoDL`, `Alex`, `Bing`, `Boris Giftge`, `Bradley Hsu`, `Chris Arriola`, `David Berget`, `Dirk Watkins`, `dsb`, `Fark Kader`, `Jacob Nelan`, `Joshua Wee`, `KemarTiti`, `Kuoloon`, `Luigi`, `Neil Bergert`, `Neo`, `Quinnie`, `Reuben`, `Rich Cook`, `Sai Krishna`, `Sharvin Baindur`, `Victor Munoz`. **`@ryansjjr` holds 14,850 voting rights** — highest-value target. Do **not** fabricate snowflakes for these.
+
+**A second, separate blocker.** 18 of the 26 newly-bound rows have **no email in column D**, so `discord_email()` still returns `None` and they resolve to `guest`. Binding the ID is necessary but not sufficient — **only 8 of 26 bound rows are fully resolvable.**
+
+**Suggested scope.** (a) Ask the highest-voting-weight people for their Discord ID and fill column G; (b) fill column D for the 18 email-less bound rows (no external data needed — biggest cheap win); (c) add a startup/CI lint that flags any column-G value containing `#` so the legacy format cannot silently re-enter; (d) consider making `discord_email()` log a visible warning on unbound lookups instead of failing silently to `guest`.
+
+---
+
+### `CONTRIBUTOR ADD EVENT` email is not projected into `dao_members.json`
+**Filed 2026-10-19 (Lawrence Kwek registration). Owner: unclaimed. Low–Medium — identity data lands in the ledger but vanishes from the cache every consumer reads.**
+
+**What.** `CONTRIBUTOR ADD EVENT` was submitted with `Contributor Email: lawkpsn@gmail.com` — verified in the Edgar payload and acknowledged by the API — yet `treasury-cache/dao_members.json` reports `{"name": "Lawrence Kwek", "email": null, "roles": ["member"], "voting_rights": 0}`. The contributor *is* created (count 425 → 426); the **email is dropped** by the projection.
+
+**Why it matters.** `dao_members.json` is what the chatbot / autopilot / DApp read to answer "is this person a member, and what is their email?" A contributor who looks emailless there is indistinguishable from one who never supplied an email — so members added via the proper event silently look incomplete, and re-registration looks tempting (duplicate risk).
+
+**Suggested scope.** Trace the `dao_members.json` generator: either (a) carry `Contributor Email` from the `[CONTRIBUTOR ADD EVENT]` through into the projection, or (b) document that email is sourced **only** from `Contributors contact information` column D and have the add-event flow write column D itself, so ledger and sheet cannot disagree. Add a regression assertion that a contributor added with an email shows that email in the cache.
+
+---
+
+### Vendored watermark reader can drift from its canonical source (dao_protocol vs truesight_autopilot)
+**Filed 2026-10-17 (PR1 review of `TREE_PLANTING_PHOTO_GPS_CAPTURE_PLAN.md` A1.1, thread `#tree-planting-photo-gps`). Owner: unclaimed. Low — maintenance hygiene, not a live bug.**
+
+**What.** For `POST /dao/read_watermark_gps`, `dao_protocol` cannot import the tested reader from `truesight_autopilot`, so PR #189 **vendors** `truesight_autopilot/app/tools/timemark_watermark.py` -> `dao_protocol/truesight_dao_client/server/vision/timemark_watermark.py` **byte-identical apart from a provenance header** naming the canonical source.
+
+**Risk.** Two copies now exist. A future fix to the canonical reader (e.g. a new watermark layout, a date/coord OCR tweak) will **not** propagate to the vendored copy automatically — the two silently diverge and the endpoint reads stale logic.
+
+**Suggested scope (pick one).** (a) Re-sync on change: whoever edits the canonical reader also updates the vendored copy + the header's re-sync note (cheapest; policy-only). (b) Add a CI check in `dao_protocol` that diffs the vendored body against the canonical file fetched from `truesight_autopilot` and fails on divergence. (c) Factor the reader into a small published/packageable module both repos consume (heaviest; removes the copy entirely).
+
+### `dao_protocol` -> Edgar deploy prerequisites are undocumented (and two of them fail silently)
+**Filed 2026-10-17 (during the A1.1 watermark-endpoint redeploy, thread `#tree-planting-photo-gps`). Owner: unclaimed. Medium — bites the next deployer, and the failure mode is invisible.**
+
+**What.** There is no `deploy.sh` on the Edgar box and no runbook for redeploying `dao_protocol`; the systemd unit (`/etc/systemd/system/truesight-dao-protocol.service`) is the only documentation. Deploying `POST /dao/read_watermark_gps` surfaced three prerequisites that existed nowhere, two of which fail **silently**:
+
+1. **`Pillow` / `pytesseract` missing from the prod venv.** The watermark reader lazy-imports both *inside* its functions, so the module imports fine, the mocked tests pass, and the endpoint deploys — then returns `{"status":"error"}` with null coords on every real call. Safe (never blocks a submission) but **useless forever, with no error surfaced**. Pins added to `requirements-server.txt` in `dao_protocol#190`; that file is now authoritative for server deps.
+2. **The `tesseract` OS binary was missing.** `pytesseract` is only a wrapper — `pip install` cannot provide the engine. Requires `sudo apt-get install -y tesseract-ocr`.
+3. **`apt` was in a pre-existing half-configured kernel state** (`linux-image-*`, `linux-headers-*`, `linux-aws*` for `6.8.0-1061` left in `iU`), so *any* `apt-get install` aborted with `E: Unmet dependencies` — which blocks step 2. Resolved by installing the single missing `linux-aws-6.8-headers-6.8.0-1061` (configures the already-staged kernel only; **no running-kernel change, no reboot needed**). Do **not** reach for `apt --fix-broken install` blind on a prod box — simulate first (`apt-get -s --fix-broken install`) and confirm it removes nothing.
+
+**Actual working sequence** (as executed 2026-10-17, box `dao_protocol`):
+```
+cd /home/ubuntu/dao_protocol && git pull --ff-only origin main
+sudo apt-get install -y tesseract-ocr                     # eng+osd data come with it
+.venv/bin/pip install -e . -r requirements-server.txt      # picks up Pillow + pytesseract
+sudo systemctl restart truesight-dao-protocol              # verify: systemctl is-active
+```
+The package is installed **editable** into `.venv`, so code changes need only a pull + restart; only dependency changes need the `pip install` step.
+
+**Suggested scope.** (a) Write `dao/DEPLOY_DAO_PROTOCOL.md` (or a `deploy.sh` in the repo) capturing the sequence above, the `tesseract-ocr` OS dependency, and the editable-install detail — so the next deployer has a checklist instead of a systemd unit. (b) Add a **post-restart self-check** to the deploy: hit `/dao/read_watermark_gps` with a blank image and assert `200` + `no_watermark` (proves PIL/pytesseract/tesseract all resolve) — a missing OS dep would otherwise go unnoticed until a farmer's photo. (c) Note the `OPEN_FOLLOWUPS.md` staleness caveat: the box's `read_context_file` serves a stale local clone (see the entry at ~line 2728), so after editing this file the box may not see it until redeployed.
+
+**Evidence.** `dao_protocol` PR #189 (`truesight_dao_client/server/vision/timemark_watermark.py`, header block); canonical `truesight_autopilot/app/tools/timemark_watermark.py`.
+
+### Payout scanner silently under-drains large batches (Edgar 30s webhook timeout vs GAS ~6-min exec cap)
+**Filed 2026-10-17 (CFR Anapu 86-tree payout registration, thread `#sunmint`). Owner: unclaimed. Medium \u2014 operational gotcha, not data loss.**
+
+**Symptom.** After submitting 86 `[PAYOUT EVENT]`s (one per tree, R$5 ea, shared `bank_ref`), the Ops `payouts` tab stalled at **66/86** and froze for 2.5+ min. All 66 rows were `status=BOOKED`, zero duplicates, zero errors \u2014 the remaining 20 sat unprocessed on the intake (`Telegram Chat Logs`, col R marker empty).
+
+**Root cause.** `dao_protocol` `truesight_dao_client/server/jobs/webhook_trigger.py` fires the payout GAS scanner with `_TIMEOUT=30`, `_MAX_ATTEMPTS=3`. The scanner `processPayoutEventsFromTelegramChatLogs` (tokenomics GAS project `1MnAsIQA\u2026`) processes **~11 rows/min** and runs up to the Apps Script **~6-min execution cap** \u2192 **~66 rows per run**. The 30s client read timeout vs the ~6-min server-side run means **every** webhook attempt logs `webhook attempt N/3 failed: processPayoutEventsFromTelegramChatLogs \u2014 Read timed out` (journal `truesight-dao-protocol`), while Apps Script keeps running server-side and books until it hits its own 6-min cap, then stops mid-queue.
+
+**Recovery (manual today).** Re-fire the payout webhook `DAO_PROTOCOL_WEBHOOK_PAYOUT_PROCESSING` (`https://script.google.com/macros/s/AKfycbxQDdGnw\u2026/exec?action=processPayoutEventsFromTelegramChatLogs`); the scanner drains the remainder (~20/min on a re-fire). Safety: the col-R intake marker gate (`PROCESSED:PAYOUT_EVENT`) + `bank_ref` business-key dedup (`seenBankRefs` seeded from existing rows) guarantee a re-fire **cannot** double-book. Same broad signature as the 2026-09-13 QR-code webhook-timeout entry (line ~2223), which *did* double-mint because that handler lacked `LockService` \u2014 the payout scanner is dedup-safe, so here it is a **throughput/capacity mismatch**, not corruption.
+
+**Fix options (owner call).** (a) GAS scanner self-chains / resumes across runs instead of dying at the 6-min cap; (b) raise per-run throughput (batch the row loop); (c) `webhook_trigger.py` stops treating a `ReadTimeout` as final failure (poll a status endpoint, or raise `_TIMEOUT`). Until then, a >66-row batch needs a manual re-fire to fully drain \u2014 and a governor watching the ledger can mistake 66/86 for 20 lost rows.
+
+**Evidence (no PII).** `dao_protocol/.env` `DAO_PROTOCOL_WEBHOOK_PAYOUT_PROCESSING`; journal `truesight-dao-protocol` 2026-10-17 00:58\u201300:59 `Read timed out` \u00d7N; Ops `payouts` tab = 86 rows `BOOKED`, distinct trees=86, single `bank_ref=E68900810202610170028mKvjUrUCg7I`; intake `Telegram Chat Logs` col R marker.
+
+### `trees/index.geojson` is a map layer → pseudo trees (blank lat/lng) never appear, so their `my-trees?tree=` deep links 404
+**Filed 2026-10-15 (CFR Anapu payout PDF build, thread `#sunmint`). Owner: unclaimed. Medium — depends on the pseudo-tree GPS-assignment workflow.**
+
+**UPDATE 2026-10-15 (governor Gary ruled: "backfill in place").** The concrete CFR Anapu trigger is RESOLVED: the 15 payable blank-lat rows were backfilled in place (SunMint Tree Planting tab, rows 986/987/990-1002; same row, no new row, no `[PSEUDO TREE RECONCILE EVENT]`), the index was rebuilt (`trees/index.geojson` 228→**243** features, `generated_at 2026-10-15T22:46Z`), and **all 86/86** payable rows now resolve via `?tree=`. The general product gap (option (b): render GPS-less trees on my-trees as a card without a map point) REMAINS OPEN and is a governor call. See the new ingest entry below for the upstream cause.
+
+**Symptom.** Building the pre-payout PDF (86 trees, see `sops/PAYOUT_REPORT_SOP.md`), each row's "see tree" link — `https://cfr.truesight.me/my-trees/?tree=<tree_id>` — resolves only for trees present in `sunmint/trees/index.geojson`. That feed has **228 features** and **every** feature carries a Point geometry; coverage of the payable set was **71/86**. The **15 uncovered** rows all had **blank `lat`/`lng`** (pseudo trees), so they are excluded from the map layer by construction.
+
+**Root cause.** `trees/index.geojson` is a **map layer** — it regenerates on schedule (`generated_at` was fresh, `2026-10-15T22:00Z`, so *not* a staleness bug) and emits only features with coordinates. A pseudo tree (blank K/L + plot_id per the governor's pseudo-tree ruling) therefore **cannot** appear until lat/long is assigned in place. Not an off-by-one (tested `±1` on the sequence — all absent), not a `created`/date filter (later 10-15 trees `_177`/`_185` ARE present while the early 10-15 batch is not).
+
+**Impact.** Any public surface that resolves a tree via the map feed (cfr/sunmint my-trees, monitor-tree-growth, the media-location join) silently omits pseudo trees. Payout reports must not present a dead link.
+
+**Suggested scope (the report-side fix is done).** Two options: (a) *preferred for reports* — use the **universal fallback** `https://beta.truesight.me/ledger/explorer/?q=<tree_id>` (reads `verify_public_signatures/ledger_index.json`, keyed on `tree_id` independent of GPS — verified to resolve pseudo trees) as the link for coordinate-less rows, already mandated in `sops/PAYOUT_REPORT_SOP.md` §3; and/or (b) refresh the my-trees surface to also render GPS-less trees (a card without a map point) so a single link works everywhere. Option (b) is a product change — needs a governor call.
+
+**Evidence.** `sunmint/trees/index.geojson` (228 features, all with geometry, `generated_at 2026-10-15T22:00Z`); payable set 71/86 covered; 15 missing rows all blank lat/lng; `cfr.truesight.me/my-trees-utils.js` `buildLedgerLink`; `beta.truesight.me/js/ledger_explorer_utils.js` (LEDGER_INDEX_URL = `verify_public_signatures/ledger_index.json`); `sops/PAYOUT_REPORT_SOP.md`.
+
+### CFR Anapu: Timemark watermark carries GPS, but tree rows landed with blank `lat`/`lng` — coords dropped on ingest
+**Filed 2026-10-15 (CFR Anapu backfill, thread `#sunmint`). Owner: unclaimed. High — data-integrity; 17/91 rows in one batch alone.**
+
+**Symptom.** The 15 payable CFR Anapu trees whose `my-trees?tree=` links 404'd had **blank `lat`/`lng` in their ledger row** — yet their **photos carry the GPS burned into the Timemark watermark** (bottom-left `<date>/<place>/<lat>°S, <lon>°W`; see `app/tools/timemark_watermark.py`). Vision-read of all 15 watermark crops returned real coords clustered within ~40 m in one Anapu/Pará grove (3.5226–3.5230°S, 51.5747°W), consistent with neighbouring indexed trees. So the field app captured GPS; **the ledger row lost it.**
+
+**Impact.** Coordinate-less rows are excluded from `trees/index.geojson` (map layer) and from any GPS-joined public surface. In this batch **17 of 91** submitted rows (15 payable + 2 dropped dups) were affected — a silent, systematic capture→submit gap, not a one-off.
+
+**Root cause (hypothesis to confirm).** The path that turns a Telegram planting log into a ledger row (`process_tree_planting_telegram_logs.js`) reads `- Latitude:`/`- Longitude:` lines into cols K/L and sets **`Status=INVALID`** when they are missing. Here the rows carry a non-INVALID status but blank K/L, so the coords were likely absent from the WhatsApp/Telegram log text (or stripped) even though the image had them — i.e. GPS present in the **image** but not propagated to the **log text** that seeds the row. Confirm whether the captioner should append the watermark GPS to the log line (or the ingest should OCR the watermark).
+
+**Suggested scope.** Ensure the GPS present in the field photo reaches the row: either (a) have the field capture append `/Latitude/<Longitude` to the submitted log text so the existing pipeline populates K/L, or (b) add a watermark-OCR fallback in the ingest that reads coords off the image when the log lacks them. Add a validation flag when a NEW planting row has a photo but blank K/L.
+
+**Workaround applied 2026-10-15.** Backfilled the 15 in place from watermark reads (rows 986/987/990-1002); index rebuilt to 243 features; all 86/86 payout links resolve. The 2 dropped dups (`_103`,`_105`) were left blank (not payable).
+
+**Evidence.** `/tmp/blanklat_gps_read.json` (15 vision-read coords); `app/tools/timemark_watermark.py` (watermark layout bottom-left = date/place/`<lat>°S,<lon>°W`); `process_tree_planting_telegram_logs.js` (K/L + INVALID gate); `sunmint/trees/index.geojson` (`generated_at 2026-10-15T22:46Z`, 243 features); `cfr.truesight.me/my-trees/?tree=` resolves 200 for sampled backfilled trees.
+
+### `[MANAGED LEDGER TRANSACTION EVENT]` — client CLI shipped; Edgar catalog/routing registration still the residual (Black King §3-E2)
+**Filed 2026-10-15 (Black King freight-lane build, plan §3-E2); updated 2026-10-15. Owner: unclaimed. Governor: Gary — vehicle RULED (item E); server-half build-vs-transcribe call still open.**
+
+**Two halves — one shipped, one residual.**
+- **Client half — SHIPPED.** `truesight_dao_client/modules/report_managed_ledger_transaction.py` + the `truesight-dao-report-managed-ledger-transaction` `[project.scripts]` entry, merged **dao_protocol#187** (2026-10-15). `--dry-run` prints the signed payload today.
+- **Server half — RESIDUAL (this entry).** `[MANAGED LEDGER TRANSACTION EVENT]` is **absent** from Edgar's events catalog (`GET /events-catalog`, **v12**) **and** from `server/dispatch.py` `ROUTING`. `tests/test_catalog_dispatch_coverage.py` enforces `ROUTING ⊆ catalog`, so a live submission will not route until both are added — the shipped wrapper is discoverable but not yet functional end-to-end.
+
+**Why this vehicle.** AGL15's freight cash-out leg (-$2,098.354 USD Assets; +two "equity holdings" rows in AGL8/AGL13) fits no other primitive: `[CAPITAL INJECTION EVENT]` writes to the **receiving** ledger only (cannot debit AGL15); `[DAO Inventory Expense Event]` always appends a **negative Assets** row (cannot produce the two positive increase rows). The AGL14 signed-GL precedent (rows 10–13, one-signed-blob-many-rows) is the intended shape.
+
+**Next step — THREE pieces, not two (scope refined 2026-10-15).** Register the event server-side: (1) an `events_catalog.json` entry (`canonical_labels`, `required_fields`, `category`); (2) the matching `dispatch.ROUTING` tag — then (3) a **handling path**, because the event name is absent from **every** GAS file in `tokenomics` (**0 hits / 101 files scanned, 2026-10-15**). The AGL14 precedent (AGL14 ledger rows 10–13) is a genuine signed dapp submission *but was hand-typed from the signed text* — no automated handler ever consumed that format. So a live submission needs either a **new GAS processor** (mirroring `capital_injection_processing.js`: open target ledger via Shipment Ledger Listing → parse the signed `Row N — Entity/Amount/Currency/Transaction Type` blob → append each to `Transactions` → dedupe on the Edgar hash) **or** a deliberate one-off manual transcription. **The handler is additive-only but is a live deploy to shared prod infrastructure ⇒ an explicit governor gate (always-stop).**
+
+**Blocker — E RULED (2026-10-15):** `[MANAGED LEDGER TRANSACTION EVENT]` **is** the chosen internal vehicle (plan §3-E; PR #1651). Residual = the **server half only**, and specifically the scope call on piece (3): **build the GAS handler** (repeatable primitive; reviewer + Sophia recommend) **vs** accept a one-off manual transcription. Not on the freight critical path — needed only at booking time (**post-cargo-arrival**).
+
+**Evidence.** `dao_protocol` PR #187 (2026-10-15); `dao_protocol/truesight_dao_client/modules/report_managed_ledger_transaction.py`; `dao_protocol/truesight_dao_client/server/dispatch.py` (no MANAGED tag); `edgar.truesight.me/events-catalog` v12; `plans/FREIGHT_COST_AMORTIZATION_PLAN.md` §3-E2.
+
+### Provision `DAO_PROTOCOL_WEBHOOK_POST_REPACKAGING_CLEANUP` so repackaging settlements auto-fire (they currently queue forever)
+**Filed 2026-10-15 (Black King AGL8 corridor §5.15). Owner: governor (provisioned secret — not self-fixable). Small — one env var.**
+
+**Context.** `[REPACKAGING SETTLEMENT EVENT]` is designed to be triggered by Edgar's dispatch webhook on submit. `plans/POST_REPACKAGING_CLEANUP_PLAN.md` §Layer 8 items **#22/#23** require `DAO_PROTOCOL_WEBHOOK_POST_REPACKAGING_CLEANUP=<GAS /exec URL>` on **both** the Edgar/dao_protocol box and the autopilot EC2. `dao_protocol/server/dispatch.py` routes the event tag to env key `POST_REPACKAGING_CLEANUP`.
+
+**The finding.** Verified 2026-10-15: the var is **not set** on the dao_protocol box (`grep -c` = 0 in `/home/ubuntu/dao_protocol/.env`), while ~34 sibling `DAO_PROTOCOL_WEBHOOK_*` vars are present — including `..._REPACKAGING_PROCESSING` (the *batch* webhook). Consequence: a submitted settlement queues in Telegram Chat Logs with an **empty status column** and is **never consumed** — the submission silently stalls until an operator notices and manually fires `GET .../exec?action=processPostRepackagingCleanup`. That is exactly what happened during Unit D (settlement sat queued at Telegram Chat Logs **r13075** until a manual trigger). The only in-band fallback is the SOP troubleshooting row (`sops/REPACKAGING_SETTLEMENT_SOP.md` L107).
+
+**Suggested scope.** Governor adds `DAO_PROTOCOL_WEBHOOK_POST_REPACKAGING_CLEANUP=<GAS webapp /exec deployment URL>` to the dao_protocol box `.env` (same deployment as the batch webhook, `?action=processPostRepackagingCleanup`) and restarts the service; then verify a test settlement auto-flips to `PROCESSED:REPACKAGING_SETTLEMENT` with **no** manual GET.
+
+**Evidence.** `/home/ubuntu/dao_protocol/.env` (var absent, 2026-10-15); `dao_protocol/server/dispatch.py` routing → `POST_REPACKAGING_CLEANUP`; `plans/POST_REPACKAGING_CLEANUP_PLAN.md` §Layer 8 #22-23; live Unit D run 2026-10-15 (manual trigger required).
+
+### `report_inventory_movement`'s Quantity validator rejects fractional KG — inconsistent with `report_currency_conversion`
+**Filed 2026-10-15 (Black King AGL8/Unit D corridor, thread `#brazil-san-francisco-2026`). Owner: unclaimed. Small — one validator swap.**
+
+**Context.** `[INVENTORY MOVEMENT]`'s `Quantity` field is validated with `positive_integer` (`truesight_dao_client/modules/report_inventory_movement.py` L27, `validators.py` L95) — integers only, rejects `99.5`. `[CURRENCY CONVERSION EVENT]`'s `Source Amount`/`Target Amount` use `positive_number` (`validators.py` L74) and accept fractions freely. The two events move physically identical quantities (kg of cacao, etc.) through the same ledger, but only one of them can express a fractional amount.
+
+**Why it bites.** During the Black King landing (2026-10-14), the 99.5 kg AGL13 nibs leg needed `[INVENTORY MOVEMENT]` to move custody *before* the conversion could relabel it — the integer-only validator rejected `99.5` outright. The workaround used was `--attr Quantity=99.5` (bypasses the named flag's client-side validator). Confirmed via live testing this is **not a true bypass** — Edgar's server-side/post-merge movement-quantity validation still runs, so it only works when the server side happens to tolerate the fraction; it is not a reliable pattern to rely on.
+
+**Suggested scope.** Swap `Quantity`'s validator from `positive_integer` to `positive_number` in `report_inventory_movement.py`, matching the conversion module. Confirm nothing downstream (GAS `processInventoryReport`/`processInventoryMovementToLedgers`) assumes an integer amount before shipping.
+
+**Evidence.** `truesight_dao_client/validators.py` L74 vs L95; `modules/report_inventory_movement.py` L27; `modules/report_currency_conversion.py` (Source/Target Amount); live `--attr` test during the Black King Unit B/C execution, 2026-10-14.
+
+### `[CURRENCY CONVERSION EVENT]` intake has no same-intent dedupe guard — a slow-to-surface submission invites a double-fire
+**Filed 2026-10-15 (Black King AGL8 corridor — the 99.5 kg duplicate-conversion incident). Owner: unclaimed. Medium — needs a real idempotency key, not just the existing per-row dedup.**
+
+**Context.** Every signed event submission mints a **fresh Request Transaction ID** (`edgar_client.py` L127), and the only dedupe the intake pipeline does is "don't reprocess a row whose status column is already `PROCESSED`." That catches re-running the *same* queued row, but it does **not** catch two independent submissions of the *same logical intent* (same holder, same currency pair, same amount) — each lands as its own row, its own Request Transaction ID, and gets processed as a fully separate, fully real event.
+
+**Why it bites.** On 2026-10-14, a 99.5 kg AGL13 nibs origin→landed conversion took longer than ~3 minutes to surface in `offchain transactions` (normal async lag). It was re-submitted on the assumption the first attempt had silently failed. Both landed (ledger rows 4917/4918 **and** 4919/4920), doubling the balance effect (`off chain asset balance` showed −199/+199 instead of the correct −99.5/+99.5). Caught and self-flagged immediately, fixed with a compensating reversing entry (append-only, no rows deleted) — but only because it was caught; the system itself has no guard against this class of error, and the exact same gap applies to `[INVENTORY MOVEMENT]`, `[REPACKAGING SETTLEMENT EVENT]`, and any other "amount-moving" event type signed via `edgar_client.py`'s generic submission path.
+
+**Suggested scope.** Add a same-intent dedupe window to the intake processor: before marking a new row `PROCESSED`, check recent rows (e.g. last N minutes) for an identical (event type, holder/signer, currency, amount) tuple already `PROCESSED` or still queued, and flag/hold rather than silently double-process. Does not need to be perfect (operators can always force a genuine duplicate through if truly intended) — it needs to turn "I'm not sure if that landed, let me resubmit" into a visible warning instead of a silent double-write.
+
+**Evidence.** `edgar_client.py` L127 (fresh Request Transaction ID per submission); Discord `#brazil-san-francisco-2026` incident report 2026-10-14 ("🚨 Stop — I need to flag an error I made"); ledger rows 4917-4920 + the reversing entry (intake row 23, `PROCESSED`); `offchain asset location`/`off chain asset balance` before/after snapshots.
+
+### Autopilot attachment pipeline: no automatic OCR→vision fallback when an image contains no text
+**Filed 2026-10-14 (thread 10800). Owner: Sophia (candidate self-fix PR). Small — one fallback branch in the attachment auto-processor.**
+
+**Symptom.** Governor sent a **photograph** whose entire value was visual. The attachment auto-processor reported **“OCR confidence: 0.0%, quality: poor”** and **“(No text detected in image)”**, and the `ocr_image` tool likewise returned empty (`word_count: 0`, `avg_confidence: 0.0`). Only a **manual** escalation to Grok vision (`grok-4-1-fast-non-reasoning`, `detail: high`) surfaced the actual content — which proved operationally material (a mid-unload delivery photo corroborating the AWB’s 2-pallet count).
+
+**Why it matters.** For a photo, “no text found” is the **expected** result, not a failure. Reporting it as *the* finding invites the reader to conclude the attachment was empty or unreadable — the opposite of the truth. The box already carries a working Grok vision path (see `/home/ubuntu/cleide_media/debug_grok.py`); the gap is purely that **nothing routes to it automatically**.
+
+**Suggested scope.** When `ocr_image` returns `word_count == 0` **or** `avg_confidence == 0.0` on an image attachment, **automatically** fall back to Grok vision with a “describe this image and transcribe anything visible” prompt, and surface **both** results — stating explicitly “no text detected; image is a photograph, here is what it depicts.” Mirror the same escalation when **QR scan finds no code and OCR finds no text**. Low risk: purely additive; the text path is untouched.
+
+**Evidence.** `fd985851d61f4f70a23f3d0e0a47b42c.jpg`; transcript `sessions/2026-10-14/c1fc41bdca51/transcript.md`; `cleide_media/debug_grok.py`.
+
+### Repackaging: `[REPACKAGING SETTLEMENT EVENT]` does not inherit the input's ledger — enforce the governor's "same ledger as the original" invariant
+**Filed 2026-10-14 (thread 10800, governor Gary: *"Make sure each transformed inventory lands in the same ledger as the original inventory"*). Owner: unclaimed. Medium — one inheritance rule + one validation on the repackaging path.**
+
+**Context.** The settlement step writes Main Ledger `Currencies` **col F (`ledger`) from the event payload's `Ledger URL`** (`plans/POST_REPACKAGING_CLEANUP_PLAN.md` §`Currencies`: *"F | ledger | From event payload Ledger URL"*). It never reads the **input** currency's col F. So "the output lands on the same ledger as its input" is **operator-typed free text, not an enforced invariant** — a repackaging run over AGL8 almonds whose settlement payload says `agl4` lands the output on a **closed** ledger, silently, at submit time.
+
+**Why it bites now.** Auditing the 8 pre-staged NF-e n° 18 arrival currencies (Black King corridor, AWB `047-3175-3223`) against the checklist's §5.10 col-R map: **2 correct (AGL13 ×2), 1 WRONG (`8 Ounce Package Kraft Pouch - Ilheus, Brazil 2024 + 047-3175-3223 - San Francisco` → col F `…/agl4`, and **AGL4 is `Status=COMPLETED`**), 5 unset (blank col F).** Five of those blank-col-F rows simultaneously carry col C `Serializable = TRUE` — QR-ready with no provenance ledger.
+
+**Suggested scope.** (a) On the settlement GAS, resolve each output's ledger by **inheritance from its input currency's col F**; fail-closed (refuse) if an input's col F is blank or points at a ledger whose `Shipment Ledger Listing` `Status` is not `ACTIVE`. (b) Where a payload-supplied `Ledger URL` disagrees with the inherited value, **prefer the inherited value** and surface the conflict rather than silently writing. (c) Add a pre-flight check to the repackaging planner UI: block output rows whose resolved ledger ≠ input ledger. (d) Backfill the 8 arrival rows' col F from the §5.10 col-R map before the corridor's first transformation run.
+
+**Evidence.** `Currencies!A:F` (live 2026-10-14); §5.10 + §5.11 of `brazil/BRAZIL_TO_SF_FREIGHT_PREFLIGHT_CHECKLIST.md`; `plans/POST_REPACKAGING_CLEANUP_PLAN.md` §`Currencies`; `agroverse-inventory/gas/repackaging-currency-ingest` (`1StT6vogwlOYOqtpSiqwnF9PJmScivbBxIj2Hhplfd4YQbCfuWIerrUV0`).
+
+### SunMint Plots col T: `Farmer` must only be seeded by `[PLOT FINANCING EVENT]`, never backfilled from `Owner`
+**Filed 2026-10-14. Owner: unclaimed. Small — a documentation/convention note, not a code gap.**
+
+**Context.** `SunMint Plots` col T (renamed `Contributor Name` → `Farmer`, `tokenomics` #582, 2026-10-14) is read by `tplResolvePlotFarmer_` (`process_tree_planting_link.js`) to route a plot-level tree-planting link's ledger legs. Its value must byte-match the farmer's `Fund Handler` account name on the MAIN ledger — `tplResolveSource_` sums pool units by that exact string. It is seeded exclusively by `pfSeedPlotFarmer_` from a `[PLOT FINANCING EVENT]` payload's `- Farmer:` field.
+
+**The finding.** `SunMint Plots` col H (`Owner`) looks superficially similar (e.g. RM-P1 `Owner` = "Jedielcio family") but is **not** a safe substitute: it's free-text field knowledge (who actually owns/planted the plot), not necessarily the exact `Fund Handler` string the ledger uses for that farmer's pool balance. Backfilling col T from col H directly (rather than via a real `[PLOT FINANCING EVENT]`) risks a string mismatch that silently mis-sources a future plot-link's ledger legs (falls back to `committed` instead of drawing from the correct farmer's pool).
+
+**Suggested scope.** Don't hand-backfill col T from col H. Either (a) leave col T blank until each plot's farmer is seeded by a real `[PLOT FINANCING EVENT]` (fail-closed, correct but slow), or (b) if a backfill is wanted, verify each name against the MAIN ledger's actual `Fund Handler` values first (not just copy from `Owner`).
+
+### SunMint: tree↔plot association + expected/counted tree-count estimation
+**Filed 2026-10-14 (Discord `#sunmint`, channel `1559724628862173335`). Owner: Sophia (build) + Envoy (supervising). Medium — multi-unit build in progress.**
+
+**Context.** Two asks from Gary: (1) associate near-plot trees with their containing plot polygon instead of leaving them unassociated; (2) estimate each plot's `expected_trees` using a planting-density heuristic (Gary's observation: professional farmers plant ~3m apart) against the plot's hectare area, alongside the already-tracked `counted_trees` (actual linked trees). Gary additionally asked that `expected_trees` be **governor-editable after the fact** (not purely geometry-computed) via a sheet-column overlay mirroring the existing `name_localized` precedent (`sunmint/scripts/overlay_localized_labels.py`), and that it be **persisted as a sheet column and documented in `SCHEMA.md`**.
+
+**Progress.** U1 (tree→plot association, `plot_assoc`/derived `plot_id`) and U2 (`polygon_ha`/`expected_trees`/`counted_trees` computed fields) are **built, tested, and landed live** to `sunmint` main — direct Contents-API commit, the sanctioned path since `sunmint` is policy-walled as machine-owned/API-only (Sophia cannot open a PR there; this is by design, not a workaround).
+
+**Remaining.** U3 — make `expected_trees` governor-editable via the sheet-overlay pattern, with a real sheet column + `SCHEMA.md` update (not yet started). U4 — surface both `expected_trees` and `counted_trees` in the public map popups on `sunmint.html` and `sunmint/plots/index.html` (`truesight_me_beta`; prod promotion to `truesight_me_prod` is a separate, human-gated step per standing policy, not part of this unit).
+
+### `treasury-cache-publisher` silently drops negative balances → holdings page can never show them
+**Filed 2026-10-13 (Gary Teh). Owner: unclaimed. Small (fix); the GAS redeploy is human-gated (§5c).**
+
+**Symptom.** `view_inventory_holdings.html?manager=Gary+Teh` lists only positive holdings.
+Gary's Main Ledger `Brazilian Reis` balance is **-388.18** (see `offchain asset location`
+row 30 / `off chain asset balance` row 23) but never appears. Same for any
+negative line (e.g. `BRL` held by `pk-qkejKJJW3IAD` = -90).
+
+**Root cause (verified 2026-10-13).** The DApp page has **no** client-side filter —
+`renderHoldingsTable()` renders every row the cache returns. The negatives are dropped
+upstream in `treasury-cache/gas/treasury-cache-publisher/Code.gs`, at three guards:
+- L208 `if (!currency || !(amount > 0)) return;`  (Main Ledger "offchain asset location")
+- L269 `if (!assetName || !(quantity > 0)) continue;`  (per-AGL ledger Balance sheets)
+- L332 `if (!(it.total_quantity > 0)) return;`  (final item rollup)
+
+Live cache `dao_offchain_treasury.json` (generated 2026-10-13T16:48Z): Gary Teh shows
+`[AGL8] Brazilian Reis  236.90` (positive → kept) but NOT the Main Ledger `Brazilian Reis  -388.18`
+(negative → dropped). So a negative and a positive leg of the *same* currency diverge silently
+in the cache the DApp trusts.
+
+**Why it matters.** The holdings view is the governor's per-manager ledger of record; a
+negative balance is exactly the signal that needs to be visible (an over-spend / a top-up
+owed). Hiding it makes the page quietly wrong, and any consumer of the cache inherits the
+same blind spot.
+
+**To fix.** (a) In the publisher, keep negatives through the pipeline — drop the `> 0`
+guards in favour of `!== 0` / `Number.isFinite`, and carry a signed amount into `items[]`
+and each manager's `items[]`. (b) The page already renders whatever arrives; optionally
+add a red style for negative amounts. (c) Redeploy the GAS (`clasp push` — human-gated) and
+re-run the publisher so the cache picks up the negative leg. (d) If the cache's `totals`
+aggregates assume non-negative units, audit the totals math so a negative doesn't corrupt
+`total_units` / `total_value_usd`.
+
+**Note.** The publisher source lives in `treasury-cache` (API-only machine-owned repo — no
+branch edits) and the scriptId is `1u4lVtGaO5GjpG0XQo7b8hc3QFAXcsrJKclBead2sDcgvatMdE6dm3mzx`;
+it has no copy under `tokenomics/google_app_scripts/`, so the `gas_deploy_project` path does
+not cover it.
+
+**Addendum 2026-10-15 (Black King landed-cost thread, session dd775ec0499d) — the drop is not cosmetic: it makes two governor-facing valuation surfaces disagree in dollars.** While supervising the AUM surface ahead of the freight booking I compared `treasury-cache` against the live `/aum/` GAS for every managed ledger. They read **different `Balance` sections** (`conventions/MANAGED_LEDGER_EXPLORER_PATTERN.md` L122–124):
+
+- **`/aum/`** (tokenomics GAS `?type=aum_breakdown` → `getInvestmentHoldingsInAGL()`) reads the **Asset** section (cols E–F, header-driven).
+- **`treasury-cache/dao_offchain_treasury.json`** (→ `stats/current.json`, landing-page tile expanders, DApp) reads the **Resource Location** section (cols H/I/J, per-manager).
+
+These are *meant* to reconcile per-asset — the Resource Location rows sum to the Asset rows. They stop reconciling exactly when a manager holds a **negative** leg, which the publisher's `quantity > 0` guard (L269) drops. Two live instances, both verified 2026-10-15:
+
+| Ledger | Asset section (`/aum`) | Resource Location (`treasury-cache`) | Delta | Cause |
+|---|---:|---:|---:|---|
+| **AGL8 USD** | 564.946 (Asset row 12) | 569.946 | **+5.00** | `+569.946` (Gary Teh, row 9) kept; `−5` (Sophia Truesight, row 13) dropped. Identity: 569.946 − 5 = 564.946 ✓ |
+| **AGL16 USD** | **−1,868.92** (Asset) | absent / 0 | **−1,868.92** | the whole negative USD asset is dropped by L269 — the cache hides a real over-spend |
+
+**Why this raises severity.** The GAS `/aum` endpoint is serving **correctly** (it shows the negatives). The **cache is the wrong one**, and it feeds `stats/current.json` (the LLM surface), the landing-page expanders, and the DApp. A governor reading the cache sees AGL8 USD **$5 high** and AGL16 USD **$1,868.92 too high** (a hidden over-spend). This is no longer a hidden-holdings-row cosmetic issue.
+
+**Fix unchanged** (drop the `> 0` guards; carry signed amounts through `items[]` and each manager's `items[]`). **New acceptance test:** for every managed ledger, `sum(Resource Location USD) == Asset-section USD`, and AGL16 surfaces its −1,868.92. Downstream self-heals — `stats/current.json` on its next 6h cron, the tile expander on the publisher's next 30-min run.
+
+### `dao_members.json` publisher mangles non-ASCII contributor names (Júlio → `J?lio Almeida`)
+**Filed 2026-10-13 (Discord, store-visibility thread). Owner: unclaimed. Small (diagnose); the publisher fix is a §5c human-gated GAS change.**
+
+**Symptom.** `treasury-cache/dao_members.json` stores Julio Almeida's name as the mojibake
+string **`J?lio Almeida`** — the `ú` replaced by a literal `?`. Verified live 2026-10-13:
+`repr('J?lio Almeida')`, bytes `b'J?lio Almeida'`. The DApp contributor-name validator used by
+the `dao_client` CLI (e.g. `truesight-dao-report-contribution --contributors`) accepts **only**
+that exact corrupted string; a correctly-spelled `Júlio Almeida` is rejected with
+`'Júlio Almeida' is not a known DAO contributor`.
+
+**Why it matters.** (1) Cosmetic — the name renders wrong in the DApp and in every
+`[CONTRIBUTION EVENT]` that credits him. (2) Structural — the mojibake string is now the
+*canonical* key for him, so any event submitted with the correct UTF-8 name fails validation
+and the corruption propagates to every contribution row.
+
+**Likely cause.** `tokenomics/google_app_scripts/tdg_identity_management/dao_members_cache_publisher.gs`
+reads the Contributors contact-information tab and serializes names through a non-UTF-8
+codec (Latin-1/ASCII `?` substitution) before `JSON.stringify`. Confirm by reading his exact
+cell value via the Sheets API (should be `Júlio`) and inspecting the publisher's encode step
+(look for `ensure_ascii=True` / `.encode('ascii','replace')` on the name).
+
+**To fix.** (a) Make the publisher round-trip UTF-8; (b) re-run the publisher (human-gated,
+§5c); (c) sweep `dao_members.json` for other `?`-mojibake names and file them.
+
+### `public_keys/` per-key surface in `treasury-cache` is stale (last built 2026-06-18; 97 files vs 111 active keys)
+**Filed 2026-10-13 (Discord, store-visibility thread). Owner: unclaimed. Small (audit).**
+
+**Symptom.** `treasury-cache/public_keys/<sha256>.json` holds one file per contributor signing
+key, but `_manifest.json` was last built **2026-06-18** and the tree holds **97** files against
+**111** ACTIVE keys in `dao_members.json`. Julio's per-key file (`public_keys/a9c4…3154.json`,
+sha256 of his key) returns **404**.
+
+**Why it matters.** The DApp `permissions.js` point-lookup path 404s for keys minted after
+June 2026. It currently falls back to the `dao_members.json` monolith, so signatures still
+resolve (no user-visible break today) — but the per-key surface is a latent divergence: any
+consumer that trusts it exclusively will fail to authorize newer members.
+
+**To fix.** Regenerate the per-key surface from the current monolith (align `_manifest.json`
+timestamp + file count with ACTIVE keys) and fold the generator into the same publish chain
+that writes `dao_members.json` so the two cannot drift. Confirm no consumer reads `public_keys/`
+without the monolith fallback.
+
+### Currency-naming hygiene — retire bare generic `Currencies` names + document the AWB landed-clone convention
+**Filed 2026-10-09 (thread: Black King landed-cost). Owner: unclaimed. Small (doc + audit).**
+
+**Context.** Twice in one thread an agent misread the AGL8 cacao-almonds row because its
+`Currencies!A` name carried **no provenance token** — the bare noun `Cacao Almonds (KG)` — while
+every sibling names farm + ledger (`Cacao Almonds KG from Vivi's farm - AGL13`, `… from Oscar's
+farm - AGL16 (2026)`, `Cacao Almonds KG - Organic (Fazenda São Jorge)`). A name that requires a
+lookup will be misread. The preflight doc `brazil/BRAZIL_TO_SF_FREIGHT_PREFLIGHT_CHECKLIST.md`
+§5.10 had already flagged this exact row.
+
+**Already corrected live (2026-10-09, governor-authorized by Gary Teh) — one row.** A name-only
+reclass pair was appended to the AGL8 ledger `Transactions` (rows 185–186, entity `Matheus Reis`,
+`-/+ 273.585122798`), moving Matheus's holding off `Cacao Almonds (KG)` onto the explicit
+`Cacao Almonds KG from Paulo's farm - AGL8` (ex-works $18.212/kg). The old `Currencies` row was
+deprecated and `offchain assets in transit` row 24 col B re-pointed (both cols sit under strict
+`ONE_OF_RANGE = Currencies!$A$2:$A$1006`). Verified: asset-name view nets the old name to zero;
+by-location shows `Matheus Reis | 273.5851228 | Cacao Almonds KG from Paulo's farm - AGL8`.
+
+**Also corrected live (2026-10-09): the landed AWB clone.** The companion clone
+`Cacao Almonds KG from Paulo's farm - AGL8 + 047-3175-3223 - San Francisco` was added as
+`Currencies` **row 45** (Price 35.28 = landed UC incl freight; Serializable FALSE; 1000 g) so that
+`offchain assets in transit` **row 24 col M** — which the register's own invariant derives as
+`B24 + " + " + AWB + " - San Francisco"` — **resolves** under `ONE_OF_RANGE`. Rows 39–41
+(`Cacao Almonds KG - bulk` / `- Conventional` / `- Organic`) were deliberately **left as-is** on
+governor instruction (they encode distinct historical meanings, not bare-generic duplicates).
+Note the origin row 44 keeps ex-works $18.212 and the clone carries landed cost — the two must
+not be merged (see pinned landed-cost rule).
+
+**This entry is the generalizable half — the convention + the sweep.**
+
+1. **Rule:** every new `Currencies!A` name must carry a **provenance token** — farm/supplier +
+   ledger (`… - AGLnn`) and source descriptor where one exists. Bare generic nouns
+   (`Cacao Almonds (KG)`, `Cacao Nibs (KG)`, …) are prohibited for new rows.
+2. **Audit:** scan `Currencies!A` for other bare generic names of this shape; file the list here
+   (each becomes a deprecate+reclass like the almonds).
+3. **Landed-clone convention:** document the AWB pattern used by this shipment —
+   `<origin currency> + <AWB> - San Francisco` — where the clone carries the **landed** unit cost
+   (origin ex-works + freight + materials) and the origin row keeps ex-works. Add beside the
+   repackaging naming template in `LEDGER_CONVERSION_AND_REPACKAGING.md`.
+4. **Mechanism-gap note:** there is **no `[CURRENCY RENAME EVENT]`** — a col-A relabel is a direct
+   spreadsheet write that must sweep any lookup keyed on the exact name (Correios VLOOKUP
+   precedent). Document so the next agent doesn't reach for a non-existent primitive.
+
+### GAS currency-definition handler can report success without writing the `Currencies` row
+**Filed 2026-10-09 (thread: Black King landed-cost). Owner: unclaimed. Small (bug hunt).**
+
+**Symptom.** A `[CURRENCY DEFINITION EVENT]` landed in intake (Telegram Chat Logs row 12996,
+`message_id Edgar_20261013002905_435`, signature `success`) and the GAS handler
+`tokenomics/google_app_scripts/1N6o00/process_currency_definitions_telegram_logs.js` flipped that
+row's status column **J to `Successfully Completed`** — i.e. it believes it inserted — **yet no
+matching row appeared in `Currencies`** (`currencyDefinitionRecordExists` returned false, nothing
+added, sheet still 167 rows). The row only existed after a **manual direct insert** by the
+`agroverse-ledger-manager` SA.
+
+**Why it matters.** `Successfully Completed` is **terminal** — the handler skips such rows on
+subsequent runs (status gate), so once it mislabels a row, the cron fallback can never repair it.
+The failure is silent: the submitter sees HTTP 200, the intake row looks done, and the ledger is
+short a currency → any register `ONE_OF_RANGE` reference to that name dangles with a soft UI
+warning.
+
+**Also observed.** The handler's `sortCurrenciesAZ()` runs after inserts; a *direct* `values.append`
+landed the new row at the sheet's degenerate append index (row 125, out of A→Z order) rather than
+its sorted slot — so a manual repair must re-sort (or insert at position), not just append.
+
+**To investigate.** (1) Does `insertCurrencyDefinitionRecord` swallow a Sheets error and still
+return `true`? (2) Does the handler's col-A read (`getDataRange`) go stale vs. the append? (3) Is
+the `Successfully Completed` write happening *before* the insert is confirmed (ordering bug)?
+Reproduce with a minimal 4-field event and fix so the handler writes J **only after** a
+confirmed `Currencies` row (or leaves the row re-pickable on failure).
+
+**Acceptance.** Rule + AWB convention written into `LEDGER_CONVERSION_AND_REPACKAGING.md`; list of
+remaining bare-generic `Currencies` rows filed here (or “none remaining”).
+
+---
+
+### Julio Almeida store-enrichment — Sophia owns the ~10% sample audit (standing duty)
+**Filed 2026-11 (Discord, thread `1558887495192805407`). Owner: Sophia. Small/ongoing (Ops).**
+
+**Governor decision (Gary, direct).** Sophia **owns the ~10% sample audit** of Julio Almeida's store-enrichment edits (Discord `1554404598381543494`, `davajhabib@outlook.com`, Contributors row 427). This is the **Ostrom "monitoring + graduated response"** lever made concrete for the Julio task (design appendix merged via `agentic_ai_context` **#1588** into `partner/JULIO_STORE_ENRICHMENT_GUIDE.md`).
+
+**Procedure (weekly, once Julio starts).**
+1. Pull Julio's signed edits — DApp Remarks carry **`Submitted By`** + `Submitted At`; filter to his name for the week.
+2. Sample ~10% (min 2–3 rows): for each, verify (a) the email is **published/real** (fetch the cited source — website footer/Contact/About, IG bio, GBP) and (b) the remark is a usable hook, not a status log.
+3. Record outcome: `clean` / `bad-address` / `low-value-remark`. **Graduated response:** clean batches → broader scope (feeds `plans/DAPP_ACCESS_RIGHTS_PLAN.md` graduated write access); bad → tighter batch + a correction note to Julio.
+4. **Feedback loop:** when a store Julio enriched replies, flag it back to him (counters the "~0.3% reply rate ⇒ why bother" sucker effect).
+
+**Hard invariant being defended.** The common-pool resource is **sender-domain reputation**, not the store data (adding data *increases* its value). A guessed/bounced email = private gain (filled field) vs. socialized deliverability cost across ~1,000 sends. So "never invent an address" is boundary defence; **compensation stays quality-based, NOT per-record** (per-record pay is what manufactures the commons tragedy).
+
+**Blocker / precondition.** Nothing to audit until **Unit 0** completes: Julio registers a signing identity via `create_signature.html` (see `plans/DAPP_ACCESS_RIGHTS_PLAN.md`). No Edgar key today → view-only.
+
+### DApp per-contributor access-rights / grant-table design — awaiting governor decision
+**Filed 2026-10-11 (Discord #roles-and-dapp-access, channel `1558887495192805407`). Owner: Sophia (draft) + Envoy (supervising). Medium — design-only right now, no code.**
+
+**Context.** Gary proposed adding a per-contributor ACL layer on top of the existing role-based (`governor/member/operator/custodian/sentinel`) permission model: a States-tab column listing DApp modules with `.read`/`.write`, a new "Contributor name | Access right" grant tab, compiled into `dao_members.json` (schema v5, additive `access_rights: []`), consumed by `dapp_beta/scripts/permissions.js`. Sophia's independent analysis found ~70% of the plumbing already exists (`treasury-cache/permissions.json` module registry, the `[DAPP PERMISSION CHANGE EVENT]` audit flow) — the new piece is per-member grants. Envoy's independent review agreed with the direction and added: (1) the governor-only action list (money/contributor-add/etc., never grantable) should be a literal code allowlist, not just doc convention; (2) revoke must be a first-class signed event from day one, not a v2 afterthought; (3) check whether the existing `[DAPP PERMISSION CHANGE EVENT]` handler can already express per-contributor grants before adding a new event type; (4) confirm which repo (tokenomics GAS vs. Edgar/dao_protocol signing pipeline) owns the grant/revoke write path if "governor-signed" means cryptographic signing like other ledger events.
+
+**Open decisions (Gary's call, not yet confirmed):** (A) who writes the grant table — governor-signed event (both Sophia and Envoy recommend this) vs. hand-edited tab; (B) scope of grantable actions — `grantable:true` allowlist only (both recommend) vs. any action.
+
+**Governor decision (Gary, this thread): UI slice only** — conditional on *"record works for Julio to do what he needs to do."* Plan filed: `plans/DAPP_ACCESS_RIGHTS_PLAN.md`.
+
+**Key pre-flight finding — the UI slice is already shipped.** `store_interaction_history.html` (beta **and** prod) already renders the full "Update Store Information" edit form and gates it on **signature-presence** (`verifySignatureOnLoad()` → registered contributor ⇒ `interactive`), **not on role**; `stores_nearby.html` already has "Save New Store". Store writes are **signature-gated, not role-gated** (confirmed in `sentiment_importer/app/controllers/dao_controller.rb` — no governor check on `[STORE ADD EVENT]`/`[RETAIL FIELD REPORT EVENT]` — and in `find_nearby_stores.gs` `updateStoreStatus`/`addNewStore`), so a per-contributor `store.*` grant would be **cosmetic**. The real blocker for **Julio Almeida** (`Contributors contact information` row 427, `davajhabib@outlook.com`, Discord `1554404598381543494`) is that he has **no registered Edgar key** (absent from `dao_members.json`) → the page puts him in view-only mode. **RESUME HERE = Unit 0: Julio registers a signature via `create_signature.html`**, then verify he gets interactive mode. The full 5-PR / 4-repo ACL is **deferred** pending a second delegate/module.
+
 ### truesight_autopilot: `google_calendar` tool + daily calendar watchdog shipped — precondition is the `calendar.events` token scope
 **Filed 2026-10-10 (thread 41588). Owner: unclaimed. Small (ops/secret + docs).**
 
@@ -114,6 +805,40 @@ cross-session** items that would otherwise rot in chat transcripts.
 **Proposed fix (~small).** Decide and implement one of: (a) have `InsertExpenseRecords` write C–F with `valueInputOption=RAW` / by first clearing validation on the target row (what the 2026-10-09 repair did); (b) widen/repair the `Entities` + `State` source ranges so the labels validate; or (c) make the processor detect the rejection (read back C–F after write) and alert rather than silently leaving a shell row. Also grep all AGL ledgers' `State!A1` for `#REF!` — a shared template may have broken broadly (cf. the AGL9 entry).
 
 **Evidence.** Box `i-05276b8ae82d6b88c`, 2026-10-09: AGL13 `Transactions!C26` validation `ONE_OF_RANGE =Entities!$A$2:$A$1745`; `Entities` A2:A1745 = 13 rows (no `Matheus Reis`); `State!A1` = `#REF!`; the repaired write succeeded only after `clearDataValidations()` on the target row. Repair used the `agroverse-ledger-manager` SA (the ledgers' write-capable principal).
+
+**2026-10-15 update — 3rd live instance found (AGL15 `r66`), and it is now the ONLY remaining shell.** Governor flagged AGL15 `Transactions` line 66. Live read: `r66` = Date `20260923` + a full `[DAO Inventory Expense Event]` Description (Edgar hash `7c980e4b22d8923c`, *"Flight from Ilhéus to São Paulo"*, Inventory Quantity `172.33`), but **C–F empty** — the identical A+B-only shell. Cross-ref: **SES row 240** = `Gary Teh · USD · −172.33 · target AGL15 · Ledger Line **66** · authorized` — the processor *recorded* writing row 66, yet C–F never persisted. A full-width scan of **all 12 managed ledgers' `Transactions` (A4:F1011)** found **`r66` is the only shell row left** (the 2026-10-09 pair AGL13 r26 / AGL8 r184 were repaired). `r66` predates BOTH the 2026-09-30 destination-side idempotency guard AND the 2026-10-14 `Balance` writes, so the guard now **refuses a re-file** (hash already present) → a *stuck* shell. **Impact:** the −$172.33 USD expense is missing from AGL15's Asset section. **Repair (governor-gated ledger write):** the 2026-10-09 recipe — `clearDataValidations()` on row 66, then write C=`Gary Teh`, D=`-172.33`, E=`USD`, F=`Assets`.
+
+### Expense processor double-inserted byte-identical rows into AGL15 `Transactions` — 11 pairs, −$403.35 (and 1 pair in AGL13)
+**Filed 2026-10-15 (Black King AGL15 corridor; found while diagnosing `r66`). Owner: unclaimed. Medium — data integrity, money-adjacent.**
+
+**Symptom.** AGL15 `Transactions` holds **11 pairs of byte-identical rows** — same Date, same Description *including the same `Edgar Scoring Hash Key`* — so the live `Balance` query (`select E, sum(D) where F='Assets' group by E,F`) counts each expense twice. Pairs: r29/30, r31/32, r33/34, r40/41, r42/43, r45/46, r51/52, r54/55, r56/57, r59/60, r64/65. Extra expense = **−$403.35**.
+
+**Root cause.** Same family as the 2026-09-30 destination-side idempotency guard (`tdg_expenses_processing` `Code.js` ~L945): two overlapping processor runs, each appending its own ledger row. **All 11 pairs are dated ≤2026-09-14** — i.e. before the guard shipped. The guard stops *new* occurrences but does not clean the pre-existing double-inserts. (One hash, `308e4bae9684f7c6`, even has a doubled *scored* row — SES r164 + r165.)
+
+**Blast radius.** AGL13 has **1** such pair (−$0.50); the other 10 managed ledgers are clean. Main `offchain transactions` not scanned here (different tab — cf. the `appendRow` lost-update entry).
+
+**Proposed fix.** (1) Decide the repair — the rows are byte-identical, so a de-dup pass (delete the 2nd row of each pair) is cleanest but **destructive → governor-gated**; the append-only alternative is one compensating `+amount` entry per pair. (2) Add an offline audit that flags identical-hash pairs across all managed ledgers. (3) Consider extending the destination guard with a one-time backfill sweep.
+
+**Evidence.** Box `i-05276b8ae82d6b88c`, 2026-10-15 (read-only): AGL15 `Transactions!A4:F1011` hash-scan → 47 hashed rows, **11 duplicated hashes**; replicated the `Balance` Asset formula → `USD 4240.75` (would be `4644.10` without the 11 dupes — i.e. AGL15's Asset USD is currently **understated by $403.35**); SES `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ` r164/r165 share hash `308e4bae9684f7c6`.
+
+**Net effect — the two AGL15 defects PARTIALLY OFFSET; do NOT sum them (2026-10-15).** The
+**dup-pairs** bug *understates* AGL15 Asset USD by **$403.35** (each expense summed twice ⇒ sum
+ too negative ⇒ balance too low). The **`r66` shell** bug *overstates* it by **$172.33** (a real
+−$172.33 expense is missing ⇒ sum too high). Net pre-booking correction to the displayed
+`USD 4240.75` = **+$403.35 − $172.33 = +$231.02** ⇒ **true AGL15 Asset USD = $4,471.77** —
+**NOT `$4,644.10`** (that figure corrects only the dups and ignores `r66`, the row the governor
+originally flagged). Direction still holds (balance is *higher* ⇒ better freight headroom) but by
+**$231.02, not $403.35**. **Booking impact: none** — the freight plan's AGL15 **outlay is fixed at
+$2,098.354** (the cash waterfall is on AGL8/AGL13), so only AGL15's *residual* headroom shifts
+(plan §2.1: 4,240.75 − 2,098.354 = 2,142.396 → **2,373.416** once both defects are corrected).
+**Neither defect is cargo-gated** — both are pure integrity fixes to rows already authorized in
+SES.
+
+**Repair note (r66 vs dups — different primitives).** `r66` is fixed by **backfilling C–F**
+(`clearDataValidations()` → `Gary Teh / -172.33 / USD / Assets`; the 2026-10-09 recipe) — it is a
+*missing row*, not a duplicate. The 11 pairs are fixed by **de-dup** (destructive, governor-gated)
+or the reviewer-proposed **append-only reversing entries** (`+amount` USD Assets each, tagged as
+correcting a pre-guard duplicate and referencing the original Request Transaction ID).
 
 ### `deploy_gas_project` reverts UNCOMMITTED tracked files — a dirty `Code.js` silently drops out of the deployed version
 **Filed 2026-10-09 (thread 41062). Owner: unclaimed. Small.**
@@ -1308,16 +2033,50 @@ to rule in/out a bad physical host — two data points isn't enough to conclude 
 2026-09-17T01:31:00Z); `aws ec2 get-console-output` (clean boot log ending 2026-09-14T23:24:41Z,
 nothing after); this session's remediation (reboot attempt → no recovery → stop/start → recovered).
 
+**⚠️ 2026-10-20 addendum — probable root cause found: disk full.** On 2026-10-20 the box's root
+filesystem was found at **100% (`29G/29G`, 0 bytes free)**, with four orphaned `tmp_pack_*` files
+totalling **~6.8 GB** in `/opt/claude_workspace/lineage-credentials/.git/objects/pack/` — residue
+of an **interrupted `git repack` that died of a full disk**. `git count-objects -v` independently
+reported **6.36 GiB of "garbage"**. Deleting only those four temp packs (no pack, ref, or history
+touched — verified no `git` process alive and `HEAD` resolving first) restored the box to **78%
+used / 6.4 GB free**, and the ENOSPC storm in the journal stopped dead at the deletion timestamp.
+
+**Why this is probably the answer.** With root at 100% the box exhibits exactly the recorded
+fingerprint:
+- `rsyslogd` was failing every write (thousands of `No space left on device`);
+- **`sshd` cannot write its session files and times out during banner exchange** — which is
+  already documented as a `nelanco-claude` gotcha in `ENVOY_TMUX_SESSIONS.md`;
+- the AWS control plane reports **`InstanceStatus: impaired` / `reachability: failed` while the
+  guest is still perfectly alive** — matching 2026-09-16/17.
+
+A stop/start then "fixes" the next recurrence because it clears the disk pressure, **not**
+because the instance landed on better hardware — so both 2026-09 incidents are equally
+explained by a bad physical host *or* by this. **Check disk first next time:** before assuming a
+hardware or network fault, run `df -h /` and `git count-objects -v` in
+`/opt/claude_workspace/lineage-credentials`. Note `get-console-output` will never show this —
+it only captures boot-time serial output, which is precisely why both prior incidents came up
+empty. The monitoring fix below (disk-utilisation alarm) is the durable answer; the
+`StatusCheckFailed_Instance` alarm proposed above would still fire, but late and with the wrong
+story attached.
+
+**Still open from this incident.** (a) `gc.auto=0` **is now set** repo-locally on
+`lineage-credentials` so an automatic repack cannot retry the double-space requirement and
+re-fill the disk — see the dedicated entry below. (b) **No disk-utilisation alarm exists yet.**
+(c) This is the third `nelanco-claude` incident; the original "if it recurs a third time, pull
+EC2 host-level info" trigger is arguably now met, but treat the disk explanation as primary until
+ruled out.
+
 **2026-10-25 — third recurrence, now runbooked (owner: DeepSeek Local).** Impaired
 (`InstanceStatus: reachability failed`, `ImpairedSince 2026-10-24T18:02:00Z`) ~1 day before it was
-noticed; `SystemStatus: ok`. Confirmed the `stop-instances` → `start-instances` fix again (reboot
-still not attempted — see incident 2). After the box came back, all four Envoy tmux sessions were
-dead (expected) and restored via `~/bin/envoy-spinup.sh`. Recovery is now fully documented as
-`sops/NELANCO_CLAUDE_RECOVERY_SOP.md` (detect → stop/start → poll → restore sessions → verify), and
-`nelanco-claude` is now a fleet host in Sophia's `ssh_tools.FLEET` so she can run the session-restore
-half herself (`ssh_run(host="nelanco-claude", …)`; her `sophia_infra` key is already authorized). The
-monitoring alarm proposed below is still **open** — a CloudWatch `StatusCheckFailed_Instance` alarm
-would page on recurrence instead of waiting to be noticed.
+noticed; `SystemStatus: ok`. Recovered via `stop-instances` → `start-instances`, then restored all
+four Envoy tmux sessions with `~/bin/envoy-spinup.sh`. **Miss logged for the record: disk was not
+checked first** — the 2026-10-20 addendum above wasn't read before acting, so the primary
+disk-full check (`df -h /` + `git count-objects -v` in `lineage-credentials`) was skipped and the
+stop/start cleared the symptom without confirming the cause. Recovery is now documented as
+`sops/NELANCO_CLAUDE_RECOVERY_SOP.md` (disk check first → stop/start → poll → restore sessions →
+verify), and `nelanco-claude` is now a fleet host in Sophia's `ssh_tools.FLEET` so she can run the
+recovery herself (`ssh_run(host="nelanco-claude", …)`; her `sophia_infra` key is already
+authorized). The durable fix (disk-utilisation alarm) is still **open**.
 
 ### truesight_autopilot: automate Stripe subscription-renewal → per-bar `[SALES EVENT]` reconciliation
 
@@ -2472,7 +3231,7 @@ title: Revisit Chocolate Subscription Phase 2 (fulfillment automation)
 created_at: 2026-06-11
 condition:
   kind: elapsed_days
-  escalate_after_days: 120
+  escalate_after_days: 180
 schedule:
   check: weekly
   on_escalate: ping_thread
@@ -2497,6 +3256,23 @@ description: >
   2026-08-10 email; first subscription shipment confirmed shipped 2026-08-16 (USPS
   ...2612). 2nd shipment NOT verifiable from the ledger (the invoice.paid handler
   is Phase 2 itself). Subscribe page live on prod. Phase 2 go/no-go still awaits Gary.
+
+  Re-armed 2026-10-15: timer fired at 126d (threshold 120d). escalate_after_days
+  120 -> 180 (next check ~2026-12-08). NEW EVIDENCE — the activation gate is now
+  MET: two Linda renewals confirmed paid (in_1UEwYMHrrz... 2026-09-12, $70.80;
+  in_1UPorCHrrz... 2026-10-12, $70.80) plus a second active subscriber
+  (singhua11@hotmail.com, $120, 2026-09-27). The Sept cycle tied to a real physical
+  fulfillment (6x Sao Jorge bars, UPS 1Z0C39140337625102 — see thread 30870). So
+  Phase 2's stated precondition ('validate the model on 2 shipments') no longer
+  holds. Phase 2 remains UNBUILT (no Fulfillment Queue tab / no
+  fulfill_subscriptions.html / no invoice.paid handler — org code search = 0 hits)
+  and renewals are still fulfilled manually. Remaining blockers are DECISIONAL, not
+  technical: (1) Gary's Phase 2 go/no-go; (2) coordination — Envoy (nelanco-claude)
+  holds an active_supervision claim on this plan, blocked_on_human on B2 (sandbox
+  sheet/tab) and B7 (beta-box security hygiene); (3) manifest row 74 says the plan
+  moved to thread 30477 ('old 1939 deleted') yet this follow-up still pings 1939 —
+  unresolved discrepancy, not touched by Sophia. Also open: Linda's 2026-08-10
+  e-mail (nutrition label + lead/cadmium testing) reply.
 ```
 
 ```followup
@@ -4157,9 +4933,23 @@ See `~/Applications/krake_browser/{README,ARCHITECTURE,DSL}.md` for the design (
 
 **Blocker.** None technical, and **parity itself is already unblocked** (shipped via path (i), see STATUS above). The residual fix is a plain `truesight_autopilot` code PR (no GAS) — *Preferred fix*. Fallback would need a `tokenomics` GAS change + deploy + governor GO.
 
+### No first-class `[CURRENCY RETIREMENT EVENT]` — retiring a currency label is a hand migration + conversion pairs
+**Filed 2026-10-14 (Gary, Discord `#currency-conversion`). Owner: unclaimed. Medium — new event type (GAS handler + DApp form + docs).**
+
+**Context.** On 2026-10-14 the mislabeled `BRL` currency was retired in favour of `Brazilian Reis` (same real currency; `BRL` was a duplicate label). There is **no canonical retirement event**: `search_context("retire currency")` → 0 hits, and `[CURRENCY DEFINITION EVENT]` can only *define* a currency, never remove one. The retirement was therefore performed by hand as a 3-step data op: (1) migrate each `BRL` balance 1:1 to `Brazilian Reis` for the same manager via `[CURRENCY CONVERSION EVENT]` pairs (Paloma BRL 220→220; the negative leg `pk-qkejKJJW3IAD` BRL −90 required the direction *swapped*, since the processor only accepts positive source/target and always writes `−source/+target`); (2) delete the `BRL` row from the `Currencies` tab; (3) republish `currencies.json` (or wait for the daily 06:45 UTC cron) so the picker stops offering `BRL`.
+
+**Why it matters.** Deleting a `Currencies` row is destructive and carries no audit trail or guard, and nothing prevents a QR / QR-code-batch / product from still referencing a retired label — or a future re-definition silently resurrecting it. The manual route also risks a sign error on negative balances (as happened above) and a stale public `currencies.json`.
+
+**Suggested scope.** Add a first-class `[CURRENCY RETIREMENT EVENT]` (or a `?action=` lever on the existing currency-definition handler): payload `{ Retire Currency, Successor Currency (optional), Reason }`; handler (a) validates the target has no non-zero balances **or** migrates them to the successor via the existing conversion path, (b) renames the `Currencies` col-A row to `<name> [DEPRECATED <date> — <reason>]` (or removes it), (c) sweeps for live references to the label, (d) triggers a `currencies.json` republish. Document the event in Edgar's event catalog so intent→event mapping resolves "retire currency / deprecate currency". **Interim convention until the event exists:** do the 3-step op above, and keep the `Currencies` row as a `[DEPRECATED …]` tombstone rather than hard-deleting it, unless a governor explicitly asks for deletion.
+
 ---
 
 ## Recently shipped
+
+### Currency conversion tooling: live currencies.json publish hardening — SHIPPED 2026-10-14
+**Shipped 2026-10-14. Governor thread: Discord `#currency-conversion`. PR: `truesight_autopilot` #533.**
+
+Live BRL currency retirement work hit a real bug: `upload_file_to_github`/`upload_local_file_to_github` 422'd ("sha wasn't supplied") whenever `api.github.com` reads were rate-limited (403) while writes still authenticated — the existing-file sha HEAD fell through. Sophia's fix added `_raw_sha()`, a local git-blob-hash fallback (`sha1("blob <len>\0" + content)`) so the sha can be computed without an authenticated read. Her first push had a real bug Envoy caught in review (not a CI timing fluke): the literal was `b"blob %d\\0"` — a backslash followed by `0` (two bytes) — instead of a true null byte, so the fallback sha could never have matched git's actual blob sha in production. Envoy fixed the one-character escaping, verified locally (3/3 new tests + full suite 1518 passed, same 4 pre-existing/environmental failures confirmed unrelated on a clean `origin/main`), pushed, CI green, merged. Not deploy-urgent — the actual currencies.json publish this hardens had already succeeded via a manual sha workaround earlier in the same session.
 
 ### Discord member *replies* now dispatch (read-only) — brain is tier-aware — SHIPPED 2026-10-10
 **Shipped 2026-10-10. Governor: Gary (Discord adapter thread). PRs: `truesight_autopilot` #478 (PR1), #480 (PR2), #481 (PR3); plan `BRAIN_TIER_AWARENESS`.**

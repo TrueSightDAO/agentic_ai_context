@@ -1,0 +1,9 @@
+{
+  "schema": "truesight-dao/entity-registry",
+  "status": "SUPERSEDED",
+  "tombstone": true,
+  "superseded_by": "fda_fsvp/truesight_dao_llc_prospera.entity.json",
+  "human_readable_index": "notarizations/ENTITY_LEGAL_DOCS.md",
+  "private_archive": "notarizations-raw (full-fidelity originals)",
+  "note": "This machine-readable registry was folded into the privacy-clean entity profiles in the 'fda_fsvp' repo. The former file carried personal identifiers (CPFs) and was replaced with this tombstone on 2026-10-14 as part of the entity-PII sweep. fda_fsvp/truesight_dao_llc_prospera.entity.json intentionally omits CPF/passport numbers and residential addresses."
+}

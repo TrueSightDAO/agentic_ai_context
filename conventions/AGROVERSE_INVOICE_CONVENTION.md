@@ -36,7 +36,7 @@ Default issuer (confirm with the governor if the deal is unusual):
 |---|---|
 | Legal name | **TrueTech Inc** |
 | Legal form | Delaware C-Corporation |
-| Address | 1968 South Coast Highway #4616, Laguna Beach, CA 92651, USA |
+| Address | 3041 Taraval St, San Francisco, CA 94116, USA |
 | EIN | **88-3411514** |
 | CBP importer of record | 88-341151400 |
 | Signatory | Zhiwen Teh (Gary Teh), President |
@@ -46,7 +46,7 @@ Render as a `From:` block directly under the title:
 ```
 From:  TrueTech Inc — a Delaware C-Corporation
        Agroverse / SunMint · TrueSight DAO
-       1968 South Coast Highway #4616, Laguna Beach, CA 92651, USA
+       3041 Taraval St, San Francisco, CA 94116, USA
        EIN: 88-3411514
 ```
 

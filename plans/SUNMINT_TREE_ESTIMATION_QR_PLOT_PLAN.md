@@ -102,7 +102,10 @@ Mature cabruca is the opposite failure (50–150 trees/ha real). Hence the rule 
 - **D2** — Tree-count tiers for plots: accept `estimated` for all new plots, `counted` only when
   a full walk happens? (Recommend yes; matches credentialing-lineage.)
 - **D3** — QR↔plot: new bag QRs bind to plot + batch. Do we mint plot-level QR types
-  (QR CODE REGISTRATION events gain a `plot_id` field)?
+  (QR CODE REGISTRATION events gain a `plot_id` field)? → **RESOLVED 2026-10-14** (per-**pseudo-tree**
+  QRs); see **§8 Addendum** below and `plans/SUNMINT_PSEUDO_TREE_QR_PLAN.md`. `plot_id` is still
+  carried on the QR row (SCHEMA.md col AC `Linked Plot ID`), so plot-level association is retained as
+  the fallback.
 - **D4** — Legacy tree-QR owners: spatial-join each tree to nearest plot automatically, or
   governor-confirmed per farm? (Recommend auto-join + governor review list.)
 - **D5** — Farmer field media: enforce **Document/email upload** (WhatsApp/Telegram strip EXIF) —
@@ -133,3 +136,106 @@ Mature cabruca is the opposite failure (50–150 trees/ha real). Hence the rule 
 - `SUNMINT_BOUNDARY_SUBMISSION_PLAN.md` — the roadmap plot-first refines
 - Batch analysis artifacts (2026-09-07): /tmp/la_do_sitio_unique_trees_{strict,loose}.csv
 - `GROWTH_MODEL.md` — credentialing-lineage principle (nothing asserted until evidenced)
+- `plans/SUNMINT_PSEUDO_TREE_QR_PLAN.md` — the pseudo-tree design that answers D3 (2026-10-14)
+- U3 (live) — `expected_trees` + `expected_trees_source` on the `SunMint Plots` tab (col U, corrected 2026-10-14 from a misplaced col T — see `plans/SUNMINT_FARMER_SETTLEMENT_AND_BATCH_LINK_PLAN.md`), governor-editable
+
+---
+
+## 8. Addendum (2026-10-14) — D3 answered: pseudo-tree slots as the QR binding target
+
+**Why this addendum.** D3 asked whether NEW bag QRs bind to the **plot** or to individual trees. The
+2026-09-08 leaning was plot-level, *because per-tree photography doesn't scale* (§1). On 2026-10-14
+Governor Gary extended the model: bind a QR to an individual, QR-codable **pseudo tree** — a **third
+option** between per-plot and per-real-tree. This closes D3; the full design lives in
+`plans/SUNMINT_PSEUDO_TREE_QR_PLAN.md` (v2).
+
+**Resolution of D3 — the QR binding target is a pseudo-tree slot.**
+
+- A **pseudo tree** is a **placeholder slot** for a tree the estimator expects but which has **not been
+  photographed or located**. Physically it is a `SunMint Tree Planting`-shaped row with **blank
+  Latitude/Longitude** and **no photo**, `plot_id` set, and a stable id.
+- **id** `PS-<plot_id>-<seq>`; **discriminator = blank K/L** (a real submission always has a
+  GPS-tagged position). **No new column needed** — blank K/L *is* "not yet individually verified," and
+  is more honest than a fabricated map point.
+- **No geometry is computed.** The plot's density rule (§4b: `plot_hectares × 1,100`, ~3 m spacing)
+  now supplies only the **count** `expected_trees` (U3), not positions. Pseudo slots carry no
+  coordinates, so their map geometry is `null`. NB: `build_tree_geojson.py` does **not** currently
+  drop blank-coordinate rows (it emits `geometry: null`); the builder must be taught to skip
+  blank-K/L rows from the tree index (PR2), so placeholders never surface as map features.
+- **Link timing (Gary, 2026-10-14): a QR MAY be bound to a pseudo slot BEFORE any real tree exists.**
+  The binding does not wait for a `[TREE PLANTING EVENT]`; the slot is minted on demand at link time to
+  receive the QR, and a real tree later promotes it **in place** (§6 of the pseudo-tree plan). This is why the slot
+  must be a first-class link target with no tree behind it.
+- **Link event** = **reuse/extend `[TREE PLANTING LINK EVENT]`** (same atomic pattern: QR row + a row +
+  ledger leg), pointed at a pseudo slot — no parallel mechanism.
+- **Plot-level association is retained** as the fallback: the QR row still carries `plot_id`
+  (SCHEMA.md `Agroverse QR codes` col AC `Linked Plot ID`).
+- **Honest state** (`GROWTH_MODEL.md` §"How to extend this model" step 4 + anti-patterns): a
+  pseudo-bound bag's QR / landing page must read *"Plot X — estimated slot #N. Position not yet
+  verified."*, and must **not** increment any public "trees planted" counter.
+- **QR owner experience (Gary, 2026-10-14 — ruled):** while a QR is `ASSIGNED_TO_PSEUDO_TREE` the
+  provenance page shows the **plot's `media` image** (the field `SUNMINT_PLOTS_REGISTRY.md` defines) with
+  the caption *"photo shows the plot where this tree is expected, not the individual tree"*; once the row
+  gains real K/L + photo (promotion) and the QR flips to `ASSIGNED_TO_TREE`, the page falls back to the
+  **real tree's own photo** + map. Render matrix: pseudo-tree plan §5.1 (**3-tier**).
+- **Three-tier render logic (Gary, 2026-10-14 — approved):** the provenance image is picked by what
+  evidence exists — **T1** real tree → its own photo + map; **T2** pseudo + plot *has* media → the
+  **plot's** photo under the caption *"photo shows the plot where this tree is expected, not the
+  individual tree"*; **T3** pseudo + plot has *no* media → **no image, honest estimate text only**
+  (never a bare photo). Pseudo-tree plan §7.
+- **Promotion** (real K/L arrives) — **IN PLACE, SAME ROW** (Gary, 2026-10-14): *"once it gets assigned
+  a lat and long it is no longer a pseudo tree."* Writing the real K/L (+ photo + planter) onto the
+  pseudo row **makes that row the real tree** — **no second row, no `[PSEUDO TREE RECONCILE EVENT]`,
+  no orphaned pseudo row.** The signed planting event that writes K/L **is** the audit trail. The row's
+  **id is unchanged**; live pseudo-vs-real is decided by **blank K/L alone**. (This **supersedes** the
+  earlier claim-on-arrival/FIFO idea: with in-place promotion there is **no matching step at all**,
+  so no radius and no ambiguity handling.)
+- **Promotion event (Gary, 2026-10-14)** — the write happens via a **dedicated
+  `[PSEUDO TREE PROMOTE EVENT]`** (pseudo-tree plan §5.2), **not** the append-only `[TREE PLANTING
+  EVENT]` (which can only **append** rows, not edit one by id). It takes **plot_id (or pseudo id) +
+  lat/long + photo**, finds the matching **open** pseudo row (blank K/L + `plot_id`) and writes the
+  real values **in place**. **Two surfaces call the same contract**: a DApp page + a CLI module (both
+  mirror `link_tree_planting.*`). Still **no `[PSEUDO TREE RECONCILE EVENT]`** — we edit in place, we do
+  not create a new linked row.
+- **Two separate contracts, different natures (Gary, 2026-10-14)** — *"A pseudo tree gets created when
+  we attempt to link a QR code to a plot"*: **Contract A — QR ↔ Plot link** is a **HANDLER UPGRADE to the
+  already-live plot-link path** (`process_tree_planting_link.js` ~L936–987; the *"link to a plot (no tree
+  submission)"* picker already on `link_tree_planting.html` submits the **existing** `[TREE PLANTING LINK
+  EVENT]` with a `Plot ID`). The upgrade = **find-or-create bounded by `expected_trees`** + flipping the
+  status off `ASSIGNED_TO_TREE` to the new **`ASSIGNED_TO_PSEUDO_TREE`**. **No new event, no new page,
+  no new UI.** **Contract B — Pseudo promotion** is **genuinely new**: the dedicated
+  `[PSEUDO TREE PROMOTE EVENT]` (input **plot_id/id + lat/long/photo**; writes in place), with its **own
+  DApp page + CLI module** (pseudo-tree plan §5.2), reusing the **shared DApp scaffolding**
+  (`routes.js`/`menu.js`/`tdg_balance.js`/`scripts/dao_members_cache.js`, `verifySignatureOnLoad()`,
+  governor/sentinel gate).
+- **Contract A write-set — existing columns only (Gary, 2026-10-14)** — three rulings: (3) capacity
+  exceeded → **REJECT** (never over-mint past `expected_trees`); (4) the **D9 plot-type gate**
+  (`restoration`/`enrichment`/`nursery`) **applies to the create branch too**; (5) the binding **reuses
+  the existing `Linked Plot ID` (col AC)** and the **reverse-binding mechanism** — verified: like the
+  real-tree path, the **`SunMint Tree Planting` row** carries `Status=LINKED` + `Linked QR` +
+  `Linked At`, and the QR row carries **no** tree ref. Find-unlinked = scan the one tree tab for
+  `plot_id == X AND Status != LINKED` (real + pseudo uniform). **No new columns anywhere.** Confirms
+  the single-tab decision (D4).
+- **Live gap fixed, not clean-slate hygiene (Gary + Sophia, 2026-10-14)** — the existing plot-link path
+  has **no capacity concept** and reuses `ASSIGNED_TO_TREE`, the exact status `agroverse_shop`'s public
+  "trees planted" counter filters on (`agroverse_wix_site_updates.js::getSoldRowsCount()`, sheet
+  `1GE7PUq…`), feeding both `TREES_FINANCED` and `HECTARES`. So each plot-level link would **inflate the
+  public tree/hectare count, unlimited**. Contract A's status flip is the **fix**. Verified live: **15**
+  `ASSIGNED_TO_TREE` rows, **all** genuine tree links (lat+long, col AC empty) — **0** plot-only links to
+  date — so the bug is **latent**, closed **prospectively**. See pseudo-tree plan §5.1 (SD19).
+
+**Effect on this plan's open decisions:**
+
+- **D3 → CLOSED** (2026-10-14): per-pseudo-slot QRs; `plot_id` retained as fallback.
+- **D6 → RESOLVED by U3 (2026-10-14)**: tree-count now lives on the `SunMint Plots` tab, col **U
+  `Expected Trees`** (governor-editable; col corrected 2026-10-14 from a misplaced T — `tokenomics` #582), emitted into `plots/index.geojson` as `expected_trees` +
+  `expected_trees_source`. W2 is partly shipped; a separate `tree_count_tier` column remains open.
+- **D4 → CLOSED (2026-10-14): ONE registry** — a pseudo tree is a `SunMint Tree Planting` row with
+  blank K/L; **no separate tab**. **D7/D8 moot** (no separate row to reconcile). **D13 = (a) STANDS
+  ALONE, no matching** (Envoy 2026-10-14): a real submission with **no bound slot** is an ordinary real
+  row — it fills/claims **no** slot (only the **QR-bound** path writes onto a slot). All D-decisions
+  now settled — pseudo-tree plan §8 (v10).
+
+**Sequencing:** **all D-decisions are now ruled** (Gary 2026-10-14, via Envoy) — see the pseudo-tree
+plan §8 (v10). Build units (PR2–PR7) may proceed. U3's simpler editable-count part already shipped
+(col U — corrected 2026-10-14 from a misplaced col T) and proceeds independently.

@@ -458,6 +458,423 @@ Update `package.json`:
 
 When you add this setup to a new repo, update this table.
 
+### 9a. Live-render verification — static-site content changes (2026-10-22)
+
+§9 above prescribes a **unit test suite** (vitest + happy-dom). That covers code behaviour. It does
+**not** cover a change that is only prose, markup, or copy — editing paragraphs inside an existing page
+section, adding a cross-link, correcting a caption. There is often no unit-testable behaviour at all.
+
+**This applies to every static-site repo pair in the workspace**, not just agroverse. All of them are
+GitHub Pages sites deployed as a beta/prod fork pair:
+
+| Beta repo | Beta host | Prod repo | Prod host | PR-time gate |
+|---|---|---|---|---|
+| `agroverse_shop_beta` | `beta.agroverse.shop` | `agroverse_shop_prod` | `agroverse.shop` | `partner-discovery-lint.yml` — discovery surfaces only |
+| `truesight_me_beta` | `beta.truesight.me` | `truesight_me_prod` | `truesight.me` | `nav-consistency.yml` — real structural gate |
+| `dapp_beta` | `beta.dapp.truesight.me` | `dapp_prod` | `dapp.truesight.me` | `ci.yml` — unit + Playwright |
+| `sunmint_beta` | `beta.sunmint.truesight.me` | `sunmint_prod` | `sunmint.truesight.me` | none — `test` is Playwright only |
+
+Every pair is a **fork** with an intentionally different `CNAME`. That is the single most important
+fact for the promote step at the end of this section.
+
+**Do not assume either extreme.** "There is no CI gate" is wrong for `truesight_me` and `dapp`;
+"CI covers it" is wrong for agroverse prose and `sunmint`. **Say per repo what actually ran.**
+
+#### What each gate actually asserts
+
+- **`agroverse_shop_beta` → `partner-discovery-lint.yml`**: triggers on `partners/**` (any file,
+  including `partners/<slug>/index.html`), `js/partners-data.js`, `partner_locations.json`. It
+  asserts the **discovery surfaces agree** — hub card, `partners-data.js`, `partner_locations.json`.
+  **It does not read your prose and passes regardless.** A green check here is not evidence the
+  sentence is right; it is evidence the page is still discoverable.
+- **`truesight_me_beta` → `nav-consistency.yml`**: on `push` **and** `pull_request`. A bash scan
+  asserting every non-redirect `*.html` contains the `id="site-nav"` placeholder. Redirect stubs
+  (`http-equiv="refresh"`, `window.location.replace`) are skipped by design. **This is a real
+  structural gate** — a red `Nav consistency` means a genuinely broken page, not a flake.
+- **`dapp_beta` → `ci.yml`**: `npm test` = unit tests + Playwright integration.
+- **`sunmint_beta`**: no PR workflow; its `test` script is Playwright only.
+- On **all** repos, `visual-consistency.yml` is `deployment_status`-triggered → it runs **after** a
+  deploy and therefore cannot gate a PR. It is **not** prod verification by default either: check which
+  host it pins. `agroverse_shop_prod` branches on `GITHUB_REPOSITORY` and does assert `www.agroverse.shop`
+  (though its job name still says `(beta.agroverse.shop)`), while `truesight_me_prod` hardcodes
+  `PLAYWRIGHT_BASE_URL: https://beta.truesight.me` and so asserts beta from the prod repo, and
+  `dapp_prod` / `sunmint_prod` have no such workflow at all.
+
+  **`skipped` means one specific thing: a duplicate event.** One deploy emits several
+  `deployment_status` events; only the one with `state == 'success' && environment == 'github-pages'`
+  satisfies the job `if:` guard, so the rest record `skipped` (observed 3 skipped : 1 executed on both
+  the beta and prod deploys of 2026-10-22). So `skipped` is **not** "the check is missing" and **not**
+  "the check failed" — find the run that executed and read *its* conclusion. Reading the `skipped` runs
+  and concluding "there is no visual gate on prod" is a mistake I made during the Dorothy work; it was
+  wrong, and `agroverse_shop_prod` in fact asserts the live production host.
+
+  When it does run, read it honestly: `agroverse_shop_prod` is **red 7 times in its last 30 runs**
+  (2026-09-19 → 2026-10-22), failing at "Run Playwright against deployed beta". A gate that is red most
+  days is not a gate — it is training everyone to skip it. Do not cite a chronically red check as
+  evidence either way until it is investigated (`OPEN_FOLLOWUPS.md` tracks this).
+
+#### There is no `sitemap:check` outside agroverse
+
+`npm run sitemap:check` exists only in `agroverse_shop_beta`. `truesight_me_beta` and
+`truesight_me_prod` have **no equivalent local validator** — `npm test` there is `playwright test`
+against a served site. Their structural check lives in the workflow, not in a script you can run
+before pushing.
+
+The check that **does** transfer is the nav-placeholder scan, because **both** sites inject their nav
+from shared JS (agroverse via `shared-chrome.js`, truesight via `js/nav.js`) and both pages carry
+`id="site-nav"`. The same logic runs locally on either:
+
+```bash
+find . -name '*.html' -not -path './node_modules/*' -not -path './.git/*' \
+  -not -path './static/*' -not -path './assets/raw/*' | while read -r f; do
+    grep -qE 'http-equiv="refresh"|window\.location\.(replace|href *=)' "$f" && continue
+    grep -q 'id="site-nav"' "$f" || echo "MISSING site-nav: $f"
+  done
+```
+
+**Before merge — all runnable locally by the agent:**
+
+1. **Assert the diff scope.** `git diff --stat` then `git diff -U1`. "1 file changed, 2 insertions(+)"
+   is a claim you can verify, not estimate.
+2. **Well-formedness.** Parse the file with an HTML parser; assert `unclosed == 0` and
+   `mismatches == 0`. Capture the **baseline before** your edit so pre-existing breakage is not
+   silently attributed to you.
+3. **No-new-CSS assertion.** If the brief was "no new styling," prove it: count the relevant
+   attributes before and after.
+4. **Scope placement checks to the target container.** Anchoring on a bare string (e.g. a class name)
+   can match a CSS rule inside the page's own `<style>` block and return a confident false negative.
+5. **Run the repo's own validators where they exist** — `npm run sitemap:check` in
+   `agroverse_shop_beta`; the nav-placeholder scan above on either site; `npm test` in `dapp_beta`.
+   Where none exists, say so rather than implying you ran one.
+6. **State the real gate honestly in the PR body.** If `npm test` is Playwright against a served site
+   and cannot run from the autopilot box, write that down.
+
+**Flag the one decision that needs a human — do not make it yourself.**
+
+Every content change has at least one line, claim, or judgement that is genuinely yours to make, not the
+agent's: a fact you are not certain of, a sentence that does more rhetorical work than the rest, a
+structural choice with more than one defensible answer. **Name that one thing explicitly** — in the PR
+body and in the message asking for review — so the reviewer knows where to point their attention.
+
+- **Exactly one.** A list of ten "please check these" is the same as none.
+- **Name it specifically.** "Please review carefully" is not a flag; "I am least confident that X is
+  accurate" is.
+- **Do not decide it and bury the reasoning.** If you must proceed to keep the work moving, state the
+  choice, state why, and state what you would change if the reviewer disagrees.
+
+Worked examples from the CFR Anapu page (2026-10-22), all three flagged rather than decided:
+
+- A draft premise that the school was **founded** by the person it is named after was corrected to
+  "**named for**" — a factual distinction that changes the claim the page makes.
+- One sentence carried more connective weight than the rest ("the same model of staying on the land that
+  the school continues today"); it was named as the line to cut if the governor read the connection
+  differently.
+- An `<h3>` was dropped because 0 of 6 sibling pages use one — a uniformity judgement, surfaced rather
+  than asserted.
+
+**After merge — a deploy is a separate fact from a merge:**
+
+7. **Merged ≠ live.** GitHub Pages rebuilds on a lag (**~2–3 minutes observed**, 2026-10-22: sync at
+   05:01:50 UTC, served at 05:04). Fetch the live URL and assert the change is actually served before
+   reporting success. You do not have to guess at the rebuild — the merge commit carries Pages' own
+   runs:
+
+   ```bash
+   gh api repos/TrueSightDAO/<repo>/commits/<sha>/check-runs \
+     --jq '.check_runs[] | "\(.name): \(.conclusion)"
+   ```
+
+   `build: success` + `deploy: success` + a fetched page is two-part proof. If the change is missing
+   on first load it is almost certainly the build, not a failed merge — re-check before concluding.
+8. **Never report "deployed" on the strength of a merge commit.** Open / merged / deployed are three
+   different states; say which one you are claiming.
+
+**Review the deployed page, not the diff.** A diff cannot tell you whether the page renders, whether the
+shared chrome injected nav and footer, whether the hub built the card, or whether something else on the
+page broke. Run the `visual_uat` tool against the **live beta URL** — it asserts DOM text values, console
+errors, failed requests, and broken images at desktop and mobile, and returns a verdict. That is the
+machine-checkable half; the human half is the governor's own read of the rendered page.
+
+**This does not conflict with §5c's "UAT / human-acceptance phase" stop.**
+A UAT phase needs a **live URL**, and beta is the live surface for review. So for a content-only
+change on a beta/prod pair, merge-to-beta is a *prerequisite* for UAT, not a way around it. **Prod
+promotion remains an always-stop.**
+
+**Prod promote — only after the governor clears it:**
+
+9. **Dry-run the merge locally first** and read the real conflict list. Do not predict a conflict from
+   content-diffing; check the graph.
+10. **Rule out a silent fast-forward.** If prod is an ancestor of beta
+    (`git merge-base --is-ancestor`), advancing beta can overwrite prod's divergent files with **no
+    conflict at all** — `CNAME` is exactly the file at risk, on every pair.
+11. **Confirm `CNAME` is not in `prod_sync_generated_globs`** (currently `['stats/*.json']` only) so
+    the auto-reconcile path cannot flip the production domain.
+12. **Never force a sync.** On a real conflict, stop and report.
+13. **Verify prod too.** Fetch the production domain and confirm the change is served. The merge is
+    not the finish line.
+
+**Incident that prompted this (2026-10-22, CFR Anapu / §9 Dorothy Stang work on
+`agroverse_shop_beta` → `_prod`).** The sequence that worked: local parser + diff-scope + CSS-baseline
++ `sitemap:check` → merge to beta → verify the live page actually serves the change → governor visual
+UAT → `sync_beta_to_prod` with an ancestor test and CNAME check first. Twice in that thread "merged"
+was reported before the change was genuinely live, and once a CNAME conflict was predicted that a
+dry-run proved would not occur. Both errors are cheap to avoid with the steps above.
+
+A third error from the same thread is worth recording because it is the one this section originally
+got wrong: it claimed these repos have "no PR-time CI gate." That is **false** — `agroverse_shop_beta`
+does run `partner-discovery-lint` on a `partners/**` edit, and `truesight_me_beta` runs a real
+structural nav check on every PR. The correct statement is narrower and matters more: **the agroverse
+check passes without reading the prose.** Getting that distinction right is the difference between
+"CI is green, we're fine" and "CI is green and it told me nothing about the copy."
+
+---
+
+## 9b. Money-adjacent claims: name the phase, verify live, assert the total (2026-10-23)
+
+Three rules, one incident. All three failed, or nearly failed, in the Black King freight true-up thread
+(2026-10-23, session `dd775ec0499d`). They are ordered by how early they catch the error.
+
+### 9b.1 A completion claim must name its phase — ambiguity is the reporter's defect
+
+**Never say "all figures updated", "booked", "posted", "done", or "reconciled" about a multi-phase
+change.** Name the phase, the amount, and the ledgers:
+
+```
+<phase name> <what changed> <which ledgers> <amount>
+
+v2 true-up ($124.19) posted to AGL8 / AGL13 / AGL15 / Main offchain.
+```
+
+That is a claim someone can check. "All figures on all ledgers updated" is not, because there is more
+than one thing it could mean and the reporter is the only one who knows which.
+
+**If a reader could reasonably read a claim as either complete or partial, the claim is defective.**
+Fix the claim; do not fix the reader.
+
+**And the reader-side half, which binds the agent:** when a governor's report is ambiguous, do **not**
+resolve it toward the generous reading. "All figures updated" is not authorization for anything, and it
+is not confirmation of the largest thing it could describe. Ask which phase, or verify and report what
+you found. Resolving an ambiguous completion claim in a governor's favour is how a proposed-only change
+gets treated as landed.
+
+### 9b.2 Verify every money-adjacent claim against the live sheet before calling it done
+
+**Never accept a completion claim from a summary** — not a PR body, not a prior turn, not a pinned
+note, not another agent's report, and not your own memory of what you did. A claim that money moved,
+that balances changed, that rows were appended, that an invoice settled, or that something reconciled
+is a claim about a sheet. Read the sheet.
+
+**The check is a content grep for the exact figures, across every ledger involved:**
+
+```python
+TARGETS = ["56.64", "67.55", "49.54", "18.01", "121.06", "124.19"]
+for name, sid in [(n, s) for n, s in LEDGERS]:
+    rows = gc.open_by_key(sid).worksheet("Transactions").get_all_values()
+    hits = [r for r in rows if any(t in " ".join(r) for t in TARGETS)]
+    print(name, len(rows), "rows;", len(hits), "hits")   # 0 hits => not posted
+```
+
+Zero hits means not posted. There is no interpretation of zero hits in which the change landed.
+
+**Distinguish LANDED from PROPOSED in the same breath, every time.** In this incident both of these
+were true simultaneously, and leading with the first implied the second:
+
+- v1 freight booking, `$4,896.33` — **LANDED** 2026-10-14/15, verified row by row.
+- v2 bond true-up, `$124.19` — **NOT POSTED**, held pending an explicit go.
+
+A true statement about the landed phase is not evidence about the held phase. State which one you are
+talking about.
+
+**Corollary — do not publish absolute post-states; publish increments plus a timestamped observation.**
+Two pinned baselines in this thread were stale: AGL15's USD balance was **2,518.046**, not the pinned
+`2,142.396`, and append-row numbers had all moved (AGL15 `67→61`, AGL8 `187→203`, AGL13 `27→39`).
+Any figure that is a *consequence* of the change (a new balance, a new per-kg cost, a new row count)
+belongs in the snapshot as a computation, never as a hardcoded result. The *increment* is stable; the
+absolute is not.
+
+**Cite rows as `row + date + amount` together, never row number alone.** The original freight expense was
+found at `r4930`, not `r4929` — off by one from 0-based vs 1-based indexing, compounded by a corrupted
+date cell reading `10/8/57372` instead of `10/8/2026`. A reader searching by index alone can miss a row
+that is plainly there.
+
+### 9b.3 A reallocation needs a total-balance invariant check, not per-leg checks
+
+**When one ledger's funds finance a cost booked on other ledgers, the funded ledger's total assets must
+not move.** The money converts cash into equity holdings; the total is invariant. Assert the total.
+
+**This is a named step, not something that happens to get noticed.** `BALANCE-TOTAL INVARIANT CHECK`:
+before reporting a financing-ledger post as complete, read every asset line on the funded ledger's
+`Balance` tab, sum them, and compare against the total captured before the post.
+
+```
+Σ Δ (all asset lines) must equal 0     # pure internal reallocation
+```
+
+**Per-leg verification passes happily when legs are missing.** In this incident the first commit posted
+7 of 9 rows and every individual row verified correctly on inspection — but AGL15's total assets fell
+**$67.55** (4,828.17 → 4,760.62), because the cash-outflow leg was posted without the two asset-side
+mirror legs that convert that cash into equity holdings. Only the spill *total* caught it. After adding
+the two mirrors, the total returned to `4,828.17` to the cent.
+
+AGL15's invariant, for reference:
+
+```
+USD + AGL8 equity holdings + AGL13 equity holdings = 4,828.17
+2,450.496 + 163.064 + 2,214.61                    = 4,828.17
+```
+
+**Fourth check, because it caused the omission: the bucket lives in the `Currency` column.** A mirror leg
+is a row whose *Currency* cell reads `AGL8 equity holdings` / `AGL13 equity holdings` — not `USD`. Read
+the existing mirror rows on the ledger before inventing new ones (`AGL15` r57/r58 for v1); the convention
+is visible there and was not visible in the schema.
+
+**Write only to `Transactions` — `Balance` is a derived `query()` spill.** Read it to assert the
+invariant; write signed rows to `Transactions` and let it re-spill. A spilled cell reports its *value*,
+not its parent formula, so reading `Balance` cannot tell you whether a cell is writable — check with
+`acell(range, value_render_option='FORMULA')` before concluding anything about writability. Same lesson
+as the `offchain asset location` incident on Main (2026-10-15): a spilled view read as an ordinary
+number, and a write to it would have silently done nothing.
+
+### Verify-necessary list
+
+A claim is money-adjacent, and §9b.2 applies, if it involves any of:
+
+- an amount on any ledger (AGL2/6/7/8/10/13/14/15, Main offchain, TBM)
+- a balance, total, or per-kg / per-unit cost that is derived from ledger rows
+- an appended row count, or "next row" index
+- a payment, invoice, settlement, reimbursement, or FX figure
+- the words *posted*, *booked*, *landed*, *reconciled*, *updated*, *current*
+
+### Incident that prompted this (2026-10-23, Black King freight true-up)
+
+Gary reported "all figures on all ledgers updated." I read it as a report and went looking for what had
+landed, found the **v1** booking (`AGL15 t56 −2,098.354`, `AGL8 r188/r189 145.054`, `AGL13 r26 −1,953.30`),
+and reported it verified — which it was. But the **v2** true-up (`$124.19`) had never been posted, and I
+let a true statement about v1 imply a false one about v2. Gary then queried Main's `offchain transactions`
+himself, found only the original `−$2,233.03` and no true-up row, and asked me to confirm what was
+actually posted.
+
+The grep settled it: **0 hits across 5,568 rows in four ledgers.** Nothing was posted. The only artifact
+was a held, unmerged PR.
+
+Then the second error, in the opposite direction: once explicitly authorized, my first commit posted 7 of
+the 9 required rows. Every leg looked right. AGL15's assets had nevertheless dropped $67.55, because I had
+omitted the mirror legs — the convention for which I had not read off v1 before writing v2. Two more rows
+(`r62`/`r63`, `18.01` + `49.54` against `AGL8 equity holdings` / `AGL13 equity holdings`) restored the
+total exactly.
+
+Both errors were cheap to avoid: the first by naming the phase, the second by summing the balance instead
+of admiring the legs. The section exists so the third one is not found by a governor.
+
+---
+
+## 9c. Entity labelling and evidence links on ledger rows
+
+**Every ledger row names two things, and getting either wrong corrupts a derived view without breaking a total.** Grounded in AGL15 `Transactions` r61–63 (2026-10-23 Black King freight true-up), where both defects were live at once.
+
+### 9c.1 `Entity` names the party the row belongs to — not who authorized it
+
+`Entity` (col C) answers *whose balance moved*, never *who said yes*. Governor authorization belongs in the **Description** (`Authorized by Gary Teh 2026-10-23 …`), which is where the audit trail lives. Putting an authorizer, a session id, or a vehicle name in `Entity` mis-files the amount against a party that does not hold cash.
+
+### 9c.2 Assets leg = human custodian; Equity leg = counterparty. Never the same name.
+
+| Transaction Type | `Entity` = | Why |
+|---|---|---|
+| `Assets` (cash moving) | **the human custodian** who holds/spends it (e.g. `Gary Teh`) | the row reduces *that person's* custody |
+| `Equity` (claim/liability) | **the financing vehicle or counterparty** (e.g. `AGL15`, `AGL8`) | the row records a claim *against* that vehicle |
+| `Expenses` | **the human custodian** whose USD was drawn | same as Assets |
+
+**If the cash is financed but the custody is a person, the `Entity` is still the person.** The financing relationship is expressed by the **Equity mirror legs** (the row 57/58 mirror pattern), *not* by relabelling the cash. A vehicle name must never appear on an Assets leg.
+
+- *Worked example (this defect):* r61 booked `AGL15 | −67.55 | USD | Assets`. USD was held with **Gary Teh**, so the leg should read `Gary Teh | −67.55 | USD | Assets`, with `AGL15` appearing only as the financier on the Equity mirrors (r62/r63, which were already correct).
+- *Correct precedent in the same ledger:* r56 (the v1 booking of the same class) reads `Gary Teh | −2098.354 | USD | Assets` — done right the first time.
+- *Historical fix of the same class:* the checklist records AGL8/AGL13 injection legs originally carrying `AGL15` on **both** legs, corrected append-only to Equity → `AGL15`, Assets → `Gary Teh`.
+
+### 9c.3 Why this survives a total-invariant check — check the buckets, not just Σ
+
+`Balance` is a spilled `QUERY` grouping **`Entity`** and `Currency`:
+
+`=query(query(Transactions!$A$4:G1000, "select C, sum(D), E where F='Assets' group by C, E, F …"), "select * where Col2 <> 0")`
+
+So a wrong `Entity` **silently creates a new bucket** and **understates the correct one by exactly that amount** — while the grand total is unchanged. The error is invisible to a Σ-only check.
+
+- *Live example:* after r61 as booked, `Balance` = AGL13 2214.61 · **AGL15 −67.55** · AGL8 163.064 · Gary Teh 2518.046 → **Σ 4,828.17 ✅ correct total**. But Gary's custodian USD reads **2,518.046** instead of **2,450.496**, with a phantom `AGL15` "location" holding −67.55. A ledger name is masquerading as a person in the custody dimension.
+
+**Rule:** after any ledger write, read the `Balance` buckets per `(Entity, Currency)` — not just the total. A wrong `Entity` shows as a **negative bucket under a non-human name**, or as a person whose bucket is off by exactly the amount in question. (This is the mirror image of §9b.3: §9b.3 asks *is the total right?*; §9c.3 asks *is the total in the right buckets?* Both are required.)
+
+**Corollary:** because `Balance` is derived, **never write to cols H/I/J** — fix `Entity` in `Transactions` and let the spill recompute (the spilled-formula lesson above).
+
+### 9c.4 Supporting documents must be linked in the Description — a chat attachment is not evidence
+
+The **Description** (col B) must carry a full, clickable URL for every supporting document. A receipt that exists only as a Telegram attachment is **not auditable** by anyone reading the ledger later.
+
+- **Form:** a full `https://github.com/TrueSightDAO/.github/blob/main/assets/<file>` URL (or `- Destination Expense File Location: <url>`), matching the established rows.
+- **Precedent already in the substrate:** r55 (`…/trip-receipt.pdf`), r59 (inline notarization URL), r60 (`…/99_ride_paradiso_to_gru.jpg`).
+- **Multi-row groups:** when one transaction spawns several legs (primary + Equity mirrors), put the full evidence set on the **primary authorizing leg**, and give each mirror a back-reference naming that leg. Do not leave any leg of a group unlinked.
+- **Before writing the row**, confirm the attachment has actually been uploaded and the URL resolves — an intended link is not a link.
+
+### 9c.4a The override: `Entity` is canonical, *not* a copy of `Target Ledger`
+
+**The most common way §9c.2 gets violated is by copying the pipeline's own template field.** The standard Edgar expense template carries `- Target Ledger: AGLxx`. The *ledger* a cost is borne by is **not** the *entity* that holds the cash. Copying `Target Ledger` into the `Entity` column is the exact defect behind r61, and it is invited by the template's wording.
+
+| Template field | Goes into | Never goes into |
+|---|---|---|
+| `- Target Ledger: AGL15` | Description only (which ledger bears the cost) | **`Entity`** |
+| `- DAO Member Name: Gary Teh` | Description **and** `Entity` (the human custodian) | — |
+
+**So: `Entity` = `DAO Member Name`, not `Target Ledger`.** When both are present, that mapping is unconditional.
+
+### 9c.4b Posting a sanctioned correction *outside* the Edgar pipeline
+
+A `[LANDFALL SANCTIONED ONE-OFF CORRECTION]` (or any hand/posted-by-script row) **bypasses Edgar entirely**. It therefore inherits **none** of the pipeline's guarantees — and you must replicate them **by hand**, or the row is quietly deficient in a way that looks normal on the sheet.
+
+**Replicate all three by hand:**
+
+1. **`Entity` convention** — set it explicitly per §9c.2 / §9c.4a. Do **not** derive it from a signer, a template, or a `Target Ledger`. The pipeline's own handler stamps `Entity` by *inference*; a direct write does not even do that — nothing fills the column for you.
+2. **Evidence-linking convention** — the pipeline auto-uploads the attachment and embeds `Attached Filename:` + `Destination Expense File Location:` (a GitHub blob URL) in the Description. A direct write embeds **nothing**; you must upload the file and hand-write the URL (§9c.4).
+3. **Provenance block** — the pipeline appends `My Digital Signature`, `Request Transaction ID`, and `Edgar Scoring Hash Key`. A direct write has **no signature at all**. State plainly in the Description that the row is **unsigned and pipeline-bypassing**, so nobody later mistakes it for a signed submission.
+
+**Signature consequence — this is only the *first* of two gates.** A **signed** Edgar row must **never** be edited in place: its `My Digital Signature` / `Edgar Scoring Hash Key` bind to the row's content, so an edit silently forges the attestation. Correct it append-only. An **unsigned** directly-posted row carries no such binding, so in-place is *permissible* — but permissible is not automatic. The second gate is §9c.4c.
+
+- *Worked example — and the case that produced §9c.4c (r61–r63):* posted directly by script. r61 carried `Entity=AGL15` (copied from `Target Ledger`) instead of `Gary Teh`; all three rows carried **no attachment links**; none had a signature. r61 was corrected **in place**, which was allowed under **all three** §9c.4c gates: (1) unsigned; (2) a **reattribution**, not a restatement — Σ held at **4,828.170** before and after, only the bucket moved, the phantom `AGL15` −67.55 bucket disappearing and Gary Teh's USD custodian resolving to 2,450.496; (3) a Description provenance note. Rows r55/r60, which went through the pipeline, correctly carry `Attached Filename`, a GitHub URL, and a full signature — and are **never** editable in place.
+
+**Precedent caveat (corrected 2026-10-23).** The historical AGL8 r192–195 / AGL13 r32–34 `[SANCTIONED ONE-OFF CORRECTION]` rows are **not** an append-only-*reversal* precedent. They were **pure inserts** into ledgers that held no rows at all for that shipment, so nothing was reversed. They are also themselves **unsigned 6-column hand-appends**, the same class as r61. Cite them for *"append the missing rows"*, **not** for *"reversal beats in-place."*
+
+### 9c.4c Reattribution vs restatement — the gate that actually decides in-place vs reversal
+
+Two quite different acts both get called "correcting a row," and they carry different risk:
+
+| | What moves | Σ total | Mechanism |
+|---|---|---|---|
+| **Reattribution** | `Entity`, or another descriptive/attribution field | **unchanged** — the value moves between buckets only | in-place, **only if** unsigned, with a mandatory provenance note |
+| **Restatement** | an **amount**, a **currency**, or the `Type` | **changes** — the monetary record itself moves | **always** append-only reversal + re-entry, signed or not |
+
+**The discriminator is "∇Σ move?", not "which field is it?"** Reattribution preserves the total and merely corrects *who* a value belongs to. A restatement asserts a different monetary fact — which is a reversal in substance whether or not you happen to write it as one, so write it as one.
+
+**Ruling (2026-10-23).** In-place correction is permitted **only** when all three hold: (1) the row is **unsigned**; (2) the edit is a **reattribution** — with the Σ invariant verified before *and* after (§9b.3) and the buckets verified (§9c.3); (3) a **provenance note** is appended to the Description naming old value, new value, author, date, and authorising governor (§9c.4b item 3). **Anything else → append-only.**
+
+**Why append-only is not made absolute — considered and rejected, on a mechanical ground.** The `Balance` block is a spilled `QUERY … group by Entity`, so an Entity mislabel creates a *phantom bucket*. Reversing one append-only requires a row carrying the **known-wrong** Entity (to net that bucket back to zero) plus a re-entry carrying the right one — meaning the "correct" fix is obliged to **write the defect back in**, and then depends on the outer `where Col2<>0` to suppress the zeroed bucket. To convert an already-corrected row into that shape you would have to re-introduce the error for ceremony. **Append-only is the right default, and the mandatory path for anything that moves money. It is not the right instrument for correcting attribution that never moved a cent.**
+
+### 9c.5 Pre-flight additions for cross-ledger bookings
+
+- [ ] `Entity` on every **Assets/Expenses** leg = **human custodian**; every **Equity** leg = **financier/counterparty**; **no ledger name on any Assets leg**.
+- [ ] Governor/authorizer named in **Description**, never in `Entity`.
+- [ ] Every supporting document linked as a **resolving URL** in the Description; multi-leg groups fully covered with a back-reference.
+- [ ] **Directly-posted / sanctioned-correction rows:** `Entity` set explicitly from the **human custodian** (never copied from `Target Ledger`); evidence URL hand-added; Description states it is **unsigned / pipeline-bypassing** (§9c.4b). Signed rows are corrected **append-only**, never in place.
+- [ ] **Before any in-place edit:** row is **unsigned** → the change is a **reattribution** (Σ identical before and after) → you have already drafted the **provenance note**. If any of the three fails, the route is **append-only reversal + re-entry**. Signed rows are **never** edited in place (§9c.4c).
+- [ ] Post-write: read `Balance` buckets per `(Entity, Currency)`; assert no **negative bucket under a non-human name**, and that each custodian's total moved by exactly the expected amount.
+- [ ] **Appended numerics are typed, not text:** wrote with `value_input_option='USER_ENTERED'`, then read back with `value_render_option='UNFORMATTED_VALUE'` and confirmed each amount is a `float` (§9c.5a).
+
+---
+
+### 9c.5a Appending rows: `RAW` silently types numbers as text, and `QUERY sum()` then ignores them
+
+**Symptom (hit live, 2026-10-23).** A reversal + re-entry pair was appended with `value_input_option='RAW'`. Both rows *looked* correct on `Transactions`, and an independent group-by computed from the rows themselves showed the expected net. But the `Balance` spill still showed the **pre-correction** buckets — because `RAW` stored `67.55` / `-67.55` as **strings**, and `QUERY`'s `sum(D)` treats text as zero. The correction silently did not land.
+
+**Rule.** (1) Append or re-write numeric cells with **`value_input_option='USER_ENTERED'`**. (2) Verify the cell type, not just its display: read back with `value_render_option='UNFORMATTED_VALUE'` and confirm it is a `float`, not a `str` (currency formatting makes a string and a number look identical on the sheet). (3) Independently **recompute the group-by from `Transactions`** rather than trusting the spilled view; when the two disagree, the spill is right about the formula and the rows are wrong about their type.
+
+**Why this is dangerous.** It fails silently. The sheet, the row values, and an independent aggregation all report success while the derived view keeps stale numbers — no error is raised anywhere. It will produce a wrong `Balance` on any append written with `RAW`.
+
 ---
 
 ## 10. End-to-end registration + verification tests

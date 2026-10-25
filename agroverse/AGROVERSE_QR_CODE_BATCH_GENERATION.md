@@ -121,15 +121,19 @@ Edgar routes it (`DAO_PROTOCOL_WEBHOOK_QR_CODE_GENERATION`) to the same **1N6o00
 
 ## 4. Local image generation (`batch_compiler.py`)
 
-- **Repo path:** `tokenomics/python_scripts/agroverse_qr_code_generator/`
-- **Credentials:** `gdrive_key.json` in that directory (service account with **Sheets** access; **gitignored** — obtain from operator; never commit).
-- **Venv:** `source /Users/garyjob/Applications/tokenomics/python_scripts/venv/bin/activate` (or project venv with `google-api-python-client`, `google-auth`, `qrcode`, `Pillow`).
-- **Optional:** Clear **`package_qr_codes/to_print/*.png`** so only **new** compiles are obvious; the script also writes to **`package_qr_codes/`** and skips rows whose **`compiled_{farm_name}_{qr_code}.png`** already exists in **`package_qr_codes/`** (not only `to_print`).
-- **Example command** (paths relative to `agroverse_qr_code_generator/`):
+- **Canonical repo path (current):** `lineage-assets/scripts/qr_generator/batch_compiler.py`. The old
+  `tokenomics/python_scripts/agroverse_qr_code_generator/` copy moved here 2026-05-20 (see that dir's
+  `DEPRECATED.md`) — **do not generate from the tokenomics path**, it's a stale fork.
+- **Credentials:** `gdrive_key.json` alongside the script (service account with **Sheets** access;
+  **gitignored** — obtain from operator; never commit).
+- **Venv:** project venv with `google-api-python-client`, `google-auth`, `qrcode`, `Pillow`.
+- **Targeted regeneration:** `--qr <QR_ID>` (repeatable) processes only the listed ids — use this to
+  (re)build a specific batch without touching the rest of the corpus. `--only-missing-png` fills gaps
+  between `qrs/<id>.json` and `pngs/<id>.png` without rewriting existing published labels.
+- **Example command:**
 
 ```bash
-cd /Users/garyjob/Applications/tokenomics/python_scripts/agroverse_qr_code_generator
-source /Users/garyjob/Applications/tokenomics/python_scripts/venv/bin/activate
+cd lineage-assets/scripts/qr_generator
 python3 batch_compiler.py \
   --credentials gdrive_key.json \
   --sheet-url "https://docs.google.com/spreadsheets/d/1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU/" \
@@ -143,6 +147,36 @@ python3 batch_compiler.py \
 ```
 
 - **Output filenames:** `compiled_{farm_name}_{qr_code}.png` with **`farm_name`** from column **E** (spaces → underscores in the file name). **Farm / state / country** must stay within a reasonable length for the label (the compiler centers text; very long **E–G** can overflow the template).
+
+### 4a. This is the ONLY tool for any QR image output — including high-res/print exports
+
+**Never hand-roll a separate QR generator** (a bare `qrcode.make(url)` call, or any script that skips
+`generate_qr_image()`/`compile_image()`) for *any* deliverable, even a one-off "print-ready" or
+"high-resolution" export requested outside the normal sheet-driven flow. `batch_compiler.py` already
+supports this — just raise `--box-size` (it scales the whole compiled label, logo included, not just the
+QR module grid) and use `--qr <id>` to target exactly the ids you need.
+
+**Incident (2026-10-20):** the 298-bag QR delivery (187 × `8 Ounce Package Kraft Pouch - Ilheus, Brazil
+2024` + 209 × `Ceremonial Cacao Kraft Pouch - 200g - Paulo 2024 - AGL8`) shipped two zips whose
+`qr_labels/` folder was correctly compiled via this tool, but whose `qr_highres/` folder — built with a
+separate, simpler generator for the "print-ready @300DPI" requirement — was a bare, unbranded QR with no
+logo, farm name, harvest year, "Your tree is getting planted" message, or serial id. All 396 files were
+affected before it was caught in review. Root cause: the high-res asset was produced outside
+`batch_compiler.py` instead of reusing it with a larger `--box-size`.
+
+**Before marking any QR image deliverable done, verify branding survived** — `batch_compiler.py`'s
+`--verify` flag (on by default) only checks *decodability*, not branding, so a bare QR with no logo still
+passes it. Add this check for anything going out the door:
+
+```python
+from PIL import Image
+im = Image.open(path).convert("L")
+colors = im.getcolors(maxcolors=1_000_000)
+assert colors is None or len(colors) > 10, f"{path} looks like a bare QR — no logo/text composited"
+```
+
+A pure QR render has exactly 2 grayscale values (black/white); the compiled label (logo + anti-aliased
+text) always has many more.
 
 ---
 

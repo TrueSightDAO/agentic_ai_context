@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-10-10T21:55:29Z`
-- Look-back: **7** calendar days (`2026-10-03` → today UTC)
+- Generated (UTC): `2026-10-24T21:03:28Z`
+- Look-back: **7** calendar days (`2026-10-17` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -32,37 +32,34 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 21
-- `[ASSET RECEIPT EVENT]` × 6
-- `[PRACTICE EVENT]` × 2
-- `[EMAIL REGISTERED EVENT]` × 1
-- `[DAO INVENTORY EXPENSE EVENT]` × 1
-- `[CURRENCY DEFINITION EVENT]` × 1
-- `[CONTRIBUTOR ADD EVENT]` × 1
-- _free-form (no bracket tag)_ × 9
+- `[CONTRIBUTION EVENT]` × 20
+- `[TREE PLANTING EVENT]` × 10
+- `[PRACTICE EVENT]` × 1
+- `[CONTRIBUTION REVIEW EVENT]` × 1
+- _free-form (no bracket tag)_ × 10
 
 ### Latest entries
 
-- `Edgar_20261010033052_192` · **Edgar** · [CONTRIBUTION EVENT] Amount: 30 · Contributor(s): Gary Teh · Description: Onboarding Julio Almeida to B2B email outreach. Directed him to the agentic_…
-- `Edgar_20261010033932_194` · **Edgar** · [DAO INVENTORY EXPENSE EVENT] DAO Member Name: Gary Teh · Inventory Type: USD · Inventory Quantity: 54.76
-- `Edgar_20261010033935_196` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Kala Professional Insect Killer 16W - Mercado Livre MLB20684318 - Ilheus Wareho… · Amount: 1 · Fund Handler: Matheus Reis
-- `Edgar_20261010033937_198` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Axial Exhaust Fan 100mm Turbo 220V - Mercado Livre MLBU4320471013 - Ilheus Ware… · Amount: 1 · Fund Handler: Matheus Reis
-- `Edgar_20261010034437_200` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
-- `Edgar_20261010034457_202` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Kala Professional Insect Killer 16W (Mercado Livre MLB20684318) · Amount: 1 · Fund Handler: Matheus Reis
-- `Edgar_20261010034459_204` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Axial Exhaust Fan 100mm High-Velocity 220V (Mercado Livre MLBU4320471013) · Amount: 1 · Fund Handler: Matheus Reis
-- `Edgar_20261010035231_206` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Ilheus warehouse equipment sourcing + DAO ledger entry (thread 41062). Sourc…
-- `Edgar_20261010120948_208` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-10T12:09:46.709Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20261010140912_210` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Matheus Reis · Target Ledger: offchain
-- `Edgar_20261010140916_212` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Showcase display cabinet (per cabinet, Matheus Ilheus warehouse, R$250 receipt … · Amount: 1 · Description: Received 1x glass showcase/display cabinet (white frame, curved top) for DAO…
-- `Edgar_20261010141851_214` · **Edgar** · [CURRENCY DEFINITION EVENT] Currency: Cacao Tea (Kilograms) Santos 20261007 - AGL14 · Price in USD: 13.41775 · Ledger: AGL14
-- `Edgar_20261010141855_216` · **Edgar** · [ASSET RECEIPT EVENT] Amount: 7 · Attached Filename: e875a33cc41a4d15967fe3ef683a4169.jpg · Currency: Cacao Tea (Kilograms) Santos 20261007 - AGL14
-- `Edgar_20261010164408_218` · **Edgar** · [CONTRIBUTION EVENT] Amount: 97 · Contributor(s): Gary Teh · Description: Accommodation (7 nights, São Paulo) for getting the legal power of attorney …
-- `Edgar_20261010164646_220` · **Edgar** · [CONTRIBUTION EVENT] Amount: 12.06 · Contributor(s): Gary Teh · Description: Breakfast with Matheus to discuss follow-up action items (Ilheus warehouse o…
-- `Edgar_20261010164757_222` · **Edgar** · [CONTRIBUTION EVENT] Amount: 2.49 · Contributor(s): Gary Teh · Description: Ride-hailing (99 app) — getting from Ilheus hotel to Ilheus airport. Merchan…
-- `Edgar_20261010164909_224` · **Edgar** · [CONTRIBUTION EVENT] Amount: 150.00 · Contributor(s): Gary Teh · Description: Parking at LAX while traveling to attend to supply chain matters. Merchant: …
-- `Edgar_20261010165153_226` · **Edgar** · [CONTRIBUTOR ADD EVENT] Contributor Name: Lin Boqiang · Contributor Email: 2821396516@qq.com · Submission Source: sophia-autopilot (Discord 1455101520155644059)
-- `Edgar_20261010180141_228` · **Edgar** · [CONTRIBUTION EVENT] Amount: 60 · Contributor(s): Gary Teh · Description: Discussion with Matheus Reis on warehouse management concerns at the Ilheus …
-- `Edgar_20261010181133_230` · **Edgar** · [CONTRIBUTION EVENT] Amount: 60 · Contributor(s): Matheus Reis · Description: Discussion with Gary Teh on warehouse management concerns at the Ilheus (Bla…
+- `Edgar_20261024055056_2562` · **Edgar** · probe content
+- `Edgar_20261024102031_2564` · **Edgar** · hello i33779probe-1792837229
+- `Edgar_20261024102040_2566` · **Edgar** · (no body)
+- `Edgar_20261024102118_2568` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 0 · Description: i33779probe-1792837276 edgar unauth write probe
+- `Edgar_20261024102123_2570` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 0 · Description: i33779probe-1792837276 edgar unauth write probe
+- `Edgar_20261024102319_2572` · **Edgar** · [CONTRIBUTION REVIEW EVENT] Action: APPROVE · Scoring Hash Key: i33779probe-1792837276-nonexistent · Contributor: i33779probe-1792837276
+- `Edgar_20261024102353_2574` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 0 · Description: i33779probe-tamper-1792837432 edgar tampered signature probe
+- `Edgar_20261024125834_2576` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 48 · Description: Envoy: vault auth-scan incident response
+- `Edgar_20261024125902_2578` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 55 · Description: Sophia: vault auth privilege-escalation fix
+- `Edgar_20261024125923_2580` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 12 · Description: Gary Teh direct time: vault auth-scan incident
+- `Edgar_20261024133956_2582` · **Edgar** · hello
+- `Edgar_20261024133958_2584` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 1 · Description: probe-noop
+- `Edgar_20261024134005_2586` · **Edgar** · hello
+- `Edgar_20261024134006_2588` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 1 · Description: authorized-pentest-probe-i38345 no-op
+- `Edgar_20261024134858_2590` · **Edgar** · hello
+- `Edgar_20261024134954_2592` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 0 · Description: AUTHORIZED SECURITY TEST - SIGNATURE BINDING PROBE - DO NOT PROCESS - i38537
+- `Edgar_20261024135111_2594` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 0 · Description: Sunmint impact map: tree photos backfilled + tree-dialogue fixes shipped to …
+- `Edgar_20261024135204_2596` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 0 · Description: Sunmint impact map: tree photos backfilled + tree-dialogue fixes shipped to …
+- `Edgar_20261024135314_2598` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 0 · Description: AUTHORIZED SECURITY TEST - SELF-SIGNED FORGERY PROBE - DO NOT PROCESS - i385…
+- `Edgar_20261024185750_2600` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Tempering and molding Vivi's nibs
 
 ---
 
@@ -77,7 +74,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-10-10T10:59:14.509Z`
+- Generated (UTC): `2026-10-23T10:59:15.113Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -87,16 +84,16 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **1112**, follow_up **71**, bulk **0**, unknown **2** (data rows: **1185**)
+- **Email Agent Follow Up** — logged sends: warmup **1128**, follow_up **71**, bulk **0**, unknown **2** (data rows: **1201**)
 - Distinct recipient addresses (`to_email`, by log `status`): warmup **88**, follow_up **23**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **63** stores — sum logged **warmup** sends (AU): **1040**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **2** / **0** / **61**; follow-up depth (none / once / ≥2): **63** / **0** / **0**
-- **Manager Follow-up**: **37** stores — sum logged **warmup** sends (AU): **15**, sum logged **follow-up** sends (AV): **71**; warmup depth (none / once / ≥2): **31** / **1** / **5**; follow-up depth (none / once / ≥2): **14** / **5** / **18**
+- **AI: Warm up prospect**: **125** stores — sum logged **warmup** sends (AU): **1056**, sum logged **follow-up** sends (AV): **4**; warmup depth (none / once / ≥2): **64** / **0** / **61**; follow-up depth (none / once / ≥2): **124** / **0** / **1**
+- **Manager Follow-up**: **35** stores — sum logged **warmup** sends (AU): **15**, sum logged **follow-up** sends (AV): **67**; warmup depth (none / once / ≥2): **29** / **1** / **5**; follow-up depth (none / once / ≥2): **13** / **5** / **17**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: **2** stores — sum logged **warmup** sends (AU): **17**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **0** / **0** / **2**; follow-up depth (none / once / ≥2): **2** / **0** / **0**
-- **Follow-up pipeline (combined)**: **39** stores — sum logged **warmup** sends (AU): **32**, sum logged **follow-up** sends (AV): **71**; warmup depth (none / once / ≥2): **31** / **1** / **7**; follow-up depth (none / once / ≥2): **16** / **5** / **18**
+- **Follow-up pipeline (combined)**: **37** stores — sum logged **warmup** sends (AU): **32**, sum logged **follow-up** sends (AV): **67**; warmup depth (none / once / ≥2): **29** / **1** / **7**; follow-up depth (none / once / ≥2): **15** / **5** / **17**
 
 ---
 
@@ -189,33 +186,34 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 ### Stock at production shippers
 
 **Kirsten Ritschel** _( San Francisco — retail / online fulfilment / partner restock )_
-- Manager record: `Kirsten Ritschel` · 16 SKU lines · 1,332 total units · $1,450.34
+- Manager record: `Kirsten Ritschel` · 24 SKU lines · 1,692.50 total units · $6,910.70
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
   | Packaging Material | Bulk | 4 | 892 | $649.90 |
-  | (uncategorized) | (unspecified) | 11 | 390 | $798.89 |
-  | Cacao Mass | Bulk | 1 | 50 | $1.55 |
+  | (uncategorized) | (unspecified) | 13 | 391 | $830.35 |
+  | Cacao Mass | Retail Ready | 1 | 169 | $2,328.82 |
+  | Cacao Nib | Retail Ready | 1 | 129 | $1,355.79 |
+  | Cacao Mass | Bulk | 2 | 87 | $898.06 |
+  | Cacao Nib | Bulk | 2 | 19.50 | $675.78 |
+  | Cacao Butter | Bulk | 1 | 5 | $172.00 |
 
 **Matheus Reis** _( Ilhéus, Brazil — bulk warehouse + freight to SF )_
-- Manager record: `Matheus Reis` · 31 SKU lines · 2,135.59 total units · $9,082.36
+- Manager record: `Matheus Reis` · 24 SKU lines · 1,380.59 total units · $7,064.71
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | Packaging Material | Bulk | 2 | 942 | $654.61 |
-  | (uncategorized) | (unspecified) | 23 | 416 | $2,583.73 |
-  | Cacao Bean | Bulk | 1 | 273.59 | $0.00 |
-  | Cacao Mass | Retail Ready | 1 | 170 | $1,762.90 |
-  | Cacao Nib | Retail Ready | 1 | 134 | $889.76 |
-  | Cacao Tea | Bulk | 2 | 120 | $1,221.88 |
-  | Cacao Nib | Bulk | 1 | 80 | $1,969.48 |
+  | Packaging Material | Bulk | 2 | 773 | $540.46 |
+  | (uncategorized) | (unspecified) | 20 | 601.59 | $6,480.68 |
+  | Cacao Nib | Retail Ready | 1 | 5 | $33.20 |
+  | Cacao Mass | Retail Ready | 1 | 1 | $10.37 |
 
 **Gary Teh** _( Operational cash + assorted retail inventory )_
-- Manager record: `Gary Teh` · 29 SKU lines · 12,874.96 total units · $12,574.65
+- Manager record: `Gary Teh` · 30 SKU lines · 8,209.07 total units · $7,909.03
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 27 | 12,798.78 | $12,524.66 |
+  | (uncategorized) | (unspecified) | 28 | 8,132.89 | $7,859.04 |
   | Packaging Material | Bulk | 1 | 74 | $49.98 |
   | Cacao Tea | Bulk | 1 | 2.18 | $0.00 |
 
@@ -223,22 +221,22 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 | Manager | Items | Units | Value (USD) |
 |---------|-------|-------|-------------|
+| Val Lapidus | 16 | 1,464 | $7,825.21 |
 | Sacred Earth Farms | 3 | 316 | $2,241.33 |
-| Val Lapidus | 11 | 1,270 | $1,475.95 |
+| AGL13 | 1 | 2,214.61 | $2,214.61 |
 | Coopercabruca | 1 | 1,706 | $1,199.87 |
 | Aga Marecka | 1 | 20 | $537.46 |
+| Paloma | 8 | 668.32 | $349.36 |
 | Andrea Catalina Falcon Rios De Pabst | 3 | 223 | $328.62 |
 | Shuar Design Boutique | 3 | 37 | $284.34 |
-| Paloma | 7 | 661.32 | $247.02 |
-| Go Ask Alice - Niccolina Ammerman | 2 | 14 | $115.81 |
 
-_(+31 more in JSON snapshot.)_
+_(+33 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$4,798.42**
-- Brazilian Reis: R$-590.05 · rate `0.2323` USD/BRL → ≈ **$-137.07**
-- USD provisioned for voting-rights cash-out: **$56.44**
+- USD on hand: **$2,491.08**
+- Brazilian Reis: R$130.00 · rate `0.2323` USD/BRL → ≈ **$30.20**
+- USD provisioned for voting-rights cash-out: **$57.10**
 
 ### In-transit freight (0 rows)
 
@@ -253,7 +251,7 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_(No `YYYY-MM-DD |` lines on/after 2026-10-03 in CONTEXT_UPDATES.md.)_
+_(No `YYYY-MM-DD |` lines on/after 2026-10-17 in CONTEXT_UPDATES.md.)_
 
 ---
 
@@ -263,7 +261,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-10-03 in CONTEXT_UPDATES.md.)_
 |----------|----------------|----------------------|
 | `go_to_market` | `market_research` | **yes** |
 | `TrueChain` | `TrueChain` | **no** |
-| `oracle` | `iching_oracle` | **yes** |
+| `oracle` | `iching_oracle` | **no** |
 
 ---
 
@@ -272,92 +270,101 @@ _(No `YYYY-MM-DD |` lines on/after 2026-10-03 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
-69d8a81 | 2026-10-10 12:58:44 +0000 | chore(stats): refresh stats indexes [skip ci]
-cda7801 | 2026-10-10 06:18:58 +0000 | chore(stats): refresh stats indexes [skip ci]
-5f5efdd | 2026-10-09 22:50:28 +0000 | chore(stats): refresh stats indexes [skip ci]
-e93e270 | 2026-10-09 13:41:38 +0000 | chore(stats): refresh stats indexes [skip ci]
-8d2306d | 2026-10-09 06:35:34 +0000 | chore(stats): refresh stats indexes [skip ci]
-c0cab46 | 2026-10-08 23:31:20 +0000 | chore(stats): refresh stats indexes [skip ci]
-402e023 | 2026-10-08 13:56:57 +0000 | chore(stats): refresh stats indexes [skip ci]
-efbe9ea | 2026-10-08 06:33:57 +0000 | chore(stats): refresh stats indexes [skip ci]
-de46cc3 | 2026-10-07 23:16:12 +0000 | chore(stats): refresh stats indexes [skip ci]
-d8953e0 | 2026-10-07 13:47:51 +0000 | chore(stats): refresh stats indexes [skip ci]
-81d402d | 2026-10-07 06:22:20 +0000 | chore(stats): refresh stats indexes [skip ci]
-1cd9948 | 2026-10-06 22:45:44 +0000 | chore(stats): refresh stats indexes [skip ci]
-53a513c | 2026-10-06 18:34:05 +0000 | chore(stats): refresh stats indexes [skip ci]
-c9e0ff3 | 2026-10-06 06:47:19 +0000 | chore(stats): refresh stats indexes [skip ci]
-71178a8 | 2026-10-06 00:16:25 +0000 | chore(stats): refresh stats indexes [skip ci]
-1f39db3 | 2026-10-05 19:49:44 -0300 | AGL4 shipment page: status SALES IN PROGRESS → COMPLETED (#412)
-29562a7 | 2026-10-05 19:47:44 -0300 | AGL8 + AGL14 shipment pages: status MANUFACTURING → SALES IN PROGRESS (#411)
-03caeea | 2026-10-05 19:43:56 -0300 | AGL7 shipment page: status FREIGHTING IN PROGRESS → COMPLETED (#410)
-f716984 | 2026-10-05 15:11:59 +0000 | chore(stats): refresh stats indexes [skip ci]
-ad8b7f4 | 2026-10-05 06:07:14 +0000 | chore(stats): refresh stats indexes [skip ci]
-2e29164 | 2026-10-04 21:51:47 +0000 | chore(stats): refresh stats indexes [skip ci]
-20d8b6c | 2026-10-04 12:48:19 +0000 | chore(stats): refresh stats indexes [skip ci]
-963a975 | 2026-10-04 06:14:55 +0000 | chore(stats): refresh stats indexes [skip ci]
-0157846 | 2026-10-03 21:42:28 +0000 | chore(stats): refresh stats indexes [skip ci]
-d7ec531 | 2026-10-03 16:37:56 +0000 | chore(stats): refresh stats indexes [skip ci]
-ef44a3d | 2026-10-03 11:57:14 +0000 | chore(stats): refresh stats indexes [skip ci]
-52816bb | 2026-10-03 05:39:38 +0000 | chore(stats): refresh stats indexes [skip ci]
+2dee325 | 2026-10-24 16:11:43 +0000 | chore(stats): refresh stats indexes [skip ci]
+46295d5 | 2026-10-24 11:29:19 +0000 | chore(stats): refresh stats indexes [skip ci]
+3f8d9bf | 2026-10-24 04:56:45 +0000 | chore(stats): refresh stats indexes [skip ci]
+955dbc7 | 2026-10-23 21:35:54 +0000 | chore(stats): refresh stats indexes [skip ci]
+3c748dd | 2026-10-23 17:23:04 +0000 | chore(stats): refresh stats indexes [skip ci]
+b824ed7 | 2026-10-23 11:58:57 +0000 | chore(stats): refresh stats indexes [skip ci]
+aff43cc | 2026-10-23 05:15:14 +0000 | chore(stats): refresh stats indexes [skip ci]
+932fb61 | 2026-10-22 21:52:52 +0000 | chore(stats): refresh stats indexes [skip ci]
+56f9d20 | 2026-10-22 17:32:28 +0000 | chore(stats): refresh stats indexes [skip ci]
+486394a | 2026-10-22 12:17:22 +0000 | chore(stats): refresh stats indexes [skip ci]
+c75724b | 2026-10-22 05:15:52 +0000 | chore(stats): refresh stats indexes [skip ci]
+9952474 | 2026-10-21 21:56:03 +0000 | chore(stats): refresh stats indexes [skip ci]
+0bbc9b1 | 2026-10-21 17:35:51 +0000 | chore(stats): refresh stats indexes [skip ci]
+3fc3e13 | 2026-10-21 12:15:33 +0000 | chore(stats): refresh stats indexes [skip ci]
+5b6c1fe | 2026-10-21 05:12:52 +0000 | chore(stats): refresh stats indexes [skip ci]
+2116e09 | 2026-10-20 21:48:49 +0000 | chore(stats): refresh stats indexes [skip ci]
+4fab2c3 | 2026-10-20 17:27:48 +0000 | chore(stats): refresh stats indexes [skip ci]
+e195bc0 | 2026-10-20 11:59:57 +0000 | chore(stats): refresh stats indexes [skip ci]
+109c669 | 2026-10-20 05:10:30 +0000 | chore(stats): refresh stats indexes [skip ci]
+f59855c | 2026-10-20 02:09:40 -0300 | qr page: show a visible placeholder when the label PNG is missing (#413)
+3b633ce | 2026-10-19 22:35:28 +0000 | chore(stats): refresh stats indexes [skip ci]
+5039d76 | 2026-10-19 13:51:08 +0000 | chore(stats): refresh stats indexes [skip ci]
+74a7926 | 2026-10-19 05:11:25 +0000 | chore(stats): refresh stats indexes [skip ci]
+10c4b40 | 2026-10-18 20:58:34 +0000 | chore(stats): refresh stats indexes [skip ci]
+5e5f96f | 2026-10-18 16:05:16 +0000 | chore(stats): refresh stats indexes [skip ci]
+4699315 | 2026-10-18 11:36:54 +0000 | chore(stats): refresh stats indexes [skip ci]
+e9179ce | 2026-10-18 05:02:19 +0000 | chore(stats): refresh stats indexes [skip ci]
+6c7bece | 2026-10-17 20:52:44 +0000 | chore(stats): refresh stats indexes [skip ci]
+0245cc5 | 2026-10-17 15:52:47 +0000 | chore(stats): refresh stats indexes [skip ci]
+11f547c | 2026-10-17 11:06:45 +0000 | chore(stats): refresh stats indexes [skip ci]
+15a57a9 | 2026-10-17 04:54:35 +0000 | chore(stats): refresh stats indexes [skip ci]
 ```
 
 ### `market_research` → `go_to_market`
 
 ```
-5682418 | 2026-10-08 23:23:28 -0300 | fix(chocolate-spec): record 58x125mm bar dimensions in generator (#182)
+b4ad089 | 2026-10-20 06:11:36 -0300 | Fix agroverse-inventory push race across the three sibling publishers (#183)
 ```
 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
-67c9a6a | 2026-10-10 17:34:33 -0300 | docs(calendar): the watchdog is the runner — fold in Gary's correction (#1579)
-ada29f1 | 2026-10-10 17:31:03 -0300 | docs(followups): move Discord member-replies from Pending to Recently shipped (tier-aware replies live) (#1577)
-716f9c8 | 2026-10-10 11:30:57 -0300 | VERDICT: AWB says 349,000 kg — Graziela's 365 kg claim refuted by the document she cites (#1576)
-5058a98 | 2026-10-10 09:53:31 -0300 | chore(previews): refresh Beer Hall preview (2026-10-10 UTC)
-6c72106 | 2026-10-10 09:53:30 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-10 UTC)
-261b844 | 2026-10-10 09:30:55 -0300 | Status: USDA RELEASED shipment Fri 09/10 — no inspection, no surcharge; Graziela answers invoice questions (#1575)
-f0bdcf6 | 2026-10-10 01:02:12 -0300 | Merge pull request #1573 from TrueSightDAO/handoffs/matheus-followup-complete-20261010
-b905d8b | 2026-10-10 04:01:33 +0000 | handoffs: Matheus follow up items (thread 41588) COMPLETE — verified independently
-5b22536 | 2026-10-10 00:59:57 -0300 | handoffs: release brazil/ILHEUS_WAREHOUSE_MANAGEMENT.md (Sophia (autopilot, self))
-b57ee52 | 2026-10-10 00:58:22 -0300 | handoffs: claim brazil/ILHEUS_WAREHOUSE_MANAGEMENT.md (Sophia (autopilot, self))
-ffecd10 | 2026-10-10 00:57:56 -0300 | handoffs: release brazil/ILHEUS_WAREHOUSE_MANAGEMENT.md (Sophia (autopilot, self))
-801db4b | 2026-10-10 00:57:46 -0300 | codify Ilhéus register (C2/C5/B2/B3/E1) + file calendar tooling note (#1572)
-334cc6e | 2026-10-10 00:56:14 -0300 | handoffs: claim brazil/ILHEUS_WAREHOUSE_MANAGEMENT.md (Sophia (autopilot, self))
-2fc08f7 | 2026-10-10 00:51:09 -0300 | Merge pull request #1571 from TrueSightDAO/handoffs/matheus-pr524-merged-20261010
-ad2278d | 2026-10-10 03:50:34 +0000 | handoffs: truesight_autopilot#524 merged (calendar watchdog, thread 41588)
-75ee51b | 2026-10-10 00:44:44 -0300 | Merge pull request #1570 from TrueSightDAO/handoffs/matheus-followup-items-register-20261010
-71f308b | 2026-10-10 03:44:07 +0000 | handoffs: register thread 41588 "Matheus follow up items" (Gary tagged Envoy directly)
-2b7c770 | 2026-10-10 00:30:46 -0300 | Add machine-readable ilheus_warehouse.json mirror of §2.5 dimensions register (#1569)
-f7cc275 | 2026-10-09 23:56:48 -0300 | docs(ilheus): bathroom window openable 35 cm H x 53 cm W (governor-confirmed) (#1568)
-621390b | 2026-10-09 23:56:05 -0300 | docs(ilheus): correct M3 — ~90 cm is the main window LOWER PANE, not full height (#1567)
-574eeef | 2026-10-09 23:53:39 -0300 | docs(ilheus): add measured dimensions register (§2.5) — windows/pallet (#1566)
-b74397e | 2026-10-09 19:51:16 -0300 | chore(previews): refresh Beer Hall preview (2026-10-09 UTC)
-5fcaa08 | 2026-10-09 19:51:15 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-09 UTC)
-033e44d | 2026-10-09 18:02:22 -0300 | CORRECTION: 5 Continent does have a US broker (Gary was right) + the hold is USDA, and storage is now the dominant cost (#1565)
-4a12123 | 2026-10-09 17:57:49 -0300 | Add measured shipping-pallet spec (110 cm span) to Brazil->SF freight runbook (#1564)
-d9f3385 | 2026-10-09 17:56:40 -0300 | Research: who files APHIS — broker does the entry transmission, TrueTech must hold the permit itself (#1563)
-517667c | 2026-10-09 16:33:22 -0300 | Research: APHIS US-side filing — PPQ 587 permit likely needed for the 15kg whole beans, not the processed lines (#1562)
-f6e95e4 | 2026-10-09 16:30:24 -0300 | Research: weekend/holiday inspection — non-perishables get no weekend appointments; next window Tue 13/10 (#1561)
-b83bb00 | 2026-10-09 16:13:12 -0300 | Research: FDA Import Alert 34-01 DWPE covers ALL Brazilian cocoa beans — likely hold cause (#1560)
-f8a9635 | 2026-10-09 16:07:32 -0300 | Distinguish fumigation service from phytosanitary certificate; flag raw cocoa beans as APHIS hook (#1559)
-5979751 | 2026-10-09 16:05:32 -0300 | Record FDA Prior Notice F26X30142399 (filed 2026-10-06) and retract the 'PN unfiled' hypothesis (#1558)
-d61cee8 | 2026-10-09 15:53:53 -0300 | Root-cause hypotheses for the CBP agriculture hold: unanswered phyto, PN status, pallet wood/plastic contradiction, stale HS list (#1557)
-f6bfc56 | 2026-10-09 15:47:57 -0300 | Record the sent ASTM/ASTRA dedetização certificate request (24/09/2026 NFS-e) — sent to company, Matheus CC'd (#1556)
-f3bf55e | 2026-10-09 15:46:26 -0300 | Adjudicate Graziela's 09-Oct reply to the v6 dispute: 1 self-correction, 1 concession, 1 evasion, CBP ag hold (#1555)
-b213598 | 2026-10-09 15:43:34 -0300 | Add 2025-vs-2026 ASTRA fumigation comparison + Ilheus service-location finding (#1554)
-936def0 | 2026-10-09 15:41:49 -0300 | File the 2026-09-24 fumigation NFS-e (ASTRA) + note the certificate-request gap (#1553)
-8dd8bcf | 2026-10-09 15:30:22 -0300 | Add 2026 time-allocation pie charts to Gary's year-in-review (#1552)
-c8ffe9b | 2026-10-09 15:07:57 -0300 | Add Gary Teh 2026 year-in-review (from contribution ledger) (#1551)
-acd9314 | 2026-10-09 15:03:10 -0300 | Add Ilhéus warehouse floor map block to SUPPLY_CHAIN_AND_FREIGHTING.md §2 (#1550)
-d6dd6f4 | 2026-10-09 14:02:49 -0300 | Add Ilhéus warehouse management register + action items (#1549)
+eaf9a5e | 2026-10-24 13:10:15 -0300 | chore(previews): refresh Beer Hall preview (2026-10-24 UTC)
+56bf381 | 2026-10-24 13:10:14 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-24 UTC)
+a67a7c4 | 2026-10-24 08:24:55 -0300 | chore(previews): refresh Beer Hall preview (2026-10-24 UTC)
+ebe653f | 2026-10-24 08:24:53 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-24 UTC)
+e4cd9cd | 2026-10-23 21:49:16 -0300 | OPEN_FOLLOWUPS: file Sept-13 scoring outage + PR-queue hygiene (bulk-close rejected) (#1701)
+a07b526 | 2026-10-23 21:21:57 -0300 | Add §9c.5a: RAW input stores numbers as strings; QUERY sum() silently zeroes them (#1700)
+a7d6579 | 2026-10-23 21:19:04 -0300 | §9c.4c: reattribution vs restatement + corrected precedent caveat (#1698)
+67e12da | 2026-10-23 18:35:15 -0300 | chore(previews): refresh Beer Hall preview (2026-10-23 UTC)
+1f7fd25 | 2026-10-23 18:35:13 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-23 UTC)
+7c38c9c | 2026-10-23 14:21:55 -0300 | chore(previews): refresh Beer Hall preview (2026-10-23 UTC)
+70058d7 | 2026-10-23 14:21:53 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-23 UTC)
+c445545 | 2026-10-23 08:56:05 -0300 | chore(previews): refresh Beer Hall preview (2026-10-23 UTC)
+c33f83f | 2026-10-23 08:56:03 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-23 UTC)
+e4c43d2 | 2026-10-23 07:08:05 -0300 | §9c — Entity labelling and evidence links on ledger rows (#1697)
+14783c5 | 2026-10-23 02:52:40 -0300 | docs: add §9b — money-adjacent claims: name the phase, verify live, assert the total (#1696)
+86d3d1c | 2026-10-23 02:11:43 -0300 | chore(previews): refresh Beer Hall preview (2026-10-23 UTC)
+dfca684 | 2026-10-23 02:11:41 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-23 UTC)
+2c7804f | 2026-10-22 20:51:26 -0300 | OPEN_FOLLOWUPS: file the prod visual-gate gap (verified across all 4 pairs) (#1693)
+d7c7e8d | 2026-10-22 20:50:04 -0300 | conventions: point at OPERATING_INSTRUCTIONS §9a for shipping (link only, no restatement) (#1695)
+002b2f4 | 2026-10-22 20:48:20 -0300 | §9a: live-render verification for ALL static-site repos (supersedes #1689) (#1692)
+4abc022 | 2026-10-22 18:51:07 -0300 | chore(previews): refresh Beer Hall preview (2026-10-22 UTC)
+6ab1d1b | 2026-10-22 18:51:05 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-22 UTC)
+ba055cf | 2026-10-22 01:41:36 -0300 | Correct TrueTech Inc address to Taraval St across conventions + file signed-agreement follow-up (#1688)
+91d5b4f | 2026-10-21 21:41:57 -0300 | followups: autopilot pre-push gate uses wrong interpreter (phantom TDG failures) (#1687)
+972d56b | 2026-10-21 18:53:53 -0300 | chore(previews): refresh Beer Hall preview (2026-10-21 UTC)
+56c54d0 | 2026-10-21 18:53:51 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-21 UTC)
+5d7db68 | 2026-10-21 14:32:23 -0300 | chore(previews): refresh Beer Hall preview (2026-10-21 UTC)
+4db4bd4 | 2026-10-21 14:32:21 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-21 UTC)
+e1c860f | 2026-10-21 01:33:19 -0300 | Add check_sophia_stalled.py -- per-thread/channel staleness tool (#1686)
+66eaa6f | 2026-10-21 04:22:04 +0000 | plans(envoy-mention-trigger): mentions auto-register ongoing supervision
+e10c34a | 2026-10-20 20:38:55 -0300 | docs(envoy-plan): record second UAT bug+fix (cursor-position detection, #10) + first confirmed live injection; RESUME HERE -> PR7 (#1685)
+dc42ade | 2026-10-20 20:32:30 -0300 | Policy: mandatory two-way cross-linking of related entities (§9) + de-stale CRF media plan (#1684)
+0008403 | 2026-10-20 20:15:58 -0300 | docs(envoy-plan): record live PR6 UAT finding + fix (PROMPT_RE glyph bug, claude_telegram_monitor #9) (#1683)
+0b4bc96 | 2026-10-20 18:48:17 -0300 | chore(previews): refresh Beer Hall preview (2026-10-20 UTC)
+39080fc | 2026-10-20 18:48:15 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-20 UTC)
+59a0efb | 2026-10-20 18:35:08 -0300 | docs(envoy-plan): record PR4 shipped + PR5 deployed/enabled; RESUME HERE -> PR6 (human UAT) (#1682)
+d47eda9 | 2026-10-20 18:25:29 -0300 | docs(envoy-plan): record PR3 shipped (claude_telegram_monitor #7); RESUME HERE -> PR4 (#1681)
+93df5b3 | 2026-10-20 18:15:27 -0300 | docs(envoy-plan): record PR1 proven sequence + PR2 shipped; RESUME HERE -> PR3 (#1680)
+0ff7715 | 2026-10-20 18:09:25 -0300 | ENVOY_MENTION_TRIGGER_PLAN: U1 done + PR1 spike proven, advance RESUME HERE to PR2 (#1679)
+7dbcd5f | 2026-10-20 17:49:44 -0300 | plans: add Envoy mention-trigger daemon roadmap (PR0) (#1678)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
-41848ed | 2026-10-09 11:26:16 -0300 | PR4: automate managed-ledger snapshot (Contents-API publisher + daily GHA) (#580)
-465db28 | 2026-10-08 19:38:10 -0300 | Allow Sentinels to file inventory-expense events for ALL members (#579)
+d05182d | 2026-10-20 21:59:14 -0300 | Anchor Monthly Statistics on first empty column A (port of #590 to 1rLl94jQ) (#592)
+13fd6f1 | 2026-10-20 21:54:16 -0300 | Fix Monthly Statistics append anchor + normalise month cells (#590)
+3bdcceb | 2026-10-20 21:03:53 -0300 | Add ?action=diagSales probe + make report.skipped real (#589)
+7fa7b04 | 2026-10-20 20:55:00 -0300 | Fix monthly sales $0: recover YYYYMMDD from a bogus Date, and stop swallowing failures (#588)
+8b356c4 | 2026-10-20 18:08:36 -0300 | Fix monthly sales $0: coerce DATE-formatted offchain cells instead of String() (#587)
+2d6d314 | 2026-10-20 17:47:06 -0300 | Fix monthly sales stuck at $0 — anchor month append on contiguous data block (#586)
+2afbd60 | 2026-10-16 22:01:45 -0300 | Add installTriggers/uninstallTriggers convention for GAS projects (#585)
 ```
 
 ### `dapp` → `dapp`
@@ -387,34 +394,49 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
-1e973d5 | 2026-10-10 13:02:52 +0000 | chore: refresh currencies.json [skip ci]
-d548ac7 | 2026-10-10 12:36:59 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
-904093f | 2026-10-09 13:45:46 +0000 | chore: refresh currencies.json [skip ci]
-55cb5bd | 2026-10-09 13:22:42 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
-7ce92a2 | 2026-10-08 13:35:15 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
-f01b53c | 2026-10-07 13:29:35 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
-22f9054 | 2026-10-06 13:37:16 +0000 | chore: refresh currencies.json [skip ci]
-30fbdd4 | 2026-10-06 13:22:37 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
-61f1230 | 2026-10-05 15:17:55 +0000 | chore: refresh partners-velocity snapshot [skip ci]
-e1e2e82 | 2026-10-05 15:16:09 +0000 | chore: refresh currencies.json [skip ci]
-51e7a2a | 2026-10-05 14:46:25 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
-4d55c46 | 2026-10-04 12:51:04 +0000 | chore: refresh currencies.json [skip ci]
-8c77900 | 2026-10-04 12:26:18 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
-31f27dc | 2026-10-03 12:01:28 +0000 | chore: refresh currencies.json [skip ci]
-bdd4651 | 2026-10-03 11:43:45 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
+c73cd86 | 2026-10-24 11:37:34 +0000 | chore: refresh currencies.json [skip ci]
+7dc5a98 | 2026-10-24 11:06:42 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
+c55527b | 2026-10-23 12:06:40 +0000 | chore: refresh currencies.json [skip ci]
+ef7f62f | 2026-10-22 11:58:06 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
+be8780e | 2026-10-21 11:54:38 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
+ff7f68c | 2026-10-21 01:28:50 -0300 | chore: refresh Agroverse SKU catalog snapshot
+c4b1fa0 | 2026-10-21 01:28:47 -0300 | chore: refresh Agroverse store inventory snapshot
+f72e559 | 2026-10-20 11:43:07 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
+b3c5f4b | 2026-10-20 09:46:14 +0000 | chore: refresh partners-velocity snapshot [skip ci]
+fcff643 | 2026-10-20 09:45:49 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
+c8fd306 | 2026-10-20 09:10:31 +0000 | chore: refresh currencies.json [skip ci]
+3d450b4 | 2026-10-20 09:08:49 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
+cff25e2 | 2026-10-20 09:05:05 +0000 | chore: refresh partners-velocity snapshot [skip ci]
+a338f62 | 2026-10-19 13:58:58 +0000 | chore: refresh partners-velocity snapshot [skip ci]
+701b6cb | 2026-10-19 13:56:49 +0000 | chore: refresh currencies.json [skip ci]
+1b79671 | 2026-10-19 13:23:03 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
+6f23e47 | 2026-10-18 11:42:26 +0000 | chore: refresh currencies.json [skip ci]
+6dbad1b | 2026-10-17 10:48:50 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
 
 ```
-_(no commits on origin/main in window)_
+5dc2003 | 2026-10-22 20:13:09 -0300 | Add "About Dorothy Stang" context to CFR Anapu partner page (#345)
+3332f3e | 2026-10-22 01:56:13 -0300 | Fix school page media manifest 404 + add farm page §9 cross-links (#344)
+81909ba | 2026-10-21 01:35:58 -0300 | ci(journey): fail when a stop card image does not resolve (#343)
+d4461e0 | 2026-10-21 01:30:07 -0300 | fix(journey): map Sítio Catarinense card to a landscape photo (#342)
+9b58ef1 | 2026-10-20 22:06:26 -0300 | Compute cacao journey stats from a single source of truth (#341)
+4c4c2e9 | 2026-10-20 20:58:14 -0300 | Sítio partner page: wire media gallery (4 videos + 10 photos) (#339)
+69c0fd6 | 2026-10-20 20:54:25 -0300 | Add hero image to CFR Anapu partner page (MAP asset) + social image meta (#338)
+ea5cd55 | 2026-10-20 20:44:34 -0300 | fix(partners): guard Nominatim geocode fetch against non-JSON responses (14 pages) (#337)
+ae28b5a | 2026-10-20 20:06:59 -0300 | CRF Anapu: MAP media gallery + two-way cross-link to Sítio Catarinense (#336)
+8756e45 | 2026-10-20 17:34:18 -0300 | Add Casa Familiar Rural de Anapu "Dorothy Stang" as a SunMint program-partner journey stop (#335)
+6abbba1 | 2026-10-20 17:00:56 -0300 | Add Sítio Catarinense as a stop on The Brazilian Drift (#334)
+e90a162 | 2026-10-20 06:13:29 -0300 | farms(sitio): repair media.json — was two concatenated objects (invalid JSON)
+d87bdb9 | 2026-10-20 05:36:44 -0300 | farms(sitio): people-first hero + full 11-photo/4-video gallery (#333)
+690876e | 2026-10-20 05:30:53 -0300 | farms: add Sítio Catarinense (SC-P1) farm page skeleton (PR5a) (#332)
 ```
 
 ### `iching_oracle` → `oracle`
 
 ```
-ccda3c5 | 2026-10-09 10:51:12 -0300 | Stop padding stacked hexagram cards on mobile (#74)
-063c5c9 | 2026-10-09 09:20:01 -0300 | Remove excess vertical whitespace in printed readings (#73)
+_(no commits on origin/main in window)_
 ```
 
 ### `Cypher-Defense` → `Cypher-Defense`
@@ -427,32 +449,32 @@ _(no commits on origin/master in window)_
 
 ## Recent Beer Hall archives (newest entries)
 
-### `beer-hall_2026-10-09T050607Z_cooperative-first-sourcing-ilheus-wind-down.md`
+### `beer-hall_2026-10-20T035402Z_sea-china-follow-up-discord-identity-fix.md`
 
-- **posted_at_utc:** `2026-10-09T05:06:07Z`  
-- **slug:** `cooperative-first-sourcing-ilheus-wind-down`  
+- **posted_at_utc:** `2026-10-20T03:54:02Z`  
+- **slug:** `sea-china-follow-up-discord-identity-fix`  
 - **Message 1 excerpt (first two non-empty lines):**
 
   Automated daily digest of the DAO
-  - **Cooperative-First Sourcing** — Documented strategic decision to prioritize cooperative sourcing and wind down Ilhéus warehouse operations.
+  - **SEA/China Expansion Follow-Up Filed** — Gaps in Discord roster and email projections registered as open items; next steps for China market entry tracked.
 
-### `beer-hall_2026-10-08T050257Z_agl-shipments-complete-hawb-issued-oscar-loaded.md`
+### `beer-hall_2026-10-19T034403Z_warehouse-logistics-attribution-corrected.md`
 
-- **posted_at_utc:** `2026-10-08T05:02:57Z`  
-- **slug:** `agl-shipments-complete-hawb-issued-oscar-loaded`  
+- **posted_at_utc:** `2026-10-19T03:44:03Z`  
+- **slug:** `warehouse-logistics-attribution-corrected`  
 - **Message 1 excerpt (first two non-empty lines):**
 
   Automated daily digest of the DAO
-  - **Shipments Completed** — AGL4 and AGL7 moved to COMPLETED; AGL8 + AGL14 advanced to SALES IN PROGRESS on site.
+  - **Warehouse Logistics Attribution Corrected** — 6 h warehouse work (10/13–10/16: unload, unpack, storage solution) reassigned from Gary Teh to Kirsten Ritschel (Kiki's Cocoa); erroneous entry reversed and re-entered under correct contributor.
 
-### `beer-hall_2026-09-29T044723Z_ledger-explorer-shipped-payout-filter-prod-gate.md`
+### `beer-hall_2026-10-18T033301Z_treasury-cache-fix-sa-access-matrix.md`
 
-- **posted_at_utc:** `2026-09-29T04:47:23Z`  
-- **slug:** `ledger-explorer-shipped-payout-filter-prod-gate`  
+- **posted_at_utc:** `2026-10-18T03:33:01Z`  
+- **slug:** `treasury-cache-fix-sa-access-matrix`  
 - **Message 1 excerpt (first two non-empty lines):**
 
   Automated daily digest of the DAO
-  - **Ledger Explorer** — Shipped to prod: deep links per transaction, infinite scroll, inline expand, and SunMint tree-planting cross-links. Fixed dead hamburger on ~17 pages and a site-wide mobile horizontal-scroll breakage.
+  - **Treasury Cache Publisher Restored** — Malformed URL in TBM ledger (missing `/edit` suffix) was crashing the cron; fix deployed, all 16 ledgers now publishing (was 15).
 
 ---
 
@@ -497,13 +519,22 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
-| 2026-10 | 0 | 18484.34386 | 10/10/2026 |
+| 2026-10 | 137 | 18621.34386 | 10/24/2026 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-10-03`; scanned last **600** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-10-17`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
-| — | — | — | — | — | — | _No rows in scan window (try larger `--sheet-sales-qr-scan` or `--since-days`)._ |
+| 2026-10-20 | — | — | IGNORED | — | — | IGNORED: QR in message already on QR Code Sales; structured parse had n… |
+| 2026-10-20 | — | — | IGNORED | — | — | IGNORED: QR in message already on QR Code Sales; structured parse had n… |
+| 2026-10-20 | — | — | IGNORED | — | — | IGNORED: Duplicate QR code already on QR Code Sales when this message w… |
+| 2026-10-20 | — | — | IGNORED | — | — | IGNORED: Duplicate QR code already on QR Code Sales when this message w… |
+| 2026-10-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024SA_20251227_19 | — | — |
+| 2026-10-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024SA_20251227_18 | — | — |
+| 2026-10-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024SA_20251227_30 | — | — |
+| 2026-10-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024SA_20251227_29 | — | — |
+| 2026-10-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024SA_20251227_28 | — | — |
+| 2026-10-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024SA_20251227_31 | — | — |
 
 _Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
