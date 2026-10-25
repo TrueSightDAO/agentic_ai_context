@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-10-25T05:05:00Z`
+- Generated (UTC): `2026-10-25T21:04:57Z`
 - Look-back: **7** calendar days (`2026-10-18` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,36 +32,31 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 28
-- `[PRACTICE EVENT]` × 2
-- `[CONTRIBUTION REVIEW EVENT]` × 1
-- `[CURRENCY DEFINITION EVENT]` × 1
-- `[TREE PLANTING LINK EVENT]` × 1
-- `[BATCH QR CODE REQUEST]` × 1
-- _free-form (no bracket tag)_ × 8
+- `[TREE PLANTING EVENT]` × 40
+- `[CONTRIBUTION EVENT]` × 2
 
 ### Latest entries
 
-- `Edgar_20261024134006_2588` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 1 · Description: authorized-pentest-probe-i38345 no-op
-- `Edgar_20261024134858_2590` · **Edgar** · hello
-- `Edgar_20261024134954_2592` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 0 · Description: AUTHORIZED SECURITY TEST - SIGNATURE BINDING PROBE - DO NOT PROCESS - i38537
-- `Edgar_20261024135111_2594` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 0 · Description: Sunmint impact map: tree photos backfilled + tree-dialogue fixes shipped to …
-- `Edgar_20261024135204_2596` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 0 · Description: Sunmint impact map: tree photos backfilled + tree-dialogue fixes shipped to …
-- `Edgar_20261024135314_2598` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 0 · Description: AUTHORIZED SECURITY TEST - SELF-SIGNED FORGERY PROBE - DO NOT PROCESS - i385…
-- `Edgar_20261024185750_2600` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Tempering and molding Vivi's nibs
-- `Edgar_20261025000858_2602` · **Edgar** · [CONTRIBUTION EVENT] Contributor(s): Sophia Truesight · Type: Time (Minutes) · Amount: 12
-- `Edgar_20261025000905_2604` · **Edgar** · [CONTRIBUTION EVENT] Amount: 10 · Contributor(s): Gary Teh · Description: Governor time on the 108 kg AGL16 custody correction: supplied the field evi…
-- `Edgar_20261025001257_2606` · **Edgar** · [CURRENCY DEFINITION EVENT] Currency: Agroverse 81% Cacao Chocolate Bar 50g \| Vivi Cacao Nibs \| Kirsten 20261025 \| Sa… · Price in USD: 1.987 · Serializable: TRUE
-- `Edgar_20261025013612_2608` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-25T01:36:10.375Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20261025024902_2610` · **Edgar** · [TREE PLANTING LINK EVENT] QR Code: 2024OSR_81PB_20260412_5 · SunMint Submission Message ID: Edgar_20260903083532_007 · Updated by: Sophia Truesight
-- `Edgar_20261025030504_2612` · **Edgar** · [BATCH QR CODE REQUEST] Currency: Agroverse 81% Cacao Chocolate Bar 50g \| Vivi Cacao Nibs \| Kirsten 20261025 \| Sa… · Quantity: 40
-- `Edgar_20261025033403_2614` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Direct time (engagement/analysis) — SunMint provenance cache RCA + PDF addre…
-- `Edgar_20261025033407_2616` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Description: Gary Teh direct time — SunMint provenance cache direction + introduction PDF…
-- `Edgar_20261025033505_2618` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Raw machine execution — SunMint tree-cache refresh, deep-link verification, …
-- `Edgar_20261025044333_2620` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Vivi 81% bar PDP + QR code batch — raw execution
-- `Edgar_20261025044339_2622` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Vivi 81% bar PDP + QR code batch — direct time
-- `Edgar_20261025044346_2624` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 75 · Description: Vivi 81% bar PDP + QR code batch — independent verification + fixes
-- `Edgar_20261025044350_2626` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Gary Teh direct time — directing the Vivi 81% bar PDP + QR code batch: produ…
+- `Edgar_20261025122321_2692` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261025122330_2694` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261025122339_2696` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Criolla
+- `Edgar_20261025122344_2698` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Criolla
+- `Edgar_20261025122347_2700` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Criolla
+- `Edgar_20261025122352_2702` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261025122358_2704` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261025122405_2706` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Criolla
+- `Edgar_20261025122411_2708` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261025122417_2710` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Criolla
+- `Edgar_20261025122424_2712` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261025122430_2714` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261025122437_2716` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Criolla
+- `Edgar_20261025122444_2718` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261025122451_2720` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261025122458_2722` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261025122505_2724` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Criolla
+- `Edgar_20261025122511_2726` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261025122752_2728` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Telegram scoring pipeline restored: empty-config post-mortem + diagnose URL …
+- `Edgar_20261025122755_2730` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Set XAI_API_URL / OPENAI_API_URL and validated row-level scoring (rowIndex 1…
 
 ---
 
@@ -236,7 +231,7 @@ _(+34 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$2,491.03**
+- USD on hand: **$2,466.05**
 - Brazilian Reis: R$130.00 · rate `0.2323` USD/BRL → ≈ **$30.20**
 - USD provisioned for voting-rights cash-out: **$57.15**
 
@@ -272,6 +267,9 @@ _(No `YYYY-MM-DD |` lines on/after 2026-10-18 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+02a9ae4 | 2026-10-25 16:44:05 +0000 | chore(stats): refresh stats indexes [skip ci]
+1d93eb5 | 2026-10-25 11:56:10 +0000 | chore(stats): refresh stats indexes [skip ci]
+57323e3 | 2026-10-25 05:10:02 +0000 | chore(stats): refresh stats indexes [skip ci]
 75445e2 | 2026-10-24 21:06:57 +0000 | chore(stats): refresh stats indexes [skip ci]
 2dee325 | 2026-10-24 16:11:43 +0000 | chore(stats): refresh stats indexes [skip ci]
 46295d5 | 2026-10-24 11:29:19 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -305,12 +303,17 @@ e9179ce | 2026-10-18 05:02:19 +0000 | chore(stats): refresh stats indexes [skip 
 ### `market_research` → `go_to_market`
 
 ```
-b4ad089 | 2026-10-20 06:11:36 -0300 | Fix agroverse-inventory push race across the three sibling publishers (#183)
+1b833ce | 2026-10-25 17:35:06 +0800 | Add retail margin floor + display-vs-cart price consistency guards (#184)
 ```
 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+e82bf20 | 2026-10-25 20:37:37 +0800 | supervisor: update drain-recovery claim -- archived channel, outage still live (#1713)
+5aa71a0 | 2026-10-25 19:47:29 +0800 | supervisor: claim #contribution-drain-recovery thread (#1712)
+c833163 | 2026-10-25 19:44:37 +0800 | supervisor: claim #agroverse-content-marketing thread (#1711)
+9b22335 | 2026-10-25 13:05:25 +0800 | chore(previews): refresh Beer Hall preview (2026-10-25 UTC)
+f83f32e | 2026-10-25 13:05:23 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-25 UTC)
 7856ebd | 2026-10-25 11:17:48 +0800 | supervisor loop: Unit 2 landed on SOPHIA_INTRATURN_COMPACTION_PLAN, refresh WIP claims (#1710)
 1132d00 | 2026-10-25 11:13:55 +0800 | handoffs: release plans/SOPHIA_INTRATURN_COMPACTION_PLAN.md (Sophia (autopilot, self))
 e2e3524 | 2026-10-25 11:13:31 +0800 | handoffs: claim plans/SOPHIA_INTRATURN_COMPACTION_PLAN.md (Sophia (autopilot, self))
@@ -346,17 +349,14 @@ ba055cf | 2026-10-22 01:41:36 -0300 | Correct TrueTech Inc address to Taraval St
 91d5b4f | 2026-10-21 21:41:57 -0300 | followups: autopilot pre-push gate uses wrong interpreter (phantom TDG failures) (#1687)
 972d56b | 2026-10-21 18:53:53 -0300 | chore(previews): refresh Beer Hall preview (2026-10-21 UTC)
 56c54d0 | 2026-10-21 18:53:51 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-21 UTC)
-5d7db68 | 2026-10-21 14:32:23 -0300 | chore(previews): refresh Beer Hall preview (2026-10-21 UTC)
-4db4bd4 | 2026-10-21 14:32:21 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-21 UTC)
-e1c860f | 2026-10-21 01:33:19 -0300 | Add check_sophia_stalled.py -- per-thread/channel staleness tool (#1686)
-66eaa6f | 2026-10-21 04:22:04 +0000 | plans(envoy-mention-trigger): mentions auto-register ongoing supervision
-e10c34a | 2026-10-20 20:38:55 -0300 | docs(envoy-plan): record second UAT bug+fix (cursor-position detection, #10) + first confirmed live injection; RESUME HERE -> PR7 (#1685)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+c07a1ff | 2026-10-25 20:03:35 +0800 | fix(gas): add scoring pipeline diagnostics + failure visibility (#597)
+54301b0 | 2026-10-25 18:18:13 +0800 | fix: routing guard - stop silent fallback of named ledgers into MAIN (#595)
 d05182d | 2026-10-20 21:59:14 -0300 | Anchor Monthly Statistics on first empty column A (port of #590 to 1rLl94jQ) (#592)
 13fd6f1 | 2026-10-20 21:54:16 -0300 | Fix Monthly Statistics append anchor + normalise month cells (#590)
 3bdcceb | 2026-10-20 21:03:53 -0300 | Add ?action=diagSales probe + make report.skipped real (#589)
@@ -392,6 +392,9 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+deaaa5b | 2026-10-25 11:36:19 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
+f0e74f5 | 2026-10-25 17:28:38 +0800 | chore: refresh Agroverse SKU catalog snapshot
+804072c | 2026-10-25 17:28:37 +0800 | chore: refresh Agroverse store inventory snapshot
 c73cd86 | 2026-10-24 11:37:34 +0000 | chore: refresh currencies.json [skip ci]
 7dc5a98 | 2026-10-24 11:06:42 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 c55527b | 2026-10-23 12:06:40 +0000 | chore: refresh currencies.json [skip ci]
@@ -414,6 +417,9 @@ a338f62 | 2026-10-19 13:58:58 +0000 | chore: refresh partners-velocity snapshot 
 ### `agroverse_shop` → `agroverse_shop_beta`
 
 ```
+6644746 | 2026-10-26 01:01:52 +0800 | blog(ep13): replace people-containing photos with people-free frames (#350)
+6bc6406 | 2026-10-25 21:01:47 +0800 | blog: Bean to Bliss Episode 13 — Three Farms, Eleven Days (#349)
+55f1e37 | 2026-10-25 17:01:44 +0800 | Bump Paulo ceremonial cacao 200g retail price $25.00 -> $30.00 (#348)
 e7fb8ba | 2026-10-25 12:34:36 +0800 | Add Vivi's 81% dark chocolate bar card to homepage product gallery (#347)
 5bf1d9c | 2026-10-25 00:01:37 -0300 | Add PDP + SKU for Vivi's Farm 81% dark chocolate bar (50g) — AGL13 (#346)
 5dc2003 | 2026-10-22 20:13:09 -0300 | Add "About Dorothy Stang" context to CFR Anapu partner page (#345)
@@ -518,7 +524,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
-| 2026-10 | 137 | 18621.34386 | 10/24/2026 |
+| 2026-10 | 137 | 18621.34386 | 10/25/2026 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-10-18`; scanned last **600** data rows)
 
