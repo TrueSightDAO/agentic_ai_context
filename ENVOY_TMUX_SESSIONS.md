@@ -55,15 +55,21 @@ pre-approved permissions:
 ssh nelanco-claude ~/bin/envoy-spinup.sh
 ```
 
-The script: (a) kills any existing sessions and recreates `supervisor`, `planner`, `analyst`,
-`private-reflections` tmux sessions; (b) starts `claude --name <role> --remote-control <role>` in
-each; (c) auto-confirms the "trust this folder" prompt; (d) sends the role-adoption prompt; (e)
-auto-approves lingering permission prompts; (f) prints the remote-control URLs for Gary's mobile app.
+**Box down / unreachable?** See **`sops/NELANCO_CLAUDE_RECOVERY_SOP.md`** — the runbook for the
+recurring `InstanceStatus: impaired` reachability failure (detect → `stop-instances` →
+`start-instances` → poll → restore sessions). Never `RebootInstances` (doesn't recover this fault).
 
-**Pre-configured permissions** live in `~/.claude/settings.json` (Read/Edit/Write on
-`/opt/claude_workspace/**` + `/home/ubuntu/**`, and Bash for git/gh/tmux/curl/ssh/python/node/
-cat/grep/find/etc.) so sessions don't stall on prompts for ordinary work. Remaining prompts are the
-intentional safety nets (the `cd … && git …` hook check, and anything touching credentials).
+The script: (a) kills any existing sessions and recreates `supervisor`, `planner`, `analyst`,
+`private-reflections` tmux sessions; (b) starts `claude --name <role> --permission-mode
+bypassPermissions --remote-control <role>` in each; (c) auto-confirms the "trust this folder" and
+"bypass permissions" prompts; (d) sends the role-adoption prompt; (e) prints the remote-control URLs
+for Gary's mobile app.
+
+**Permission mode: `bypassPermissions` ("auto" / don't-ask) for ALL four sessions.** Every session
+runs without permission prompts — it auto-accepts actions and relies on its role directive
+(`SUPERVISOR_LOOP.md` §5 for the supervisor; the standing Envoy rules) as the guardrail, not Claude
+Code's prompt system. This is the deliberate default (Gary 2026-10-10). `~/.claude/settings.json`
+keeps a Read/Edit/Write allow-list as belt-and-suspenders, but nothing prompts.
 
 **Gotchas that caused repeated manual re-setup (root-caused 2026-10-09):**
 

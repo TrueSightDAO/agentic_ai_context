@@ -1308,6 +1308,17 @@ to rule in/out a bad physical host — two data points isn't enough to conclude 
 2026-09-17T01:31:00Z); `aws ec2 get-console-output` (clean boot log ending 2026-09-14T23:24:41Z,
 nothing after); this session's remediation (reboot attempt → no recovery → stop/start → recovered).
 
+**2026-10-25 — third recurrence, now runbooked (owner: DeepSeek Local).** Impaired
+(`InstanceStatus: reachability failed`, `ImpairedSince 2026-10-24T18:02:00Z`) ~1 day before it was
+noticed; `SystemStatus: ok`. Confirmed the `stop-instances` → `start-instances` fix again (reboot
+still not attempted — see incident 2). After the box came back, all four Envoy tmux sessions were
+dead (expected) and restored via `~/bin/envoy-spinup.sh`. Recovery is now fully documented as
+`sops/NELANCO_CLAUDE_RECOVERY_SOP.md` (detect → stop/start → poll → restore sessions → verify), and
+`nelanco-claude` is now a fleet host in Sophia's `ssh_tools.FLEET` so she can run the session-restore
+half herself (`ssh_run(host="nelanco-claude", …)`; her `sophia_infra` key is already authorized). The
+monitoring alarm proposed below is still **open** — a CloudWatch `StatusCheckFailed_Instance` alarm
+would page on recurrence instead of waiting to be noticed.
+
 ### truesight_autopilot: automate Stripe subscription-renewal → per-bar `[SALES EVENT]` reconciliation
 
 **Filed 2026-09-16. Owner: unclaimed. Governor: Gary (thread 30870).**
