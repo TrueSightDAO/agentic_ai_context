@@ -65,6 +65,15 @@ bypassPermissions --remote-control <role>` in each; (c) auto-confirms the "trust
 "bypass permissions" prompts; (d) sends the role-adoption prompt; (e) prints the remote-control URLs
 for Gary's mobile app.
 
+**Every session loads shared context on boot.** The role prompt begins with a `git pull` of
+`/opt/claude_workspace/agentic_ai_context` plus a read of `OPERATING_INSTRUCTIONS.md`,
+`WORKSPACE_CONTEXT.md`, `PROJECT_INDEX.md`, and `ENVOY.md` **before** adopting its role — so no
+session starts without having read the workspace context.
+
+**Canonical copy:** the script is versioned at `agentic_ai_context/infrastructure/envoy-spinup.sh`;
+the box runs it from `/home/ubuntu/bin/envoy-spinup.sh`. Keep the two in sync (edit the repo copy,
+then `scp` it to the box).
+
 **Permission mode: `bypassPermissions` ("auto" / don't-ask) for ALL four sessions.** Every session
 runs without permission prompts — it auto-accepts actions and relies on its role directive
 (`SUPERVISOR_LOOP.md` §5 for the supervisor; the standing Envoy rules) as the guardrail, not Claude
