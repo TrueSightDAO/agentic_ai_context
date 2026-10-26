@@ -6,6 +6,22 @@ it is not evidence of a broken pipeline.
 
 Verified live 2026-10-26 against all three sheets.
 
+> ### ⚠️ Staleness has two meanings — do not conflate them
+>
+> | Hop | Expected delay | If it exceeds that |
+> |---|---|---|
+> | Stage 1 → Stage 2 | **~1 day** | 🔴 **BROKEN** — investigate the scorer |
+> | Stage 2 → Stage 3 | **~1 quarter** | 🟢 **NORMAL** — nothing to do |
+>
+> "Absence from `Ledger history` is normal" applies to the **second row only**.
+> It does **not** license concluding a row is healthy merely because Edgar accepted it.
+> A row parked in Stage 1 for weeks is a **failure**, and Stage 1 looks perfectly healthy
+> while it happens — the write succeeds, the derived view silently freezes.
+>
+> **Status as of 2026-10-26:** the newest Stage 2 row was dated `20260910` (column `L` =
+> `11412`) — the Grok scorer had written nothing for ~6 weeks. Stage 2 was **not** running.
+> Verify this before trusting any "daily" claim below.
+
 ---
 
 ## The chain
@@ -47,7 +63,7 @@ historical artifact. Columns: `A` event id · `E` contributor name · `G` full e
 |---|---|
 | Spreadsheet | `1Tbj7H5ur_egQLRugdXUaSIhEYIKp0vvVv2IZ7WTLCUo` |
 | Tab | `Scored Chatlogs` |
-| Written by | Grok scorer (daily) |
+| Written by | Grok scorer (**daily — verify it is alive**, see gotchas) |
 | Service account | **`tdg_scoring` only** — the default Cypher Defense SA gets `403` |
 
 The scorer applies the rubric and sets `Status = "Pending Review"`, `TDGs Issued = "0.00"`.
@@ -82,6 +98,9 @@ A fresh submission is supposed to be absent for up to a quarter.
 looking for one.
 5. When reporting status, say *which stage* the row is in. "Recorded by Edgar, sitting in stage 1
 as `Pending`" is accurate. "Not in the ledger" is misleading.
+6. **Before calling a row "healthy", confirm Stage 2 is actually moving.** Presence in Stage 1
+proves Edgar accepted it — nothing more. If Stage 2's newest row is more than a few days old,
+report the row as **stuck in Stage 1 pending a broken scorer**, not as progressing normally.
 
 ## Known gotchas
 
@@ -91,8 +110,17 @@ as `Pending`" is accurate. "Not in the ledger" is misleading.
   `Description`, **`Contributor(s)`**, `TDG Issued` (`app/main.py:1617`). `Contributor` (singular)
   is not the canonical key — prefer `Contributor(s)` when submitting.
 - **Rubric.** `Type: Time (Minutes)` → **5 minutes = 8.33 TDG** (1.6667 TDG/min), so 10 min ≈ 16.67 TDG.
+- **Stage-2 scorer liveness.** Read the newest row of `Scored Chatlogs` via the `tdg_scoring` SA
+  and compare its date to today. The scorer stopping is **silent** — Stage 1 keeps filling, so
+  every intake-side surface looks fine. Observed dead on 2026-10-26 (last row `20260910`,
+  `L`=`11412`). A "daily" stage that has not written for weeks is a stop-the-line finding, not
+  a backlog item.
 
 ---
 
 _Last verified 2026-10-26 — Stage 1 rows 14613–14614 (Gary Teh 10-min tutorial; a corrective
-Sophia Truesight 1-min row) both present and `Pending`; Stage 2 reachable only via `tdg_scoring`._
+Sophia Truesight 1-min row) both present and `Pending`; Stage 2 reachable only via `tdg_scoring`,
+which was **stalled** (newest row `20260910`, `L`=`11412`)._
+
+_Re-verify Stage 2 liveness on every future check of this document — that is the stage that
+fails silently, and the one this file exists to stop agents from misreading._
