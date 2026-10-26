@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-10-26T05:08:31Z`
+- Generated (UTC): `2026-10-26T13:26:25Z`
 - Look-back: **7** calendar days (`2026-10-19` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,16 +32,12 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[TREE PLANTING EVENT]` × 33
-- `[CONTRIBUTION EVENT]` × 8
+- `[TREE PLANTING EVENT]` × 29
+- `[CONTRIBUTION EVENT]` × 12
 - `[PRACTICE EVENT]` × 1
 
 ### Latest entries
 
-- `Edgar_20261025122405_2706` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Criolla
-- `Edgar_20261025122411_2708` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261025122417_2710` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Criolla
-- `Edgar_20261025122424_2712` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
 - `Edgar_20261025122430_2714` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
 - `Edgar_20261025122437_2716` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Criolla
 - `Edgar_20261025122444_2718` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
@@ -58,6 +54,10 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20261026020404_2740` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Contributor(s): Gary Teh
 - `Edgar_20261026020414_2742` · **Edgar** · [CONTRIBUTION EVENT] Amount: 1 · Contributor(s): Sophia Truesight · Description: Read-only verification pass of the 2026-10-26 Gary Teh CONTRIBUTION EVENT (1…
 - `Edgar_20261026032555_2744` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Shared Próspera entity documents with counterparty exploring DAO infrastruct…
+- `Edgar_20261026061528_2746` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 4.70 · Description: Procured a dark chocolate bar sample for competitive product benchmarking / …
+- `Edgar_20261026062102_2748` · **Edgar** · [CONTRIBUTION EVENT] Amount: 15 · Contributor(s): Gary Teh · Description: Asked Cristiano Villela Dias (scientific director, CIC - Centro de Inovacao …
+- `Edgar_20261026122445_2750` · **Edgar** · [CONTRIBUTION EVENT] Amount: 10 · Contributor(s): Gary Teh · Description: Answered Orlantildes Santos Pereira (President, Coopercabruca, Bahia) on dis…
+- `Edgar_20261026124355_2752` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Strategy session: Sophia as a commercial product (vertical selection + refer…
 
 ---
 
@@ -184,16 +184,16 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 ### Stock at production shippers
 
 **Kirsten Ritschel** _( San Francisco — retail / online fulfilment / partner restock )_
-- Manager record: `Kirsten Ritschel` · 24 SKU lines · 1,692.50 total units · $6,910.70
+- Manager record: `Kirsten Ritschel` · 25 SKU lines · 1,650.50 total units · $6,910.70
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
   | Packaging Material | Bulk | 4 | 892 | $649.90 |
-  | (uncategorized) | (unspecified) | 13 | 391 | $830.35 |
+  | (uncategorized) | (unspecified) | 14 | 351 | $884.85 |
   | Cacao Mass | Retail Ready | 1 | 169 | $2,328.82 |
   | Cacao Nib | Retail Ready | 1 | 129 | $1,355.79 |
   | Cacao Mass | Bulk | 2 | 87 | $898.06 |
-  | Cacao Nib | Bulk | 2 | 19.50 | $675.78 |
+  | Cacao Nib | Bulk | 2 | 17.50 | $621.28 |
   | Cacao Butter | Bulk | 1 | 5 | $172.00 |
 
 **Matheus Reis** _( Ilhéus, Brazil — bulk warehouse + freight to SF )_
@@ -207,11 +207,11 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
   | Cacao Mass | Retail Ready | 1 | 1 | $10.37 |
 
 **Gary Teh** _( Operational cash + assorted retail inventory )_
-- Manager record: `Gary Teh` · 30 SKU lines · 8,209.07 total units · $7,909.03
+- Manager record: `Gary Teh` · 30 SKU lines · 8,184.09 total units · $7,884.05
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 28 | 8,132.89 | $7,859.04 |
+  | (uncategorized) | (unspecified) | 28 | 8,107.91 | $7,834.06 |
   | Packaging Material | Bulk | 1 | 74 | $49.98 |
   | Cacao Tea | Bulk | 1 | 2.18 | $0.00 |
 
@@ -268,6 +268,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-10-19 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+d28ee91 | 2026-10-26 05:12:03 +0000 | chore(stats): refresh stats indexes [skip ci]
 39d2309 | 2026-10-25 21:09:37 +0000 | chore(stats): refresh stats indexes [skip ci]
 02a9ae4 | 2026-10-25 16:44:05 +0000 | chore(stats): refresh stats indexes [skip ci]
 1d93eb5 | 2026-10-25 11:56:10 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -301,12 +302,21 @@ f59855c | 2026-10-20 02:09:40 -0300 | qr page: show a visible placeholder when t
 ### `market_research` → `go_to_market`
 
 ```
-1b833ce | 2026-10-25 17:35:06 +0800 | Add retail margin floor + display-vs-cart price consistency guards (#184)
+b15ef53 | 2026-10-26 21:08:23 +0800 | Probe cache reachability before billing a Places lookup (#189)
 ```
 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+df09879 | 2026-10-26 20:58:33 +0800 | Resolve A2: GB 2762 sets no cadmium or arsenic limit for cocoa (#1724)
+cc0aced | 2026-10-26 20:55:48 +0800 | Resolve A1: no 药典 entry for cocoa; folk attribution unsourced (#1723)
+0cbb373 | 2026-10-26 20:44:15 +0800 | Add AGL4 measured heavy-metal results + provenance gap to China plan (#1722)
+5c63bc6 | 2026-10-26 20:40:11 +0800 | Add Sophia commercial strategy memo: vertical ranking + discovery instrument (#1721)
+a31ab0a | 2026-10-26 20:38:39 +0800 | Add Oscar's farm → China market discover-to-position action plan (#1720)
+b199429 | 2026-10-26 20:29:28 +0800 | Review Peter Gwee's notes; correct cocoa-% fallacy; add EU authorised claim (#1719)
+673afb9 | 2026-10-26 15:11:48 +0800 | Add CIC cacao bibliography, Bryan Johnson dossier, and quantified-biohacking brief (#1718)
+fcba84a | 2026-10-26 13:08:48 +0800 | chore(previews): refresh Beer Hall preview (2026-10-26 UTC)
+5914176 | 2026-10-26 13:08:47 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-26 UTC)
 f81c385 | 2026-10-26 13:02:03 +0800 | docs: add Stage-2 liveness caveat to CONTRIBUTION_LEDGER_PIPELINE (#1717)
 0cf755f | 2026-10-26 10:09:10 +0800 | Document the 3-stage contribution → ledger pipeline (#1715)
 d61648a | 2026-10-26 07:31:56 +0800 | Record LVSS Brazil-entity agreement + file the USD 2,500 TDG payment deadline (#1714)
@@ -338,15 +348,6 @@ a7d6579 | 2026-10-23 21:19:04 -0300 | §9c.4c: reattribution vs restatement + co
 7c38c9c | 2026-10-23 14:21:55 -0300 | chore(previews): refresh Beer Hall preview (2026-10-23 UTC)
 70058d7 | 2026-10-23 14:21:53 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-23 UTC)
 c445545 | 2026-10-23 08:56:05 -0300 | chore(previews): refresh Beer Hall preview (2026-10-23 UTC)
-c33f83f | 2026-10-23 08:56:03 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-23 UTC)
-e4c43d2 | 2026-10-23 07:08:05 -0300 | §9c — Entity labelling and evidence links on ledger rows (#1697)
-14783c5 | 2026-10-23 02:52:40 -0300 | docs: add §9b — money-adjacent claims: name the phase, verify live, assert the total (#1696)
-86d3d1c | 2026-10-23 02:11:43 -0300 | chore(previews): refresh Beer Hall preview (2026-10-23 UTC)
-dfca684 | 2026-10-23 02:11:41 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-23 UTC)
-2c7804f | 2026-10-22 20:51:26 -0300 | OPEN_FOLLOWUPS: file the prod visual-gate gap (verified across all 4 pairs) (#1693)
-d7c7e8d | 2026-10-22 20:50:04 -0300 | conventions: point at OPERATING_INSTRUCTIONS §9a for shipping (link only, no restatement) (#1695)
-002b2f4 | 2026-10-22 20:48:20 -0300 | §9a: live-render verification for ALL static-site repos (supersedes #1689) (#1692)
-4abc022 | 2026-10-22 18:51:07 -0300 | chore(previews): refresh Beer Hall preview (2026-10-22 UTC)
 … (truncated)
 ```
 
@@ -390,6 +391,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+52328a4 | 2026-10-26 13:09:42 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 deaaa5b | 2026-10-25 11:36:19 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 f0e74f5 | 2026-10-25 17:28:38 +0800 | chore: refresh Agroverse SKU catalog snapshot
 804072c | 2026-10-25 17:28:37 +0800 | chore: refresh Agroverse store inventory snapshot
@@ -523,7 +525,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
-| 2026-10 | 137 | 18621.34386 | 10/25/2026 |
+| 2026-10 | 137 | 18621.34386 | 10/26/2026 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-10-19`; scanned last **600** data rows)
 
