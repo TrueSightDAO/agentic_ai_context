@@ -36,10 +36,10 @@ This is **Task A1** below. It is free to answer and it settles the whole TCM que
 | # | Gate | Requirement | Cocoa's exposure |
 |---|---|---|---|
 | **1** | **GACC Decree 248** (effective 2022-01-01) | Every overseas food **manufacturer, processor and storage facility** exporting to China must register with the General Administration of Customs. The **China Registration Number must be printed on both inner and outer packaging**. Registration is only valid for the specific HS + quarantine-code combination registered. | Cocoa is not in GACC's Group 1 (the 18 categories needing home-authority recommendation, e.g. meat/dairy/aquatic); it most likely falls in **Group 2 — self-application**. **Verify before assuming.** |
-| **2** | **GB 2762** 食品中污染物限量 | Lead limit for **可可制品、巧克力和巧克力制品以及糖果** = **0.5 mg/kg (as Pb)** — confirmed against the standard. | **Cadmium status is UNRESOLVED and important.** See §3. |
+| **2** | **GB 2762** 食品中污染物限量 | For **可可制品、巧克力和巧克力制品以及糖果**: **lead 0.5 mg/kg (as Pb)**, **arsenic — no limit**, **cadmium — no limit**. Verified against both the 2022 text and the 2025 revision. | **RESOLVED — China sets no cadmium limit for cocoa.** See §3. |
 | **3** | **GB 2763** 食品中农药最大残留限量 | China's pesticide MRL standard, ~2,000+ limits, far broader than most origins expect. | **We have never run a residue panel.** Genuine detention risk. |
 
-Everything else — flavanols, theobromine, cadmium *if* it turns out to be unregulated for cocoa — is **differentiation**, not permission. The gates above are permission.
+Everything else — flavanols, theobromine, and **cadmium and arsenic, which GB 2762 does not limit for cocoa at all** (§3) — is **differentiation**, not permission. The gates above are permission.
 
 ---
 
@@ -62,8 +62,8 @@ These were already run. Read the actual numbers before spending on more metal te
 
 | Parameter | Result | ANVISA IN 160 limit | GB 2762 (China) | Headroom vs China |
 |---|---|---|---|---|
-| **Arsenic (total)** | **< 0.025 mg/kg** | ≤ 0.400 mg/kg | — | — |
-| **Cadmium (total)** | **< 0.025 mg/kg** | ≤ 0.300 mg/kg | **unresolved for cocoa** (§3) | — |
+| **Arsenic (total)** | **< 0.025 mg/kg** | ≤ 0.400 mg/kg | **no cocoa limit set** (§3) | — |
+| **Cadmium (total)** | **< 0.025 mg/kg** | ≤ 0.300 mg/kg | **no cocoa limit set** (§3) | — |
 | **Lead (total)** | **< 0.025 mg/kg** | ≤ 0.400 mg/kg | **0.5 mg/kg** | **≥ 20× below** |
 | **Copper (total)** | **9.86 mg/kg** | N.A. | — | — |
 
@@ -172,7 +172,7 @@ Organised by leverage per unit of cost. **Phase 0 is free and resolves most of t
 | # | Question | Why it decides something |
 |---|---|---|
 | **A1** ✅ **RESOLVED** | Does 《中国药典》/《中华本草》/《中药大辞典》 contain a **可可** entry with 性味归经? | **No — confirmed against the official 一部 table of contents. See §1.3.** There is no TCM status to translate to. |
-| **A2** | Does **GB 2762-2022 / the 2025 revision** set a **cadmium** limit for 可可制品 / 巧克力? | If **no**, China is materially softer on cocoa Cd than the EU (which has had Cd max levels for chocolate since 2019). That is a strategic asymmetry in our favour and reframes the whole risk map. **Highest-value single question in this plan.** |
+| **A2** ✅ **RESOLVED** | Does **GB 2762-2022 / the 2025 revision** set a **cadmium** limit for 可可制品 / 巧克力? | **No — for neither cadmium nor arsenic. See §3.** Confirmed against both editions. China is materially softer on cocoa Cd than the EU, so the asymmetry is real, not hoped for. |
 | **A3** | What is the correct product classification for our goods — **可可豆 (beans), 可可粉 (powder), 可可脂 (butter), 巧克力**? | Each maps to a different GB 2762 row, a different HS code, and possibly a different GACC registration route. |
 | **A4** | Does our HS + product category fall in GACC **Group 1** (needs MAPA recommendation) or **Group 2** (self-application)? | Group 2 is weeks; Group 1 is months and depends on a Brazilian authority. Completely different project plans. |
 | **A5** | Does China give **GI protection** to Brazil's **"Sul da Bahia"** cacao Indicação Geográfica, or is there Brazil–China GI mutual recognition? | If yes, an origin-protection moat is available and cheap. If no, origin protection is only de facto. |
@@ -217,24 +217,48 @@ Send a **single composite sample from one 2025 Oscar lot** for:
 
 ---
 
-## 3. The unresolved cadmium question — the highest-value unknown
+## 3. The cadmium question — RESOLVED, and it flips the EU vs China risk map
 
-This deserves its own section because it flips the strategy.
+**Status: closed, and the answer is stronger than the hypothesis.**
 
-**What I confirmed:** GB 2762 sets **lead at 0.5 mg/kg** for 可可制品、巧克力和巧克力制品以及糖果.
+### 3.1 What GB 2762 actually says about cocoa
 
-**What I could not confirm:** a **cadmium** limit for cocoa products. In the GB 2762 cadmium table I retrieved, the rows cover grains, vegetables, fruits, edible fungi, legumes, nuts/seeds, meat, aquatic products, eggs, condiments and beverages — 可可 does **not** visibly appear, whereas it clearly appears in the lead table. That may be truncation in my source, so **treat it as an open question, not a finding.**
+Read directly from the GB 2762-2022 tables (two independent PDF copies extracted and cross-checked), and confirmed against the GB 2762-2025 changes:
 
-**Why it matters enormously if true:**
+| Contaminant | GB 2762 limit for **cocoa products, chocolate and chocolate products** |
+|---|---|
+| **Lead (Pb)** | **0.5 mg/kg** — a real limit, appears in Table 1 |
+| **Cadmium (Cd)** | **No limit.** No cocoa row exists in Table 2 |
+| **Arsenic (As)** | **No limit.** No cocoa row exists in Table 4 |
+| **Nickel (Ni)** | No limit |
 
-| | EU | China (if no cocoa Cd limit) |
+This is not truncation in a search snippet. The cadmium table (Table 2) was read in full: it covers grains, vegetables, fruit, edible fungi, beans, **nuts and seeds**, meat, aquatic products, eggs, condiments, salt, beverages and infant foods — and the only nuts entry is **peanuts at 0.5 mg/kg**. **Cocoa is not there.** Meanwhile cocoa appears explicitly as its own named row in the **lead** table and in the **arsenic**-context list. The absence of a cocoa cadmium row is therefore a deliberate omission, not a gap in extraction.
+
+**The 2025 revision does not change this.** Five sources incl. the official NHC release (2025-09-25, effective **2026-09-02**) enumerate the six changes: 肉类干制品 折算 + 铅/镉/总砷/铬 判定统一, 包装饮用水, 食用燕窝 亚硝酸盐, 食用燕窝 食品类别 — and **no cocoa change**. Note: our earlier research contact stated this as *"GB 2762 cadmium for cocoa is 0.5 mg/kg"*. **That figure is the LEAD limit.** The 0.5 in the cocoa row sits in the lead column (Table 1); the cadmium table has no cocoa row at all. The correct conclusion happens to be even better for us than the mistaken one, but it needed the correction.
+
+### 3.2 The flipped risk map
+
+| | EU (Reg. 488/2014) | China (GB 2762) |
 |---|---|---|
-| Cocoa Cd | Max levels in force for chocolate since 2019 | No cocoa-specific limit |
-| Our exposure | **Hard gate** — a high-Cd lot is unsaleable in Europe | Not a compliance gate |
+| Chocolate ≥ 50 % dry cocoa solids | **0.80 mg/kg Cd** | no Cd limit |
+| Chocolate 30–50 % solids / milk choc ≥ 30 % | **0.30 mg/kg Cd** | no Cd limit |
+| Milk chocolate < 30 % solids | **0.10 mg/kg Cd** | no Cd limit |
+| **Cocoa powder sold to consumers** | **0.60 mg/kg Cd** | no Cd limit |
+| Cocoa beans as such | not covered (limits are on finished product) | not covered |
 
-We already flagged (in `CACAO_IN_QUANTIFIED_BIOHACKING.md`) that **Brazil-specific cadmium data is thin** and that the Cd literature is dominated by Ecuador/Peru/Colombia. If China does not gate cocoa on cadmium, then **China may be the market where our cadmium risk is least binding** — which is an uncomfortable but genuinely strategic insight, and one we should verify before acting on either way.
+> **This inverts the assumption the plan was built on.** The EU — not China — is the binding constraint on our cadmium exposure. China gates us on **lead** only, and only at 0.5 mg/kg, where we have ≥ 20× headroom.
 
-**Do not interpret this as "China is lax so we can sell dirty cacao."** It means: (a) verify the rule, and (b) test the metal regardless, because a measured number is our asset in *every* market and an unmeasured one is a liability in the EU even if not in China.
+**An important consequence for product form:** because the EU sets the cocoa *powder* limit at 0.60 and the bean/nib level is governed only indirectly through finished-product limits, **powder is our most cadmium-exposed SKU in the EU and our least gated in China**. If a powder result ever comes back high, the viable route is **nibs/liquor into China** rather than powder into Europe. That is a real strategic option the metal data now supports — and the reason the nibs-vs-powder distinction in §1.2 mattered.
+
+### 3.3 What we must still not conclude
+
+**"China has no Cd limit" ≠ "China is lax, so ship whatever."** Three reasons the discipline stands:
+
+1. **Absence of a limit is not absence of enforcement.** 监督抽检 can still flag a 重金属 item under 食品安全法 general-safety provisions, and rejection at port is a commercial loss regardless of whether a numeric ML was breached.
+2. **A repeat customer can impose its own spec.** Nutrada's practitioner note is blunt: *"some buyers will not accept beans that have more than 0.3 mg per kilogram"* — stricter than China's law and stricter than the EU chocolate ML. Private spec, not law, can close the door.
+3. **The EU number is still ours to meet.** One measured result has to satisfy the strictest market we sell into. An unmeasured metal is a liability everywhere.
+
+**So: verify the rule (done), and test the metal regardless.** The measured < 0.025 mg/kg from `LAP-339.2025.B` is what makes both markets safe; the *rule* merely decides which one is closeable today.
 
 ---
 
@@ -319,4 +343,4 @@ The Bahian **cabruca** system (cacao under native Atlantic Forest shade) is a ge
 
 ## 8. One-paragraph summary
 
-The Chinese market does not need Oscar's cacao translated into TCM; it needs it proved safe, legally labelled, and registered with customs — and TCM has no regulatory lever to pull at all, because cacao sits on neither 药食同源 nor the 保健食品 ingredient list, and 性味归经 is doctrine rather than something a laboratory can output. The three gates that actually decide this are GACC Decree 248 facility registration, GB 2762 contaminants (lead confirmed at 0.5 mg/kg; **cadmium for cocoa unverified and possibly absent — the highest-value unknown in the plan**), and GB 2763 pesticide residues, which we have never tested. Phase 0 is free desk research that resolves most of the strategic uncertainty, and Phase 1 is a single sub-USD-1,000 lab panel on one 2025 lot that either opens the lane or closes it honestly. Our genuine uniqueness in China is not a philosophical frame but a physical object: a QR code on each bag resolving to a per-unit, auditable lineage record, in a market whose deepest food anxiety is that labels lie — and that advantage serves the mission directly, because a certified, premium-priced, single-farm Brazilian cacao lot is what makes 10,000 hectares of Amazonian agroforestry pay for the farmer.
+The Chinese market does not need Oscar's cacao translated into TCM; it needs it proved safe, legally labelled, and registered with customs — and TCM has no regulatory lever to pull at all, because cacao sits on neither 药食同源 nor the 保健食品 ingredient list, and 性味归经 is doctrine rather than something a laboratory can output. The three gates that actually decide this are GACC Decree 248 facility registration, GB 2762 contaminants (lead confirmed at 0.5 mg/kg, with **no cadmium or arsenic limit for cocoa at all** — now confirmed against both the 2022 and 2025 texts (§3)), and GB 2763 pesticide residues, which we have never tested. Phase 0 is free desk research that resolves most of the strategic uncertainty, and Phase 1 is a single sub-USD-1,000 lab panel on one 2025 lot that either opens the lane or closes it honestly. Our genuine uniqueness in China is not a philosophical frame but a physical object: a QR code on each bag resolving to a per-unit, auditable lineage record, in a market whose deepest food anxiety is that labels lie — and that advantage serves the mission directly, because a certified, premium-priced, single-farm Brazilian cacao lot is what makes 10,000 hectares of Amazonian agroforestry pay for the farmer.
