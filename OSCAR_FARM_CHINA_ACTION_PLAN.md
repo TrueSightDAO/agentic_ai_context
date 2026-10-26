@@ -92,6 +92,75 @@ Cadmium and other metals **concentrate with cocoa-solids content**. A clean nibs
 
 **Net effect on Phase 1:** B3 (metals) drops from "discovery" to "confirm on powder". The genuine unknowns remain **B1 flavanols at DP 1–10**, **B2 epicatechin**, **B4 ochratoxin A**, **B5 theobromine/caffeine**, and later **C1 pesticide residues** — none of which this report covers.
 
+### 1.3 A1 RESOLVED — there is no 药典 entry for 可可, and the folk 性味归经 is unsourced
+
+**Status: closed.** This was the question gating the whole "translate a CIC lab test into TCM" idea.
+
+#### The answer
+
+Cross-checked against the **official 《中国药典》 一部 table of contents** (2015 edition, hosted by `cnppa.org` — China's pharmacopoeia promotion body, i.e. an official document, not a health-media summary):
+
+- **No 可可 or 可可豆 entry anywhere in the 一部 list.**
+- **2020 and 2025 revision additions checked too** — the 2025 edition added 159 species (28 of them 中药); cocoa is not among them.
+
+> **Gate holds.** Cacao has **no TCM status**, therefore there is nothing to translate a lab test *into*. The premise of the original idea fails at the first step, not at the last.
+
+**Evidence grade, stated precisely** — because this determines how hard we can lean on it:
+
+| Claim | Confidence |
+|---|---|
+| No 可可 entry in the 一部 contents | **High** — a real negative check against an official document, not an absence-of-results inference |
+| Not a full-text search of 《中华本草》 or 《中药大辞典》 | **Caveat** — neither our contact nor this autopilot has that access |
+| `ydz.chp.org.cn` page citation | **Unavailable** — login-walled paid query system |
+
+The conclusion "not in the pharmacopoeia" is supported. A page-level citation is not producible, and saying otherwise would overstate it.
+
+#### Correction to one argument, because it will get reused
+
+The research came back with: *cocoa is a post-Columbian import, therefore a classical 本草 citation **structurally cannot** exist.*
+
+**Direction right, proof too strong.** The 本草 tradition repeatedly absorbs later imports and non-classical substances — 《本草纲目拾遗》 (赵学敏, 1765) exists precisely to add what the 纲目 missed, and the 纲目 itself carries categories for 造酿 and foreign materia. "It is an import" is therefore **strong supporting context, not proof**.
+
+The actual proof is the negative lookup: a targeted search for a cocoa entry in 《本草纲目拾遗》 — the *exact* citation popular Chinese health media reaches for when a foreign food gets a TCM gloss — found **no citation trail at all**.
+
+#### The folk attribution is confirmed as internet copy
+
+Chinese health media assign cocoa a confident 性味归经, and they **disagree with each other**:
+
+| Source | Claim |
+|---|---|
+| Baidu Health | 性温，味甘、微苦，**归心、脾经**，提神醒脑、抗氧化、促进消化 |
+| 東周網 (HK column) | 归**心、脾、肾**经，鼓舞心脏阳气、促进血液循环、疏通经络 |
+
+Both cite nothing. Decisively, the aggregator sites repeating the 归心脾经 version **admit it in their own text**:
+
+> 「原始文献出处需要进一步查证」— *the original source still needs verification.*
+
+That is the tell: a sourced claim states its source, whereas an unsourced one says the source "needs further verification" while the claim itself keeps propagating.
+
+> **Operational rule: never cite this. 性味 language is tone and narrative only — zero regulatory, zero scholarly authority.** Copying it would import an unsourced claim plus regulatory exposure, and a knowledgeable Chinese buyer spots it immediately.
+
+#### What survives — the EU ↔ Chinese narrative convergence
+
+The one genuinely reusable finding is that the folk Chinese description and the **EU-authorised** wording describe the same physiology in different vocabularies:
+
+| Chinese folk (unsourced) | EU Reg. 851/2013 (authorised) |
+|---|---|
+| 促进血液循环 | *helps maintain blood flow* |
+| 疏通经络 | *maintains the elasticity of blood vessels* |
+| 鼓舞心脏阳气 | *(same vascular-terms claim)* |
+
+So we never have to invent a bridge between the two markets — **one true thing can be said in two vocabularies**. But the asymmetry must be respected:
+
+- In the **EU**: the claim is lawful, but only at **200 mg cocoa flavanols/day, DP 1–10** (see the bibliography doc).
+- In **China**: cacao is **普通食品**, so this cannot become a 功效 claim at all. The folk wording has no source; the EU wording has no Chinese legal equivalent.
+
+**Use it as narrative, in both markets, claim it in neither beyond what is authorised.**
+
+#### Still open
+
+The three-part question put to our China-side contact returned **Q1 and Q2 researched; Q3 unanswered** — namely what is actually *sayable* as 普通食品 versus 保健食品, and whether **地方特色食品** or narrative on-pack copy offers a narrow lawful path. That is now the last positioning question standing.
+
 ---
 
 ## 2. The discovery list — what we actually need to find out
@@ -102,7 +171,7 @@ Organised by leverage per unit of cost. **Phase 0 is free and resolves most of t
 
 | # | Question | Why it decides something |
 |---|---|---|
-| **A1** | Does 《中国药典》/《中华本草》/《中药大辞典》 contain a **可可** entry with 性味归经? | Settles the entire TCM question. If no entry, there is no TCM status to translate to — full stop. |
+| **A1** ✅ **RESOLVED** | Does 《中国药典》/《中华本草》/《中药大辞典》 contain a **可可** entry with 性味归经? | **No — confirmed against the official 一部 table of contents. See §1.3.** There is no TCM status to translate to. |
 | **A2** | Does **GB 2762-2022 / the 2025 revision** set a **cadmium** limit for 可可制品 / 巧克力? | If **no**, China is materially softer on cocoa Cd than the EU (which has had Cd max levels for chocolate since 2019). That is a strategic asymmetry in our favour and reframes the whole risk map. **Highest-value single question in this plan.** |
 | **A3** | What is the correct product classification for our goods — **可可豆 (beans), 可可粉 (powder), 可可脂 (butter), 巧克力**? | Each maps to a different GB 2762 row, a different HS code, and possibly a different GACC registration route. |
 | **A4** | Does our HS + product category fall in GACC **Group 1** (needs MAPA recommendation) or **Group 2** (self-application)? | Group 2 is weeks; Group 1 is months and depends on a Brazilian authority. Completely different project plans. |
