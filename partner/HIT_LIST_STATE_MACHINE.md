@@ -1,11 +1,11 @@
 # Hit List state machine — states, transitions, and what each one means
 
-_Last updated 2026-05-08 — added warmup-aged-out promotion (go_to_market#116)._
+_Last updated 2026-10-26 — added `AI: Fill — manual`, the 14th state, written by the fill-gap sweep's parking logic (go_to_market#191). Previous: 2026-05-08 — added warmup-aged-out promotion (go_to_market#116)._
 
 The "Hit List" tab in
 [spreadsheet 1eiqZr3LW-…](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit?gid=0#gid=0)
 holds every retail-prospect row the DAO is tracking. The **Status**
-column drives a 13-state machine. This doc enumerates every state and
+column drives a 14-state machine. This doc enumerates every state and
 every transition so humans (and future LLMs) can reason about a row at
 a glance.
 
@@ -22,6 +22,10 @@ with branches off `Research` for rejection (`AI: No fit signal`),
 fast-tracking to warm-up (`AI: Warm up prospect` directly when the
 Email column is already populated), and from Enrich for manual triage
 (`AI: Contact Form found` / `AI: Enrich — manual`).
+
+**Three states are terminal operator endpoints** (cron never moves them):
+`AI: Contact Form found` / `AI: Enrich — manual` / `AI: Fill — manual` — see
+[Manual triage states](#manual-triage-states).
 
 **Three states are LEGACY** — no automation writes them any more:
 
@@ -49,6 +53,7 @@ stateDiagram-v2
     Enrich --> EmailFound: enrich found email
     Enrich --> ContactForm: enrich found contact form\nbut no email
     Enrich --> EnrichManual: enrich found neither\n(no website / fetch failed)
+    Enrich --> FillManual: fill-gap sweep:\nN paid attempts,\nstill no fill
 
     EmailFound --> Warmup: email-to-warmup\n(promote)
 
@@ -59,6 +64,7 @@ stateDiagram-v2
 
     ContactForm --> ManagerFollowup: operator follow-up
     EnrichManual --> ManagerFollowup: operator follow-up
+    FillManual --> ManagerFollowup: operator follow-up
 
     ManagerFollowup --> [*]: manual close
     Warmup --> [*]: message bounced or\nprospect unsubscribed
@@ -72,6 +78,7 @@ stateDiagram-v2
     EmailFound: AI: Email found
     ContactForm: AI: Contact Form found
     EnrichManual: AI: Enrich — manual
+    FillManual: AI: Fill — manual
     Warmup: AI: Warm up prospect
     Replied: AI: Prospect replied
     ManagerFollowup: Manager Follow-up
@@ -91,6 +98,7 @@ stateDiagram-v2
 | **AI: Email found** | Email harvested. Awaiting promotion to warm-up. | `hit_list_promote_status.py` (`email-to-warmup`). | `hit_list_enrich_contact.py` (when website crawl + Grok pick produced an email). |
 | **AI: Contact Form found** | Only a contact form URL surfaced; no email. **Terminal automation state** — manual follow-up only. Never auto-promoted to warm-up. | None (operator). | `hit_list_enrich_contact.py`. |
 | **AI: Enrich — manual** | Enrich couldn't find a website *or* a place_id (or both). Operator triage required. | None (operator). | `hit_list_enrich_contact.py`. |
+| **AI: Fill — manual** | The fill-gap sweep spent its per-row paid-attempt budget (`FILL_ATTEMPT_LIMIT`, default 3, env-tunable) trying to fill empty columns and still filled nothing. **Terminal automation state** — the sweep stops retrying so one doomed row can't keep flushing `no_fill_streak` and starving rows that *do* have fillable gaps. Attempt count is persisted in the Notes column as `[fill-attempts=N]`. Operator triage: fill the gap by hand, or reset/clear the counts to re-arm the sweep. | `hit_list_enrich_contact.py` fill-gap sweep (skips rows at the limit, so it no longer re-selects them). | `hit_list_enrich_contact.py` (fill-gap sweep, on reaching the limit). |
 | **AI: Warm up prospect** | Ready for warm-up Gmail draft. Email present. Drafts staged in `Email Agent Drafts` tab with `status='pending_review'` until operator sends from Gmail; review-time triage uses `preview_warmup_drafts.py` (see [Operator review loop](#operator-review-loop-warm-up-drafts) below). | `suggest_warmup_prospect_drafts.py` cron (creates drafts; doesn't change Hit List status); `preview_warmup_drafts.py` (read-only triage view); `hit_list_promote_status.py` (`warmup-aged-out`, cron `:40`) ages out stale rows. | `detect_circle_hosting_retailers.py` (Hosts Circles=Yes + email already present, fast-track); `hit_list_promote_status.py` (`email-to-warmup`). |
 | **AI: Prospect replied** | Gmail detected an inbound reply to our warm-up. Operator should triage. | None directly (operator); `backfill_warmup_reply_remarks.py` for audit logging. | `backfill_warmup_reply_remarks.py` / `backfill_all_warmup_replies.py` when reply detected. |
 | **Manager Follow-up** | Operator-claimed row needing follow-up Gmail draft. | `suggest_manager_followup_drafts.py` cron (creates drafts). | Operator (manual) or downstream operator process. |
@@ -128,6 +136,7 @@ stateDiagram-v2
 | `AI: Email found` | `hit_list_enrich_contact.py` (cron `:35 * * * *`) | Place Details lookup + website crawl + Grok email pick produced a confirmed email. |
 | `AI: Contact Form found` | `hit_list_enrich_contact.py` (cron `:35`) | No email surfaced, but a contact form URL did. **Terminal** — manual follow-up only. |
 | `AI: Enrich — manual` | `hit_list_enrich_contact.py` (cron `:35`) | No website, no place_id, or all crawls failed. Manual triage. |
+| `AI: Fill — manual` | `hit_list_enrich_contact.py` fill-gap sweep (cron `:35`) | Row had a **fillable** gap (primary fields or `Monday Open`), the sweep attempted Place Details `FILL_ATTEMPT_LIMIT` times (default 3) and still wrote nothing. **Terminal** — the sweep parks the row and stops retrying. |
 
 ### From `AI: Email found`
 | → State | Trigger | Condition |
@@ -148,7 +157,9 @@ stateDiagram-v2
 | `Manager Follow-up` | Operator (manual) | Operator routes the reply for follow-up Gmail drafting. |
 
 ### Manual triage states
-`AI: Contact Form found`, `AI: Enrich — manual`, `AI: Photo needs review` (legacy) — these are operator endpoints. Cron does not move them anywhere; operator decides whether to find an email manually, switch to a different shop, or close the row.
+`AI: Contact Form found`, `AI: Enrich — manual`, `AI: Fill — manual`, `AI: Photo needs review` (legacy) — these are operator endpoints. Cron does not move them anywhere; operator decides whether to find an email manually, switch to a different shop, retry the fill by hand, or close the row.
+
+To **un-park** an `AI: Fill — manual` row: fill the missing cells yourself, or delete the `[fill-attempts=N]` marker from Notes to re-arm the sweep. Removing it re-adds the row to the fill-gap sweep's candidate set next run.
 
 ## Cron schedule that drives the machine
 
@@ -158,7 +169,7 @@ stateDiagram-v2
 | `:20 * * * *` | `hit_list_promote_status.py` | `shortlisted-to-enrich` + `email-to-warmup` promotions. | `AI: Shortlisted`, `Shortlisted`, `AI: Email found` | `AI: Enrich with contact`, `AI: Warm up prospect` |
 | `:40 * * * *` | `hit_list_promote_status.py warmup-aged-out` | Aged-out Warmup → Manager Follow-up promotion (initially gated `if: false`). | `AI: Warm up prospect` (AU≥1, AV=0, last warmup >14d) | `Manager Follow-up` |
 | `:20 * * * *` | `field_agent_location_places_pull.py` | Pulls Place Details for new field-agent-logged locations. | other sheet (Recent Field Agent Location) | appends new `Research` rows to Hit List |
-| `:35 * * * *` | `hit_list_enrich_contact.py` | Enrich queue + fill-gap sweep. | `AI: Enrich with contact` (queue) + any row with field gaps | `AI: Email found` / `AI: Contact Form found` / `AI: Enrich — manual` |
+| `:35 * * * *` | `hit_list_enrich_contact.py` | Enrich queue + fill-gap sweep. | `AI: Enrich with contact` (queue) + any row with a **fillable** field gap (primary fields / `Monday Open`; the `Google listing` exception flag is excluded) minus rows already at `FILL_ATTEMPT_LIMIT` | `AI: Email found` / `AI: Contact Form found` / `AI: Enrich — manual` / `AI: Fill — manual` |
 | `:50 * * * *` | `detect_circle_hosting_retailers.py` | Site crawl, Hosts Circles writeback, Research promotion + rescue + reject. | `Research`, `AI: No fit signal`, legacy `AI: Photo rejected` | `AI: Warm up prospect` / `AI: Enrich with contact` / `AI: No fit signal` |
 | Manual | `discover_apothecaries_la_hit_list.py` | Nearby Search across centroids → appends new `Research` rows. | — | new rows with Status=`Research` |
 | Manual | `suggest_warmup_prospect_drafts.py` | Creates Gmail drafts for `AI: Warm up prospect` rows with Email. | `AI: Warm up prospect` | _none_ (drafts only — appends rows to `Email Agent Drafts` for review) |
@@ -240,6 +251,7 @@ signal to drop the unflagged tier to fully auto-send.
 ## Anti-patterns / common gotchas
 
 - **A row stuck in `Research` with no Website**: `detect_circle_hosting_retailers.py` skips rows without a Website, so they never get qualified. Operator should backfill Website manually (or run a discovery script that finds it).
+- **The fill-gap sweep re-paid for the same rows every hour (`filled=0`, `no_fill_streak=10`)**: two separate causes, both fixed in go_to_market#191. (a) `Google listing` is an **exception flag**, not a data field — `google_listing_from_business_status()` returns a value only for a *closed* business and `""` for `OPERATIONAL`, so an empty cell is the *correct* value for a healthy retailer. It used to count as a gap, which made every open business permanently unfillable and let the streak bail the whole sweep before reaching rows with real gaps; the sweep now selects on fillable gaps only. (b) The sweep wrote nothing on a failed fill, so it had no memory of failure and re-selected the same rows forever; it now persists `[fill-attempts=N]` in Notes and parks the row at `AI: Fill — manual` after `FILL_ATTEMPT_LIMIT`.
 - **A row in `AI: Email found` with empty Email**: `email-to-warmup` skips it. Either the email got cleared by accident (recoverable: edit Email cell, next cron picks it up) or Enrich set the wrong status (rare).
 - **A row in `AI: Warm up prospect` for weeks with no draft**: `suggest_warmup_prospect_drafts.py` is manual-trigger-only. Operator should run it explicitly. After running it, run `preview_warmup_drafts.py` to triage the batch before opening Gmail. Rows that have been warmed up but received no reply for >14 days (AU≥1, AV=0) are auto-promoted to `Manager Follow-up` by `hit_list_promote_status.py warmup-aged-out`, where `suggest_manager_followup_drafts.py` picks them up. The previous "stays in Warmup forever" dead-end no longer exists.
 - **A draft sitting at `pending_review` for days**: review with `preview_warmup_drafts.py`; the draft is in the operator's Gmail under label `AI/Warm-up`. If the linter flags it red and you don't trust the copy, edit in Gmail or delete the draft (next cron will re-suggest after the cadence window).
