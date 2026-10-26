@@ -52,6 +52,46 @@ Everything else — flavanols, theobromine, cadmium *if* it turns out to be unre
 | **Coopercabruca membership** | Oscar agreed to join **2026-10-09**; beans move through the coop's MAPA + NF-e (per `OPEN_FOLLOWUPS.md`) | The coop may be the **exporter of record** that makes GACC registration tractable |
 | **CIC relationship potential** | Only MAPA-accredited cacao lab in Brazil; publishes on bioactive ↔ sensory in Bahian cocoa | Not yet engaged |
 
+### 1.1 The AGL4 heavy-metal results in full — and how much of Phase 1 they already answer
+
+These were already run. Read the actual numbers before spending on more metal testing.
+
+**Report:** `LAP-339.2025.B - V.0` · issued **07/07/2025** · Type B report · metals run by external provider via **ICP-MS**, AOAC methods · signed **Adriana Cristina Reis Ferreira, CRBio-BA 85939/05-D** · verification code `0197d58b-11e5-76e4-9181-3931dfce311a`
+
+**Sample:** "NIBS DE CACAU" / "Amêndoa de Cacau Processada - Nibs de cacau", collected **09/06/2025 12:15** in **Ilhéus/BA**, collector Diego Santana, conferring officer Adriana Reis
+
+| Parameter | Result | ANVISA IN 160 limit | GB 2762 (China) | Headroom vs China |
+|---|---|---|---|---|
+| **Arsenic (total)** | **< 0.025 mg/kg** | ≤ 0.400 mg/kg | — | — |
+| **Cadmium (total)** | **< 0.025 mg/kg** | ≤ 0.300 mg/kg | **unresolved for cocoa** (§3) | — |
+| **Lead (total)** | **< 0.025 mg/kg** | ≤ 0.400 mg/kg | **0.5 mg/kg** | **≥ 20× below** |
+| **Copper (total)** | **9.86 mg/kg** | N.A. | — | — |
+
+All three regulated toxic metals are reported as **below the limit of quantification (L.Q. 0.025 mg/kg)** — i.e. not detected at the reporting threshold.
+
+**What this means, stated plainly:**
+
+- The "are we shippable on metals" question is **largely answered in our favour**. Against China's 0.5 mg/kg lead limit we have at least **20× headroom**; against ANVISA's 0.300 mg/kg cadmium limit, at least **12×**.
+- **Metal testing moves from exploratory to confirmatory.** Phase 1 keeps a metals line only because we will eventually test *powder* and a *different lot* (§1.2), not because the metal question is open.
+- A `<0.025` result is strong but **coarse**. It says "well under every limit we care about," not "fully characterised." If a premium buyer wants a lower LOQ, that is a re-test at a different lab spec, not a problem with the cacao.
+- **Copper at 9.86 mg/kg** is a nutrition figure, not a contamination one — and it is directly relevant to CIC's 2026 work establishing the first ideal Cu ranges for Southern Bahia soils.
+
+### 1.2 Two gaps this report exposes — the first one is strategically serious
+
+**Gap A — the certificate does not name the farm.**
+
+The report names the **requester** as `Black King` (contact Matheus Reis Pereira), the matrix as `Nibs de cacau`, and an address on Avenida Tancredo Neves, Ilhéus/BA — **a commercial address, not Oscar's farm**. Nowhere on the certificate does "Oscar" or a farm name appear. The `AGL4 → Oscar's farm` mapping lives in **our own internal records**, not in the notarised document.
+
+> **Why this matters more than it sounds:** this plan's core selling proposition in China is *per-unit auditable provenance* (§5.1). A lab certificate that cannot itself identify the farm is materially weaker than the story requires — a Chinese importer asking "prove this is that farm's cacao" would get our internal mapping, not the laboratory's word.
+
+**Fix (cheap, forward-looking):** for all future sampling, require **farm name + plot/quadra + harvest vintage** on the chain-of-custody at intake, so the laboratory prints it. Retroactively, `LAP-339.2025.B` cannot be amended — it can only be paired with our internal lineage record and a documented explanation.
+
+**Gap B — it is nibs, not powder.**
+
+Cadmium and other metals **concentrate with cocoa-solids content**. A clean nibs result does **not** automatically transfer to cocoa powder or to a high-percentage chocolate bar, because those are different matrices at different solids concentrations. Any powder claim requires a powder-lot test.
+
+**Net effect on Phase 1:** B3 (metals) drops from "discovery" to "confirm on powder". The genuine unknowns remain **B1 flavanols at DP 1–10**, **B2 epicatechin**, **B4 ochratoxin A**, **B5 theobromine/caffeine**, and later **C1 pesticide residues** — none of which this report covers.
+
 ---
 
 ## 2. The discovery list — what we actually need to find out
