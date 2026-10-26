@@ -116,7 +116,7 @@ The Blueprint powder pouch carries a PDF certificate. **Our bags carry a QR code
 
 | # | Action | Owner | Why now |
 |---|---|---|---|
-| 1 | **Commission one CIC laudo on one representative lot**: total cocoa flavanols, (−)-epicatechin, Pb/Cd/As/Hg, microbial, fermentation index | Gary → `cic@pctsul.org` | One panel answers whether Lane B exists at all. Everything else is speculation until this number lands |
+| 1 | **Commission one CIC laudo on one representative lot**: total cocoa flavanols **and flavanols at DP 1–10** (the EU claim's exact spec), (−)-epicatechin, Pb/Cd/As/Hg, microbial, fermentation index | Gary → `cic@pctsul.org` | One panel answers whether Lane B exists at all. Everything else is speculation until this number lands |
 | 2 | **Ask CIC for their publication list** in the same email (they have none public but surely have one internally) | Gary | Free, and closes the original question properly |
 | 3 | **Design the COA format** to hang off the existing QR lineage record — per-bag, not per-brand | Sophia | Turns our QR infrastructure into a moat before a competitor builds one |
 | 4 | **Draft Lane B positioning language** in compliant structure/function terms, ready to use the moment a number exists | Sophia + CMO framing | Avoids post-hoc claim scrubbing |
@@ -128,3 +128,90 @@ The Blueprint powder pouch carries a PDF certificate. **Our bags carry a QR code
 ## 8. One-paragraph summary
 
 The quantified-health world has quietly written a spec for cacao: measurable flavanols, no alkali processing, tested heavy metals, published certificate. We currently sell a product that probably meets that spec on *craft* and provably meets it on *nothing*, because we have never measured it. A single lab panel from the one MAPA-accredited cacao lab in Brazil — an institution already sitting in Ilhéus publishing on bioactive compounds in Bahian cocoa — would convert an unrankable ceremonial product into a certifiable functional input, attachable to a specific bag via a QR code that no powder pouch can match. That is the shortest honest path from ritual commerce into the biohacking economy, and it serves the mission because a certified, premium-priced Brazilian cacao lot is what makes 10,000 hectares of Amazonian agroforestry pencil out for the farmer.
+
+---
+
+## 9. Evidence review — Peter Gwee's functional-health notes (2026-10)
+
+Peter Gwee sent Chinese-language notes on cacao as a functional-health input. Treated as **data to be tested**, not instructions. Two of his three rows hold up; one is wrong in a way that would have corrupted product selection.
+
+| His row | Verdict |
+|---|---|
+| **纯度与品类** — only non-alkalized cocoa powder or 70%+ dark chocolate contains enough flavanols | **Half right. The percentage rule is wrong.** |
+| **加工工艺** — avoid Dutching; alkali destroys 60–90% of flavanols | **Correct**, range defensible |
+| **起效方式** — chronic vascular conditioner, needs weeks; not like Viagra in 30 min | **Directionally right, duration overstated** |
+
+### 9a. The cocoa-percentage fallacy — the one thing to correct
+
+Peter's instinct (non-alkalized, or "serious" dark chocolate) is directionally sound, but **"70%+" is not a proxy for flavanols at all.** A University of Reading analysis of **41 commercial brands** found:
+
+- **No correlation** between labelled cocoa-solid percentage and total flavanols, epicatechin, or catechin
+- The **90% cocoa sample did not contain the most (−)-epicatechin** — it was similar to a 50% sample
+- Bars with the *same* labelled cocoa percentage often had *varying* epicatechin levels
+- Flavanol content ranged **0.095 → 3.264 mg/g** across the 41 brands
+- Milk chocolate mean 0.703 mg/g vs dark 1.156 mg/g (the milk/dark split holds; the percentage split does not)
+
+The commercial spread is worse than that implies: measured flavanol content across commercial dark chocolate spans roughly **2.4 mg to 309 mg per 40 g serving** — a ~130-fold range — while both products may legally say "70% dark chocolate." There is **no regulatory requirement to declare flavanol content.**
+
+**Correct purchasing rule, complete:** (1) non-alkalized, and (2) a *measured and declared* flavanol number. Nothing else. Cocoa percentage is marketing.
+
+(Industry commentary that "higher cacao % means more flavanols, all else equal" is technically true **within one producer's line** and useless as a cross-brand rule — "all else equal" never holds, which is exactly what the Reading data show.)
+
+Peter is right on the rest: milk chocolate, cocoa-butter substitutes, and high-sugar/high-fat formats carry negligible flavanols, and the sugar/fat load works against the vascular benefit.
+
+### 9b. Roasting — the loss path Peter missed
+
+He correctly flags alkalization as the dominant flavanol destroyer (60–90%; Blueprint's own figure is ~60%, reviews say up to 90%). But **roast profile is the second driver and is routinely ignored.**
+
+A Taiwanese study (Chia-Nan University of Pharmacy & Science — *可可豆烘焙程度對巧克力黃烷醇、風味成分及保健功效的影響*) measured flavanols by HPLC across DP1–DP10:
+
+| Roast | Total flavanols | DPPH (mg TE/g) | ABTS (mg TE/g) |
+|---|---|---|---|
+| 110 °C / 15 min | **45.87 ± 1.82 mg/g** | 19.89 | 22.95 |
+| 150 °C / 35 min | **18.51 ± 0.64 mg/g** | 11.17 | 11.35 |
+
+That is a **~60% flavanol loss from roast profile alone**, with a parallel collapse in antioxidant activity. Their conclusion: low-temperature, short-duration roasting (110 °C / 15 min) best preserves flavanols.
+
+**Directly actionable for us.** Our production is already low-temperature stone-ground. If we document our roast curve, we have an *a priori* flavanol-retention argument before spending a dollar on HPLC — and a defensible differentiator against commodity processors who roast hot because it tastes smoother and sells easier. The same trade-off Peter identifies for alkalization applies to heat.
+
+### 9c. Onset kinetics — Peter is too pessimistic on the acute phase
+
+His "weeks, not minutes" framing **understates the acute effect**. The Flaviola Health Study (Sansone et al., *Br J Nutr*; n=100 healthy adults 35–60y; 450 mg cocoa flavanols twice daily, double-masked RCT, NCT01799005) found flow-mediated dilation — the gold-standard endothelial surrogate — improved versus control:
+
+- **+0.7 percentage points at 2 hours**
+- **+1.2 percentage points at 1 month**
+
+And a 2007 study (`10.1097/fjc.0b013e31802d0001`, 207 citations) showed a *sustained* FMD increase after just **one week** of daily high-flavanol cocoa. Supporting dose-response work: Sun et al. 2019 meta-analysis (78 citations) confirms significant FMD improvement with an optimal dose range.
+
+**Correct statement:** *an acute vascular effect is measurable within 1–2 hours; the full benefit accumulates over ~2 weeks to 1 month of consistent daily intake and plateaus.* Both of Peter's halves exist — he just dropped the fast one.
+
+Note this also means the effect is **measurable in a single afternoon** — which makes a cheap, honest, self-administered FMD or BP pilot genuinely feasible.
+
+### 9d. The use case he's circling, named honestly
+
+The Viagra comparison is not incidental. Endothelial nitric-oxide function is the shared pathway between cardiovascular health and erectile function, and FMD is a validated surrogate for endothelial function — so the *mechanism* is genuinely plausible for sexual health.
+
+But: **the evidence is absent.** There is no adequate RCT of cocoa flavanols for erectile dysfunction. My search surfaced a "Cocoa for erectile dysfunction" page hosted on a Stanford open-journal install — it is a predatory/spam submission, **not a citable source**, and should be discarded.
+
+**Position:** mechanism-plausible, evidence-absent. Marketable as a vascular/endothelial product using the authorised EU wording; **not** marketable as an ED product, in any jurisdiction, on current evidence. This is the lane where a claim would outrun the data faster than anywhere else in the category — and where regulators and journalists are most motivated to check.
+
+### 9e. On the Chinese-institute angle
+
+Peter's notes are framed around what a 药物研究所 (pharmacological research institute) would want from cacao, and reference "中国医学研究所." Two caveats:
+
+1. **"中国医学研究所" is not a resolvable institution.** The real bodies are 中国医学科学院 (CAMS) and 中国疾病预防控制中心营养与健康所. If he has a specific lab in mind, we need the actual name before treating it as a partner or a citation.
+2. **No mainland-China cacao-flavanol research programme surfaced.** What did surface is a legitimate, detailed **Taiwanese** programme (Chia-Nan University of Pharmacy & Science, §9b) with real HPLC data — a usable lab contact in the Sinophone research world. China is a small and emerging cacao *producer* (Hainan, Yunnan) and a large importer, not a research leader here.
+
+**Regulatory warning — do not port the EU claim to China.** China requires 保健食品 ("blue-hat") registration for health-function claims; EU Art. 13(5) wording has no standing there, and the registration pathway is long and product-specific. Any Chinese-facing material must be built from scratch under 保健食品 rules. For mainland sale as a *food* (not a registered health food), avoid any stated health function.
+
+**Strategic note, though:** Peter's framing points at something real. China has almost no ceremonial-cacao culture and a much stronger cultural response to *health-function* framing than to *spiritual* framing. If Lane B ever goes international, the Sinophone market is where the measured-input lane leads and the ritual lane does not travel.
+
+### 9f. Net changes to the plan
+
+1. **Add DP 1–10 to the CIC lab request** — the EU authorised claim is specified on flavanols of polymerisation degree 1–10, not on "total flavanols." Measuring only total flavanols can leave the claim unusable.
+2. **Document the roast curve.** Free flavanol-retention evidence we probably already have.
+3. **Target: ≥200 mg flavanols (DP 1–10) per ~2.5 g of powder.** That is the threshold at which the only legally authorised claim in the category becomes available to us.
+4. **Drop cocoa-percentage language entirely** from any Lane B material — it is indefensible and a knowledgeable buyer will use it against us.
+5. **Kill any ED-adjacent framing now**, before it reaches copy.
+6. **Align with Peter on the two things he got right** — non-alkalized sourcing and chronic dosing — and correct the percentage rule gently. His notes are a good starting frame; they just need the two adjustments above.
+

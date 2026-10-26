@@ -84,7 +84,25 @@ Assembled separately because **the CIC does not publish in this lane** — its o
 | 2010 | Dose-related effects of flavanol-rich cocoa on blood pressure | J. Human Hypertension | 80 | `10.1038/jhh.2009.105` |
 | 2021 | Blood-pressure-lowering effects of cocoa flavanols in diabetes mellitus: systematic review & meta-analysis | J. Functional Foods | 14 | `10.1016/j.jff.2021.104399` |
 
-**Mechanism:** flavanols increase nitric-oxide bioavailability → endothelium-dependent vasodilation. This is the pathway with a defensible regulatory hook (EFSA has evaluated cocoa-flavanol claims in this area; **verify exact authorized wording and minimum dose before any label use** — the 2010 opinion rejected the blood-pressure and lipid claims).
+**Mechanism:** flavanols increase nitric-oxide bioavailability → endothelium-dependent vasodilation.
+
+### 3a-bis. The authorised health claim — the most valuable asset in this category
+
+There is exactly one **legally authorised** cocoa-flavanol claim in the EU, and it is unusually usable. Commission Regulation (EU) No 851/2013 (amending 432/2012), Art. 13(5), granted on Barry Callebaut proprietary data:
+
+> **"Cocoa flavanols help maintain the elasticity of blood vessels, which contributes to normal blood flow."**
+
+Conditions of use, verbatim from the EU health-claims register:
+- Consumer must be informed the benefit is obtained with **200 mg cocoa flavanols/day**
+- Usable only for **cocoa beverages (with cocoa powder)** or **dark chocolate** providing ≥200 mg/day
+- The flavanols must be **degree of polymerisation 1–10**
+- Also permitted for capsules/tablets of high-flavanol cocoa extract
+
+EFSA's equivalence (2014 opinion, `EFSA Journal 2014;12(5):3654`): 200 mg cocoa flavanols ≈ **2.5 g high-flavanol cocoa powder**, ~10 g high-flavanol dark chocolate, or 0.25–0.67 g cocoa extract.
+
+**Why it matters commercially:** it names *cocoa powder* explicitly, needs only ~2.5 g per serving, and requires 200 mg of an actually-measurable quantity. It is the only claim in this space that a lawyer will defend.
+
+**Do not conflate this with the rejected claims.** EFSA's 2010 opinion (`10.2903/j.efsa.2010.1792`) declined the **blood-pressure** and **lipid-oxidation** wordings. The authorised claim concerns vasodilation / blood flow only. Any blood-pressure claim remains unauthorised in the EU despite strong trial evidence.
 
 ### 3b. Cognition — mixed, and this matters commercially
 
