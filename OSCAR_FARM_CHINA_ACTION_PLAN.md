@@ -2,7 +2,7 @@
 
 **Written for:** Gary Teh · **By:** Sophia Truesight (autopilot) · **Date:** 2026-10
 **Question asked:** What must we discover to uniquely position Oscar's farm cacao for the Chinese market — and is there a 中国医学研究所 equivalent that can take a CIC lab test and translate it into TCM terms?
-**Companions:** `CACAO_IN_QUANTIFIED_BIOHACKING.md` · `CACAO_RESEARCH_BIBLIOGRAPHY.md` · `LAB_REPORT_TRANSLATION.md`
+**Companions:** `CACAO_TCM_APPLICATION.md` · `CACAO_IN_QUANTIFIED_BIOHACKING.md` · `CACAO_RESEARCH_BIBLIOGRAPHY.md` · `LAB_REPORT_TRANSLATION.md`
 
 ---
 
@@ -38,6 +38,15 @@ This is **Task A1** below. It is free to answer and it settles the whole TCM que
 | **1** | **GACC Decree 248** (effective 2022-01-01) | Every overseas food **manufacturer, processor and storage facility** exporting to China must register with the General Administration of Customs. The **China Registration Number must be printed on both inner and outer packaging**. Registration is only valid for the specific HS + quarantine-code combination registered. | Cocoa is not in GACC's Group 1 (the 18 categories needing home-authority recommendation, e.g. meat/dairy/aquatic); it most likely falls in **Group 2 — self-application**. **Verify before assuming.** |
 | **2** | **GB 2762** 食品中污染物限量 | For **可可制品、巧克力和巧克力制品以及糖果**: **lead 0.5 mg/kg (as Pb)**, **arsenic — no limit**, **cadmium — no limit**. Verified against both the 2022 text and the 2025 revision. | **RESOLVED — China sets no cadmium limit for cocoa.** See §3. |
 | **3** | **GB 2763** 食品中农药最大残留限量 | China's pesticide MRL standard, ~2,000+ limits, far broader than most origins expect. | **We have never run a residue panel.** Genuine detention risk. |
+
+**A fourth gate, added 2026-10 — aflatoxin is not currently tracked in this plan.**
+
+The plan carries OTA (§1.2, B4) and heavy metals, but **no aflatoxin B1 line**, and China enforces this one hard. In 2021 a Kellogg's cocoa cereal import tested at **31.9 μg/kg** B1 against GB 2761's **20 μg/kg** limit and drew **¥18.37m in fines, ¥450k illegal proceeds seized, and 27,672 boxes confiscated**. The regulator identified the mechanisms as contaminated raw material, poor production hygiene, and — directly relevant to us — **"包装密封不严、储运条件控制不当"** (inadequate packaging seal, improper storage/transport control).
+
+Brazil → China is a long, humid, containerised journey on a susceptible commodity. Given metals already test `<0.025 mg/kg` with ≥20× headroom against China's lead limit, **aflatoxin is plausibly the larger real exposure** — while in the EU the same cacao is a cadmium story.
+
+- **Unchecked:** whether GB 2761 carries a 可可制品-specific B1 row. The Kellogg's case applied the 玉米制品 limit because 可可球 is a cereal matrix, so the applicable row for cocoa is **not established**.
+- **Action:** free desk check (item 3 of `CACAO_TCM_APPLICATION.md` §10), then aflatoxin B1 + moisture on actual lots plus Oscar's storage/transit protocol.
 
 Everything else — flavanols, theobromine, and **cadmium and arsenic, which GB 2762 does not limit for cocoa at all** (§3) — is **differentiation**, not permission. The gates above are permission.
 
@@ -160,6 +169,21 @@ So we never have to invent a bridge between the two markets — **one true thing
 #### Still open
 
 The three-part question put to our China-side contact returned **Q1 and Q2 researched; Q3 unanswered** — namely what is actually *sayable* as 普通食品 versus 保健食品, and whether **地方特色食品** or narrative on-pack copy offers a narrow lawful path. That is now the last positioning question standing.
+
+### 1.4 A1 addendum — TCM re-enters as a *formulation framework*, not a claim
+
+§1.3 above is correct and is not reopened: there is no 药典 entry, the folk 性味归经 is unsourced and must never be cited, and TCM cannot be a regulatory unlock or a health claim in China.
+
+But §1.3 answered only *"can TCM be a claim?"* It left a narrower question open: **can TCM enter through the recipe instead of the label?**
+
+It can, via **配伍** (formulation pairing) and **炮制** (processing) — both recipe activities, and a recipe is not a claim. Cocoa is not 药食同源; its classic partners are; and 普通食品 may legally contain 药食同源 ingredients. So TCM can drive the formulation while the pack carries only verifiable facts.
+
+Full framework in **`CACAO_TCM_APPLICATION.md`**. Two constraints carry over and are absolute there:
+
+- The §1.3 rule still binds — 性味 derivation stays internal, never on a pack.
+- §7 do-not #7 still holds — **do not lead the China pitch with TCM.** Lead with compliance and provenance. TCM is a formulation brief and a 1:1 conversation layer, not a pitch.
+
+The 药食同源 partner membership is **verified**; the 性味/归经 derivation and the 证→product matrix are **sophia synthesis and need practitioner review** before leaving the design brief.
 
 ---
 
