@@ -132,7 +132,9 @@ workflow   .github/workflows/hit_list_enrich_contact.yml
 schedule   cron: "35 * * * *"   (hourly at :35 UTC)
 script     scripts/hit_list_enrich_contact.py
 cache PAT  PLACES_CACHE_PAT is present in the workflow env: block  (good — see PR #99)
-budget     --limit 10  +  --fill-gaps-limit 50   =  up to 60 live Details calls / run
+invocation python3 scripts/hit_list_enrich_contact.py --limit "$LIMIT"
+           ($LIMIT = 10 on cron; --fill-gaps-limit is NOT passed)
+budget     --limit 10, and --fill-gaps-limit falls back to its argparse DEFAULT of 20
 ```
 
 **The fingerprint that proves it.** Hourly `Details.Http` over a 3-day window showed
@@ -149,31 +151,45 @@ isolated bursts, not 24 even ticks:
 2026-10-25T23:00    2
 ```
 
-**60 = `--limit 10` + `--fill-gaps-limit 50`.** The hourly cron runs 24×/day but only
-spends calls when rows are queued to enrich, so cost arrives in 30–60 bursts, 2–3 per day.
+**30 = `--limit 10` + fill-gaps `20` (the default).** The hourly cron runs 24×/day but
+only spends calls when rows are queued to enrich, so cost arrives in 30–60 bursts, 2–3
+per day. The **60** bursts are the other branch of the same loop — see below.
 
-### Why the cache doesn't absorb it
+### The attempt cap is the real ceiling (and the real gotcha)
 
-The cache **is** working — `TrueSightDAO/places-cache` received 23 commits in the
-two weeks to 2026-10-25, latest push `2026-10-25T12:58Z`. But
-`--fill-gaps-limit` deliberately targets Hit List rows that **lack** a `place_id`
-(later: contact/website gaps), so each such row is a **cache miss by definition** —
-there is no `place_id` key to look up yet. That is the structural reason daily spend
-persists: the pipeline is backfilling a large backlog of un-enriched rows, not
-re-reading the same places.
+```python
+fill_cap         = args.fill_gaps_limit      # default 20
+fill_attempt_cap = max(fill_cap * 3, 50)     # <-- the max(..., 50) FLOOR
+```
 
-### Other Places callers (not the daily driver)
+`fill_attempt_cap` bounds how many rows the sweep will *scan* looking for fillable ones.
+Because of the `max(..., 50)` floor, **lowering `--fill-gaps-limit` changes very little**:
 
-| Script | Calls | Cached? |
-|---|---|---|
-| `places_cache.py` | the cache module itself | — |
-| `google_places_lookup.py` | FindPlaceFromText | via shim → cache |
-| `discover_apothecaries_la_hit_list.py` | Nearby + Details | via cache |
-| `hit_list_extract_email_gemini.py` | Details | via cache |
-| `backfill_instagram_la_discovery.py` | Details | via cache |
-| `hit_list_research_photo_review.py` | FindPlace + **Place Photos** | manual only (cron removed) |
+| `--fill-gaps-limit` | `fill_cap` | `fill_attempt_cap` | worst-case live calls/run |
+|---|---|---|---|
+| 50 | 50 | 150 | ~160 |
+| **20 (current default)** | **20** | **50** | **~60** |
+| 10 | 10 | 50 (floor) | ~60 |
+| 5 | 5 | 50 (floor) | ~60 |
+| 0 (`--no-fill-gaps`) | 0 | sweep disabled | ~10 |
 
-Full table in `PLACES_API_CACHING.md`.
+So the two observed burst sizes are the two branches of one loop: **30** = 10 contact rows
++ 20 fills (clean run); **60** = 10 contact rows + 50 attempts (many rows scanned).
+**To actually bound spend you must change the `max(..., 50)` floor**, not just the flag.
+
+### What the cache does and does not absorb
+
+The cache **is** working — `TrueSightDAO/places-cache` received 23 commits in the two weeks
+to 2026-10-25, latest push `2026-10-25T12:58Z`.
+
+Crucially, `--resolve-missing-place-id` is **OFF by default**, so the fill sweep **skips**
+rows with no `place_id` (`fill_skipped += 1; continue`) instead of resolving them. The sweep
+therefore only touches rows that **already** have a `place_id` — and those **are**
+cache-absorbable. So the cache does help here.
+
+Residual live spend is the ~10 contact-enrich rows (website/contact work, not always
+cacheable) plus the attempt-cap scan overhead. This is **not** a structural cache-miss
+problem — the cache design is sound.
 
 ---
 
