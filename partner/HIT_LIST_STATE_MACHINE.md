@@ -23,7 +23,7 @@ fast-tracking to warm-up (`AI: Warm up prospect` directly when the
 Email column is already populated), and from Enrich for manual triage
 (`AI: Contact Form found` / `AI: Enrich — manual`).
 
-**Two states are terminal operator endpoints** (cron never moves them):
+**Three states are terminal operator endpoints** (cron never moves them):
 `AI: Contact Form found` / `AI: Enrich — manual` / `AI: Fill — manual` — see
 [Manual triage states](#manual-triage-states).
 
