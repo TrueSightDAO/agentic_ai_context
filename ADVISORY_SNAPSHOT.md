@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-10-25T21:04:57Z`
-- Look-back: **7** calendar days (`2026-10-18` → today UTC)
+- Generated (UTC): `2026-10-26T05:08:31Z`
+- Look-back: **7** calendar days (`2026-10-19` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -32,18 +32,12 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[TREE PLANTING EVENT]` × 40
-- `[CONTRIBUTION EVENT]` × 2
+- `[TREE PLANTING EVENT]` × 33
+- `[CONTRIBUTION EVENT]` × 8
+- `[PRACTICE EVENT]` × 1
 
 ### Latest entries
 
-- `Edgar_20261025122321_2692` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261025122330_2694` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261025122339_2696` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Criolla
-- `Edgar_20261025122344_2698` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Criolla
-- `Edgar_20261025122347_2700` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Criolla
-- `Edgar_20261025122352_2702` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261025122358_2704` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
 - `Edgar_20261025122405_2706` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Criolla
 - `Edgar_20261025122411_2708` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
 - `Edgar_20261025122417_2710` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Criolla
@@ -57,6 +51,13 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20261025122511_2726` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
 - `Edgar_20261025122752_2728` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Telegram scoring pipeline restored: empty-config post-mortem + diagnose URL …
 - `Edgar_20261025122755_2730` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Set XAI_API_URL / OPENAI_API_URL and validated row-level scoring (rowIndex 1…
+- `Edgar_20261026010751_2732` · **Edgar** · [CONTRIBUTION EVENT] Amount: 15 · Contributor(s): Gary Teh · Description: Closed the loop with Vista Flow / Francine Borba on the fee agreement and pa…
+- `Edgar_20261026010809_2734` · **Edgar** · [CONTRIBUTION EVENT] Amount: 5 · Contributor(s): Gary Teh · Description: Follow-up exchange with Julio Almeida (continuing the store-locator / 'store…
+- `Edgar_20261026011515_2736` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-26T01:15:12.610Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20261026015046_2738` · **Edgar** · [CONTRIBUTION EVENT] Amount: 10 · Contributor(s): Gary Teh · Description: Explained / walked through a topic with Lawrence Kwek (contact thread captur…
+- `Edgar_20261026020404_2740` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Contributor(s): Gary Teh
+- `Edgar_20261026020414_2742` · **Edgar** · [CONTRIBUTION EVENT] Amount: 1 · Contributor(s): Sophia Truesight · Description: Read-only verification pass of the 2026-10-26 Gary Teh CONTRIBUTION EVENT (1…
+- `Edgar_20261026032555_2744` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Shared Próspera entity documents with counterparty exploring DAO infrastruct…
 
 ---
 
@@ -231,9 +232,9 @@ _(+34 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$2,466.05**
+- USD on hand: **$2,466.00**
 - Brazilian Reis: R$130.00 · rate `0.2323` USD/BRL → ≈ **$30.20**
-- USD provisioned for voting-rights cash-out: **$57.15**
+- USD provisioned for voting-rights cash-out: **$57.19**
 
 ### In-transit freight (0 rows)
 
@@ -248,7 +249,7 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_(No `YYYY-MM-DD |` lines on/after 2026-10-18 in CONTEXT_UPDATES.md.)_
+_(No `YYYY-MM-DD |` lines on/after 2026-10-19 in CONTEXT_UPDATES.md.)_
 
 ---
 
@@ -267,6 +268,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-10-18 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+39d2309 | 2026-10-25 21:09:37 +0000 | chore(stats): refresh stats indexes [skip ci]
 02a9ae4 | 2026-10-25 16:44:05 +0000 | chore(stats): refresh stats indexes [skip ci]
 1d93eb5 | 2026-10-25 11:56:10 +0000 | chore(stats): refresh stats indexes [skip ci]
 57323e3 | 2026-10-25 05:10:02 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -294,10 +296,6 @@ f59855c | 2026-10-20 02:09:40 -0300 | qr page: show a visible placeholder when t
 3b633ce | 2026-10-19 22:35:28 +0000 | chore(stats): refresh stats indexes [skip ci]
 5039d76 | 2026-10-19 13:51:08 +0000 | chore(stats): refresh stats indexes [skip ci]
 74a7926 | 2026-10-19 05:11:25 +0000 | chore(stats): refresh stats indexes [skip ci]
-10c4b40 | 2026-10-18 20:58:34 +0000 | chore(stats): refresh stats indexes [skip ci]
-5e5f96f | 2026-10-18 16:05:16 +0000 | chore(stats): refresh stats indexes [skip ci]
-4699315 | 2026-10-18 11:36:54 +0000 | chore(stats): refresh stats indexes [skip ci]
-e9179ce | 2026-10-18 05:02:19 +0000 | chore(stats): refresh stats indexes [skip ci]
 ```
 
 ### `market_research` → `go_to_market`
@@ -309,6 +307,11 @@ e9179ce | 2026-10-18 05:02:19 +0000 | chore(stats): refresh stats indexes [skip 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+f81c385 | 2026-10-26 13:02:03 +0800 | docs: add Stage-2 liveness caveat to CONTRIBUTION_LEDGER_PIPELINE (#1717)
+0cf755f | 2026-10-26 10:09:10 +0800 | Document the 3-stage contribution → ledger pipeline (#1715)
+d61648a | 2026-10-26 07:31:56 +0800 | Record LVSS Brazil-entity agreement + file the USD 2,500 TDG payment deadline (#1714)
+ca0df39 | 2026-10-26 05:05:26 +0800 | chore(previews): refresh Beer Hall preview (2026-10-25 UTC)
+ea18d9f | 2026-10-26 05:05:24 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-25 UTC)
 e82bf20 | 2026-10-25 20:37:37 +0800 | supervisor: update drain-recovery claim -- archived channel, outage still live (#1713)
 5aa71a0 | 2026-10-25 19:47:29 +0800 | supervisor: claim #contribution-drain-recovery thread (#1712)
 c833163 | 2026-10-25 19:44:37 +0800 | supervisor: claim #agroverse-content-marketing thread (#1711)
@@ -344,11 +347,6 @@ dfca684 | 2026-10-23 02:11:41 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT
 d7c7e8d | 2026-10-22 20:50:04 -0300 | conventions: point at OPERATING_INSTRUCTIONS §9a for shipping (link only, no restatement) (#1695)
 002b2f4 | 2026-10-22 20:48:20 -0300 | §9a: live-render verification for ALL static-site repos (supersedes #1689) (#1692)
 4abc022 | 2026-10-22 18:51:07 -0300 | chore(previews): refresh Beer Hall preview (2026-10-22 UTC)
-6ab1d1b | 2026-10-22 18:51:05 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-22 UTC)
-ba055cf | 2026-10-22 01:41:36 -0300 | Correct TrueTech Inc address to Taraval St across conventions + file signed-agreement follow-up (#1688)
-91d5b4f | 2026-10-21 21:41:57 -0300 | followups: autopilot pre-push gate uses wrong interpreter (phantom TDG failures) (#1687)
-972d56b | 2026-10-21 18:53:53 -0300 | chore(previews): refresh Beer Hall preview (2026-10-21 UTC)
-56c54d0 | 2026-10-21 18:53:51 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-21 UTC)
 … (truncated)
 ```
 
@@ -411,12 +409,13 @@ cff25e2 | 2026-10-20 09:05:05 +0000 | chore: refresh partners-velocity snapshot 
 a338f62 | 2026-10-19 13:58:58 +0000 | chore: refresh partners-velocity snapshot [skip ci]
 701b6cb | 2026-10-19 13:56:49 +0000 | chore: refresh currencies.json [skip ci]
 1b79671 | 2026-10-19 13:23:03 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
-6f23e47 | 2026-10-18 11:42:26 +0000 | chore: refresh currencies.json [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
 
 ```
+28202ab | 2026-10-26 10:02:00 +0800 | blog(ep13): hero now shows two visible faces (#352)
+956f033 | 2026-10-26 07:17:51 +0800 | blog(ep13): restore people, using only frames where no face is identifiable (#351)
 6644746 | 2026-10-26 01:01:52 +0800 | blog(ep13): replace people-containing photos with people-free frames (#350)
 6bc6406 | 2026-10-25 21:01:47 +0800 | blog: Bean to Bliss Episode 13 — Three Farms, Eleven Days (#349)
 55f1e37 | 2026-10-25 17:01:44 +0800 | Bump Paulo ceremonial cacao 200g retail price $25.00 -> $30.00 (#348)
@@ -526,7 +525,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
 | 2026-10 | 137 | 18621.34386 | 10/25/2026 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-10-18`; scanned last **600** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-10-19`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
