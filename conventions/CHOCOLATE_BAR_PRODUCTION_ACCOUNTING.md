@@ -356,7 +356,13 @@ const equityRow = [injectionDate, logMessage, reporterName, amount, 'USD', 'Equi
 
 ---
 
-## 10. `[INTER_LEDGER CLAIM RETIREMENT EVENT]` — MISSING CONTRACT (NOT IMPLEMENTED)
+## 10. `[INTER_LEDGER CLAIM RETIREMENT EVENT]` — contract NAMED, derivation IMPLEMENTED, live write GATED
+
+> **Status 2026-10-27:** the contract is no longer *missing* — parameters (§10.2), rows (§10.3),
+> guards (§10.4) and a code stub (§10.5) all exist and are **deployed**. What remains gated is the
+> **live write**: `processNewClaimRetirements()` throws `NOT_IMPLEMENTED`, and `retirement` is excluded
+> from `COMMITTABLE_TRANSACTION_TYPES`. Per the governor ruling, unblock only after a **real**
+> claim-retirement has been observed and the **outstanding-claim ceiling** guard is written.
 
 > **Governor ruling, Gary Teh, 2026-10-27:** *"AGL -> Main for retired claim is a missing contract
 > which we will need to implement later. ... Indicate in the code clearly that implementation will
