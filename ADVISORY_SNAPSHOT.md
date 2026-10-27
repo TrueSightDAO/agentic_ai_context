@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-10-26T13:26:25Z`
-- Look-back: **7** calendar days (`2026-10-19` → today UTC)
+- Generated (UTC): `2026-10-27T05:23:36Z`
+- Look-back: **7** calendar days (`2026-10-20` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -32,19 +32,12 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[TREE PLANTING EVENT]` × 29
-- `[CONTRIBUTION EVENT]` × 12
-- `[PRACTICE EVENT]` × 1
+- `[TREE PLANTING EVENT]` × 22
+- `[CONTRIBUTION EVENT]` × 18
+- `[PRACTICE EVENT]` × 2
 
 ### Latest entries
 
-- `Edgar_20261025122430_2714` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261025122437_2716` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Criolla
-- `Edgar_20261025122444_2718` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261025122451_2720` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261025122458_2722` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261025122505_2724` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Criolla
-- `Edgar_20261025122511_2726` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
 - `Edgar_20261025122752_2728` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Telegram scoring pipeline restored: empty-config post-mortem + diagnose URL …
 - `Edgar_20261025122755_2730` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Set XAI_API_URL / OPENAI_API_URL and validated row-level scoring (rowIndex 1…
 - `Edgar_20261026010751_2732` · **Edgar** · [CONTRIBUTION EVENT] Amount: 15 · Contributor(s): Gary Teh · Description: Closed the loop with Vista Flow / Francine Borba on the fee agreement and pa…
@@ -58,6 +51,13 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20261026062102_2748` · **Edgar** · [CONTRIBUTION EVENT] Amount: 15 · Contributor(s): Gary Teh · Description: Asked Cristiano Villela Dias (scientific director, CIC - Centro de Inovacao …
 - `Edgar_20261026122445_2750` · **Edgar** · [CONTRIBUTION EVENT] Amount: 10 · Contributor(s): Gary Teh · Description: Answered Orlantildes Santos Pereira (President, Coopercabruca, Bahia) on dis…
 - `Edgar_20261026124355_2752` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Strategy session: Sophia as a commercial product (vertical selection + refer…
+- `Edgar_20261026135956_2754` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Contributor(s): Sophia Truesight (admin+sophia@truesight.me)
+- `Edgar_20261026145209_2756` · **Edgar** · [CONTRIBUTION EVENT] Amount: 10 · Contributor(s): Gary Teh · Description: Briefed Orlantildes Santos Pereira (President, Coopercabruca, Bahia) on Braz…
+- `Edgar_20261027011458_2758` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-27T01:14:57.142Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20261027021924_2760` · **Edgar** · [CONTRIBUTION EVENT] Amount: 10 · Contributor(s): Gary Teh · Description: Follow-up conversation with Rusty (contact 'Rusty - Winno...' on iMessage) f…
+- `Edgar_20261027023944_2762` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 70 · Description: Jonathan Hakem meeting brief + landing page content brief
+- `Edgar_20261027023951_2764` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 75 · Description: Jonathan Hakem meeting brief v1-v3 — research and drafting
+- `Edgar_20261027023957_2766` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Description: Gary Teh direct time — directing the Jonathan Hakem meeting brief and landin…
 
 ---
 
@@ -232,9 +232,9 @@ _(+34 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$2,466.00**
+- USD on hand: **$2,465.95**
 - Brazilian Reis: R$130.00 · rate `0.2323` USD/BRL → ≈ **$30.20**
-- USD provisioned for voting-rights cash-out: **$57.19**
+- USD provisioned for voting-rights cash-out: **$57.24**
 
 ### In-transit freight (0 rows)
 
@@ -249,7 +249,7 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_(No `YYYY-MM-DD |` lines on/after 2026-10-19 in CONTEXT_UPDATES.md.)_
+_(No `YYYY-MM-DD |` lines on/after 2026-10-20 in CONTEXT_UPDATES.md.)_
 
 ---
 
@@ -268,6 +268,8 @@ _(No `YYYY-MM-DD |` lines on/after 2026-10-19 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+3c9171c | 2026-10-26 22:50:37 +0000 | chore(stats): refresh stats indexes [skip ci]
+5c1f581 | 2026-10-26 13:28:37 +0000 | chore(stats): refresh stats indexes [skip ci]
 d28ee91 | 2026-10-26 05:12:03 +0000 | chore(stats): refresh stats indexes [skip ci]
 39d2309 | 2026-10-25 21:09:37 +0000 | chore(stats): refresh stats indexes [skip ci]
 02a9ae4 | 2026-10-25 16:44:05 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -294,20 +296,25 @@ c75724b | 2026-10-22 05:15:52 +0000 | chore(stats): refresh stats indexes [skip 
 e195bc0 | 2026-10-20 11:59:57 +0000 | chore(stats): refresh stats indexes [skip ci]
 109c669 | 2026-10-20 05:10:30 +0000 | chore(stats): refresh stats indexes [skip ci]
 f59855c | 2026-10-20 02:09:40 -0300 | qr page: show a visible placeholder when the label PNG is missing (#413)
-3b633ce | 2026-10-19 22:35:28 +0000 | chore(stats): refresh stats indexes [skip ci]
-5039d76 | 2026-10-19 13:51:08 +0000 | chore(stats): refresh stats indexes [skip ci]
-74a7926 | 2026-10-19 05:11:25 +0000 | chore(stats): refresh stats indexes [skip ci]
 ```
 
 ### `market_research` → `go_to_market`
 
 ```
-b15ef53 | 2026-10-26 21:08:23 +0800 | Probe cache reachability before billing a Places lookup (#189)
+3a34a68 | 2026-10-26 21:48:40 +0800 | Stop the fill-gap sweep re-paying for unfillable rows; park them as AI: Fill — manual (#191)
 ```
 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+4534128 | 2026-10-27 13:08:39 +0800 | Correct envelope key + record capital-injection USD hardcode blocker (#1730)
+dbd2851 | 2026-10-27 13:06:56 +0800 | Record governor ruling: DAO-owned consumables financed by "TrueSight DAO" (#1729)
+a5892a6 | 2026-10-27 10:39:16 +0800 | docs: add source-of-record for Hakem meeting brief + landing page brief (#1728)
+49dfbea | 2026-10-27 00:01:50 +0800 | supervisor: claim #usa-b2b-outreach thread (#1727)
+55276eb | 2026-10-27 00:00:04 +0800 | Document `AI: Fill — manual` as the 14th Hit List state (#1726)
+b572d83 | 2026-10-26 21:33:24 +0800 | Add CACAO_TCM_APPLICATION.md — TCM as formulation framework, not claim (#1725)
+8eae4bd | 2026-10-26 21:26:53 +0800 | chore(previews): refresh Beer Hall preview (2026-10-26 UTC)
+717ed58 | 2026-10-26 21:26:51 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-26 UTC)
 df09879 | 2026-10-26 20:58:33 +0800 | Resolve A2: GB 2762 sets no cadmium or arsenic limit for cocoa (#1724)
 cc0aced | 2026-10-26 20:55:48 +0800 | Resolve A1: no 药典 entry for cocoa; folk attribution unsourced (#1723)
 0cbb373 | 2026-10-26 20:44:15 +0800 | Add AGL4 measured heavy-metal results + provenance gap to China plan (#1722)
@@ -340,14 +347,6 @@ eaf9a5e | 2026-10-24 13:10:15 -0300 | chore(previews): refresh Beer Hall preview
 56bf381 | 2026-10-24 13:10:14 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-24 UTC)
 a67a7c4 | 2026-10-24 08:24:55 -0300 | chore(previews): refresh Beer Hall preview (2026-10-24 UTC)
 ebe653f | 2026-10-24 08:24:53 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-24 UTC)
-e4cd9cd | 2026-10-23 21:49:16 -0300 | OPEN_FOLLOWUPS: file Sept-13 scoring outage + PR-queue hygiene (bulk-close rejected) (#1701)
-a07b526 | 2026-10-23 21:21:57 -0300 | Add §9c.5a: RAW input stores numbers as strings; QUERY sum() silently zeroes them (#1700)
-a7d6579 | 2026-10-23 21:19:04 -0300 | §9c.4c: reattribution vs restatement + corrected precedent caveat (#1698)
-67e12da | 2026-10-23 18:35:15 -0300 | chore(previews): refresh Beer Hall preview (2026-10-23 UTC)
-1f7fd25 | 2026-10-23 18:35:13 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-23 UTC)
-7c38c9c | 2026-10-23 14:21:55 -0300 | chore(previews): refresh Beer Hall preview (2026-10-23 UTC)
-70058d7 | 2026-10-23 14:21:53 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-23 UTC)
-c445545 | 2026-10-23 08:56:05 -0300 | chore(previews): refresh Beer Hall preview (2026-10-23 UTC)
 … (truncated)
 ```
 
@@ -391,6 +390,8 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+687b0db | 2026-10-26 13:35:53 +0000 | chore: refresh partners-velocity snapshot [skip ci]
+8b93478 | 2026-10-26 13:34:25 +0000 | chore: refresh currencies.json [skip ci]
 52328a4 | 2026-10-26 13:09:42 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 deaaa5b | 2026-10-25 11:36:19 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 f0e74f5 | 2026-10-25 17:28:38 +0800 | chore: refresh Agroverse SKU catalog snapshot
@@ -408,14 +409,14 @@ fcff643 | 2026-10-20 09:45:49 +0000 | chore: refresh store, partner inventory, a
 c8fd306 | 2026-10-20 09:10:31 +0000 | chore: refresh currencies.json [skip ci]
 3d450b4 | 2026-10-20 09:08:49 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 cff25e2 | 2026-10-20 09:05:05 +0000 | chore: refresh partners-velocity snapshot [skip ci]
-a338f62 | 2026-10-19 13:58:58 +0000 | chore: refresh partners-velocity snapshot [skip ci]
-701b6cb | 2026-10-19 13:56:49 +0000 | chore: refresh currencies.json [skip ci]
-1b79671 | 2026-10-19 13:23:03 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
 
 ```
+0d893db | 2026-10-27 00:20:49 +0800 | fix(ep13): point Vivi's 81% bar at Vivi's PDP, not Sao Jorge's (#355)
+cf9d41b | 2026-10-27 00:11:18 +0800 | fix(ep13): drop awkward shoulder-crop frame, de-letterbox support images (#354)
+689b448 | 2026-10-27 00:07:27 +0800 | fix(ep13): name handshake (Matheus & Gary), correct Santos + Vivi attribution (#353)
 28202ab | 2026-10-26 10:02:00 +0800 | blog(ep13): hero now shows two visible faces (#352)
 956f033 | 2026-10-26 07:17:51 +0800 | blog(ep13): restore people, using only frames where no face is identifiable (#351)
 6644746 | 2026-10-26 01:01:52 +0800 | blog(ep13): replace people-containing photos with people-free frames (#350)
@@ -527,7 +528,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
 | 2026-10 | 137 | 18621.34386 | 10/26/2026 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-10-19`; scanned last **600** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-10-20`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
