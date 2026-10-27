@@ -39,7 +39,14 @@ inventory **consumes input `Currency` lines and creates output units**.
 ## 3. Cost per bar (the formula)
 
 ```
-cost per bar = [ Σ (input qty × input unit cost)  +  labour/overhead if allocated ] / bars produced
+cost per bar = 0.05 × P(nibs key) + P(envelope key) + P(sticker key)  [ + labour / bar ]
+
+  where P(key) = that key's live 'Price in USD' in Currencies; 0.05 = 50 g expressed in kg
+  (nibs are priced per kilogram).
+
+  THERE IS NO SINGLE BAR PRICE (governor direction, 2026-10-27: "the right price differs
+  based on the unit cost of the cacao nibs used"). Every batch derives its own from its own
+  inputs. See 3.2a for the sensitivity range.
 ```
 
 ### 3.1 Input catalog lines (verified live, Main `Currencies!A1:B400`)
@@ -72,6 +79,29 @@ Three bases circulate for a 50 g bar. They disagree, and **the ledger already en
 | nibs + pouch | legacy/pinned figure | $2.0379 | ❌ wrong for this product |
 | **nibs + envelope + sticker** | **live `Currencies` row** | **$1.987** | ✅ **matches the catalogue to the digit** |
 | nibs + pouch + envelope + sticker | over-inclusive | $2.6624 | ❌ adds a pouch that isn't used |
+
+### 3.2a Nibs price drives the bar price — sensitivity across the live catalog
+
+Same formula, same packaging, **five different nibs keys**:
+
+| Nibs currency key | $/kg | nibs/bar (50 g) | + packaging | **cost/bar** |
+|---|---|---|---|---|
+| `Cacao Nibs (Kilograms) Santos 20260213 - AGL13` | 10.18234711 | 0.5091 | 0.6245 | **$1.1336** |
+| `Cacao Nibs (KG) - Ilheus, Brazil 2024` | 24.61847089 | 1.2309 | 0.6245 | **$1.8554** |
+| `Cacao Nibs (Kilograms) Santos 20260213 - AGL13 + 047-3175-3223 - San Francisco` | **27.25** | 1.3625 | 0.6245 | **$1.9870** |
+| `Cacao Nibs (KG) - AGL2` | 29.9404 | 1.4970 | 0.6245 | **$2.1215** |
+| `Cacao Nibs (KG) - Ilheus, Brazil 2024 + 047-3175-3223 - San Francisco` | 41.69 | 2.0845 | 0.6245 | **$2.7090** |
+
+**Spread: $1.1336 → $2.7090 — 2.39×.** The nibs key alone moves the bar price more than everything
+else combined. ⇒ **Never quote a bar price without naming the nibs key it came from.**
+
+Packaging subtotal `0.6245` = envelope `0.0705` + sticker `0.5540`.
+
+> **Packaging keys are location-dependent too.** The envelope is an **Amazon US** order
+> (`111-2611520-6121033`); the sticker is **Sticker Mule US** (`R384751187`). A batch produced **in
+> Brazil** can use neither — it needs its own Brazilian envelope and label keys, hence **another
+> different price** on top of the nibs difference. When a batch moves location, re-derive **all
+> three** components; never carry packaging constants across borders.
 
 **The existing `Currencies` row decomposes exactly:**
 
@@ -126,8 +156,8 @@ batch a *fixed* labour charge dominates everything else (at the live $1.987 basi
 
 | Bars | Labour ($200 fixed) per bar | Materials | **Unit cost** | vs wholesale $6 | vs retail $10 |
 |---|---|---|---|---|---|
-| 40 | $5.0000 | $1.9870 | **$6.9870** | **−$0.99 → LOSS** | +$3.01 |
-| 90 | $2.2222 | $1.9870 | **$4.2092** | +$1.79 | +$5.79 |
+| 40 | $5.0000 | see 3.2a | **LOSS across the ENTIRE nibs range** ($6.1336–$7.7090) | — |
+| 90 | $2.2222 | see 3.2a | **PROFIT across the entire range** ($3.3558–$4.9312) | ✅ |
 
 ⇒ At **40 bars a $200 labour charge still makes the batch loss-making at the $6 wholesale price**
 (narrower than under the $2.6624 basis, but the conclusion is unchanged). Buying ~50 more envelopes
@@ -317,4 +347,212 @@ const equityRow = [injectionDate, logMessage, reporterName, amount, 'USD', 'Equi
 ⇒ A run as-is records *"AGL13 received $40 of cash"* — factually false, plus two structural breaks.
 Unblock requires **asset-currency + quantity parameters**, a **`Capital Injection` sheet column** to
 hold them, and a **new origin-side write**. Recommended: keep `CAPITAL INJECTION` cash-only and ship
-`[MANAGED LEDGER TRANSACTION EVENT]` as the internal-transfer primitive.
+`[MANAGED LEDGER TRANSACTION EVENT]` as the internal-transfer primitive — **§11** below turns all of §9 into a one-line declaration.
+
+---
+
+## 10. `[INTER_LEDGER CLAIM RETIREMENT EVENT]` — MISSING CONTRACT (NOT IMPLEMENTED)
+
+> **Governor ruling, Gary Teh, 2026-10-27:** *"AGL -> Main for retired claim is a missing contract
+> which we will need to implement later. ... Indicate in the code clearly that implementation will
+> happen later. If this scenario occurs, we then gather enough data and do the implementation at the
+> GAS."*
+
+**Specification + placeholder only.** NOT wired into any handler. Do NOT submit this event expecting
+ledger writes.
+
+### 10.1 Why a new event, not a reused `CAPITAL INJECTION`
+
+| | Capital injection | Claim retirement |
+|---|---|---|
+| Effect on claim ② | **creates** | **extinguishes** |
+| Guard | total ≥ 0 | **must not exceed the outstanding balance** |
+| Meaning | financing **in** | financing **unwound** |
+| Partial | allowed | allowed — and is the *normal* case |
+
+`SETTLEMENT` rejected as a name: `[REPACKAGING SETTLEMENT EVENT]` already uses it for post-batch
+cleanup.
+
+### 10.2 Parameters
+
+| Parameter | Type | Req | Notes |
+|---|---|---|---|
+| `Source Ledger` | string | ✅ | ledger **holding the claim** (usually `Main Ledger`) |
+| `Source Ledger URL` | url | ✅ | resolved & validated before any write |
+| `Destination Ledger` | string | ✅ | ledger whose **equity is reduced** (e.g. `AGL13`) |
+| `Destination Ledger URL` | url | ✅ | |
+| `Claim Currency Key` | string | ✅ | must exist in `Currencies` at **price 1** |
+| `Retirement Amount USD` | number | ✅ | `$V`; **must be ≤ outstanding claim** |
+| `Settlement Form` | enum | ✅ | `goods` / `cash` / `write-off` |
+| `Asset Currency Key` | string | if `goods` | the commodity returned |
+| `Asset Quantity` | number | if `goods` | positive; direction implied by source→dest |
+| `Assets Entity` | string | ✅ | **human custodian** (all Assets legs) |
+| `Equity Entity` | string | ✅ | **must be `TrueSight DAO`** (§9.2) |
+| `Injection Reference` | string | ⭑ | originating injection txn id — makes claim life traceable |
+| `Effective Date` | date | ✅ | |
+| `Description` | string | ✅ | |
+| `Reference` | string | ⭑ | idempotency key |
+| `Digital Signature` | string | ✅ | |
+
+### 10.3 The four rows — exact mirror of §9.1
+
+| # | Ledger | Currency | Qty | `Entity` | Section |
+|---|---|---|---|---|---|
+| ① | Source (Main) | `<claim key>` | **−$V** | custodian | **Assets** |
+| ② | Source (Main) | `<asset key>` / `USD` | **+$V** | custodian | **Assets** |
+| ③ | Destination (AGL) | `<asset key>` / `USD` | **−$V** | custodian | **Assets** |
+| ④ | Destination (AGL) | `USD` | **−$V** | `TrueSight DAO` | **Equity** |
+
+**`write-off` variant:** no ②/③ transfer. ① still reduces the claim; the Source books an **expense**
+of `$V` instead of receiving an asset. The one case where retirement *is* a P&L event.
+
+### 10.4 Guards
+
+1. **Outstanding-claim ceiling** — `Retirement Amount USD ≤ Σ(claim-key assets on Source)`. Larger
+   than outstanding is an **error**, never a negative asset.
+2. **Both-ledger balance assertion** (§9.1 identity) before commit.
+3. **`Equity Entity === 'TrueSight DAO'`** (§9.2) — else the reduction is invisible to `/treasury`
+   and the claim looks extinguished while the tracker never saw it.
+4. **Claim key must exist at price 1** — a mis-priced key would "reconcile" non-matching amounts.
+5. **All-or-nothing** — ①②③④ together or not at all.
+
+### 10.5 Placeholder in code — deliberately unimplemented
+
+```js
+// ============================================================================
+// [INTER_LEDGER CLAIM RETIREMENT EVENT] -- MISSING CONTRACT, NOT IMPLEMENTED
+// ============================================================================
+// Governed by conventions/CHOCOLATE_BAR_PRODUCTION_ACCOUNTING.md 10.
+// See also conventions/INTER_LEDGER_HOLDINGS.md for the claim/holding rules.
+//
+// Governor ruling (Gary Teh, 2026-10-27):
+//   "AGL -> Main for retired claim is a missing contract which we will need to
+//    implement later. ... Indicate in the code clearly that implementation will
+//    happen later. If this scenario occurs, we then gather enough data and do
+//    the implementation at the GAS."
+//
+// DO NOT IMPLEMENT ON SPECULATION. This stub exists so the contract is NAMED and
+// its shape agreed BEFORE the first real occurrence. When a genuine
+// claim-retirement actually arises:
+//   1. gather the real submission payload + the actual ledger rows produced,
+//   2. reconcile it against 10.2 / 10.3 of the convention,
+//   3. only then write processNewClaimRetirements() modelled on
+//      processNewCapitalInjections() (the mirror-image handler),
+//   4. add the event to Edgar's catalog and to server/dispatch.py ROUTING.
+//
+// Until then, submitting this event performs NO ledger writes.
+// ============================================================================
+
+/**
+ * @throws {Error} always -- NOT_IMPLEMENTED by design (see block comment above).
+ */
+function processNewClaimRetirements() {
+  throw new Error(
+    'NOT_IMPLEMENTED: [INTER_LEDGER CLAIM RETIREMENT EVENT] is a named but '
+    + 'deliberately unimplemented contract. See '
+    + 'conventions/CHOCOLATE_BAR_PRODUCTION_ACCOUNTING.md 10.'
+  );
+}
+```
+
+---
+
+## 11. `[MANAGED LEDGER TRANSACTION EVENT]` — the declarative contract
+
+> **Governor direction, Gary Teh, 2026-10-27:** *"load the business logic we have been exploring into
+> the Managed Ledger transaction event. So in the future, all I need to do is indicate to you the
+> assets and their original ledger and destination ledger and you can just call this event and then
+> the ledgers will automatically update."*
+
+⇒ The **caller declares intent**; the **handler derives all rows**, prices and entities. The caller
+never hand-builds a row.
+
+### 11.1 Why this must exist
+
+Every defect in this document is a failure to *derive* rows from intent:
+
+| Defect | Root cause |
+|---|---|
+| `$40 = "AGL13 received $40 cash"` | handler hardcoded `USD` instead of reading the asset key |
+| Wrong sticker at **$0.0581** vs **$0.554** | near-identical names, no dimension/vendor check |
+| Origin left **unbalanced** (my first two-row model) | handler derived 2 rows for a 4-row shape |
+| `Entity` identical on both legs | handler stamped `reporterName` twice |
+
+All four are **derivation** bugs. A declarative event fixes them once, in one place, by construction.
+
+### 11.2 Parameters — the minimal declaration
+
+| Parameter | Type | Req | Notes |
+|---|---|---|---|
+| `Source Ledger` | string | ✅ | |
+| `Source Ledger URL` | url | ✅ | resolved & validated |
+| `Destination Ledger` | string | ✅ | |
+| `Destination Ledger URL` | url | ✅ | |
+| **`Assets`** | list | ✅ | one or more lines: `{ Currency Key, Quantity }` |
+| `Assets Entity` | string | ✅ | **human custodian** (all Assets legs) |
+| `Equity Entity` | string | ⭑ | default `TrueSight DAO` (§9.2) |
+| `Transaction Type` | enum | ✅ | `injection` / `retirement` / `movement` |
+| `Effective Date` | date | ✅ | |
+| `Description` | string | ✅ | |
+| `Reference` | string | ⭑ | idempotency |
+| `Digital Signature` | string | ✅ | |
+
+**That is it.** No amounts, no USD figures, no counterparty rows — all **derived**.
+
+### 11.3 Derivation the handler performs
+
+1. **Resolve** every `Currency Key` against live `Currencies!A:B`. **Unknown key ⇒ REFUSE.** Never
+   silently value at **$0** — the silent-corruption mode `INTER_LEDGER_HOLDINGS.md` §2 warns of.
+2. **Validate units.** kg-priced keys need a kg quantity; piece-priced keys a piece count. Reject
+   mixed units on one line.
+3. **Value** each line: `$V = Σ (qty × price)`.
+4. **Derive `Transaction Type`** if omitted: destination is an AGL and source holds no claim ⇒
+   `injection`; source holds a claim on destination ⇒ `retirement`; both AGLs under a common
+   financier ⇒ `movement`.
+5. **Build rows** per §9.1 (or §10.3), asserting the §9.1 identity on **both** ledgers.
+6. **Echo before commit** — return resolved keys, prices, `$V` and the exact row set for confirmation.
+7. **Commit atomically.**
+
+### 11.4 The governor's example, shaped as the declaration
+
+> *"all I need to do is indicate to you the assets and their original ledger and destination ledger"*
+
+```
+Transaction Type:  injection
+Source Ledger:     Main Ledger
+Destination:       AGL13
+Assets Entity:     Kirsten
+Assets:
+  - Joyberg kraft cash envelope 6.5x3.2in (per piece, Amazon 111-2611520-6121033)  x 40
+  - Sticker Mule 4x2in custom rectangle label (per piece, order R384751187)        x 40
+```
+
+Handler derives (§9.1, at live prices): `$V = (40 × 0.0705) + (40 × 0.554) = 2.82 + 22.16 = 24.98`
+
+| # | Ledger | Currency | Qty | Entity | Section |
+|---|---|---|---|---|---|
+| ① | Main | the 2 keys above | −40 / −40 | Kirsten | Assets |
+| ② | Main | `TrueSight DAO equity in AGL13` | +24.98 | Kirsten | Assets |
+| ③ | AGL13 | the 2 keys above | +40 / +40 | Kirsten | Assets |
+| ④ | AGL13 | `USD` | +24.98 | `TrueSight DAO` | Equity |
+
+⇒ **One declaration in, four correct rows out.** No USD total supplied, no entity argued about, no
+chance of the origin going unbalanced.
+
+### 11.5 Design guards that make it safe
+
+- **All-or-nothing.** Build + validate the full row set, *then* commit. The **2-of-4 partial write**
+  is precisely the failure this event exists to eliminate — a crash between legs must not be
+  representable.
+- **Refuse on unknown key** (§11.3.1). A `$0` valuation is worse than a failure.
+- **Echo resolved keys, prices and rows before commit.** A bare *"40 stickers"* genuinely cannot
+  distinguish **$0.0581** from **$0.554** — the caller must see which key resolved before money moves.
+- **Never hand-build rows.** If an operator needs rows this event cannot derive, that is a **new
+  `Transaction Type`** — not a manual append.
+
+### 11.6 Status
+
+Ruled (§3-E, freight plan) but **not shipped**: absent from Edgar's `GET /events-catalog` (v12) and
+from `server/dispatch.py` `ROUTING` (see `OPEN_FOLLOWUPS.md`). The **§10 retirement type depends on
+this same handler** — one implementation, both directions. Recommended order: ship the declarative
+handler with `injection` + `movement`, add `retirement` (§10) when the first real case appears.
