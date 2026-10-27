@@ -174,11 +174,51 @@ Contrast the §3 blind spot: the AGL15 freight stakes booked as `"AGL15"` remain
 - **`/treasury`** — the DAO's stake in AGL13 **becomes visible** where it previously would not.
   This is the intended benefit of the ruling.
 
-⚠️ **Still required:** the `Assets` row's `Currency` (the envelope/sticker name) **must** have a
-`Currencies` row with a real `Price in USD`, or `/aum` silently values it at **$0** (§2).
-**As of this ruling no envelope line exists in `Currencies`** — the catalog has
-`QR Code Sticker 4x3cm (Kraft Pouch) - Brazil` at **$0.0581/pc**, but no confirmed **envelope**
-key. **That `Currencies` row is a hard precondition for booking.**
+⚠️ **`Currencies` precondition — SATISFIED (corrected 2026-10-27).** Both keys exist in the
+live `Currencies!A1:B400`:
+
+| Currency key | Price in USD |
+|---|---|
+| `Joyberg kraft cash envelope 6.5x3.2in (per piece, Amazon 111-2611520-6121033)` | **0.0705** |
+| `QR Code Sticker 4x3cm (Kraft Pouch) - Brazil` | **0.0581** |
+
+*(An earlier revision of this section wrongly said no envelope key existed. The error came from
+grepping only the `agroverse-inventory/currencies.json` snapshot — its **E-section is missing
+entirely** (jumps `Digital Kitchen Scale` → `ETH` → `Foam container box`), so an `E`-initial
+name could never appear there. **Always read the live sheet for a key-existence check**, never
+the snapshot.)*
+
+### 8.3b HARD BLOCKER — the approved primitive cannot book a quantity-denominated asset
+
+Read `capital_injection_processing.js` (`tokenomics`, script
+`1orWgdGckts55owiYOysR_y4sde52T_eUmrtDGAEkb4YV5DlUfJ0JZC5J`), `processNewCapitalInjections()`:
+
+```js
+const assetRow  = [injectionDate, logMessage, reporterName, amount, 'USD', 'Assets'];
+const equityRow = [injectionDate, logMessage, reporterName, amount, 'USD', 'Equity'];
+```
+
+- **Currency is hardcoded `'USD'`** on both rows — not a parameter, not parsed from the message.
+- **`reporterName` is used as `Entity` on BOTH legs** — the §3.4 violation ("never the same name
+  on both legs") reproduced *by construction*, not by operator error.
+- Parsed inputs are only `ledgerName · amount · ledgerUrl · injectionDate · description`.
+
+⇒ Submitting this event for the 40 envelopes + 40 stickers would append
+**`40 USD / Assets` + `40 USD / Equity`** — recording *"AGL13 received $40 of cash"*, which is
+**factually false**, plus two structural violations.
+
+**Therefore legs ②③ are BLOCKED.** Unblock requires **one** of:
+
+1. a **currency/quantity parameter** on the handler, so the `Assets` row can carry
+   `40 · <the commodity key>` while the `Equity` row carries `$value · USD`; **or**
+2. the **`[MANAGED LEDGER TRANSACTION EVENT]`** server half — ruled (§3-E, freight plan) but
+   **not shipped**: absent from Edgar's `GET /events-catalog` (v12) and from
+   `server/dispatch.py` `ROUTING` (`OPEN_FOLLOWUPS.md`); **or**
+3. a governor-approved one-off append of the two rows, hand-shaped — **last resort**, and it
+   loses the CLI's `investor.Asset == investee.Equity` guarantee.
+
+**Leg ① (Main expense) is NOT blocked** — `truesight-dao-report-dao-expenses` books a plain
+cost line and needs no commodity currency on the AGL side.
 
 ### 8.4 Unresolved — the mixed-key state (governor's call, do NOT silently normalize)
 
