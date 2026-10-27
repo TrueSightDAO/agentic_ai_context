@@ -169,7 +169,9 @@ Contrast the §3 blind spot: the AGL15 freight stakes booked as `"AGL15"` remain
 **Effect on the two surfaces:**
 
 - **`/aum`** — unchanged in aggregate. Main's off-chain treasury drops by the cost (leg ①);
-  AGL13's asset section rises by the same amount (leg ②). The two legs **net to zero**, so no
+  AGL13's asset section rises by the same amount (leg ②). RETRACTED 2026-10-27 - this netting claim is **FALSE** under the four-row rule
+(`CHOCOLATE_BAR_PRODUCTION_ACCOUNTING.md` 9.3); in-kind injections join the 6-S1 double-count class.
+Superseded text follows. The two legs **net to zero**, so no
   double count is introduced (unlike the §6-S1 `AGL15 equity holdings` case).
 - **`/treasury`** — the DAO's stake in AGL13 **becomes visible** where it previously would not.
   This is the intended benefit of the ruling.
@@ -180,7 +182,13 @@ live `Currencies!A1:B400`:
 | Currency key | Price in USD |
 |---|---|
 | `Joyberg kraft cash envelope 6.5x3.2in (per piece, Amazon 111-2611520-6121033)` | **0.0705** |
-| `QR Code Sticker 4x3cm (Kraft Pouch) - Brazil` | **0.0581** |
+| `Sticker Mule 4x2in custom rectangle label (per piece, order R384751187)` | **0.554** |
+
+> CORRECTED 2026-10-27. An earlier revision listed `QR Code Sticker 4x3cm (Kraft Pouch) - Brazil` at
+> **$0.0581**. That is the WRONG key - a 4x3 **cm** kraft sticker; the bar batch uses Sticker Mule
+> **4x2 inch** labels at **$0.554** (9.5x). Booking the lookalike understates the expense by **$19.84
+> on 40 units** and permanently mislabels provenance (append-only). See
+> `CHOCOLATE_BAR_PRODUCTION_ACCOUNTING.md` 3.1.
 
 *(An earlier revision of this section wrongly said no envelope key existed. The error came from
 grepping only the `agroverse-inventory/currencies.json` snapshot — its **E-section is missing
