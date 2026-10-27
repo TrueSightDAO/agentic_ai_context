@@ -39,6 +39,34 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### truesight.me member-facing docs for inter-ledger transfers — channel opened, publishing BLOCKED
+**Filed 2026-10-27. Owner: unclaimed. Governor: Gary. Tracked in Discord `#dao-website-documentation` (id `1564568214959169566`, category `DAO Build and Ops` / `1548891663991316550`).**
+
+Governor direction: *"create another discord channel. Purpose is to update the TrueSight DAO website
+documentation on this."* Channel created and seeded with scope.
+
+**What exists.** `conventions/CHOCOLATE_BAR_PRODUCTION_ACCOUNTING.md` §11 documents
+`[MANAGED LEDGER TRANSACTION EVENT]` for **agents** — dense, guard-heavy, internal. Nothing
+member-facing explains inter-ledger transfers. The concept is simple enough to publish: *declare assets +
+source + destination, and the ledgers update themselves.*
+
+**⚠️ Do NOT publish §11 yet.** Three blockers, all real:
+1. the **`Managed Ledger Transactions`** tab does not exist (§11.8) — behaviour cannot be exercised
+2. **no Edgar catalog / `dispatch.py` `ROUTING`** registration (§11.6 B2) — no event is delivered
+3. **field-name conflict** between the shipped `report_managed_ledger_transaction` CLI and this contract
+   (§11.7) — the field set may change once resolved, so a page written today could be wrong
+
+Publishing now would document behaviour **that cannot yet be run**, against a field set that may still
+move. Draft yes; ship no.
+
+**Suggested publish order** (most settled first): `INTER_LEDGER_HOLDINGS.md` →
+`LEDGER_CONVERSION_AND_REPACKAGING.md` → `[MANAGED LEDGER TRANSACTION EVENT]` once §11.7 resolves.
+
+**Scope discipline.** Translate, don't transcribe — internal guard logic (Σ Assets ≡ Σ Equity, the
+`$0` fail-closed rule, the reverse-delete rollback) is implementation detail, not member documentation.
+Site source: `truesight_me_beta` → beta review → governor approval → `sync_beta_to_prod`.
+
+
 ### LVSS Brazil-entity agreement carries a USD 2,500 TDG payment obligation — and TDG has not been issued since 2026-09-13
 **Filed 2026-10-25. Owner: unclaimed. Governor: Gary. HIGH urgency — a contractual payment obligation with a 5-business-day clock, landing on a scoring pipeline already recorded as dead.**
 
