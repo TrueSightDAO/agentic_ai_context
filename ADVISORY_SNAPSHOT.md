@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-10-27T12:32:58Z`
+- Generated (UTC): `2026-10-27T22:29:13Z`
 - Look-back: **7** calendar days (`2026-10-20` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,37 +32,37 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 20
-- `[TREE PLANTING EVENT]` × 15
+- `[SALES EVENT]` × 19
+- `[CONTRIBUTION EVENT]` × 16
 - `[PRACTICE EVENT]` × 2
 - `[REPACKAGING BATCH EVENT]` × 1
 - `[REPACKAGING SETTLEMENT EVENT]` × 1
 - `[ASSET RECEIPT EVENT]` × 1
-- `[SALES EVENT]` × 1
 - `[INVENTORY MOVEMENT]` × 1
+- `[BATCH QR CODE REQUEST]` × 1
 
 ### Latest entries
 
-- `Edgar_20261026020414_2742` · **Edgar** · [CONTRIBUTION EVENT] Amount: 1 · Contributor(s): Sophia Truesight · Description: Read-only verification pass of the 2026-10-26 Gary Teh CONTRIBUTION EVENT (1…
-- `Edgar_20261026032555_2744` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Shared Próspera entity documents with counterparty exploring DAO infrastruct…
-- `Edgar_20261026061528_2746` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 4.70 · Description: Procured a dark chocolate bar sample for competitive product benchmarking / …
-- `Edgar_20261026062102_2748` · **Edgar** · [CONTRIBUTION EVENT] Amount: 15 · Contributor(s): Gary Teh · Description: Asked Cristiano Villela Dias (scientific director, CIC - Centro de Inovacao …
-- `Edgar_20261026122445_2750` · **Edgar** · [CONTRIBUTION EVENT] Amount: 10 · Contributor(s): Gary Teh · Description: Answered Orlantildes Santos Pereira (President, Coopercabruca, Bahia) on dis…
-- `Edgar_20261026124355_2752` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Strategy session: Sophia as a commercial product (vertical selection + refer…
-- `Edgar_20261026135956_2754` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Contributor(s): Sophia Truesight (admin+sophia@truesight.me)
-- `Edgar_20261026145209_2756` · **Edgar** · [CONTRIBUTION EVENT] Amount: 10 · Contributor(s): Gary Teh · Description: Briefed Orlantildes Santos Pereira (President, Coopercabruca, Bahia) on Braz…
-- `Edgar_20261027011458_2758` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-27T01:14:57.142Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20261027021924_2760` · **Edgar** · [CONTRIBUTION EVENT] Amount: 10 · Contributor(s): Gary Teh · Description: Follow-up conversation with Rusty (contact 'Rusty - Winno...' on iMessage) f…
-- `Edgar_20261027023944_2762` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 70 · Description: Jonathan Hakem meeting brief + landing page content brief
-- `Edgar_20261027023951_2764` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 75 · Description: Jonathan Hakem meeting brief v1-v3 — research and drafting
-- `Edgar_20261027023957_2766` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Description: Gary Teh direct time — directing the Jonathan Hakem meeting brief and landin…
-- `Edgar_20261027094801_2768` · **Edgar** · [REPACKAGING BATCH EVENT] Source: Telegram · Destination Contribution File Location: https://github.com/TrueSightDAO/agroverse-invento… · Attached Filename: 20261027_kirsten_2kg_oscar_nibs.png
-- `Edgar_20261027095535_2770` · **Edgar** · [REPACKAGING SETTLEMENT EVENT] Composition URL: https://raw.githubusercontent.com/TrueSightDAO/agroverse-inventory/main/… · Holder Name: Kirsten Ritschel · Farm Name: Oscar's Farm, Bahia
-- `Edgar_20261027100142_2772` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 28 · Contributor(s): Sophia Truesight (admin+sophia@truesight.me)
-- `Edgar_20261027100148_2774` · **Edgar** · [ASSET RECEIPT EVENT] Currency: USD · Amount: 161.50 · Fund Handler: Gary Teh
-- `Edgar_20261027100150_2776` · **Edgar** · [CONTRIBUTION EVENT] Amount: 28 · Contributor(s): Gary Teh · Description: Governor time clarifying and unblocking the TWO repackaging events for the V…
-- `Edgar_20261027101052_2778` · **Edgar** · [SALES EVENT] Item: 2024PAULO_20250804_18 · Sales price: $17 · Sold by: Sacred Earth Farms
-- `Edgar_20261027102440_2780` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Cory Bradley · Recipient Name: Gary Teh · Inventory Item: USD
+- `Edgar_20261027145122_2784` · **Edgar** · [CONTRIBUTION EVENT] Amount: 5 · Contributor(s): Gary Teh · Description: Replied to CIC (Centro de Inovacao do Cacau) on the flavonoid / caffeine / t…
+- `Edgar_20261027145438_2786` · **Edgar** · [SALES EVENT] Item: 2024OSCAR_20250728_25 · Sales price: $17 · Sold by: Sacred Earth Farms
+- `Edgar_20261027145543_2788` · **Edgar** · [SALES EVENT] Cash proceeds collected by: Sacred Earth Farms · Item: 2024OSCAR_20251211_1 · Sales price: $17
+- `Edgar_20261027145549_2790` · **Edgar** · [SALES EVENT] Cash proceeds collected by: Sacred Earth Farms · Item: 2024OSCAR_20251211_2 · Sales price: $17
+- `Edgar_20261027145554_2792` · **Edgar** · [SALES EVENT] Cash proceeds collected by: Sacred Earth Farms · Item: 2024OSCAR_20251211_3 · Sales price: $17
+- `Edgar_20261027145559_2794` · **Edgar** · [SALES EVENT] Cash proceeds collected by: Sacred Earth Farms · Item: 2024OSCAR_20251211_4 · Sales price: $17
+- `Edgar_20261027145605_2796` · **Edgar** · [SALES EVENT] Cash proceeds collected by: Sacred Earth Farms · Item: 2024OSCAR_20251211_5 · Sales price: $17
+- `Edgar_20261027145610_2798` · **Edgar** · [SALES EVENT] Cash proceeds collected by: Sacred Earth Farms · Item: 2024OSCAR_20251211_6 · Sales price: $17
+- `Edgar_20261027145622_2800` · **Edgar** · [SALES EVENT] Cash proceeds collected by: Sacred Earth Farms · Item: 2024OSCAR_20251211_7 · Sales price: $17
+- `Edgar_20261027145627_2802` · **Edgar** · [SALES EVENT] Cash proceeds collected by: Sacred Earth Farms · Item: 2024OSCAR_20251211_8 · Sales price: $17
+- `Edgar_20261027145633_2804` · **Edgar** · [SALES EVENT] Cash proceeds collected by: Sacred Earth Farms · Item: 2024OSCAR_20251211_9 · Sales price: $17
+- `Edgar_20261027145639_2806` · **Edgar** · [SALES EVENT] Cash proceeds collected by: Sacred Earth Farms · Item: 2024OSCAR_20251211_10 · Sales price: $17
+- `Edgar_20261027145644_2808` · **Edgar** · [SALES EVENT] Cash proceeds collected by: Sacred Earth Farms · Item: 2024OSCAR_20251211_11 · Sales price: $17
+- `Edgar_20261027145649_2810` · **Edgar** · [SALES EVENT] Cash proceeds collected by: Sacred Earth Farms · Item: 2024OSCAR_20251211_12 · Sales price: $17
+- `Edgar_20261027145655_2812` · **Edgar** · [SALES EVENT] Cash proceeds collected by: Sacred Earth Farms · Item: 2024OSCAR_20251211_13 · Sales price: $17
+- `Edgar_20261027145700_2814` · **Edgar** · [SALES EVENT] Cash proceeds collected by: Sacred Earth Farms · Item: 2024OSCAR_20251211_14 · Sales price: $17
+- `Edgar_20261027145708_2816` · **Edgar** · [SALES EVENT] Cash proceeds collected by: Sacred Earth Farms · Item: 2024PAULO_20250804_19 · Sales price: $17
+- `Edgar_20261027145715_2818` · **Edgar** · [SALES EVENT] Cash proceeds collected by: Sacred Earth Farms · Item: 2024PAULO_20250804_21 · Sales price: $17
+- `Edgar_20261027145719_2820` · **Edgar** · [SALES EVENT] Cash proceeds collected by: Sacred Earth Farms · Item: 2024PAULO_20250804_22 · Sales price: $17
+- `Edgar_20261027150620_2822` · **Edgar** · [BATCH QR CODE REQUEST] Currency: Agroverse 81% Cacao Chocolate Bar 50g \| Oscar Cacao Nibs \| Kirsten 20261027 \| S… · Quantity: 2
 
 ---
 
@@ -225,7 +225,7 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 | Manager | Items | Units | Value (USD) |
 |---------|-------|-------|-------------|
 | Val Lapidus | 16 | 1,464 | $7,825.21 |
-| Sacred Earth Farms | 3 | 316 | $2,241.33 |
+| Sacred Earth Farms | 5 | 573 | $2,386.91 |
 | AGL13 | 1 | 2,214.61 | $2,214.61 |
 | Orlantildes | 1 | 108 | $1,311.12 |
 | Coopercabruca | 1 | 1,706 | $1,199.87 |
@@ -237,7 +237,7 @@ _(+34 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$2,465.95**
+- USD on hand: **$2,720.95**
 - Brazilian Reis: R$130.00 · rate `0.2323` USD/BRL → ≈ **$30.20**
 - USD provisioned for voting-rights cash-out: **$57.24**
 
@@ -273,6 +273,8 @@ _(No `YYYY-MM-DD |` lines on/after 2026-10-20 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+833f52d | 2026-10-27 18:13:19 +0000 | chore(stats): refresh stats indexes [skip ci]
+0d05d90 | 2026-10-27 12:36:19 +0000 | chore(stats): refresh stats indexes [skip ci]
 98f7e66 | 2026-10-27 05:29:27 +0000 | chore(stats): refresh stats indexes [skip ci]
 3c9171c | 2026-10-26 22:50:37 +0000 | chore(stats): refresh stats indexes [skip ci]
 5c1f581 | 2026-10-26 13:28:37 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -313,6 +315,8 @@ f59855c | 2026-10-20 02:09:40 -0300 | qr page: show a visible placeholder when t
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+acde290 | 2026-10-27 20:33:22 +0800 | chore(previews): refresh Beer Hall preview (2026-10-27 UTC)
+d00045d | 2026-10-27 20:33:20 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-27 UTC)
 94c7c4e | 2026-10-27 09:15:51 +0000 | Track truesight.me member-facing docs channel; record why publishing is blocked
 7c7e7f6 | 2026-10-27 09:15:06 +0000 | Correct §10 heading: derivation is implemented, only the live write is gated
 0cf5736 | 2026-10-27 09:14:48 +0000 | Document MLTE GAS handler as deployed: blockers, CLI conflict, operating procedure
@@ -351,8 +355,6 @@ f83f32e | 2026-10-25 13:05:23 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT
 7856ebd | 2026-10-25 11:17:48 +0800 | supervisor loop: Unit 2 landed on SOPHIA_INTRATURN_COMPACTION_PLAN, refresh WIP claims (#1710)
 1132d00 | 2026-10-25 11:13:55 +0800 | handoffs: release plans/SOPHIA_INTRATURN_COMPACTION_PLAN.md (Sophia (autopilot, self))
 e2e3524 | 2026-10-25 11:13:31 +0800 | handoffs: claim plans/SOPHIA_INTRATURN_COMPACTION_PLAN.md (Sophia (autopilot, self))
-22735e2 | 2026-10-25 11:09:33 +0800 | Add nelanco-claude recovery SOP + fleet refs (#1708)
-56cd9b3 | 2026-10-25 11:08:39 +0800 | docs(sunmint): manifest row — pseudo-tree PR0/PR1 merged, design v10, RESUME HERE = PR2 (#1709)
 … (truncated)
 ```
 
@@ -397,6 +399,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+2dac7b3 | 2026-10-27 12:40:11 +0000 | chore: refresh currencies.json [skip ci]
 74da7f0 | 2026-10-27 12:17:22 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 6e248fd | 2026-10-27 18:33:52 +0800 | chore: refresh currencies.json (170 currencies, +Oscar Cacao Nibs bar)
 0ee520d | 2026-10-27 18:28:45 +0800 | chore: refresh Agroverse SKU catalog snapshot
@@ -539,7 +542,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
-| 2026-10 | 137 | 18621.34386 | 10/27/2026 |
+| 2026-10 | 409 | 18893.34386 | 10/27/2026 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-10-20`; scanned last **600** data rows)
 
@@ -551,11 +554,25 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-10-20 | — | — | IGNORED | — | — | IGNORED: Duplicate QR code already on QR Code Sales when this message w… |
 | 2026-10-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024SA_20251227_19 | — | — |
 | 2026-10-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024SA_20251227_18 | — | — |
-| 2026-10-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024SA_20251227_30 | — | — |
-| 2026-10-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024SA_20251227_29 | — | — |
-| 2026-10-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024SA_20251227_28 | — | — |
-| 2026-10-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024SA_20251227_31 | — | — |
-| 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | — | 2024PAULO_20250804_18 | — | — |
+| 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | — | 2024PAULO_20250804_22 | — | — |
+| 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | — | 2024PAULO_20250804_21 | — | — |
+| 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | — | 2024PAULO_20250804_19 | — | — |
+| 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20251211_14 | — | — |
+| 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20251211_13 | — | — |
+| 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20251211_12 | — | — |
+| 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20251211_11 | — | — |
+| 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20251211_10 | — | — |
+| 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20251211_9 | — | — |
+| 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20251211_8 | — | — |
+| 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20251211_7 | — | — |
+| 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20251211_6 | — | — |
+| 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20251211_5 | — | — |
+| 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20251211_4 | — | — |
+| 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20251211_3 | — | — |
+| 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20251211_2 | — | — |
+| 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20251211_1 | — | — |
+| 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | TOKENIZED | 2024OSCAR_20250728_25 | — | — |
+| 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | ACCOUNTED | 2024PAULO_20250804_18 | — | — |
 
 _Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
