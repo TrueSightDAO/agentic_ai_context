@@ -27,12 +27,26 @@ actually the bottleneck, which is not yet established. Building Phase C (real mu
 coordination) before that evidence exists would be the same mistake flagged earlier — solving a
 capacity problem that hasn't been shown to exist.
 
-**The lease precedent this plan generalizes:** Envoy's own `handoffs/active_supervision.json` is
-a claim file with no expiry — it works today because every supervisor is disciplined about
-reading it before acting. Gary's point is sharper: a lock with no expiry is exactly the failure
-mode the mk3.py/PID 2174824 hunt (2026-10-26/27) just found twice in unrelated code — a process
-that dies (or hangs) mid-work holds its claim forever, and nothing ever notices. The fix here is
-narrower than full lease/heartbeat (no renewal protocol, no distributed store) — a **staleness
+**The lease precedent this plan generalizes, corrected (2026-10-27, Gary caught this):** Envoy's
+own `handoffs/active_supervision.json` is **not** a naive flat file under this plan's original
+framing — `truesight_autopilot/app/supervision.py` writes it exclusively via
+`GitHubClient.commit_file()` → `update_file(sha=existing.sha)`, so GitHub's Contents API itself
+enforces compare-and-swap: a conflicting concurrent write is rejected (409), not silently
+corrupted or clobbered. **But it has no retry on that rejection** (`claim()`/`release()` just
+`logger.debug` and `return False` on failure) — so under real concurrent writers the *loser's*
+claim is cleanly lost, not corrupted. That's acceptable today only because writes are
+human-paced (a few an hour across Envoy sessions), not because the pattern is safe under load.
+**Do not reuse this write path verbatim for Phase C.** A per-turn/per-thread claim under real
+concurrency needs either SQLite (WAL mode, if everything stays on one box) or Redis (if it goes
+multi-host) — both give atomic compare-and-swap *with* a retry-friendly contract and no
+HTTP-round-trip-plus-permanent-git-commit cost per acquire/release. The git-API-backed file is
+fine for occasional supervisor bookkeeping; it is the wrong primitive for a hot-path lock.
+
+Gary's point about expiry stands independent of this correction: a lock with no expiry is
+exactly the failure mode the mk3.py/PID 2174824 hunt (2026-10-26/27) just found twice in
+unrelated code — a process that dies (or hangs) mid-work holds its claim forever, and nothing
+ever notices. The fix here is narrower than full lease/heartbeat (no renewal protocol, no
+distributed store yet — that's Phase C's job with the SQLite/Redis choice above) — a **staleness
 timeout with loud logging on forced release** — because today everything is still one process,
 so correctness only needs "don't let a hung turn block its thread forever," not "survive this
 process disappearing while another one is alive to take over." That harder problem is Phase C's,
@@ -140,6 +154,31 @@ mid-chain). PR3 is itself a test; its own output *is* the UAT artifact for PR4's
 | PR2 — dispatch-lock expiry (both adapters) | ☐ | ☐ | |
 | PR3 — load test | ☐ | ☐ | synthetic session ids marked per §5g; report the single-process-only caveat explicitly |
 | PR4 — human review + Phase C go/no-go | ☐ (no code) | n/a | **always-stop** |
+
+---
+
+## 3a. Phase C infra prep — done ahead of the gate, on Gary's explicit instruction (2026-10-27)
+
+Gary explicitly chose to provision the Phase C claim-store dependency now, ahead of PR4, as prep
+work rather than waiting for the load test. Recorded here so this isn't mistaken for scope creep
+on PR1-PR3, and so Phase C's eventual pre-flight doesn't have to re-discover it:
+
+- **Decision: local Redis on Sophia's existing box, not a new EC2** ("approach 2" from the
+  options discussed — a dedicated new EC2 is the architecturally cleaner choice *if* Phase C ever
+  goes multi-host, since a coordination store living on one of the workers it coordinates is a
+  single point of failure; but that's only worth the new-infra cost once multi-host is real).
+- **Turned out Redis was already installed and running** on the box (6.0.16, systemd-enabled,
+  bound to `127.0.0.1`/`::1` only, previously unauthenticated, 0 keys, nothing else using it —
+  confirmed no collectd/webdis/ruby-redis-store actually installed). No new package needed.
+- **Hardened for this purpose, 2026-10-27:** `requirepass` set (password in the vault, name
+  `PHASE_C_REDIS_PASSWORD`, retrievable via `Vault().get_value("PHASE_C_REDIS_PASSWORD")` the same
+  way `DISCORD_BOT_TOKEN` already is — never committed, never printed to chat); `maxmemory 64mb` /
+  `maxmemory-policy noeviction` (was previously unlimited with no cap — capped small since this
+  will only ever hold tiny claim keys, and `noeviction` means a write fails loudly instead of an
+  active lock silently getting evicted under memory pressure); bind unchanged at localhost-only.
+- **Not wired into any application code.** This is the dependency sitting ready, nothing more —
+  Phase C's own future PRs still need to actually write the claim-store client code against it.
+  PR4's go/no-go on Phase C itself is unaffected by this prep being done early.
 
 ---
 
