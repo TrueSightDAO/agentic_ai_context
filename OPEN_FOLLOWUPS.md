@@ -474,6 +474,78 @@ The package is installed **editable** into `.venv`, so code changes need only a 
 
 **Evidence.** `/tmp/blanklat_gps_read.json` (15 vision-read coords); `app/tools/timemark_watermark.py` (watermark layout bottom-left = date/place/`<lat>°S,<lon>°W`); `process_tree_planting_telegram_logs.js` (K/L + INVALID gate); `sunmint/trees/index.geojson` (`generated_at 2026-10-15T22:46Z`, 243 features); `cfr.truesight.me/my-trees/?tree=` resolves 200 for sampled backfilled trees.
 
+### ✅ SHIPPED 2026-10-27 — `[MANAGED LEDGER TRANSACTION EVENT]` **GAS handler** deployed (the third piece this entry asked for)
+**Shipped 2026-10-27. Owner: Sophia. Governor: Gary. This is the residual `(3)` of the entry below — now DONE. Two new blockers remain; see the two entries that follow.**
+
+The three-piece scope this entry defined (catalog entry → `dispatch.ROUTING` tag → **handling path**) is
+now **1 of 3 shipped**. The handling path — the piece flagged as *"absent from **every** GAS file in
+`tokenomics` (0 hits / 101 files)"* — now exists, is unit-tested, and is **deployed**.
+
+- **Code:** `tokenomics` PR **#599** (merged `457c0e4`). New file
+  `google_app_scripts/1orWgdGckts55owiYOysR_y4sde52T_eUmrtDGAEkb4YV5DlUfJ0JZC5J/managed_ledger_transaction_processing.js`
+  (644 lines). **`capital_injection_processing.js` untouched** — no behavioural change to anything live.
+- **Deployed:** Apps Script `clasp push` 2026-10-27 09:11:48 → deploy ledger
+  `deploy_20261027T091245Z_1orwgdgckts55owiyoysr-y4sde52t-eumrtdgae`
+  (`ecosystem_change_logs/deploys/entries/`).
+- **Contract:** `conventions/CHOCOLATE_BAR_PRODUCTION_ACCOUNTING.md` §11.6–§11.11.
+- **Verified by execution, not review:** `testDeriveTransactionRows()` run against a stubbed GAS context
+  — **17/17 assertions pass**. It caught two real bugs pre-merge (mixed-unit summation giving Assets
+  `−55.02` vs Equity `0`; float accumulation `24.980000000000004`). Documented §11.10.
+
+**Shape.** A caller declares **assets + source ledger + destination ledger**; a pure derivation engine
+returns every row for **both** ledgers and asserts `Σ Assets ≡ Σ Equity` **in USD, per ledger**, before
+anything is written. Types: `injection` (4-row, with the origin claim), `movement` (AGL↔AGL), and
+`retirement` (**derivation only — live write throws `NOT_IMPLEMENTED` by governor ruling**).
+
+**Do not re-open the "build the GAS handler" scope call — it is answered.** The remaining work is B1/B2
+below plus the CLI alignment call.
+
+---
+
+### ⚠️ BLOCKER B1 — the `Managed Ledger Transactions` tab does not exist, so the deployed handler is inert
+**Filed 2026-10-27. Owner: governor (or any governor-session agent). Governor: Gary. SMALL but GATING — the deployed handler cannot run without it.**
+
+**Symptom.** `processNewManagedLedgerTransactions()` opens the Telegram Logs spreadsheet
+(`1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`) and looks for a tab named
+**`Managed Ledger Transactions`**. It does not exist, so the function hits `if (!sheet)` → logs
+`ERROR: Managed Ledger Transactions sheet not found` → `return`. **Silently idle, not visibly broken** —
+the fail-silent class this repo keeps re-learning.
+
+**Fix — create one tab, 17 columns, header row 1.** Full column spec (A–Q, including the `Assets` JSON
+shape and the exact `Status` vocabulary `NEW`→`PROCESSED`/`FAILED`/`BLOCKED`) is
+**`conventions/CHOCOLATE_BAR_PRODUCTION_ACCOUNTING.md` §11.8`**. Do not invent columns — the handler
+reads by index (`MLTE_COL`), so a shifted column silently mis-binds fields.
+
+**Why it matters now, not later.** Without the tab, a governor asking Sophia to "move 40 envelopes from
+Main to AGL13" has **no working path**: `CAPITAL INJECTION` cannot express a commodity (§9.7), and the
+new event has nowhere to queue. That is the exact dead end §11 exists to remove.
+
+---
+
+### ⚠️ CONFLICT — shipped `report_managed_ledger_transaction` CLI and the deployed GAS handler use INCOMPATIBLE field names for the same event
+**Filed 2026-10-27. Owner: unclaimed. Governor: Gary — needs a direction call (options a/b/c). MEDIUM urgency, HIGH confusion cost if left.**
+
+Two designs are published under **one event name**:
+
+- **Client CLI** (`dao_protocol` #187, 2026-10-15) — caller **supplies** `Amount` (`positive_number`,
+  **required**), single `Currency`, `Sender`/`Recipient`, and **one** `Ledger`/`Ledger URL`.
+- **Deployed GAS handler** (2026-10-27, this entry's sibling) — caller **declares intent only**: a
+  repeatable `Asset:` list, `Source`+`Destination` ledgers, `Transaction Type`; **`Amount` is forbidden
+  and derived** from live `Currencies`.
+
+**They cannot both be right.** A CLI-built submission is rejected by the handler (no source ledger, no
+quantities, no type); a §11.4 declaration is rejected by the CLI's own validators (no `Amount`, no
+`Sender`/`Recipient`). Options — **(a)** align the CLI to the declarative contract *(recommended: it
+preserves the entire reason §11 exists — no hand-built rows, no `$0` silent valuation, no unbalanced
+origin)*; **(b)** keep the legacy blob and add a second event name; **(c)** treat the CLI as dead and
+drive the sheet directly *(loses the signed submission + Edgar hash)*.
+
+**Do not implement one side silently.** Update the CLI, the catalog entry and
+`CHOCOLATE_BAR_PRODUCTION_ACCOUNTING.md` §11.7 **in the same PR**. Evidence: full field-by-field table at
+§11.7.
+
+---
+
 ### `[MANAGED LEDGER TRANSACTION EVENT]` — client CLI shipped; Edgar catalog/routing registration still the residual (Black King §3-E2)
 **Filed 2026-10-15 (Black King freight-lane build, plan §3-E2); updated 2026-10-15. Owner: unclaimed. Governor: Gary — vehicle RULED (item E); server-half build-vs-transcribe call still open.**
 

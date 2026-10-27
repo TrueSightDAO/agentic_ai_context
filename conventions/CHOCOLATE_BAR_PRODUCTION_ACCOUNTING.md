@@ -345,9 +345,14 @@ const equityRow = [injectionDate, logMessage, reporterName, amount, 'USD', 'Equi
   **no origin-side write path at all**.
 
 ⇒ A run as-is records *"AGL13 received $40 of cash"* — factually false, plus two structural breaks.
-Unblock requires **asset-currency + quantity parameters**, a **`Capital Injection` sheet column** to
-hold them, and a **new origin-side write**. Recommended: keep `CAPITAL INJECTION` cash-only and ship
-`[MANAGED LEDGER TRANSACTION EVENT]` as the internal-transfer primitive — **§11** below turns all of §9 into a one-line declaration.
+
+> **✅ SUPERSEDED 2026-10-27.** Do **not** extend `capital_injection_processing.js`. The recommended
+> path was taken instead: `[MANAGED LEDGER TRANSACTION EVENT]` (§11) is now the internal-transfer
+> primitive, its GAS handler is **deployed** (PR #599, `457c0e4`), and it expresses ①–④ natively
+> because it takes **asset + quantity + source + destination** and derives the rest.
+> ⇒ **For any in-kind Main→AGL or AGL↔AGL move, use §11, not `CAPITAL INJECTION`.**
+> Keep `CAPITAL INJECTION` **cash-only** external investment, as it is today. See §11.7 for the
+> field-name conflict with the shipped client CLI that must be resolved before the first live run.
 
 ---
 
@@ -417,6 +422,13 @@ of `$V` instead of receiving an asset. The one case where retirement *is* a P&L 
 5. **All-or-nothing** — ①②③④ together or not at all.
 
 ### 10.5 Placeholder in code — deliberately unimplemented
+
+> **✅ LANDED 2026-10-27** in `tokenomics` →
+> `google_app_scripts/1orWgdGckts55owiYOysR_y4sde52T_eUmrtDGAEkb4YV5DlUfJ0JZC5J/managed_ledger_transaction_processing.js`
+> (§11.11), **deployed** (PR #599, `457c0e4`). The snippet below is the spec as drafted; the shipped
+> stub is stricter — the **derivation for `retirement` is implemented and tested**, only the **live
+> write** throws. Two guards are named as still unbuilt: the **outstanding-claim ceiling** and an
+> **`Injection Reference`** link. `COMMITTABLE_TRANSACTION_TYPES` is the go-live switch.
 
 ```js
 // ============================================================================
@@ -550,9 +562,124 @@ chance of the origin going unbalanced.
 - **Never hand-build rows.** If an operator needs rows this event cannot derive, that is a **new
   `Transaction Type`** — not a manual append.
 
-### 11.6 Status
+### 11.6 Status — GAS handler DEPLOYED 2026-10-27; two blockers before a live run
 
-Ruled (§3-E, freight plan) but **not shipped**: absent from Edgar's `GET /events-catalog` (v12) and
-from `server/dispatch.py` `ROUTING` (see `OPEN_FOLLOWUPS.md`). The **§10 retirement type depends on
-this same handler** — one implementation, both directions. Recommended order: ship the declarative
-handler with `injection` + `movement`, add `retirement` (§10) when the first real case appears.
+> **✅ SHIPPED 2026-10-27.** `tokenomics` PR **#599** (merged `457c0e4`), deployed to Apps Script
+> project `1orWgdGckts55owiYOysR_y4sde52T_eUmrtDGAEkb4YV5DlUfJ0JZC5J` at 09:11:48 (deploy ledger
+> `deploy_20261027T091245Z_1orwgdgckts55owiyoysr-y4sde52t-eumrtdgae`).
+> File: **`managed_ledger_transaction_processing.js`** (644 lines), added alongside
+> `capital_injection_processing.js` — which is **untouched and still live**.
+
+The derivation engine exists and is unit-tested. It is **not yet reachable end-to-end**. Two
+concrete blockers, both outside the code that shipped:
+
+| # | Blocker | Consequence | Fix |
+|---|---|---|---|
+| **B1** | The **`Managed Ledger Transactions`** tab does **not exist** in the Telegram Logs spreadsheet (`1qbZZhf-…`) | `processNewManagedLedgerTransactions()` returns immediately at *"sheet not found"*. Nothing routes. | create the tab with the **17 columns** in §11.8 |
+| **B2** | The event is absent from Edgar's catalog and `dispatch.py` `ROUTING` | no event is ever delivered, so nothing is queued as `NEW` | the existing `OPEN_FOLLOWUPS.md` server-half entry |
+
+⚠️ **B1 is the one that bites.** A run today returns silently and looks idle rather than broken —
+the exact fail-silent class §8 warns about. Create the tab **before** submitting anything.
+
+### 11.7 ⚠️ Field-name conflict with the SHIPPED client CLI — resolve before submittal
+
+**This is the single most important thing for a future LLM reading this document to understand.**
+
+Two incompatible designs are now published under the **same event name**:
+
+| | **Shipped client CLI** (`dao_protocol` #187, 2026-10-15) | **This contract + the deployed GAS** |
+|---|---|---|
+| Philosophy | caller **supplies the amount/rows** | caller **declares intent; handler derives everything** |
+| `Amount` | ✅ **required** (`positive_number`) | ❌ **forbidden** — derived from live `Currencies` |
+| `Currency` | ✅ single field | ❌ replaced by a repeatable `Asset:` list |
+| `Sender` / `Recipient` | ✅ required | ❌ `Assets Entity` / `Equity Entity` |
+| `Ledger` / `Ledger URL` | ✅ **one** ledger | ✅ **`Source` + `Destination`** (two) |
+| `Transaction Type` | ❌ absent | ✅ `injection` / `movement` / `retirement` |
+
+⇒ **A submission built by the shipped CLI will be rejected by the deployed handler** (no source
+ledger, no asset quantities, no transaction type) — and a declaration built per this section will be
+rejected by the CLI's own validators (no `Amount`, no `Sender`/`Recipient`).
+
+**Resolution required — a governor call, not an autonomous one.** Three options:
+
+- **(a) Align the CLI to this contract** *(recommended)* — the client sends the declaration, the
+  handler derives. Preserves the whole point of §11.1: no hand-built rows, no `$0` silent
+  valuation, no unbalanced origin. Cost: rewrite `report_managed_ledger_transaction.py`'s labels.
+- **(b) Keep the CLI's legacy blob and add a second event name** for the declarative path.
+  Cost: two vehicles for one job — exactly the confusion this document exists to prevent.
+- **(c) Treat the CLI as dead** and drive the sheet directly. Cost: loses the signed submission
+  and the Edgar hash, i.e. the audit trail.
+
+**Do NOT silently implement one side.** Whichever is chosen, update this table and the catalog entry
+in the same PR.
+
+### 11.8 The `Managed Ledger Transactions` tab — exact 17-column shape (blocker B1)
+
+Lives in the **Telegram Logs** spreadsheet (`1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`), as a new
+tab named **`Managed Ledger Transactions`**. Columns A–Q, header in row 1. `Status` values the code
+writes: `NEW` → `PROCESSED` / `FAILED` / `BLOCKED`.
+
+| Col | Field | Notes |
+|---|---|---|
+| A | Telegram Update ID | dedupe key |
+| B | Telegram Message ID | dedupe key |
+| C | Log Message | full signed message |
+| D | Reporter | who submitted |
+| E | Source Ledger | name, e.g. `Main Ledger` |
+| F | Source Ledger URL | must resolve to a real spreadsheet |
+| G | Destination Ledger | e.g. `AGL13` |
+| H | Destination Ledger URL | |
+| I | Transaction Type | `injection` / `movement` / `retirement` |
+| J | **Assets** | **JSON**: `[{"currency":"<exact Currencies key>","quantity":40}]` |
+| K | Assets Entity | **human custodian** (never `TrueSight DAO`) |
+| L | Equity Entity | **must be exactly `TrueSight DAO`** |
+| M | Value USD | written by the handler on success — leave blank |
+| N | Effective Date | |
+| O | Description | |
+| P | Status | `NEW` to queue — set by the writer, never by hand |
+| Q | Ledger Lines | written by the handler, e.g. `source:Main Ledger=1234-1236; …` |
+
+### 11.9 What a future Sophia must do — operating procedure
+
+1. **Never hand-edit a `Transactions` tab** for an inter-ledger move. That is how all four defects
+   in §11.1 arose.
+2. **Ask the governor only for assets + source + destination** (§11.4). Do not ask for a USD total
+   — it is derived, and supplying it re-introduces the drift this event removes.
+3. **Resolve every `Currency Key` against the LIVE `Currencies` tab**, never
+   `agroverse-inventory/currencies.json` (its E-section is missing, §3.1).
+4. **Run `testDeriveTransactionRows()` in the GAS editor** after any edit to the handler. It asserts
+   the 4-row shape, both-ledger balance, and all six guards, with **no side effects**.
+5. **Read the echo before the commit.** The handler logs every resolved key, its price, `$V` and the
+   full row set. A bare *"40 stickers"* cannot distinguish **$0.0581** from **$0.554** — 9.5×
+   apart. If the echoed price is not the one you expect, stop.
+6. **Retirement is GATED.** `processNewClaimRetirements()` **throws `NOT_IMPLEMENTED`** by design.
+   `COMMITTABLE_TRANSACTION_TYPES` is the single go-live switch — flipping that array is the entire
+   change, and it needs a governor go-ahead plus the outstanding-claim ceiling guard (§10).
+
+### 11.10 Two bugs the balance guard caught during development — keep the guard
+
+Recorded because the guard is what makes this safe, and because both bugs would have shipped silently:
+
+1. **Mixed units.** The first draft of `assertLedgerBalances_` summed **raw amounts**. An injection's
+   origin legitimately holds `−40 envelopes` *and* `+24.98 USD` in the **same** Assets section;
+   raw summation gave **−55.02**, which is meaningless — 40 envelopes are not 40 dollars. Fixed by
+   **valuing every row in USD** via the price table before asserting.
+2. **Float accumulation.** `40 × 0.0705 + 40 × 0.554` produced `24.980000000000004`. Now rounded
+   **once to 6 dp** before the value reaches a ledger row.
+
+⇒ **The guard caught both BEFORE any row was written** — and neither was caught by review. Any
+future change to the derivation must keep the both-ledger assertion and must run the harness.
+
+### 11.11 Handler API (as deployed)
+
+| Function | Purpose |
+|---|---|
+| `loadCurrencyPrices_()` | reads live `Currencies!A:B` from the Main ledger |
+| `resolvePrice_(key, table)` | fails closed on unknown key — **never** `$0` |
+| `deriveTransactionRows_(decl, table)` | **pure**; declaration + prices → rows for both ledgers |
+| `assertLedgerBalances_(d, table)` | Σ Assets ≡ Σ Equity **in USD, per ledger** |
+| `appendRowsAtomically_(writes)` | append both legs; **delete applied rows in reverse** on failure |
+| `parseManagedLedgerTransactionMessage(msg)` | parses the §11.4 declaration |
+| `processNewManagedLedgerTransactions()` | the commit loop; `NEW` → `PROCESSED`/`FAILED`/`BLOCKED` |
+| `processNewClaimRetirements()` | **throws `NOT_IMPLEMENTED`** (§10) |
+| `testDeriveTransactionRows()` | self-test, **no side effects** |
