@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-10-27T05:23:36Z`
+- Generated (UTC): `2026-10-27T12:32:58Z`
 - Look-back: **7** calendar days (`2026-10-20` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,19 +32,17 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[TREE PLANTING EVENT]` × 22
-- `[CONTRIBUTION EVENT]` × 18
+- `[CONTRIBUTION EVENT]` × 20
+- `[TREE PLANTING EVENT]` × 15
 - `[PRACTICE EVENT]` × 2
+- `[REPACKAGING BATCH EVENT]` × 1
+- `[REPACKAGING SETTLEMENT EVENT]` × 1
+- `[ASSET RECEIPT EVENT]` × 1
+- `[SALES EVENT]` × 1
+- `[INVENTORY MOVEMENT]` × 1
 
 ### Latest entries
 
-- `Edgar_20261025122752_2728` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Telegram scoring pipeline restored: empty-config post-mortem + diagnose URL …
-- `Edgar_20261025122755_2730` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Set XAI_API_URL / OPENAI_API_URL and validated row-level scoring (rowIndex 1…
-- `Edgar_20261026010751_2732` · **Edgar** · [CONTRIBUTION EVENT] Amount: 15 · Contributor(s): Gary Teh · Description: Closed the loop with Vista Flow / Francine Borba on the fee agreement and pa…
-- `Edgar_20261026010809_2734` · **Edgar** · [CONTRIBUTION EVENT] Amount: 5 · Contributor(s): Gary Teh · Description: Follow-up exchange with Julio Almeida (continuing the store-locator / 'store…
-- `Edgar_20261026011515_2736` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-26T01:15:12.610Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20261026015046_2738` · **Edgar** · [CONTRIBUTION EVENT] Amount: 10 · Contributor(s): Gary Teh · Description: Explained / walked through a topic with Lawrence Kwek (contact thread captur…
-- `Edgar_20261026020404_2740` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Contributor(s): Gary Teh
 - `Edgar_20261026020414_2742` · **Edgar** · [CONTRIBUTION EVENT] Amount: 1 · Contributor(s): Sophia Truesight · Description: Read-only verification pass of the 2026-10-26 Gary Teh CONTRIBUTION EVENT (1…
 - `Edgar_20261026032555_2744` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Shared Próspera entity documents with counterparty exploring DAO infrastruct…
 - `Edgar_20261026061528_2746` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 4.70 · Description: Procured a dark chocolate bar sample for competitive product benchmarking / …
@@ -58,6 +56,13 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20261027023944_2762` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 70 · Description: Jonathan Hakem meeting brief + landing page content brief
 - `Edgar_20261027023951_2764` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 75 · Description: Jonathan Hakem meeting brief v1-v3 — research and drafting
 - `Edgar_20261027023957_2766` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Description: Gary Teh direct time — directing the Jonathan Hakem meeting brief and landin…
+- `Edgar_20261027094801_2768` · **Edgar** · [REPACKAGING BATCH EVENT] Source: Telegram · Destination Contribution File Location: https://github.com/TrueSightDAO/agroverse-invento… · Attached Filename: 20261027_kirsten_2kg_oscar_nibs.png
+- `Edgar_20261027095535_2770` · **Edgar** · [REPACKAGING SETTLEMENT EVENT] Composition URL: https://raw.githubusercontent.com/TrueSightDAO/agroverse-inventory/main/… · Holder Name: Kirsten Ritschel · Farm Name: Oscar's Farm, Bahia
+- `Edgar_20261027100142_2772` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 28 · Contributor(s): Sophia Truesight (admin+sophia@truesight.me)
+- `Edgar_20261027100148_2774` · **Edgar** · [ASSET RECEIPT EVENT] Currency: USD · Amount: 161.50 · Fund Handler: Gary Teh
+- `Edgar_20261027100150_2776` · **Edgar** · [CONTRIBUTION EVENT] Amount: 28 · Contributor(s): Gary Teh · Description: Governor time clarifying and unblocking the TWO repackaging events for the V…
+- `Edgar_20261027101052_2778` · **Edgar** · [SALES EVENT] Item: 2024PAULO_20250804_18 · Sales price: $17 · Sold by: Sacred Earth Farms
+- `Edgar_20261027102440_2780` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Cory Bradley · Recipient Name: Gary Teh · Inventory Item: USD
 
 ---
 
@@ -184,16 +189,16 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 ### Stock at production shippers
 
 **Kirsten Ritschel** _( San Francisco — retail / online fulfilment / partner restock )_
-- Manager record: `Kirsten Ritschel` · 25 SKU lines · 1,650.50 total units · $6,910.70
+- Manager record: `Kirsten Ritschel` · 26 SKU lines · 1,608.50 total units · $6,910.70
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
   | Packaging Material | Bulk | 4 | 892 | $649.90 |
-  | (uncategorized) | (unspecified) | 14 | 351 | $884.85 |
+  | (uncategorized) | (unspecified) | 15 | 311 | $968.23 |
   | Cacao Mass | Retail Ready | 1 | 169 | $2,328.82 |
   | Cacao Nib | Retail Ready | 1 | 129 | $1,355.79 |
   | Cacao Mass | Bulk | 2 | 87 | $898.06 |
-  | Cacao Nib | Bulk | 2 | 17.50 | $621.28 |
+  | Cacao Nib | Bulk | 2 | 15.50 | $537.90 |
   | Cacao Butter | Bulk | 1 | 5 | $172.00 |
 
 **Matheus Reis** _( Ilhéus, Brazil — bulk warehouse + freight to SF )_
@@ -207,11 +212,11 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
   | Cacao Mass | Retail Ready | 1 | 1 | $10.37 |
 
 **Gary Teh** _( Operational cash + assorted retail inventory )_
-- Manager record: `Gary Teh` · 30 SKU lines · 8,184.09 total units · $7,884.05
+- Manager record: `Gary Teh` · 30 SKU lines · 8,345.59 total units · $8,045.55
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 28 | 8,107.91 | $7,834.06 |
+  | (uncategorized) | (unspecified) | 28 | 8,269.41 | $7,995.56 |
   | Packaging Material | Bulk | 1 | 74 | $49.98 |
   | Cacao Tea | Bulk | 1 | 2.18 | $0.00 |
 
@@ -268,6 +273,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-10-20 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+98f7e66 | 2026-10-27 05:29:27 +0000 | chore(stats): refresh stats indexes [skip ci]
 3c9171c | 2026-10-26 22:50:37 +0000 | chore(stats): refresh stats indexes [skip ci]
 5c1f581 | 2026-10-26 13:28:37 +0000 | chore(stats): refresh stats indexes [skip ci]
 d28ee91 | 2026-10-26 05:12:03 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -307,6 +313,14 @@ f59855c | 2026-10-20 02:09:40 -0300 | qr page: show a visible placeholder when t
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+94c7c4e | 2026-10-27 09:15:51 +0000 | Track truesight.me member-facing docs channel; record why publishing is blocked
+7c7e7f6 | 2026-10-27 09:15:06 +0000 | Correct §10 heading: derivation is implemented, only the live write is gated
+0cf5736 | 2026-10-27 09:14:48 +0000 | Document MLTE GAS handler as deployed: blockers, CLI conflict, operating procedure
+63a7434 | 2026-10-27 16:42:02 +0800 | Spec claim-retirement stub + declarative MLTE; parameterize bar price (#1733)
+b28c0a3 | 2026-10-27 16:33:12 +0800 | Record four-row in-kind injection rule; correct cost basis to $1.987 (#1732)
+4352e0d | 2026-10-27 14:06:56 +0800 | Add 81% bar production accounting convention; correct §8 framing (#1731)
+e290628 | 2026-10-27 13:24:03 +0800 | chore(previews): refresh Beer Hall preview (2026-10-27 UTC)
+6c7190f | 2026-10-27 13:24:01 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-27 UTC)
 4534128 | 2026-10-27 13:08:39 +0800 | Correct envelope key + record capital-injection USD hardcode blocker (#1730)
 dbd2851 | 2026-10-27 13:06:56 +0800 | Record governor ruling: DAO-owned consumables financed by "TrueSight DAO" (#1729)
 a5892a6 | 2026-10-27 10:39:16 +0800 | docs: add source-of-record for Hakem meeting brief + landing page brief (#1728)
@@ -339,20 +353,13 @@ f83f32e | 2026-10-25 13:05:23 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT
 e2e3524 | 2026-10-25 11:13:31 +0800 | handoffs: claim plans/SOPHIA_INTRATURN_COMPACTION_PLAN.md (Sophia (autopilot, self))
 22735e2 | 2026-10-25 11:09:33 +0800 | Add nelanco-claude recovery SOP + fleet refs (#1708)
 56cd9b3 | 2026-10-25 11:08:39 +0800 | docs(sunmint): manifest row — pseudo-tree PR0/PR1 merged, design v10, RESUME HERE = PR2 (#1709)
-0debb88 | 2026-10-25 11:04:01 +0800 | handoffs: release plans/SOPHIA_INTRATURN_COMPACTION_PLAN.md (Sophia (autopilot, self))
-b396bb0 | 2026-10-25 00:01:36 -0300 | handoffs: claim plans/SOPHIA_INTRATURN_COMPACTION_PLAN.md (Sophia (autopilot, self))
-8a99c34 | 2026-10-24 18:03:56 -0300 | chore(previews): refresh Beer Hall preview (2026-10-24 UTC)
-1771c0a | 2026-10-24 18:03:54 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-24 UTC)
-eaf9a5e | 2026-10-24 13:10:15 -0300 | chore(previews): refresh Beer Hall preview (2026-10-24 UTC)
-56bf381 | 2026-10-24 13:10:14 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-24 UTC)
-a67a7c4 | 2026-10-24 08:24:55 -0300 | chore(previews): refresh Beer Hall preview (2026-10-24 UTC)
-ebe653f | 2026-10-24 08:24:53 -0300 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-24 UTC)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+457c0e4 | 2026-10-27 17:07:00 +0800 | Add MLTE derivation engine: 4-row injection, movement, retirement logic (#599)
 c07a1ff | 2026-10-25 20:03:35 +0800 | fix(gas): add scoring pipeline diagnostics + failure visibility (#597)
 54301b0 | 2026-10-25 18:18:13 +0800 | fix: routing guard - stop silent fallback of named ledgers into MAIN (#595)
 d05182d | 2026-10-20 21:59:14 -0300 | Anchor Monthly Statistics on first empty column A (port of #590 to 1rLl94jQ) (#592)
@@ -390,6 +397,12 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+74da7f0 | 2026-10-27 12:17:22 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
+6e248fd | 2026-10-27 18:33:52 +0800 | chore: refresh currencies.json (170 currencies, +Oscar Cacao Nibs bar)
+0ee520d | 2026-10-27 18:28:45 +0800 | chore: refresh Agroverse SKU catalog snapshot
+6d43ebf | 2026-10-27 18:28:43 +0800 | chore: refresh Agroverse store inventory snapshot
+7bc8b2b | 2026-10-27 17:54:06 +0800 | chore(inventory): repackaging composition 7b9d3b16 (backfill)
+03ca057 | 2026-10-27 17:36:47 +0800 | Add Kirsten 2kg Oscar nibs confirmation as repackaging proof
 687b0db | 2026-10-26 13:35:53 +0000 | chore: refresh partners-velocity snapshot [skip ci]
 8b93478 | 2026-10-26 13:34:25 +0000 | chore: refresh currencies.json [skip ci]
 52328a4 | 2026-10-26 13:09:42 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
@@ -526,7 +539,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
-| 2026-10 | 137 | 18621.34386 | 10/26/2026 |
+| 2026-10 | 137 | 18621.34386 | 10/27/2026 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-10-20`; scanned last **600** data rows)
 
@@ -542,6 +555,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-10-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024SA_20251227_29 | — | — |
 | 2026-10-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024SA_20251227_28 | — | — |
 | 2026-10-20 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024SA_20251227_31 | — | — |
+| 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | — | 2024PAULO_20250804_18 | — | — |
 
 _Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
