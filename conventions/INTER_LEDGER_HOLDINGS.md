@@ -188,6 +188,15 @@ entirely** (jumps `Digital Kitchen Scale` → `ETH` → `Foam container box`), s
 name could never appear there. **Always read the live sheet for a key-existence check**, never
 the snapshot.)*
 
+> **⚠️ FRAMING CORRECTED (2026-10-27, same day) — these items are REPACKAGING INPUTS, not a capital injection.**
+> Governor clarified that the 40 envelopes + 40 stickers are **inputs for producing 81% chocolate
+> bars**. The governing playbook is therefore
+> **`conventions/CHOCOLATE_BAR_PRODUCTION_ACCOUNTING.md`** + `LEDGER_CONVERSION_AND_REPACKAGING.md`
+> (`FREIGHT_PROFIT_ANALYSIS_METHODOLOGY.md` §6.2/§6.3: packaging = **COGS**). **§8's
+> capital-injection framing does NOT apply to production consumables** — no equity stake arises from
+> DAO-paid packaging; it is absorbed into the bar's unit cost. The USD-hardcode finding below remains
+> a genuine defect for real cash injections, but it is **not on this path**.
+
 ### 8.3b HARD BLOCKER — the approved primitive cannot book a quantity-denominated asset
 
 Read `capital_injection_processing.js` (`tokenomics`, script
