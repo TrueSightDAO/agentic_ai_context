@@ -103,12 +103,12 @@ state is stable and intentional rather than ad-hoc.
 
 ## 3. Resume tracker
 
-**RESUME HERE → PR1 (cross-process session lock via Redis claim).**
+**RESUME HERE → PR2 (discovery + claim-attempt loop).**
 
 | Unit | PR opened | Merged (human) | Notes |
 |---|---|---|---|
 | PR0 — Discord adapter marks | ✅ #565 | ✅ `c8ed47f` (2026-10-28) | merged; mirrors #555's Telegram pattern |
-| PR1 — cross-process session lock via Redis claim | ☐ | ☐ | the architectural unlock |
+| PR1 — cross-process session lock via Redis claim | ✅ #567 | ✅ `1a7d923` (2026-10-28) | merged; #566 closed as a less-complete duplicate (no renewal) |
 | PR2 — discovery + claim-attempt loop | ☐ | ☐ | |
 | PR3 — mark TTL/cleanup | ☐ | ☐ | |
 | PR4 — load test `--workers 2` | ☐ (data, not code) | n/a | produces the numbers PR5 decides on |
