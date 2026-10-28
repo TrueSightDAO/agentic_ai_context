@@ -182,6 +182,53 @@ on PR1-PR3, and so Phase C's eventual pre-flight doesn't have to re-discover it:
 
 ---
 
+## 3b. Phase C design sketch — mark-and-claim dispatch (Gary, 2026-10-28; not built, captured ahead of need)
+
+Still gated behind PR4. Captured now, precisely, so it doesn't have to be re-derived later: when
+an inbound message arrives, the adapter (Telegram/Discord) writes a **mark** to Redis that a
+thread has unprocessed work; any idle Sophia worker can discover marks and pick up threads that
+need attention, instead of only the one process that happens to own the webhook connection.
+
+**The one rule that keeps this correct: a mark is not a claim.** These are two different Redis
+operations with different owners:
+- **Mark** (written by the adapter, on every inbound, idempotent) — "thread X has unprocessed
+  work." Cheap, always safe to write, even if a worker is already mid-turn on that thread.
+- **Claim** (attempted by a worker, before touching a thread) — `SET lock:<thread_id>
+  <worker_id> NX EX <ttl>`, Redis's standard atomic distributed-lock primitive. A worker may act
+  on a mark **only if it also wins the claim**. This is what stops two workers from double-
+  processing the same thread off the same mark.
+- **This must coexist with, not replace, the existing in-process queue-drain** (`main.py`'s
+  `while queue:` loop, `_message_queues`) — a message arriving while a worker already holds the
+  lock still goes through that same-process queue today; the Redis mark is purely the discovery
+  mechanism for *idle* threads a worker doesn't already own, not a general replacement for
+  message delivery.
+
+**Discovery mechanism — a real queue, not a poll loop, if push-based.** "Workers check for
+threads needing attention" reads as polling, which works but trades off latency for simplicity
+(delay = poll interval, plus wasted cycles checking nothing). The closer-to-real-Sidekiq version:
+the adapter `LPUSH`es onto a list on inbound; workers `BLPUSH`/`BLPOP` that list — near-zero
+latency, no wasted polling, naturally FIFO. **Pub/Sub alone is the wrong primitive here** — a
+notification with no persistence is silently dropped if every worker is busy the instant it
+fires; if push-based delivery is wanted, it needs a persisted list a worker blocks on, not a
+fire-and-forget channel. Polling remains the simpler fallback if the latency cost is acceptable.
+
+**Why the TTL (§0's original ask) plugs in cleanly here:** if a worker dies mid-processing, the
+mark/queue entry survives in Redis — the work isn't lost — and once the claim's TTL expires, the
+next worker's poll/pop picks the thread back up and retries. That is a real resilience
+improvement over today's single-process model, where a hung turn just sits stuck (the mk3.py/PID
+2174824 failure shape, applied to a real turn instead of a scratch script) until a human notices
+and restarts the process.
+
+**Not yet decided, deliberately left open for whoever scopes the actual Phase C PRs:** polling
+interval vs. blocking-queue choice; mark TTL/cleanup policy (so a long-dead thread's mark doesn't
+linger forever even if nothing ever claims it); and whether `claim_for_turn`/`release` in
+`app/supervision.py` (the existing per-turn `active_supervision.json` visibility signal, §0) stay
+as-is for dashboard freshness or get superseded by this Redis-backed mechanism — they currently
+serve a looser, slower-paced purpose (human-visible board state) that this mechanism isn't
+obligated to replace.
+
+---
+
 ## 4. Authorization envelope (§5e)
 
 - **Pre-authorized, autonomous, PR-only:** PR1–PR3 — Sophia may open each PR without asking
