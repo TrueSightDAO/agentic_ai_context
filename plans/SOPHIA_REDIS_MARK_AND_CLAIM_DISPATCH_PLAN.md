@@ -75,6 +75,7 @@ captured in this pre-flight.
 | **PR4** | Discovery: a background task that pops marks (prefer `BLPOP` on a list the adapters `LPUSH` onto over polling a set, per the original design note — near-zero latency, no wasted cycles; state in the PR body which was chosen and why if it ends up different) and attempts `try_claim` before doing anything. Explicitly test the **mark-is-not-a-claim** invariant: a mark for a thread currently held by the existing dispatch lock must not result in a second concurrent handler running — this is the one correctness property the whole plan exists to protect, test it directly, not incidentally. | auto |
 | **PR5** | Mark TTL/cleanup — marks that are never claimed (no worker ever available) must not grow Redis unbounded. Pick a cleanup horizon and justify it; verify old unclaimed marks expire. | auto |
 | **PR6 — gate: human** | Decision writeup (not code): does this supersede `active_supervision.json`'s per-turn claim signal, or do the two coexist permanently serving different audiences (dashboard freshness vs. mutual-exclusion correctness)? §1 deliberately left this open; resolve it here with reasoning, not by default. | **gate: human** — this is a design-direction call, not a mechanical merge |
+| **PR7** (added 2026-10-28, Gary) | **Admin dashboard on sophia.truesight.me** — a Sidekiq-Web-style view of live dispatch state: pending marks, active claims (thread, worker, TTL remaining). **Governor-JWT-gated, same pattern as the existing `media_archive_pipeline.py` dashboard route** — not public/no-auth like `sprint.truesight.me` (that board is a deliberate exception Gary chose for business-level handoff status; this one exposes lower-level operational internals and should not default to that precedent). Read-only — no action buttons (retry/kill a claim) in this PR; that's a separate, more consequential unit if ever wanted. Honest caveat to state in the PR: with one Sophia process, "active" will typically show 0-1 entries — value right now is debugging the mechanism itself while PR2-PR6 are still being built, not a production multi-worker view. | auto |
 
 **UAT:** no human-facing surface — covered by the unit/integration tests specified per row,
 all run against the real local Redis instance (already provisioned, not mocked). State plainly
@@ -95,6 +96,7 @@ in each PR's report that this tests the mechanism in isolation, not multi-proces
 | PR4 — discovery + claim attempt | ☐ | ☐ | test the mark-is-not-a-claim invariant directly |
 | PR5 — mark TTL/cleanup | ☐ | ☐ | |
 | PR6 — active_supervision.json relationship decision | ☐ (writeup) | n/a | **gate: human** |
+| PR7 — admin dashboard on sophia.truesight.me | ☐ | ☐ | governor-JWT-gated (not public like sprint.truesight.me), read-only, no action buttons |
 
 ---
 
