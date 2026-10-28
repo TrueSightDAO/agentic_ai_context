@@ -39,7 +39,7 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
-### Multi-process plan: PR2 needs session affinity first — claim-loss can mean *work* loss
+### Multi-process plan: share session state — claim-loss can mean *work* loss (affinity approach retracted)
 **Filed 2026-10-28. Owner: unclaimed. Governor: Gary. Blocks `plans/SOPHIA_SIDEKIQ_MULTIPROCESS_PLAN.md` PR2.**
 
 **Symptom (predicted, from measurement — not yet observed live, because `workers` is still 1).**
@@ -56,28 +56,61 @@ measured facts show it cannot, on the current stack:
 3. **22 module-level mutable containers in `app/main.py`**, four of which cannot be per-process:
    `_message_queues` (11 refs — queued messages lost) · `_cancel_flags` (7 — cancel POST can land on
    a worker not running the turn, silently ignored) · `_live_progress` (16 — `/chat/progress` is
-   deliberately lock-free but reads another worker's in-memory snapshot, so it is empty) ·
+   deliberately lock-free, so a cross-worker read is *likely* wrong or empty — but this was **inferred
+   from the module-level dict, not traced**; verify before acting) ·
    `_active_streams` (6 — registry fragments). `_session_locks` (3) is fine; that is what PR1 layers.
 
 **Why it matters.** At `workers > 1`, losing the claim can mean **work loss**, not deferral — i.e.
 scaling would introduce a regression rather than remove a limit. No amount of Redis work inside PR2
 fixes a request that has already landed on the wrong process.
 
-**Recommended fix — insert a PR1.5 (session affinity) before PR2.** The pieces already exist: both
-adapters send `X-Session-Id` (`telegram_adapter.py:130`, `discord_adapter.py:749`) and `main.py:441`
-derives the session key from that same header, so nginx `upstream { hash $http_x_session_id
-consistent; }` gives per-session stickiness with **no app change** and unblocks all four containers
-above (including making `_live_progress` a local read). The alternative — migrating all four to Redis —
-is a far larger PR6-blocking effort and unnecessary if affinity holds.
+**~~Recommended fix — insert a PR1.5 (session affinity) before PR2.~~ RETRACTED 2026-10-28 by Sophia
+after Gary's challenge. This entry kept recommending affinity after the evidence against it was already
+in its own text. It was wrong twice over:**
 
-**Decision needed from Gary.** (a) affinity-by-proxy (small, reversibly gated) **or** state-migration
-(large)? Recommendation: affinity. (b) Should PR4's load test measure the intended production shape
-(with affinity)? It must, or the chosen N is measured against a stack that will not ship.
+- **The adapters never traverse nginx.** `autopilot_chat_url` defaults to `http://localhost:8001` and
+  `AUTOPILOT_CHAT_URL` is unset, so the Telegram/Discord adapter processes POST **direct** to the app
+  port. An nginx `hash $http_x_session_id` upstream would have covered **zero** of the traffic that
+  creates turns. The contradiction ("nginx does not proxy 8001") was already written above it and the
+  recommendation did not notice.
+- **Affinity is structurally impossible on a shared socket.** `--workers N` binds ONE listening socket
+  (`REUSEPORT` absent), so there is no per-worker address to hash across; nginx's own `proxy_pass` to
+  `127.0.0.1:8001` is *also* kernel-round-robined. Real affinity would need **N distinct ports = N
+  systemd units** — a different deployment architecture, not a gated config tweak.
+
+**Corrected fix — make no process own session state, so routing stops mattering.** Move the four
+containers to Redis, keyed on the canonical conversation key established by PR #569
+(`tg:{chat}:{thread}` / `dc:{guild}:{channel}` — a Telegram thread and a Discord channel are the same
+unit of conversation):
+
+| Container | Refs | Redis shape | Notes |
+|---|---|---|---|
+| `_message_queues` | 11 | LIST per session (`RPUSH`/`LPOP`) | **the real work queue — do this first** |
+| `_cancel_flags` | 7 | key + TTL | trivial, off the hot path |
+| `_active_streams` | 6 | set + heartbeat TTL | low |
+| `_live_progress` | 16 | hash + TTL | **NOT free — hot path, one round-trip per `/chat/progress` tick; needs batching or a short local cache, and must be its own measured unit** |
+
+This is topology-independent: it works with nginx or without it, one box or many. It also turns
+`_message_queues` into an actual queue rather than a process-local list — which is what PR2 was trying
+to be about in the first place.
+
+**Decision needed from Gary.** (a) Confirm the ordering: `_message_queues` + `_cancel_flags` → Redis
+**before** PR2/PR3, because claim semantics are meaningless while the work source is process-local.
+`_live_progress` follows as its own measured unit — it sits on the streaming hot path and may cost more
+latency than it buys. (b) PR4's load test must measure the **shipped** shape (containers shared), not
+the retracted proxy approach, or the chosen N is measured against a stack that will not ship.
 
 **Circularity to name, so PR2 is not opened for consistency.** PR1's cross-process lock only *matters*
-when `workers > 1`, and `workers > 1` is unsafe until the four containers are handled — so PR1 is
-currently unexercisable. The minimum viable set is **PR0 + PR1 + affinity + PR4**, then the PR5
-decision. PR2 and PR3 are refinements of a layer whose precondition is not yet met.
+when `workers > 1`, and `workers > 1` is unsafe until the four containers are shared — so PR1 stays
+unexercisable in production until they are. Revised minimum viable set: **PR0 + PR1 + shared containers
++ PR4**, then the PR5 decision. PR2 and PR3 are refinements of a layer whose precondition is not yet
+met.
+
+**Part of this is already shipped.** PR #569 (merged `fee4905`) repointed the **lock/claim** scope from
+`<pubkey[:20]>:<X-Session-Id>` to the bare canonical `X-Session-Id`, so two governors in one thread now
+contend on one lock. Transcript filenames deliberately keep the old `md5(pubkey:sid)` form (4,760
+existing files). Container keys must therefore use the bare canonical form (`queue:tg:{chat}:{thread}`,
+`cancel:tg:…`) and never the pubkey-prefixed one.
 
 ---
 
