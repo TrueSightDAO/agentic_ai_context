@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-10-28T13:21:25Z`
+- Generated (UTC): `2026-10-28T22:45:49Z`
 - Look-back: **7** calendar days (`2026-10-21` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -33,10 +33,8 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 ### Event-type rollup
 
 - `[SALES EVENT]` × 19
-- `[CONTRIBUTION EVENT]` × 14
+- `[CONTRIBUTION EVENT]` × 16
 - `[PRACTICE EVENT]` × 3
-- `[REPACKAGING BATCH EVENT]` × 1
-- `[REPACKAGING SETTLEMENT EVENT]` × 1
 - `[ASSET RECEIPT EVENT]` × 1
 - `[INVENTORY MOVEMENT]` × 1
 - `[BATCH QR CODE REQUEST]` × 1
@@ -44,10 +42,6 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Latest entries
 
-- `Edgar_20261027145649_2810` · **Edgar** · [SALES EVENT] Cash proceeds collected by: Sacred Earth Farms · Item: 2024OSCAR_20251211_12 · Sales price: $17
-- `Edgar_20261027145655_2812` · **Edgar** · [SALES EVENT] Cash proceeds collected by: Sacred Earth Farms · Item: 2024OSCAR_20251211_13 · Sales price: $17
-- `Edgar_20261027145700_2814` · **Edgar** · [SALES EVENT] Cash proceeds collected by: Sacred Earth Farms · Item: 2024OSCAR_20251211_14 · Sales price: $17
-- `Edgar_20261027145708_2816` · **Edgar** · [SALES EVENT] Cash proceeds collected by: Sacred Earth Farms · Item: 2024PAULO_20250804_19 · Sales price: $17
 - `Edgar_20261027145715_2818` · **Edgar** · [SALES EVENT] Cash proceeds collected by: Sacred Earth Farms · Item: 2024PAULO_20250804_21 · Sales price: $17
 - `Edgar_20261027145719_2820` · **Edgar** · [SALES EVENT] Cash proceeds collected by: Sacred Earth Farms · Item: 2024PAULO_20250804_22 · Sales price: $17
 - `Edgar_20261027150620_2822` · **Edgar** · [BATCH QR CODE REQUEST] Currency: Agroverse 81% Cacao Chocolate Bar 50g \| Oscar Cacao Nibs \| Kirsten 20261027 \| S… · Quantity: 2
@@ -64,6 +58,10 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20261028102651_2844` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-28T10:26:49.217Z · Program: capoeira-tribo-mirim · Practice Type: training-session
 - `Edgar_20261028124316_2846` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 345 · Description: Build + populate the Napa/Sonoma winery pipeline (discovery infra → 150 rows…
 - `Edgar_20261028124318_2848` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 130 · Description: Direction, review + approval for the Napa/Sonoma winery channel build
+- `Edgar_20261028135256_2850` · **Edgar** · [CONTRIBUTION EVENT] Amount: 21.20 · Contributor(s): Gary Teh · Description: DeepSeek API tokens — reimbursable USD expense (LLM inference for DAO agent …
+- `Edgar_20261028153538_2852` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 210 · Contributor(s): Sophia Truesight (admin+sophia@truesight.me)
+- `Edgar_20261028153541_2854` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 130 · Contributor(s): Envoy TrueSight
+- `Edgar_20261028153545_2856` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Contributor(s): Gary Teh
 
 ---
 
@@ -274,6 +272,11 @@ _(No `YYYY-MM-DD |` lines on/after 2026-10-21 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+5397251 | 2026-10-28 22:15:59 +0800 | docs(contracts): correct sheet locations for CAPITAL INJECTION and MANAGED LEDGER TRANSACTION cards (#415)
+2afe0e3 | 2026-10-28 22:02:49 +0800 | Align contracts page event tokens with Edgar's canonical event catalog (#418)
+76ece0c | 2026-10-28 22:00:22 +0800 | Fix last stale '30 RSA-signed event types' label in architecture SVG (#417)
+64e6f7a | 2026-10-28 21:51:37 +0800 | Correct contracts page counts to actually-listed 33 contracts (#416)
+623bfce | 2026-10-28 13:26:44 +0000 | chore(stats): refresh stats indexes [skip ci]
 7226afc | 2026-10-28 20:37:14 +0800 | docs(contracts): add MANAGED LEDGER TRANSACTION EVENT card; correct CAPITAL INJECTION EVENT to match the live handler (#414)
 09f0acc | 2026-10-28 06:11:46 +0000 | chore(stats): refresh stats indexes [skip ci]
 6dfdb79 | 2026-10-27 22:32:57 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -314,6 +317,25 @@ b940644 | 2026-10-28 17:36:51 +0800 | Position the 12-bar case as try-it / reord
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+73cd4fb | 2026-10-28 15:50:54 +0000 | chore(supervision): farm-media-site TLS resolved, ready for Gary's Visual UAT
+51f6392 | 2026-10-28 23:49:11 +0800 | docs: retract the nginx-affinity recommendation in the multi-process follow-up (#1747)
+8738677 | 2026-10-28 15:33:51 +0000 | chore(supervision): media Content-Type fix done+verified; TLS decision escalated; wire in progress
+3cba333 | 2026-10-28 15:20:06 +0000 | chore(supervision): media-pipeline scope correction + F Discord catch-up posted
+0b8d77b | 2026-10-28 23:16:39 +0800 | docs(open-followups): PR2 of the multi-process plan cannot work without session affinity (#1746)
+e6282e9 | 2026-10-28 15:14:26 +0000 | chore(supervision): PR1 (#567) merged; #566 closed as less-complete duplicate
+bf96910 | 2026-10-28 15:12:51 +0000 | chore(supervision): loop-daemon U2 (PR #568) merged+verified+posted to Discord
+b371a8e | 2026-10-28 15:09:45 +0000 | chore(supervision): register #loop-daemon track (Gary's #2 priority), found stalled ~50min
+1002cbb | 2026-10-28 23:01:37 +0800 | plan: tick PR0 (Discord dispatch marks, #565) done; RESUME HERE -> PR1 (#1745)
+4503986 | 2026-10-28 15:00:16 +0000 | chore(supervision): PR0 (#565) + dapp_beta winery track (#154/#152) merged and verified
+ad47f28 | 2026-10-28 14:39:56 +0000 | chore(supervision): MLTE trigger install verified live (caught+fixed a stale-evidence citation)
+a509915 | 2026-10-28 14:38:13 +0000 | chore(supervision): MLTE deploy independently verified live; PR #152 resolved via new PR #154
+50ce59f | 2026-10-28 14:23:15 +0000 | docs(supervisor-loop): GAS deploy moves to supervisor-greenlit after verification (Gary, 2026-10-28)
+59e1e68 | 2026-10-28 14:20:40 +0000 | chore(supervision): register #agroverse-supply-chain (MLTE prod promotion) claim
+ed53b34 | 2026-10-28 14:18:56 +0000 | chore(supervision): close out contracts-docs + rate-limit-burner tracks, nudge usa-b2b-outreach
+1591ecc | 2026-10-28 14:13:47 +0000 | chore(supervision): register Sidekiq multi-process plan claim, close out #envoy-server self-kill item
+b4c1189 | 2026-10-28 22:11:59 +0800 | docs(plans): Sidekiq-style multi-process dispatch plan for Sophia (#1744)
+35c40f4 | 2026-10-28 21:21:54 +0800 | chore(previews): refresh Beer Hall preview (2026-10-28 UTC)
+4489e66 | 2026-10-28 21:21:52 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-28 UTC)
 dfc8ea2 | 2026-10-28 21:07:35 +0800 | docs(plans): loop daemon implementation plan, roadmap and checklist (#1742)
 f94beb0 | 2026-10-28 12:13:22 +0000 | Add §5.1: default to unblocking, not waiting (Gary, 2026-10-28)
 22fc55a | 2026-10-28 11:56:35 +0000 | Note: rate-limit burner now confirmed blocking three parallel tracks simultaneously
@@ -335,31 +357,15 @@ fea12a1 | 2026-10-28 09:07:10 +0000 | Note: live 403 rate-limit confirms PR#553 
 90ce27d | 2026-10-28 08:41:50 +0000 | Update Redis dispatch supervision note: PR2 opened, CI-timing false alarm resolved
 ebca2fb | 2026-10-28 08:36:15 +0000 | Update Redis dispatch supervision note: PR1 verified live + corrected a false "plan doesn't exist" claim
 554a742 | 2026-10-28 06:57:49 +0000 | Claim supervision of SOPHIA_REDIS_MARK_AND_CLAIM_DISPATCH_PLAN.md
-d6b0e01 | 2026-10-28 06:29:30 +0800 | chore(previews): refresh Beer Hall preview (2026-10-27 UTC)
-1b97288 | 2026-10-28 06:29:29 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-27 UTC)
-acde290 | 2026-10-27 20:33:22 +0800 | chore(previews): refresh Beer Hall preview (2026-10-27 UTC)
-d00045d | 2026-10-27 20:33:20 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-27 UTC)
-94c7c4e | 2026-10-27 09:15:51 +0000 | Track truesight.me member-facing docs channel; record why publishing is blocked
-7c7e7f6 | 2026-10-27 09:15:06 +0000 | Correct §10 heading: derivation is implemented, only the live write is gated
-0cf5736 | 2026-10-27 09:14:48 +0000 | Document MLTE GAS handler as deployed: blockers, CLI conflict, operating procedure
-63a7434 | 2026-10-27 16:42:02 +0800 | Spec claim-retirement stub + declarative MLTE; parameterize bar price (#1733)
-b28c0a3 | 2026-10-27 16:33:12 +0800 | Record four-row in-kind injection rule; correct cost basis to $1.987 (#1732)
-4352e0d | 2026-10-27 14:06:56 +0800 | Add 81% bar production accounting convention; correct §8 framing (#1731)
-e290628 | 2026-10-27 13:24:03 +0800 | chore(previews): refresh Beer Hall preview (2026-10-27 UTC)
-6c7190f | 2026-10-27 13:24:01 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-27 UTC)
-4534128 | 2026-10-27 13:08:39 +0800 | Correct envelope key + record capital-injection USD hardcode blocker (#1730)
-dbd2851 | 2026-10-27 13:06:56 +0800 | Record governor ruling: DAO-owned consumables financed by "TrueSight DAO" (#1729)
-a5892a6 | 2026-10-27 10:39:16 +0800 | docs: add source-of-record for Hakem meeting brief + landing page brief (#1728)
-49dfbea | 2026-10-27 00:01:50 +0800 | supervisor: claim #usa-b2b-outreach thread (#1727)
-55276eb | 2026-10-27 00:00:04 +0800 | Document `AI: Fill — manual` as the 14th Hit List state (#1726)
-b572d83 | 2026-10-26 21:33:24 +0800 | Add CACAO_TCM_APPLICATION.md — TCM as formulation framework, not claim (#1725)
-8eae4bd | 2026-10-26 21:26:53 +0800 | chore(previews): refresh Beer Hall preview (2026-10-26 UTC)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+aefc4f2 | 2026-10-28 22:16:09 +0800 | fix(gas): schedule MLTE processor on the time trigger (#604)
+95659eb | 2026-10-28 21:48:13 +0800 | Add producer that queues MANAGED LEDGER TRANSACTION EVENT rows from Telegram Chat Logs (#603)
+6fcfa2f | 2026-10-28 21:31:25 +0800 | Derive is_cacao from landing Page netloc in single-QR path (one shared impl) (#602)
 8ae164d | 2026-10-28 21:18:06 +0800 | Derive is_cacao from column B instead of hardcoding True in batch QR handler (#601)
 457c0e4 | 2026-10-27 17:07:00 +0800 | Add MLTE derivation engine: 4-row injection, movement, retirement logic (#599)
 c07a1ff | 2026-10-25 20:03:35 +0800 | fix(gas): add scoring pipeline diagnostics + failure visibility (#597)
@@ -396,6 +402,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+ae3659d | 2026-10-28 13:31:33 +0000 | chore: refresh currencies.json [skip ci]
 6bfdb8c | 2026-10-28 17:28:48 +0800 | chore: refresh Agroverse SKU catalog snapshot
 2dac7b3 | 2026-10-27 12:40:11 +0000 | chore: refresh currencies.json [skip ci]
 74da7f0 | 2026-10-27 12:17:22 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
