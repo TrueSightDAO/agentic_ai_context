@@ -249,6 +249,22 @@ supervision cover this?" from scratch each time:
 >   is Envoy's conservative reading of an otherwise-unstated case, not something Gary said
 >   explicitly either way — correct it if you intended autopilot's own deploy to be freed too.
 
+> **Governor decision 2026-10-28 (GAS deploy — supervisor-verified, not human-always):** *"If you
+> check that the GAS is ok, you should go ahead and greenlight it rather than wait for me."* This
+> **overrides** the 2026-09-15 "non-negotiable" reaffirmation directly above — GAS deploy moves
+> from always-human to **supervisor-greenlit after the supervisor independently verifies it's
+> safe**, not a blanket loosening to "just push it." The bar, demonstrated live the day this
+> changed (truesight_autopilot MLTE producer deploy, tokenomics/`google_app_scripts`): the
+> supervisor must independently confirm — not just relay Sophia's self-report — that (a) the
+> source being pushed is the correct ref (e.g. `origin/main` or the actual merge commit, not a
+> stale local branch — the exact failure mode Sophia caught herself first here), (b) the diff is
+> understood (additive vs. destructive) and syntax-checks clean, (c) nothing currently live would
+> break if the new code is wrong (e.g. no caller wired yet, or the change is backward-compatible).
+> If any of that can't be confirmed independently, it still escalates to Gary — this is "supervisor
+> verifies, then acts," not "assume Sophia's report is enough." **Sophia should be told this
+> directive directly** so she stops blocking on "say deploy" once a supervisor (Envoy or whoever
+> holds the role) has actually checked and greenlit.
+
 | Action | Default | Basis |
 |---|---|---|
 | Send `go` for a non-irreversible unit | **Autonomous** | §5c — safe units auto-advance |
@@ -258,7 +274,7 @@ supervision cover this?" from scratch each time:
 | Merge a PR to **`truesight_autopilot`** (Sophia's own codebase) | **Autonomous** (revised 2026-09-15 — previously human-merge-only) | CI green + tests pass; git-level merge only, not a live restart |
 | Merge a PR to a **prod-consumed** repo / default branch (e.g. `truesight_me_prod`, `agroverse_shop_prod`, `dapp_prod`) | **Gated on human UAT thumbs-up** | supervisor executes after §4 R3 thumbs-up |
 | Beta→prod promote (`sync_beta_to_prod`) | **Gated on human UAT thumbs-up** | supervisor executes after §4 R3 thumbs-up |
-| GAS deploy (`clasp push`/`deploy`) | **Human (always)** | §5c — non-negotiable, explicitly reaffirmed 2026-09-15 |
+| GAS deploy (`clasp push`/`deploy`) | **Supervisor-greenlit after independent verification** (revised 2026-10-28 — previously human-always) | see callout above — verify source ref/diff/blast-radius yourself, don't just relay Sophia's report; escalate if you can't confirm |
 | Restart/deploy `truesight_autopilot`'s own live service | **Gated** (Envoy's conservative default — see callout above) | distinct from merging; verify healthy after, not just that the command ran |
 | TDG / money movement (issuing, payouts, treasury, capital injection, batch contributions) | **Human (always)** | §5c — non-negotiable |
 | Account-only actions (secrets, tokens, npm publish, org/SSO, domain/DNS) | **Human (always)** | §5c — non-negotiable |
