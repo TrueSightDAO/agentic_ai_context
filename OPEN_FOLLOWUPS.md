@@ -39,6 +39,48 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Multi-process plan: PR2 needs session affinity first — claim-loss can mean *work* loss
+**Filed 2026-10-28. Owner: unclaimed. Governor: Gary. Blocks `plans/SOPHIA_SIDEKIQ_MULTIPROCESS_PLAN.md` PR2.**
+
+**Symptom (predicted, from measurement — not yet observed live, because `workers` is still 1).**
+PR1/PR2 assume a worker that loses a session claim can defer that session's turns to the owner. Three
+measured facts show it cannot, on the current stack:
+
+1. **Work is created on a shared socket.** `ss -lntp` shows `0.0.0.0:8001` bound directly by the app
+   python process; nginx does **not** proxy 8001 and no local proxy exists. uvicorn 0.46.0 uses a
+   **shared** listening socket for `--workers`, and `REUSEPORT` is absent from
+   `uvicorn.supervisors.multiprocess`. The **kernel's `accept()`** therefore chooses the worker.
+2. **The incoming work queue is process-local.** `_message_queues: dict[str, list[dict]] = {}`
+   (`app/main.py:190`, 11 refs). An adapter POST routed to worker B while worker A holds the claim
+   is not redirected — B serves a queue it shares with nobody.
+3. **22 module-level mutable containers in `app/main.py`**, four of which cannot be per-process:
+   `_message_queues` (11 refs — queued messages lost) · `_cancel_flags` (7 — cancel POST can land on
+   a worker not running the turn, silently ignored) · `_live_progress` (16 — `/chat/progress` is
+   deliberately lock-free but reads another worker's in-memory snapshot, so it is empty) ·
+   `_active_streams` (6 — registry fragments). `_session_locks` (3) is fine; that is what PR1 layers.
+
+**Why it matters.** At `workers > 1`, losing the claim can mean **work loss**, not deferral — i.e.
+scaling would introduce a regression rather than remove a limit. No amount of Redis work inside PR2
+fixes a request that has already landed on the wrong process.
+
+**Recommended fix — insert a PR1.5 (session affinity) before PR2.** The pieces already exist: both
+adapters send `X-Session-Id` (`telegram_adapter.py:130`, `discord_adapter.py:749`) and `main.py:441`
+derives the session key from that same header, so nginx `upstream { hash $http_x_session_id
+consistent; }` gives per-session stickiness with **no app change** and unblocks all four containers
+above (including making `_live_progress` a local read). The alternative — migrating all four to Redis —
+is a far larger PR6-blocking effort and unnecessary if affinity holds.
+
+**Decision needed from Gary.** (a) affinity-by-proxy (small, reversibly gated) **or** state-migration
+(large)? Recommendation: affinity. (b) Should PR4's load test measure the intended production shape
+(with affinity)? It must, or the chosen N is measured against a stack that will not ship.
+
+**Circularity to name, so PR2 is not opened for consistency.** PR1's cross-process lock only *matters*
+when `workers > 1`, and `workers > 1` is unsafe until the four containers are handled — so PR1 is
+currently unexercisable. The minimum viable set is **PR0 + PR1 + affinity + PR4**, then the PR5
+decision. PR2 and PR3 are refinements of a layer whose precondition is not yet met.
+
+---
+
 ### A turn can silently kill itself: `deploy_autopilot` restarts the process running the turn
 **Filed 2026-10-28. Owner: unclaimed. Governor: Gary. Observed live in Discord `#envoy-server`.**
 
