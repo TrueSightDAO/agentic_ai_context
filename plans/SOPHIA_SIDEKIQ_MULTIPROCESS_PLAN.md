@@ -1,6 +1,6 @@
 # Sophia: Sidekiq-style multi-process dispatch — implementation plan, roadmap, checklist
 
-**Status:** draft, RESUME HERE → PR0
+**Status:** draft, RESUME HERE → PR1
 **Owner:** supervisor (Envoy), per Gary's direct request in `#envoy-server` 2026-10-28
 **Depends on:** `plans/SOPHIA_REDIS_MARK_AND_CLAIM_DISPATCH_PLAN.md` (PR1/PR2 already merged — see §0)
 
@@ -33,10 +33,11 @@ confirmed merged on `origin/main` just now, not just proposed):
 | fix — redis made a runtime dep (was broken in prod) | `6a9e407` (#554) | merged |
 | PR2 — Telegram adapter writes an advisory Redis mark per inbound message | `ed56348` (#555) | merged |
 | PR1 — staleness expiry on the *inner* per-turn session lock | `62ecabb` (#551) | merged |
+| PR0 (this plan) — Discord adapter writes an advisory Redis mark per inbound message | `c8ed47f` (#565) | merged |
 
 The dispatch plan's own resume tracker (as committed) still shows all boxes unchecked — that
-doc is stale, not the code; this table supersedes it. **Not yet built**: Discord adapter marks
-(PR3), the discovery/claim-attempt loop (PR4), mark TTL/cleanup (PR5), the
+doc is stale, not the code; this table supersedes it. **Not yet built**: the discovery/claim-attempt loop (PR4), mark TTL/cleanup
+(PR5), the
 `active_supervision.json` relationship decision (PR6, human gate), the dashboard (PR7) — and,
 critically, **the one thing that actually turns these marks into safe multi-process dispatch**:
 replacing `_session_lock()`'s in-process `asyncio.Lock` with the cross-process `try_claim`/
@@ -102,11 +103,11 @@ state is stable and intentional rather than ad-hoc.
 
 ## 3. Resume tracker
 
-**RESUME HERE → PR0 (Discord adapter marks).**
+**RESUME HERE → PR1 (cross-process session lock via Redis claim).**
 
 | Unit | PR opened | Merged (human) | Notes |
 |---|---|---|---|
-| PR0 — Discord adapter marks | ☐ | ☐ | mirrors #555's Telegram pattern |
+| PR0 — Discord adapter marks | ✅ #565 | ✅ `c8ed47f` (2026-10-28) | merged; mirrors #555's Telegram pattern |
 | PR1 — cross-process session lock via Redis claim | ☐ | ☐ | the architectural unlock |
 | PR2 — discovery + claim-attempt loop | ☐ | ☐ | |
 | PR3 — mark TTL/cleanup | ☐ | ☐ | |
@@ -115,6 +116,37 @@ state is stable and intentional rather than ad-hoc.
 | PR6 — flip service file + deploy + 24h verify | ☐ | ☐ | **gate: human sign-off before/after**, per §5.0 deploy rule |
 | PR7 — active_supervision.json relationship decision | ☐ (writeup) | n/a | **gate: human** (carried over from dispatch plan's PR6) |
 | PR8 — dashboard | ☐ | ☐ | |
+
+### PR1 handoff note — cross-process session lock via Redis claim
+
+**Goal:** replace `app/main.py`'s in-process `_session_lock()` `asyncio.Lock`
+(`app/main.py:182-233`) with the cross-process `try_claim` / `release` primitives already
+shipped in `app/redis_claim.py` (PR1, `1664e99` / #552). This is **the actual architectural
+change** — everything after it in §2 is only safe because of it.
+
+**Why it matters:** `_session_locks: dict[str, asyncio.Lock]` lives inside one process's
+memory. With `--workers 2` each process would get its own lock for the *same* session, so two
+processes could execute one conversation concurrently and race on shared state (Edgar
+identities, in-flight PR context, session transcript writes). The marks shipped in #555
+(Telegram) and #565 (Discord) are currently *advisory telemetry* — a second process does not
+respect them yet.
+
+**Approach for the next turn:**
+1. Read `_session_lock()` and every call site in `app/main.py`; record current semantics
+   (acquisition, per-turn staleness expiry, release in `finally`, behaviour on timeout).
+2. Confirm the `try_claim` / `release` contract in `app/redis_claim.py`: TTL, owner token, and
+   the Lua `EVAL` check-owner-then-release, so a process cannot release a claim it does not
+   hold.
+3. Preserve existing behaviour as the default: single-process (`--workers 1`) must behave
+   identically; the Redis path only becomes load-bearing when a second process exists.
+4. Degrade safely like the marks do — a Redis outage must not wedge every session forever.
+   Whether that means fail-open or bounded-wait must be decided explicitly, not by accident.
+5. Tests must prove: two independent claimers cannot both hold one session · a stale claim
+   expires · release is owner-checked · the Redis-down behaviour is the documented one.
+
+**Gate:** the four local gates (compileall / ruff on touched files / ruff format / pytest)
+before any push. **No production restart in PR1** — flipping
+`systemd/truesight-autopilot.service` stays PR5/PR6 and remains a human gate.
 
 ## 4. Always-stop gates (§5.0/§5c)
 
