@@ -39,6 +39,44 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### A turn can silently kill itself: `deploy_autopilot` restarts the process running the turn
+**Filed 2026-10-28. Owner: unclaimed. Governor: Gary. Observed live in Discord `#envoy-server`.**
+
+**Symptom.** Governor says "Go"; the turn's round-1 tool call is `deploy_autopilot({})`; the deploy
+restarts `truesight-autopilot{,-discord,-telegram,-watchdog}` — which terminates the process that is
+*holding* that tool call. The tool never returns, so:
+
+- **no error is logged** (`journalctl -p err` since the restart: *no entries*)
+- **nothing is persisted** — the session's last stored item is the user message; the assistant's
+  `tool_calls` entry is never written (`updated_at` freezes one turn earlier)
+- **no supervisor re-dispatches it** — the adapters come back up and simply wait for the next message
+- from the governor's side it is indistinguishable from an infinite hang: the Discord progress
+  indicator stays frozen at `LLM round=1` forever
+
+**Evidence (2026-10-28, session `8d3102fd299f`).** `Go` at 10:29:02 → persisted 10:29:04 →
+LLM round-1 returned `deploy_autopilot({})` at 10:29:07 → deploy copied units/nginx/certbot
+10:29:43–59 → app process restarted, new PID start time `10:29:59` → services healthy again
+10:30:07. Verification 11 min later showed the deploy had in fact **fully succeeded** (HEAD ==
+`origin/main`, new module live, 4/4 units active, cert valid) — the work was done, only the
+*report* was lost.
+
+**Why it matters.** This is the same failure class as "merged but not deployed" that has bitten
+this project twice: a state transition completes with no confirmation recorded anywhere. Here it is
+worse, because a governor watching the progress indicator has no way to tell "slow" from "dead".
+
+**Two candidate fixes (either is small):**
+1. **Refuse the self-kill.** `deploy_autopilot` detects it is executing inside an active turn/user
+   request and instead hands off to the watchdog (write a deploy request + exit), so the restart can
+   never terminate the turn that requested it.
+2. **Recover on startup.** On adapter boot, scan for a session whose last assistant message carries
+   a `tool_call` with no matching `tool` result and post a one-line recovery notice into that
+   channel: *"turn interrupted by service restart at <ts>; deploy result: <verified outcome>"*.
+
+**Done criteria.** Kill a turn mid-`deploy_autopilot`; the channel receives an explicit
+interrupted/outcome notice, and the session history contains no dangling `tool_call`.
+
+---
+
 ### truesight.me member-facing docs for inter-ledger transfers — channel opened, publishing BLOCKED
 **Filed 2026-10-27. Owner: unclaimed. Governor: Gary. Tracked in Discord `#dao-website-documentation` (id `1564568214959169566`, category `DAO Build and Ops` / `1548891663991316550`).**
 
