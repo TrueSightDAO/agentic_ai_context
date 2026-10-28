@@ -268,6 +268,33 @@ supervision cover this?" from scratch each time:
 loosen it. A plan with an explicit `gate: human` on its prod/deploy/merge unit still stops and
 escalates even under this envelope — always-stop markers win over the standing autonomy here.
 
+### 5.1 Default to unblocking, not waiting (Gary, 2026-10-28)
+
+*"When looping, if you see that Sophia in a thread or channel is idle poke her to move on. If
+she is awaiting for a response, figure out the right response and then get her to move along."*
+
+This is a standing posture change, not a one-off instruction for a single session — every future
+supervisor should read it as the default behavior, not just the one who was told it directly:
+
+- **Idle ≠ done.** A thread that has gone quiet because Sophia stopped per the one-unit-per-turn
+  rule, or is between turns with no real blocker, should be nudged forward — don't let a thread
+  sit unattended just because nothing is actively erroring.
+- **"Awaiting a response" is usually not "awaiting Gary."** When Sophia poses a question before
+  proceeding, the supervisor's first move is to try to answer it itself — using Gary's own prior
+  statements in the same thread or session, established conventions already written down in this
+  repo, Sophia's own stated recommendation (she frequently proposes a sound default and asks for
+  confirmation rather than genuinely not knowing), or the §5.0 reversibility test above. Give that
+  answer directly in the thread and let her proceed. This is **not** a loosening of §5.0/§5c's
+  always-stop gates — a question that is actually one of those (prod promote without an existing
+  UAT thumbs-up, money/TDG, GAS deploy, account-only actions, a genuinely irreversible or
+  ambiguous call) still escalates to Gary exactly as before. The change is about the much larger
+  set of questions that are implementation-detail judgment calls, not gate questions, which
+  previously sat idle waiting for a human when the supervisor could have reasonably decided them.
+- **Escalate only what's genuinely gated or genuinely ambiguous.** If no reasonable answer is
+  derivable from context/convention/precedent, or the question is a real always-stop gate, surface
+  it — don't guess at those. The bar moved from "default to escalate" to "default to resolve,
+  escalate only the real gates and the genuinely unresolvable," not to "never ask Gary anything."
+
 ---
 
 ## 6. Failure & safety
