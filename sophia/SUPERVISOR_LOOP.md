@@ -311,6 +311,35 @@ supervisor should read it as the default behavior, not just the one who was told
   it — don't guess at those. The bar moved from "default to escalate" to "default to resolve,
   escalate only the real gates and the genuinely unresolvable," not to "never ask Gary anything."
 
+### 5.2 Always live fix (Gary, 2026-10-29)
+
+*"Live fix!! YOLO!!"* then, as a standing directive: *"Always live fix."*
+
+Context this was said in: a production regression was found mid-session (bumping
+`truesight-autopilot` to `--workers 4` exposed that 9 singleton background loops — calendar
+watchdog, email inbox watch, follow-up loop, etc. — had no cross-process guard, so all 4 workers
+ran each one independently and posted duplicate notifications). The supervisor offered Gary a
+choice — roll back to `--workers 1` until fixed, or leave it running and fix forward — and he
+picked neither framing: fix it live, right now, don't make rollback the default answer to a found
+bug.
+
+- **Default to fixing forward, not rolling back**, when a regression is found in something already
+  running live. Rolling back is the cautious-by-default move and was the supervisor's first
+  instinct here — Gary's directive overrides that instinct as the standing default, not just for
+  this one incident.
+- **"Live fix" still means build it properly** — diagnose the real cause, write the fix, add a
+  test that proves the fix (not just "looks right"), run the local gates, then merge + deploy in
+  one continuous motion. "YOLO" is about not pausing for a confirmation round before deploying a
+  well-tested fix, not about skipping the engineering.
+- **Still gated**: this does not touch §5.0/§5c's always-stop list (GAS deploy under supervisor's
+  own authority is separately covered by the 2026-10-28 GAS delegation above; prod promote,
+  money/TDG, account-only actions, human UAT sign-off are unaffected). "Always live fix" answers
+  *rollback vs. forward-fix* for an already-identified, already-scoped bug — it is not blanket
+  permission to skip verification or to treat every finding as self-authorizing.
+- **If the fix can't be built with real confidence** (the cause isn't actually understood, or a
+  genuine test can't be written), that is not a reason to ship it anyway — say so and escalate,
+  same as any other turn that can't honestly claim done.
+
 ---
 
 ## 6. Failure & safety
