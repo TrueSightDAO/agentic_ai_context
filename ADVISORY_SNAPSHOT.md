@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-10-29T13:30:43Z`
+- Generated (UTC): `2026-10-29T22:54:33Z`
 - Look-back: **7** calendar days (`2026-10-22` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -271,6 +271,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-10-22 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+b29be65 | 2026-10-29 13:36:48 +0000 | chore(stats): refresh stats indexes [skip ci]
 cf0d668 | 2026-10-29 06:21:02 +0000 | chore(stats): refresh stats indexes [skip ci]
 319d968 | 2026-10-28 22:47:09 +0000 | chore(stats): refresh stats indexes [skip ci]
 5397251 | 2026-10-28 22:15:59 +0800 | docs(contracts): correct sheet locations for CAPITAL INJECTION and MANAGED LEDGER TRANSACTION cards (#415)
@@ -314,6 +315,8 @@ b940644 | 2026-10-28 17:36:51 +0800 | Position the 12-bar case as try-it / reord
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+ce9f1f7 | 2026-10-29 21:31:05 +0800 | chore(previews): refresh Beer Hall preview (2026-10-29 UTC)
+78daf54 | 2026-10-29 21:31:03 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-29 UTC)
 c20c51b | 2026-10-29 20:10:27 +0800 | Register thread 41214 — Oscar 2026 new patch (SunMint plot) task plan (#1760)
 8c2917a | 2026-10-29 11:39:31 +0000 | chore(supervision): both two-goal asks DONE for tonight (PR-A #593 + PR-B chain), remaining open items carried forward
 c6c1271 | 2026-10-29 11:08:05 +0000 | chore(supervision): PR-A rebuild branch pushed (44 tests), #592 appeared, holding deploys until wiring committed
@@ -352,8 +355,6 @@ dc260fb | 2026-10-29 10:25:21 +0800 | docs(julio-guide): correct Step 0 button n
 0b8d77b | 2026-10-28 23:16:39 +0800 | docs(open-followups): PR2 of the multi-process plan cannot work without session affinity (#1746)
 e6282e9 | 2026-10-28 15:14:26 +0000 | chore(supervision): PR1 (#567) merged; #566 closed as less-complete duplicate
 bf96910 | 2026-10-28 15:12:51 +0000 | chore(supervision): loop-daemon U2 (PR #568) merged+verified+posted to Discord
-b371a8e | 2026-10-28 15:09:45 +0000 | chore(supervision): register #loop-daemon track (Gary's #2 priority), found stalled ~50min
-1002cbb | 2026-10-28 23:01:37 +0800 | plan: tick PR0 (Discord dispatch marks, #565) done; RESUME HERE -> PR1 (#1745)
 … (truncated)
 ```
 
@@ -400,6 +401,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+e573917 | 2026-10-29 13:43:00 +0000 | chore: refresh currencies.json [skip ci]
 697aa7a | 2026-10-29 13:07:09 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 ae3659d | 2026-10-28 13:31:33 +0000 | chore: refresh currencies.json [skip ci]
 6bfdb8c | 2026-10-28 17:28:48 +0800 | chore: refresh Agroverse SKU catalog snapshot
