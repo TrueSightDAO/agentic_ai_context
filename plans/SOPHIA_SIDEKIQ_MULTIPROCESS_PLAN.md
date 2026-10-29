@@ -1,6 +1,24 @@
 # Sophia: Sidekiq-style multi-process dispatch — implementation plan, roadmap, checklist
 
-**Status:** draft, RESUME HERE → PR1
+> ## ⚠️ SUPERSEDED 2026-10-29 — read `plans/SOPHIA_DISPATCH_RECONCILIATION.md` first
+>
+> This plan's *direction* was right and much of it **shipped**, but its roadmap numbering is dead
+> and must not be executed as written:
+>
+> - Its PR5/PR6 ("Gary decides N" → "flip the service file, deploy, go live") **already happened
+>   out of band**: `--workers 4` has been live since 2026-10-29 (`01bcae5`).
+> - Its PR1 (replace the in-process `asyncio.Lock` with Redis claims) shipped as
+>   `app/session_claim.py`, now enabled in production (`SESSION_CLAIM_ENABLED=true`).
+> - Its PR8 (dashboard) is still unbuilt and is renumbered there.
+>
+> It also ran **in parallel with** `plans/SOPHIA_MULTI_PROCESS_WORKER_PLAN.md` (PR #1740), which
+> proposed a *different* target architecture (dedicated workers off a Redis queue, explicitly
+> rejecting `--workers N`). The two were never reconciled. They are now:
+> **`plans/SOPHIA_DISPATCH_RECONCILIATION.md` is the single plan-of-record.**
+>
+> Do not start any unit below without reading that document first.
+
+**Status:** **superseded** 2026-10-29 by `plans/SOPHIA_DISPATCH_RECONCILIATION.md`.
 **Owner:** supervisor (Envoy), per Gary's direct request in `#envoy-server` 2026-10-28
 **Depends on:** `plans/SOPHIA_REDIS_MARK_AND_CLAIM_DISPATCH_PLAN.md` (PR1/PR2 already merged — see §0)
 
