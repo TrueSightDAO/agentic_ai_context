@@ -92,7 +92,48 @@ is NOT reported without a freshness warning alongside it.
 ### Multi-process plan: share session state — claim-loss can mean *work* loss (affinity approach retracted)
 **Filed 2026-10-28. Owner: unclaimed. Governor: Gary. Blocks `plans/SOPHIA_SIDEKIQ_MULTIPROCESS_PLAN.md` PR2.**
 
-**LIVE STATUS 2026-10-29 02:40 UTC — the predicted risk went LIVE, and the fix for it was INERT.**
+**RESOLVED 2026-10-29 02:45 UTC — superseded by #582 + #583; verified live, not assumed. The 02:40 snapshot below is retained for the reasoning but is NO LONGER the current state — read this block first.**
+
+What actually landed, and what was independently verified on the box afterwards:
+
+1. **`--workers 4` is running** (master 4180377, workers 4180380–4180384). Live unit, origin/main
+   unit, and the running process **all agree on 4** — the file-vs-process disagreement is gone.
+2. **`SESSION_STATE_SHARED=1` is effective.** Added durably to `.env:98` (gitignored, survives
+   `git reset --hard`) and picked up by the restart. Confirmed per-worker from
+   `/proc/<pid>/environ` across **all 5 processes via the systemd cgroup**, and `enabled()` returns
+   True under a real worker env. **#571/#573 are now executing for the first time.**
+3. **Cross-process state proven end-to-end, not inferred.** The claim below that queues/cancel/
+   progress were "silently dropped" was correct *while inert*; each is now verified to cross process
+   boundaries with two independent processes — `queue_push` in A → `queue_len`/`queue_pop` in B;
+   `set_cancel` in A → `is_cancelled` in B; `progress_set` in A → `progress_get` in B. Lock keys
+   reuse the shipped `redis_claim` primitives.
+4. **`app/singleton_guard.py` exists and works** (#583, merged 02:43:04). The 9 lifespan loops each
+   run on **exactly one** worker: 9 `lock:singleton:*` keys with sane TTLs, and logs showing
+   **9 "claimed by" / 27 "already owned — skipping"** (= 1 run per loop across 4 workers). This
+   closed the duplicate-outbound-email risk (`email_watch` at `main.py:712` is guarded).
+
+**Correction to this entry's own history:** an earlier revision of this block (and PR #584, which was
+closed as superseded at 02:43:13) asserted `singleton_guard.py` was ABSENT and `workers 4` therefore
+unsafe. That measurement was accurate when taken at ~02:40 but **expired three minutes later** when
+#583 merged. Conclusions were filed on a fact that went stale mid-turn — the lesson is to re-measure
+immediately before acting on a "X is missing" finding, not to reason from it for a whole turn.
+
+**Two measurement traps worth remembering** (both caused false alarms here, neither was a product bug):
+- `systemctl show -p ExecStart` reports the **unit file**, not the running process. Only
+  `/proc/<pid>/cmdline` is ground truth.
+- `pgrep -f 'app.main:app'` **matches your own probe's command line** (the string appears in the
+  ssh/bash argv), yielding phantom "workers" and phantom `<unset>` env entries. Use
+  `/sys/fs/cgroup/system.slice/truesight-autopilot.service/cgroup.procs` instead.
+
+**Still genuinely outstanding from this plan:** the GitHub throttle. `app/github_throttle.py:85` is
+`threading.BoundedSemaphore(...)` — **per-process**, so 4 workers hold 4 independent budgets against
+one 5000/hr PAT. Latent while headroom is healthy, but exhausting that PAT takes down ALL DAO GitHub
+automation (QR lookups, submission writes, ledger ops) org-wide, not just this box. Build it as a
+sibling of `session_state.py`: Redis token bucket, default-OFF flag, degrade-don't-raise.
+
+---
+
+**HISTORICAL SNAPSHOT 2026-10-29 02:40 UTC (superseded — kept for the reasoning):**
 
 Read from `/proc/<MainPID>/environ` and `/proc/<MainPID>/cmdline`, not from config files
 (`systemctl show ExecStart` reports the *unit file*, which disagreed with the process):
@@ -109,9 +150,10 @@ Read from `/proc/<MainPID>/environ` and `/proc/<MainPID>/cmdline`, not from conf
    `systemd/truesight-autopilot.service` from the repo over `/etc/systemd/system/` on *every*
    deploy. Editing only the live unit does not persist. The repo copy still said `--workers 1`,
    so an unrelated deploy (#581) reset it.
-4. **Ground truth now: the running process is `--workers 1`** (MainPID 4173351, started
-   02:30:30 by the redeploy; `deploy.sh:44`'s `git reset --hard origin/main` restored the
-   repo's `workers 1`). The unit *file* says `workers 4` and does not match the process.
+4. (At 02:40) **Ground truth then: the running process was `--workers 1`** (MainPID 4173351,
+   started 02:30:30 by the redeploy; `deploy.sh:44`'s `git reset --hard origin/main` restored the
+   repo's `workers 1`). The unit *file* said `workers 4` and did not match the process. **This is
+   no longer true — see the RESOLVED block above.**
 5. **The lock half is now OBSERVED, not predicted**: during the 4-worker window a restarting
    worker attempted a session another worker held, waited 120s, then degraded safely rather
    than corrupting state. That is `redis_claim` doing its job.
