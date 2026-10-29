@@ -341,6 +341,40 @@ appropriately low-risk. The fix is "never leave test value sitting in a real led
 
 ---
 
+## 5h. When in doubt, check the SOP first — don't default to asking (2026-10-29)
+
+*"Can we have Sophia really reason for herself instead of needing human inputs all the time?
+Perhaps when in doubt reference SOP."*
+
+Said after a stretch of threads each stopping on a decision point an existing runbook already
+answers — SOP/runbook text sitting unread while the turn asks the governor the same question the
+document already resolves.
+
+**Before stopping on a decision point, check whether an existing SOP, runbook, or convention
+already resolves it** — `search_context` / `read_context_file` against this repo's existing
+playbooks (certificate issuance runbooks, checkout policy, freight methodology, farm-page
+conventions, etc. — this workspace has dozens) before treating the decision as genuinely open.
+If the document gives a clear, applicable answer, **follow it and proceed** — citing which
+document and which line resolved it, same evidentiary bar as any other claim — rather than
+re-asking a question that's already been answered once, in writing, for exactly this situation.
+
+**This does not relax §5c's always-stop gates** (prod deploy/promote, TDG/money movement, UAT,
+account-only actions) — a decision that is genuinely one of those still stops regardless of what
+any SOP says, because those gates exist for reasons an SOP can't substitute a human for. Nor does
+it mean inventing an answer when no SOP covers the case, or stretching a tangentially-related
+document to cover a genuinely novel situation — **a real gap in the documentation, or a case the
+SOP doesn't actually address, is still a reason to stop and ask**, the same as before. What
+changes is the *default first move* on hitting a decision point: check for an answer already
+written down before treating "ask the governor" as the only path forward.
+
+**A good recent example of the right instinct, even though it still asked:** the SunMint
+certificate thread (2026-10-29) correctly declined to guess on an awardee string (`"TLHD"`) that
+had zero hits anywhere in context or code — that's a genuine gap, not a documented answer sitting
+unread, and escalating it was correct. The distinction this section draws is between *that* kind
+of stop (nothing to find) and a stop where the SOP was sitting right there answering the question.
+
+---
+
 ## 6. Contribution reporting — use dao_client (dao_protocol repo)
 
 When Gary Teh asks you to report a contribution (time, expenses, or any `[CONTRIBUTION EVENT]`), **do not** use the `create_dao_submission` or `submit_contribution` tools. Instead, use the **dao_client** CLI from the **`dao_protocol`** repo:
