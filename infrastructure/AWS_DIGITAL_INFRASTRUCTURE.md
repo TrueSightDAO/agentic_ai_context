@@ -6,6 +6,14 @@ This document describes the **production AWS infrastructure** for TrueSight DAO 
 
 ## ⚠️ CURRENT STATE BANNER — updated 2026-07-15 (authoritative; supersedes older sections below)
 
+> **2026-10-29 — the Autopilot box now runs its OWN local Redis.** A second,
+> independent `redis-server` (6.0.16) runs on the Sophia box at `127.0.0.1:6379`,
+> **loopback-only**, as the shared-state backend that lets the autopilot run
+> `--workers 4`. It is **not** `seni_redis_2` (Perch/Sidekiq) and **not**
+> `GETDATA_REDIS` (Krake) — it shares no data with either. Deployment details and
+> the full key protocol: **§4.6**. Gated by two `.env` flags: `SESSION_CLAIM_ENABLED`
+> and `SESSION_STATE_SHARED`.
+
 Two changes landed 2026-07-15. **Where the text below conflicts with this banner, the banner wins** (a full line-by-line sweep of the older sections is a pending follow-up).
 
 **1. Sophia (autopilot) migrated Explorya → Nelanco** (AMI lift-and-shift):
@@ -282,10 +290,15 @@ sophia-nelanco autopilot (3.214.167.219:8001)
   └── POST /chat — governor chat (RSA-signed or JWT)
   └── POST /fix — autonomous fix PR agent
   └── GET /health — health check
-  └── Background: Gmail poller, AWS monitor
+  └── Background: Gmail poller, AWS monitor (9 singleton-guarded loops)
+  └── redis-server @ 127.0.0.1:6379 — shared session state (see §4.6)
 ```
 
 Runs on a **dedicated EC2** separate from Perch (Rails) to protect critical infrastructure. Code at `/opt/truesight_autopilot`, systemd service `truesight-autopilot.service`.
+
+Runs **`--workers 4`** (uvicorn, as of 2026-10-29). Multi-worker correctness depends on the
+**local Redis** described in §4.6 — with `SESSION_STATE_SHARED` off, per-worker state forks and
+cross-worker delivery silently drops.
 
 **Telegram identifiers (Sophia):**
 - Bot: **`@truesight_autopilot_bot`** (id `8217115914`).
@@ -350,6 +363,156 @@ After a stop/start resize, an EIP reassociate, or a fresh box, confirm before wa
 - **2026-06-06:** resized in-place **t3.small → t3.medium** (4 GB) + **2 GB swap**; all units (incl. watchdog) verified active; box pulled to current `main` (incl. PDF house style). Pre-resize backup AMI `ami-0e1f8559e760c5fd9`. EIP held → no Route53 change.
 - **2026-06-07:** weekly-AMI TODO **DONE** — automated via the Cypher-Defense GitHub Action above (first AMI `ami-0dae91c5216989753`). Also shipped (`truesight_autopilot#114`): Sophia can now run sudo / install packages on her **own** box via `ssh_run(host='autopilot', …)` (loopback self-host; `sophia_infra.pub` self-trusted in the box's own `authorized_keys` by `deploy.sh`); the system prompt embeds a live **host-identity block** (instance id/type/region via IMDS) so she stops hallucinating her location; `GROK_API_KEY` added to the box `.env` (`/health` → `grok_key_set: true`).
 
+### 4.6 Autopilot Redis — local instance on Sophia (added 2026-10-29)
+
+**Why it exists.** The autopilot ran `--workers 1` for most of its life, so every piece of in-flight
+session state (interjection queue, cancel signal, live progress) was a **module-level dict** — one
+process, one dict, no coordination problem. Moving to `--workers 4` breaks that assumption: uvicorn
+forks 4 independent processes behind one listening socket, the kernel round-robins request to request,
+so `POST /chat/queue` can land on worker B while the drain loop runs in worker A. Nothing raises; the
+message simply vanishes. A local Redis is the shared substrate that makes cross-worker coordination
+possible.
+
+**It is a per-box, private instance.** Three Redis deployments now exist in the fleet — do not conflate:
+
+| Redis | Where | Serves | Reachable from |
+|---|---|---|---|
+| `seni_redis_2` (54.234.59.188) | Nelanco EC2 | Perch/Rails — Sidekiq + cache | Nelanco VPC |
+| `GETDATA_REDIS` (172.31.19.183) | Nelanco EC2 | Krake | Nelanco VPC |
+| **Sophia local Redis** | **the autopilot box itself** | **autopilot session state / claims / singletons** | **loopback only** |
+
+Sophia's Redis is **not** Edgar's and shares no keyspace, credentials, or lifecycle with Nelanco's.
+It is a plain Ubuntu `redis-server` package — not an ElastiCache cluster, not cross-AZ, not replicated.
+
+#### Deployment facts (measured on the box, 2026-10-29)
+
+| Property | Value |
+|---|---|
+| Package | `redis-server` 5:6.0.16-1ubuntu1.2 (server 6.0.16) |
+| Systemd unit | `redis-server.service` — `Type=notify`, `Restart=always`, `User=redis` |
+| ExecStart | `/usr/bin/redis-server /etc/redis/redis.conf --supervised systemd --daemonize no` |
+| Listen | `127.0.0.1:6379` and `[::1]:6379` **only** — verified NOT reachable on the box's private IP |
+| Auth | `requirepass` **is set** (value lives in `/etc/redis/redis.conf`; never in git, never in `.env`) |
+| `protected-mode` | `yes` |
+| Persistence | **RDB only** — `appendonly no`, `save 900 1 / 300 10 / 60 10000`, `dir /var/lib/redis` (`dump.rdb`) |
+| Memory | `maxmemory 64mb`, `maxmemory-policy noeviction` |
+| App client | `redis-py` via `app/redis_claim.py::get_client()` — `decode_responses=True`, `socket_timeout=5`, `socket_connect_timeout=5` |
+| Connection | `SOPHIA_REDIS_URL` env var, else default `redis://127.0.0.1:6379/0` |
+| Password | `PHASE_C_REDIS_PASSWORD` — **Vault first (canonical)**, env var as explicit override. Neither is in `.env`, so the password resolves from Vault at runtime. |
+
+**`noeviction` is the one config to keep an eye on.** At 64 MB with `noeviction`, a full instance does
+**not** evict old keys — new writes fail with OOM. Because every call site degrades instead of raising,
+that surfaces as *silent fallback to per-process dicts*, not an outage. So Redis filling up looks like
+"the system still works" while cross-worker delivery quietly stops. Current usage ~1 MB of 64 MB (~1.5%)
+with ~40 keys, so headroom is large — but monitor `used_memory` rather than assuming.
+
+#### Key protocol
+
+All keys are namespaced by a **scope** — the canonical session identity, e.g. `tg:<chat_id>:<thread_id>`
+(Telegram) or `dc:<guild_id>:<thread_id>` (Discord). Literal builders live in `app/session_state.py`
+and `app/redis_claim.py`.
+
+| Key pattern | Type | Written by | TTL | Purpose |
+|---|---|---|---|---|
+| `lock:<thread_id>` | string (`SET NX EX`) | `redis_claim.claim()` | 3600s default, renewed by owner-only Lua | Cross-process **thread claim** — one worker owns a conversation turn |
+| `lock:singleton:<name>` | string (`SET NX EX`) | `singleton_guard.run_as_singleton()` | 120s, renewed every TTL/3 | Ensures a background loop runs on **exactly one** of the 4 workers |
+| `queue:<scope>` | list (`RPUSH`/`LPOP`, FIFO) | `session_state.queue_push()` | **none set** | Mid-turn governor interjections waiting to be drained |
+| `cancel:<scope>` | string (`SETEX`) | `session_state.set_cancel()` | 3600s | `/chat/cancel` signal, readable by whichever worker runs the turn |
+| `progress:<scope>` | JSON string (`SETEX`) | `session_state.progress_set()` | 7200s | Live tool-round progress served by `/chat/progress` |
+| `marks` | sorted set (`ZADD`, global) | `redis_claim.mark()` | none (by design — PR5 cleanup prunes) | Threads with unprocessed work, scored by timestamp |
+
+**Ownership is atomic, never check-then-act.** Both the release and the renew in `redis_claim` are
+Lua scripts that compare the stored owner id before mutating, so a worker whose TTL lapsed cannot
+resurrect its claim over a peer that has since won the thread, and a non-owner cannot release a lock
+it doesn't hold.
+
+**`queue:` has no TTL — note the trade-off.** Redis deletes an empty list automatically, so normal
+drain-until-empty behaviour leaves nothing behind. But a scope that is pushed to and then **abandoned**
+(worker dies mid-turn) leaves a persistent list. That is benign at current volume and is the kind of
+thing to bound if queue volume grows.
+
+#### Two flags gate everything — set them in `.env`, NOT the unit file
+
+| Flag | Value | Effect when off |
+|---|---|---|
+| `SESSION_CLAIM_ENABLED=true` | cross-process thread claim on | claims never taken; no contention protection |
+| `SESSION_STATE_SHARED=1` | queue/cancel/progress live in Redis | **per-process dicts** — cross-worker delivery silently lost |
+
+**Where to put them: `/opt/truesight_autopilot/.env`.** `.env` is gitignored, loaded via
+`EnvironmentFile=`, and survives `scripts/deploy.sh`'s `git reset --hard origin/main` and
+`git clean -fd`. The **unit file does not survive** — `deploy.sh` copies
+`systemd/truesight-autopilot.service` from the repo over `/etc/systemd/system/` on *every* deploy, so a
+hand-edit to the live unit silently reverts on the next deploy from any thread. Persist durable config
+in `.env`; change the unit only by editing the repo copy.
+
+#### Degradation contract — deliberate, and asymmetric
+
+Every Redis call site is wrapped in try/except with a one-time `_warn()`. **No Redis failure ever raises
+into a governor's turn.** The fallback differs by subsystem and the difference is intentional:
+
+- **`session_state`** → falls back to that process's local dict. For a queue/cancel/progress read this
+  means *that* worker sees its own state only.
+- **`singleton_guard`** → **degrades OPEN**: if Redis is unreachable it runs the loop anyway. The
+  reasoning is that a Redis blip returning to "all workers run it" (noisy, legacy behaviour) beats
+  silently killing all 9 background loops.
+
+**Consequence to state plainly:** Redis health is now a **correctness dependency for multi-worker mode**,
+not merely a cache. If Redis is down while `--workers 4`, the system keeps serving but cross-worker
+delivery of interjections and cancels is lost, and background loops revert to 4×. Single-worker mode
+(`--workers 1`) is unaffected — local dicts are correct when there is only one process.
+
+#### Operating it
+
+```bash
+# status / restart (it is a normal systemd service)
+systemctl status redis-server
+sudo systemctl restart redis-server
+
+# health — note: plain `redis-cli PING` returns NOAUTH because requirepass is set.
+# Use the app's own auth path rather than handling the password by hand:
+ls /opt/truesight_autopilot/.venv/bin/python -c \
+  "import sys; sys.path.insert(0,'/opt/truesight_autopilot'); \
+   from app import redis_claim; print(redis_claim.get_client().ping())"
+
+# headroom (watch this under noeviction)
+#   info('memory')['used_memory_human'] vs maxmemory
+# key census by namespace
+#   scan_iter('*') -> count by prefix before ':'
+
+# the autopilot's own view (survives worker round-robin)
+curl -s http://127.0.0.1:8001/health
+```
+
+**Restarting Redis while the autopilot is multi-worker is survivable but not free:** RDB persistence
+means claims/TTLs are restored from the last snapshot (or lost since it), so workers may re-contend for
+threads and re-claim singletons. Expect a brief burst of `already owned -- skipping` / re-claim log
+lines, not data loss — everything stored here is coordination state with a TTL, **never business data**.
+
+#### Verification gotchas (learned the hard way, 2026-10-29)
+
+Three checks that look authoritative and are not:
+
+1. **`systemctl show -p ExecStart` reports the UNIT FILE, not the running process.** After a hand-edit or
+   a deploy it will happily disagree with reality. Ground truth is `/proc/<MainPID>/cmdline` for the
+   master and `/proc/<pid>/environ` per worker.
+2. **`pgrep -f 'app.main:app'` matches your own probe's argv** — the pattern string appears in the
+   ssh/bash command line, so you get phantom "worker" PIDs and phantom `<unset>` env entries. Use the
+   systemd cgroup instead, which cannot self-match:
+   `cat /sys/fs/cgroup/system.slice/truesight-autopilot.service/cgroup.procs`
+3. **`enabled()` read from an interactive shell is meaningless** — a shell does not inherit the
+   service's `EnvironmentFile=`, so `SESSION_STATE_SHARED=1` in `.env` will report `False`. Read it
+   from a worker's `/proc/<pid>/environ`, or in-process under that env.
+
+#### What proves it works
+
+Each of these was verified with **two independent processes**, not inferred from config:
+
+- queue: `queue_push` in A → `queue_len`/`queue_pop` in B returns the message
+- cancel: `set_cancel` in A → `is_cancelled` in B returns True
+- progress: `progress_set` in A → `progress_get` in B returns the record
+- singletons: exactly 9 `lock:singleton:*` keys, and logs showing `9 "claimed by"` / `27 "already owned -- skipping"`
+  (= one run per loop across 4 workers)
+
 ---
 
 ## 5. Perch Migration (2026-05-28)
@@ -391,6 +554,19 @@ The DNS `edgar.truesight.me` was updated to point to `krake_nginx` (54.226.114.1
 - **`app/email_poller.py`** — Gmail monitoring
 - **`app/aws_monitor.py`** — AWS CloudWatch/Cost monitoring
 - **`scripts/deploy.sh`** — Deploy to EC2
+- **`app/redis_claim.py`** — Redis client + cross-process thread claim (Lua-compare owner, renew, release) + `marks` sorted set
+- **`app/session_state.py`** — shared queue / cancel / live-progress containers (Redis when `SESSION_STATE_SHARED`, else per-process dicts)
+- **`app/singleton_guard.py`** — cross-process guard so each background loop runs on one worker only
+- **`app/github_throttle.py`** — GitHub API concurrency guard, **per-process only** (see §10 pitfall 7)
+
+Autopilot Redis env vars (`.env` on the box — never commit values):
+
+| Var | Required | Meaning |
+|---|---|---|
+| `SESSION_CLAIM_ENABLED` | for multi-worker | enable cross-process thread claim |
+| `SESSION_STATE_SHARED` | for multi-worker | route queue/cancel/progress through Redis |
+| `SOPHIA_REDIS_URL` | optional | override; default `redis://127.0.0.1:6379/0` |
+| `PHASE_C_REDIS_PASSWORD` | optional | env override; canonical source is Vault |
 
 ---
 
@@ -544,6 +720,12 @@ df-alert cron scripts to `/usr/local/bin/`.
 4. **Nginx routing:** `edgar.truesight.me` → DNS to `seni_ror_new` (3.90.179.151) → local nginx → `/dao/*` routes go to `dao_protocol_nelanco:8010`, trading routes go to `127.0.0.1:3002` (Rails). The nginx config is on `seni_ror_new`, NOT krake_nginx.
 
 5. **Webhook URLs are env-configured.** The `dao_protocol` server reads webhook URLs from `DAO_PROTOCOL_WEBHOOK_*` env vars. The Rails Perch reads from `config/application.rb`. They are independent — a change to one does not affect the other.
+
+6. **Sophia has her OWN Redis — it is not `seni_redis_2`.** The autopilot box runs a local `redis-server` on `127.0.0.1:6379` (`loopback only`) for session state, thread claims and singleton guards (§4.6). Nelanco's `seni_redis_2` serves Perch/Sidekiq and `GETDATA_REDIS` serves Krake; none of the three share keys, credentials, or lifecycle. Do not point Edgar at Sophia's Redis, and do not look for autopilot session keys in Nelanco.
+
+7. **Worker count and runtime flags go in `.env`, not the systemd unit.** `scripts/deploy.sh` copies `systemd/truesight-autopilot.service` from the repo over the live unit on **every** deploy, so a hand-edit to `/etc/systemd/system/` silently reverts (this actually happened on 2026-10-29 — a `--workers 4` hand-edit was reverted by an unrelated deploy). Change the unit only by editing the repo copy; put durable runtime flags in `/opt/truesight_autopilot/.env`, which is gitignored and survives `git reset --hard`.
+
+8. **Do not assume `--workers 4` is safe just because it is running.** Multi-worker correctness rests on two `.env` flags plus the local Redis: with `SESSION_STATE_SHARED` off, interjections, `/chat/cancel` and `/chat/progress` are silently dropped when request and drain land on different workers — no exception, no log line, no 5xx. Verify from `/proc/<pid>/environ`, never from the unit file or an interactive shell.
 
 ---
 
