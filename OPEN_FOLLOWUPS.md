@@ -39,6 +39,61 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### GitHub throttle is PER-PROCESS — 4 live workers share 16 permits against one 5,000/h PAT
+**Filed 2026-10-29. Owner: Sophia (PR-C, next unit). Governor: Gary. Priority: HIGH — present-tense.**
+
+**Symptom:** `app/github_throttle.py` creates the governor's semaphore **at import time**:
+`_semaphore = threading.BoundedSemaphore(max_concurrency())` (default `GITHUB_MAX_CONCURRENCY=4`).
+That is per **OS process**. The service has run `uvicorn --workers 4` since 2026-10-29, so the
+fleet now allows **16 concurrent GitHub API calls** against **one** 5,000 req/h PAT.
+
+**Why it matters now, not later:** this was already the failure of 2026-10-28 — a single process
+burned **~8,000 req/h** and the resulting 403s blocked a merge. Multi-process multiplies exactly
+that failure. The module docstring's own stated intent is *"a single global bound so the parallel
+threads don't stampede GitHub"*; with 4 workers that intent is defeated, silently, because the
+semaphore still looks correct in each process.
+
+**Note:** this is NOT the volume problem, it's the pacing problem. `GITHUB_MAX_CONCURRENCY=4`
+looks enforced and is not.
+
+**Proposed fix:** move the budget to Redis — a token bucket at `sophia:gh:budget` (plus a short-TTL
+in-flight counter) that every worker claims from, so the fleet shares one allowance. Keep the
+existing **fail-open on acquire timeout** trade-off (a bound that deadlocks a governor's turn is
+worse than a 403) and keep every path releasing in `finally`. `GITHUB_MAX_CONCURRENCY` then means
+*global* permits rather than *per-worker* permits.
+
+**Test to add:** spawn N processes/threads against the real local Redis, assert total concurrent
+in-flight never exceeds the global limit — the invariant, not the happy path.
+
+**Rollback:** env flag back to the in-process semaphore; no data migration.
+
+---
+
+### Redis `maxmemory 64MB` + `noeviction` + a swallowing `mark()` = silent work loss
+**Filed 2026-10-29. Owner: Sophia (PR-D). Governor: Gary. Priority: MEDIUM — latent.**
+
+**Measured on the box:** Redis 6.0.16, `used_memory 963.41K`, **`maxmemory 64 MB`**, policy
+`noeviction`, `dbsize 38` (families: `lock:`×10, `loop*`×27, `marks`×1 zset ≈31 members).
+
+**The trap:** `noeviction` is the *correct* policy for locks/queues (you must never evict work),
+but that means writes **error** at the limit rather than dropping a key. `telegram_adapter.mark()`
+deliberately swallows write errors (*"a mark is advisory; never break dispatch"*). Those two
+choices are individually right and jointly dangerous: once `marks` — which nothing currently
+drains, see below — plus loop status pushes Redis near 64 MB, marks stop being written and
+**nothing anywhere reports it**. Dispatch would degrade to "threads mysteriously stop being
+picked up."
+
+**Second, related gap: nothing drains `marks`.** ~31 live members (`tg:*`,
+`dc:923008087315587072:*`) accumulate with no TTL and no reaper. This is Plan-2 PR4's residual
+item — the rest of that unit already shipped via `session_state`/`session_claim`.
+
+**Proposed fix:** raise `maxmemory` to **512 MB** (keep `noeviction`), document it in the Redis
+runbook, and add a bounded `marks` reaper (expire marks older than a stated horizon, mirroring the
+"unclaimed marks must expire" note in `redis_claim.mark`). Keep `mark()` advisory; make **enqueue**
+failures loud.
+
+---
+
 ### `loop_alert` sometimes fires with "(no goal recorded)" even though a goal is open
 **Filed 2026-10-29. Owner: unclaimed. Governor: Gary.**
 
