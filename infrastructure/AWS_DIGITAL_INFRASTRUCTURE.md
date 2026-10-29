@@ -363,7 +363,7 @@ After a stop/start resize, an EIP reassociate, or a fresh box, confirm before wa
 - **2026-06-06:** resized in-place **t3.small → t3.medium** (4 GB) + **2 GB swap**; all units (incl. watchdog) verified active; box pulled to current `main` (incl. PDF house style). Pre-resize backup AMI `ami-0e1f8559e760c5fd9`. EIP held → no Route53 change.
 - **2026-06-07:** weekly-AMI TODO **DONE** — automated via the Cypher-Defense GitHub Action above (first AMI `ami-0dae91c5216989753`). Also shipped (`truesight_autopilot#114`): Sophia can now run sudo / install packages on her **own** box via `ssh_run(host='autopilot', …)` (loopback self-host; `sophia_infra.pub` self-trusted in the box's own `authorized_keys` by `deploy.sh`); the system prompt embeds a live **host-identity block** (instance id/type/region via IMDS) so she stops hallucinating her location; `GROK_API_KEY` added to the box `.env` (`/health` → `grok_key_set: true`).
 
-### 4.6 Autopilot Redis — local instance on Sophia (added 2026-10-29)
+## 4.6 Autopilot Redis — local instance on Sophia (added 2026-10-29)
 
 **Why it exists.** The autopilot ran `--workers 1` for most of its life, so every piece of in-flight
 session state (interjection queue, cancel signal, live progress) was a **module-level dict** — one
@@ -384,7 +384,7 @@ possible.
 Sophia's Redis is **not** Edgar's and shares no keyspace, credentials, or lifecycle with Nelanco's.
 It is a plain Ubuntu `redis-server` package — not an ElastiCache cluster, not cross-AZ, not replicated.
 
-#### Deployment facts (measured on the box, 2026-10-29)
+### Deployment facts (measured on the box, 2026-10-29)
 
 | Property | Value |
 |---|---|
@@ -406,7 +406,7 @@ that surfaces as *silent fallback to per-process dicts*, not an outage. So Redis
 "the system still works" while cross-worker delivery quietly stops. Current usage ~1 MB of 64 MB (~1.5%)
 with ~40 keys, so headroom is large — but monitor `used_memory` rather than assuming.
 
-#### Key protocol
+### Key protocol
 
 All keys are namespaced by a **scope** — the canonical session identity, e.g. `tg:<chat_id>:<thread_id>`
 (Telegram) or `dc:<guild_id>:<thread_id>` (Discord). Literal builders live in `app/session_state.py`
@@ -431,7 +431,7 @@ drain-until-empty behaviour leaves nothing behind. But a scope that is pushed to
 (worker dies mid-turn) leaves a persistent list. That is benign at current volume and is the kind of
 thing to bound if queue volume grows.
 
-#### Two flags gate everything — set them in `.env`, NOT the unit file
+### Two flags gate everything — set them in `.env`, NOT the unit file
 
 | Flag | Value | Effect when off |
 |---|---|---|
@@ -445,7 +445,7 @@ thing to bound if queue volume grows.
 hand-edit to the live unit silently reverts on the next deploy from any thread. Persist durable config
 in `.env`; change the unit only by editing the repo copy.
 
-#### Degradation contract — deliberate, and asymmetric
+### Degradation contract — deliberate, and asymmetric
 
 Every Redis call site is wrapped in try/except with a one-time `_warn()`. **No Redis failure ever raises
 into a governor's turn.** The fallback differs by subsystem and the difference is intentional:
@@ -461,7 +461,7 @@ not merely a cache. If Redis is down while `--workers 4`, the system keeps servi
 delivery of interjections and cancels is lost, and background loops revert to 4×. Single-worker mode
 (`--workers 1`) is unaffected — local dicts are correct when there is only one process.
 
-#### Operating it
+### Operating it
 
 ```bash
 # status / restart (it is a normal systemd service)
@@ -488,7 +488,7 @@ means claims/TTLs are restored from the last snapshot (or lost since it), so wor
 threads and re-claim singletons. Expect a brief burst of `already owned -- skipping` / re-claim log
 lines, not data loss — everything stored here is coordination state with a TTL, **never business data**.
 
-#### Verification gotchas (learned the hard way, 2026-10-29)
+### Verification gotchas (learned the hard way, 2026-10-29)
 
 Three checks that look authoritative and are not:
 
@@ -503,7 +503,7 @@ Three checks that look authoritative and are not:
    service's `EnvironmentFile=`, so `SESSION_STATE_SHARED=1` in `.env` will report `False`. Read it
    from a worker's `/proc/<pid>/environ`, or in-process under that env.
 
-#### What proves it works
+### What proves it works
 
 Each of these was verified with **two independent processes**, not inferred from config:
 
@@ -557,7 +557,7 @@ The DNS `edgar.truesight.me` was updated to point to `krake_nginx` (54.226.114.1
 - **`app/redis_claim.py`** — Redis client + cross-process thread claim (Lua-compare owner, renew, release) + `marks` sorted set
 - **`app/session_state.py`** — shared queue / cancel / live-progress containers (Redis when `SESSION_STATE_SHARED`, else per-process dicts)
 - **`app/singleton_guard.py`** — cross-process guard so each background loop runs on one worker only
-- **`app/github_throttle.py`** — GitHub API concurrency guard, **per-process only** (see §10 pitfall 7)
+- **`app/github_throttle.py`** — GitHub API concurrency guard, **per-process only** (see §10 pitfall 9)
 
 Autopilot Redis env vars (`.env` on the box — never commit values):
 
@@ -726,6 +726,10 @@ df-alert cron scripts to `/usr/local/bin/`.
 7. **Worker count and runtime flags go in `.env`, not the systemd unit.** `scripts/deploy.sh` copies `systemd/truesight-autopilot.service` from the repo over the live unit on **every** deploy, so a hand-edit to `/etc/systemd/system/` silently reverts (this actually happened on 2026-10-29 — a `--workers 4` hand-edit was reverted by an unrelated deploy). Change the unit only by editing the repo copy; put durable runtime flags in `/opt/truesight_autopilot/.env`, which is gitignored and survives `git reset --hard`.
 
 8. **Do not assume `--workers 4` is safe just because it is running.** Multi-worker correctness rests on two `.env` flags plus the local Redis: with `SESSION_STATE_SHARED` off, interjections, `/chat/cancel` and `/chat/progress` are silently dropped when request and drain land on different workers — no exception, no log line, no 5xx. Verify from `/proc/<pid>/environ`, never from the unit file or an interactive shell.
+
+9. **`app/github_throttle.py` is PER-PROCESS — it does not protect the shared GitHub PAT.** It holds a `threading.BoundedSemaphore` (module-level, one per OS process), so at `--workers 4` there are **four independent concurrency budgets racing the same 5000/hr PAT**. The guard keeps *one* worker from stampeding; it cannot see the other three. Headroom has been healthy in practice (688–1029 of 5000 observed), so this is latent, but the blast radius is **org-wide**: exhausting that PAT breaks *all* DAO GitHub automation — QR lookups, `submit_contribution` writes, and ledger ops — not just the autopilot box.
+
+   Intended fix (not yet built): a Redis token bucket, built as a **sibling of `session_state.py`** — thin layer over the shipped `app/redis_claim.py` primitives, default-OFF flag, and degrade-open on Redis failure, matching `singleton_guard.py`'s shape. Tracked in `OPEN_FOLLOWUPS.md` (2026-10-28 multi-worker entry).
 
 ---
 
