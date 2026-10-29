@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-10-29T06:12:59Z`
+- Generated (UTC): `2026-10-29T13:30:43Z`
 - Look-back: **7** calendar days (`2026-10-22` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -75,7 +75,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-10-23T10:59:15.113Z`
+- Generated (UTC): `2026-10-29T10:59:14.551Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -85,16 +85,16 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **1128**, follow_up **71**, bulk **0**, unknown **2** (data rows: **1201**)
+- **Email Agent Follow Up** — logged sends: warmup **1129**, follow_up **71**, bulk **0**, unknown **2** (data rows: **1202**)
 - Distinct recipient addresses (`to_email`, by log `status`): warmup **88**, follow_up **23**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **125** stores — sum logged **warmup** sends (AU): **1056**, sum logged **follow-up** sends (AV): **4**; warmup depth (none / once / ≥2): **64** / **0** / **61**; follow-up depth (none / once / ≥2): **124** / **0** / **1**
-- **Manager Follow-up**: **35** stores — sum logged **warmup** sends (AU): **15**, sum logged **follow-up** sends (AV): **67**; warmup depth (none / once / ≥2): **29** / **1** / **5**; follow-up depth (none / once / ≥2): **13** / **5** / **17**
+- **AI: Warm up prospect**: **117** stores — sum logged **warmup** sends (AU): **971**, sum logged **follow-up** sends (AV): **4**; warmup depth (none / once / ≥2): **61** / **0** / **56**; follow-up depth (none / once / ≥2): **116** / **0** / **1**
+- **Manager Follow-up**: **31** stores — sum logged **warmup** sends (AU): **25**, sum logged **follow-up** sends (AV): **59**; warmup depth (none / once / ≥2): **24** / **1** / **6**; follow-up depth (none / once / ≥2): **12** / **4** / **15**
 - **Bulk Info Requested**: _(no rows in this status)_
-- **AI: Prospect replied**: **2** stores — sum logged **warmup** sends (AU): **17**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **0** / **0** / **2**; follow-up depth (none / once / ≥2): **2** / **0** / **0**
-- **Follow-up pipeline (combined)**: **37** stores — sum logged **warmup** sends (AU): **32**, sum logged **follow-up** sends (AV): **67**; warmup depth (none / once / ≥2): **29** / **1** / **7**; follow-up depth (none / once / ≥2): **15** / **5** / **17**
+- **AI: Prospect replied**: **1** stores — sum logged **warmup** sends (AU): **8**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **0** / **0** / **1**; follow-up depth (none / once / ≥2): **1** / **0** / **0**
+- **Follow-up pipeline (combined)**: **32** stores — sum logged **warmup** sends (AU): **33**, sum logged **follow-up** sends (AV): **59**; warmup depth (none / once / ≥2): **24** / **1** / **7**; follow-up depth (none / once / ≥2): **13** / **4** / **15**
 
 ---
 
@@ -271,6 +271,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-10-22 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+cf0d668 | 2026-10-29 06:21:02 +0000 | chore(stats): refresh stats indexes [skip ci]
 319d968 | 2026-10-28 22:47:09 +0000 | chore(stats): refresh stats indexes [skip ci]
 5397251 | 2026-10-28 22:15:59 +0800 | docs(contracts): correct sheet locations for CAPITAL INJECTION and MANAGED LEDGER TRANSACTION cards (#415)
 2afe0e3 | 2026-10-28 22:02:49 +0800 | Align contracts page event tokens with Edgar's canonical event catalog (#418)
@@ -313,6 +314,18 @@ b940644 | 2026-10-28 17:36:51 +0800 | Position the 12-bar case as try-it / reord
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+c20c51b | 2026-10-29 20:10:27 +0800 | Register thread 41214 — Oscar 2026 new patch (SunMint plot) task plan (#1760)
+8c2917a | 2026-10-29 11:39:31 +0000 | chore(supervision): both two-goal asks DONE for tonight (PR-A #593 + PR-B chain), remaining open items carried forward
+c6c1271 | 2026-10-29 11:08:05 +0000 | chore(supervision): PR-A rebuild branch pushed (44 tests), #592 appeared, holding deploys until wiring committed
+7dc2aff | 2026-10-29 09:49:11 +0000 | chore(supervision): log PR-A WIP loss incident, dispatched rebuild with commit-early instruction
+363bb93 | 2026-10-29 09:48:57 +0000 | docs(supervisor-loop): §5.4 -- check for uncommitted work before dispatching any deploy
+972d768 | 2026-10-29 09:21:09 +0000 | chore(supervision): update multiprocess claim -- #591 (telegram identity) deployed, PR-A still the resume point
+2332b0e | 2026-10-29 08:26:58 +0000 | docs(followups): ad-hoc ping_sophia sessions have no auto-advance -- document the gap
+23b48fa | 2026-10-29 07:06:08 +0000 | chore(supervision): update multiprocess claim -- #586/#587/#590 deployed+verified, 30550 closed out, PR-A nudged
+0811f48 | 2026-10-29 07:05:13 +0000 | docs(followups): complete_thread_goal has its own session-key resolution bug, separate from #586
+8ec4ad8 | 2026-10-29 15:04:37 +0800 | docs(media-archive): event-media is a live first-class namespace, not future (#1759)
+fffb428 | 2026-10-29 14:13:26 +0800 | chore(previews): refresh Beer Hall preview (2026-10-29 UTC)
+a60b6a6 | 2026-10-29 14:13:24 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-29 UTC)
 1431a18 | 2026-10-29 05:04:45 +0000 | chore(supervision): update multiprocess claim -- docs race resolved, founderhaus nudge landed, Gary live on both goals
 6fe5c2a | 2026-10-29 04:58:54 +0000 | docs(infra): throttle is fleet-wide via Redis (PR-C) - replace stale per-process wording
 8d44050 | 2026-10-29 12:57:30 +0800 | docs(infra): document Sophia's local Redis instance + the session-state/claim/singleton protocol (#1754)
@@ -341,18 +354,6 @@ e6282e9 | 2026-10-28 15:14:26 +0000 | chore(supervision): PR1 (#567) merged; #56
 bf96910 | 2026-10-28 15:12:51 +0000 | chore(supervision): loop-daemon U2 (PR #568) merged+verified+posted to Discord
 b371a8e | 2026-10-28 15:09:45 +0000 | chore(supervision): register #loop-daemon track (Gary's #2 priority), found stalled ~50min
 1002cbb | 2026-10-28 23:01:37 +0800 | plan: tick PR0 (Discord dispatch marks, #565) done; RESUME HERE -> PR1 (#1745)
-4503986 | 2026-10-28 15:00:16 +0000 | chore(supervision): PR0 (#565) + dapp_beta winery track (#154/#152) merged and verified
-ad47f28 | 2026-10-28 14:39:56 +0000 | chore(supervision): MLTE trigger install verified live (caught+fixed a stale-evidence citation)
-a509915 | 2026-10-28 14:38:13 +0000 | chore(supervision): MLTE deploy independently verified live; PR #152 resolved via new PR #154
-50ce59f | 2026-10-28 14:23:15 +0000 | docs(supervisor-loop): GAS deploy moves to supervisor-greenlit after verification (Gary, 2026-10-28)
-59e1e68 | 2026-10-28 14:20:40 +0000 | chore(supervision): register #agroverse-supply-chain (MLTE prod promotion) claim
-ed53b34 | 2026-10-28 14:18:56 +0000 | chore(supervision): close out contracts-docs + rate-limit-burner tracks, nudge usa-b2b-outreach
-1591ecc | 2026-10-28 14:13:47 +0000 | chore(supervision): register Sidekiq multi-process plan claim, close out #envoy-server self-kill item
-b4c1189 | 2026-10-28 22:11:59 +0800 | docs(plans): Sidekiq-style multi-process dispatch plan for Sophia (#1744)
-35c40f4 | 2026-10-28 21:21:54 +0800 | chore(previews): refresh Beer Hall preview (2026-10-28 UTC)
-4489e66 | 2026-10-28 21:21:52 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-28 UTC)
-dfc8ea2 | 2026-10-28 21:07:35 +0800 | docs(plans): loop daemon implementation plan, roadmap and checklist (#1742)
-f94beb0 | 2026-10-28 12:13:22 +0000 | Add §5.1: default to unblocking, not waiting (Gary, 2026-10-28)
 … (truncated)
 ```
 
@@ -399,6 +400,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+697aa7a | 2026-10-29 13:07:09 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 ae3659d | 2026-10-28 13:31:33 +0000 | chore: refresh currencies.json [skip ci]
 6bfdb8c | 2026-10-28 17:28:48 +0800 | chore: refresh Agroverse SKU catalog snapshot
 2dac7b3 | 2026-10-27 12:40:11 +0000 | chore: refresh currencies.json [skip ci]
@@ -523,7 +525,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
-| 2026-10 | 460 | 18944.34386 | 10/28/2026 |
+| 2026-10 | 460 | 18944.34386 | 10/29/2026 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-10-22`; scanned last **600** data rows)
 
