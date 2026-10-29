@@ -42,6 +42,50 @@ cross-session** items that would otherwise rot in chat transcripts.
 ### Multi-process plan: share session state — claim-loss can mean *work* loss (affinity approach retracted)
 **Filed 2026-10-28. Owner: unclaimed. Governor: Gary. Blocks `plans/SOPHIA_SIDEKIQ_MULTIPROCESS_PLAN.md` PR2.**
 
+**LIVE STATUS 2026-10-29 02:40 UTC — the predicted risk went LIVE, and the fix for it was INERT.**
+
+Read from `/proc/<MainPID>/environ` and `/proc/<MainPID>/cmdline`, not from config files
+(`systemctl show ExecStart` reports the *unit file*, which disagreed with the process):
+
+1. **Workers were bumped to 4 at 02:17** with `SESSION_CLAIM_ENABLED=true`, verified healthy
+   (4 subprocesses, health 200, GitHub quota 1027/5000 → 1029/5000). Claim-loss became
+   exercisable for the first time — PR1 could not be exercised at 1 worker.
+2. **`SESSION_STATE_SHARED` was UNSET**, so `session_state.enabled()` returned False. PRs
+   #571 (queues/cancel) and #573 (live progress) were merged **and deployed**, with all wiring
+   present in `/opt/truesight_autopilot/app/` — but every container was still a per-process
+   dict. Net effect at 4 workers: interjection / `/chat/cancel` / `/chat/progress` each land on
+   one worker and are read on another → **silently dropped**. No exception, no log line, no 5xx.
+3. **The bump was then silently reverted.** `scripts/deploy.sh:315` copies
+   `systemd/truesight-autopilot.service` from the repo over `/etc/systemd/system/` on *every*
+   deploy. Editing only the live unit does not persist. The repo copy still said `--workers 1`,
+   so an unrelated deploy (#581) reset it.
+4. **Ground truth now: the running process is `--workers 1`** (MainPID 4173351, started
+   02:30:30 by the redeploy; `deploy.sh:44`'s `git reset --hard origin/main` restored the
+   repo's `workers 1`). The unit *file* says `workers 4` and does not match the process.
+5. **The lock half is now OBSERVED, not predicted**: during the 4-worker window a restarting
+   worker attempted a session another worker held, waited 120s, then degraded safely rather
+   than corrupting state. That is `redis_claim` doing its job.
+
+**Also discovered (not previously filed):**
+- `.env` is the **durable** home for runtime flags, and the unit file is not. `.env` is
+  gitignored, loaded via `EnvironmentFile=`, and survives `git reset --hard` / `git clean -fd`
+  (`deploy.sh:44`). `SESSION_CLAIM_ENABLED=true` sits at `.env:94` and took effect **only**
+  because a restart happened to occur. Editing the live unit at all is the wrong lever.
+- `SESSION_STATE_SHARED` appears **nowhere** — not in the unit, not in `scripts/`, not in
+  `.env`. It has never been set on any host, so **no deploy has ever activated the shared
+  containers. The fix for this entry, #571/#573, has never actually run.**
+- Merged ≠ active. Reviewing that a flag-gated change "shipped" tells you nothing about
+  whether it is executing; the gate has to be checked in `/proc`, per process.
+
+**Resolution (needs governor go — production restart, so it is not the autopilot's call):**
+1. Add `SESSION_STATE_SHARED=1` to `.env` (durable), **not** to the unit file.
+2. Reconcile `--workers` in exactly ONE place. Adopt the repo unit as SSOT (PR #582 makes it
+   `workers 4`) and stop editing the live copy — this is the mechanism that silently undid the
+   bump once already.
+3. Order matters and should be a **single restart**: flag on first, then workers, so there is no
+   window where claim-loss is armed against unshared queues.
+4. Until step 1 lands, `--workers 1` is the coherent configuration and staying there is correct.
+
 **Symptom (predicted, from measurement — not yet observed live, because `workers` is still 1).**
 PR1/PR2 assume a worker that loses a session claim can defer that session's turns to the owner. Three
 measured facts show it cannot, on the current stack:
