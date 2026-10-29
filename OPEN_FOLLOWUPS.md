@@ -39,6 +39,42 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Ad-hoc `ping_sophia` sessions have no auto-advance — they silently stall forever unless re-pinged
+**Filed 2026-10-29. Owner: unclaimed. Governor: Gary. Priority: LOW — operational gap, not a bug.**
+
+**Observed tonight:** two governor-triggered sessions (`envoy-nudge-pr-a-20261029`,
+`envoy-telegram-identity-parity-20261029`) each did substantial, well-planned work, then sat
+completely untouched for 25+ minutes with zero self-resumption — not because anything crashed
+(`truesight-autopilot.service` was healthy, health 200 throughout) and not because
+`truesight-loop-daemon` was down (confirmed ticking every 60s, correctly surfacing 9 *other*
+`lost_goal` threads in the same window).
+
+**Root cause:** `loop_daemon`'s `lost_goal` classifier (and therefore `truesight-loop-alerts`'
+10-minute nudge timer) only tracks sessions with a `thread_goal` set against a Discord/Telegram
+channel key (`tg:<chat>:<topic>`, `dc:<guild>:<channel>`). A session created ad-hoc via
+`truesight-dao-ping-sophia --session-id <slug>` has **no chat surface to post a nudge into and no
+thread_goal entry to classify** — so it is structurally invisible to the entire auto-resume
+machinery. It only ever advances when the human (or Envoy, signed as governor) sends another
+`ping_sophia` call to that exact session-id.
+
+**Why this matters:** a supervisor who doesn't know this will assume "no activity in N minutes" ==
+"something's wrong" and either escalate unnecessarily or, worse, assume the loop-daemon's silence
+means the work is stuck/failed, when actually it's just waiting to be re-prompted by design.
+
+**Also observed in the same loop-daemon sweep, outside tonight's scope — a growing backlog:** 9
+concurrent `lost_goal` threads, several dated 2026-10-28 (`handoff-payout-farm-plot-filter`,
+`handoff-sitio-catarinense`, `envoy-nudge-media-pipeline-20261028-v3`,
+`envoy-go-media-and-wire-20261028`) that are not part of tonight's tracked priority channels and
+have apparently sat unresolved since the previous day. Flagging their existence; not triaged here.
+
+**Proposed fix (not scoped/estimated):** either (a) give ad-hoc ping sessions a lightweight
+thread_goal entry keyed by their session-id so the classifier sees them too (nudge would then need
+a non-chat delivery path — maybe just re-logging a reminder for the next governor session rather
+than posting anywhere), or (b) document this as expected behavior in SUPERVISOR_LOOP.md so future
+supervisors don't misdiagnose a quiet ad-hoc session as broken.
+
+---
+
 ### GitHub throttle is PER-PROCESS — 4 live workers share 16 permits against one 5,000/h PAT
 **Filed 2026-10-29. Owner: Sophia (PR-C, next unit). Governor: Gary. Priority: HIGH — present-tense.**
 
