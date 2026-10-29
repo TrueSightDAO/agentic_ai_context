@@ -34,11 +34,22 @@ What it cannot do is find the human context the web buries: a real contact email
 You can only save changes if your browser holds a registered DAO signature.
 
 1. Open https://dapp.truesight.me/create_signature.html
-2. Click **Create new key pair**, then enter your email to register
-3. Open the verification email and click the link
-4. Reload https://dapp.truesight.me/store_interaction_history.html — you should see **"Signature verified — updates enabled."**
+2. Enter your email address, then click **Continue** — this sends a verification email to you
+3. Open that email and click the verification link (it brings you back to the same page)
+4. Click **Verify this browser**, then click **Create Digital Signature** — your keypair is generated in your browser and never leaves it
+5. Reload https://dapp.truesight.me/store_interaction_history.html — you should see **"Signature verified — updates enabled."**
 
-If you instead see *"Read-only mode"*, your key isn't registered yet — wait for the email, or repeat step 2. Your signature is what **attributes every edit to you**, so Gary always knows who annotated what.
+If you instead see *"Read-only mode"*, your key isn't registered yet — check you clicked the link in the verification email **and** then pressed **Verify this browser** on the page (those are two separate clicks). Your signature is what **attributes every edit to you**, so Gary always knows who annotated what.
+
+**Button cheat-sheet** (the page has more buttons than you need — ignore the rest):
+
+| You see | Click |
+|---|---|
+| A field asking for your email | **Continue** |
+| "Verify this browser" | **Verify this browser** |
+| "Create Digital Signature" | **Create Digital Signature** |
+
+You do **not** need "Create New Signature" — that only replaces an existing key.
 
 ## The three jobs, in priority order
 
