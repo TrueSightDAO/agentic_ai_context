@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-10-28T22:45:49Z`
-- Look-back: **7** calendar days (`2026-10-21` → today UTC)
+- Generated (UTC): `2026-10-29T06:12:59Z`
+- Look-back: **7** calendar days (`2026-10-22` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -32,19 +32,15 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[SALES EVENT]` × 19
-- `[CONTRIBUTION EVENT]` × 16
-- `[PRACTICE EVENT]` × 3
-- `[ASSET RECEIPT EVENT]` × 1
+- `[SALES EVENT]` × 18
+- `[CONTRIBUTION EVENT]` × 17
+- `[PRACTICE EVENT]` × 4
 - `[INVENTORY MOVEMENT]` × 1
 - `[BATCH QR CODE REQUEST]` × 1
 - `[CONTRIBUTOR ADD EVENT]` × 1
 
 ### Latest entries
 
-- `Edgar_20261027145715_2818` · **Edgar** · [SALES EVENT] Cash proceeds collected by: Sacred Earth Farms · Item: 2024PAULO_20250804_21 · Sales price: $17
-- `Edgar_20261027145719_2820` · **Edgar** · [SALES EVENT] Cash proceeds collected by: Sacred Earth Farms · Item: 2024PAULO_20250804_22 · Sales price: $17
-- `Edgar_20261027150620_2822` · **Edgar** · [BATCH QR CODE REQUEST] Currency: Agroverse 81% Cacao Chocolate Bar 50g \| Oscar Cacao Nibs \| Kirsten 20261027 \| S… · Quantity: 2
 - `Edgar_20261027232706_2824` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Contributor(s): Gary Teh
 - `Edgar_20261027232709_2826` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 420 · Contributor(s): Sophia Truesight
 - `Edgar_20261027233459_2828` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Agroverse 81% Cacao bar QR batch (AGL13) — generation, label render fix, man…
@@ -62,6 +58,9 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20261028153538_2852` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 210 · Contributor(s): Sophia Truesight (admin+sophia@truesight.me)
 - `Edgar_20261028153541_2854` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 130 · Contributor(s): Envoy TrueSight
 - `Edgar_20261028153545_2856` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Contributor(s): Gary Teh
+- `Edgar_20261028235224_2858` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-28T23:52:22.442Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20261029015742_2860` · **Edgar** · [CONTRIBUTION EVENT] Amount: 10 · Contributor(s): Gary Teh · Description: Liaised with Cory (Cory Sacred Earth / Sacred Earth Farms) on selling cacao …
+- `Edgar_20261029015745_2862` · **Edgar** · [CONTRIBUTION EVENT] Amount: 15 · Contributor(s): Gary Teh, Kirsten Ritschel · Description: Liaised with Kirsten Ritschel on the reporting materials/consumables format …
 
 ---
 
@@ -224,7 +223,7 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 | Manager | Items | Units | Value (USD) |
 |---------|-------|-------|-------------|
 | Val Lapidus | 16 | 1,464 | $7,825.21 |
-| Sacred Earth Farms | 5 | 573 | $2,386.91 |
+| Sacred Earth Farms | 3 | 458.50 | $2,240.50 |
 | AGL13 | 1 | 2,214.61 | $2,214.61 |
 | Orlantildes | 1 | 108 | $1,311.12 |
 | Coopercabruca | 1 | 1,706 | $1,199.87 |
@@ -236,9 +235,9 @@ _(+34 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$2,720.85**
+- USD on hand: **$2,720.78**
 - Brazilian Reis: R$130.00 · rate `0.2323` USD/BRL → ≈ **$30.20**
-- USD provisioned for voting-rights cash-out: **$57.34**
+- USD provisioned for voting-rights cash-out: **$57.41**
 
 ### In-transit freight (0 rows)
 
@@ -253,7 +252,7 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_(No `YYYY-MM-DD |` lines on/after 2026-10-21 in CONTEXT_UPDATES.md.)_
+_(No `YYYY-MM-DD |` lines on/after 2026-10-22 in CONTEXT_UPDATES.md.)_
 
 ---
 
@@ -272,6 +271,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-10-21 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+319d968 | 2026-10-28 22:47:09 +0000 | chore(stats): refresh stats indexes [skip ci]
 5397251 | 2026-10-28 22:15:59 +0800 | docs(contracts): correct sheet locations for CAPITAL INJECTION and MANAGED LEDGER TRANSACTION cards (#415)
 2afe0e3 | 2026-10-28 22:02:49 +0800 | Align contracts page event tokens with Edgar's canonical event catalog (#418)
 76ece0c | 2026-10-28 22:00:22 +0800 | Fix last stale '30 RSA-signed event types' label in architecture SVG (#417)
@@ -302,10 +302,6 @@ aff43cc | 2026-10-23 05:15:14 +0000 | chore(stats): refresh stats indexes [skip 
 56f9d20 | 2026-10-22 17:32:28 +0000 | chore(stats): refresh stats indexes [skip ci]
 486394a | 2026-10-22 12:17:22 +0000 | chore(stats): refresh stats indexes [skip ci]
 c75724b | 2026-10-22 05:15:52 +0000 | chore(stats): refresh stats indexes [skip ci]
-9952474 | 2026-10-21 21:56:03 +0000 | chore(stats): refresh stats indexes [skip ci]
-0bbc9b1 | 2026-10-21 17:35:51 +0000 | chore(stats): refresh stats indexes [skip ci]
-3fc3e13 | 2026-10-21 12:15:33 +0000 | chore(stats): refresh stats indexes [skip ci]
-5b6c1fe | 2026-10-21 05:12:52 +0000 | chore(stats): refresh stats indexes [skip ci]
 ```
 
 ### `market_research` → `go_to_market`
@@ -317,6 +313,25 @@ b940644 | 2026-10-28 17:36:51 +0800 | Position the 12-bar case as try-it / reord
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+1431a18 | 2026-10-29 05:04:45 +0000 | chore(supervision): update multiprocess claim -- docs race resolved, founderhaus nudge landed, Gary live on both goals
+6fe5c2a | 2026-10-29 04:58:54 +0000 | docs(infra): throttle is fleet-wide via Redis (PR-C) - replace stale per-process wording
+8d44050 | 2026-10-29 12:57:30 +0800 | docs(infra): document Sophia's local Redis instance + the session-state/claim/singleton protocol (#1754)
+1e59ae0 | 2026-10-29 04:49:38 +0000 | chore(supervision): dashboard/dispatch work kicked off, PR-C urgent fix merged+verified
+ecb8733 | 2026-10-29 12:25:06 +0800 | docs(plans): reconcile Sophia multi-process plans onto Option A (#1753)
+ae68444 | 2026-10-29 11:59:51 +0800 | docs(followups): file event-media namespace + founderhaus no-stills gaps (#1752)
+3f01877 | 2026-10-29 03:57:57 +0000 | docs(supervisor-loop): self-decide after a few loops of no response, gates still gated (Gary, 2026-10-29)
+af127ce | 2026-10-29 03:13:59 +0000 | docs(followups): file the intermittent lost_goal blank-text cosmetic bug
+e3462ba | 2026-10-29 10:49:24 +0800 | docs(followups): amend 2026-10-28 multi-worker entry - superseded, verified live (#1751)
+6ca28f6 | 2026-10-29 02:48:55 +0000 | chore(supervision): --workers 4 fully live and verified, singleton-guard confirmed working
+1fa9d69 | 2026-10-29 10:42:26 +0800 | docs(followups): file stale context-index false-empty search gap (§5h blocker) (#1750)
+5001ec9 | 2026-10-29 02:39:29 +0000 | docs(operating-instructions): default to checking SOP before escalating a decision (Gary, 2026-10-29)
+1f97b41 | 2026-10-29 10:37:30 +0800 | docs(followups): record that the multi-worker fix went live but was inert (#1749)
+7f22a3d | 2026-10-29 02:26:08 +0000 | docs(supervisor-loop): always live-fix a found regression, don't default to rollback (Gary, 2026-10-29)
+dc260fb | 2026-10-29 10:25:21 +0800 | docs(julio-guide): correct Step 0 button names and order to match create_signature.html (#1748)
+69c47b0 | 2026-10-29 02:06:41 +0000 | chore(supervision): loop-daemon track fully complete -- cap bug + Envoy identity both fixed/verified
+6d52abf | 2026-10-29 01:24:15 +0000 | chore(supervision): loop-alerts (U4) fully working, independently verified end-to-end
+4d297ae | 2026-10-29 06:46:11 +0800 | chore(previews): refresh Beer Hall preview (2026-10-28 UTC)
+7e5dfd6 | 2026-10-29 06:46:09 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-28 UTC)
 73cd4fb | 2026-10-28 15:50:54 +0000 | chore(supervision): farm-media-site TLS resolved, ready for Gary's Visual UAT
 51f6392 | 2026-10-28 23:49:11 +0800 | docs: retract the nginx-affinity recommendation in the multi-process follow-up (#1747)
 8738677 | 2026-10-28 15:33:51 +0000 | chore(supervision): media Content-Type fix done+verified; TLS decision escalated; wire in progress
@@ -338,31 +353,16 @@ b4c1189 | 2026-10-28 22:11:59 +0800 | docs(plans): Sidekiq-style multi-process d
 4489e66 | 2026-10-28 21:21:52 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-28 UTC)
 dfc8ea2 | 2026-10-28 21:07:35 +0800 | docs(plans): loop daemon implementation plan, roadmap and checklist (#1742)
 f94beb0 | 2026-10-28 12:13:22 +0000 | Add §5.1: default to unblocking, not waiting (Gary, 2026-10-28)
-22fc55a | 2026-10-28 11:56:35 +0000 | Note: rate-limit burner now confirmed blocking three parallel tracks simultaneously
-7c651e2 | 2026-10-28 11:54:16 +0000 | Register new #media-archive-pipeline channel supervision claim
-859c84c | 2026-10-28 11:37:59 +0000 | Register new #github-rate-limit-burner channel supervision claim
-c13487d | 2026-10-28 10:43:25 +0000 | Update supervision note: diagnosed the apparent A-track stall as a self-inflicted deploy-restart kill, not a hang
-fa333d2 | 2026-10-28 18:42:39 +0800 | docs(followups): file silent-turn-loss-on-self-restart gap (#1738)
-725e8d9 | 2026-10-28 10:35:54 +0000 | Update supervision note: pinged stalled usa-b2b-outreach thread, she caught a deeper consignment-gating gap
-0804deb | 2026-10-28 10:30:50 +0000 | Update supervision note: PR#557 merge-verified, further self-correction on PAT budget sharing
-0b17ed0 | 2026-10-28 09:50:50 +0000 | Update supervision notes: deploy verified despite misleading noop, rate-limit gate undertuned, PDF-channel mixup resolved
-dccfe16 | 2026-10-28 09:35:40 +0000 | Update supervision notes: PR#556 and PR#197 merge-verified, both correct
-43984d0 | 2026-10-28 09:20:05 +0000 | Update supervision notes: PR#556 CI-verified, PR#195/#196 merge-verified
-c93a92c | 2026-10-28 09:13:54 +0000 | Update #usa-b2b-outreach claim: topic moved to wineries COGS/MOQ pricing research
-ddc8b69 | 2026-10-28 09:12:47 +0000 | Update supervision note: PR2 proven live, sharper rate-limit defect found, self-caught mark-TTL gap
-fea12a1 | 2026-10-28 09:07:10 +0000 | Note: live 403 rate-limit confirms PR#553 governor gap on commit_file() path
-4d8e5af | 2026-10-28 08:51:45 +0000 | Update supervision notes: both tracks correctly blocked_on_human, full pending items surfaced
-323ca18 | 2026-10-28 08:46:39 +0000 | Update supervision notes: Redis PR2 merged, contracts-page field contract recovered
-2709514 | 2026-10-28 08:44:31 +0000 | Claim supervision of truesight.me/contracts/ documentation audit
-90ce27d | 2026-10-28 08:41:50 +0000 | Update Redis dispatch supervision note: PR2 opened, CI-timing false alarm resolved
-ebca2fb | 2026-10-28 08:36:15 +0000 | Update Redis dispatch supervision note: PR1 verified live + corrected a false "plan doesn't exist" claim
-554a742 | 2026-10-28 06:57:49 +0000 | Claim supervision of SOPHIA_REDIS_MARK_AND_CLAIM_DISPATCH_PLAN.md
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+71fc0e0 | 2026-10-29 13:46:23 +0800 | scoring: per-row try/catch + run budget so a failing tick leaves a trace (#605)
+9503a18 | 2026-10-29 13:40:41 +0800 | Fix: remove shadowing processNonAgl4Transactions wrapper that masked the real AGL booking code (#609)
+8125614 | 2026-10-29 12:44:59 +0800 | Fix: non-AGL4 sales webhook deployment was MYSELF-restricted, silently no-op'ing real-time processing (#600)
+1402222 | 2026-10-29 11:26:19 +0800 | fix(gas): cut AGL sales lock wait below /exec frontend timeout so contention is visible (#607)
 aefc4f2 | 2026-10-28 22:16:09 +0800 | fix(gas): schedule MLTE processor on the time trigger (#604)
 95659eb | 2026-10-28 21:48:13 +0800 | Add producer that queues MANAGED LEDGER TRANSACTION EVENT rows from Telegram Chat Logs (#603)
 6fcfa2f | 2026-10-28 21:31:25 +0800 | Derive is_cacao from landing Page netloc in single-QR path (one shared impl) (#602)
@@ -370,9 +370,6 @@ aefc4f2 | 2026-10-28 22:16:09 +0800 | fix(gas): schedule MLTE processor on the t
 457c0e4 | 2026-10-27 17:07:00 +0800 | Add MLTE derivation engine: 4-row injection, movement, retirement logic (#599)
 c07a1ff | 2026-10-25 20:03:35 +0800 | fix(gas): add scoring pipeline diagnostics + failure visibility (#597)
 54301b0 | 2026-10-25 18:18:13 +0800 | fix: routing guard - stop silent fallback of named ledgers into MAIN (#595)
-d05182d | 2026-10-20 21:59:14 -0300 | Anchor Monthly Statistics on first empty column A (port of #590 to 1rLl94jQ) (#592)
-13fd6f1 | 2026-10-20 21:54:16 -0300 | Fix Monthly Statistics append anchor + normalise month cells (#590)
-3bdcceb | 2026-10-20 21:03:53 -0300 | Add ?action=diagSales probe + make report.skipped real (#589)
 ```
 
 ### `dapp` → `dapp`
@@ -421,9 +418,6 @@ c73cd86 | 2026-10-24 11:37:34 +0000 | chore: refresh currencies.json [skip ci]
 7dc5a98 | 2026-10-24 11:06:42 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 c55527b | 2026-10-23 12:06:40 +0000 | chore: refresh currencies.json [skip ci]
 ef7f62f | 2026-10-22 11:58:06 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
-be8780e | 2026-10-21 11:54:38 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
-ff7f68c | 2026-10-21 01:28:50 -0300 | chore: refresh Agroverse SKU catalog snapshot
-c4b1fa0 | 2026-10-21 01:28:47 -0300 | chore: refresh Agroverse store inventory snapshot
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -441,9 +435,6 @@ e7fb8ba | 2026-10-25 12:34:36 +0800 | Add Vivi's 81% dark chocolate bar card to 
 5bf1d9c | 2026-10-25 00:01:37 -0300 | Add PDP + SKU for Vivi's Farm 81% dark chocolate bar (50g) — AGL13 (#346)
 5dc2003 | 2026-10-22 20:13:09 -0300 | Add "About Dorothy Stang" context to CFR Anapu partner page (#345)
 3332f3e | 2026-10-22 01:56:13 -0300 | Fix school page media manifest 404 + add farm page §9 cross-links (#344)
-81909ba | 2026-10-21 01:35:58 -0300 | ci(journey): fail when a stop card image does not resolve (#343)
-d4461e0 | 2026-10-21 01:30:07 -0300 | fix(journey): map Sítio Catarinense card to a landscape photo (#342)
-9b58ef1 | 2026-10-20 22:06:26 -0300 | Compute cacao journey stats from a single source of truth (#341)
 ```
 
 ### `iching_oracle` → `oracle`
@@ -532,15 +523,15 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
-| 2026-10 | 409 | 18893.34386 | 10/28/2026 |
+| 2026-10 | 460 | 18944.34386 | 10/28/2026 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-10-21`; scanned last **600** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-10-22`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
-| 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | — | 2024PAULO_20250804_22 | — | — |
-| 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | — | 2024PAULO_20250804_21 | — | — |
-| 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | — | 2024PAULO_20250804_19 | — | — |
+| 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | ACCOUNTED | 2024PAULO_20250804_22 | — | — |
+| 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | ACCOUNTED | 2024PAULO_20250804_21 | — | — |
+| 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | ACCOUNTED | 2024PAULO_20250804_19 | — | — |
 | 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20251211_14 | — | — |
 | 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20251211_13 | — | — |
 | 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20251211_12 | — | — |
