@@ -39,6 +39,29 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### `loop_alert` sometimes fires with "(no goal recorded)" even though a goal is open
+**Filed 2026-10-29. Owner: unclaimed. Governor: Gary.**
+
+**Symptom:** the Telegram `tg:-1003919341801:30550` (Founder Haus media-indexing) thread's
+`lost_goal` alert alternated across consecutive ~10-min sweeps tonight between showing the real
+goal text and showing `"(no goal recorded)"` — confirmed by reading the same Redis
+`loop:status:*` hash directly between fires and finding the goal field correctly populated at
+least once in between the blank readings.
+
+**Likely cause, not yet confirmed:** `app/loop_daemon.py::load_goals()` re-reads
+`thread_goals.jsonl` fresh every sweep and replays each session's event history via
+`thread_goal.current_goal()` to determine whether a goal is currently `OPEN`. If an event for this
+session is appended to the log mid-sweep, or if the replay logic is sensitive to event ordering in
+a way that isn't idempotent across reads, the per-sweep read could non-deterministically land on
+different goal text for the same underlying state.
+
+**Impact: cosmetic only.** The alert still correctly fires and still correctly identifies the
+thread as `lost_goal` — only the goal-text detail in the message body is sometimes blank. Not
+urgent; no money/data-integrity risk. Worth a look next time someone's in `loop_daemon.py`/
+`thread_goal.py`, not worth a dedicated turn tonight.
+
+---
+
 ### `search_context` can serve a STALE index → false-empty result, which silently defeats §5h
 **Filed 2026-10-29. Owner: unclaimed. Governor: Gary.**
 
