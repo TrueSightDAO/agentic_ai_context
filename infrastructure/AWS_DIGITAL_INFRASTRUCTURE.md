@@ -420,6 +420,7 @@ and `app/redis_claim.py`.
 | `cancel:<scope>` | string (`SETEX`) | `session_state.set_cancel()` | 3600s | `/chat/cancel` signal, readable by whichever worker runs the turn |
 | `progress:<scope>` | JSON string (`SETEX`) | `session_state.progress_set()` | 7200s | Live tool-round progress served by `/chat/progress` |
 | `marks` | sorted set (`ZADD`, global) | `redis_claim.mark()` | none (by design — PR5 cleanup prunes) | Threads with unprocessed work, scored by timestamp |
+| `sophia:gh:inflight` | string (Lua `INCR`-if-below-limit) | `github_throttle` | **120s** (`GITHUB_THROTTLE_LEASE_MS`), renewed on each acquire | Fleet-wide count of in-flight GitHub API calls — the **shared PAT budget** |
 
 **Ownership is atomic, never check-then-act.** Both the release and the renew in `redis_claim` are
 Lua scripts that compare the stored owner id before mutating, so a worker whose TTL lapsed cannot
@@ -455,6 +456,13 @@ into a governor's turn.** The fallback differs by subsystem and the difference i
 - **`singleton_guard`** → **degrades OPEN**: if Redis is unreachable it runs the loop anyway. The
   reasoning is that a Redis blip returning to "all workers run it" (noisy, legacy behaviour) beats
   silently killing all 9 background loops.
+- **`github_throttle`** → **degrades OPEN**, in two stages. The Redis fleet-wide budget is tried first;
+  if the `eval` raises, it falls through to the old **in-process** `BoundedSemaphore` (so a single
+  worker still bounds its own bursts), and if a permit still cannot be won within
+  `GITHUB_THROTTLE_TIMEOUT_SECS` (default 30) it logs `proceeding WITHOUT one (fail-open)` and
+  continues. Racing the shared PAT is judged better than failing every GitHub operation — but note
+  the consequence: **during a Redis outage the fleet-wide bound is lost and each worker reverts to
+  its own local budget**, which is exactly the 4 × separate-budgets state PR-C was built to remove.
 
 **Consequence to state plainly:** Redis health is now a **correctness dependency for multi-worker mode**,
 not merely a cache. If Redis is down while `--workers 4`, the system keeps serving but cross-worker
@@ -557,7 +565,7 @@ The DNS `edgar.truesight.me` was updated to point to `krake_nginx` (54.226.114.1
 - **`app/redis_claim.py`** — Redis client + cross-process thread claim (Lua-compare owner, renew, release) + `marks` sorted set
 - **`app/session_state.py`** — shared queue / cancel / live-progress containers (Redis when `SESSION_STATE_SHARED`, else per-process dicts)
 - **`app/singleton_guard.py`** — cross-process guard so each background loop runs on one worker only
-- **`app/github_throttle.py`** — GitHub API concurrency guard, **per-process only** (see §10 pitfall 7)
+- **`app/github_throttle.py`** — GitHub API concurrency guard, now **fleet-wide via Redis** (budget key `sophia:gh:inflight`, atomic increment-if-below-limit, 120s self-healing lease, fail-open). See §4.6 "Key protocol" and §10 pitfall 9.
 
 Autopilot Redis env vars (`.env` on the box — never commit values):
 
@@ -726,6 +734,8 @@ df-alert cron scripts to `/usr/local/bin/`.
 7. **Worker count and runtime flags go in `.env`, not the systemd unit.** `scripts/deploy.sh` copies `systemd/truesight-autopilot.service` from the repo over the live unit on **every** deploy, so a hand-edit to `/etc/systemd/system/` silently reverts (this actually happened on 2026-10-29 — a `--workers 4` hand-edit was reverted by an unrelated deploy). Change the unit only by editing the repo copy; put durable runtime flags in `/opt/truesight_autopilot/.env`, which is gitignored and survives `git reset --hard`.
 
 8. **Do not assume `--workers 4` is safe just because it is running.** Multi-worker correctness rests on two `.env` flags plus the local Redis: with `SESSION_STATE_SHARED` off, interjections, `/chat/cancel` and `/chat/progress` are silently dropped when request and drain land on different workers — no exception, no log line, no 5xx. Verify from `/proc/<pid>/environ`, never from the unit file or an interactive shell.
+
+9. **The GitHub throttle is fleet-wide only while Redis is healthy.** `github_throttle` holds a Redis-backed counter at `sophia:gh:inflight` (atomic increment-if-below-limit, 120s self-healing lease), so all workers share ONE budget against the single 5000/hr PAT. Before PR-C (`#585`, 2026-10-29) each worker held an independent `threading.BoundedSemaphore` — 4 workers each with their own permits racing one PAT — and older notes still describe that state. When Redis is unreachable it **fails open** to the per-process semaphore, so during an outage the fleet-wide bound genuinely is not in force. Knobs: `GITHUB_THROTTLE_MAX_CONCURRENCY` (default 4), `GITHUB_THROTTLE_TIMEOUT_SECS` (default 30), `GITHUB_THROTTLE_LEASE_MS` (default 120000), `GITHUB_THROTTLE_BUDGET_KEY`. **There is no enable/disable flag** — unlike `SESSION_STATE_SHARED` and `SESSION_CLAIM_ENABLED`, this layer is always on.
 
 ---
 
