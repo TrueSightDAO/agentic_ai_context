@@ -5345,6 +5345,46 @@ See `~/Applications/krake_browser/{README,ARCHITECTURE,DSL}.md` for the design (
 
 ---
 
+### `event-media` source namespace is documented as "future" but is already in use — no `entity_type` convention, and archived event zips sit with no manifest
+**Filed 2026-10-30. Owner: unclaimed. Governor: Gary (thread 30550).**
+
+**Symptom.** `MEDIA_ARCHIVE_PIPELINE.md` line 13 still describes the source namespace `event-media` as **(community events, future)**. It is not future — `raw/event-media/` on `media.agroverse.shop` already holds real archived event media, but only *one* of those zips has been taken through MAP to a manifest:
+
+| zip (S3 `raw/event-media/`) | manifest | index row |
+|---|---|---|
+| `founder_haus_startup_summit_20260930.zip` | ✅ `farm_media_manifests/founderhaus.json` | ✅ `founderhaus` (2026-10-01) |
+| `itacare_pituba_samba_festival_2024.zip` | ❌ none | ❌ none |
+| `tribo_mirim_roda_2024.zip` | ❌ none | ❌ none |
+
+The two un-indexed rows are listed in `handoffs/FARM_MEDIA_INTAKE_GO_LIVE_PLAN.md` lines 35-36 under the `event-media` namespace with `—` in every downstream column.
+
+**Root cause — the namespace was never spec'd as first-class.** Because the doc calls it "future", there is no defined `entity_type` for event collections and no rule that an archived zip *must* get a manifest + index row. When `founderhaus` was created 2026-10-01 the value `partner` was chosen ad hoc (first partner/venue collection), and `index.json`'s note records the rationale — but that decision lives in a commit-note, not in the runbook, so the next event-media collection has no documented value to use.
+
+**Impact.** An archived zip that never gets a manifest is invisible to every MAP consumer (farm/partner pages, gallery builders, the manifest index). Silent — nothing errors, the zip just sits in S3. Same failure class as the `BRAZILIAN_PATH_DATA` / `journeyOrder` orphan: present in one list, absent from the other, so it vanishes without a warning.
+
+**Proposed fix (~45 min, docs + 2 manifests).**
+1. In `MEDIA_ARCHIVE_PIPELINE.md`, promote `event-media` from "(future)" to a documented namespace: state that archived event zips are a source namespace, list allowed `entity_type` values (`partner` for a venue/host-activation collection, `event` for a stand-alone community event), and add the invariant **one archived zip ⇒ one manifest ⇒ one `index.json` row**.
+2. Backfill manifests for `itacare_pituba_samba_festival_2024.zip` and `tribo_mirim_roda_2024.zip` (inventory `raw/event-media/`, hash, duration, S3 + preview URLs) and add their `index.json` rows.
+
+**Blocker.** None for step 1 (docs). Step 2 needs the zips to still be present in `raw/event-media/` — verify with an S3 list before promising the backfill.
+
+
+### `founderhaus` manifest has zero stills because its source zip had none — and `gps_coverage: 0/10` is expected, not a defect
+**Filed 2026-10-30. Owner: unclaimed. Governor: Gary (thread 30550).**
+
+**Symptom / non-symptom.** `farm_media_manifests/founderhaus.json` is **10 items, MOV only**, with `gps_coverage: 0/10` and `latitude`/`longitude` null on every item. Both facts look like the two known defects (video-only generator; GPS dropped) but neither applies here.
+
+**Why it is not the video-only-generator bug.** The generator gap (`farm_media_manifests` generator is video-only (inbox-scoped) — photo items need a separate merge, filed 2026-09-10) is about stills that *exist* on disk (`farm-media-raw/<farm_id>/photos/`) never reaching the manifest. Here the source zip itself was MOV-only: `events/founderhaussummitaug26/event.json` records *"10 videos (20 MOV incl. AppleDouble junk)"*. There are no HEIC stills to be missing, so this is a **different** case from CRF Anapu / Oscar Bahia and should not be "fixed" by hunting for photos.
+
+**Why `gps_coverage: 0/10` is expected.** The manifest's own `location_note` states *"GPS absent from iPhone originals, coords not claimed."* Nulls here are honest, not a stripped field.
+
+**Proposed action (no code).** Cross-reference the structural stills gap above (`handoffs/FARM_MEDIA_INTAKE_GO_LIVE_PLAN.md` §4.2 — stills have no `source_zip`; the archive worker never touches stills) rather than opening a third parallel entry. If a stills-bearing pass for this activation is ever wanted, the stills must be **sourced** first (extract frames from the 10 MOVs, as was done for `cfr-anapu` — 58 frames) and that is authoring work, not a manifest repair.
+
+**Blocker.** None — this entry exists so a future session does not mis-diagnose the manifest and burn an hour looking for photos that were never captured.
+
+
+---
+
 ## Recently shipped
 
 ### Currency conversion tooling: live currencies.json publish hardening — SHIPPED 2026-10-14
