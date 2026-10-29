@@ -10,7 +10,7 @@
 >
 > - **MAP** — the umbrella: intake → processing → upload/archive → manifest → query
 > - **Source namespace** — which bucket the media came from: `farm-media` (this runbook, formerly FARM_MEDIA_PIPELINE.md),
->   `event-media` (community events, future)…
+>   `event-media` (archived event / partner-activation collections — **live**, see §Event media)…
 > - **The queue** — the inbox + sidecars (what's waiting; pending = no `yt_id`)
 > - **The daemon** — the shared uploader (`farm-media-daemon` repo), dumb-on-purpose
 > - **The manifests** — `farm_media_manifests/` (repo TrueSightDAO/farm_media_manifests), the committed, queryable source of truth
@@ -111,6 +111,14 @@ are **not** warehouse stock. Governor decision (Gary Teh, thread 23018):
 
 Pending build (OPEN_FOLLOWUPS candidate): upload the 5 recovered images per the above +
 write `equipment.json` + index entry + link BEAN_TO_BAR rows.
+
+## Event & partner-activation media — `event-media` namespace (documented 2026-10-30, thread 30550)
+
+- **Not "future".** Archived event zips are a first-class source namespace at S3 `raw/event-media/`.
+- **Invariant: one archived zip ⇒ one manifest ⇒ one `index.json` row.** An un-manifested zip is invisible to every MAP consumer and fails silently.
+- **`entity_type` values** (add to `index.json` on every new manifest): `farm` · `program` · `site` · `facility` · **`partner`** (a venue/host-activation collection — e.g. `founderhaus`, Founder Haus Startup Summit 2026) · **`event`** (reserved for a stand-alone community event, not yet used). 17 legacy manifests predate the field.
+- **Provenance:** `raw/event-media/` is a *shared* prefix, so per-file provenance is each item's own `source_zip` in the manifest — never infer it from the folder name.
+- **Known gap:** `itacare_pituba_samba_festival_2024.zip` and `tribo_mirim_roda_2024.zip` have no manifest / no index row — tracked in `OPEN_FOLLOWUPS.md`.
 
 ## Farm IDs (keyed everywhere by these slugs)
 
