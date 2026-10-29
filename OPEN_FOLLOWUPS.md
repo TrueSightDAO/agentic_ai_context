@@ -39,6 +39,56 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### `search_context` can serve a STALE index → false-empty result, which silently defeats §5h
+**Filed 2026-10-29. Owner: unclaimed. Governor: Gary.**
+
+**The defect:** `search_context` returned **0 hits for a phrase that was verifiably on `origin/main`**.
+Because §5h ("check the SOP first — don't default to asking") makes `search_context`/`read_context_file`
+the *first move* on any decision point, a false-empty search **inverts the intent of §5h**: instead of
+finding the written answer, the agent concludes "nothing documents this" and escalates a question the
+SOP already answers. This is a silent-wrong-answer failure, not a crash — the worst kind for a rule
+whose whole premise is "the answer is sitting in a playbook".
+
+**Reproduced 2026-10-29 (while verifying §5h itself):**
+
+1. `search_context("check whether an existing SOP")` → `match_count: 0`.
+   But `OPERATING_INSTRUCTIONS.md` **line 353** on `origin/main` (`5001ec9`) reads:
+   `**Before stopping on a decision point, check whether an existing SOP, runbook, or convention`.
+2. A direct in-process call on the same box, minutes later:
+   `app.tools.search_context.search_context("check whether an existing SOP")` → `match_count: 1`
+   (matched `OPERATING_INSTRUCTIONS.md`). So the document was present the whole time — the **served
+   index** was stale, not the repo.
+3. Contributing state found while diagnosing: the dev clone `/home/ubuntu/agentic_ai_context` was
+   **92 commits behind** `origin/main` and **not fast-forwardable** (carried 1 local-only commit,
+   `863d41c`, the sunmint manifest row). Reconciled by rebase; that commit's content was already
+   upstream, so the rebase correctly dropped it as "skipped previously applied" — verify with
+   `git diff origin/main 863d41c -- handoffs/` (empty = identical).
+
+**Important negative result — don't misdiagnose this as just a stale dev clone:** the tool does NOT
+read `/home/ubuntu/agentic_ai_context`. `_context_dir()` resolves
+`settings.context_repos_dir / "agentic_ai_context"` = `/opt/truesight_autopilot/context/agentic_ai_context`
+(confirmed in-process). That dir was *at* `5001ec9` and *did* contain `§5h` while `search_context`
+still returned 0. So the read path is right and the repo content is right — the staleness is in
+whatever index/snapshot the live server serves, and it **self-healed** (the same query returned 1 hit
+later with no code change). That makes it intermittent and therefore easy to keep hitting blind.
+
+**Proposed fix (small, high leverage):** make freshness *visible* rather than assumed —
+
+- Add `context_head_sha`, `context_head_date`, and `behind_origin` (count) to the `search_context`
+  response envelope. A `match_count: 0` accompanied by `behind_origin: 92` is self-explanatory;
+  a bare `0` is what misleads.
+- Optionally auto-refresh the served index when `behind_origin > 0` before searching (bounded, with a
+  timeout, falling back to serving the stale index + the freshness fields).
+- Consider the same field on `read_context_file`, since §5h names both tools.
+
+**Test to add:** a unit test that stubs the index as behind-origin and asserts `match_count == 0`
+is NOT reported without a freshness warning alongside it.
+
+**Why it matters:** §5h only works if a negative search is trustworthy. Right now "0 hits" means
+"maybe nothing, maybe stale" — and an agent reading a bare `0` has no way to tell.
+
+---
+
 ### Multi-process plan: share session state — claim-loss can mean *work* loss (affinity approach retracted)
 **Filed 2026-10-28. Owner: unclaimed. Governor: Gary. Blocks `plans/SOPHIA_SIDEKIQ_MULTIPROCESS_PLAN.md` PR2.**
 
