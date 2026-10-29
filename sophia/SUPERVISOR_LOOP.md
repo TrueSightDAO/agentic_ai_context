@@ -373,6 +373,31 @@ few reasonable tradeoffs and a human could go either way.
   not just unanswered), that's still a real "stop and ask" per §5.0/§5h — this section is about
   not stalling once a sound default exists, not about forcing a guess where none does.
 
+### 5.4 Check for uncommitted work before dispatching ANY deploy (Envoy, 2026-10-29 — self-correction after a real loss)
+
+*Incident:* a supervisor dispatched `deploy_autopilot` for an unrelated, already-merged PR without
+first checking whether the box had other substantial uncommitted work sitting around. It did —
+hours of a different unit's WIP (a new module + its test file, both untracked, plus patches to two
+tracked files). `deploy_autopilot`'s `git fetch && git reset --hard origin/main && git clean -fd`
+is correct and necessary for a clean deploy, but it is **unconditionally destructive to anything
+not committed and pushed**: `reset --hard` reverts tracked-file edits to HEAD, `clean -fd` deletes
+untracked files outright. Only the compiled `.pyc` bytecode survived (in `__pycache__`), and
+decompiling bytecode back to trustworthy production source is not a real recovery option.
+
+- **Before every `deploy_autopilot` dispatch, run `git status --short` on the box first.** If it
+  shows anything beyond trivial/known noise (a stray whitespace diff, a stale backup file, a
+  nested repo with its own `.git`), that is real work at risk — stop and ask whoever owns it to
+  commit-and-push to a branch (even a rough WIP commit) before the deploy proceeds. "I checked
+  this an hour ago and it was fine" does not carry forward; state changes between checks.
+- **A WIP commit pushed to a branch survives any deploy on any repo; uncommitted or untracked work
+  on the working tree does not — ever, regardless of how long it's been "safely sitting there."**
+  Treat long-lived uncommitted work on a production box as a standing risk, not a stable resting
+  state. If an agent reports "still uncommitted, same as last check" more than once, the next ask
+  should be "push it to a branch now," not another round of "resume the final steps."
+- **This applies symmetrically** — the same check belongs on the other side too: before
+  recommending/triggering any `git reset --hard`, `git clean -fd`, or branch switch on a shared
+  box, check for uncommitted work exactly as carefully as you would before deleting a file.
+
 ---
 
 ## 6. Failure & safety
