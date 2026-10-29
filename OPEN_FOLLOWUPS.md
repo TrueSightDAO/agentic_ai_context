@@ -115,6 +115,21 @@ thread as `lost_goal` — only the goal-text detail in the message body is somet
 urgent; no money/data-integrity risk. Worth a look next time someone's in `loop_daemon.py`/
 `thread_goal.py`, not worth a dedicated turn tonight.
 
+**UPDATE 2026-10-29 (post-#586): a second, non-cosmetic bug on this same thread.** After #586
+fixed the CWD-relative `_state_path()` bug, this thread's `lost_goal` alerts kept firing even
+though the underlying goal was objectively satisfied (verified: both pieces of thread 30550's
+Founder Haus goal already existed on disk). Calling the `complete_thread_goal` tool to close it
+out returned **"no goal was set for this thread"** — a false negative in the *tool*, not a missing
+goal: `thread_goals.jsonl` on the box does hold an open goal for the exact session key
+`MIIBIjANBgkqhkiG9w0B:tg:-1003919341801:30550`, confirmed by direct inspection. So
+`complete_thread_goal`'s own session-key resolution isn't landing on the same key the web/loop
+path writes under. Workaround used tonight: call `app.thread_goal.complete_goal(session_key)`
+directly (bypassing the tool wrapper) with the exact key read from the JSONL; verified via
+`current_goal(...)` → `status='completed'`. **Proposed fix:** make `complete_thread_goal` accept
+a raw `tg:<chat>:<thread>` / `dc:<guild>:<channel>` key directly, or fall back to the loop-daemon's
+own session-id resolution instead of whatever narrower context it currently reads. Until fixed,
+any thread hitting this needs the same manual `complete_goal()` workaround.
+
 ---
 
 ### `search_context` can serve a STALE index → false-empty result, which silently defeats §5h
