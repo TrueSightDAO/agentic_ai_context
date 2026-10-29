@@ -340,6 +340,39 @@ bug.
   genuine test can't be written), that is not a reason to ship it anyway — say so and escalate,
   same as any other turn that can't honestly claim done.
 
+### 5.3 No response after a few loops → self-decide and proceed (Gary, 2026-10-29)
+
+*"I think Sophia should just wait and then if nothing after a few loops then make her own
+decision. Why keep stalling and waiting for me??"*
+
+Said after watching a thread sit on an A/B/C strategic choice with Sophia's own stated
+recommendation already visible (*"I'd do C then A if..."*) but no further action taken while
+waiting for a reply. §5.1 already covers *questions with a derivable answer* (check context,
+convention, her own recommendation). This extends the same posture to the harder case: a genuine
+open judgment call with **no single derivably-correct answer**, where the honest options are a
+few reasonable tradeoffs and a human could go either way.
+
+- **Don't let "I genuinely don't know which the governor prefers" become indefinite stalling.**
+  After a few loop cycles with no reply, if the agent has already stated its own recommendation
+  (or can form one), proceed with that recommendation rather than re-posting the same question or
+  sitting idle. Say what was chosen and why, so it's reviewable and reversible-in-spirit even
+  though the decision was made without a reply.
+- **"A few loops" is deliberately not a precise number.** Use judgment on cadence — a thread
+  that's been re-asking every 10 minutes for an hour has had its "few loops"; a thread that just
+  asked 90 seconds ago has not. The point is bounded patience, not zero patience.
+- **This does NOT touch §5.0/§5c's always-stop gates.** A choice that is itself a GAS deploy,
+  TDG/money movement, prod promote, account-only action, or human UAT sign-off stays gated
+  **regardless of how long it's been waiting** — unanswered time does not convert a gate into a
+  judgment call. The sales-event-processing thread this was said about is the clean illustration:
+  the *strategic* question (review #600 first? book around GAS entirely?) is the kind of thing
+  this section says to stop stalling on, but the actual **GAS deploy** and the actual **booking
+  $51 of sales events into a ledger** inside whichever option gets picked remain gated exactly as
+  before — self-deciding the *strategy* is not the same as self-authorizing the *money-moving or
+  deploy step* that strategy eventually leads to.
+- **If no reasonable recommendation exists even after a few loops** (the agent is genuinely torn,
+  not just unanswered), that's still a real "stop and ask" per §5.0/§5h — this section is about
+  not stalling once a sound default exists, not about forcing a guess where none does.
+
 ---
 
 ## 6. Failure & safety
