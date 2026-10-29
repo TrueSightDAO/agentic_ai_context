@@ -363,7 +363,7 @@ After a stop/start resize, an EIP reassociate, or a fresh box, confirm before wa
 - **2026-06-06:** resized in-place **t3.small → t3.medium** (4 GB) + **2 GB swap**; all units (incl. watchdog) verified active; box pulled to current `main` (incl. PDF house style). Pre-resize backup AMI `ami-0e1f8559e760c5fd9`. EIP held → no Route53 change.
 - **2026-06-07:** weekly-AMI TODO **DONE** — automated via the Cypher-Defense GitHub Action above (first AMI `ami-0dae91c5216989753`). Also shipped (`truesight_autopilot#114`): Sophia can now run sudo / install packages on her **own** box via `ssh_run(host='autopilot', …)` (loopback self-host; `sophia_infra.pub` self-trusted in the box's own `authorized_keys` by `deploy.sh`); the system prompt embeds a live **host-identity block** (instance id/type/region via IMDS) so she stops hallucinating her location; `GROK_API_KEY` added to the box `.env` (`/health` → `grok_key_set: true`).
 
-## 4.6 Autopilot Redis — local instance on Sophia (added 2026-10-29)
+### 4.6 Autopilot Redis — local instance on Sophia (added 2026-10-29)
 
 **Why it exists.** The autopilot ran `--workers 1` for most of its life, so every piece of in-flight
 session state (interjection queue, cancel signal, live progress) was a **module-level dict** — one
@@ -384,7 +384,7 @@ possible.
 Sophia's Redis is **not** Edgar's and shares no keyspace, credentials, or lifecycle with Nelanco's.
 It is a plain Ubuntu `redis-server` package — not an ElastiCache cluster, not cross-AZ, not replicated.
 
-### Deployment facts (measured on the box, 2026-10-29)
+#### Deployment facts (measured on the box, 2026-10-29)
 
 | Property | Value |
 |---|---|
@@ -406,7 +406,7 @@ that surfaces as *silent fallback to per-process dicts*, not an outage. So Redis
 "the system still works" while cross-worker delivery quietly stops. Current usage ~1 MB of 64 MB (~1.5%)
 with ~40 keys, so headroom is large — but monitor `used_memory` rather than assuming.
 
-### Key protocol
+#### Key protocol
 
 All keys are namespaced by a **scope** — the canonical session identity, e.g. `tg:<chat_id>:<thread_id>`
 (Telegram) or `dc:<guild_id>:<thread_id>` (Discord). Literal builders live in `app/session_state.py`
@@ -431,7 +431,7 @@ drain-until-empty behaviour leaves nothing behind. But a scope that is pushed to
 (worker dies mid-turn) leaves a persistent list. That is benign at current volume and is the kind of
 thing to bound if queue volume grows.
 
-### Two flags gate everything — set them in `.env`, NOT the unit file
+#### Two flags gate everything — set them in `.env`, NOT the unit file
 
 | Flag | Value | Effect when off |
 |---|---|---|
@@ -445,7 +445,7 @@ thing to bound if queue volume grows.
 hand-edit to the live unit silently reverts on the next deploy from any thread. Persist durable config
 in `.env`; change the unit only by editing the repo copy.
 
-### Degradation contract — deliberate, and asymmetric
+#### Degradation contract — deliberate, and asymmetric
 
 Every Redis call site is wrapped in try/except with a one-time `_warn()`. **No Redis failure ever raises
 into a governor's turn.** The fallback differs by subsystem and the difference is intentional:
@@ -461,7 +461,7 @@ not merely a cache. If Redis is down while `--workers 4`, the system keeps servi
 delivery of interjections and cancels is lost, and background loops revert to 4×. Single-worker mode
 (`--workers 1`) is unaffected — local dicts are correct when there is only one process.
 
-### Operating it
+#### Operating it
 
 ```bash
 # status / restart (it is a normal systemd service)
@@ -488,7 +488,7 @@ means claims/TTLs are restored from the last snapshot (or lost since it), so wor
 threads and re-claim singletons. Expect a brief burst of `already owned -- skipping` / re-claim log
 lines, not data loss — everything stored here is coordination state with a TTL, **never business data**.
 
-### Verification gotchas (learned the hard way, 2026-10-29)
+#### Verification gotchas (learned the hard way, 2026-10-29)
 
 Three checks that look authoritative and are not:
 
@@ -503,7 +503,7 @@ Three checks that look authoritative and are not:
    service's `EnvironmentFile=`, so `SESSION_STATE_SHARED=1` in `.env` will report `False`. Read it
    from a worker's `/proc/<pid>/environ`, or in-process under that env.
 
-### What proves it works
+#### What proves it works
 
 Each of these was verified with **two independent processes**, not inferred from config:
 
