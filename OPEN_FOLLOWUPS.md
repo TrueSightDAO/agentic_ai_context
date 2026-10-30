@@ -74,56 +74,39 @@ The `loop_daemon` `lost_goal` nudge for this session keeps re-firing on work tha
 
 **Evidence.** `sentiment_importer` `dao_controller.rb` (19 branches, zero MLTE) + `config/application.rb:321`; `seni_ror.service` unit (`Environment=` lines); `/proc/1460164/environ` (var count 0); `tokenomics` PR #599 / `managed_ledger_transaction_processing.js`; `OPEN_FOLLOWUPS.md` lines 977 + 1049; live boto3 sweep of `media.agroverse.shop`; `curl` of `media.truesight.me`.
 
-### Printed cacao-bag QRs resolve to a **live Stripe checkout** for already-sold bags — a duplicate-charge path
-**Filed 2026-10-30. Owner: unclaimed. Governor: Gary. Priority: HIGH — money path, reachable by any customer with a phone.**
+### cacao-bag QR scans: previous duplicate-charge entry was WRONG — corrected below
+**Corrected 2026-10-30 (supersedes the entry filed earlier the same day). Owner: unclaimed. Governor: Gary. Priority: LOW–MEDIUM.**
 
-**What was measured (2026-10-30).** Decoded printed QR images from `TrueSightDAO/qr_codes`
-(801 images present; sample = first 25 + a 10-image slice from the middle).
+**Retraction first.** An earlier entry here claimed printed cacao-bag QRs redirect already-sold bags to a live
+Stripe checkout, creating a duplicate-charge path, and rated it HIGH. **That claim was false.** It came from
+labelling two codes as "sold" without checking their ledger status. Both are `MINTED`. The handler
+`qr_code_check_controller` explicitly guards the money path, and a genuine `SOLD` code does not reach Stripe.
 
-```
-decoded: 35   failed: 0
-HOSTS:          35  edgar.truesight.me
-PATH PATTERNS:  35  /agroverse/qr-code-check
-```
+**What is actually measured.** Printed QRs all encode `edgar.truesight.me/agroverse/qr-code-check?qr_code=<id>`.
+Destination is decided by ledger **status**:
 
-**35/35 encode `edgar.truesight.me/agroverse/qr-code-check?qr_code=<id>` — not the provenance page**
-`truesight.me/qr/?id=<id>`. Following that real destination, three distinct outcomes:
+| Ledger status | Example | Scanner lands on |
+|---|---|---|
+| `ASSIGNED_TO_TREE` | `2024OSCAR_CB_20260620_1` | `302` → `truesight.me/qr/?id=…` — **the provenance page** |
+| `MINTED` (majority of stock) | `2024OSCAR_20250826_NIBS_75/76/77/78` | `302` → `checkout.stripe.com/c/pay/cs_live_…` |
+| `SOLD` | `2024OSCAR_CB_20260620_2` | `302` → `agroverse.shop/shipments/…` — **not** Stripe |
+| unknown | `2024_20250831_2` | `200` + 73 bytes raw JSON `{"error":"… not found"}` |
 
-| Code state | Scanner sees |
-|---|---|
-| **Sold** — `2024OSCAR_20250826_NIBS_78`, `2024_20250901_10` | `HTTP 302` → `https://checkout.stripe.com/c/pay/cs_live_…` (live payment page) |
-| Present in QR sheet but unsold — `2024_20250924_1` | `HTTP 200`, HTML |
-| Absent from sheet — `2024_20250831_2` | `HTTP 200` with **73 bytes of raw JSON**: `{"error":"QR code 2024_20250831_2 not found"}` |
+`MINTED` → checkout is deliberate per `STRIPE_LEDGER_ROUTING.md`: a minted bag is not yet sold, so a scan
+is a legitimate first sale. **No duplicate charge is reachable this way.**
 
-**Why this is HIGH.** Scanning an already-sold bag opens a checkout session. If a customer, auditor
-or funder scans a bag they were handed and completes the form, they buy the **same unit again** —
-we take money for inventory we no longer hold, then have to refund and explain. This is reachable
-today inside a normal retail interaction; it does not require any unusual behaviour.
+**Genuine, smaller issues that remain:**
+1. **Unknown codes render raw JSON** in a mobile browser — reads as a broken system rather than an
+   unregistered bag. Should be an HTML "not yet registered" page. `LOW`, cosmetic but customer-facing.
+2. **Provenance is only reached for `ASSIGNED_TO_TREE` codes.** Most printed stock is `MINTED`, so the
+   common scan outcome today is a purchase page, not a provenance record. Worth knowing before quoting
+   "every bag scans to its tree" externally.
 
-**Second-order problem.** For an unsold code the most likely outcome is a bare JSON error string in
-a mobile browser — which reads as a *broken system*, not a page that does not exist yet.
-
-**Interaction with the provenance surface.** `truesight.me/qr/?id=<id>` returns 200 but is an SPA
-shell; for `2024_20250831_2` its data file `lineage-assets/main/qrs/<id>.json` is `404`, so it renders
-an empty state. `BUSINESS_MODEL.md` §5 row 10 describes this as "demo-only; scans in the wild still
-302 to the sheet's landing page" — **that understates it**: row 10 does not mention the Stripe path.
-Row 10 should be upgraded with this finding when this entry is worked.
-
-**Fix direction (needs a decision, not just a patch).** Two separable changes:
-1. **Contain the money path** — `qr-code-check` must never 302 into a Stripe *purchase* session for a
-   sold/held unit. Resolve sold → a receipt/verification page; never a fresh checkout.
-2. **Land on something human** — unknown codes should render an HTML "not yet registered" page,
-   not raw JSON.
-
-Then re-point printed QRs (or the redirect) at the provenance surface once its data files exist for
-that QR. Note the printed stock is already in the field, so **the redirect must be fixed server-side**;
-reprinting bags cannot be the remediation.
-
-**Not a duplicate of** row 10 in `BUSINESS_MODEL.md` §5 — that is an evidence-register entry about
-whether the provenance page is demo-only. This is a filed defect about a duplicate-charge path in the
-scan handler.
-
----
+**Answered question — flat pricing (needs confirmation, not obviously a bug):** the handler computes
+`unit_amount: result['Price'].to_i * 100`, i.e. one price per code straight from the sheet. Sampled 42
+codes spanning at least two distinct SKUs (8 Ounce Kraft Pouch and 81% Cacao Chocolate Bar 50g) and **all
+42 returned `Price=25`**. If the sheet genuinely holds one price column, every SKU sells for $25. Confirm
+against the sheet before treating it as a defect.
 
 ### `awaiting` threads go silent for ~24h, then get mislabelled `lost_goal` — the collapse is now visible in `/loop/status`
 **Filed 2026-10-30. Owner: unclaimed. Governor: Gary. Priority: HIGH — this is the "nothing pokes me" complaint, now quantified.**
