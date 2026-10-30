@@ -92,6 +92,35 @@ been committed since your clone was last refreshed (`SOPHIA_HANDOFFS.md` §"Pull
 
 ---
 
+### 2b. Channel-less sessions — why some alerts arrive in a shared channel
+
+Not every session has a chat surface of its own. Ad-hoc `ping_sophia` keys, handoff keys, and
+agent-to-agent sessions (e.g. `…:envoy-go-media-and-wire-20261028`) have **no channel to post into**.
+For a long time the loop daemon classified those correctly and then reported them as `unmapped` —
+honest, but the alert reached **nobody**.
+
+They can now be routed to one configured channel via `LOOP_ALERTS_FALLBACK_TARGET`
+(`truesight_autopilot#608`). **Read the following before acting on a nudge you did not expect:**
+
+- **A nudge in a shared channel may not be about that channel.** A fallback-routed alert **names its
+  originating session** in the message body. Check that name before you go looking for a problem in
+  the thread you happen to be reading.
+- **`fallback=` in the alert report is not an error count.** `loop_alert` reports
+  `unmapped=` (no target, still undelivered) and `fallback=` (routed to the shared channel,
+  delivered) as **separate** counters. Treating `fallback>0` as a failure is a misread — it is the
+  feature working.
+- **Dedupe is still per-session** (`<session_id>:<state>`), not per-channel. So you can receive
+  several distinct fallback nudges in one sweep and that is normal; one session's alert does not
+  silence another's.
+- **It is off unless configured.** If `unmapped=` is still non-zero on a deployment, the fallback is
+  simply unset — that is the default, not a regression.
+
+This is deliberately **not** a substitute for giving a session its own channel. If a particular
+session keeps generating fallback traffic, the better fix is a real mapping for it; the fallback exists
+so that the long tail does not vanish silently.
+
+---
+
 ## 3. Bounded WIP — do not flood Sophia or yourself
 
 - **WIP limit: 2 threads** supervised concurrently (default). Drive each to a human gate or
