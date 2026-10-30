@@ -39,6 +39,41 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Provide a contribution-gated close/delete guard so the Envoy close ceremony can't delete an unreported thread
+**Filed 2026-10-30. Owner: unclaimed. Governor: Gary. Small — one checked tool, mirroring `close_telegram_topic_checked`.**
+
+**Context.** `OPERATING_INSTRUCTIONS.md` §6a (merged 2026-10-30, PR #1769) makes `@nelanco_claude_bot` (Envoy) an authorized instruction source for every instance, and defines the close ceremony as: **(1) file the `[CONTRIBUTION EVENT]` with the correct seat name, then (2) delete the thread.** It also states the guard as policy — *"if the contribution filing fails, do not delete — the thread is the receipt."*
+
+**The gap.** That guard is **policy text only**. The delete half is the raw, irreversible `delete_telegram_topic` API call with no check that a contribution event actually landed. Nothing in the tool surface can distinguish "reported then closed" from "closed without reporting", so an instance that hits a transient failure on step (1) has nothing stopping it from doing step (2) anyway. The failure mode is silent and unrecoverable: a deleted topic **and** no contribution row, i.e. the unit's only durable receipt is gone.
+
+**Suggested scope.** Add `delete_telegram_topic_reported`, a checked wrapper in the shape of `close_telegram_topic_checked`:
+- Verify a `[CONTRIBUTION EVENT]` references the thread (match on topic/thread id or the session's contribution record) before deleting.
+- On no match, **refuse** and return `blocked_no_contribution` plus the exact `dao_client` command the caller should have run — so the fix is one copy-paste away rather than a research task.
+- Keep raw `delete_telegram_topic` reachable for genuine throwaways (noise topics, dead tests) where no contribution is owed.
+
+**Evidence.** `OPERATING_INSTRUCTIONS.md` §6a ("Envoy instructions" + close ceremony); `sophia/SOPHIA_HANDOFFS.md` (Envoy-triggered close variant); `close_telegram_topic_checked` (existing checked-close precedent); PR #1769 merged 2026-10-30 (`d5b941dfdb7765dbf4b1772b0fd86b5842966adf`).
+
+### `envoy-go-media-and-wire-20261028` — Track A verified complete; Track B mis-scoped (Edgar catalog precedes sentiment_importer routing)
+**Filed 2026-10-30. Owner: Envoy (supervisor) / unclaimed for the code work. Governor: Gary. State correction — the stored goal text has drifted from the repo.**
+
+The `loop_daemon` `lost_goal` nudge for this session keeps re-firing on work that is already done, because the goal text was never advanced. Verified position, so the nudge can be silenced against reality rather than re-investigated:
+
+**Track A — COMPLETE (verified by execution, not from logs).**
+- `media.agroverse.shop` `previews/`: **2378 / 2378 objects `image/jpeg`, BAD=0** (live boto3 sweep, credentials sourced from the autopilot `.env`). The recorded run log says `1684 fixed of 2374` — it **under-reports**; 4 objects landed after that run.
+- `media.truesight.me` → **HTTP 200**, `server: GitHub.com` (Pages serving). `farm-media-site` repo `CNAME` matches `media.truesight.me`.
+- **Residual (already escalated — a domain/infra decision, not an agent's):** `media.agroverse.shop` returns an **SSL certificate name mismatch** (cert does not cover that hostname, though DNS correctly CNAMEs to `s3-w.us-east-1.amazonaws.com`), and `farm-media-site.pages.dev` **does not resolve**. Neither blocks Track A's stated goal; both need a governor/registrar call.
+
+**Track B — the goal text is wrong about what remains.**
+- The `[MANAGED LEDGER TRANSACTION EVENT]` **GAS handler was already shipped 2026-10-27** — `tokenomics` PR **#599** (merged `457c0e4`): `google_app_scripts/1orWgdGckts55owiYOysR_y4sde52T_eUmrtDGAEkb4YV5DlUfJ0JZC5J/managed_ledger_transaction_processing.js` (644 lines), deployed by `clasp push` (deploy ledger `deploy_20261027T091245Z_…`), verified by `testDeriveTransactionRows()` **17/17**. The entry above (line 977) explicitly says *"Do not re-open the 'build the GAS handler' scope call — it is answered."* **Do not rebuild it.**
+- **Genuinely absent — both confirmed 2026-10-30:**
+  1. `sentiment_importer/app/controllers/dao_controller.rb` has **19 dispatch branches and zero** for `[MANAGED LEDGER TRANSACTION EVENT]`, and `config/application.rb` has **no** `managed_ledger`/`mlte` attribute. (Note: `sales_update_managed_agl_ledgers.js` in `tokenomics` is the *sales* updater, not an MLTE handler — easily mistaken for one.)
+  2. Edgar's events catalog still omits the event (`lookup_event_docs('MANAGED LEDGER TRANSACTION EVENT')` → *not found*; 52 events listed).
+- **Ordering correction — this is the actionable finding.** The stored goal asks for the `sentiment_importer` webhook branch first. But this file's own entry (line 1049) defines the residual as **Edgar-side** — an `events_catalog.json` entry plus the matching `dispatch.ROUTING` tag — and `tests/test_catalog_dispatch_coverage.py` enforces **`ROUTING ⊆ catalog`**. A `dao_controller.rb` branch written before the catalog entry would be a 20th dispatch path for an event the platform still cannot receive: untestable dead code. **Correct order: (1) catalog entry → (2) `ROUTING` tag → (3) the sentiment_importer branch.**
+- **`CURRENCY_CONVERSION_WEBHOOK_URL` — CONFIRMED genuinely unset** (previously logged as "not readable/absent", now fully explained). **There is no `.env` in `/home/ubuntu/sentiment_importer` at all**, and `seni_ror.service` supplies only three `Environment=` lines (`SECRET_KEY_BASE`, `RAILS_ENV`, `EDGAR_FULL_HOST`). Authoritative check = the **live process environment** (`/proc/1460164/environ`): var present **0 times**, and no `*WEBHOOK*` vars at all in the process env. Because `config/application.rb:321` reads `ENV['CURRENCY_CONVERSION_WEBHOOK_URL'].presence || ""`, the branch silently skips and currency conversions fall back to the ~10-min GAS time trigger instead of firing in seconds.
+- **Governor fix, no code change:** add `CURRENCY_CONVERSION_WEBHOOK_URL=<GAS /exec URL>` (ideally via an `EnvironmentFile=` on `seni_ror.service` rather than inline `Environment=` lines), then restart `seni_ror`. Same shape of fix as `DAO_PROTOCOL_WEBHOOK_POST_REPACKAGING_CLEANUP` above.
+
+**Evidence.** `sentiment_importer` `dao_controller.rb` (19 branches, zero MLTE) + `config/application.rb:321`; `seni_ror.service` unit (`Environment=` lines); `/proc/1460164/environ` (var count 0); `tokenomics` PR #599 / `managed_ledger_transaction_processing.js`; `OPEN_FOLLOWUPS.md` lines 977 + 1049; live boto3 sweep of `media.agroverse.shop`; `curl` of `media.truesight.me`.
+
 ### Printed cacao-bag QRs resolve to a **live Stripe checkout** for already-sold bags — a duplicate-charge path
 **Filed 2026-10-30. Owner: unclaimed. Governor: Gary. Priority: HIGH — money path, reachable by any customer with a phone.**
 
