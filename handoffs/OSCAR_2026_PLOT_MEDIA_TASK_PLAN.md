@@ -3,7 +3,7 @@
 **Created:** 2026-10-09 (Sophia) at Gary's request, instantiated from
 `handoffs/FARM_MEDIA_TASK_PLAN_TEMPLATE.md`.
 **Thread:** 41214 (sub-thread of 30550) · **Farm:** `oscar-bahia`
-**Status:** 🚧 **blocked — needs a geometry source.** No code unit can unblock it.
+**Status:** 🚧 **blocked — needs a geometry source + 4 field facts.** Thread registration is DONE (PR #1760, merged); the CI tooling blocker is cleared (PR #1764). The plot itself remains gated (see below).
 
 ---
 
@@ -70,6 +70,37 @@ not a registered property name.
 
 ---
 
+## Intake facts — the fast path (fill-in template)
+
+Newer farm batches on the autopilot box arrive with a **`.context.json` sidecar** that pins
+farm identity and event facts at intake — e.g. `santa_anna_farzenda_bahia.zip.context.json`
+and `santos_2026.zip.context.json` (both 2026-10-24) carry `farm_id`, `farm_name`,
+`event_date`, `confirmed_by`, `target_page`.
+
+`oscar_fazenda_2026.zip` **predates that convention and has no sidecar** — which is precisely
+why the field facts are missing. So the gate is not an open-ended question; it reduces to four
+fill-ins:
+
+```json
+{
+  "farm_id": "oscar-bahia",
+  "plot": {
+    "plot_id": "OB-P2",
+    "plot_name": "<fill — e.g. Oscar Fazenda Plot 2 (new clearing)>",
+    "hectares": "<fill — number>",
+    "plot_type": "<fill — mature | maturing | restoration | enrichment | research>"
+  },
+  "geometry_source": "<fill — gps_walk GPX/KML  |  CAR/INCRA polygon  |  originals re-sent un-stripped>",
+  "confirmed_by": "<governor name + date>"
+}
+```
+
+Either drop that at `/media/processed/oscar_fazenda_2026.zip.context.json`, or paste the four
+values in thread 41214. With that in hand PR1–PR4 run without further questions — and for
+future farms the sidecar should be created at intake so this gap never recurs.
+
+---
+
 ## Gate — what is actually needed to proceed
 
 Any **one** of the following unblocks the plot work:
@@ -122,14 +153,19 @@ Naming convention for the new plot id follows the existing pattern: `OB-P2`.
 
 ## RESUME HERE
 
-1. **Ask Gary** (single message, two questions): (a) which patch is "the new patch" and its
-   **hectares / plot name / plot_type**; (b) can Oscar do a **`gps_walk`** of it, or will the
-   **original files** be re-sent un-stripped (email/zip, not WhatsApp/Telegram)?
-2. On a `gps_walk` GPX/KML → build the FeatureCollection, then **PR1** (sheet row `OB-P2`) → **PR2**
+**Current state (2026-10-30):** thread registered in `HANDOFF_MANIFEST.md` (PR #1760, merged by
+governor). Manifest CI gate unjammed (PR #1764). No geometry or field facts received yet —
+checked: no new Oscar archive, no `.gpx`/`.kml` on the box.
+
+1. **Ask Gary once, as a fill-in** (see *Intake facts* above): the block is four values —
+   `plot_name`, `hectares`, `plot_type`, `geometry_source`.
+2. On a `gps_walk` GPX/KML → build the FeatureCollection → **PR1** (sheet row `OB-P2`) → **PR2**
    (geojson) → verify live → **PR4** (gallery).
-3. On un-stripped originals → re-run the GPS-hull extraction (2025 procedure), then PR1 → PR2.
+3. On un-stripped originals → re-run the GPS-hull extraction (2025 procedure) → PR1 → PR2.
 4. If neither arrives: **leave the plot unregistered.** Do not fabricate `approx` geometry from
    zero GPS points — the tier's definition forbids it.
 
-**Do not** treat "52 photos, no GPS" as a data-quality mystery to be re-diagnosed: it is
-confirmed, and the cause (courier EXIF-stripping) is known.
+> PR3 (manifest v2 for the 2026 batch) is **also gated**: its `plot_ids` must include `OB-P2`,
+> so it cannot land before PR1/PR2. Do not land it "partially".
+
+**Do not** re-diagnose "52 photos, no GPS" — confirmed, cause known (courier EXIF-stripping).
