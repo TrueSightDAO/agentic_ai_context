@@ -398,6 +398,20 @@ decompiling bytecode back to trustworthy production source is not a real recover
   recommending/triggering any `git reset --hard`, `git clean -fd`, or branch switch on a shared
   box, check for uncommitted work exactly as carefully as you would before deleting a file.
 
+**UPDATE 2026-10-30 — the root cause is now fixed at the code level, this rule is defense-in-depth.**
+The destructive line lived in **two** separate places: `scripts/deploy.sh` (fixed by `#600`, found
+independently by Sophia the same night, who caught and corrected two further bugs in her own first
+two attempts via actual scratch-repo simulation before shipping the third) and `app/tools/deploy.py`
+— the actual code behind every `deploy_autopilot` *tool call*, i.e. what every deploy dispatched via
+`ping_sophia` all night had really been running, untouched by `#600` (fixed by Envoy in `#601`,
+mirroring `#600`'s exact save-patch/`apply --3way`/reset-on-conflict design, verified against the
+same two scenarios). Both now: save uncommitted diffs to a patch before resetting, re-apply after,
+and on conflict reset again rather than ever leave conflict markers in a live deployed file — never
+`clean -fd`. **The git-status check above still stands** — a deploy can still legitimately conflict
+with box-local work and lose it to the patch-recovery path (loud, not silent, but still lost from
+the working tree) — but a supervisor who forgets to check no longer risks *silent, total* destruction
+the way this incident did.
+
 ---
 
 ## 6. Failure & safety
