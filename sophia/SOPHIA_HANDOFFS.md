@@ -326,3 +326,30 @@ already drifted (e.g. one handoff's status disagreed between the two files; anot
 existed here but was never added to the manifest; a `message_thread_id` was accidentally
 reused across three unrelated handoffs). See `../plans/HANDOFF_REGISTRY_CONSOLIDATION_PLAN.md`
 for the full writeup. **Add new rows to `HANDOFF_MANIFEST.md`, not here.**
+
+### After editing the manifest, regenerate the index (CI gate)
+
+`handoffs/index.json` is a **generated artifact**, not a source file. It is derived from
+`HANDOFF_MANIFEST.md` by `scripts/build_handoff_index.py` and carries the manifest's
+`source_sha256`, per-state counts and row list. **Never hand-edit it.** Editing both files by
+hand desynchronises the checksum and counts, and CI's `--check-index` gate rejects the PR
+with a message that names the stale fields rather than the real cause ("you hand-edited a
+file you should have generated").
+
+Correct sequence after any manifest edit:
+
+```bash
+python3 scripts/build_handoff_index.py     # regenerate — do NOT edit index.json yourself
+git add handoffs/HANDOFF_MANIFEST.md handoffs/index.json
+git commit
+python3 scripts/validate_handoff_manifest.py --check-index   # confirm clean before push
+```
+
+**Observed twice** (2026-10-30): a manifest status correction plus a hand-edited `index.json`
+failed the `Validate handoff manifest` workflow until the index was regenerated from source.
+The regeneration diff is normally small — the edited handoff's state plus volatile
+`age_minutes` counters that tick every run — so a large diff is a sign something else drifted.
+
+Fuller notes, including the `STATE_RULES` substring footgun and the "point plan_file at a
+doc containing `.md`" requirement, live in `sophia/SUPERVISOR_LOOP.md` §3 under
+"After any manifest edit".
