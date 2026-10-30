@@ -39,6 +39,57 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Printed cacao-bag QRs resolve to a **live Stripe checkout** for already-sold bags — a duplicate-charge path
+**Filed 2026-10-30. Owner: unclaimed. Governor: Gary. Priority: HIGH — money path, reachable by any customer with a phone.**
+
+**What was measured (2026-10-30).** Decoded printed QR images from `TrueSightDAO/qr_codes`
+(801 images present; sample = first 25 + a 10-image slice from the middle).
+
+```
+decoded: 35   failed: 0
+HOSTS:          35  edgar.truesight.me
+PATH PATTERNS:  35  /agroverse/qr-code-check
+```
+
+**35/35 encode `edgar.truesight.me/agroverse/qr-code-check?qr_code=<id>` — not the provenance page**
+`truesight.me/qr/?id=<id>`. Following that real destination, three distinct outcomes:
+
+| Code state | Scanner sees |
+|---|---|
+| **Sold** — `2024OSCAR_20250826_NIBS_78`, `2024_20250901_10` | `HTTP 302` → `https://checkout.stripe.com/c/pay/cs_live_…` (live payment page) |
+| Present in QR sheet but unsold — `2024_20250924_1` | `HTTP 200`, HTML |
+| Absent from sheet — `2024_20250831_2` | `HTTP 200` with **73 bytes of raw JSON**: `{"error":"QR code 2024_20250831_2 not found"}` |
+
+**Why this is HIGH.** Scanning an already-sold bag opens a checkout session. If a customer, auditor
+or funder scans a bag they were handed and completes the form, they buy the **same unit again** —
+we take money for inventory we no longer hold, then have to refund and explain. This is reachable
+today inside a normal retail interaction; it does not require any unusual behaviour.
+
+**Second-order problem.** For an unsold code the most likely outcome is a bare JSON error string in
+a mobile browser — which reads as a *broken system*, not a page that does not exist yet.
+
+**Interaction with the provenance surface.** `truesight.me/qr/?id=<id>` returns 200 but is an SPA
+shell; for `2024_20250831_2` its data file `lineage-assets/main/qrs/<id>.json` is `404`, so it renders
+an empty state. `BUSINESS_MODEL.md` §5 row 10 describes this as "demo-only; scans in the wild still
+302 to the sheet's landing page" — **that understates it**: row 10 does not mention the Stripe path.
+Row 10 should be upgraded with this finding when this entry is worked.
+
+**Fix direction (needs a decision, not just a patch).** Two separable changes:
+1. **Contain the money path** — `qr-code-check` must never 302 into a Stripe *purchase* session for a
+   sold/held unit. Resolve sold → a receipt/verification page; never a fresh checkout.
+2. **Land on something human** — unknown codes should render an HTML "not yet registered" page,
+   not raw JSON.
+
+Then re-point printed QRs (or the redirect) at the provenance surface once its data files exist for
+that QR. Note the printed stock is already in the field, so **the redirect must be fixed server-side**;
+reprinting bags cannot be the remediation.
+
+**Not a duplicate of** row 10 in `BUSINESS_MODEL.md` §5 — that is an evidence-register entry about
+whether the provenance page is demo-only. This is a filed defect about a duplicate-charge path in the
+scan handler.
+
+---
+
 ### `awaiting` threads go silent for ~24h, then get mislabelled `lost_goal` — the collapse is now visible in `/loop/status`
 **Filed 2026-10-30. Owner: unclaimed. Governor: Gary. Priority: HIGH — this is the "nothing pokes me" complaint, now quantified.**
 
