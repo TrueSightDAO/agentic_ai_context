@@ -1,7 +1,9 @@
 # Oscar Bahia Media Task — execution plan (thread 19891)
 
 **Created:** 2026-09-02 (Sophia) at Gary's request · **Handoff:** 👍 GO on resume-awaiting (thread 19891)
-**Status:** executing
+**Status:** ✅ **mostly complete — see correction below.** `OB-P1` IS registered; this plan's
+target table entry saying otherwise is stale. Open work for the *second* patch is carried by
+`handoffs/OSCAR_2026_PLOT_MEDIA_TASK_PLAN.md` (thread 41214).
 
 ## Goal
 1. Establish/polish the plot page for https://agroverse.shop/farms/oscar-bahia/index.html — hero, story, media gallery from the new zip.
@@ -13,12 +15,16 @@
 - `~/oscar.zip` (1.4 GB) = **45 MOV + 5 HEIC**, all shot **2025-09-20** at Oscar Fazenda, Bahia (~14°02–03'S, 39°26'W, Uruçuca region). GPS on all 45 MOVs + all 5 HEICs. Extract at `/tmp/oscar_extract/`. (iPhone .MOV = HEVC; .HEIC stills.)
 
 ## Targets & state (verified 2026-09-02)
+
+> **2026-10-30 note:** the table below is the 2026-09-02 snapshot. One row was factually
+> superseded (flagged inline). Do not re-derive plot state from this table — check the
+> `SunMint Plots` sheet / `plots/index.geojson` directly.
 | Target | Repo | State |
 |---|---|---|
 | `farms/oscar-bahia/` | agroverse_shop_beta | index.html + media.json with 2 YT videos (`lh_dAXhE7xQ`, `BI55aQ6B73U`). No SunMint cross-link. Map pin -14.052624,-39.438206. |
 | `sunmint.html` | truesight_me_beta | Loads `sunmint/plots/index.geojson`; AGL14 shipment block exists (Oscar Fazenda). |
 | `sunmint-tree-planting-pledges/agl14/` | truesight_me_beta | Pledge page exists; links to agroverse.shop/agl14 but NOT to the farm page. |
-| `sunmint/plots/index.geojson` | sunmint | NO Oscar/OB plot yet — 9 features (RM-P1/P2, SA-P1, CL-P1, LD-P1…). |
+| `sunmint/plots/index.geojson` | sunmint | ⚠️ **STALE ROW — corrected 2026-10-30.** `OB-P1` IS now registered (`auth: approx`, `type: mature`, 3.74 ha) and the file holds **23 features**, not 9. Original 2026-09-02 reading was accurate then. The *second* patch (`OB-P2`) is the open item → thread 41214. |
 | `farm_media_manifests` | farm_media_manifests | 4 farm manifests; schema has lat/lon but NOT creation_date/transcription → EXTEND schema. |
 | `farm-media-raw/` | farm-media-raw | cleide, la-do-sitio, rancho-maranta, santa-anna — no oscar. |
 
