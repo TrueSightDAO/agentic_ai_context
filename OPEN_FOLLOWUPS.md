@@ -39,6 +39,41 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Manifest-driven label renders silently produce **blank** farm/state/country/year
+**Filed 2026-10-30. Owner: unclaimed. Governor: Gary. Priority: MEDIUM — the failure is completely silent and the output is a physical sticker.**
+
+**What was measured (2026-10-30).** While generating the 21 real `2024_20260622_*` cacao
+bag labels (`lineage-assets` PR #37, merged `c205490`), the first render attempt read
+`farm`, `state`, `country`, and `harvest_year` from the **top level** of each `qrs/*.json`
+manifest. All four returned `''`:
+
+```
+2024_20260622_1 farm='' state='' country='' year=''                        # first attempt
+2024_20260622_1 farm="Oscar's Farm" state='Bahia' country='Brazil' year='2024'  # after fix
+```
+
+The fields actually live under `lineage`, one level down. **No error is raised.**
+`compile_image()` in `scripts/qr_generator/compile_image.py` draws empty strings without
+complaint, so the defect is invisible until someone reads a printed sticker — at which
+point it is already on a physical bag. It was caught only by running OCR on a rendered
+sample and noticing the caption band looked wrong (5,966 dark px in the farm band was the
+positive check that finally proved text had rendered).
+
+**Why it matters beyond the 21 bags.** `batch_compiler.py`'s `main()` was written to read
+the Agroverse Google Sheet. Driving it from manifests instead is legitimate and avoids
+needing SA credentials — but that path has **no guard for a missing key**, so any future
+manifest-driven batch inherits the same silent blank-label risk.
+
+**Suggested fix (cheap, and a doc-only note would be insufficient).** In the render path,
+when `is_cacao` is true, assert that `farm`, `state`, `country`, and `harvest_year` are all
+non-empty and abort the batch otherwise. Fail loudly at render time; do not rely on someone
+OCR-ing a sample afterwards.
+
+**Not a duplicate of the `pk-*` entry below.** That one is a wrong-**URL** bug (a correct
+value pointing at a path that never held the file). This one is a wrong-**key** bug with no
+error at all. Checked current `main` for `silently empty`, `nested under`, `blank farm`,
+`compile_image`, `fetch_rows` — 0 hits in this file.
+
 ### All 100 `tree` (`pk-*`) manifests point their label image at a repo path tree labels have never occupied
 **Filed 2026-10-30. Owner: unclaimed. Governor: Gary. Priority: MEDIUM — every tree credential page renders with no scannable label, and the cause is one hardcoded constant, not 100 missing files.**
 
