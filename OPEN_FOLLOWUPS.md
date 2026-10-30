@@ -39,6 +39,65 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### All 100 `tree` (`pk-*`) manifests point their label image at a repo path tree labels have never occupied
+**Filed 2026-10-30. Owner: unclaimed. Governor: Gary. Priority: MEDIUM — every tree credential page renders with no scannable label, and the cause is one hardcoded constant, not 100 missing files.**
+
+**What was measured (2026-10-30).** Built `scripts/qr_generator/reconcile_labels.py`
+(shipped in `lineage-assets` PR #36) to diff every `qrs/*.json` manifest's `qr_image_url`
+against the actual `pngs/` label store:
+
+```
+[reconcile] manifests=1865 labels_on_disk=2512
+[reconcile] MISSING label PNG: 137 | manifest has no qr_image_url: 0
+[reconcile] missing by asset_type: cacao_bag=37, tree=100
+```
+
+The 37 `cacao_bag` misses are genuine gaps (21 real minted `2024_20260622_*` bags + 16 test
+codes). **The 100 `tree` misses are a different class of defect entirely.**
+
+**Root cause — one constant applied to every asset_type.** In `scripts/lib/manifest.py`:
+
+```python
+# line 22
+QR_IMAGE_BASE = "https://raw.githubusercontent.com/TrueSightDAO/lineage-assets/main/pngs"
+
+# line 238, inside build_manifest()
+"qr_image_url": f"{QR_IMAGE_BASE}/{safe_filename(qr_id)}.png",
+```
+
+`build_manifest()` emits that same base for **every** `asset_type`. Tree credential labels
+do not live in `lineage-assets/pngs/` (verified: not there, and not in the `qr_codes` repo
+either — checked three locations). So all 100 `pk-*` manifests point at a URL that was never
+going to resolve, and every tree credential page falls through to the
+`QR label image not yet published` placeholder.
+
+**Why this matters.** These are public credential pages whose entire purpose is to be
+verified by scanning. They have never been able to render a scannable label, and nothing
+surfaced it — the page looks complete, and no upstream check compares manifests to the
+label store. Now it is measurable in one command.
+
+**Do NOT fix this by generating PNGs.** Generating 100 labels into `lineage-assets/pngs/`
+would place them where `build_manifest()` already points but where the tree-label pipeline
+never reads from, cementing the wrong path. The fix belongs in the manifest builder.
+
+**Fix direction.** Two steps, in order:
+1. **Decide where tree labels actually live** (or should live). If they belong in
+   `lineage-assets/pngs/`, the defect is that nobody ever generated them and step 2 is a
+   generation job. If they belong somewhere else, `build_manifest()` must branch on
+   `asset_type` instead of using one global base.
+2. **Then** regenerate the 100 `pk-*` manifests via `batch_compiler.py` so their
+   `qr_image_url` is correct, and confirm with
+   `python3 scripts/qr_generator/reconcile_labels.py --asset-type tree` returning 0.
+
+A regression guard already exists: `reconcile_labels.py --strict` exits 1 when any manifest
+points at an absent label, so wiring it into CI would have caught this class of defect from
+the start and prevents it recurring.
+
+**Not a duplicate of** any existing entry — this is a manifest-generation bug
+(`scripts/lib/manifest.py`), not a missing-asset or scan-handler issue.
+
+---
+
 ### Printed cacao-bag QRs resolve to a **live Stripe checkout** for already-sold bags — a duplicate-charge path
 **Filed 2026-10-30. Owner: unclaimed. Governor: Gary. Priority: HIGH — money path, reachable by any customer with a phone.**
 
