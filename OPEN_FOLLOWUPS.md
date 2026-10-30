@@ -118,6 +118,38 @@ Always `clasp pull` into a **clean** directory and diff that. Relatedly, `clasp 
 remote-only files alone, so `Version.js` (1122 B) survives the push but remains unmanaged by the
 repo — track it deliberately rather than rediscovering it.
 
+> ### ⚠️ CORRECTION 2026-10-30 — the "frozen after row 7224" premise in the two entries above is FALSE
+>
+> **`Scored Chatlogs` last data row is 7457, with trailing rows dated `20261030` (today).** About
+> 230 rows were written *after* 7224. The scorer is running and appending; the pipeline never
+> stopped. Verified live: `A7458:F7500` empty (end of data), `H7440:H7460` = `20261030`,
+> `A7250:A7700` non-empty, intake col J stamped through `20261030` with col N hashes present.
+>
+> **Why the error happened (two measurement mistakes — do not repeat):**
+> 1. `Scored Chatlogs` has **two preamble rows**, so its header is row **3**, not row 1, and the
+>    last-data-row is not 7226. Sampling a narrow tail window and calling it the end of data
+>    produced a live tail that looked like a freeze. **Read to the end of the data, not to the
+>    end of your range.**
+> 2. **"299 pending rows" conflated two counters.** `299` is Edgar's API
+>    `pendingContributionEvent`; the sheet's own `Submissions Left to Score` cell says **240**.
+>    Always name the counter's source. (Same class of error: the intake tab also has a stray
+>    `Next Expected Airdrop Date` row above its header, so its header is row 2.)
+>
+> **What survives the correction.** There *is* a real backlog — many `Pending` intake rows,
+> concentrated `20261025`–`20261030` — and the guard is genuinely **not** deployed (live
+> `Top-level catch` 0, `processTelegramChatLogs_()` 0, `RUN_BUDGET_MS` 0). So the deploy is still
+> worth making, but its justification changes: it is **not** an outage rescue. It is visibility
+> for *partial* runs and per-row throws, plus `RUN_BUDGET_MS` so a large `Pending` backlog drains
+> across ticks instead of hitting GAS's uncatchable ~6-minute kill.
+>
+> **Revised priority: HIGH → MEDIUM.** No emergency.
+>
+> **Flagged as unverified:** the claim that `Pipeline Health` has 5 rows and none from
+> `processTelegramChatLogs` came from a session summary and was never independently confirmed —
+> that tab's coordinates were never established. Also note `logPipelineHealth_` lives in
+> `pipeline_diagnostics.js` (diff 0 vs live), **not** in the scoring file; grepping only the
+> scoring file wrongly suggests the function is undefined.
+
 **Also carry forward, not blocking:** the live `testProcessTelegramRow()` harness has
 `rowIndex = 12412` while the repo has `6042`; the deploy reverts that test-only value (no
 production impact, never called by a trigger, easily re-set) — but it is a live edit being
