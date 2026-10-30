@@ -121,6 +121,62 @@ so that the long tail does not vanish silently.
 
 ---
 
+### 2c. Two state vocabularies — and why "done this turn" is not a state (governor directive, 2026-10-30)
+
+There are **two different state enums** in this system, and neither contains the other. Reading one
+and mistaking it for the other is a common way to mis-diagnose a thread.
+
+| Where | Enum | Computed from |
+|---|---|---|
+| `handoffs/HANDOFF_MANIFEST.md` / `index.json` (§2) | `awaiting_kickoff`, `executing`, `paused_at_gate`, `sophia_uat`, `envoy_uat`, `human_uat_ready`, `prod_merge`, `blocked_on_human`, `failed`, `done`, `stale` | Handoff lifecycle — set by whoever advances the handoff |
+| `app/loop_status.py` | `busy`, `stalled`, `awaiting`, `awaiting_stale`, `lost_goal`, `idle` | Live signals — chat lease, resume-awaiting registry, whether a goal is open |
+
+So a supervisor seeing `done` in the manifest while the daemon reports `lost_goal` is **not** looking
+at a contradiction — it is reading two instruments that measure different things. The manifest says
+where the *handoff* is; the daemon says what the *process* looks like right now.
+
+**There is no `completed` state.** The daemon's enum has no terminal value at all. A finished thread
+is represented by **closing its goal**, not by setting a status. Which leads to the rule:
+
+#### A turn must transition state, not narrate completion
+
+A report that ends "done this turn" is prose. If the underlying goal is still open, the daemon will
+classify the session `lost_goal` and nudge a thread that is actually finished. Concretely, when a
+unit genuinely ships, do all three — in this order:
+
+1. **Close the goal** — `complete_thread_goal` (done, criteria met) or `dismiss_thread_goal`
+   (abandoned / superseded). This is the call that stops auto-advance and stops the hourly nudges.
+   Prefer `complete` over `dismiss`; abandoned work should stay visibly distinguishable from work
+   that shipped.
+2. **File the contribution** if work is being claimed, with the merged PRs / submitted events as
+   evidence.
+3. **State the residual state explicitly** — what is still open, and what would close it. "Done"
+   plus a list of five open items is not done.
+
+#### Every new prompt is a re-evaluation point
+
+When a new prompt arrives, do not inherit the previous state by inertia — ask whether it *changes*
+the state, and transition if so:
+
+- a new instruction on a finished thread → back to `executing` (and re-open the goal)
+- an answer that clears a pending question → `awaiting` → `busy`
+- a governor deciding the work is unwanted → `dismissed`, not `complete`
+- approval for a prod merge → `prod_merge` → `done`
+
+The loop then behaves correctly on its own: `busy` is not nudged, `awaiting` is not nudged (that is
+healthy waiting), and only the genuine defects (`stalled`, `lost_goal`, `awaiting_stale`) page.
+
+#### Known gap (not yet fixed)
+
+`_resume_awaiting.json` is **append-only** — there is no pruning path, and it held **121 entries**
+when this was written. Terminal sessions therefore never leave the registry; they age past the
+freshness window and become `awaiting_stale`, which is a defect state, so a long-finished thread can
+still be nudged. Until pruning lands: treat `awaiting_stale` on a thread you know is finished as
+**registry noise, not a live defect** — and still prefer `complete_thread_goal`, so that at least the
+goal side is closed and the thread stops reappearing.
+
+---
+
 ## 3. Bounded WIP — do not flood Sophia or yourself
 
 - **WIP limit: 2 threads** supervised concurrently (default). Drive each to a human gate or
