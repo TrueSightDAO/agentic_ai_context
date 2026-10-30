@@ -5583,6 +5583,42 @@ The two un-indexed rows are listed in `handoffs/FARM_MEDIA_INTAKE_GO_LIVE_PLAN.m
 **Blocker.** None — this entry exists so a future session does not mis-diagnose the manifest and burn an hour looking for photos that were never captured.
 
 
+### GAS `telegram_webhook_listener.js`: two wrappers fetch dead domain-scoped `/a/macros/` URLs
+**Filed 2026-10-30. Owner: unclaimed. Governor: Gary.**
+
+Found while closing out the Cory / Sacred Earth settlement (tokenomics PRs #609, #611), after confirming **no duplicate function definitions remain** in the GAS project (all 3 `.js` files checked).
+
+**Mechanism (same defect *class* as #609, different mechanism).** The `/a/macros/` wrapper bug was not only about a shadowing duplicate. The URL **form** `https://script.google.com/a/macros/<domain>/s/<id>/exec` is itself dead:
+
+| Endpoint | `/a/macros/` form | same ID, normal form |
+|---|---|---|
+| `processTelegramChatLogs` | **timeout, 20 s, 0 bytes** | **302** → script.googleusercontent.com |
+| `processDigitalSignatureEvents` | **404** | **404** |
+| v29 (repaired, control) | — | **302** → script.googleusercontent.com |
+
+Probed **without executing any script** — no `curl -L`, so a redirect returns before GAS runs.
+
+**Honest nuance.** A 404 can be a *deleted deployment* rather than a bad URL form. That cannot apply to `processDigitalSignatureEvents`, whose call site runs on **every `doPost`** (line 37) while `doGet` answers 200 in ~2 s — a hang or 404 would be visible. So in practice that call is probably *not* hitting the dead `/a/macros/` fetch, and the probe may not have reached the real endpoint. **Unverified, not proven healthy.**
+
+**Blast radius.** `processDigitalSignatureEvents` is fire-and-forget on the sales path. If the fetch is dead, digital-signature events silently never register on sale — the same silent-success class as #609, where HTTP 200 was returned while nothing was written.
+
+**Proposed action.** Rewrite both wrappers to the normal form (`/macros/s/<id>/exec`) **and verify the signature-event deployment exists** (the second 404 needs resolving either way). Low risk, no logic change. Note this is the *third* silent-failure site in this file — worth a sweep rather than another one-at-a-time fix.
+
+**Blocker.** None.
+
+---
+
+### GAS project has no GCP project bound — `Logger.log` is unreadable
+**Filed 2026-10-30. Owner: unclaimed. Governor: Gary.**
+
+**Symptom.** `clasp logs` on `1duQFfTO0Pj0lC4tPVNmMOhNOS1GvJgzqVxXbsEDu-eqt_64DwxvrOVyl` fails with *"GCP project ID is not set"*. Every `Logger.log` line in the project is therefore unreachable. `Logger.log` is this project's **only** diagnostic channel.
+
+**Why it mattered.** The #609 no-op presented as **HTTP 200, ~62 s runtime, zero rows written, no exception** — indistinguishable from success. Isolating it took ~24 h, in large part because every diagnostic attempt tried to read logs that cannot be read. The root cause (a shadowing wrapper URL-fetching a dead endpoint with a bare `catch`) was only found by *reasoning about GAS function-resolution order*, not by observing logs.
+
+**Proposed action.** Bind a GCP project to the Apps Script project so `clasp logs` / Cloud Logging works. Then add a positive marker per processed row, so "ran and booked nothing" is distinguishable from "ran and booked".
+
+**Blocker.** Requires a GCP project + console access; not an agent-settable change.
+
 ---
 
 ## Recently shipped
