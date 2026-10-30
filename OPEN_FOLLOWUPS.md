@@ -39,6 +39,34 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### `lost_goal` nudges re-fire forever when a goal never gets a terminal event — and `envoy-nudge-media-pipeline-20261028-v3`'s unit 3 has no premise to act on
+**Filed 2026-10-30. Owner: unclaimed. Governor: Gary. Two related items: one operational, one a real loop-alert defect.**
+
+#### 1. Root cause of the repeated "Loop needs a nudge" spam
+
+The nudge text is generated for `lost_goal` = *"not busy, not awaiting, but the thread has an OPEN goal"* (`app/loop_status.py:23`). Inspecting the goal store (`data/thread_goals.jsonl`, ~1142 rows; schema `{event, session_id, goal_text, done_criteria, ts}`) shows **both** media sessions carry only `open` + `turn` events and **no terminal event at all** — they were opened 2026-10-28 and never closed. `app/thread_goal.py:42-47` defines `open` / `completed` / `dismissed`, and only the latter two are terminal. So `load_goals` keeps surfacing these as open forever and the daemon nudges on every sweep, regardless of how much of the underlying work has since been verified done.
+
+This is **working as designed but producing noise that no longer corresponds to reality**: the goals were never closed because the sessions are Envoy's supervision sessions, and a session that stops mid-plan does not get a terminal event from the code side. The nudges land in a human's chat and consume turns re-verifying already-done work (four separate nudges for `envoy-go-media-and-wire-20261028` before its state was written down in the entry below).
+
+**Suggested scope (one focused change):** age-out or auto-stale `lost_goal` nudges — e.g. stop nudging an `open` goal whose last `turn` event is older than N days, or require an explicit re-arm. Secondary: note *why* a goal is stale in the nudge itself so the reader can tell "work stopped" from "work finished and nobody closed the goal".
+
+#### 2. `envoy-nudge-media-pipeline-20261028-v3` — unit 3 is not actionable
+
+Goal text: *"(1) Content-Type spot-check of ~10 preview keys, (2) farm-media-site Pages build + DNS check for media.truesight.me, (3) fix_poster_content_type.py with dry-run then real count, (4) flag channel for Gary's own Visual UAT"*. Verified position:
+
+| Unit | State |
+|---|---|
+| (1) Content-Type spot-check | **Superseded/done** — not a 10-key spot-check but a full sweep: `previews/` is **2378/2378 `image/jpeg`, BAD=0** (see entry below). |
+| (2) Pages + DNS for `media.truesight.me` | **Done** — HTTP 200, `server: GitHub.com`, `farm-media-site` `CNAME` matches. |
+| (3) `fix_poster_content_type.py` | **No premise — cannot be done as written.** |
+| (4) Flag for Gary's Visual UAT | Nothing left to flag on the converted previews; the open items are the two domain issues in the entry below. |
+
+**Unit 3 has no premise.** `fix_poster_content_type.py` **does not exist anywhere on the autopilot box** (`find` across `/`, no match; `/media/heic_preview/` contains only `fix_preview_content_type.py`). More decisively, **there is no poster prefix to fix**: enumerating `media.agroverse.shop` (NELANCO creds; EXPLORYA gets `AccessDenied` on `ListObjectsV2`) shows exactly **4757 objects — `previews/` 2378, `raw/` 2378, and 1 root key (`previews.json`)**. No `posters/`, no `thumbnails/`, no equivalent. A further pass over every **non-`previews/`** object found only **2378 `binary/octet-stream` (`raw/*.MOV` — correct for MOVs) + 1 `application/json`**. Nothing mislabeled to repair.
+
+**Conclusion: do not write a poster script.** There is no population for it to operate on. If posters are actually wanted, that is a *new feature* (derive poster frames from `raw/*.MOV`, then store them with an explicit `Content-Type`) — not a content-type repair of an existing set. It should be scoped as new work with a governor decision on the target prefix, not as unit 3 of this goal.
+
+**Evidence.** `app/loop_status.py:23` (`lost_goal` definition); `app/thread_goal.py:42-47,155-167,264-299` (event vocabulary, terminal semantics); `data/thread_goals.jsonl` (both media sessions: `open` + `turn` only); boto3 enumeration of `media.agroverse.shop` + full content-type sweep of non-`previews/` objects; `find / -name 'fix_poster_content_type.py'` (no match); `/media/heic_preview/` listing.
+
 ### Provide a contribution-gated close/delete guard so the Envoy close ceremony can't delete an unreported thread
 **Filed 2026-10-30. Owner: unclaimed. Governor: Gary. Small — one checked tool, mirroring `close_telegram_topic_checked`.**
 
