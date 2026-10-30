@@ -20,6 +20,11 @@ live in [`growth/GROWTH_MODEL.md`](./growth/GROWTH_MODEL.md) — a different que
 more of them?") from this one ("what is being sold, to whom, for what?"). Note the path: the bare
 `GROWTH_MODEL.md` referenced in some context indexes does not exist.
 
+**Two renderings, one source.** Internal figures (R$5/tree, $17/bag, channel URLs) belong in *this*
+document. The client-facing short PDF deliberately strips costs, prices and domain names and is
+mechanism-only. Do not "reconcile" the two by stripping this file — the numbers are the point of
+having a canonical source.
+
 **Reading discipline.** §5 is an evidence register. Every load-bearing claim carries a status. Do
 not restate a ⚠️ or 🔵 claim as though it were ✅ — that is precisely the failure mode this doc was
 created to stop. If you are drafting external copy, read §5 first.
@@ -70,6 +75,12 @@ prestocking; the operational lead time from PO to destination port is roughly fi
 project of the TrueSight DAO — **not** by "the DAO treasury"
 (`CRF_ANAPU_TREE_PLANTING_SUPPORT_AGREEMENT.md` §1, §3). This distinction matters to any external
 counterparty doing diligence: they need a named legal obligor.
+
+**What is sold, and what is not.** The planting is a **cost we carry, funded by capital** — not a
+product on offer. Nobody buys a tree from us. What we sell is the **cacao**. Any external
+ description that implies we sell plantings, tree guardianships as the product, or "adopt-a-tree"
+units is a misreading of this cycle: the tree is upstream of the revenue, not the unit of it. State
+this before a reader can infer otherwise.
 
 **The last hop is intent, not yet mechanism.** No allocation rule, waterfall, or ring-fence
 currently documents that cacao proceeds replenish the tree-financing pool. Say "cycles back toward",
@@ -170,7 +181,8 @@ question.
 
 ## 4. The measurable unit
 
-**The product unit is the bag's QR code.** Scanning it resolves to a public page:
+**The product is the bag. The QR code is its provenance unit — not the thing sold.** Scanning it
+resolves to a public page:
 
 ```
 https://truesight.me/qr/?id=<qr_id>
@@ -251,7 +263,7 @@ but not load-bearing at scale · **❌** do not claim · **🔵** needs an exter
 | 6 | $17/bag wholesale (10-bag) and consignment (5-bag), RRP $25–35 | ✅ | `agroverse/AGROVERSE_PRICE_LIST_AND_ASSETS.md` |
 | 7 | Provenance page live at `truesight.me/qr/?id=` | ✅ | `LINEAGE_ASSETS.md` §"rendering surface" |
 | 8 | Bag↔tree binding is formally specified (`ASSIGNED_TO_TREE`) | ✅ | SOP §7; governor ruling 2026-09-24 |
-| 9 | Bag↔tree linkage is populated **at scale** | ⚠️ | Live check: **520 sold QRs / 0 `ASSIGNED_TO_TREE`** (`handoffs/HANDOFF_MANIFEST.md`). Treat as pilot; one worked example |
+| 9 | Bag↔tree linkage is populated **at scale** | ⚠️ | Live check 2026-10-20 (`sunmint/trees/index.geojson`): **16 of 245 trees carry status `LINKED`** with a real `qr_code`; 229 remain `NEW`. Mechanism live, coverage partial by design — **not zero**. See §6 item 2 for the retracted "520 sold / 0 linked" figure |
 | 10 | Real-world QR scans land on the provenance page | ❌/⚠️ | `LINEAGE_ASSETS.md`: the new surface is **demo-only**; scans in the wild still 302 to the sheet's landing page. Fix = flip column B for sample QRs. **Do this before any live demo** |
 | 11 | The record is **on-chain** | ❌ | See §4 — no validators, no Mirror Service; TDG are ledger entries |
 | 12 | Claims are independently / third-party verified | ❌ | No VVB audit. Attested only |
@@ -271,9 +283,16 @@ but not load-bearing at scale · **❌** do not claim · **🔵** needs an exter
 1. **QR redirect is demo-only.** Flip the Agroverse QR codes sheet column B for the sample QRs to
    `https://truesight.me/qr/?id=<qr_id>`, scan a physical bag, confirm round-trip. Ten minutes of
    data change; without it a live demo visibly fails. No QR regeneration needed.
-2. **Linkage is unpopulated.** 520 sold / 0 linked. Either link a handful of real bags before a
-   meeting, or present the single worked example as the pilot it is. Given this document's own
-   thesis — literal and small beats abstract and large — the pilot framing is respectable.
+2. **Linkage is partial, not zero.** Verified 2026-10-20 against `sunmint/trees/index.geojson`:
+   **16 of 245** registered trees are `LINKED` carrying a real `qr_code` (229 `NEW`), e.g.
+   `FOUNDERHAUS_BOUGAINVILLEA_20260821_1`, `2024OSR_81PB_20260412_3` (plot `PL-002`). Link a handful
+   more before a meeting and describe coverage as **"live, partial by design"** — never as
+   unpopulated. Given this document's own thesis — literal and small beats abstract and large —
+   partial coverage honestly stated is respectable.
+   *Correction 2026-10-20:* an earlier draft asserted "520 sold / 0 linked" from
+   `handoffs/HANDOFF_MANIFEST.md`. That was a false negative — the check queried a non-existent
+   `lineage-credentials/qrs_index.json`, so every lookup 404'd and the silence was read as zero. The
+   binding lives on the **tree** side as `qr_code`, not in a QR manifest.
 3. **Planter-name consent.** The provenance page surfaces the planter's name, joined via `pk_hash`
    to the Main Ledger contributor record. For an indefinite public page naming a smallholder — and
    for CFR students, some of them minors covered by parental consent under CRF agreement §9 — this
@@ -307,7 +326,8 @@ but not load-bearing at scale · **❌** do not claim · **🔵** needs an exter
 
 ## 8. The one-paragraph version
 
-TrueTech Inc pays smallholders and CFR students **R$5 per verified tree** by PIX, direct, against
+We finance the trees farmers plant; we do not sell them. TrueTech Inc pays smallholders and CFR
+students **R$5 per verified tree** by PIX, direct, against
 GPS-pinned, photographed, cryptographically signed evidence in a public registry. Those trees — cacao
 interplanted with native Amazonian species — produce cacao that is processed, bagged and sold at **$17
 wholesale** or retail through agroverse.shop, each bag carrying a serialized QR that resolves to a
