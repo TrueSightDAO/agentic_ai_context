@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-10-30T13:19:31Z`
+- Generated (UTC): `2026-10-30T22:34:02Z`
 - Look-back: **7** calendar days (`2026-10-23` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -33,14 +33,13 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 ### Event-type rollup
 
 - `[CONTRIBUTION EVENT]` × 20
-- `[SALES EVENT]` × 16
-- `[PRACTICE EVENT]` × 4
+- `[SALES EVENT]` × 15
+- `[PRACTICE EVENT]` × 5
 - `[BATCH QR CODE REQUEST]` × 1
 - `[CONTRIBUTOR ADD EVENT]` × 1
 
 ### Latest entries
 
-- `Edgar_20261028062821_2834` · **Edgar** · [CONTRIBUTION EVENT] Amount: 15 · Contributor(s): Gary Teh · Description: Worked the TrueSight DAO + FounderDesk/DAZ group thread (Layon, Nima Kaz, Pa…
 - `Edgar_20261028063233_2836` · **Edgar** · [CONTRIBUTOR ADD EVENT] Contributor Name: LVSS Negócios Internacionais Ltda (Flow Vista) · Contributor Email: global@flowvista.tech
 - `Edgar_20261028063511_2838` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 425 · Contributor(s): LVSS Negócios Internacionais Ltda (Flow Vista)
 - `Edgar_20261028063820_2840` · **Edgar** · [CONTRIBUTION EVENT] Amount: 15 · Contributor(s): Gary Teh · Description: Found and reported a bug on the DAZ platform (daz.toolsforthecommons.com - t…
@@ -60,6 +59,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20261030090141_2868` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 150 · Contributor(s): Sophia Truesight (admin+sophia@truesight.me)
 - `Edgar_20261030090144_2870` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Contributor(s): Gary Teh
 - `Edgar_20261030105309_2872` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Fix GAS shadowed processNonAgl4Transactions + book 3 AGL8 Sacred Earth bags
+- `Edgar_20261030192021_2874` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-30T19:20:19.422Z · Program: truesight-grounding · Practice Type: oracle-consultation
 
 ---
 
@@ -270,6 +270,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-10-23 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+f821ee4 | 2026-10-30 13:25:57 +0000 | chore(stats): refresh stats indexes [skip ci]
 e260a7c | 2026-10-30 06:19:50 +0000 | chore(stats): refresh stats indexes [skip ci]
 98eb32c | 2026-10-30 11:37:23 +0800 | Fix missing space in QR label placeholder text (#419)
 9cb0419 | 2026-10-29 22:55:46 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -313,6 +314,12 @@ b940644 | 2026-10-28 17:36:51 +0800 | Position the 12-bar case as try-it / reord
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+87dd6fc | 2026-10-31 03:34:28 +0800 | docs: file adminRestoreConfig security gap + 1BHAGZd deploy-readiness state (#1785)
+b8285ef | 2026-10-31 00:51:28 +0800 | File follow-up: manifest-driven label renders get silently empty farm/state fields (#1784)
+0046ce1 | 2026-10-30 23:40:30 +0800 | briefs: commit SunMint round-1 brief with a reproducible generator (#1783)
+a445e36 | 2026-10-30 22:09:53 +0800 | docs(sophia): state the regenerate-index-after-manifest-edit rule where Sophia actually reads it (#1782)
+486ac6b | 2026-10-30 21:19:53 +0800 | chore(previews): refresh Beer Hall preview (2026-10-30 UTC)
+8fdde59 | 2026-10-30 21:19:52 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-30 UTC)
 f53b986 | 2026-10-30 21:18:04 +0800 | File pk-* tree label URL follow-up (rebased) (#1777)
 0f3acaa | 2026-10-30 21:08:36 +0800 | docs(handoffs): correct stale sitio-catarinense state — STEP ZERO answered, PR2 data half done (#1780)
 7a4c4c7 | 2026-10-30 20:07:03 +0800 | Close the flat-$25 question: price varies by product, not a bug (#1779)
@@ -347,12 +354,6 @@ c6c1271 | 2026-10-29 11:08:05 +0000 | chore(supervision): PR-A rebuild branch pu
 7dc2aff | 2026-10-29 09:49:11 +0000 | chore(supervision): log PR-A WIP loss incident, dispatched rebuild with commit-early instruction
 363bb93 | 2026-10-29 09:48:57 +0000 | docs(supervisor-loop): §5.4 -- check for uncommitted work before dispatching any deploy
 972d768 | 2026-10-29 09:21:09 +0000 | chore(supervision): update multiprocess claim -- #591 (telegram identity) deployed, PR-A still the resume point
-2332b0e | 2026-10-29 08:26:58 +0000 | docs(followups): ad-hoc ping_sophia sessions have no auto-advance -- document the gap
-23b48fa | 2026-10-29 07:06:08 +0000 | chore(supervision): update multiprocess claim -- #586/#587/#590 deployed+verified, 30550 closed out, PR-A nudged
-0811f48 | 2026-10-29 07:05:13 +0000 | docs(followups): complete_thread_goal has its own session-key resolution bug, separate from #586
-8ec4ad8 | 2026-10-29 15:04:37 +0800 | docs(media-archive): event-media is a live first-class namespace, not future (#1759)
-fffb428 | 2026-10-29 14:13:26 +0800 | chore(previews): refresh Beer Hall preview (2026-10-29 UTC)
-a60b6a6 | 2026-10-29 14:13:24 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-29 UTC)
 … (truncated)
 ```
 
@@ -404,6 +405,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+873ddac | 2026-10-30 13:33:56 +0000 | chore: refresh currencies.json [skip ci]
 a8f496d | 2026-10-30 13:00:27 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 e573917 | 2026-10-29 13:43:00 +0000 | chore: refresh currencies.json [skip ci]
 697aa7a | 2026-10-29 13:07:09 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
