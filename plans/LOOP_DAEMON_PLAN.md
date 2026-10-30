@@ -30,7 +30,7 @@ Everything below was checked against the live box, not assumed.
 
 Kept for the reasoning trail; **this is no longer a live condition.** Without a heartbeat,
 `deploy_watcher.can_deploy()` — which treats `started_at + expected_max_duration_s` as a
-lease — would read any turn longer than the lease as expired. That both (a) let
+lease — would read any turn longer than the lease as expired. That both (a) would let
 `can_deploy` authorise a restart mid-turn and (b) would have made this daemon report a
 perfectly healthy long turn as STALLED.
 
@@ -88,7 +88,7 @@ which is the correct day-one baseline.
 Live check 2026-10-30 (daemon running): **6 sessions classified** — 3 `awaiting`, 2
 `lost_goal`, 1 `busy`. The two `lost_goal` sessions are genuinely dropped threads, and each
 has had an hourly nudge posted into its own channel. The payoff described below is
-consequence is therefore now **observed on live data**, not merely designed for.
+therefore now **observed on live data**, not merely designed for.
 
 ---
 
