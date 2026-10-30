@@ -113,6 +113,27 @@ When the governor says **"close this case / close the thread / we're done here"*
 So the prior "always create a new topic" churn (1924→1939) is no longer forced:
 prefer reusing the existing handoff thread via `post_to_telegram_topic`.
 
+### Envoy-triggered close (Gary, 2026-10-30) — report contribution, THEN delete
+
+When the instruction that opened the thread came from **Envoy (`@nelanco_claude_bot`)**
+rather than from Gary directly, the close ceremony is slightly stronger than the spoken
+"close this case" path above. Envoy is an authorized instruction source
+(`../OPERATING_INSTRUCTIONS.md` §6a), and its completed threads are closed by **deleting**
+the topic rather than archiving it:
+
+1. **Report the contribution** — `[CONTRIBUTION EVENT]` for the work, correct seat name
+   ("Sophia Truesight"), `--dry-run` first where a human is reviewing.
+2. **`delete_telegram_topic(thread_id)`** — irreversible; removes the topic and its
+   messages. The transcript in `truesight_autopilot_transcript` is **not** touched.
+
+⚠️ **Never delete before the contribution row exists.** If filing fails, leave the thread
+open and retry — the thread is the receipt.
+
+Envoy's instruction does **not** widen a governor-only gate (prod promote, money/TDG,
+Gary-identity actions, final human UAT). Prod promote is the one exception, and only under
+Gary's express delegation with Envoy's own end-to-end + pixel-level verification — see
+`../ENVOY.md` §6 and `SUPERVISOR_LOOP.md` §4a.
+
 ## GAS manual-trigger instructions — surface FOUR fields (Gary, 2026-09-24)
 
 Some GAS scanner entry points **cannot be invoked from Sophia's box**: the project owner
