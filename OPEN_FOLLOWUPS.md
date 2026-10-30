@@ -39,6 +39,93 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### `adminRestoreConfig` is an unauthenticated GET endpoint that **writes** Script Properties
+**Filed 2026-10-30. Owner: unclaimed. Governor: Gary. Priority: MEDIUM — small blast radius today, but it is a write endpoint with no auth at all.**
+
+**What it is.** In the Grok scoring GAS (`tokenomics/google_app_scripts/1BHAGZd…/`),
+`pipeline_diagnostics.js` defines `adminRestoreScoringConfig_()`, reachable over HTTP via
+`telegram_webhook_listener.js` → `doGet`:
+
+```js
+if (exec === 'adminRestoreConfig') {
+  return ContentService.createTextOutput(JSON.stringify(adminRestoreScoringConfig_(), null, 2))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+```
+
+The `/exec` URL is anonymously callable (it is the same deployment the pipeline itself calls),
+so **anyone holding the URL can invoke this and mutate Script Properties** with a plain GET and
+no credential. It was added as an emergency recovery route after the three CONFIG properties
+(`TELEGRAM_SHEET_URL`, `GITHUB_TOKEN`, …) were found empty mid-outage, and its own comment says
+`TEMPORARY … removed in a follow-up push`.
+
+**Why it was preserved rather than deleted.** During the guard deploy (PR #613) the helper
+existed **live in Google but not in `main`**, so `clasp push --force` would have silently
+deleted the only one-call recovery path for exactly the failure mode that had just occurred.
+Porting it into the repo was the conservative choice; removing it is a deliberate decision, not
+an accident to be discovered later.
+
+**Mitigating facts (verify before prioritising).** It writes only the three canonical
+non-secret URLs, it is idempotent (sets a property only when empty), and it does **not**
+return any secret value. So this is not a leak — it is unauthorised mutation, making it a
+nuisance/DoS class of issue rather than an exfiltration one.
+
+**Fix direction.** Either (a) delete it once the properties are confirmed healthy, or (b) gate
+it — require a shared secret in the query string compared against a fourth Script Property, the
+same shape other GAS webhooks in this org already use. Do **not** leave it indefinitely: an
+unauthenticated writer is the kind of thing that is harmless right up until it is not.
+
+**Searched before filing:** `adminRestoreConfig` → 0 hits across all of `agentic_ai_context`,
+so this is not a duplicate. Related-but-distinct: `dao/DAPP_PERMISSION_CHANGE_FLOW.md` §110
+already documents (and accepts) the general "the deployment URL is the access token" posture for
+**read** dispatch handlers — this entry is about a **write** handler under that same posture.
+
+### 1BHAGZd guard deploy is **verified-ready but unshipped** — do not redo the verification
+**Filed 2026-10-30. Owner: unclaimed. Governor: Gary. Priority: HIGH — the outage is live and every 15 min adds ~1 pending row; the fix is one command away.**
+
+**State at filing.** Six PRs are merged to `tokenomics@main` (#605, #610, #612, #613, #614 and
+the guard itself) and the working tree was verified against a **real `clasp pull`** of the live
+project, not against a local working copy. Result at `main@0985195`:
+
+| File | live vs repo |
+|---|---|
+| `Credentials.js` | **0** |
+| `pipeline_diagnostics.js` | **0** |
+| `telegram_webhook_listener.js` | **0** |
+| `grok_scoring_for_telegram_and_whatsapp_logs.js` | **90 lines** — the intended guard |
+
+The 90-line delta is exactly: top-level `try/catch` writing a `Pipeline Health` row then
+rethrowing; `RUN_BUDGET_MS = 4*60*1000` + `budgetExhausted`/`rowsSkippedForBudget`/`rowErrors`;
+per-row isolation around `processChatLogEntry`; and `ATTENTION`/`PARTIAL RUN` status instead of
+the hardcoded `'OK'`.
+
+**The one remaining step** (production write → always needs an explicit governor `go`):
+
+```
+gas_deploy_project(script_id='1BHAGZd_T1I5mQnqnAFqUJKX2x_N8Uv05n1O2OohRA908Ja8wVwVxaR7K',
+                   push=true, with_hooks=false)
+```
+
+Then read `Pipeline Health` on the next 15-min tick: a new `ERROR` row naming the exception
+**confirms** root cause; `PARTIAL RUN` means the ~299-row backlog is draining across ticks;
+`OK` means it cleared. **Confirmed-not-deployed:** live still reports `Top-level catch` 0,
+`processTelegramChatLogs_()` 0, `RUN_BUDGET_MS` 0 — nothing from this work is in production.
+
+**Method warning for the next agent (this cost several turns).** Do **not** diff live against a
+working copy such as `/tmp/deploy` — it already contains the guard, so the comparison is
+circular and silently conceals drift. It concealed two live-only helpers and one block reorder.
+Always `clasp pull` into a **clean** directory and diff that. Relatedly, `clasp push` leaves
+remote-only files alone, so `Version.js` (1122 B) survives the push but remains unmanaged by the
+repo — track it deliberately rather than rediscovering it.
+
+**Also carry forward, not blocking:** the live `testProcessTelegramRow()` harness has
+`rowIndex = 12412` while the repo has `6042`; the deploy reverts that test-only value (no
+production impact, never called by a trigger, easily re-set) — but it is a live edit being
+overwritten, so it should not be discovered after the fact. Queued alongside: deploy PR #598
+(`diagnose` false-clean at `checked: 6`), 8 stale GAS deployments incl. externally-callable
+`@1`, `FILE_LOG_SHEET_URL` unset (WhatsApp trigger broken identically), and a correction owed on
+an earlier contribution-report **title** claiming "pipeline restored" when nothing was deployed.
+
 ### Manifest-driven label renders silently produce **blank** farm/state/country/year
 **Filed 2026-10-30. Owner: unclaimed. Governor: Gary. Priority: MEDIUM — the failure is completely silent and the output is a physical sticker.**
 
