@@ -39,6 +39,49 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### `awaiting` threads go silent for ~24h, then get mislabelled `lost_goal` — the collapse is now visible in `/loop/status`
+**Filed 2026-10-30. Owner: unclaimed. Governor: Gary. Priority: HIGH — this is the "nothing pokes me" complaint, now quantified.**
+
+**Live evidence** (from the U3 read surface, `GET :8001/loop/status`, 2026-10-30T00:35:34Z):
+
+```
+healthy: false
+daemon: {heartbeat_age_s: 41.7, stale: false, heartbeat_stale_after_s: 180.0}
+counts: {busy: 2, stalled: 0, awaiting: 10, lost_goal: 6, idle: 0}
+total: 18
+```
+
+`awaiting=10` + `lost_goal=6` = 16 = every non-busy session. Two readings fit: either the daemon
+holds a thread in `AWAITING` for some window and then relabels it, or the two buckets are genuinely
+disjoint. **The first needs to be settled before any fix** — it is a one-line read of
+`classify_session` in `app/loop_status.py` and is the reason this entry is filed rather than just
+patched.
+
+**Why the relabel matters.** `AWAITING` is *correct, healthy waiting* — a thread blocked on a human
+decision. `OPEN-GOAL-LOST` is *loud* — "the loop dropped it". If a thread blocked on Gary for a day
+becomes indistinguishable from a thread that died, then (a) the defect count over-reports genuine
+crashes, and (b) the actual thing that needed attention — *a decision is pending on you* — is never
+stated in those words. Gary's lived experience of this is exactly "why is nothing poking me".
+
+**Proposed fix (scoped small).** Split the bucket rather than shorten a timer:
+1. Keep `AWAITING` as healthy, but attach `awaiting_since` / `awaiting_age_s` from the freshest
+   resume-registry entry (the classifier already reads this to decide AWAITING at all).
+2. Add a ~2h threshold that surfaces an `awaiting_you` defect — *"blocked on a decision, silent
+   Nh"* — as its own state, so it is neither silently OK nor miscast as lost.
+3. Reserve `lost_goal` strictly for "open goal, `AUTO_ADVANCE=true`, nothing running, **nothing
+   waiting on a human**" — which is what its own docstring already says it means.
+4. Acceptance is testable against the live surface: `awaiting` threads older than the threshold
+   must appear as `awaiting_you`, and `lost_goal` must stop absorbing them.
+
+**Not a duplicate of** the `ping_sophia` entry below — that one is about ad-hoc sessions with *no
+chat surface and no goal at all*; this one is about real chat threads that DO have both and still
+sit silent, because waiting is reported as health and never as a poke.
+
+**Blocker:** none technically. Needs a `truesight_autopilot` PR + a restart, so it should not be
+bundled with P0/U4 as one large change.
+
+---
+
 ### Ad-hoc `ping_sophia` sessions have no auto-advance — they silently stall forever unless re-pinged
 **Filed 2026-10-29. Owner: unclaimed. Governor: Gary. Priority: LOW — operational gap, not a bug.**
 

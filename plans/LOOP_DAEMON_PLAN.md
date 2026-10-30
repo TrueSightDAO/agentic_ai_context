@@ -1,6 +1,6 @@
 # Loop daemon — background work-state reconciler
 
-**Status:** IMPLEMENTATION STARTED
+**Status:** U1/U2/U3 SHIPPED — U3 (`GET /loop/status`) live on :8001 since 2026-10-30. P0, U4, U5, U6 still open.
 **Owner:** Gary Teh (+ Sophia)
 **Created:** 2026-10-28
 **Goal:** a daemon that runs every 60s, reads the state of every active task, and
@@ -114,7 +114,7 @@ this is the autopilot service itself, deployed by `deploy_autopilot`.
 | **P0** | Chat turns heartbeat their lease (bug fix) | `app/main.py` | unit test asserting `heartbeat()` called during a turn; `can_deploy` respects a live long turn |
 | **U1** | Pure classifier + parsers | `app/loop_status.py`, `tests/test_loop_status.py` | all 5 states + precedence + malformed input → fail-closed |
 | **U2** | Daemon loop + Redis publish | `app/loop_daemon.py`, `tests/test_loop_daemon.py` | fake client: keys + TTL written; dead-source → IDLE not crash |
-| **U3** | Read surface | `app/main.py` (`GET /loop/status`) | endpoint 200 + shape; Redis down → 503 |
+| **U3** ✅ | Read surface — **shipped #592 / `1f4b85e`** | `app/loop_surface.py`, `app/main.py` (`GET /loop/status`) | endpoint 200 + shape; Redis down → **200 + `degraded`** (deliberate deviation from 503 — see U3 note) |
 | **U4** | Alerting (dedupe, flag-gated, off) | `app/loop_daemon.py` | dedupe test: same defect twice in a row → one alert |
 | **U5** | systemd unit + deploy wiring | `deploy/truesight-autopilot-loop-daemon.service`, docs | unit starts, writes heartbeat, restarts clean |
 | **U6** | Live verification + UAT note | — | heartbeat < 180s old, states present, 24h soak |
@@ -147,11 +147,20 @@ this is the autopilot service itself, deployed by `deploy_autopilot`.
 - [ ] tests: missing file → empty, not exception
 - [ ] PR opened + merged
 
-### U3 — read surface
-- [ ] `GET /loop/status` returns daemon freshness + per-session states
-- [ ] stale/absent heartbeat → `degraded: true`
-- [ ] Redis unavailable → 503, service stays up
-- [ ] PR opened + merged
+### U3 — read surface — ✅ SHIPPED (`truesight_autopilot#592`, `1f4b85e`, live 2026-10-30)
+- [x] `GET /loop/status` returns daemon freshness + per-session states
+- [x] stale/absent heartbeat → `degraded: true`
+- [x] Redis unavailable → **`200` + `degraded: true`** (deviation from the spec's 503 — see note)
+- [x] PR opened + merged
+
+**Deviation, documented deliberately.** The roadmap row and the checklist above both specified
+`Redis down → 503`. The shipped route returns **200 with `degraded: true` / `healthy: false`**, and
+reserves `503` for a route that genuinely cannot answer. Rationale: this surface exists to expose
+that the loop is *unhealthy*. Failing closed precisely when Redis is down would hide the one
+condition it was built to report, and would page as "endpoint broken" rather than "loop down".
+Live-verified shape: `{generated_at, total, counts, defects, daemon, healthy, degraded, error}`;
+`tests/test_loop_status_route.py` covers 400 anonymous / 403 non-governor / 200 governor plus the
+degraded path.
 
 ### U4 — alerts
 - [ ] OPEN-GOAL-LOST posts to thread (flag on by default)
