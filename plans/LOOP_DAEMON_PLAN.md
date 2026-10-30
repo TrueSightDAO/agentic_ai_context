@@ -68,6 +68,20 @@ which is the correct day-one baseline.
 | Poll interval | **60s** | `LOOP_DAEMON_INTERVAL_S` |
 | Redis key TTL | **3 × interval** (180s) | derived |
 | Daemon on day one | **dark-ish**: publishes to Redis, alerts off | `LOOP_DAEMON_ALERTS` |
+| Channel-less alerts (no chat surface) | **report only** — listed under `unmapped`, posted nowhere | set `LOOP_ALERTS_FALLBACK_TARGET` (e.g. `tg:-1003919341801` or `dc:<channel_id>`) ⇒ routed there instead, and counted as `fallback=` |
+
+**On the fallback (why opt-in, not on by default).** Sessions like `…:envoy-go-media-and-wire-20261028`
+or handoff keys have no channel of their own, so `target_for_session()` returns `None`. Silently
+dumping those into a shared channel the moment the code shipped would have swapped one unclear
+situation ("alert went nowhere") for another ("someone else's channel suddenly got noisier"). The
+value of the fallback is a **governor choice about where the noise lands**, so it defaults to off and
+is set deliberately. Two behaviours worth knowing when reading it:
+
+- A **bare**, unprefixed id is **rejected** — it is exactly the "silently undeliverable" class this
+  module's own docstring names as a bug class. A transport prefix (`tg:` / `dc:`) is required.
+- A fallback-routed alert keeps its **own** dedupe key (`<session_id>:<state>`), so it dedupes
+  per-session as before — not against the shared channel, which would let one session's alert
+  silence a different session's.
 
 Rationale for STALLED-silent: the heartbeat bug (P0) means STALLED would otherwise fire on
 long healthy turns. Silence until P0 is deployed + observed clean, then flip.
@@ -166,6 +180,9 @@ degraded path.
 - [ ] OPEN-GOAL-LOST posts to thread (flag on by default)
 - [ ] STALLED log-only (flag off by default)
 - [ ] dedupe: one alert per (session, state) per hour
+- [x] **channel-less sessions routed to a fallback target** — `LOOP_ALERTS_FALLBACK_TARGET`
+      (`truesight_autopilot#608`). Unset by default ⇒ byte-identical to before (reported under
+      `unmapped`, still undelivered). Opt-in lever, not a change in default behaviour.
 - [ ] PR opened + merged
 
 ### U5 — service
