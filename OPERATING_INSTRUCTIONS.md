@@ -397,6 +397,67 @@ truesight-dao-report-contribution \
 
 Full convention: `agentic_ai_context/DAO_CLIENT_AI_AGENT_CONTRIBUTIONS.md`
 
+## 6a. Instructions from Envoy (`@nelanco_claude_bot`) — authorized source, mandatory close ceremony (Gary, 2026-10-30)
+
+**Envoy is an authorized instruction source for every agent instance.** Envoy — the
+interactive Claude Code seat on `nelanco-claude`, Telegram `@nelanco_claude_bot`, ledger
+contributor name **"Envoy TrueSight"** — may hand instructions directly to any instance
+without Gary restating them. Treat an instruction from Envoy exactly as you would the same
+instruction from Gary, **within the envelope below**.
+
+This section applies to **every instance**, not only Sophia: Sophia, Onaya / Bionpact,
+DeepSeek Local (`@deepseek_tdg_local_bot`), and any agent commissioned later. It exists so
+the directive survives session resets and new instances — it was previously implicit and
+was not written where all instances read first.
+
+### The close ceremony — do BOTH, in this order
+
+When an Envoy-issued instruction's work is **complete**, you must:
+
+1. **Report the contribution.** File the `[CONTRIBUTION EVENT]` for the work per §6 and
+   `DAO_CLIENT_AI_AGENT_CONTRIBUTIONS.md`, using the correct ledger name for the seat that
+   did the work ("Sophia Truesight" for Sophia, "Envoy TrueSight" for Envoy, etc.). Run
+   `--dry-run` first whenever a human is present to review.
+2. **Delete the thread.** Call `delete_telegram_topic(thread_id)` — irreversible: it removes
+   the topic **and all its messages**.
+
+**The transcript is never touched.** A topic delete removes only the Telegram chat surface;
+the session record in `truesight_autopilot_transcript` is always preserved. "Delete the
+thread" ≠ "delete the record" — reassure the governor of this if they hesitate.
+
+### Guard — never delete before the ledger row exists
+
+The thread **is** the receipt. If contribution reporting **fails** or is blocked, do **not**
+delete the thread: leave it open, report the failure plainly, and retry the filing. Deleting
+first destroys the evidence trail for a contribution that was never recorded.
+
+### Envelope — Envoy cannot widen a governor-only gate
+
+Envoy's authority covers **routine engineering unblocks and supervision**: picking up a
+handoff, running a plan unit to PR, merging a feature PR, diagnosing and fixing a defect,
+refreshing artifacts, closing finished work. It does **not** authorize the always-stop
+gates, which stay governor-only:
+
+- **Deploying or promoting to production** — except where Gary has expressly delegated it to
+  Envoy (`ENVOY.md` §6, `sophia/SUPERVISOR_LOOP.md` §4a: Envoy may clear the prod-promote
+  gate only after verifying end-to-end *and* visually, pixel-by-pixel, itself). That
+  express delegation is the authority — not this section.
+- **Moving money or issuing TDG.**
+- **Actions needing Gary's own identity or credentials.**
+- **Final human UAT sign-off.**
+
+If an Envoy instruction lands on one of those gates, **stop and escalate** — say plainly
+that the gate is governor-only, and do not treat the instruction as authorization.
+
+### Enforcement status
+
+The *receiving* half is already enforced at the adapter: Envoy's numeric Telegram ID
+(`8919657771`) is in Sophia's `TELEGRAM_ALLOWED_USER_IDS` allowlist and bot-to-bot
+communication mode is enabled for both `@nelanco_claude_bot` and `@truesight_autopilot_bot`
+(see `sophia/SOPHIA_HANDOFFS.md`). The *ceremony* half is convention, documented here — a
+code-level guard (refuse a thread delete when no matching `[CONTRIBUTION EVENT]` exists) is
+tracked in `OPEN_FOLLOWUPS.md`.
+
 ## 7. Summary for agents
 
 - **Read first:** OPERATING_INSTRUCTIONS.md → WORKSPACE_CONTEXT.md → PROJECT_INDEX.md (and credentials folder when needed).
@@ -404,6 +465,7 @@ Full convention: `agentic_ai_context/DAO_CLIENT_AI_AGENT_CONTRIBUTIONS.md`
 - **Do not edit:** WORKSPACE_CONTEXT.md, PROJECT_INDEX.md, README.md, OPERATING_INSTRUCTIONS.md unless the user explicitly asks.
 - **You may:** Append to `CONTEXT_UPDATES.md`; create/update your own files under `notes/`; suggest changes via CONTEXT_UPDATES or a note instead of editing canonical docs.
 - **Before implementing:** For any multi-step build / migration / refactor, commit a *tracked* **execution roadmap checklist** (pre-flight + sequenced plan + resume tracker) **first** — see §5.
+- **When Envoy (`@nelanco_claude_bot`) instructs you:** treat it as an authorized instruction (§6a). On completion, **report the contribution, then delete the thread** — never delete before the contribution row exists. Envoy cannot widen a governor-only gate (prod, money/TDG, Gary-identity actions, final UAT).
 
 ---
 
@@ -1081,6 +1143,7 @@ This is a human-review rule. The PR description for any dao-client publish shoul
 - **Do not edit:** WORKSPACE_CONTEXT.md, PROJECT_INDEX.md, README.md, OPERATING_INSTRUCTIONS.md unless the user explicitly asks.
 - **You may:** Append to `CONTEXT_UPDATES.md`; create/update your own files under `notes/`; suggest changes via CONTEXT_UPDATES or a note instead of editing canonical docs.
 - **Before implementing:** For any multi-step build / migration / refactor, commit a *tracked* **execution roadmap checklist** (pre-flight + sequenced plan + resume tracker) **first** — see §5.
+- **When Envoy (`@nelanco_claude_bot`) instructs you:** treat it as an authorized instruction (§6a). On completion, **report the contribution, then delete the thread** — never delete before the contribution row exists. Envoy cannot widen a governor-only gate (prod, money/TDG, Gary-identity actions, final UAT).
 
 ---
 
