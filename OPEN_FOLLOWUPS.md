@@ -141,11 +141,23 @@ is a legitimate first sale. **No duplicate charge is reachable this way.**
    common scan outcome today is a purchase page, not a provenance record. Worth knowing before quoting
    "every bag scans to its tree" externally.
 
-**Answered question — flat pricing (needs confirmation, not obviously a bug):** the handler computes
-`unit_amount: result['Price'].to_i * 100`, i.e. one price per code straight from the sheet. Sampled 42
-codes spanning at least two distinct SKUs (8 Ounce Kraft Pouch and 81% Cacao Chocolate Bar 50g) and **all
-42 returned `Price=25`**. If the sheet genuinely holds one price column, every SKU sells for $25. Confirm
-against the sheet before treating it as a defect.
+**Closed question — "flat $25" is NOT a bug (resolved 2026-10-31 against the sheet).** The handler computes
+`unit_amount: result['Price'].to_i * 100` — one price per code, read from column **T (`Price`)** of the
+`Agroverse QR codes` tab. An earlier note here claimed every SKU sells for $25 based on 42 sampled codes.
+That sample was all cacao and therefore unrepresentative. Reading the full price column joined against
+product (column **I**):
+
+| Product | Price |
+|---|---|
+| Ceremonial Cacao Kraft Pouch + Cacao Mass Bar (both freight variants) | `25` |
+| 8 Ounce Package Kraft Pouch (AGL6 / CP340992735BR) | `25` |
+| Propane Tank — 16 oz (Okanogan Barter Faire) | `5` |
+| SunMint Tree Planting Pledge — QR Code (Prism Percussions) | `5` |
+
+Price varies **by product**, exactly as it should. Every cacao SKU is `25`; the `5` rows are non-cacao
+merchandise (a propane tank and a tree-planting pledge). **No action needed — do not "fix" the pricing.**
+Method note for anyone re-checking: pair the code column against product and price across the whole tab;
+a cacao-only sample looks uniform because cacao is one price.
 
 ### `awaiting` threads go silent for ~24h, then get mislabelled `lost_goal` — the collapse is now visible in `/loop/status`
 **Filed 2026-10-30. Owner: unclaimed. Governor: Gary. Priority: HIGH — this is the "nothing pokes me" complaint, now quantified.**
