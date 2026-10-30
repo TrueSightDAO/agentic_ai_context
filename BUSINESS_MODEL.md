@@ -270,7 +270,7 @@ but not load-bearing at scale · **❌** do not claim · **🔵** needs an exter
 | 13 | Credits have been issued | ❌ | `[CARBON CREDIT ISSUANCE EVENT]` never fired |
 | 14 | Granting credit rights to donors | ❌ | `LEGAL_ENTITY_STRUCTURING_PROPOSAL_v2.md` — breaks deductibility |
 | 15 | Sale proceeds *mechanically* replenish the financing pool | 🔵 | Intent only; no documented allocation rule |
-| 16 | Brazil REDD+ ≈ $2.50/t (Q1 2025); VM0048 floor ≈ $12/t | 🔵 | Currently only in our own `plans/SITIO_CATARINENSE_FARM_ONBOARDING_PLAN.md` §0 — an internal draft note, **not** a citation. Get a dated public source before quoting externally |
+| 16 | Brazil REDD+ ≈ $2.50/t (Q1 2025); VM0048 floor ≈ $12/t | 🔵 | Currently only in our own `plans/SITIO_CATARINENSE_FARM_ONBOARDING_PLAN.md` §0 — an internal draft note, **not** a citation. **Sourcing attempt 2026-10-30 found no citable authority.** The best public material is broker/practitioner-level and implies Brazilian Amazon REDD+ nearer €12–15/t with a VM0048-era floor around $15/t — i.e. **materially higher than our own figures**, so the numbers above are not merely unsourced but probably stale. Do not quote them. If the topic arises, say we are not in the credit market rather than naming a price. |
 | 17 | "Finance a tree" community tier | 🔵 | Positioning idea; no running channel documented |
 | 18 | Specific named retail counterparties | 🔵 | Confirm consent before naming any partner in external material |
 | 19 | VM0047 v1.1 permits ARR on degraded forest land | ✅ (external) | Verra VM0047 v1.1 — dynamic performance benchmark; forested land not managed for wood products now eligible |
