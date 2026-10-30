@@ -288,7 +288,7 @@ but not load-bearing at scale · **❌** do not claim · **🔵** needs an exter
    `FOUNDERHAUS_BOUGAINVILLEA_20260821_1`, `2024OSR_81PB_20260412_3` (plot `PL-002`). Link a handful
    more before a meeting and describe coverage as **"live, partial by design"** — never as
    unpopulated. Given this document's own thesis — literal and small beats abstract and large —
-g   partial coverage honestly stated is respectable.
+   partial coverage honestly stated is respectable.
    *Correction 2026-10-20:* an earlier draft asserted "520 sold / 0 linked" from
    `handoffs/HANDOFF_MANIFEST.md`. That was a false negative — the check queried a non-existent
    `lineage-credentials/qrs_index.json`, so every lookup 404'd and the silence was read as zero. The
