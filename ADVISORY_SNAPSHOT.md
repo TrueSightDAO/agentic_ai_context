@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-10-29T22:54:33Z`
-- Look-back: **7** calendar days (`2026-10-22` → today UTC)
+- Generated (UTC): `2026-10-30T06:12:44Z`
+- Look-back: **7** calendar days (`2026-10-23` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -32,17 +32,14 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
+- `[CONTRIBUTION EVENT]` × 18
 - `[SALES EVENT]` × 18
-- `[CONTRIBUTION EVENT]` × 17
 - `[PRACTICE EVENT]` × 4
-- `[INVENTORY MOVEMENT]` × 1
 - `[BATCH QR CODE REQUEST]` × 1
 - `[CONTRIBUTOR ADD EVENT]` × 1
 
 ### Latest entries
 
-- `Edgar_20261027232706_2824` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Contributor(s): Gary Teh
-- `Edgar_20261027232709_2826` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 420 · Contributor(s): Sophia Truesight
 - `Edgar_20261027233459_2828` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Agroverse 81% Cacao bar QR batch (AGL13) — generation, label render fix, man…
 - `Edgar_20261027233503_2830` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Governor direction on the Agroverse 81% Cacao (AGL13) QR batch and labeling:…
 - `Edgar_20261028004524_2832` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-28T00:45:22.450Z · Program: truesight-grounding · Practice Type: oracle-consultation
@@ -61,6 +58,8 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20261028235224_2858` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-28T23:52:22.442Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20261029015742_2860` · **Edgar** · [CONTRIBUTION EVENT] Amount: 10 · Contributor(s): Gary Teh · Description: Liaised with Cory (Cory Sacred Earth / Sacred Earth Farms) on selling cacao …
 - `Edgar_20261029015745_2862` · **Edgar** · [CONTRIBUTION EVENT] Amount: 15 · Contributor(s): Gary Teh, Kirsten Ritschel · Description: Liaised with Kirsten Ritschel on the reporting materials/consumables format …
+- `Edgar_20261029231503_2864` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-29T23:15:01.459Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20261030023908_2866` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 840 · Description: Pulling Vivi and Oscar batch, mild Oscar batch, setting up Oscar batch from …
 
 ---
 
@@ -235,9 +234,9 @@ _(+34 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$2,720.78**
+- USD on hand: **$2,720.71**
 - Brazilian Reis: R$130.00 · rate `0.2323` USD/BRL → ≈ **$30.20**
-- USD provisioned for voting-rights cash-out: **$57.41**
+- USD provisioned for voting-rights cash-out: **$57.49**
 
 ### In-transit freight (0 rows)
 
@@ -252,7 +251,7 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_(No `YYYY-MM-DD |` lines on/after 2026-10-22 in CONTEXT_UPDATES.md.)_
+_(No `YYYY-MM-DD |` lines on/after 2026-10-23 in CONTEXT_UPDATES.md.)_
 
 ---
 
@@ -271,6 +270,8 @@ _(No `YYYY-MM-DD |` lines on/after 2026-10-22 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+98eb32c | 2026-10-30 11:37:23 +0800 | Fix missing space in QR label placeholder text (#419)
+9cb0419 | 2026-10-29 22:55:46 +0000 | chore(stats): refresh stats indexes [skip ci]
 b29be65 | 2026-10-29 13:36:48 +0000 | chore(stats): refresh stats indexes [skip ci]
 cf0d668 | 2026-10-29 06:21:02 +0000 | chore(stats): refresh stats indexes [skip ci]
 319d968 | 2026-10-28 22:47:09 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -300,10 +301,6 @@ d28ee91 | 2026-10-26 05:12:03 +0000 | chore(stats): refresh stats indexes [skip 
 3c748dd | 2026-10-23 17:23:04 +0000 | chore(stats): refresh stats indexes [skip ci]
 b824ed7 | 2026-10-23 11:58:57 +0000 | chore(stats): refresh stats indexes [skip ci]
 aff43cc | 2026-10-23 05:15:14 +0000 | chore(stats): refresh stats indexes [skip ci]
-932fb61 | 2026-10-22 21:52:52 +0000 | chore(stats): refresh stats indexes [skip ci]
-56f9d20 | 2026-10-22 17:32:28 +0000 | chore(stats): refresh stats indexes [skip ci]
-486394a | 2026-10-22 12:17:22 +0000 | chore(stats): refresh stats indexes [skip ci]
-c75724b | 2026-10-22 05:15:52 +0000 | chore(stats): refresh stats indexes [skip ci]
 ```
 
 ### `market_research` → `go_to_market`
@@ -315,6 +312,15 @@ b940644 | 2026-10-28 17:36:51 +0800 | Position the 12-bar case as try-it / reord
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+a2b32ec | 2026-10-30 13:06:38 +0800 | ci(handoffs): scope supervision check to supervisor-owned changes; fix missing requests dep (#1764)
+7a30385 | 2026-10-30 04:19:05 +0000 | chore(supervision): #601's carry-forward path real-world verified in production (53-line diff survived intact)
+7b8469f | 2026-10-30 11:52:27 +0800 | Retire uncitable carbon price figures in BUSINESS_MODEL evidence register (#1763)
+c900af3 | 2026-10-30 03:40:05 +0000 | chore(supervision): deploy-destructiveness root cause fixed at code level (both deploy.sh + deploy.py paths), PR #594 confirmed safe
+d6a63f5 | 2026-10-30 03:39:48 +0000 | docs(supervisor-loop): §5.4 update -- the deploy-destructiveness root cause is now fixed at the code level
+8af7e8b | 2026-10-30 10:33:08 +0800 | Correct BUSINESS_MODEL: linkage is 16/245 not 520/0, and the planting is financed not sold (#1762)
+ca7cc23 | 2026-10-30 09:20:06 +0800 | docs(loop): mark U3 shipped + document the 503->degraded deviation; file nudge-split with live evidence (#1761)
+5e060d6 | 2026-10-30 06:54:52 +0800 | chore(previews): refresh Beer Hall preview (2026-10-29 UTC)
+7d777a5 | 2026-10-30 06:54:50 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-29 UTC)
 ce9f1f7 | 2026-10-29 21:31:05 +0800 | chore(previews): refresh Beer Hall preview (2026-10-29 UTC)
 78daf54 | 2026-10-29 21:31:03 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-29 UTC)
 c20c51b | 2026-10-29 20:10:27 +0800 | Register thread 41214 — Oscar 2026 new patch (SunMint plot) task plan (#1760)
@@ -346,21 +352,14 @@ e3462ba | 2026-10-29 10:49:24 +0800 | docs(followups): amend 2026-10-28 multi-wo
 dc260fb | 2026-10-29 10:25:21 +0800 | docs(julio-guide): correct Step 0 button names and order to match create_signature.html (#1748)
 69c47b0 | 2026-10-29 02:06:41 +0000 | chore(supervision): loop-daemon track fully complete -- cap bug + Envoy identity both fixed/verified
 6d52abf | 2026-10-29 01:24:15 +0000 | chore(supervision): loop-alerts (U4) fully working, independently verified end-to-end
-4d297ae | 2026-10-29 06:46:11 +0800 | chore(previews): refresh Beer Hall preview (2026-10-28 UTC)
-7e5dfd6 | 2026-10-29 06:46:09 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-28 UTC)
-73cd4fb | 2026-10-28 15:50:54 +0000 | chore(supervision): farm-media-site TLS resolved, ready for Gary's Visual UAT
-51f6392 | 2026-10-28 23:49:11 +0800 | docs: retract the nginx-affinity recommendation in the multi-process follow-up (#1747)
-8738677 | 2026-10-28 15:33:51 +0000 | chore(supervision): media Content-Type fix done+verified; TLS decision escalated; wire in progress
-3cba333 | 2026-10-28 15:20:06 +0000 | chore(supervision): media-pipeline scope correction + F Discord catch-up posted
-0b8d77b | 2026-10-28 23:16:39 +0800 | docs(open-followups): PR2 of the multi-process plan cannot work without session affinity (#1746)
-e6282e9 | 2026-10-28 15:14:26 +0000 | chore(supervision): PR1 (#567) merged; #566 closed as less-complete duplicate
-bf96910 | 2026-10-28 15:12:51 +0000 | chore(supervision): loop-daemon U2 (PR #568) merged+verified+posted to Discord
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+2b82dd1 | 2026-10-30 13:04:14 +0800 | Fix: guard AGL4 notification call + absolute SOURCE_SHEET_URL (#611)
+ec37385 | 2026-10-30 13:03:36 +0800 | scoring: land top-level try/catch guard on main (missed by stacked merge) (#610)
 71fc0e0 | 2026-10-29 13:46:23 +0800 | scoring: per-row try/catch + run budget so a failing tick leaves a trace (#605)
 9503a18 | 2026-10-29 13:40:41 +0800 | Fix: remove shadowing processNonAgl4Transactions wrapper that masked the real AGL booking code (#609)
 8125614 | 2026-10-29 12:44:59 +0800 | Fix: non-AGL4 sales webhook deployment was MYSELF-restricted, silently no-op'ing real-time processing (#600)
@@ -421,7 +420,6 @@ f0e74f5 | 2026-10-25 17:28:38 +0800 | chore: refresh Agroverse SKU catalog snaps
 c73cd86 | 2026-10-24 11:37:34 +0000 | chore: refresh currencies.json [skip ci]
 7dc5a98 | 2026-10-24 11:06:42 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 c55527b | 2026-10-23 12:06:40 +0000 | chore: refresh currencies.json [skip ci]
-ef7f62f | 2026-10-22 11:58:06 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -437,8 +435,6 @@ cf9d41b | 2026-10-27 00:11:18 +0800 | fix(ep13): drop awkward shoulder-crop fram
 55f1e37 | 2026-10-25 17:01:44 +0800 | Bump Paulo ceremonial cacao 200g retail price $25.00 -> $30.00 (#348)
 e7fb8ba | 2026-10-25 12:34:36 +0800 | Add Vivi's 81% dark chocolate bar card to homepage product gallery (#347)
 5bf1d9c | 2026-10-25 00:01:37 -0300 | Add PDP + SKU for Vivi's Farm 81% dark chocolate bar (50g) — AGL13 (#346)
-5dc2003 | 2026-10-22 20:13:09 -0300 | Add "About Dorothy Stang" context to CFR Anapu partner page (#345)
-3332f3e | 2026-10-22 01:56:13 -0300 | Fix school page media manifest 404 + add farm page §9 cross-links (#344)
 ```
 
 ### `iching_oracle` → `oracle`
@@ -529,7 +525,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
 | 2026-10 | 460 | 18944.34386 | 10/29/2026 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-10-22`; scanned last **600** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-10-23`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
