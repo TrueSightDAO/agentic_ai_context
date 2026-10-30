@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-10-30T06:12:44Z`
+- Generated (UTC): `2026-10-30T13:19:31Z`
 - Look-back: **7** calendar days (`2026-10-23` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,17 +32,14 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 18
-- `[SALES EVENT]` × 18
+- `[CONTRIBUTION EVENT]` × 20
+- `[SALES EVENT]` × 16
 - `[PRACTICE EVENT]` × 4
 - `[BATCH QR CODE REQUEST]` × 1
 - `[CONTRIBUTOR ADD EVENT]` × 1
 
 ### Latest entries
 
-- `Edgar_20261027233459_2828` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Agroverse 81% Cacao bar QR batch (AGL13) — generation, label render fix, man…
-- `Edgar_20261027233503_2830` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Governor direction on the Agroverse 81% Cacao (AGL13) QR batch and labeling:…
-- `Edgar_20261028004524_2832` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-28T00:45:22.450Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20261028062821_2834` · **Edgar** · [CONTRIBUTION EVENT] Amount: 15 · Contributor(s): Gary Teh · Description: Worked the TrueSight DAO + FounderDesk/DAZ group thread (Layon, Nima Kaz, Pa…
 - `Edgar_20261028063233_2836` · **Edgar** · [CONTRIBUTOR ADD EVENT] Contributor Name: LVSS Negócios Internacionais Ltda (Flow Vista) · Contributor Email: global@flowvista.tech
 - `Edgar_20261028063511_2838` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 425 · Contributor(s): LVSS Negócios Internacionais Ltda (Flow Vista)
@@ -60,6 +57,9 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20261029015745_2862` · **Edgar** · [CONTRIBUTION EVENT] Amount: 15 · Contributor(s): Gary Teh, Kirsten Ritschel · Description: Liaised with Kirsten Ritschel on the reporting materials/consumables format …
 - `Edgar_20261029231503_2864` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-29T23:15:01.459Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20261030023908_2866` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 840 · Description: Pulling Vivi and Oscar batch, mild Oscar batch, setting up Oscar batch from …
+- `Edgar_20261030090141_2868` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 150 · Contributor(s): Sophia Truesight (admin+sophia@truesight.me)
+- `Edgar_20261030090144_2870` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Contributor(s): Gary Teh
+- `Edgar_20261030105309_2872` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Fix GAS shadowed processNonAgl4Transactions + book 3 AGL8 Sacred Earth bags
 
 ---
 
@@ -74,7 +74,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-10-29T10:59:14.551Z`
+- Generated (UTC): `2026-10-30T10:59:14.740Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -89,11 +89,11 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **117** stores — sum logged **warmup** sends (AU): **971**, sum logged **follow-up** sends (AV): **4**; warmup depth (none / once / ≥2): **61** / **0** / **56**; follow-up depth (none / once / ≥2): **116** / **0** / **1**
-- **Manager Follow-up**: **31** stores — sum logged **warmup** sends (AU): **25**, sum logged **follow-up** sends (AV): **59**; warmup depth (none / once / ≥2): **24** / **1** / **6**; follow-up depth (none / once / ≥2): **12** / **4** / **15**
+- **AI: Warm up prospect**: **114** stores — sum logged **warmup** sends (AU): **953**, sum logged **follow-up** sends (AV): **4**; warmup depth (none / once / ≥2): **59** / **0** / **55**; follow-up depth (none / once / ≥2): **113** / **0** / **1**
+- **Manager Follow-up**: **29** stores — sum logged **warmup** sends (AU): **25**, sum logged **follow-up** sends (AV): **55**; warmup depth (none / once / ≥2): **22** / **1** / **6**; follow-up depth (none / once / ≥2): **11** / **4** / **14**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: **1** stores — sum logged **warmup** sends (AU): **8**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **0** / **0** / **1**; follow-up depth (none / once / ≥2): **1** / **0** / **0**
-- **Follow-up pipeline (combined)**: **32** stores — sum logged **warmup** sends (AU): **33**, sum logged **follow-up** sends (AV): **59**; warmup depth (none / once / ≥2): **24** / **1** / **7**; follow-up depth (none / once / ≥2): **13** / **4** / **15**
+- **Follow-up pipeline (combined)**: **30** stores — sum logged **warmup** sends (AU): **33**, sum logged **follow-up** sends (AV): **55**; warmup depth (none / once / ≥2): **22** / **1** / **7**; follow-up depth (none / once / ≥2): **12** / **4** / **14**
 
 ---
 
@@ -270,6 +270,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-10-23 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+e260a7c | 2026-10-30 06:19:50 +0000 | chore(stats): refresh stats indexes [skip ci]
 98eb32c | 2026-10-30 11:37:23 +0800 | Fix missing space in QR label placeholder text (#419)
 9cb0419 | 2026-10-29 22:55:46 +0000 | chore(stats): refresh stats indexes [skip ci]
 b29be65 | 2026-10-29 13:36:48 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -312,6 +313,23 @@ b940644 | 2026-10-28 17:36:51 +0800 | Position the 12-bar case as try-it / reord
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+f53b986 | 2026-10-30 21:18:04 +0800 | File pk-* tree label URL follow-up (rebased) (#1777)
+0f3acaa | 2026-10-30 21:08:36 +0800 | docs(handoffs): correct stale sitio-catarinense state — STEP ZERO answered, PR2 data half done (#1780)
+7a4c4c7 | 2026-10-30 20:07:03 +0800 | Close the flat-$25 question: price varies by product, not a bug (#1779)
+8bf3771 | 2026-10-30 19:20:16 +0800 | docs(OPEN_FOLLOWUPS): correct wrong 'MOV label is fine' claim; record raw/ content-type fix (#1778)
+ebbe05c | 2026-10-30 18:06:44 +0800 | docs(OPEN_FOLLOWUPS): media-pipeline-v3 unit 3 has no premise; record stale-goal nudge loop (#1776)
+ad082de | 2026-10-30 17:47:13 +0800 | Retract false QR duplicate-charge claim; correct row 10 and OPEN_FOLLOWUPS (#1775)
+cef6194 | 2026-10-30 17:09:14 +0800 | docs(supervisor): state must be transitioned, not narrated (§2c) (#1774)
+5036594 | 2026-10-30 17:03:52 +0800 | docs(OPEN_FOLLOWUPS): file MLTE Track B state correction + contribution-gated close guard (#1773)
+c6d14a4 | 2026-10-30 16:34:05 +0800 | docs(open-followups): file GAS dead domain-scoped wrappers + unbound GCP logging gap (#1772)
+2a0e646 | 2026-10-30 16:32:43 +0800 | docs(handoffs): correct stale 'NO Oscar/OB plot yet' row — OB-P1 is registered (23 features) (#1771)
+d5b941d | 2026-10-30 16:04:08 +0800 | docs: codify Envoy (@nelanco_claude_bot) instruction source + close ceremony (report contribution, delete thread) for ALL instances (#1769)
+b5b64ef | 2026-10-30 15:26:08 +0800 | Correct row 10 with measured QR scan behaviour (Stripe path, server-side fix) (#1768)
+77860ab | 2026-10-30 15:00:20 +0800 | docs: document loop-alert fallback target for channel-less sessions (#1767)
+f54cb58 | 2026-10-30 14:16:23 +0800 | docs(handoffs): Oscar 2026 — reduce the gate to four fill-in values + record intake-sidecar gap (#1766)
+566940d | 2026-10-30 14:14:59 +0800 | File QR scan → Stripe re-buy defect (money path) in OPEN_FOLLOWUPS (#1765)
+2c22d0b | 2026-10-30 14:13:02 +0800 | chore(previews): refresh Beer Hall preview (2026-10-30 UTC)
+5e431bc | 2026-10-30 14:13:01 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-30 UTC)
 a2b32ec | 2026-10-30 13:06:38 +0800 | ci(handoffs): scope supervision check to supervisor-owned changes; fix missing requests dep (#1764)
 7a30385 | 2026-10-30 04:19:05 +0000 | chore(supervision): #601's carry-forward path real-world verified in production (53-line diff survived intact)
 7b8469f | 2026-10-30 11:52:27 +0800 | Retire uncitable carbon price figures in BUSINESS_MODEL evidence register (#1763)
@@ -335,29 +353,15 @@ c6c1271 | 2026-10-29 11:08:05 +0000 | chore(supervision): PR-A rebuild branch pu
 8ec4ad8 | 2026-10-29 15:04:37 +0800 | docs(media-archive): event-media is a live first-class namespace, not future (#1759)
 fffb428 | 2026-10-29 14:13:26 +0800 | chore(previews): refresh Beer Hall preview (2026-10-29 UTC)
 a60b6a6 | 2026-10-29 14:13:24 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-29 UTC)
-1431a18 | 2026-10-29 05:04:45 +0000 | chore(supervision): update multiprocess claim -- docs race resolved, founderhaus nudge landed, Gary live on both goals
-6fe5c2a | 2026-10-29 04:58:54 +0000 | docs(infra): throttle is fleet-wide via Redis (PR-C) - replace stale per-process wording
-8d44050 | 2026-10-29 12:57:30 +0800 | docs(infra): document Sophia's local Redis instance + the session-state/claim/singleton protocol (#1754)
-1e59ae0 | 2026-10-29 04:49:38 +0000 | chore(supervision): dashboard/dispatch work kicked off, PR-C urgent fix merged+verified
-ecb8733 | 2026-10-29 12:25:06 +0800 | docs(plans): reconcile Sophia multi-process plans onto Option A (#1753)
-ae68444 | 2026-10-29 11:59:51 +0800 | docs(followups): file event-media namespace + founderhaus no-stills gaps (#1752)
-3f01877 | 2026-10-29 03:57:57 +0000 | docs(supervisor-loop): self-decide after a few loops of no response, gates still gated (Gary, 2026-10-29)
-af127ce | 2026-10-29 03:13:59 +0000 | docs(followups): file the intermittent lost_goal blank-text cosmetic bug
-e3462ba | 2026-10-29 10:49:24 +0800 | docs(followups): amend 2026-10-28 multi-worker entry - superseded, verified live (#1751)
-6ca28f6 | 2026-10-29 02:48:55 +0000 | chore(supervision): --workers 4 fully live and verified, singleton-guard confirmed working
-1fa9d69 | 2026-10-29 10:42:26 +0800 | docs(followups): file stale context-index false-empty search gap (§5h blocker) (#1750)
-5001ec9 | 2026-10-29 02:39:29 +0000 | docs(operating-instructions): default to checking SOP before escalating a decision (Gary, 2026-10-29)
-1f97b41 | 2026-10-29 10:37:30 +0800 | docs(followups): record that the multi-worker fix went live but was inert (#1749)
-7f22a3d | 2026-10-29 02:26:08 +0000 | docs(supervisor-loop): always live-fix a found regression, don't default to rollback (Gary, 2026-10-29)
-dc260fb | 2026-10-29 10:25:21 +0800 | docs(julio-guide): correct Step 0 button names and order to match create_signature.html (#1748)
-69c47b0 | 2026-10-29 02:06:41 +0000 | chore(supervision): loop-daemon track fully complete -- cap bug + Envoy identity both fixed/verified
-6d52abf | 2026-10-29 01:24:15 +0000 | chore(supervision): loop-alerts (U4) fully working, independently verified end-to-end
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+0985195 | 2026-10-30 20:57:28 +0800 | webhook: match live doGet branch order so deploy is a true zero-delta (#614)
+8c09b41 | 2026-10-30 18:54:35 +0800 | diagnostics: port live adminRestoreScoringConfig_ helper into repo (#613)
+d5f640d | 2026-10-30 15:25:21 +0800 | credentials: preserve live TELEGRAM_BOT_TOKEN fallback so deploy cannot revert it (#612)
 2b82dd1 | 2026-10-30 13:04:14 +0800 | Fix: guard AGL4 notification call + absolute SOURCE_SHEET_URL (#611)
 ec37385 | 2026-10-30 13:03:36 +0800 | scoring: land top-level try/catch guard on main (missed by stacked merge) (#610)
 71fc0e0 | 2026-10-29 13:46:23 +0800 | scoring: per-row try/catch + run budget so a failing tick leaves a trace (#605)
@@ -400,6 +404,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+a8f496d | 2026-10-30 13:00:27 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 e573917 | 2026-10-29 13:43:00 +0000 | chore: refresh currencies.json [skip ci]
 697aa7a | 2026-10-29 13:07:09 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 ae3659d | 2026-10-28 13:31:33 +0000 | chore: refresh currencies.json [skip ci]
@@ -523,7 +528,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
-| 2026-10 | 460 | 18944.34386 | 10/29/2026 |
+| 2026-10 | 460 | 18944.34386 | 10/30/2026 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-10-23`; scanned last **600** data rows)
 
