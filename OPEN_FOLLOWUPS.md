@@ -61,9 +61,20 @@ Goal text: *"(1) Content-Type spot-check of ~10 preview keys, (2) farm-media-sit
 | (3) `fix_poster_content_type.py` | **No premise — cannot be done as written.** |
 | (4) Flag for Gary's Visual UAT | Nothing left to flag on the converted previews; the open items are the two domain issues in the entry below. |
 
-**Unit 3 has no premise.** `fix_poster_content_type.py` **does not exist anywhere on the autopilot box** (`find` across `/`, no match; `/media/heic_preview/` contains only `fix_preview_content_type.py`). More decisively, **there is no poster prefix to fix**: enumerating `media.agroverse.shop` (NELANCO creds; EXPLORYA gets `AccessDenied` on `ListObjectsV2`) shows exactly **4757 objects — `previews/` 2378, `raw/` 2378, and 1 root key (`previews.json`)**. No `posters/`, no `thumbnails/`, no equivalent. A further pass over every **non-`previews/`** object found only **2378 `binary/octet-stream` (`raw/*.MOV` — correct for MOVs) + 1 `application/json`**. Nothing mislabeled to repair.
+**Unit 3 has no premise.** `fix_poster_content_type.py` **does not exist anywhere on the autopilot box** (`find` across `/`, no match; `/media/heic_preview/` contains only `fix_preview_content_type.py`). More decisively, **there is no poster prefix to fix**: enumerating `media.agroverse.shop` (NELANCO creds; EXPLORYA gets `AccessDenied` on `ListObjectsV2`) shows exactly **4757 objects — `previews/` 2378, `raw/` 2378, and 1 root key (`previews.json`)**. No `posters/`, no `thumbnails/`, no equivalent. A further pass over every **non-`previews/`** object found only **2378 `binary/octet-stream` (`raw/*.MOV` — correct for MOVs) + 1 `application/json`**. **This was wrong, and is corrected here.** `binary/octet-stream` is *not* correct for `.MOV` or `.HEIC` — it is the generic type S3 assigns when no `Content-Type` is supplied at upload. `raw/` was genuinely mislabeled, all 2378 objects.
 
-**Conclusion: do not write a poster script.** There is no population for it to operate on. If posters are actually wanted, that is a *new feature* (derive poster frames from `raw/*.MOV`, then store them with an explicit `Content-Type`) — not a content-type repair of an existing set. It should be scoped as new work with a governor decision on the target prefix, not as unit 3 of this goal.
+**Fixed 2026-10-30** (`/media/heic_preview/fix_raw_ct.py`, metadata-only `copy_object` with `MetadataDirective=REPLACE` — reversible, no object bytes touched):
+
+```
+DRY RUN:  total=2378 {"already_ok": 408, "would_fix": 1970}
+APPLY:    total=2378 {"already_ok": 408, "fixed": 1970}
+```
+
+`⇒ 2378/2378 correct, 0 failures.` Independently re-verified afterwards by sampling 200 of 2378 `raw/` keys and comparing extension → expected MIME: **200/200 correct** (140 `video/quicktime`, 60 `image/heic`), 0 wrong. Mapping applied: `.heic→image/heic`, `.mov→video/quicktime`.
+
+**Method note for the next person:** `ListObjectsV2` does **not** return `ContentType` — an aggregation built on it silently reports every object as unlabeled-or-empty. Use `head_object` per key (threaded, ~16 workers, ≈2 min for 2378). I made exactly this mistake and reported a false "all clean" earlier in the same session.
+
+**Conclusion: do not write a poster script.** There is no poster population for it to operate on. **But the goal was directionally right** — this bucket *did* have a real content-type defect; it was in `raw/`, not in a poster prefix. See the correction above. If posters are actually wanted, that is a *new feature* (derive poster frames from `raw/*.MOV`, then store them with an explicit `Content-Type`) — not a content-type repair of an existing set. It should be scoped as new work with a governor decision on the target prefix, not as unit 3 of this goal.
 
 **Evidence.** `app/loop_status.py:23` (`lost_goal` definition); `app/thread_goal.py:42-47,155-167,264-299` (event vocabulary, terminal semantics); `data/thread_goals.jsonl` (both media sessions: `open` + `turn` only); boto3 enumeration of `media.agroverse.shop` + full content-type sweep of non-`previews/` objects; `find / -name 'fix_poster_content_type.py'` (no match); `/media/heic_preview/` listing.
 
