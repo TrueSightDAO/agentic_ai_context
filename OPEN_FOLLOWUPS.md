@@ -149,6 +149,54 @@ repo — track it deliberately rather than rediscovering it.
 > that tab's coordinates were never established. Also note `logPipelineHealth_` lives in
 > `pipeline_diagnostics.js` (diff 0 vs live), **not** in the scoring file; grepping only the
 > scoring file wrongly suggests the function is undefined.
+>
+> ---
+>
+> #### MEASURED 2026-10-30 — the `Pending` backlog is a **routing gap**, not a scorer backlog
+>
+> Full classification of the intake tab (`Telegram Chat Logs`, 14 679 data rows). **`Pending` total =
+> 1 914.** Breakdown by event tag in col G (body):
+>
+> | Event tag | Pending rows |
+> |---|---|
+> | `TREE PLANTING EVENT` | **1 346** |
+> | `PAYOUT EVENT` | 121 |
+> | no bracket tag | 97 |
+> | `RETAIL FIELD REPORT EVENT` | 82 |
+> | `EMAIL REGISTERED EVENT` | 59 |
+> | `PRACTICE EVENT` | 52 |
+> | `SALES EVENT` | 35 |
+> | `INVENTORY MOVEMENT` | 29 |
+> | everything else (21 types) | 93 |
+>
+> **`[CONTRIBUTION EVENT]` count among all 1 914 Pending rows: ZERO.** All 1 914 have an **empty
+> col N hash**. By month: **217** are `202609`, **1 697** are `202610`.
+>
+> **Why they can never clear — verified in code, every link:**
+> 1. `isContributionEvent()` (L1607) is a bare `.toUpperCase().includes('[CONTRIBUTION EVENT]')` —
+>    it returns **false** for all 26 other event types.
+> 2. `shouldSkipMessage()` (L1611) `/^\s*\[CONTRIBUTION EVENT\]/` — most of these bodies do not even
+>    start with a `[`, so they fail earlier still.
+> 3. The col-J backfill (L370-377) needs `status === "Pending" && hash`; **all 1 914 have no hash**,
+>    so the backfill `continue`s past every one of them.
+> 4. `logPipelineHealth_` in `pipeline_diagnostics.js` L158 uses the **same** `!== 'Pending'` filter
+>    and can never clear them either.
+>
+> **Conclusion: the Grok scorer is structurally unable to stamp any of the 1 914.** They are not
+> queued work, not a drain target, and not evidence of a stall. The real backlog of scorable
+> `[CONTRIBUTION EVENT]` rows is **0**. `Submissions Left to Score` = **240** is a *different*
+> source (Edgar API) and must not be reconciled against `Pending`.
+>
+> **Two caveats worth knowing.** (a) A row's tag **changes** as it ages: `QrCode_…_REQUEST` rows
+> that were Pending on 20261023 now read `TREE PLANTING EVENT` — so something rewrites col G for
+> late-scored rows, most plausibly the scorer's own rebuild from `Scored Chatlogs`. (b) A fourth
+> status, **`PROCESSED` (24 rows)**, exists only in historical data and is in neither the skip nor
+> the stamp sets — flag if any current writer emits it.
+>
+> **So `RUN_BUDGET_MS` no longer has a backlog to drain.** Its remaining justification is narrow:
+> protecting against GAS's uncatchable ~6-minute kill if a run is ever slow, plus visibility. This is
+> **not** a reason to spend the governor's production push. Files under
+> `tokenomics/` if a change is wanted; reopen only with a governor decision.
 
 **Also carry forward, not blocking:** the live `testProcessTelegramRow()` harness has
 `rowIndex = 12412` while the repo has `6042`; the deploy reverts that test-only value (no
