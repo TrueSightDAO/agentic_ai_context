@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-10-31T12:56:04Z`
+- Generated (UTC): `2026-10-31T21:47:35Z`
 - Look-back: **7** calendar days (`2026-10-24` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -270,6 +270,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-10-24 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+129eca6 | 2026-10-31 12:58:47 +0000 | chore(stats): refresh stats indexes [skip ci]
 45278c4 | 2026-10-31 06:11:22 +0000 | chore(stats): refresh stats indexes [skip ci]
 a837f09 | 2026-10-30 22:36:17 +0000 | chore(stats): refresh stats indexes [skip ci]
 f821ee4 | 2026-10-30 13:25:57 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -312,6 +313,8 @@ b940644 | 2026-10-28 17:36:51 +0800 | Position the 12-bar case as try-it / reord
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+7cfec75 | 2026-10-31 20:56:22 +0800 | chore(previews): refresh Beer Hall preview (2026-10-31 UTC)
+159e83b | 2026-10-31 20:56:20 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-31 UTC)
 07ecdc1 | 2026-10-31 14:06:29 +0800 | chore(previews): refresh Beer Hall preview (2026-10-31 UTC)
 1d46857 | 2026-10-31 14:06:27 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-31 UTC)
 3faaeb2 | 2026-10-31 11:37:48 +0800 | Measure the 1914-row Pending backlog: it is a routing gap, not a scorer backlog (#1788)
@@ -350,8 +353,6 @@ d6a63f5 | 2026-10-30 03:39:48 +0000 | docs(supervisor-loop): §5.4 update -- the
 8af7e8b | 2026-10-30 10:33:08 +0800 | Correct BUSINESS_MODEL: linkage is 16/245 not 520/0, and the planting is financed not sold (#1762)
 ca7cc23 | 2026-10-30 09:20:06 +0800 | docs(loop): mark U3 shipped + document the 503->degraded deviation; file nudge-split with live evidence (#1761)
 5e060d6 | 2026-10-30 06:54:52 +0800 | chore(previews): refresh Beer Hall preview (2026-10-29 UTC)
-7d777a5 | 2026-10-30 06:54:50 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-29 UTC)
-ce9f1f7 | 2026-10-29 21:31:05 +0800 | chore(previews): refresh Beer Hall preview (2026-10-29 UTC)
 … (truncated)
 ```
 
@@ -403,6 +404,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+59219f2 | 2026-10-31 13:03:28 +0000 | chore: refresh currencies.json [skip ci]
 d1e9864 | 2026-10-31 12:38:13 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 873ddac | 2026-10-30 13:33:56 +0000 | chore: refresh currencies.json [skip ci]
 a8f496d | 2026-10-30 13:00:27 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
