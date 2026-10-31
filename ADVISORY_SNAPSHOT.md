@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-10-31T06:06:05Z`
+- Generated (UTC): `2026-10-31T12:56:04Z`
 - Look-back: **7** calendar days (`2026-10-24` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -74,7 +74,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-10-30T10:59:14.740Z`
+- Generated (UTC): `2026-10-31T10:59:14.672Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -89,11 +89,11 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **114** stores — sum logged **warmup** sends (AU): **953**, sum logged **follow-up** sends (AV): **4**; warmup depth (none / once / ≥2): **59** / **0** / **55**; follow-up depth (none / once / ≥2): **113** / **0** / **1**
-- **Manager Follow-up**: **29** stores — sum logged **warmup** sends (AU): **25**, sum logged **follow-up** sends (AV): **55**; warmup depth (none / once / ≥2): **22** / **1** / **6**; follow-up depth (none / once / ≥2): **11** / **4** / **14**
+- **AI: Warm up prospect**: **112** stores — sum logged **warmup** sends (AU): **953**, sum logged **follow-up** sends (AV): **4**; warmup depth (none / once / ≥2): **57** / **0** / **55**; follow-up depth (none / once / ≥2): **111** / **0** / **1**
+- **Manager Follow-up**: **28** stores — sum logged **warmup** sends (AU): **23**, sum logged **follow-up** sends (AV): **55**; warmup depth (none / once / ≥2): **22** / **1** / **5**; follow-up depth (none / once / ≥2): **10** / **4** / **14**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: **1** stores — sum logged **warmup** sends (AU): **8**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **0** / **0** / **1**; follow-up depth (none / once / ≥2): **1** / **0** / **0**
-- **Follow-up pipeline (combined)**: **30** stores — sum logged **warmup** sends (AU): **33**, sum logged **follow-up** sends (AV): **55**; warmup depth (none / once / ≥2): **22** / **1** / **7**; follow-up depth (none / once / ≥2): **12** / **4** / **14**
+- **Follow-up pipeline (combined)**: **29** stores — sum logged **warmup** sends (AU): **31**, sum logged **follow-up** sends (AV): **55**; warmup depth (none / once / ≥2): **22** / **1** / **6**; follow-up depth (none / once / ≥2): **11** / **4** / **14**
 
 ---
 
@@ -270,6 +270,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-10-24 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+45278c4 | 2026-10-31 06:11:22 +0000 | chore(stats): refresh stats indexes [skip ci]
 a837f09 | 2026-10-30 22:36:17 +0000 | chore(stats): refresh stats indexes [skip ci]
 f821ee4 | 2026-10-30 13:25:57 +0000 | chore(stats): refresh stats indexes [skip ci]
 e260a7c | 2026-10-30 06:19:50 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -311,6 +312,8 @@ b940644 | 2026-10-28 17:36:51 +0800 | Position the 12-bar case as try-it / reord
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+07ecdc1 | 2026-10-31 14:06:29 +0800 | chore(previews): refresh Beer Hall preview (2026-10-31 UTC)
+1d46857 | 2026-10-31 14:06:27 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-31 UTC)
 3faaeb2 | 2026-10-31 11:37:48 +0800 | Measure the 1914-row Pending backlog: it is a routing gap, not a scorer backlog (#1788)
 274bb6b | 2026-10-31 08:54:28 +0800 | handoffs: release 23 stale Envoy supervision claims (all >48h, oldest 44d)
 d0a6ed2 | 2026-10-31 08:10:24 +0800 | Correct false 'Scored Chatlogs stopped at row 7224' premise — pipeline is running (#1787)
@@ -349,8 +352,6 @@ ca7cc23 | 2026-10-30 09:20:06 +0800 | docs(loop): mark U3 shipped + document the
 5e060d6 | 2026-10-30 06:54:52 +0800 | chore(previews): refresh Beer Hall preview (2026-10-29 UTC)
 7d777a5 | 2026-10-30 06:54:50 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-29 UTC)
 ce9f1f7 | 2026-10-29 21:31:05 +0800 | chore(previews): refresh Beer Hall preview (2026-10-29 UTC)
-78daf54 | 2026-10-29 21:31:03 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-29 UTC)
-c20c51b | 2026-10-29 20:10:27 +0800 | Register thread 41214 — Oscar 2026 new patch (SunMint plot) task plan (#1760)
 … (truncated)
 ```
 
@@ -402,6 +403,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+d1e9864 | 2026-10-31 12:38:13 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 873ddac | 2026-10-30 13:33:56 +0000 | chore: refresh currencies.json [skip ci]
 a8f496d | 2026-10-30 13:00:27 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 e573917 | 2026-10-29 13:43:00 +0000 | chore: refresh currencies.json [skip ci]
@@ -526,7 +528,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
-| 2026-10 | 460 | 18944.34386 | 10/30/2026 |
+| 2026-10 | 460 | 18944.34386 | 10/31/2026 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-10-24`; scanned last **600** data rows)
 
