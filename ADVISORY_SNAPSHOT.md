@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-10-30T22:34:02Z`
-- Look-back: **7** calendar days (`2026-10-23` → today UTC)
+- Generated (UTC): `2026-10-31T06:06:05Z`
+- Look-back: **7** calendar days (`2026-10-24` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -234,9 +234,9 @@ _(+34 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$2,720.71**
+- USD on hand: **$2,720.63**
 - Brazilian Reis: R$130.00 · rate `0.2323` USD/BRL → ≈ **$30.20**
-- USD provisioned for voting-rights cash-out: **$57.49**
+- USD provisioned for voting-rights cash-out: **$57.56**
 
 ### In-transit freight (0 rows)
 
@@ -251,7 +251,7 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_(No `YYYY-MM-DD |` lines on/after 2026-10-23 in CONTEXT_UPDATES.md.)_
+_(No `YYYY-MM-DD |` lines on/after 2026-10-24 in CONTEXT_UPDATES.md.)_
 
 ---
 
@@ -270,6 +270,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-10-23 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+a837f09 | 2026-10-30 22:36:17 +0000 | chore(stats): refresh stats indexes [skip ci]
 f821ee4 | 2026-10-30 13:25:57 +0000 | chore(stats): refresh stats indexes [skip ci]
 e260a7c | 2026-10-30 06:19:50 +0000 | chore(stats): refresh stats indexes [skip ci]
 98eb32c | 2026-10-30 11:37:23 +0800 | Fix missing space in QR label placeholder text (#419)
@@ -299,10 +300,6 @@ d28ee91 | 2026-10-26 05:12:03 +0000 | chore(stats): refresh stats indexes [skip 
 2dee325 | 2026-10-24 16:11:43 +0000 | chore(stats): refresh stats indexes [skip ci]
 46295d5 | 2026-10-24 11:29:19 +0000 | chore(stats): refresh stats indexes [skip ci]
 3f8d9bf | 2026-10-24 04:56:45 +0000 | chore(stats): refresh stats indexes [skip ci]
-955dbc7 | 2026-10-23 21:35:54 +0000 | chore(stats): refresh stats indexes [skip ci]
-3c748dd | 2026-10-23 17:23:04 +0000 | chore(stats): refresh stats indexes [skip ci]
-b824ed7 | 2026-10-23 11:58:57 +0000 | chore(stats): refresh stats indexes [skip ci]
-aff43cc | 2026-10-23 05:15:14 +0000 | chore(stats): refresh stats indexes [skip ci]
 ```
 
 ### `market_research` → `go_to_market`
@@ -314,6 +311,11 @@ b940644 | 2026-10-28 17:36:51 +0800 | Position the 12-bar case as try-it / reord
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+3faaeb2 | 2026-10-31 11:37:48 +0800 | Measure the 1914-row Pending backlog: it is a routing gap, not a scorer backlog (#1788)
+274bb6b | 2026-10-31 08:54:28 +0800 | handoffs: release 23 stale Envoy supervision claims (all >48h, oldest 44d)
+d0a6ed2 | 2026-10-31 08:10:24 +0800 | Correct false 'Scored Chatlogs stopped at row 7224' premise — pipeline is running (#1787)
+be920c1 | 2026-10-31 06:34:27 +0800 | chore(previews): refresh Beer Hall preview (2026-10-30 UTC)
+d8f5765 | 2026-10-31 06:34:25 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-30 UTC)
 87dd6fc | 2026-10-31 03:34:28 +0800 | docs: file adminRestoreConfig security gap + 1BHAGZd deploy-readiness state (#1785)
 b8285ef | 2026-10-31 00:51:28 +0800 | File follow-up: manifest-driven label renders get silently empty farm/state fields (#1784)
 0046ce1 | 2026-10-30 23:40:30 +0800 | briefs: commit SunMint round-1 brief with a reproducible generator (#1783)
@@ -349,11 +351,6 @@ ca7cc23 | 2026-10-30 09:20:06 +0800 | docs(loop): mark U3 shipped + document the
 ce9f1f7 | 2026-10-29 21:31:05 +0800 | chore(previews): refresh Beer Hall preview (2026-10-29 UTC)
 78daf54 | 2026-10-29 21:31:03 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-29 UTC)
 c20c51b | 2026-10-29 20:10:27 +0800 | Register thread 41214 — Oscar 2026 new patch (SunMint plot) task plan (#1760)
-8c2917a | 2026-10-29 11:39:31 +0000 | chore(supervision): both two-goal asks DONE for tonight (PR-A #593 + PR-B chain), remaining open items carried forward
-c6c1271 | 2026-10-29 11:08:05 +0000 | chore(supervision): PR-A rebuild branch pushed (44 tests), #592 appeared, holding deploys until wiring committed
-7dc2aff | 2026-10-29 09:49:11 +0000 | chore(supervision): log PR-A WIP loss incident, dispatched rebuild with commit-early instruction
-363bb93 | 2026-10-29 09:48:57 +0000 | docs(supervisor-loop): §5.4 -- check for uncommitted work before dispatching any deploy
-972d768 | 2026-10-29 09:21:09 +0000 | chore(supervision): update multiprocess claim -- #591 (telegram identity) deployed, PR-A still the resume point
 … (truncated)
 ```
 
@@ -426,7 +423,6 @@ f0e74f5 | 2026-10-25 17:28:38 +0800 | chore: refresh Agroverse SKU catalog snaps
 804072c | 2026-10-25 17:28:37 +0800 | chore: refresh Agroverse store inventory snapshot
 c73cd86 | 2026-10-24 11:37:34 +0000 | chore: refresh currencies.json [skip ci]
 7dc5a98 | 2026-10-24 11:06:42 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
-c55527b | 2026-10-23 12:06:40 +0000 | chore: refresh currencies.json [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -532,7 +528,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
 | 2026-10 | 460 | 18944.34386 | 10/30/2026 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-10-23`; scanned last **600** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-10-24`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
