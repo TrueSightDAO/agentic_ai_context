@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-10-31T21:47:35Z`
-- Look-back: **7** calendar days (`2026-10-24` → today UTC)
+- Generated (UTC): `2026-11-01T06:36:13Z`
+- Look-back: **7** calendar days (`2026-10-25` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -33,14 +33,13 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 ### Event-type rollup
 
 - `[CONTRIBUTION EVENT]` × 20
-- `[SALES EVENT]` × 15
-- `[PRACTICE EVENT]` × 5
+- `[SALES EVENT]` × 14
+- `[PRACTICE EVENT]` × 6
 - `[BATCH QR CODE REQUEST]` × 1
 - `[CONTRIBUTOR ADD EVENT]` × 1
 
 ### Latest entries
 
-- `Edgar_20261028063233_2836` · **Edgar** · [CONTRIBUTOR ADD EVENT] Contributor Name: LVSS Negócios Internacionais Ltda (Flow Vista) · Contributor Email: global@flowvista.tech
 - `Edgar_20261028063511_2838` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 425 · Contributor(s): LVSS Negócios Internacionais Ltda (Flow Vista)
 - `Edgar_20261028063820_2840` · **Edgar** · [CONTRIBUTION EVENT] Amount: 15 · Contributor(s): Gary Teh · Description: Found and reported a bug on the DAZ platform (daz.toolsforthecommons.com - t…
 - `Edgar_20261028085221_2842` · **Edgar** · [CONTRIBUTION EVENT] Amount: 15 · Contributor(s): Gary Teh · Description: Brazilian CNPJ hardening: directed Matheus Reis (Bahia Coop) and Francine Bo…
@@ -60,6 +59,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20261030090144_2870` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Contributor(s): Gary Teh
 - `Edgar_20261030105309_2872` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Fix GAS shadowed processNonAgl4Transactions + book 3 AGL8 Sacred Earth bags
 - `Edgar_20261030192021_2874` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-30T19:20:19.422Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20261101015504_2876` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-01T01:55:02.661Z · Program: truesight-grounding · Practice Type: oracle-consultation
 
 ---
 
@@ -234,9 +234,9 @@ _(+34 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$2,720.63**
+- USD on hand: **$2,720.56**
 - Brazilian Reis: R$130.00 · rate `0.2323` USD/BRL → ≈ **$30.20**
-- USD provisioned for voting-rights cash-out: **$57.56**
+- USD provisioned for voting-rights cash-out: **$57.63**
 
 ### In-transit freight (0 rows)
 
@@ -251,7 +251,7 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_(No `YYYY-MM-DD |` lines on/after 2026-10-24 in CONTEXT_UPDATES.md.)_
+_(No `YYYY-MM-DD |` lines on/after 2026-10-25 in CONTEXT_UPDATES.md.)_
 
 ---
 
@@ -270,6 +270,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-10-24 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+e458f96 | 2026-10-31 21:49:01 +0000 | chore(stats): refresh stats indexes [skip ci]
 129eca6 | 2026-10-31 12:58:47 +0000 | chore(stats): refresh stats indexes [skip ci]
 45278c4 | 2026-10-31 06:11:22 +0000 | chore(stats): refresh stats indexes [skip ci]
 a837f09 | 2026-10-30 22:36:17 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -298,10 +299,6 @@ d28ee91 | 2026-10-26 05:12:03 +0000 | chore(stats): refresh stats indexes [skip 
 02a9ae4 | 2026-10-25 16:44:05 +0000 | chore(stats): refresh stats indexes [skip ci]
 1d93eb5 | 2026-10-25 11:56:10 +0000 | chore(stats): refresh stats indexes [skip ci]
 57323e3 | 2026-10-25 05:10:02 +0000 | chore(stats): refresh stats indexes [skip ci]
-75445e2 | 2026-10-24 21:06:57 +0000 | chore(stats): refresh stats indexes [skip ci]
-2dee325 | 2026-10-24 16:11:43 +0000 | chore(stats): refresh stats indexes [skip ci]
-46295d5 | 2026-10-24 11:29:19 +0000 | chore(stats): refresh stats indexes [skip ci]
-3f8d9bf | 2026-10-24 04:56:45 +0000 | chore(stats): refresh stats indexes [skip ci]
 ```
 
 ### `market_research` → `go_to_market`
@@ -313,6 +310,9 @@ b940644 | 2026-10-28 17:36:51 +0800 | Position the 12-bar case as try-it / reord
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+ef302d7 | 2026-11-01 12:52:42 +0800 | File follow-up: reusable ledger→invoice generator (AGL16 one-off) (#1789)
+c3d7be0 | 2026-11-01 05:48:00 +0800 | chore(previews): refresh Beer Hall preview (2026-10-31 UTC)
+d1a0679 | 2026-11-01 05:47:58 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-31 UTC)
 7cfec75 | 2026-10-31 20:56:22 +0800 | chore(previews): refresh Beer Hall preview (2026-10-31 UTC)
 159e83b | 2026-10-31 20:56:20 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-31 UTC)
 07ecdc1 | 2026-10-31 14:06:29 +0800 | chore(previews): refresh Beer Hall preview (2026-10-31 UTC)
@@ -350,9 +350,6 @@ a2b32ec | 2026-10-30 13:06:38 +0800 | ci(handoffs): scope supervision check to s
 7b8469f | 2026-10-30 11:52:27 +0800 | Retire uncitable carbon price figures in BUSINESS_MODEL evidence register (#1763)
 c900af3 | 2026-10-30 03:40:05 +0000 | chore(supervision): deploy-destructiveness root cause fixed at code level (both deploy.sh + deploy.py paths), PR #594 confirmed safe
 d6a63f5 | 2026-10-30 03:39:48 +0000 | docs(supervisor-loop): §5.4 update -- the deploy-destructiveness root cause is now fixed at the code level
-8af7e8b | 2026-10-30 10:33:08 +0800 | Correct BUSINESS_MODEL: linkage is 16/245 not 520/0, and the planting is financed not sold (#1762)
-ca7cc23 | 2026-10-30 09:20:06 +0800 | docs(loop): mark U3 shipped + document the 503->degraded deviation; file nudge-split with live evidence (#1761)
-5e060d6 | 2026-10-30 06:54:52 +0800 | chore(previews): refresh Beer Hall preview (2026-10-29 UTC)
 … (truncated)
 ```
 
@@ -425,8 +422,6 @@ ae3659d | 2026-10-28 13:31:33 +0000 | chore: refresh currencies.json [skip ci]
 deaaa5b | 2026-10-25 11:36:19 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 f0e74f5 | 2026-10-25 17:28:38 +0800 | chore: refresh Agroverse SKU catalog snapshot
 804072c | 2026-10-25 17:28:37 +0800 | chore: refresh Agroverse store inventory snapshot
-c73cd86 | 2026-10-24 11:37:34 +0000 | chore: refresh currencies.json [skip ci]
-7dc5a98 | 2026-10-24 11:06:42 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -517,7 +512,6 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 
 | Year-Month | Monthly USD | Cumulative USD | Last updated |
 |------------|-------------|------------------|---------------|
-| 2025-09 | 734.72 | 10103.55386 | 2025-12-07 19:14:46 |
 | 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
 | 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
 | 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
@@ -531,8 +525,9 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
 | 2026-10 | 460 | 18944.34386 | 10/31/2026 |
+| 2026-11 | 0 | 18944.34386 | 10/31/2026 22:50:44 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-10-24`; scanned last **600** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-10-25`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
