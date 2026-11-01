@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-11-01T06:36:13Z`
+- Generated (UTC): `2026-11-01T18:01:36Z`
 - Look-back: **7** calendar days (`2026-10-25` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -74,7 +74,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-10-31T10:59:14.672Z`
+- Generated (UTC): `2026-11-01T11:59:14.346Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -89,7 +89,7 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **112** stores — sum logged **warmup** sends (AU): **953**, sum logged **follow-up** sends (AV): **4**; warmup depth (none / once / ≥2): **57** / **0** / **55**; follow-up depth (none / once / ≥2): **111** / **0** / **1**
+- **AI: Warm up prospect**: **108** stores — sum logged **warmup** sends (AU): **918**, sum logged **follow-up** sends (AV): **4**; warmup depth (none / once / ≥2): **55** / **0** / **53**; follow-up depth (none / once / ≥2): **107** / **0** / **1**
 - **Manager Follow-up**: **28** stores — sum logged **warmup** sends (AU): **23**, sum logged **follow-up** sends (AV): **55**; warmup depth (none / once / ≥2): **22** / **1** / **5**; follow-up depth (none / once / ≥2): **10** / **4** / **14**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: **1** stores — sum logged **warmup** sends (AU): **8**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **0** / **0** / **1**; follow-up depth (none / once / ≥2): **1** / **0** / **0**
@@ -270,6 +270,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-10-25 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+3f1d04d | 2026-11-01 06:44:09 +0000 | chore(stats): refresh stats indexes [skip ci]
 e458f96 | 2026-10-31 21:49:01 +0000 | chore(stats): refresh stats indexes [skip ci]
 129eca6 | 2026-10-31 12:58:47 +0000 | chore(stats): refresh stats indexes [skip ci]
 45278c4 | 2026-10-31 06:11:22 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -304,12 +305,14 @@ d28ee91 | 2026-10-26 05:12:03 +0000 | chore(stats): refresh stats indexes [skip 
 ### `market_research` → `go_to_market`
 
 ```
-b940644 | 2026-10-28 17:36:51 +0800 | Position the 12-bar case as try-it / reorder-deeper (#198)
+6861871 | 2026-11-01 14:56:14 +0000 | chore: refresh warm-up conversion readout [skip ci]
 ```
 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+2278989 | 2026-11-01 14:36:31 +0800 | chore(previews): refresh Beer Hall preview (2026-11-01 UTC)
+e993b98 | 2026-11-01 14:36:30 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-01 UTC)
 ef302d7 | 2026-11-01 12:52:42 +0800 | File follow-up: reusable ledger→invoice generator (AGL16 one-off) (#1789)
 c3d7be0 | 2026-11-01 05:48:00 +0800 | chore(previews): refresh Beer Hall preview (2026-10-31 UTC)
 d1a0679 | 2026-11-01 05:47:58 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-31 UTC)
@@ -348,8 +351,6 @@ f54cb58 | 2026-10-30 14:16:23 +0800 | docs(handoffs): Oscar 2026 — reduce the 
 a2b32ec | 2026-10-30 13:06:38 +0800 | ci(handoffs): scope supervision check to supervisor-owned changes; fix missing requests dep (#1764)
 7a30385 | 2026-10-30 04:19:05 +0000 | chore(supervision): #601's carry-forward path real-world verified in production (53-line diff survived intact)
 7b8469f | 2026-10-30 11:52:27 +0800 | Retire uncitable carbon price figures in BUSINESS_MODEL evidence register (#1763)
-c900af3 | 2026-10-30 03:40:05 +0000 | chore(supervision): deploy-destructiveness root cause fixed at code level (both deploy.sh + deploy.py paths), PR #594 confirmed safe
-d6a63f5 | 2026-10-30 03:39:48 +0000 | docs(supervisor-loop): §5.4 update -- the deploy-destructiveness root cause is now fixed at the code level
 … (truncated)
 ```
 
@@ -401,6 +402,8 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+d0ace62 | 2026-11-01 13:46:41 +0000 | chore: refresh currencies.json [skip ci]
+e4633b7 | 2026-11-01 13:30:01 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 59219f2 | 2026-10-31 13:03:28 +0000 | chore: refresh currencies.json [skip ci]
 d1e9864 | 2026-10-31 12:38:13 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 873ddac | 2026-10-30 13:33:56 +0000 | chore: refresh currencies.json [skip ci]
@@ -525,7 +528,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
 | 2026-10 | 460 | 18944.34386 | 10/31/2026 |
-| 2026-11 | 0 | 18944.34386 | 10/31/2026 22:50:44 |
+| 2026-11 | 0 | 18944.34386 | 11/1/2026 9:52:19 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-10-25`; scanned last **600** data rows)
 
