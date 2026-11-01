@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-11-01T18:01:36Z`
+- Generated (UTC): `2026-11-01T22:15:31Z`
 - Look-back: **7** calendar days (`2026-10-25` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -270,6 +270,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-10-25 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+7f282cf | 2026-11-01 18:03:19 +0000 | chore(stats): refresh stats indexes [skip ci]
 3f1d04d | 2026-11-01 06:44:09 +0000 | chore(stats): refresh stats indexes [skip ci]
 e458f96 | 2026-10-31 21:49:01 +0000 | chore(stats): refresh stats indexes [skip ci]
 129eca6 | 2026-10-31 12:58:47 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -311,6 +312,8 @@ d28ee91 | 2026-10-26 05:12:03 +0000 | chore(stats): refresh stats indexes [skip 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+37665a0 | 2026-11-02 02:01:54 +0800 | chore(previews): refresh Beer Hall preview (2026-11-01 UTC)
+79e3fb6 | 2026-11-02 02:01:53 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-01 UTC)
 2278989 | 2026-11-01 14:36:31 +0800 | chore(previews): refresh Beer Hall preview (2026-11-01 UTC)
 e993b98 | 2026-11-01 14:36:30 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-01 UTC)
 ef302d7 | 2026-11-01 12:52:42 +0800 | File follow-up: reusable ledger→invoice generator (AGL16 one-off) (#1789)
@@ -349,8 +352,6 @@ f54cb58 | 2026-10-30 14:16:23 +0800 | docs(handoffs): Oscar 2026 — reduce the 
 2c22d0b | 2026-10-30 14:13:02 +0800 | chore(previews): refresh Beer Hall preview (2026-10-30 UTC)
 5e431bc | 2026-10-30 14:13:01 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-30 UTC)
 a2b32ec | 2026-10-30 13:06:38 +0800 | ci(handoffs): scope supervision check to supervisor-owned changes; fix missing requests dep (#1764)
-7a30385 | 2026-10-30 04:19:05 +0000 | chore(supervision): #601's carry-forward path real-world verified in production (53-line diff survived intact)
-7b8469f | 2026-10-30 11:52:27 +0800 | Retire uncitable carbon price figures in BUSINESS_MODEL evidence register (#1763)
 … (truncated)
 ```
 
@@ -528,7 +529,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
 | 2026-10 | 460 | 18944.34386 | 10/31/2026 |
-| 2026-11 | 0 | 18944.34386 | 11/1/2026 9:52:19 |
+| 2026-11 | 0 | 18944.34386 | 11/1/2026 13:50:35 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-10-25`; scanned last **600** data rows)
 
