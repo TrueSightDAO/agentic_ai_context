@@ -39,6 +39,43 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Ledger→invoice generation is hand-built per job — extract a reusable, tested helper
+**Filed 2026-10-31. Owner: unclaimed. Governor: Gary. Priority: MEDIUM — every invoice re-derives the same non-obvious rules by hand, and the logic lives only in `/tmp`.**
+
+**What happened.** Producing the TrueTech Inc → BionPact Pte. Ltd. invoice from the AGL16
+ledger (69 rows, USD 2,226.84) required a bespoke Python/reportlab script built in
+`/tmp/inv2/build14.py`. It is committed nowhere. The PDF is archived under
+`store_interaction_attachments/invoices/`, but **the generator is not**, so the document cannot
+be reproduced and will have to be rebuilt from scratch as soon as anything changes — which is
+imminent: BionPact's ACRA registered address is still missing, and rows 67/69 may be pulled.
+
+**Why it is worth extracting rather than re-writing.** The script encodes ledger rules that were
+each discovered the hard way (a wrong first total of USD 4,336.73 shipped before they were found):
+
+1. **Read the `Type` column.** The Transactions tab carries Assets / Equity / Liability. A plain
+   range read that drops it makes the ledger look unreconcilable — assets + liability + equity is
+   the only combination that ties to the Balance tab.
+2. **Never bill both sides of a currency conversion.** The BRL legs of Wise transfers and the USD
+   legs that funded them represent the same money. Billing both double-counted USD 1,392.81.
+3. **Equity is not a cost.** Capital injections are excluded from amounts due.
+4. **Reversals, duplicate markers and voided test rows net to zero** and must be excluded by
+   description/type, not by guessing.
+5. **KG rows are quantities, not money** — a USD column must mark them `n/a`, not `0` or blank.
+6. **Scrub system boilerplate before the document leaves the building.** Ledger descriptions
+   embed `[DAO Inventory Expense Event] - DAO Member Name: …`, attachment-file hashes, and a
+   partly-masked CPF. All of it printed on a bank-facing PDF on the first pass.
+7. **Check for wrapped numbers.** `-1,412.77` rendered as `-1,41 2.77` in a narrow column, which
+   reads as a different figure. Financial output needs a post-render scan.
+
+**Fix direction.** A small reusable module (expected home: `truesight_autopilot` or `dao_client`)
+taking a ledger name + creditor/debtor and emitting the invoice PDF, with the seven rules above
+as unit-tested functions rather than inline code. The reconciliation bridge (schedule USD column
+→ summary total) should be produced by the module, not hand-written per job.
+
+**Searched before filing:** `invoice` across `agentic_ai_context` returns no generator/tooling
+doc; `search_code` for an existing ledger→invoice helper returned nothing. Distinct from the
+DAO ledger writers in `dao_client`, which record events but do not render documents.
+
 ### `adminRestoreConfig` is an unauthenticated GET endpoint that **writes** Script Properties
 **Filed 2026-10-30. Owner: unclaimed. Governor: Gary. Priority: MEDIUM — small blast radius today, but it is a write endpoint with no auth at all.**
 
