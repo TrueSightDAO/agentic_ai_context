@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-11-01T22:15:31Z`
-- Look-back: **7** calendar days (`2026-10-25` → today UTC)
+- Generated (UTC): `2026-11-02T06:36:00Z`
+- Look-back: **7** calendar days (`2026-10-26` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -32,16 +32,14 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 20
-- `[SALES EVENT]` × 14
-- `[PRACTICE EVENT]` × 6
+- `[CONTRIBUTION EVENT]` × 21
+- `[SALES EVENT]` × 12
+- `[PRACTICE EVENT]` × 7
 - `[BATCH QR CODE REQUEST]` × 1
 - `[CONTRIBUTOR ADD EVENT]` × 1
 
 ### Latest entries
 
-- `Edgar_20261028063511_2838` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 425 · Contributor(s): LVSS Negócios Internacionais Ltda (Flow Vista)
-- `Edgar_20261028063820_2840` · **Edgar** · [CONTRIBUTION EVENT] Amount: 15 · Contributor(s): Gary Teh · Description: Found and reported a bug on the DAZ platform (daz.toolsforthecommons.com - t…
 - `Edgar_20261028085221_2842` · **Edgar** · [CONTRIBUTION EVENT] Amount: 15 · Contributor(s): Gary Teh · Description: Brazilian CNPJ hardening: directed Matheus Reis (Bahia Coop) and Francine Bo…
 - `Edgar_20261028102651_2844` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-28T10:26:49.217Z · Program: capoeira-tribo-mirim · Practice Type: training-session
 - `Edgar_20261028124316_2846` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 345 · Description: Build + populate the Napa/Sonoma winery pipeline (discovery infra → 150 rows…
@@ -60,6 +58,8 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20261030105309_2872` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Fix GAS shadowed processNonAgl4Transactions + book 3 AGL8 Sacred Earth bags
 - `Edgar_20261030192021_2874` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-30T19:20:19.422Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20261101015504_2876` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-01T01:55:02.661Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20261102001255_2878` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-02T00:12:53.885Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20261102005117_2880` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 600 · Description: Pulled Oscar batch (pouches), temper, mold, package
 
 ---
 
@@ -234,9 +234,9 @@ _(+34 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$2,720.56**
+- USD on hand: **$2,720.48**
 - Brazilian Reis: R$130.00 · rate `0.2323` USD/BRL → ≈ **$30.20**
-- USD provisioned for voting-rights cash-out: **$57.63**
+- USD provisioned for voting-rights cash-out: **$57.71**
 
 ### In-transit freight (0 rows)
 
@@ -251,7 +251,7 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_(No `YYYY-MM-DD |` lines on/after 2026-10-25 in CONTEXT_UPDATES.md.)_
+_(No `YYYY-MM-DD |` lines on/after 2026-10-26 in CONTEXT_UPDATES.md.)_
 
 ---
 
@@ -270,6 +270,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-10-25 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+efa455d | 2026-11-01 22:17:13 +0000 | chore(stats): refresh stats indexes [skip ci]
 7f282cf | 2026-11-01 18:03:19 +0000 | chore(stats): refresh stats indexes [skip ci]
 3f1d04d | 2026-11-01 06:44:09 +0000 | chore(stats): refresh stats indexes [skip ci]
 e458f96 | 2026-10-31 21:49:01 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -297,10 +298,6 @@ cf0d668 | 2026-10-29 06:21:02 +0000 | chore(stats): refresh stats indexes [skip 
 3c9171c | 2026-10-26 22:50:37 +0000 | chore(stats): refresh stats indexes [skip ci]
 5c1f581 | 2026-10-26 13:28:37 +0000 | chore(stats): refresh stats indexes [skip ci]
 d28ee91 | 2026-10-26 05:12:03 +0000 | chore(stats): refresh stats indexes [skip ci]
-39d2309 | 2026-10-25 21:09:37 +0000 | chore(stats): refresh stats indexes [skip ci]
-02a9ae4 | 2026-10-25 16:44:05 +0000 | chore(stats): refresh stats indexes [skip ci]
-1d93eb5 | 2026-10-25 11:56:10 +0000 | chore(stats): refresh stats indexes [skip ci]
-57323e3 | 2026-10-25 05:10:02 +0000 | chore(stats): refresh stats indexes [skip ci]
 ```
 
 ### `market_research` → `go_to_market`
@@ -312,6 +309,8 @@ d28ee91 | 2026-10-26 05:12:03 +0000 | chore(stats): refresh stats indexes [skip 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+a1db643 | 2026-11-02 06:15:54 +0800 | chore(previews): refresh Beer Hall preview (2026-11-01 UTC)
+e1c65a8 | 2026-11-02 06:15:52 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-01 UTC)
 37665a0 | 2026-11-02 02:01:54 +0800 | chore(previews): refresh Beer Hall preview (2026-11-01 UTC)
 79e3fb6 | 2026-11-02 02:01:53 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-01 UTC)
 2278989 | 2026-11-01 14:36:31 +0800 | chore(previews): refresh Beer Hall preview (2026-11-01 UTC)
@@ -350,8 +349,6 @@ b5b64ef | 2026-10-30 15:26:08 +0800 | Correct row 10 with measured QR scan behav
 f54cb58 | 2026-10-30 14:16:23 +0800 | docs(handoffs): Oscar 2026 — reduce the gate to four fill-in values + record intake-sidecar gap (#1766)
 566940d | 2026-10-30 14:14:59 +0800 | File QR scan → Stripe re-buy defect (money path) in OPEN_FOLLOWUPS (#1765)
 2c22d0b | 2026-10-30 14:13:02 +0800 | chore(previews): refresh Beer Hall preview (2026-10-30 UTC)
-5e431bc | 2026-10-30 14:13:01 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-30 UTC)
-a2b32ec | 2026-10-30 13:06:38 +0800 | ci(handoffs): scope supervision check to supervisor-owned changes; fix missing requests dep (#1764)
 … (truncated)
 ```
 
@@ -372,8 +369,6 @@ aefc4f2 | 2026-10-28 22:16:09 +0800 | fix(gas): schedule MLTE processor on the t
 6fcfa2f | 2026-10-28 21:31:25 +0800 | Derive is_cacao from landing Page netloc in single-QR path (one shared impl) (#602)
 8ae164d | 2026-10-28 21:18:06 +0800 | Derive is_cacao from column B instead of hardcoding True in batch QR handler (#601)
 457c0e4 | 2026-10-27 17:07:00 +0800 | Add MLTE derivation engine: 4-row injection, movement, retirement logic (#599)
-c07a1ff | 2026-10-25 20:03:35 +0800 | fix(gas): add scoring pipeline diagnostics + failure visibility (#597)
-54301b0 | 2026-10-25 18:18:13 +0800 | fix: routing guard - stop silent fallback of named ledgers into MAIN (#595)
 ```
 
 ### `dapp` → `dapp`
@@ -423,9 +418,6 @@ ae3659d | 2026-10-28 13:31:33 +0000 | chore: refresh currencies.json [skip ci]
 687b0db | 2026-10-26 13:35:53 +0000 | chore: refresh partners-velocity snapshot [skip ci]
 8b93478 | 2026-10-26 13:34:25 +0000 | chore: refresh currencies.json [skip ci]
 52328a4 | 2026-10-26 13:09:42 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
-deaaa5b | 2026-10-25 11:36:19 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
-f0e74f5 | 2026-10-25 17:28:38 +0800 | chore: refresh Agroverse SKU catalog snapshot
-804072c | 2026-10-25 17:28:37 +0800 | chore: refresh Agroverse store inventory snapshot
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -435,12 +427,6 @@ f0e74f5 | 2026-10-25 17:28:38 +0800 | chore: refresh Agroverse SKU catalog snaps
 cf9d41b | 2026-10-27 00:11:18 +0800 | fix(ep13): drop awkward shoulder-crop frame, de-letterbox support images (#354)
 689b448 | 2026-10-27 00:07:27 +0800 | fix(ep13): name handshake (Matheus & Gary), correct Santos + Vivi attribution (#353)
 28202ab | 2026-10-26 10:02:00 +0800 | blog(ep13): hero now shows two visible faces (#352)
-956f033 | 2026-10-26 07:17:51 +0800 | blog(ep13): restore people, using only frames where no face is identifiable (#351)
-6644746 | 2026-10-26 01:01:52 +0800 | blog(ep13): replace people-containing photos with people-free frames (#350)
-6bc6406 | 2026-10-25 21:01:47 +0800 | blog: Bean to Bliss Episode 13 — Three Farms, Eleven Days (#349)
-55f1e37 | 2026-10-25 17:01:44 +0800 | Bump Paulo ceremonial cacao 200g retail price $25.00 -> $30.00 (#348)
-e7fb8ba | 2026-10-25 12:34:36 +0800 | Add Vivi's 81% dark chocolate bar card to homepage product gallery (#347)
-5bf1d9c | 2026-10-25 00:01:37 -0300 | Add PDP + SKU for Vivi's Farm 81% dark chocolate bar (50g) — AGL13 (#346)
 ```
 
 ### `iching_oracle` → `oracle`
@@ -529,9 +515,9 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
 | 2026-10 | 460 | 18944.34386 | 10/31/2026 |
-| 2026-11 | 0 | 18944.34386 | 11/1/2026 13:50:35 |
+| 2026-11 | 0 | 18944.34386 | 11/1/2026 21:50:51 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-10-25`; scanned last **600** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-10-26`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
