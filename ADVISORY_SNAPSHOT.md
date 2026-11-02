@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-11-02T06:36:00Z`
+- Generated (UTC): `2026-11-02T21:52:16Z`
 - Look-back: **7** calendar days (`2026-10-26` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,16 +32,14 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 21
-- `[SALES EVENT]` × 12
+- `[CONTRIBUTION EVENT]` × 23
+- `[SALES EVENT]` × 10
 - `[PRACTICE EVENT]` × 7
 - `[BATCH QR CODE REQUEST]` × 1
 - `[CONTRIBUTOR ADD EVENT]` × 1
 
 ### Latest entries
 
-- `Edgar_20261028085221_2842` · **Edgar** · [CONTRIBUTION EVENT] Amount: 15 · Contributor(s): Gary Teh · Description: Brazilian CNPJ hardening: directed Matheus Reis (Bahia Coop) and Francine Bo…
-- `Edgar_20261028102651_2844` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-28T10:26:49.217Z · Program: capoeira-tribo-mirim · Practice Type: training-session
 - `Edgar_20261028124316_2846` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 345 · Description: Build + populate the Napa/Sonoma winery pipeline (discovery infra → 150 rows…
 - `Edgar_20261028124318_2848` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 130 · Description: Direction, review + approval for the Napa/Sonoma winery channel build
 - `Edgar_20261028135256_2850` · **Edgar** · [CONTRIBUTION EVENT] Amount: 21.20 · Contributor(s): Gary Teh · Description: DeepSeek API tokens — reimbursable USD expense (LLM inference for DAO agent …
@@ -60,6 +58,8 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20261101015504_2876` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-01T01:55:02.661Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20261102001255_2878` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-02T00:12:53.885Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20261102005117_2880` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 600 · Description: Pulled Oscar batch (pouches), temper, mold, package
+- `Edgar_20261102211012_2882` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 420 · Description: Sorting, pre grinding, melanging set- up for Oscar AGL4 loose nibs. Because …
+- `Edgar_20261102211019_2884` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 420 · Description: Sorting, pre grinding, melanging set- up for Oscar AGL4 loose nibs. Because …
 
 ---
 
@@ -74,7 +74,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-11-01T11:59:14.346Z`
+- Generated (UTC): `2026-11-02T11:59:19.204Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -89,7 +89,7 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **108** stores — sum logged **warmup** sends (AU): **918**, sum logged **follow-up** sends (AV): **4**; warmup depth (none / once / ≥2): **55** / **0** / **53**; follow-up depth (none / once / ≥2): **107** / **0** / **1**
+- **AI: Warm up prospect**: **107** stores — sum logged **warmup** sends (AU): **918**, sum logged **follow-up** sends (AV): **4**; warmup depth (none / once / ≥2): **54** / **0** / **53**; follow-up depth (none / once / ≥2): **106** / **0** / **1**
 - **Manager Follow-up**: **28** stores — sum logged **warmup** sends (AU): **23**, sum logged **follow-up** sends (AV): **55**; warmup depth (none / once / ≥2): **22** / **1** / **5**; follow-up depth (none / once / ≥2): **10** / **4** / **14**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: **1** stores — sum logged **warmup** sends (AU): **8**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **0** / **0** / **1**; follow-up depth (none / once / ≥2): **1** / **0** / **0**
@@ -270,6 +270,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-10-26 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+e4c9140 | 2026-11-02 06:42:00 +0000 | chore(stats): refresh stats indexes [skip ci]
 efa455d | 2026-11-01 22:17:13 +0000 | chore(stats): refresh stats indexes [skip ci]
 7f282cf | 2026-11-01 18:03:19 +0000 | chore(stats): refresh stats indexes [skip ci]
 3f1d04d | 2026-11-01 06:44:09 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -309,6 +310,8 @@ d28ee91 | 2026-10-26 05:12:03 +0000 | chore(stats): refresh stats indexes [skip 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+789503b | 2026-11-02 14:36:22 +0800 | chore(previews): refresh Beer Hall preview (2026-11-02 UTC)
+82c344c | 2026-11-02 14:36:20 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-02 UTC)
 a1db643 | 2026-11-02 06:15:54 +0800 | chore(previews): refresh Beer Hall preview (2026-11-01 UTC)
 e1c65a8 | 2026-11-02 06:15:52 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-01 UTC)
 37665a0 | 2026-11-02 02:01:54 +0800 | chore(previews): refresh Beer Hall preview (2026-11-01 UTC)
@@ -347,8 +350,6 @@ d5b941d | 2026-10-30 16:04:08 +0800 | docs: codify Envoy (@nelanco_claude_bot) i
 b5b64ef | 2026-10-30 15:26:08 +0800 | Correct row 10 with measured QR scan behaviour (Stripe path, server-side fix) (#1768)
 77860ab | 2026-10-30 15:00:20 +0800 | docs: document loop-alert fallback target for channel-less sessions (#1767)
 f54cb58 | 2026-10-30 14:16:23 +0800 | docs(handoffs): Oscar 2026 — reduce the gate to four fill-in values + record intake-sidecar gap (#1766)
-566940d | 2026-10-30 14:14:59 +0800 | File QR scan → Stripe re-buy defect (money path) in OPEN_FOLLOWUPS (#1765)
-2c22d0b | 2026-10-30 14:13:02 +0800 | chore(previews): refresh Beer Hall preview (2026-10-30 UTC)
 … (truncated)
 ```
 
@@ -398,6 +399,9 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+34a222d | 2026-11-02 16:34:11 +0000 | chore: refresh partners-velocity snapshot [skip ci]
+c4497d2 | 2026-11-02 16:32:31 +0000 | chore: refresh currencies.json [skip ci]
+0e58426 | 2026-11-02 16:01:02 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 d0ace62 | 2026-11-01 13:46:41 +0000 | chore: refresh currencies.json [skip ci]
 e4633b7 | 2026-11-01 13:30:01 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 59219f2 | 2026-10-31 13:03:28 +0000 | chore: refresh currencies.json [skip ci]
@@ -515,7 +519,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
 | 2026-10 | 460 | 18944.34386 | 10/31/2026 |
-| 2026-11 | 0 | 18944.34386 | 11/1/2026 21:50:51 |
+| 2026-11 | 0 | 18944.34386 | 11/2/2026 13:51:26 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-10-26`; scanned last **600** data rows)
 
