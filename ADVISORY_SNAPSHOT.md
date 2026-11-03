@@ -20,9 +20,46 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-11-03T05:46:15Z`
+- Generated (UTC): `2026-11-03T07:05:57Z`
 - Look-back: **7** calendar days (`2026-10-27` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
+
+---
+
+## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
+
+_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
+
+### Event-type rollup
+
+- `[CONTRIBUTION EVENT]` × 24
+- `[SALES EVENT]` × 8
+- `[PRACTICE EVENT]` × 8
+- `[BATCH QR CODE REQUEST]` × 1
+- `[CONTRIBUTOR ADD EVENT]` × 1
+
+### Latest entries
+
+- `Edgar_20261028135256_2850` · **Edgar** · [CONTRIBUTION EVENT] Amount: 21.20 · Contributor(s): Gary Teh · Description: DeepSeek API tokens — reimbursable USD expense (LLM inference for DAO agent …
+- `Edgar_20261028153538_2852` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 210 · Contributor(s): Sophia Truesight (admin+sophia@truesight.me)
+- `Edgar_20261028153541_2854` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 130 · Contributor(s): Envoy TrueSight
+- `Edgar_20261028153545_2856` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Contributor(s): Gary Teh
+- `Edgar_20261028235224_2858` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-28T23:52:22.442Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20261029015742_2860` · **Edgar** · [CONTRIBUTION EVENT] Amount: 10 · Contributor(s): Gary Teh · Description: Liaised with Cory (Cory Sacred Earth / Sacred Earth Farms) on selling cacao …
+- `Edgar_20261029015745_2862` · **Edgar** · [CONTRIBUTION EVENT] Amount: 15 · Contributor(s): Gary Teh, Kirsten Ritschel · Description: Liaised with Kirsten Ritschel on the reporting materials/consumables format …
+- `Edgar_20261029231503_2864` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-29T23:15:01.459Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20261030023908_2866` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 840 · Description: Pulling Vivi and Oscar batch, mild Oscar batch, setting up Oscar batch from …
+- `Edgar_20261030090141_2868` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 150 · Contributor(s): Sophia Truesight (admin+sophia@truesight.me)
+- `Edgar_20261030090144_2870` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Contributor(s): Gary Teh
+- `Edgar_20261030105309_2872` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Fix GAS shadowed processNonAgl4Transactions + book 3 AGL8 Sacred Earth bags
+- `Edgar_20261030192021_2874` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-30T19:20:19.422Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20261101015504_2876` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-01T01:55:02.661Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20261102001255_2878` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-02T00:12:53.885Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20261102005117_2880` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 600 · Description: Pulled Oscar batch (pouches), temper, mold, package
+- `Edgar_20261102211012_2882` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 420 · Description: Sorting, pre grinding, melanging set- up for Oscar AGL4 loose nibs. Because …
+- `Edgar_20261102211019_2884` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 420 · Description: Sorting, pre grinding, melanging set- up for Oscar AGL4 loose nibs. Because …
+- `Edgar_20261102221601_2886` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Sorting Vivi's nibs to prep for  melange. Lots of flat beans, lots of husk a…
+- `Edgar_20261103021611_2888` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-03T02:16:09.303Z · Program: truesight-grounding · Practice Type: oracle-consultation
 
 ---
 
@@ -195,13 +232,16 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+34 more in JSON snapshot.)_
 
-### Cash float
+### Cash float (`off chain asset balance`)
 
-_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
+- USD on hand: **$2,720.42**
+- Brazilian Reis: R$130.00 · rate `0.2323` USD/BRL → ≈ **$30.20**
+- USD provisioned for voting-rights cash-out: **$57.77**
 
-### In-transit freight
+### In-transit freight (0 rows)
 
-_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
+_No `Shipment Ledger Listing` rows match in-flight status keywords today._
+
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -268,6 +308,8 @@ cf0d668 | 2026-10-29 06:21:02 +0000 | chore(stats): refresh stats indexes [skip 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+1a8e888 | 2026-11-03 13:46:36 +0800 | Merge pull request #1790 from TrueSightDAO/auto/advisory-refresh-2026-11-03
+f8479bb | 2026-11-03 05:46:21 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-03 UTC)
 4a522a6 | 2026-11-03 05:52:42 +0800 | chore(previews): refresh Beer Hall preview (2026-11-02 UTC)
 519baff | 2026-11-03 05:52:40 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-02 UTC)
 789503b | 2026-11-02 14:36:22 +0800 | chore(previews): refresh Beer Hall preview (2026-11-02 UTC)
@@ -306,8 +348,6 @@ cef6194 | 2026-10-30 17:09:14 +0800 | docs(supervisor): state must be transition
 5036594 | 2026-10-30 17:03:52 +0800 | docs(OPEN_FOLLOWUPS): file MLTE Track B state correction + contribution-gated close guard (#1773)
 c6d14a4 | 2026-10-30 16:34:05 +0800 | docs(open-followups): file GAS dead domain-scoped wrappers + unbound GCP logging gap (#1772)
 2a0e646 | 2026-10-30 16:32:43 +0800 | docs(handoffs): correct stale 'NO Oscar/OB plot yet' row — OB-P1 is registered (23 features) (#1771)
-d5b941d | 2026-10-30 16:04:08 +0800 | docs: codify Envoy (@nelanco_claude_bot) instruction source + close ceremony (report contribution, delete thread) for ALL instances (#1769)
-b5b64ef | 2026-10-30 15:26:08 +0800 | Correct row 10 with measured QR scan behaviour (Stripe path, server-side fix) (#1768)
 … (truncated)
 ```
 
@@ -447,6 +487,57 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
+
+---
+
+## Sheet evidence (sales)
+
+_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
+
+### `Monthly Statistics` (last **14** non-empty rows)
+
+| Year-Month | Monthly USD | Cumulative USD | Last updated |
+|------------|-------------|------------------|---------------|
+| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
+| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
+| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
+| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
+| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
+| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
+| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
+| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
+| 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
+| 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
+| 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
+| 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
+| 2026-10 | 460 | 18944.34386 | 10/31/2026 |
+| 2026-11 | 0 | 18944.34386 | 11/2/2026 21:50:59 |
+
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-10-27`; scanned last **600** data rows)
+
+| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
+|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
+| 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | ACCOUNTED | 2024PAULO_20250804_22 | — | — |
+| 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | ACCOUNTED | 2024PAULO_20250804_21 | — | — |
+| 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | ACCOUNTED | 2024PAULO_20250804_19 | — | — |
+| 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20251211_14 | — | — |
+| 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20251211_13 | — | — |
+| 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20251211_12 | — | — |
+| 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20251211_11 | — | — |
+| 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20251211_10 | — | — |
+| 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20251211_9 | — | — |
+| 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20251211_8 | — | — |
+| 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20251211_7 | — | — |
+| 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20251211_6 | — | — |
+| 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20251211_5 | — | — |
+| 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20251211_4 | — | — |
+| 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20251211_3 | — | — |
+| 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20251211_2 | — | — |
+| 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20251211_1 | — | — |
+| 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | TOKENIZED | 2024OSCAR_20250728_25 | — | — |
+| 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | ACCOUNTED | 2024PAULO_20250804_18 | — | — |
+
+_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
