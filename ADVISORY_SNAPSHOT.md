@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-11-03T07:05:57Z`
+- Generated (UTC): `2026-11-03T19:48:31Z`
 - Look-back: **7** calendar days (`2026-10-27` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,17 +32,14 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 24
-- `[SALES EVENT]` × 8
+- `[CONTRIBUTION EVENT]` × 27
 - `[PRACTICE EVENT]` × 8
+- `[SALES EVENT]` × 5
 - `[BATCH QR CODE REQUEST]` × 1
 - `[CONTRIBUTOR ADD EVENT]` × 1
 
 ### Latest entries
 
-- `Edgar_20261028135256_2850` · **Edgar** · [CONTRIBUTION EVENT] Amount: 21.20 · Contributor(s): Gary Teh · Description: DeepSeek API tokens — reimbursable USD expense (LLM inference for DAO agent …
-- `Edgar_20261028153538_2852` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 210 · Contributor(s): Sophia Truesight (admin+sophia@truesight.me)
-- `Edgar_20261028153541_2854` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 130 · Contributor(s): Envoy TrueSight
 - `Edgar_20261028153545_2856` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Contributor(s): Gary Teh
 - `Edgar_20261028235224_2858` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-28T23:52:22.442Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20261029015742_2860` · **Edgar** · [CONTRIBUTION EVENT] Amount: 10 · Contributor(s): Gary Teh · Description: Liaised with Cory (Cory Sacred Earth / Sacred Earth Farms) on selling cacao …
@@ -60,6 +57,9 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20261102211019_2884` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 420 · Description: Sorting, pre grinding, melanging set- up for Oscar AGL4 loose nibs. Because …
 - `Edgar_20261102221601_2886` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Sorting Vivi's nibs to prep for  melange. Lots of flat beans, lots of husk a…
 - `Edgar_20261103021611_2888` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-03T02:16:09.303Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20261103181628_2890` · **Edgar** · [CONTRIBUTION EVENT] Amount: 5 · Contributor(s): Gary Teh · Description: Liaised with Francine Borba (Flow Vista) on chasing Matheus Reis (Bahia Coop…
+- `Edgar_20261103181631_2892` · **Edgar** · [CONTRIBUTION EVENT] Amount: 5 · Contributor(s): Gary Teh · Description: Liaised on fulfilling a new Agroverse Shopify/Stripe order. Order Date 11/2/…
+- `Edgar_20261103181718_2894` · **Edgar** · [CONTRIBUTION EVENT] Amount: 5 · Contributor(s): Gary Teh · Description: Liaised (in Portuguese) with Jedielcio Oliveira (CEPOTX liaison, Altamira/Pa…
 
 ---
 
@@ -74,7 +74,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-11-02T11:59:19.204Z`
+- Generated (UTC): `2026-11-03T11:59:15.057Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -89,7 +89,7 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **107** stores — sum logged **warmup** sends (AU): **918**, sum logged **follow-up** sends (AV): **4**; warmup depth (none / once / ≥2): **54** / **0** / **53**; follow-up depth (none / once / ≥2): **106** / **0** / **1**
+- **AI: Warm up prospect**: **106** stores — sum logged **warmup** sends (AU): **918**, sum logged **follow-up** sends (AV): **4**; warmup depth (none / once / ≥2): **53** / **0** / **53**; follow-up depth (none / once / ≥2): **105** / **0** / **1**
 - **Manager Follow-up**: **28** stores — sum logged **warmup** sends (AU): **23**, sum logged **follow-up** sends (AV): **55**; warmup depth (none / once / ≥2): **22** / **1** / **5**; follow-up depth (none / once / ≥2): **10** / **4** / **14**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: **1** stores — sum logged **warmup** sends (AU): **8**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **0** / **0** / **1**; follow-up depth (none / once / ≥2): **1** / **0** / **0**
@@ -270,6 +270,8 @@ _(No `YYYY-MM-DD |` lines on/after 2026-10-27 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+9b403a1 | 2026-11-03 19:45:12 +0000 | chore(stats): refresh stats indexes [skip ci]
+cd6722b | 2026-11-03 07:10:14 +0000 | chore(stats): refresh stats indexes [skip ci]
 caa92b8 | 2026-11-02 21:53:24 +0000 | chore(stats): refresh stats indexes [skip ci]
 e4c9140 | 2026-11-02 06:42:00 +0000 | chore(stats): refresh stats indexes [skip ci]
 efa455d | 2026-11-01 22:17:13 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -308,6 +310,8 @@ cf0d668 | 2026-10-29 06:21:02 +0000 | chore(stats): refresh stats indexes [skip 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+d83b921 | 2026-11-03 15:06:18 +0800 | chore(previews): refresh Beer Hall preview (2026-11-03 UTC)
+0a7a6c8 | 2026-11-03 15:06:17 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-03 UTC)
 1a8e888 | 2026-11-03 13:46:36 +0800 | Merge pull request #1790 from TrueSightDAO/auto/advisory-refresh-2026-11-03
 f8479bb | 2026-11-03 05:46:21 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-03 UTC)
 4a522a6 | 2026-11-03 05:52:42 +0800 | chore(previews): refresh Beer Hall preview (2026-11-02 UTC)
@@ -346,8 +350,6 @@ ebbe05c | 2026-10-30 18:06:44 +0800 | docs(OPEN_FOLLOWUPS): media-pipeline-v3 un
 ad082de | 2026-10-30 17:47:13 +0800 | Retract false QR duplicate-charge claim; correct row 10 and OPEN_FOLLOWUPS (#1775)
 cef6194 | 2026-10-30 17:09:14 +0800 | docs(supervisor): state must be transitioned, not narrated (§2c) (#1774)
 5036594 | 2026-10-30 17:03:52 +0800 | docs(OPEN_FOLLOWUPS): file MLTE Track B state correction + contribution-gated close guard (#1773)
-c6d14a4 | 2026-10-30 16:34:05 +0800 | docs(open-followups): file GAS dead domain-scoped wrappers + unbound GCP logging gap (#1772)
-2a0e646 | 2026-10-30 16:32:43 +0800 | docs(handoffs): correct stale 'NO Oscar/OB plot yet' row — OB-P1 is registered (23 features) (#1771)
 … (truncated)
 ```
 
@@ -397,6 +399,8 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+9e4f8a3 | 2026-11-03 14:39:37 +0000 | chore: refresh currencies.json [skip ci]
+33ccd51 | 2026-11-03 14:20:42 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 34a222d | 2026-11-02 16:34:11 +0000 | chore: refresh partners-velocity snapshot [skip ci]
 c4497d2 | 2026-11-02 16:32:31 +0000 | chore: refresh currencies.json [skip ci]
 0e58426 | 2026-11-02 16:01:02 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
@@ -511,7 +515,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
 | 2026-10 | 460 | 18944.34386 | 10/31/2026 |
-| 2026-11 | 0 | 18944.34386 | 11/2/2026 21:50:59 |
+| 2026-11 | 0 | 18944.34386 | 11/3/2026 10:54:57 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-10-27`; scanned last **600** data rows)
 
@@ -536,6 +540,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20251211_1 | — | — |
 | 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | TOKENIZED | 2024OSCAR_20250728_25 | — | — |
 | 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | ACCOUNTED | 2024PAULO_20250804_18 | — | — |
+| 2026-11-03 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
 
 _Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
