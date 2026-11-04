@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-11-04T06:51:33Z`
+- Generated (UTC): `2026-11-04T19:58:04Z`
 - Look-back: **7** calendar days (`2026-10-28` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,27 +32,16 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 28
-- `[PRACTICE EVENT]` × 9
-- `[SALES EVENT]` × 3
+- `[CONTRIBUTION EVENT]` × 27
+- `[PRACTICE EVENT]` × 8
+- `[EMAIL VERIFICATION EVENT]` × 3
+- `[REPACKAGING BATCH EVENT]` × 1
+- `[CURRENCY DEFINITION EVENT]` × 1
 - `[BATCH QR CODE REQUEST]` × 1
-- `[CONTRIBUTOR ADD EVENT]` × 1
+- `[EMAIL REGISTERED EVENT]` × 1
 
 ### Latest entries
 
-- `Edgar_20261029015742_2860` · **Edgar** · [CONTRIBUTION EVENT] Amount: 10 · Contributor(s): Gary Teh · Description: Liaised with Cory (Cory Sacred Earth / Sacred Earth Farms) on selling cacao …
-- `Edgar_20261029015745_2862` · **Edgar** · [CONTRIBUTION EVENT] Amount: 15 · Contributor(s): Gary Teh, Kirsten Ritschel · Description: Liaised with Kirsten Ritschel on the reporting materials/consumables format …
-- `Edgar_20261029231503_2864` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-29T23:15:01.459Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20261030023908_2866` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 840 · Description: Pulling Vivi and Oscar batch, mild Oscar batch, setting up Oscar batch from …
-- `Edgar_20261030090141_2868` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 150 · Contributor(s): Sophia Truesight (admin+sophia@truesight.me)
-- `Edgar_20261030090144_2870` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Contributor(s): Gary Teh
-- `Edgar_20261030105309_2872` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Fix GAS shadowed processNonAgl4Transactions + book 3 AGL8 Sacred Earth bags
-- `Edgar_20261030192021_2874` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-30T19:20:19.422Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20261101015504_2876` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-01T01:55:02.661Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20261102001255_2878` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-02T00:12:53.885Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20261102005117_2880` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 600 · Description: Pulled Oscar batch (pouches), temper, mold, package
-- `Edgar_20261102211012_2882` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 420 · Description: Sorting, pre grinding, melanging set- up for Oscar AGL4 loose nibs. Because …
-- `Edgar_20261102211019_2884` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 420 · Description: Sorting, pre grinding, melanging set- up for Oscar AGL4 loose nibs. Because …
 - `Edgar_20261102221601_2886` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Sorting Vivi's nibs to prep for  melange. Lots of flat beans, lots of husk a…
 - `Edgar_20261103021611_2888` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-03T02:16:09.303Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20261103181628_2890` · **Edgar** · [CONTRIBUTION EVENT] Amount: 5 · Contributor(s): Gary Teh · Description: Liaised with Francine Borba (Flow Vista) on chasing Matheus Reis (Bahia Coop…
@@ -60,6 +49,19 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20261103181718_2894` · **Edgar** · [CONTRIBUTION EVENT] Amount: 5 · Contributor(s): Gary Teh · Description: Liaised (in Portuguese) with Jedielcio Oliveira (CEPOTX liaison, Altamira/Pa…
 - `Edgar_20261103221458_2896` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-03T22:13:59.013Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20261104010417_2898` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 480 · Description: Set up batch Vivi 70%, order fulfillment(shipping), inventory tracking
+- `Edgar_20261104101524_2900` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Deep Seek: GitHub access behind the Great Firewall — relay guide + canonical…
+- `Edgar_20261104101527_2902` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Direct time: directed the GitHub-behind-Great-Firewall workaround — proposed…
+- `Edgar_20261104112322_2904` · **Edgar** · [REPACKAGING BATCH EVENT] Request ID: 9e969d3f-8cd9-40a1-b456-3a8a7189adc2 · Repackaging Batch: Kirsten 20261104 - 8 x 8oz Oscar nib pouches -> 42 x 50g 81% bars · Holder: Kirsten Ritschel
+- `Edgar_20261104112501_2906` · **Edgar** · [CURRENCY DEFINITION EVENT] Currency: Agroverse 81% Cacao Chocolate Bar 50g \| Oscar Cacao Nibs \| Kirsten 20261104 \| S… · Price in USD: 2.70831 · Serializable: TRUE
+- `Edgar_20261104120540_2908` · **Edgar** · [BATCH QR CODE REQUEST] Currency: Agroverse 81% Cacao Chocolate Bar 50g \| Oscar Cacao Nibs \| Kirsten 20261104 \| S… · Quantity: 42
+- `Edgar_20261104124135_2910` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: SKU record + 42 serialized QR codes — Oscar's Farm 81% Cacao 50g bar (batch …
+- `Edgar_20261104124138_2912` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Governor oversight — SKU record + 42 QR codes, Oscar's Farm 81% Cacao 50g (b…
+- `Edgar_20261104124955_2914` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Directed, reviewed, and UAT'd the first-party Sophia chat client (chat.trues…
+- `Edgar_20261104125005_2916` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 360 · Description: First-party Sophia chat client (chat.truesight.me) — full build + deploy
+- `Edgar_20261104125703_2918` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-11-04T12:57:02.899Z · Email: garyjob@gmail.com
+- `Edgar_20261104132724_2920` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-11-04T13:27:20.239Z · Email: garyjob@gmail.com · Verification Key: vd78PSBXaHBgopaRwMJTBSiKWIdb8xD0JojottYufwY
+- `Edgar_20261104133305_2922` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-11-04T13:33:00.692Z · Email: garyjob@gmail.com · Verification Key: vd78PSBXaHBgopaRwMJTBSiKWIdb8xD0JojottYufwY
+- `Edgar_20261104135958_2924` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-11-04T13:59:53.320Z · Email: garyjob@gmail.com · Verification Key: vd78PSBXaHBgopaRwMJTBSiKWIdb8xD0JojottYufwY
 
 ---
 
@@ -74,7 +76,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-11-03T11:59:15.057Z`
+- Generated (UTC): `2026-11-04T11:59:15.633Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -89,7 +91,7 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **106** stores — sum logged **warmup** sends (AU): **918**, sum logged **follow-up** sends (AV): **4**; warmup depth (none / once / ≥2): **53** / **0** / **53**; follow-up depth (none / once / ≥2): **105** / **0** / **1**
+- **AI: Warm up prospect**: **103** stores — sum logged **warmup** sends (AU): **882**, sum logged **follow-up** sends (AV): **4**; warmup depth (none / once / ≥2): **52** / **0** / **51**; follow-up depth (none / once / ≥2): **102** / **0** / **1**
 - **Manager Follow-up**: **28** stores — sum logged **warmup** sends (AU): **23**, sum logged **follow-up** sends (AV): **55**; warmup depth (none / once / ≥2): **22** / **1** / **5**; follow-up depth (none / once / ≥2): **10** / **4** / **14**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: **1** stores — sum logged **warmup** sends (AU): **8**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **0** / **0** / **1**; follow-up depth (none / once / ≥2): **1** / **0** / **0**
@@ -270,6 +272,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-10-28 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+413de39 | 2026-11-04 06:55:17 +0000 | chore(stats): refresh stats indexes [skip ci]
 9b403a1 | 2026-11-03 19:45:12 +0000 | chore(stats): refresh stats indexes [skip ci]
 cd6722b | 2026-11-03 07:10:14 +0000 | chore(stats): refresh stats indexes [skip ci]
 caa92b8 | 2026-11-02 21:53:24 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -306,6 +309,12 @@ cf0d668 | 2026-10-29 06:21:02 +0000 | chore(stats): refresh stats indexes [skip 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+69327e9 | 2026-11-04 18:10:04 +0800 | Merge pull request #1792 from TrueSightDAO/docs/firewall-guide-pointers
+c6eb800 | 2026-11-04 18:08:05 +0800 | docs: link Great Firewall guide from README + OPERATING_INSTRUCTIONS
+097979e | 2026-11-04 18:05:22 +0800 | Merge pull request #1791 from TrueSightDAO/docs/china-firewall-github-access
+da2bf66 | 2026-11-04 18:04:36 +0800 | docs: add GitHub-access-behind-Great-Firewall relay guide
+6833515 | 2026-11-04 14:52:00 +0800 | chore(previews): refresh Beer Hall preview (2026-11-04 UTC)
+a346915 | 2026-11-04 14:51:58 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-04 UTC)
 407d7d3 | 2026-11-04 03:52:42 +0800 | chore(previews): refresh Beer Hall preview (2026-11-03 UTC)
 53d675d | 2026-11-04 03:52:41 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-03 UTC)
 d83b921 | 2026-11-03 15:06:18 +0800 | chore(previews): refresh Beer Hall preview (2026-11-03 UTC)
@@ -340,12 +349,6 @@ b8285ef | 2026-10-31 00:51:28 +0800 | File follow-up: manifest-driven label rend
 a445e36 | 2026-10-30 22:09:53 +0800 | docs(sophia): state the regenerate-index-after-manifest-edit rule where Sophia actually reads it (#1782)
 486ac6b | 2026-10-30 21:19:53 +0800 | chore(previews): refresh Beer Hall preview (2026-10-30 UTC)
 8fdde59 | 2026-10-30 21:19:52 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-30 UTC)
-f53b986 | 2026-10-30 21:18:04 +0800 | File pk-* tree label URL follow-up (rebased) (#1777)
-0f3acaa | 2026-10-30 21:08:36 +0800 | docs(handoffs): correct stale sitio-catarinense state — STEP ZERO answered, PR2 data half done (#1780)
-7a4c4c7 | 2026-10-30 20:07:03 +0800 | Close the flat-$25 question: price varies by product, not a bug (#1779)
-8bf3771 | 2026-10-30 19:20:16 +0800 | docs(OPEN_FOLLOWUPS): correct wrong 'MOV label is fine' claim; record raw/ content-type fix (#1778)
-ebbe05c | 2026-10-30 18:06:44 +0800 | docs(OPEN_FOLLOWUPS): media-pipeline-v3 unit 3 has no premise; record stale-goal nudge loop (#1776)
-ad082de | 2026-10-30 17:47:13 +0800 | Retract false QR duplicate-charge claim; correct row 10 and OPEN_FOLLOWUPS (#1775)
 … (truncated)
 ```
 
@@ -394,6 +397,10 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+04a65ea | 2026-11-04 14:52:24 +0000 | chore: refresh currencies.json [skip ci]
+43abcd2 | 2026-11-04 14:37:37 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
+4efeda1 | 2026-11-04 19:23:40 +0800 | chore(inventory): repackaging composition 9e969d3f-8cd9-40a1-b456-3a8a7189adc2
+d806bec | 2026-11-04 19:23:37 +0800 | chore(inventory): refresh currencies.json (repackaging ingest)
 9e4f8a3 | 2026-11-03 14:39:37 +0000 | chore: refresh currencies.json [skip ci]
 33ccd51 | 2026-11-03 14:20:42 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 34a222d | 2026-11-02 16:34:11 +0000 | chore: refresh partners-velocity snapshot [skip ci]
@@ -503,13 +510,14 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
 | 2026-10 | 460 | 18944.34386 | 10/31/2026 |
-| 2026-11 | 0 | 18944.34386 | 11/3/2026 22:50:55 |
+| 2026-11 | 0 | 18944.34386 | 11/4/2026 11:57:05 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-10-28`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
 | 2026-11-03 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
+| 2026-11-04 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
 
 _Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
