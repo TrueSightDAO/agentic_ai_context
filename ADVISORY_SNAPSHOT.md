@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-11-03T19:48:31Z`
-- Look-back: **7** calendar days (`2026-10-27` → today UTC)
+- Generated (UTC): `2026-11-04T06:51:33Z`
+- Look-back: **7** calendar days (`2026-10-28` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -32,16 +32,14 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 27
-- `[PRACTICE EVENT]` × 8
-- `[SALES EVENT]` × 5
+- `[CONTRIBUTION EVENT]` × 28
+- `[PRACTICE EVENT]` × 9
+- `[SALES EVENT]` × 3
 - `[BATCH QR CODE REQUEST]` × 1
 - `[CONTRIBUTOR ADD EVENT]` × 1
 
 ### Latest entries
 
-- `Edgar_20261028153545_2856` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Contributor(s): Gary Teh
-- `Edgar_20261028235224_2858` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-28T23:52:22.442Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20261029015742_2860` · **Edgar** · [CONTRIBUTION EVENT] Amount: 10 · Contributor(s): Gary Teh · Description: Liaised with Cory (Cory Sacred Earth / Sacred Earth Farms) on selling cacao …
 - `Edgar_20261029015745_2862` · **Edgar** · [CONTRIBUTION EVENT] Amount: 15 · Contributor(s): Gary Teh, Kirsten Ritschel · Description: Liaised with Kirsten Ritschel on the reporting materials/consumables format …
 - `Edgar_20261029231503_2864` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-10-29T23:15:01.459Z · Program: truesight-grounding · Practice Type: oracle-consultation
@@ -60,6 +58,8 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20261103181628_2890` · **Edgar** · [CONTRIBUTION EVENT] Amount: 5 · Contributor(s): Gary Teh · Description: Liaised with Francine Borba (Flow Vista) on chasing Matheus Reis (Bahia Coop…
 - `Edgar_20261103181631_2892` · **Edgar** · [CONTRIBUTION EVENT] Amount: 5 · Contributor(s): Gary Teh · Description: Liaised on fulfilling a new Agroverse Shopify/Stripe order. Order Date 11/2/…
 - `Edgar_20261103181718_2894` · **Edgar** · [CONTRIBUTION EVENT] Amount: 5 · Contributor(s): Gary Teh · Description: Liaised (in Portuguese) with Jedielcio Oliveira (CEPOTX liaison, Altamira/Pa…
+- `Edgar_20261103221458_2896` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-03T22:13:59.013Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20261104010417_2898` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 480 · Description: Set up batch Vivi 70%, order fulfillment(shipping), inventory tracking
 
 ---
 
@@ -234,9 +234,9 @@ _(+34 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$2,720.42**
+- USD on hand: **$2,720.35**
 - Brazilian Reis: R$130.00 · rate `0.2323` USD/BRL → ≈ **$30.20**
-- USD provisioned for voting-rights cash-out: **$57.77**
+- USD provisioned for voting-rights cash-out: **$57.84**
 
 ### In-transit freight (0 rows)
 
@@ -251,7 +251,7 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_(No `YYYY-MM-DD |` lines on/after 2026-10-27 in CONTEXT_UPDATES.md.)_
+_(No `YYYY-MM-DD |` lines on/after 2026-10-28 in CONTEXT_UPDATES.md.)_
 
 ---
 
@@ -295,10 +295,6 @@ cf0d668 | 2026-10-29 06:21:02 +0000 | chore(stats): refresh stats indexes [skip 
 623bfce | 2026-10-28 13:26:44 +0000 | chore(stats): refresh stats indexes [skip ci]
 7226afc | 2026-10-28 20:37:14 +0800 | docs(contracts): add MANAGED LEDGER TRANSACTION EVENT card; correct CAPITAL INJECTION EVENT to match the live handler (#414)
 09f0acc | 2026-10-28 06:11:46 +0000 | chore(stats): refresh stats indexes [skip ci]
-6dfdb79 | 2026-10-27 22:32:57 +0000 | chore(stats): refresh stats indexes [skip ci]
-833f52d | 2026-10-27 18:13:19 +0000 | chore(stats): refresh stats indexes [skip ci]
-0d05d90 | 2026-10-27 12:36:19 +0000 | chore(stats): refresh stats indexes [skip ci]
-98f7e66 | 2026-10-27 05:29:27 +0000 | chore(stats): refresh stats indexes [skip ci]
 ```
 
 ### `market_research` → `go_to_market`
@@ -310,6 +306,8 @@ cf0d668 | 2026-10-29 06:21:02 +0000 | chore(stats): refresh stats indexes [skip 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+407d7d3 | 2026-11-04 03:52:42 +0800 | chore(previews): refresh Beer Hall preview (2026-11-03 UTC)
+53d675d | 2026-11-04 03:52:41 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-03 UTC)
 d83b921 | 2026-11-03 15:06:18 +0800 | chore(previews): refresh Beer Hall preview (2026-11-03 UTC)
 0a7a6c8 | 2026-11-03 15:06:17 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-03 UTC)
 1a8e888 | 2026-11-03 13:46:36 +0800 | Merge pull request #1790 from TrueSightDAO/auto/advisory-refresh-2026-11-03
@@ -348,8 +346,6 @@ f53b986 | 2026-10-30 21:18:04 +0800 | File pk-* tree label URL follow-up (rebase
 8bf3771 | 2026-10-30 19:20:16 +0800 | docs(OPEN_FOLLOWUPS): correct wrong 'MOV label is fine' claim; record raw/ content-type fix (#1778)
 ebbe05c | 2026-10-30 18:06:44 +0800 | docs(OPEN_FOLLOWUPS): media-pipeline-v3 unit 3 has no premise; record stale-goal nudge loop (#1776)
 ad082de | 2026-10-30 17:47:13 +0800 | Retract false QR duplicate-charge claim; correct row 10 and OPEN_FOLLOWUPS (#1775)
-cef6194 | 2026-10-30 17:09:14 +0800 | docs(supervisor): state must be transitioned, not narrated (§2c) (#1774)
-5036594 | 2026-10-30 17:03:52 +0800 | docs(OPEN_FOLLOWUPS): file MLTE Track B state correction + contribution-gated close guard (#1773)
 … (truncated)
 ```
 
@@ -369,7 +365,6 @@ aefc4f2 | 2026-10-28 22:16:09 +0800 | fix(gas): schedule MLTE processor on the t
 95659eb | 2026-10-28 21:48:13 +0800 | Add producer that queues MANAGED LEDGER TRANSACTION EVENT rows from Telegram Chat Logs (#603)
 6fcfa2f | 2026-10-28 21:31:25 +0800 | Derive is_cacao from landing Page netloc in single-QR path (one shared impl) (#602)
 8ae164d | 2026-10-28 21:18:06 +0800 | Derive is_cacao from column B instead of hardcoding True in batch QR handler (#601)
-457c0e4 | 2026-10-27 17:07:00 +0800 | Add MLTE derivation engine: 4-row injection, movement, retirement logic (#599)
 ```
 
 ### `dapp` → `dapp`
@@ -414,13 +409,6 @@ e573917 | 2026-10-29 13:43:00 +0000 | chore: refresh currencies.json [skip ci]
 697aa7a | 2026-10-29 13:07:09 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 ae3659d | 2026-10-28 13:31:33 +0000 | chore: refresh currencies.json [skip ci]
 6bfdb8c | 2026-10-28 17:28:48 +0800 | chore: refresh Agroverse SKU catalog snapshot
-2dac7b3 | 2026-10-27 12:40:11 +0000 | chore: refresh currencies.json [skip ci]
-74da7f0 | 2026-10-27 12:17:22 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
-6e248fd | 2026-10-27 18:33:52 +0800 | chore: refresh currencies.json (170 currencies, +Oscar Cacao Nibs bar)
-0ee520d | 2026-10-27 18:28:45 +0800 | chore: refresh Agroverse SKU catalog snapshot
-6d43ebf | 2026-10-27 18:28:43 +0800 | chore: refresh Agroverse store inventory snapshot
-7bc8b2b | 2026-10-27 17:54:06 +0800 | chore(inventory): repackaging composition 7b9d3b16 (backfill)
-03ca057 | 2026-10-27 17:36:47 +0800 | Add Kirsten 2kg Oscar nibs confirmation as repackaging proof
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -515,31 +503,12 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
 | 2026-10 | 460 | 18944.34386 | 10/31/2026 |
-| 2026-11 | 0 | 18944.34386 | 11/3/2026 10:54:57 |
+| 2026-11 | 0 | 18944.34386 | 11/3/2026 22:50:55 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-10-27`; scanned last **600** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-10-28`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
-| 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | ACCOUNTED | 2024PAULO_20250804_22 | — | — |
-| 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | ACCOUNTED | 2024PAULO_20250804_21 | — | — |
-| 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | ACCOUNTED | 2024PAULO_20250804_19 | — | — |
-| 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20251211_14 | — | — |
-| 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20251211_13 | — | — |
-| 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20251211_12 | — | — |
-| 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20251211_11 | — | — |
-| 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20251211_10 | — | — |
-| 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20251211_9 | — | — |
-| 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20251211_8 | — | — |
-| 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20251211_7 | — | — |
-| 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20251211_6 | — | — |
-| 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20251211_5 | — | — |
-| 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20251211_4 | — | — |
-| 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20251211_3 | — | — |
-| 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20251211_2 | — | — |
-| 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - Alibaba:… | TOKENIZED | 2024OSCAR_20251211_1 | — | — |
-| 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | TOKENIZED | 2024OSCAR_20250728_25 | — | — |
-| 2026-10-27 | 17 | Ceremonial Cacao Kraft Pouch - 20250219… | ACCOUNTED | 2024PAULO_20250804_18 | — | — |
 | 2026-11-03 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
 
 _Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
