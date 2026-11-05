@@ -39,6 +39,69 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Attachment uploader treats a prose description as a file **PATH** — creates an unclonable directory in `tokenomics`
+**Filed 2026-11-05. Owner: unclaimed. Priority: HIGH — it breaks `git clone` for an entire repo, which breaks every `git_push_changes` against it.**
+
+**Symptom.** While booking the LVSS / Vista Flow legal-fee expense, a long prose description was passed to the
+attachment uploader in the filename position. The uploader accepted it and created, under
+`tokenomics/receipts/2026/`, a **424-character directory** whose name is the description text — split on the `/`
+in "rows 5354/5355", producing a nested `rows 5354/5355...` path — containing a 191 KB blob.
+
+**Blast radius — this is the part that made it HIGH.** The resulting path exceeds Linux's 255-byte filename
+limit, so **every `git clone` of `tokenomics` on the autopilot box failed** with a filename-too-long error.
+`git_push_changes` shells out to a clone, so the normally-safe repair path (branch → PR) was itself unavailable —
+the repo could not be checked out at all. Recovery required driving the git Trees API directly (rebuild
+`receipts/2026` as an explicit tree from its remaining children; `base_tree` null-delete was rejected for a
+directory; the first rebuild attempt wrongly passed the `receipts` subtree as the repo **root** and flattened the
+repo — reverted and redone from `c5ca1e2b`). Clone re-verified afterwards: RC=0, 242 MB, contract PDF present.
+
+**Fix direction.** The uploader must reject — not sanitise silently — any `filename`/`path` argument that is not a
+plausible single path component: (a) reject `/` outright rather than treating it as a directory separator;
+(b) enforce the 255-byte component limit *before* the API call; (c) reject values containing whitespace plus
+sentence punctuation that look like prose. Prefer failing loudly with the offending string echoed back.
+
+**Not a duplicate of** the `upload_*` create-only / sha-less 422 entry — that is about *update* semantics; this
+is about argument validation and the resulting clone-breaking state.
+
+### `report_dao_expenses` is not idempotent across a retry — a 200 response can double-post the same expense
+**Filed 2026-11-05. Owner: unclaimed. Priority: MEDIUM-HIGH — silent double-debit of a cash balance.**
+
+**Symptom.** A `[DAO Inventory Expense Event]` submit returned `HTTP 200` with `signature_verification: success`.
+The following verification step re-executed the submit and it posted **again** — offchain rows **5356** and **5357**,
+identical −5,027.70 Brazilian Reis, distinct `Request Transaction ID`s (`AC8HlgRBft1…` vs `ie6OIgGPP6Y…`).
+Brazilian Reis went 5,157.70 → **−4,897.70** (a negative wallet). Corrected append-only with a signed
+**+5,027.70** reversal (row 5359); balance restored to R$130.00 and re-verified against all 5,356 ledger rows.
+
+**Why append-only and not a row edit.** Both rows are *signed* Edgar rows — `My Digital Signature` and
+`Edgar Scoring Hash Key` bind to content, so an in-place edit would forge the attestation (§9c.4b), and removing
+a debit is a *restatement* (Σ moves) not a reattribution (§9c.4c).
+
+**Fix direction.** Reuse the shape already proposed for the intake processor ("needs a real idempotency key", entry
+of 2026-10-15, Black King AGL8 corridor): compute a stable intent hash over (event type, member/handler, currency,
+amount, and a submission-supplied nonce or the attachment content-hash), send it as an idempotency key, and have
+Edgar reject a repeat within a window rather than accepting it. Cheapest partial mitigation on the client side: the
+CLI should write a local "already submitted <hash>" marker and refuse a byte-identical resubmit unless `--force`.
+
+**Not a duplicate of** the 2026-10-15 intake-dedupe entry: that one is about the **GAS intake processor**
+double-processing rows already queued. This one is the **client → Edgar submit** path, which today has no
+same-intent dedupe at all — the duplicate never even had to reach intake to cause the double-debit.
+
+### Duplicate expenses land in **different Asset-Type buckets** — a duplicate is not always visible as one double-counted row
+**Filed 2026-11-05. Owner: unclaimed. Priority: MEDIUM — makes reconciliation-by-eyeball unreliable.**
+
+**Symptom.** The same $15.78 PUQUTECH label-roll order was submitted twice on 2026-10-14 as rows **5261** and
+**5264**. Because the two submissions used slightly different `Inventory Type` strings — `... (Amazon order)` vs
+`... (Amazon order, 2 rolls)` — the debits landed in **two distinct buckets**, so the balance sheet showed two
+separate −$15.78 entries rather than one bucket containing −$31.56. A reviewer scanning for "a single line that
+looks twice too big" would not see it.
+
+**Fix direction.** In the same intake pass, fuzzy-match `Inventory Type`/`Type` against recent rows (normalised,
+ignoring trailing parenthetical qualifiers) and flag a same-day, same-handler, similar-amount pair as a probable
+duplicate *before* creating a new bucket. Cheap and additive; does not need to block the write.
+
+**Note.** Reversed with signed row **5360** (+15.78 to the `... (Amazon order)` bucket), leaving exactly one true
+−15.78 debit. Candidate for a small self-improvement PR against `truesight_autopilot`'s expense helper.
+
 ### Ledger→invoice generation is hand-built per job — extract a reusable, tested helper
 **Filed 2026-10-31. Owner: unclaimed. Governor: Gary. Priority: MEDIUM — every invoice re-derives the same non-obvious rules by hand, and the logic lives only in `/tmp`.**
 
