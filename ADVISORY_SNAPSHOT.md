@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-11-05T07:10:10Z`
-- Look-back: **7** calendar days (`2026-10-29` → today UTC)
+- Generated (UTC): `2026-11-06T07:10:21Z`
+- Look-back: **7** calendar days (`2026-10-30` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -32,27 +32,19 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 25
-- `[PRACTICE EVENT]` × 8
+- `[CONTRIBUTION EVENT]` × 21
+- `[PRACTICE EVENT]` × 7
 - `[EMAIL VERIFICATION EVENT]` × 4
 - `[EMAIL REGISTERED EVENT]` × 2
+- `[ASSET RECEIPT EVENT]` × 2
 - `[REPACKAGING BATCH EVENT]` × 1
 - `[CURRENCY DEFINITION EVENT]` × 1
 - `[BATCH QR CODE REQUEST]` × 1
+- `[CURRENCY CONVERSION EVENT]` × 1
+- _free-form (no bracket tag)_ × 2
 
 ### Latest entries
 
-- `Edgar_20261103181718_2894` · **Edgar** · [CONTRIBUTION EVENT] Amount: 5 · Contributor(s): Gary Teh · Description: Liaised (in Portuguese) with Jedielcio Oliveira (CEPOTX liaison, Altamira/Pa…
-- `Edgar_20261103221458_2896` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-03T22:13:59.013Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20261104010417_2898` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 480 · Description: Set up batch Vivi 70%, order fulfillment(shipping), inventory tracking
-- `Edgar_20261104101524_2900` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Deep Seek: GitHub access behind the Great Firewall — relay guide + canonical…
-- `Edgar_20261104101527_2902` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Direct time: directed the GitHub-behind-Great-Firewall workaround — proposed…
-- `Edgar_20261104112322_2904` · **Edgar** · [REPACKAGING BATCH EVENT] Request ID: 9e969d3f-8cd9-40a1-b456-3a8a7189adc2 · Repackaging Batch: Kirsten 20261104 - 8 x 8oz Oscar nib pouches -> 42 x 50g 81% bars · Holder: Kirsten Ritschel
-- `Edgar_20261104112501_2906` · **Edgar** · [CURRENCY DEFINITION EVENT] Currency: Agroverse 81% Cacao Chocolate Bar 50g \| Oscar Cacao Nibs \| Kirsten 20261104 \| S… · Price in USD: 2.70831 · Serializable: TRUE
-- `Edgar_20261104120540_2908` · **Edgar** · [BATCH QR CODE REQUEST] Currency: Agroverse 81% Cacao Chocolate Bar 50g \| Oscar Cacao Nibs \| Kirsten 20261104 \| S… · Quantity: 42
-- `Edgar_20261104124135_2910` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: SKU record + 42 serialized QR codes — Oscar's Farm 81% Cacao 50g bar (batch …
-- `Edgar_20261104124138_2912` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Governor oversight — SKU record + 42 QR codes, Oscar's Farm 81% Cacao 50g (b…
-- `Edgar_20261104124955_2914` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Directed, reviewed, and UAT'd the first-party Sophia chat client (chat.trues…
 - `Edgar_20261104125005_2916` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 360 · Description: First-party Sophia chat client (chat.truesight.me) — full build + deploy
 - `Edgar_20261104125703_2918` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-11-04T12:57:02.899Z · Email: garyjob@gmail.com
 - `Edgar_20261104132724_2920` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-11-04T13:27:20.239Z · Email: garyjob@gmail.com · Verification Key: vd78PSBXaHBgopaRwMJTBSiKWIdb8xD0JojottYufwY
@@ -62,6 +54,17 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20261105024558_2928` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 300 · Description: Vivi 70% conche, partial breakdown and clean of equipment, 42 Oscar QR codes…
 - `Edgar_20261105052616_2930` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-11-05T05:26:15.776Z · Email: Jonhakim@gmail.com
 - `Edgar_20261105053004_2932` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-11-05T05:30:01.682Z · Email: jonhakim@gmail.com · Verification Key: 6ODoGdqPZzNzVX9jfIxyCXXbSUfAGPEdyuw395w3vx4
+- `Edgar_20261105092928_2934` · **Edgar** · [CURRENCY CONVERSION EVENT] Ledger: offchain · Ledger URL: · Warehouse Manager: Gary Teh
+- `Edgar_20261105093404_2936` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Contributor(s): Sophia Truesight
+- `Edgar_20261105093407_2938` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Contributor(s): Sophia Truesight
+- `Edgar_20261105093412_2940` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Contributor(s): Gary Teh
+- `Edgar_20261105163911_2942` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
+- `Edgar_20261105164130_2944` · **Edgar** · [DAO Inventory Expense Event] · DAO Member Name: Gary Teh · Target Ledger: offchain
+- `Edgar_20261105211611_2946` · **Edgar** · [ASSET RECEIPT EVENT] Currency: Brazilian Reis · Amount: 5027.70 · Description: REVERSAL of duplicated expense leg r5357 (Request Transaction ID ie6OIgGPP6Y…
+- `Edgar_20261105211814_2948` · **Edgar** · [ASSET RECEIPT EVENT] Currency: PUQUTECH 40x30mm direct thermal label roll (Amazon order) · Amount: 15.78 · Description: REVERSAL of duplicated expense leg r5264 (PUQUTECH 40x30mm labels, -15.78 US…
+- `Edgar_20261106024517_2950` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-06T02:45:14.811Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20261106034110_2952` · **Edgar** · [CONTRIBUTION EVENT] Amount: 15 · Contributor(s): Gary Teh, Vini Bitencourt, Liz · Description: 15-minute call with Vini Bitencourt and Liz on sourcing salt from Brazil int…
+- `Edgar_20261106034212_2954` · **Edgar** · [CONTRIBUTION EVENT] Amount: 5 · Contributor(s): Gary Teh, Milena · Description: 5-minute correspondence with Milena ('Milena - Math...') on the Brazil-to-Oh…
 
 ---
 
@@ -76,7 +79,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-11-04T11:59:15.633Z`
+- Generated (UTC): `2026-11-05T11:59:14.593Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -91,7 +94,7 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **103** stores — sum logged **warmup** sends (AU): **882**, sum logged **follow-up** sends (AV): **4**; warmup depth (none / once / ≥2): **52** / **0** / **51**; follow-up depth (none / once / ≥2): **102** / **0** / **1**
+- **AI: Warm up prospect**: **100** stores — sum logged **warmup** sends (AU): **846**, sum logged **follow-up** sends (AV): **4**; warmup depth (none / once / ≥2): **51** / **0** / **49**; follow-up depth (none / once / ≥2): **99** / **0** / **1**
 - **Manager Follow-up**: **28** stores — sum logged **warmup** sends (AU): **23**, sum logged **follow-up** sends (AV): **55**; warmup depth (none / once / ≥2): **22** / **1** / **5**; follow-up depth (none / once / ≥2): **10** / **4** / **14**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: **1** stores — sum logged **warmup** sends (AU): **8**, sum logged **follow-up** sends (AV): **0**; warmup depth (none / once / ≥2): **0** / **0** / **1**; follow-up depth (none / once / ≥2): **1** / **0** / **0**
@@ -211,11 +214,11 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
   | Cacao Mass | Retail Ready | 1 | 1 | $10.37 |
 
 **Gary Teh** _( Operational cash + assorted retail inventory )_
-- Manager record: `Gary Teh` · 30 SKU lines · 8,345.59 total units · $8,045.55
+- Manager record: `Gary Teh` · 30 SKU lines · 7,575.61 total units · $7,275.57
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 28 | 8,269.41 | $7,995.56 |
+  | (uncategorized) | (unspecified) | 28 | 7,499.43 | $7,225.58 |
   | Packaging Material | Bulk | 1 | 74 | $49.98 |
   | Cacao Tea | Bulk | 1 | 2.18 | $0.00 |
 
@@ -236,9 +239,9 @@ _(+34 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$2,720.28**
+- USD on hand: **$1,950.24**
 - Brazilian Reis: R$130.00 · rate `0.2323` USD/BRL → ≈ **$30.20**
-- USD provisioned for voting-rights cash-out: **$57.91**
+- USD provisioned for voting-rights cash-out: **$57.98**
 
 ### In-transit freight (0 rows)
 
@@ -253,7 +256,7 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_(No `YYYY-MM-DD |` lines on/after 2026-10-29 in CONTEXT_UPDATES.md.)_
+_(No `YYYY-MM-DD |` lines on/after 2026-10-30 in CONTEXT_UPDATES.md.)_
 
 ---
 
@@ -272,6 +275,8 @@ _(No `YYYY-MM-DD |` lines on/after 2026-10-29 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+8c86c33 | 2026-11-05 20:12:54 +0000 | chore(stats): refresh stats indexes [skip ci]
+2775333 | 2026-11-05 07:16:19 +0000 | chore(stats): refresh stats indexes [skip ci]
 50763d4 | 2026-11-04 19:58:56 +0000 | chore(stats): refresh stats indexes [skip ci]
 413de39 | 2026-11-04 06:55:17 +0000 | chore(stats): refresh stats indexes [skip ci]
 9b403a1 | 2026-11-03 19:45:12 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -288,9 +293,6 @@ a837f09 | 2026-10-30 22:36:17 +0000 | chore(stats): refresh stats indexes [skip 
 f821ee4 | 2026-10-30 13:25:57 +0000 | chore(stats): refresh stats indexes [skip ci]
 e260a7c | 2026-10-30 06:19:50 +0000 | chore(stats): refresh stats indexes [skip ci]
 98eb32c | 2026-10-30 11:37:23 +0800 | Fix missing space in QR label placeholder text (#419)
-9cb0419 | 2026-10-29 22:55:46 +0000 | chore(stats): refresh stats indexes [skip ci]
-b29be65 | 2026-10-29 13:36:48 +0000 | chore(stats): refresh stats indexes [skip ci]
-cf0d668 | 2026-10-29 06:21:02 +0000 | chore(stats): refresh stats indexes [skip ci]
 ```
 
 ### `market_research` → `go_to_market`
@@ -302,6 +304,9 @@ cf0d668 | 2026-10-29 06:21:02 +0000 | chore(stats): refresh stats indexes [skip 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+a5b9bb4 | 2026-11-06 05:20:17 +0800 | OPEN_FOLLOWUPS: file attachment-path-mangling + submit-idempotency defects (#1794)
+268aec5 | 2026-11-05 15:10:32 +0800 | chore(previews): refresh Beer Hall preview (2026-11-05 UTC)
+d391458 | 2026-11-05 15:10:30 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-05 UTC)
 29a6337 | 2026-11-05 13:40:03 +0800 | Merge pull request #1793 from TrueSightDAO/auto/advisory-refresh-2026-11-05
 cc04c0e | 2026-11-05 05:39:49 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-05 UTC)
 2e572f9 | 2026-11-05 03:58:25 +0800 | chore(previews): refresh Beer Hall preview (2026-11-04 UTC)
@@ -339,24 +344,21 @@ d1a0679 | 2026-11-01 05:47:58 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT
 274bb6b | 2026-10-31 08:54:28 +0800 | handoffs: release 23 stale Envoy supervision claims (all >48h, oldest 44d)
 d0a6ed2 | 2026-10-31 08:10:24 +0800 | Correct false 'Scored Chatlogs stopped at row 7224' premise — pipeline is running (#1787)
 be920c1 | 2026-10-31 06:34:27 +0800 | chore(previews): refresh Beer Hall preview (2026-10-30 UTC)
-d8f5765 | 2026-10-31 06:34:25 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-30 UTC)
-87dd6fc | 2026-10-31 03:34:28 +0800 | docs: file adminRestoreConfig security gap + 1BHAGZd deploy-readiness state (#1785)
-b8285ef | 2026-10-31 00:51:28 +0800 | File follow-up: manifest-driven label renders get silently empty farm/state fields (#1784)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+a740fe7 | 2026-11-05 21:17:34 +0000 | Restore repo root; remove path-exploded artifact from receipts/2026
+7dd861d | 2026-11-05 21:17:11 +0000 | Remove path-exploded artifact from receipts/2026
+c5ca1e2 | 2026-11-06 00:41:32 +0800 | Upload file file: receipts/2026/20261105_lvss_vista_flow_service_agreement_signed.pdf). This settles Clause 3.1(a): USD 1,000.00 first tranche paid in BRL via Pix at the PTAX reference rate of 5.0277, i.e. R$ 5,027.70. Pix 2026-11-05 13:30 from Bco Rendimento S.A. acct ...4172 (Zhiwen Teh) to LVSS, Pix ID E68900810202611051629T0MBVfi0Q6E, ref 578404196, message 'Lawyer fees'. Funded same day by Wise USD->BRL conversion (offchain rows 5354/5355, memo 'For vista flow lawyer fees'); USD 931.48 actually left the account, so the USD 1,000 obligation was settled with a USD 68.52 FX gain. Expensed against Gary Teh's Brazilian Reis balance. Outstanding and NOT covered by this entry: Clause 3.1(b) USD 2,500.00 payable in TDG per Clause 3.2.
+97b8770 | 2026-11-06 00:41:14 +0800 | Add LVSS Vista Flow service agreement (signed 2026-10-21)
 0985195 | 2026-10-30 20:57:28 +0800 | webhook: match live doGet branch order so deploy is a true zero-delta (#614)
 8c09b41 | 2026-10-30 18:54:35 +0800 | diagnostics: port live adminRestoreScoringConfig_ helper into repo (#613)
 d5f640d | 2026-10-30 15:25:21 +0800 | credentials: preserve live TELEGRAM_BOT_TOKEN fallback so deploy cannot revert it (#612)
 2b82dd1 | 2026-10-30 13:04:14 +0800 | Fix: guard AGL4 notification call + absolute SOURCE_SHEET_URL (#611)
 ec37385 | 2026-10-30 13:03:36 +0800 | scoring: land top-level try/catch guard on main (missed by stacked merge) (#610)
-71fc0e0 | 2026-10-29 13:46:23 +0800 | scoring: per-row try/catch + run budget so a failing tick leaves a trace (#605)
-9503a18 | 2026-10-29 13:40:41 +0800 | Fix: remove shadowing processNonAgl4Transactions wrapper that masked the real AGL booking code (#609)
-8125614 | 2026-10-29 12:44:59 +0800 | Fix: non-AGL4 sales webhook deployment was MYSELF-restricted, silently no-op'ing real-time processing (#600)
-1402222 | 2026-10-29 11:26:19 +0800 | fix(gas): cut AGL sales lock wait below /exec frontend timeout so contention is visible (#607)
 ```
 
 ### `dapp` → `dapp`
@@ -386,6 +388,8 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+e7ff241 | 2026-11-05 14:57:22 +0000 | chore: refresh currencies.json [skip ci]
+65af7e2 | 2026-11-05 14:43:07 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 04a65ea | 2026-11-04 14:52:24 +0000 | chore: refresh currencies.json [skip ci]
 43abcd2 | 2026-11-04 14:37:37 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 4efeda1 | 2026-11-04 19:23:40 +0800 | chore(inventory): repackaging composition 9e969d3f-8cd9-40a1-b456-3a8a7189adc2
@@ -401,8 +405,6 @@ e4633b7 | 2026-11-01 13:30:01 +0000 | chore: refresh store, partner inventory, a
 d1e9864 | 2026-10-31 12:38:13 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 873ddac | 2026-10-30 13:33:56 +0000 | chore: refresh currencies.json [skip ci]
 a8f496d | 2026-10-30 13:00:27 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
-e573917 | 2026-10-29 13:43:00 +0000 | chore: refresh currencies.json [skip ci]
-697aa7a | 2026-10-29 13:07:09 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -497,9 +499,9 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
 | 2026-10 | 460 | 18944.34386 | 10/31/2026 |
-| 2026-11 | 0 | 18944.34386 | 11/4/2026 22:51:51 |
+| 2026-11 | 161.5 | 19105.84386 | 11/5/2026 22:51:03 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-10-29`; scanned last **600** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-10-30`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
