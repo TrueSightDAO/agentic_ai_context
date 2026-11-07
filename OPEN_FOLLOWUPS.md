@@ -39,6 +39,52 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Shipment pages fetch a **farm-keyed** media collection slug — all 11 (`agl0`–`agl14`) 404, and AGL4's gallery is empty
+
+**Symptom.** `shipments/agl4/index.html` 404s on
+`raw.githubusercontent.com/TrueSightDAO/farm_media_manifests/main/galleries/agl4.json`. Not AGL4-specific: **every** shipment page
+(`agl0`, `agl1`, `agl2`, `agl4`–`agl8`, `agl10`, `agl13`, `agl14`) requests `galleries/<shipment-dir>.json`, and none of those files
+exists. Worse than a noisy 404 — `shipments/agl4/media.json` holds **0 gallery items**, so the fetch-first path returns `null`,
+the local fallback is empty, and **AGL4 renders no gallery at all**. `fetchJson()` swallows the failure by design, so the only
+visible evidence is a console error; the page looks merely sparse rather than broken.
+
+**Root cause — a slug-contract mismatch.** `js/media-gallery.js` resolves the published collection from the page's **last path
+segment**:
+
+```js
+var dir = parts[parts.length - 1];        // "agl4"
+return COLLECTION_ALIASES[dir] || dir;    // → galleries/agl4.json
+```
+
+but `farm_media_manifests/galleries/` is keyed by **farm** (`oscar-bahia.json`, `fazenda-sao-jorge-bahia.json`, `la-do-sitio.json`, …
+23 files). `conventions/AGROVERSE_SHOP_PAGE_CONVENTIONS.md` §8 states "`<slug>` is the page's last path segment" and goes on to use
+`"alt": "AGL4 - Oscar's Farm"` in its own `media.json` schema example — so shipment pages are **formally in-contract but
+structurally unreachable**. The publisher has never emitted a shipment-keyed collection.
+
+**Do NOT fix this with `COLLECTION_ALIASES`.** The hook exists (`cfr-anapu-dorothy-stang → crf-anapu-para`) and `agl4 → oscar-bahia`
+is a two-line change, but `mergeData()` shows why that is wrong: `hero` is local-first (safe), while the published gallery is
+**prepended** to local entries. `oscar-bahia.json` = **67 items (5 images + 62 videos)** with **zero** references to `agl4`. Aliasing
+would prepend Oscar's entire farm library ahead of AGL4's content — and, replicated across the 11-page shipment→farm mapping, would
+pad every shipment page with whole-farm media. That silently blurs "this harvest" against "this farm", the same class of error as
+adding output without checking what was already there.
+
+**Shipment → farm mapping** (for whoever implements a per-shipment publisher): `agl1`/`agl2` → `fazenda-santa-ana-bahia`,
+`agl4`/`agl14` → `oscar-bahia`, `agl5`/`agl7` → `fazenda-analuana-bahia`,
+`agl6` → `fazenda-sao-jorge-bahia`, `agl8` → `paulo-la-do-sitio-para`, `agl10` → `fazenda-capelavelha-bahia`,
+`agl13` → `vivi-jesus-do-deus-itacare`, `agl0` → `coopercabruca` (no farm link in hero).
+
+**Options (governor decision, not mechanical):** **(A)** alias shipment→farm — rejected above, pads pages with farm-wide media.
+**(B)** publisher emits per-shipment collections (`galleries/<shipment-id>.json`) filtered by shipment — architecturally correct,
+scoped, fixes all 11; needs `farm-media-daemon`/publisher work outside this repo. **(C)** curate each `shipments/<id>/media.json`
+locally — correct scoping, but manual and 11× the effort. **Recommended: C now for AGL4 (launch product), B as the real fix, not A.**
+
+**Evidence (2026-11-07).** `galleries/agl4.json` → 404; `GET /repos/TrueSightDAO/farm_media_manifests/contents/galleries` → 23
+farm-keyed files; `oscar-bahia.json` → 67 items, `'agl4' in raw` = False; `shipments/agl4/media.json` → `gallery: []`;
+`grep shipment-id= shipments/*/index.html` → 11 pages, each with a local `media.json` present.
+
+**Related:** the `entity_type` (`farm`|`program`) manifest follow-up and the per-plot gallery half (galleries are farm-keyed only) —
+this entry is the **shipment** counterpart to both. No prod sync without GO.
+
 ### getdata.io cache publishes login-gated pages — needs a takedown runbook, a no-cache deny-rule, and an auth-gated prefix sweep
 **Filed 2026-11-07. Owner: unclaimed. Priority: HIGH — third-party PII is publicly served and there is no removal path; a data subject waited 9 months.**
 
