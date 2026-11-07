@@ -39,6 +39,52 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### getdata.io cache publishes login-gated pages — needs a takedown runbook, a no-cache deny-rule, and an auth-gated prefix sweep
+**Filed 2026-11-07. Owner: unclaimed. Priority: HIGH — third-party PII is publicly served and there is no removal path; a data subject waited 9 months.**
+
+**What surfaced this.** Adam Bagni asked **four times** (2026-02-09, 02-10, 03-12, 11-06) to have his email removed from
+`https://cache.getdata.io/n75397_5dca56edaec6a3e980c9d9615e010c42eses/1588969475_all.html`. Root cause: the source for all
+497 rows was `https://www.ire.org/membersonly/people?...` — **IRE's authenticated members-only directory**. Someone logged
+in, scraped it, and the Krake cache workers republished it publicly for ~5.5 years. Case remediated 2026-11-07 (16 objects
+deleted, CloudFront `EUNVMCIM57S3M` invalidated `I5B1PHRQ9MW19WXJ4L2803IHJ`, 32/32 checks 403, requester emailed).
+Full record: private repo `TrueSightDAO/takedown-quarantine-raw`, `cases/2026-11-06_adam-bagni/`.
+
+**This is not a one-off — measured, not guessed.** Sampled 23 live `n*_*eses/` prefixes, read `latest_page_1.json`, parsed
+`origin_url`: **5 of 23 (~22%) point at authenticated dashboards**, e.g.
+`seller.flipkart.com/index.html#dashboard/growth/search-traffic-report?...` (Flipkart *seller* traffic reports, cached
+publicly, 5 of 5 sampled Flipkart prefixes). The bucket holds thousands of `n*_*eses/` prefixes. Expect the same letter
+from others, and from Flipkart/IRE.
+
+**Three scoped fixes (can split into separate PRs):**
+
+1. **Takedown runbook** (~30 min, docs only). No takedown/DMCA/retention procedure existed anywhere — searched `takedown`,
+   `dmca`, `cache.getdata.io` in `agentic_ai_context`: zero hits. The ad-hoc procedure that worked, and should be written
+   down: accept request → identify the *whole* artefact (the HTML, CSV, preview and 5 `page_*.json` files all carry the same
+   rows; deleting only the cited URL remedies nothing) → quarantine a byte-faithful private copy **before** deleting (bucket
+   had **versioning never enabled**, so a delete is unrecoverable) → delete the prefix → **invalidate CloudFront (mandatory;
+   default TTL 86400s means the object keeps serving up to 24h without it)** → verify on **both** aliases → written reply.
+   Needs a stated response-time commitment.
+
+2. **`no_cache` deny-rule in the cache workers** (`KrakeIO/krake_ror` — `s3_cache_html_all.rb`, `s3_cache_csv_all.rb`,
+   `s3_cache_json_pages.rb`; **KrakeIO org, so the autopilot cannot PR it**). Refuse to cache when `origin_url` matches an
+   auth-gated shape (`/membersonly/`, `/admin`, `login`, `signin`, `/dashboard`, `/my-`, `portal`, `session`) or when the
+   fetch was authenticated / redirected to a login page. `temp_cache_scrubber.rb` is **not** a takedown mechanism — it
+   reclaims temp artifacts only.
+
+3. **Auth-gated prefix audit sweep** (~30 min, script). Iterate `ListObjectsV2 (Delimiter='/')` on `cache.getdata.io`, fetch
+   each `<prefix>/latest_page_1.json`, extract `origin_url`, and bucket by auth-gated pattern. Produces the real blast-radius
+   number and the candidate deletion list. The `/tmp` one-liner used for the 23-prefix sample above can be lifted directly.
+
+**Smaller open item.** Deleted objects return **403 `AccessDenied`**, not 404/410, because the distribution has
+`CustomErrorResponses: {Quantity: 0}` and the origin has no OAI. Content is gone and the error body leaks nothing, so this
+is a cosmetic mismatch — but the requester explicitly asked for 404/410. A CloudFront `CustomErrorResponse` mapping 403→404
+would satisfy the literal ask. Governor decision; not done.
+
+**Governor decision still outstanding:** whether to notify the other **496** data subjects (and IRE). The reply Adam
+received states we "intend to raise it with IRE directly" — that creates a soft obligation to follow through or correct it.
+
+**Not a duplicate of** anything above — nothing in this backlog concerns cache-PII, takedowns, or `cache.getdata.io`.
+
 ### Attachment uploader treats a prose description as a file **PATH** — creates an unclonable directory in `tokenomics`
 **Filed 2026-11-05. Owner: unclaimed. Priority: HIGH — it breaks `git clone` for an entire repo, which breaks every `git_push_changes` against it.**
 
