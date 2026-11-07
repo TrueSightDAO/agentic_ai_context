@@ -7,7 +7,9 @@ feeding "in-depth discussions" about his personal portfolio (the same kind of se
 already reviewed his APLD/INTU/LRCX/ORCL/PLAY holdings against Perch's own RSI/MACD/dip
 signals on 2026-09-17). **This is a READ-ONLY integration — see the hard scope boundary below.**
 
-**RESUME HERE → PR1.**
+**RESUME HERE → §4 human UAT.** PR1–PR3 are all merged (2026-11-07); the code is complete.
+The only remaining step is the deferred end-to-end human UAT, which is blocked on Gary
+registering the Schwab developer app (§4). No deploy has happened.
 
 ---
 
@@ -224,8 +226,15 @@ Files:
     brokerage page with a success notice.
 - **Edit** `config/routes.rb` — add the two routes (`get "/schwab/connect"`,
   `get "/schwab/callback"`), near the existing `brokerage`/`linked_brokerages` routes.
-- **Edit** `app/views/daily_trades/_link_brokerage.html.erb` — add a "Link Charles Schwab"
-  button pointing at `/schwab/connect`, alongside the existing brokerage-linking UI.
+- **Edit** `app/views/daily_trades/_portfolio_values_normal.html.erb` — add a "Link Charles
+  Schwab (read-only)" button pointing at `schwab_connect_path`, alongside the existing
+  brokerage-linking UI.
+  - **CORRECTION (found while writing PR2, 2026-11-07):** this plan originally named
+    `app/views/daily_trades/_link_brokerage.html.erb`. **That partial does not exist in the
+    repo** — grep-verified, zero hits. The actual brokerage-linking UI lives in
+    `_portfolio_values_normal.html.erb`, which is where the button shipped. The wrong path
+    is preserved here only so a future reader who remembers it knows it was a plan error,
+    not a deleted file.
 - **New** `spec/requests/schwab_link_spec.rb` (or controller spec, matching whatever pattern
   `spec/` uses for other controllers — check one similar existing request/controller spec for
   the house style before writing) — stub `OAuth2::Client#auth_code` (`authorize_url` and
@@ -269,11 +278,20 @@ Self-UAT: `bundle exec rspec spec/requests/api/positions_spec.rb` green, stubbed
 
 | Unit | Advance | PR opened | Merged (human) | Self-UAT | Deployed |
 |------|---------|-----------|-----------------|----------|----------|
-| PR1 — Schwab brokerage model + registry + safety spec | _(auto)_ | ☐ | ☐ | ☐ | n/a |
-| PR2 — OAuth link/callback controller + routes + view | _(auto)_ | ☐ | ☐ | ☐ | n/a |
-| PR3 — read-only positions API + doc | _(auto)_ | ☐ | ☐ | ☐ | `gate: prod deploy` (also always-stop) |
+| PR1 — Schwab brokerage model + registry + safety spec | _(auto)_ | ✅ #1138 | ✅ `4dbb0b3` | ⚠️ static only | n/a |
+| PR2 — OAuth link/callback controller + routes + view | _(auto)_ | ✅ #1139 | ✅ `ca3e46b` | ⚠️ static only | n/a |
+| PR3 — read-only positions API + doc | _(auto)_ | ✅ #1143 | ✅ `5972295` | ⚠️ static only | ❌ not deployed — `gate: prod deploy` (also always-stop) |
 
-**RESUME HERE = PR1.** No `Auto-start` — this plan waits for the governor's explicit "go for
+**⚠️ Self-UAT was STATIC, not a green rspec run.** `sentiment_importer` has no CI workflows,
+and there is no viable Rails 6.0.0 / Ruby 3.0.2 + Postgres/Redis environment on the autopilot
+box, so the plan's "no PR opens with a red local spec run" rule could not be satisfied by
+running the suite. What was actually verified per PR: `ruby -c` on every pushed Ruby file,
+`ERB` compile on the view, and each spec assertion hand-traced against the real fixture
+payload (`schwab_account_details.json`: 3 positions, APLD 12450.75/1500.0,
+cash 4820.12+1200.00=6020.12, equity 91500.21). **`bundle exec rspec` still needs to be run
+by someone with a working bundle.** Do not read the ticks above as evidence of a green suite.
+
+**RESUME HERE = §4 human UAT (blocked on Schwab developer-app registration).** PR1–PR3 all merged. No `Auto-start` — this plan waits for the governor's explicit "go for
 it" in its Telegram topic before touching PR1 (default; this is a first-of-its-kind live
 personal-brokerage integration, not a routine follow-up, so the extra confirmation point is
 deliberate, not an oversight).
