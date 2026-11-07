@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-11-07T13:24:18Z`
+- Generated (UTC): `2026-11-07T22:11:32Z`
 - Look-back: **7** calendar days (`2026-10-31` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,39 +32,39 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 15
+- `[TREE PLANTING EVENT]` × 14
+- `[CONTRIBUTION EVENT]` × 10
 - `[SALES EVENT]` × 7
-- `[EMAIL VERIFICATION EVENT]` × 6
-- `[PRACTICE EVENT]` × 4
-- `[EMAIL REGISTERED EVENT]` × 3
-- `[ASSET RECEIPT EVENT]` × 2
-- `[CURRENCY DEFINITION EVENT]` × 1
-- `[BATCH QR CODE REQUEST]` × 1
-- `[CURRENCY CONVERSION EVENT]` × 1
-- _free-form (no bracket tag)_ × 2
+- `[PRACTICE EVENT]` × 3
+- `[EMAIL VERIFICATION EVENT]` × 2
+- `[INVENTORY MOVEMENT]` × 2
+- `[ASSET RECEIPT EVENT]` × 1
+- `[EMAIL REGISTERED EVENT]` × 1
+- `[REGISTER IDENTITY EVENT]` × 1
+- _free-form (no bracket tag)_ × 1
 
 ### Latest entries
 
-- `Edgar_20261106024517_2950` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-06T02:45:14.811Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20261106034110_2952` · **Edgar** · [CONTRIBUTION EVENT] Amount: 15 · Contributor(s): Gary Teh, Vini Bitencourt, Liz · Description: 15-minute call with Vini Bitencourt and Liz on sourcing salt from Brazil int…
-- `Edgar_20261106034212_2954` · **Edgar** · [CONTRIBUTION EVENT] Amount: 5 · Contributor(s): Gary Teh, Milena · Description: 5-minute correspondence with Milena ('Milena - Math...') on the Brazil-to-Oh…
-- `Edgar_20261106090718_2956` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-11-06T09:07:17.241Z · Email: garyjob@gmail.com
-- `Edgar_20261106090829_2958` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-11-06T09:08:26.451Z · Email: garyjob@gmail.com · Verification Key: hYWM98q2gXtBgXPlnF8wCSeuEpDdRYmH5NS3W6oiGaA
-- `Edgar_20261106090908_2960` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-11-06T09:08:26.451Z · Email: garyjob@gmail.com · Verification Key: hYWM98q2gXtBgXPlnF8wCSeuEpDdRYmH5NS3W6oiGaA
-- `Edgar_20261106100755_2962` · **Edgar** · [SALES EVENT] Item: 2024_20261027_1 · Sales price: 11.80 · Sold by: Kirsten Ritschel
-- `Edgar_20261106100801_2964` · **Edgar** · [SALES EVENT] Item: 2024_20261027_2 · Sales price: 11.80 · Sold by: Kirsten Ritschel
-- `Edgar_20261106100807_2966` · **Edgar** · [SALES EVENT] Item: 2024_20260710_25 · Sales price: 11.80 · Sold by: Kirsten Ritschel
-- `Edgar_20261106100813_2968` · **Edgar** · [SALES EVENT] Item: 2024_20260710_26 · Sales price: 11.80 · Sold by: Kirsten Ritschel
-- `Edgar_20261106100819_2970` · **Edgar** · [SALES EVENT] Item: 2025_20261025_1 · Sales price: 11.80 · Sold by: Kirsten Ritschel
-- `Edgar_20261106100824_2972` · **Edgar** · [SALES EVENT] Item: 2025_20261025_2 · Sales price: 11.80 · Sold by: Kirsten Ritschel
-- `Edgar_20261106100912_2974` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-06T10:09:09.761Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20261106102105_2976` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 40 · Contributor(s): Sophia Truesight
-- `Edgar_20261106123114_2978` · **Edgar** · [SALES EVENT] Item: 2024OSCAR_20250826_NIBS_1 · Sales price: 31.65 · Sold by: Kirsten Ritschel
-- `Edgar_20261106124036_2980` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Description: Sale processing & reconciliation — David Maher order / QR 2024OSCAR_20250826…
-- `Edgar_20261106124040_2982` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: Sale processing & reconciliation — David Maher order / QR 2024OSCAR_20250826…
-- `Edgar_20261107021602_2984` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-07T02:15:59.445Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20261107031634_2986` · **Edgar** · [CONTRIBUTION EVENT] Amount: 30 · Contributor(s): Linda Gorski · Description: 30 minutes of Linda Gorski thinking through the cacao procurement process an…
-- `Edgar_20261107035254_2988` · **Edgar** · [CONTRIBUTION EVENT] Amount: 10 · Contributor(s): Gary Teh · Description: 10 minutes following up with the CIC (Centro de Inovacao do Cacau, Ilheus/BA…
+- `Edgar_20261107155427_2992` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261107155431_2994` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261107155438_2996` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261107155446_2998` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261107155450_3000` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261107155458_3002` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Criolla
+- `Edgar_20261107155505_3004` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261107155513_3006` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261107155519_3008` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261107155525_3010` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261107155530_3012` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261107155535_3014` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261107164818_3016` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 420 · Description: Pull Vivi 70%, breakdown and clean temporary production space at 630 Treat, …
+- `Edgar_20261107165619_3018` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261107191823_3020` · **Edgar** · test
+- `Edgar_20261107192056_3022` · **Edgar** · [CONTRIBUTION EVENT] Title: Security test contribution · Body: Testing signature verification bypass · Contributors: TestUser
+- `Edgar_20261107192119_3024` · **Edgar** · [CONTRIBUTION EVENT] Title: Security test contribution · Body: Testing signature verification · Contributors: TestUser
+- `Edgar_20261107192121_3026` · **Edgar** · [REGISTER IDENTITY EVENT] Email: pentest@example.com · Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnSL13ulBFN5GxfEIcOSVC+gRpccZjkSkY…
+- `Edgar_20261107192321_3028` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: PENTEST79370 · Recipient Name: VerificationRecipient · Inventory Item: ceremonial-cacao-test-200g
+- `Edgar_20261107192411_3030` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: PTEST79450 · Recipient Name: VerifyRecv · Inventory Item: test-sku-1
 
 ---
 
@@ -191,44 +191,41 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 ### Stock at production shippers
 
 **Kirsten Ritschel** _( San Francisco — retail / online fulfilment / partner restock )_
-- Manager record: `Kirsten Ritschel` · 26 SKU lines · 1,606.50 total units · $6,899.45
+- Manager record: `Kirsten Ritschel` · 25 SKU lines · 1,437.50 total units · $4,570.63
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
   | Packaging Material | Bulk | 4 | 892 | $649.90 |
   | (uncategorized) | (unspecified) | 15 | 309 | $956.98 |
-  | Cacao Mass | Retail Ready | 1 | 169 | $2,328.82 |
   | Cacao Nib | Retail Ready | 1 | 129 | $1,355.79 |
   | Cacao Mass | Bulk | 2 | 87 | $898.06 |
   | Cacao Nib | Bulk | 2 | 15.50 | $537.90 |
   | Cacao Butter | Bulk | 1 | 5 | $172.00 |
 
 **Matheus Reis** _( Ilhéus, Brazil — bulk warehouse + freight to SF )_
-- Manager record: `Matheus Reis` · 23 SKU lines · 1,272.59 total units · $5,753.59
+- Manager record: `Matheus Reis` · 21 SKU lines · 1,008 total units · $942.81
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
   | Packaging Material | Bulk | 2 | 773 | $540.46 |
-  | (uncategorized) | (unspecified) | 19 | 493.59 | $5,169.56 |
+  | (uncategorized) | (unspecified) | 18 | 230 | $369.15 |
   | Cacao Nib | Retail Ready | 1 | 5 | $33.20 |
-  | Cacao Mass | Retail Ready | 1 | 1 | $10.37 |
 
 **Gary Teh** _( Operational cash + assorted retail inventory )_
-- Manager record: `Gary Teh` · 30 SKU lines · 7,630.86 total units · $7,330.82
+- Manager record: `Gary Teh` · 26 SKU lines · 7,388.53 total units · $7,269.63
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 28 | 7,554.68 | $7,280.83 |
+  | (uncategorized) | (unspecified) | 25 | 7,314.53 | $7,219.64 |
   | Packaging Material | Bulk | 1 | 74 | $49.98 |
-  | Cacao Tea | Bulk | 1 | 2.18 | $0.00 |
 
 ### Other managers (top 8 by USD value)
 
 | Manager | Items | Units | Value (USD) |
 |---------|-------|-------|-------------|
-| Val Lapidus | 16 | 1,464 | $7,825.21 |
-| Sacred Earth Farms | 3 | 458.50 | $2,240.50 |
+| Val Lapidus | 15 | 1,454 | $7,472.41 |
 | AGL13 | 1 | 2,214.61 | $2,214.61 |
+| Sacred Earth Farms | 2 | 390.50 | $2,172.50 |
 | Orlantildes | 1 | 108 | $1,311.12 |
 | Coopercabruca | 1 | 1,706 | $1,199.87 |
 | Aga Marecka | 1 | 20 | $537.46 |
@@ -275,6 +272,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-10-31 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+7770bfe | 2026-11-07 13:27:58 +0000 | chore(stats): refresh stats indexes [skip ci]
 5905e64 | 2026-11-07 06:29:12 +0000 | chore(stats): refresh stats indexes [skip ci]
 ca1d716 | 2026-11-06 19:38:45 +0000 | chore(stats): refresh stats indexes [skip ci]
 2ca5900 | 2026-11-06 07:17:39 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -303,6 +301,9 @@ e458f96 | 2026-10-31 21:49:01 +0000 | chore(stats): refresh stats indexes [skip 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+1520a19 | 2026-11-08 01:56:50 +0800 | File follow-up: shipment pages fetch farm-keyed collection slugs (#1800)
+1a3c2d8 | 2026-11-07 21:24:40 +0800 | chore(previews): refresh Beer Hall preview (2026-11-07 UTC)
+b534aed | 2026-11-07 21:24:39 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-07 UTC)
 8c1c152 | 2026-11-07 19:41:04 +0800 | Rewrite SOP report-generation section: answer-first, data to appendix (#1798)
 2a8cb2f | 2026-11-07 19:02:51 +0800 | Add STOCK_ANALYSIS_AND_PORTFOLIO_SOP.md — market analysis, portfolio mgmt, position recommendations (#1797)
 02f5e16 | 2026-11-07 14:55:49 +0800 | File takedown runbook + cache PII-screening + auth-gated audit sweep follow-ups (#1796)
@@ -340,9 +341,6 @@ f8479bb | 2026-11-03 05:46:21 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT
 a1db643 | 2026-11-02 06:15:54 +0800 | chore(previews): refresh Beer Hall preview (2026-11-01 UTC)
 e1c65a8 | 2026-11-02 06:15:52 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-01 UTC)
 37665a0 | 2026-11-02 02:01:54 +0800 | chore(previews): refresh Beer Hall preview (2026-11-01 UTC)
-79e3fb6 | 2026-11-02 02:01:53 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-01 UTC)
-2278989 | 2026-11-01 14:36:31 +0800 | chore(previews): refresh Beer Hall preview (2026-11-01 UTC)
-e993b98 | 2026-11-01 14:36:30 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-01 UTC)
 … (truncated)
 ```
 
@@ -382,6 +380,7 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+80c2689 | 2026-11-07 13:32:37 +0000 | chore: refresh currencies.json [skip ci]
 1d440e2 | 2026-11-07 13:07:36 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 2b19135 | 2026-11-07 07:01:59 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 38fcea8 | 2026-11-06 14:36:31 +0000 | chore: refresh currencies.json [skip ci]
@@ -408,6 +407,7 @@ d1e9864 | 2026-10-31 12:38:13 +0000 | chore: refresh store, partner inventory, a
 ### `agroverse_shop` → `agroverse_shop_beta`
 
 ```
+5b3c585 | 2026-11-07 22:34:04 +0800 | test(feed): give the Merchant Center feed an owner (freshness guard + CI) (#368)
 d15f04b | 2026-11-07 19:17:57 +0800 | fix(feed): parse annex products, truthful availability, GTIN compliance (#367)
 d0f81c7 | 2026-11-07 16:39:08 +0800 | Past Harvests: drop duplicate "Out of stock" badge, keep single "Sold out" label (#366)
 62ae76b | 2026-11-07 14:56:39 +0800 | Add Past Harvests section: demote sold-out lots instead of leaving them buyable (#365)
@@ -508,7 +508,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
 | 2026-10 | 460 | 18944.34386 | 10/31/2026 |
-| 2026-11 | 216.75 | 19161.09386 | 11/7/2026 4:51:20 |
+| 2026-11 | 216.75 | 19161.09386 | 11/7/2026 12:52:00 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-10-31`; scanned last **600** data rows)
 
