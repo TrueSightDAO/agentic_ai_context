@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-11-07T06:21:52Z`
+- Generated (UTC): `2026-11-07T13:24:18Z`
 - Look-back: **7** calendar days (`2026-10-31` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -79,7 +79,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-11-06T11:59:14.981Z`
+- Generated (UTC): `2026-11-07T11:59:14.580Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -94,7 +94,7 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **98** stores — sum logged **warmup** sends (AU): **829**, sum logged **follow-up** sends (AV): **4**; warmup depth (none / once / ≥2): **50** / **0** / **48**; follow-up depth (none / once / ≥2): **97** / **0** / **1**
+- **AI: Warm up prospect**: **94** stores — sum logged **warmup** sends (AU): **793**, sum logged **follow-up** sends (AV): **4**; warmup depth (none / once / ≥2): **48** / **0** / **46**; follow-up depth (none / once / ≥2): **93** / **0** / **1**
 - **Manager Follow-up**: **28** stores — sum logged **warmup** sends (AU): **23**, sum logged **follow-up** sends (AV): **55**; warmup depth (none / once / ≥2): **22** / **1** / **5**; follow-up depth (none / once / ≥2): **10** / **4** / **14**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: _(no rows in this status)_
@@ -275,6 +275,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-10-31 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+5905e64 | 2026-11-07 06:29:12 +0000 | chore(stats): refresh stats indexes [skip ci]
 ca1d716 | 2026-11-06 19:38:45 +0000 | chore(stats): refresh stats indexes [skip ci]
 2ca5900 | 2026-11-06 07:17:39 +0000 | chore(stats): refresh stats indexes [skip ci]
 8c86c33 | 2026-11-05 20:12:54 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -302,6 +303,11 @@ e458f96 | 2026-10-31 21:49:01 +0000 | chore(stats): refresh stats indexes [skip 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+8c1c152 | 2026-11-07 19:41:04 +0800 | Rewrite SOP report-generation section: answer-first, data to appendix (#1798)
+2a8cb2f | 2026-11-07 19:02:51 +0800 | Add STOCK_ANALYSIS_AND_PORTFOLIO_SOP.md — market analysis, portfolio mgmt, position recommendations (#1797)
+02f5e16 | 2026-11-07 14:55:49 +0800 | File takedown runbook + cache PII-screening + auth-gated audit sweep follow-ups (#1796)
+41c2396 | 2026-11-07 14:22:09 +0800 | chore(previews): refresh Beer Hall preview (2026-11-07 UTC)
+942c9b4 | 2026-11-07 14:22:08 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-07 UTC)
 6b54638 | 2026-11-07 13:04:14 +0800 | Merge pull request #1795 from TrueSightDAO/auto/advisory-refresh-2026-11-07
 46407a1 | 2026-11-07 05:03:59 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-07 UTC)
 7e6ccf6 | 2026-11-07 03:38:17 +0800 | chore(previews): refresh Beer Hall preview (2026-11-06 UTC)
@@ -337,11 +343,6 @@ e1c65a8 | 2026-11-02 06:15:52 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT
 79e3fb6 | 2026-11-02 02:01:53 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-01 UTC)
 2278989 | 2026-11-01 14:36:31 +0800 | chore(previews): refresh Beer Hall preview (2026-11-01 UTC)
 e993b98 | 2026-11-01 14:36:30 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-01 UTC)
-ef302d7 | 2026-11-01 12:52:42 +0800 | File follow-up: reusable ledger→invoice generator (AGL16 one-off) (#1789)
-c3d7be0 | 2026-11-01 05:48:00 +0800 | chore(previews): refresh Beer Hall preview (2026-10-31 UTC)
-d1a0679 | 2026-11-01 05:47:58 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-31 UTC)
-7cfec75 | 2026-10-31 20:56:22 +0800 | chore(previews): refresh Beer Hall preview (2026-10-31 UTC)
-159e83b | 2026-10-31 20:56:20 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-31 UTC)
 … (truncated)
 ```
 
@@ -381,6 +382,8 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+1d440e2 | 2026-11-07 13:07:36 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
+2b19135 | 2026-11-07 07:01:59 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 38fcea8 | 2026-11-06 14:36:31 +0000 | chore: refresh currencies.json [skip ci]
 909645b | 2026-11-06 14:20:18 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 9c0a049 | 2026-11-06 18:28:46 +0800 | chore: refresh Agroverse SKU catalog snapshot
@@ -405,6 +408,9 @@ d1e9864 | 2026-10-31 12:38:13 +0000 | chore: refresh store, partner inventory, a
 ### `agroverse_shop` → `agroverse_shop_beta`
 
 ```
+d15f04b | 2026-11-07 19:17:57 +0800 | fix(feed): parse annex products, truthful availability, GTIN compliance (#367)
+d0f81c7 | 2026-11-07 16:39:08 +0800 | Past Harvests: drop duplicate "Out of stock" badge, keep single "Sold out" label (#366)
+62ae76b | 2026-11-07 14:56:39 +0800 | Add Past Harvests section: demote sold-out lots instead of leaving them buyable (#365)
 e237954 | 2026-11-07 12:40:54 +0800 | Fix: untracked SKU rendered as "Out of stock" and blocked add-to-cart (#364)
 c56278b | 2026-11-07 11:53:50 +0800 | Correct 500g product metadata: AGL4 + TAP AWB, record 37-bar stock (#363)
 305c4e1 | 2026-11-07 11:25:28 +0800 | Add 500g card to AGL4 grid; correct courier to TAP air freight AWB (#362)
@@ -502,7 +508,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
 | 2026-10 | 460 | 18944.34386 | 10/31/2026 |
-| 2026-11 | 216.75 | 19161.09386 | 11/6/2026 21:54:34 |
+| 2026-11 | 216.75 | 19161.09386 | 11/7/2026 4:51:20 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-10-31`; scanned last **600** data rows)
 
