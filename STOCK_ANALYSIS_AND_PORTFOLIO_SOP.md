@@ -233,25 +233,86 @@ rejecting single-session moves >100%.
 Use `generate_pdf` (Saffron Monk styling), then deliver the file itself with
 `send_telegram_attachment` — governors are often behind firewalls that block GitHub links.
 
-**Required sections, in order:**
+### 10.0 The acceptance test — run it before you send
 
-1. **Header block** — screen source + *how* it was obtained (the SQL helper, not a scrape), market
-   data date, screen rule, universe size, prepared-by.
-2. **Executive summary** — numbered, 5–6 points. Lead with the macro-vs-signal verdict (§5).
-3. **Macro backdrop** — dated table of the sessions the screen covers.
-4. **Full table** — every name, with the five metrics from §4 including %B, ranked by a stated
-   composite. **State the composite weights** (e.g. 40% 1y / 30% off-high / 30% vs200dma) and call
-   it a *resilience* rank, not a cheapness rank.
-5. **Dispersion table** — only the names that beat the median filter, with the excess move.
-6. **Per-position analysis**, tiered: A = worth investigating · B = cyclically late · C = structurally
-   impaired · D = systematic de-rating. Explicitly list what is **not** worth investigating and why.
-7. **Shortlist** — ranked, each with "why" + "what would change the call".
-8. **What this screen cannot answer** — 2–4 open questions.
-9. **Data-quality appendix** — §9 findings, with the specific evidence.
-10. **Methodology** — algorithms and windows, so the numbers are reproducible.
+The report exists to make a decision obvious. Test it as a **reader**, not as its author:
 
-**Portfolio portion (when the governor has positions):** insert the factor-clustering from §6
-*before* the shortlist, and label every recommendation as either *upside engine* or *hedge*.
+1. **The 1-page test** — can someone who never saw the screen name the 3 best and 3 worst candidates
+   from page 1 alone? If not, the report fails, regardless of analysis quality.
+2. **The 3-page test** — by page 3, does the reader know their specific next action (which name, what
+   price, what event to wait for)? If they are still reading tables, it fails.
+3. **The glaze test** — is any page a wall of numbers with no verdict attached? Cut, compress, or move
+   it to the appendix.
+4. **The "so what" test** — every table is immediately followed by the one sentence saying what it
+   means and what to do about it. A table without a verdict line is a data dump.
+
+**Length budget: 4 pages of body + unlimited appendix.** If the body overflows 4 pages, the analysis
+is being dumped, not communicated. The full universe table is *always* appendix.
+
+> **Why this section exists.** v1 of the `/large_dips` report was a 13-page analyst's lab notebook:
+> the universe table on page 4, the actual verdicts on page 9. Feedback from a trader with 6 years
+> and 1,000+ executions: *"I read the PDF and my eyes just glazed over it. I stopped reading 3 pages
+> in."* Every structure rule below follows from that correction. The analysis was not wrong — the
+> **ordering** was. **A report is not a container for analysis; it is a decision aid.**
+
+### 10.1 Page 1 — the verdict page (all of it)
+
+Page 1 must be self-sufficient. Nothing on it may require page 2.
+
+- **Verdict line** — one sentence: is this screen telling us anything, or is it macro noise? (§5)
+- **The call** — at most **5 names**, as ranked *cards*, not rows. Each card carries exactly:
+  `TICKER · one-line why · role (upside engine / hedge / avoid) · entry zone · invalidation · %B`.
+- **The avoid list** — at most 5 names, one line each, with the *category* of failure: broken business
+  vs. peak cycle vs. systematic de-rating vs. beta.
+- **"Everything else is beta"** — one line giving the count dismissed and why. This is the single most
+  important sentence in the document and it belongs on page 1.
+- **Portfolio overlay** (when the governor has positions) — the factor clustering from §6: "your book
+  is N bets, not M positions", plus where the recommendation fits against it.
+
+### 10.2 Pages 2–3 — the shortlist in detail
+
+One block per shortlisted name (the first ~5 only). Per name, in this order and no other:
+
+1. **What happened** — 2 sentences: the trigger.
+2. **Why it's interesting** — 3 bullets maximum, each a fact carrying a number.
+3. **Where the price is** — %B, lower-band price, and an explicit **entry zone** and **invalidation
+   level**. Numbers a trader can put straight into an order ticket.
+4. **What would change the call** — one specific observable: a print date, a price, a guidance revision.
+5. **The bear case** — the strongest argument against, stated plainly.
+
+### 10.3 Page 4 — the decision summary
+
+- **Action table**: `Ticker | Role | Action | Entry zone | Invalidation | Trigger event | Confidence`.
+  One row per shortlisted name. This is the page a trader screenshots.
+- **Macro backdrop**, compressed to ≤4 dated bullets — context, not a section.
+- **What this screen cannot answer** — ≤3 bullets.
+
+### 10.4 Appendix — supporting data (not body)
+
+Everything below the fold, explicitly labelled "Appendix — supporting data".
+
+- **A1. Full universe table** — every name, the five metrics from §4, and the stated composite weights
+  (e.g. 40% 1y / 30% off-high / 30% vs200dma — call it a *resilience* rank, never a cheapness rank).
+  **Every row also carries a verdict token in the first column:** `WATCH` / `HOLD-OFF` / `AVOID` /
+  `BETA-IGNORE`. No row ships without a token — a bare number row is unreadable at a glance.
+- **A2. Dispersion table** — only names that beat the median filter, with the excess move.
+- **A3. Data-quality findings** — the §9 evidence: corrupted series, dead tickers, NULL sectors.
+- **A4. Methodology** — algorithms, windows, split-repair logic, so every number is reproducible.
+
+### 10.5 Formatting rules that prevent glaze
+
+- **No table wider than 6 columns**; no table longer than ~20 rows in the body. Wide or long tables
+  are appendix-only.
+- **Every table gets a verdict line underneath** — the "so what" sentence.
+- **Verdict tokens go in the first column, never the last.** Readers scan left to right and stop.
+- **Bold only the number that drives the decision** in a row — not every number.
+- **No analyst hedging in the body.** Caveats, uncertainty and data-quality live in the appendix,
+  compressed. If a caveat genuinely changes the recommendation, it belongs *inside that name's card*,
+  not on a disclaimer page.
+- **State the role of every recommendation** (upside engine / hedge). "Add X" without a role is not a
+  recommendation.
+- **A longer document is not a more thorough one.** Thoroughness lives in the appendix and in the
+  per-name research; it must never inflate the body.
 
 ---
 
@@ -266,6 +327,14 @@ When a governor corrects an analysis, that correction is training data. Convert 
 | "But I already own that factor" | §6 portfolio-fit-first sequencing |
 | "Why this one over X?" | §7 three-question filter, plus the bear case |
 | A tool/field error (`latest_rsi`) | Add the real column name to §2 immediately |
+| "My eyes glazed over / I stopped 3 pages in" | §10 restructure: verdict on page 1, data to appendix, verdict token per row, 4-page body cap |
+| "Can you even see what to invest or not?" | §10.0 acceptance test — every output must name ≤5 actions and an avoid list explicitly |
+
+**Third-party reader feedback is first-class training data.** A trader who abandoned the document on
+page 3 is a stronger signal than a governor who read all 13 pages — the governor knows the context and
+will forgive structure a stranger cannot. When feedback arrives from someone other than a governor
+(trader, partner, prospective user), relay it through the governor but record it here with the same
+weight. The question to ask of any report: **would a busy stranger act on this, or put it down?**
 
 Propose SOP amendments via a PR to `agentic_ai_context`. Keep one improvement per PR.
 
