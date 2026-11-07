@@ -20,9 +20,51 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-11-07T05:03:54Z`
+- Generated (UTC): `2026-11-07T06:21:52Z`
 - Look-back: **7** calendar days (`2026-10-31` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
+
+---
+
+## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
+
+_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
+
+### Event-type rollup
+
+- `[CONTRIBUTION EVENT]` × 15
+- `[SALES EVENT]` × 7
+- `[EMAIL VERIFICATION EVENT]` × 6
+- `[PRACTICE EVENT]` × 4
+- `[EMAIL REGISTERED EVENT]` × 3
+- `[ASSET RECEIPT EVENT]` × 2
+- `[CURRENCY DEFINITION EVENT]` × 1
+- `[BATCH QR CODE REQUEST]` × 1
+- `[CURRENCY CONVERSION EVENT]` × 1
+- _free-form (no bracket tag)_ × 2
+
+### Latest entries
+
+- `Edgar_20261106024517_2950` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-06T02:45:14.811Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20261106034110_2952` · **Edgar** · [CONTRIBUTION EVENT] Amount: 15 · Contributor(s): Gary Teh, Vini Bitencourt, Liz · Description: 15-minute call with Vini Bitencourt and Liz on sourcing salt from Brazil int…
+- `Edgar_20261106034212_2954` · **Edgar** · [CONTRIBUTION EVENT] Amount: 5 · Contributor(s): Gary Teh, Milena · Description: 5-minute correspondence with Milena ('Milena - Math...') on the Brazil-to-Oh…
+- `Edgar_20261106090718_2956` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-11-06T09:07:17.241Z · Email: garyjob@gmail.com
+- `Edgar_20261106090829_2958` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-11-06T09:08:26.451Z · Email: garyjob@gmail.com · Verification Key: hYWM98q2gXtBgXPlnF8wCSeuEpDdRYmH5NS3W6oiGaA
+- `Edgar_20261106090908_2960` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-11-06T09:08:26.451Z · Email: garyjob@gmail.com · Verification Key: hYWM98q2gXtBgXPlnF8wCSeuEpDdRYmH5NS3W6oiGaA
+- `Edgar_20261106100755_2962` · **Edgar** · [SALES EVENT] Item: 2024_20261027_1 · Sales price: 11.80 · Sold by: Kirsten Ritschel
+- `Edgar_20261106100801_2964` · **Edgar** · [SALES EVENT] Item: 2024_20261027_2 · Sales price: 11.80 · Sold by: Kirsten Ritschel
+- `Edgar_20261106100807_2966` · **Edgar** · [SALES EVENT] Item: 2024_20260710_25 · Sales price: 11.80 · Sold by: Kirsten Ritschel
+- `Edgar_20261106100813_2968` · **Edgar** · [SALES EVENT] Item: 2024_20260710_26 · Sales price: 11.80 · Sold by: Kirsten Ritschel
+- `Edgar_20261106100819_2970` · **Edgar** · [SALES EVENT] Item: 2025_20261025_1 · Sales price: 11.80 · Sold by: Kirsten Ritschel
+- `Edgar_20261106100824_2972` · **Edgar** · [SALES EVENT] Item: 2025_20261025_2 · Sales price: 11.80 · Sold by: Kirsten Ritschel
+- `Edgar_20261106100912_2974` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-06T10:09:09.761Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20261106102105_2976` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 40 · Contributor(s): Sophia Truesight
+- `Edgar_20261106123114_2978` · **Edgar** · [SALES EVENT] Item: 2024OSCAR_20250826_NIBS_1 · Sales price: 31.65 · Sold by: Kirsten Ritschel
+- `Edgar_20261106124036_2980` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Description: Sale processing & reconciliation — David Maher order / QR 2024OSCAR_20250826…
+- `Edgar_20261106124040_2982` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: Sale processing & reconciliation — David Maher order / QR 2024OSCAR_20250826…
+- `Edgar_20261107021602_2984` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-07T02:15:59.445Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20261107031634_2986` · **Edgar** · [CONTRIBUTION EVENT] Amount: 30 · Contributor(s): Linda Gorski · Description: 30 minutes of Linda Gorski thinking through the cacao procurement process an…
+- `Edgar_20261107035254_2988` · **Edgar** · [CONTRIBUTION EVENT] Amount: 10 · Contributor(s): Gary Teh · Description: 10 minutes following up with the CIC (Centro de Inovacao do Cacau, Ilheus/BA…
 
 ---
 
@@ -195,13 +237,16 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+34 more in JSON snapshot.)_
 
-### Cash float
+### Cash float (`off chain asset balance`)
 
-_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
+- USD on hand: **$2,005.41**
+- Brazilian Reis: R$130.00 · rate `0.2323` USD/BRL → ≈ **$30.20**
+- USD provisioned for voting-rights cash-out: **$58.05**
 
-### In-transit freight
+### In-transit freight (0 rows)
 
-_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
+_No `Shipment Ledger Listing` rows match in-flight status keywords today._
+
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -257,6 +302,8 @@ e458f96 | 2026-10-31 21:49:01 +0000 | chore(stats): refresh stats indexes [skip 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+6b54638 | 2026-11-07 13:04:14 +0800 | Merge pull request #1795 from TrueSightDAO/auto/advisory-refresh-2026-11-07
+46407a1 | 2026-11-07 05:03:59 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-07 UTC)
 7e6ccf6 | 2026-11-07 03:38:17 +0800 | chore(previews): refresh Beer Hall preview (2026-11-06 UTC)
 29ce22d | 2026-11-07 03:38:15 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-06 UTC)
 84d54f2 | 2026-11-06 15:10:44 +0800 | chore(previews): refresh Beer Hall preview (2026-11-06 UTC)
@@ -295,8 +342,6 @@ c3d7be0 | 2026-11-01 05:48:00 +0800 | chore(previews): refresh Beer Hall preview
 d1a0679 | 2026-11-01 05:47:58 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-31 UTC)
 7cfec75 | 2026-10-31 20:56:22 +0800 | chore(previews): refresh Beer Hall preview (2026-10-31 UTC)
 159e83b | 2026-10-31 20:56:20 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-31 UTC)
-07ecdc1 | 2026-10-31 14:06:29 +0800 | chore(previews): refresh Beer Hall preview (2026-10-31 UTC)
-1d46857 | 2026-10-31 14:06:27 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-10-31 UTC)
 … (truncated)
 ```
 
@@ -433,6 +478,49 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
+
+---
+
+## Sheet evidence (sales)
+
+_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
+
+### `Monthly Statistics` (last **14** non-empty rows)
+
+| Year-Month | Monthly USD | Cumulative USD | Last updated |
+|------------|-------------|------------------|---------------|
+| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
+| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
+| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
+| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
+| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
+| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
+| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
+| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
+| 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
+| 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
+| 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
+| 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
+| 2026-10 | 460 | 18944.34386 | 10/31/2026 |
+| 2026-11 | 216.75 | 19161.09386 | 11/6/2026 21:54:34 |
+
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-10-31`; scanned last **600** data rows)
+
+| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
+|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
+| 2026-11-03 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
+| 2026-11-04 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
+| 2026-11-06 | — | — | IGNORED | — | — | IGNORED: QR in message already on QR Code Sales; structured parse had n… |
+| 2026-11-06 | — | — | IGNORED | — | — | IGNORED: QR in message already on QR Code Sales; structured parse had n… |
+| 2026-11-06 | 31.65 | 8 Ounce Package Kraft Pouch - Ilheus, B… | TOKENIZED | 2024OSCAR_20250826_NIBS_1 | n3UU35aMgItx | — |
+| 2026-11-06 | 11.8 | Agroverse 81% Cacao Chocolate Bar 50g \… | — | 2025_20261025_2 | — | — |
+| 2026-11-06 | 11.8 | Agroverse 81% Cacao Chocolate Bar 50g \… | — | 2025_20261025_1 | — | — |
+| 2026-11-06 | 11.8 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_26 | — | — |
+| 2026-11-06 | 11.8 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_25 | — | — |
+| 2026-11-06 | 11.8 | Agroverse 81% Cacao Chocolate Bar 50g \… | — | 2024_20261027_2 | — | — |
+| 2026-11-06 | 11.8 | Agroverse 81% Cacao Chocolate Bar 50g \… | — | 2024_20261027_1 | — | — |
+
+_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
