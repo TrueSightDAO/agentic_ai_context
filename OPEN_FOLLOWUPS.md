@@ -1172,6 +1172,35 @@ in progress at time of filing.
    against the live site (investigate) or the assertions are too strict for a live target (loosen).
    Leaving it red is the worst option — see the anti-pattern this creates.
 
+**ANSWERED 2026-11-07 (Sophia, 500g-bar feed batch) — it is genuinely broken, and it is a rotten test
+fixture, not a cart bug.**
+
+- **Scale on beta is worse than stated:** `agroverse_shop_beta`'s `Visual Consistency` has **zero
+  successes in its entire run history** — every executed run is `failure` (the `skipped` runs are the
+  duplicate-deploy events explained above). On beta this is 100% red, not 7-in-30.
+- **The cart itself is fine — do not "fix" the cart.** Live Playwright probe 2026-11-07 against BOTH
+  `beta.agroverse.shop` and `agroverse.shop`: 10 `.add-to-cart-btn` present, clicking one writes a
+  correct cart to `localStorage` (`sessionId` + item with the right `productId`/`price`/`quantity`),
+  **0 pageerrors, 0 real failed requests** (only analytics beacons).
+- **Root cause — hardcoded product fixtures that expired.** `tests/cart-functionality.spec.ts` and the
+  cart-image spec hardcode `HIGH_INVENTORY_PRODUCTS` under the comment *"Products that typically have
+  high inventory - use these to avoid failures due to stock changes."* That assumption has expired:
+  `oscar-s-bahia-ceremonial-cacao` is now **Out of Stock**, rendering
+  `<button disabled class="cta-button add-to-cart-btn out-of-stock disabled" …>Out of Stock</button>`.
+  `locator.click` can never succeed on a disabled button, so it burns the full 30 s timeout — observed
+  3× in run `42382319274` (*"Failed to add product from /product-page/oscar-s-bahia-ceremonial-cacao:
+  TimeoutError: locator.click: Timeout 30000ms exceeded"*) — and `cart-functionality.spec.ts` then
+  cascades into 24 tests failing in 156–377 ms each.
+- **Fix (~20 min, small):** stop hardcoding availability. At runtime pick a product whose
+  `.add-to-cart-btn` is actually `enabled`, or assert `!disabled` and fail fast with an explicit
+  *"fixture product X is out of stock — pick another"* message rather than a 30 s timeout.
+  Availability is dynamic data, so **any** hardcoded product list rots — the same rot class as the
+  unpacked `facebook_product_feed.xml`, and worth guarding the same way (see agroverse_shop_beta#368,
+  which added `tests/feed/` plus a daily cron for the feed).
+- **Independent cross-check:** the site itself reports Oscar's Bahia out of stock, which is exactly
+  what the regenerated feed now publishes — confirming agroverse_shop_beta#367's availability fix was
+  correct. Before #367 the feed advertised that product `in stock`.
+
 **Do not** fold this into §9a's scope — §9a documents *what gate applies where*, which now needs
 correcting too (the `skipped` explanation above supersedes the wording currently in PR #1692).
 
