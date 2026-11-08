@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-11-08T18:00:22Z`
+- Generated (UTC): `2026-11-08T22:20:26Z`
 - Look-back: **7** calendar days (`2026-11-01` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -303,6 +303,9 @@ efa455d | 2026-11-01 22:17:13 +0000 | chore(stats): refresh stats indexes [skip 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+9aae24b | 2026-11-09 02:33:18 +0800 | OPEN_FOLLOWUPS: note 2026-11-07 GPS-drop recurrence + pseudo-tree blind spot (#1804)
+d906c68 | 2026-11-09 02:00:41 +0800 | chore(previews): refresh Beer Hall preview (2026-11-08 UTC)
+4a50fc2 | 2026-11-09 02:00:39 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-08 UTC)
 37a4060 | 2026-11-08 19:27:17 +0800 | Correct LVSS §542: agreement EXECUTED 2026-10-27; USD 1,000 fiat leg confirmed paid (#1803)
 bfd1c2b | 2026-11-08 18:12:46 +0800 | Amend LVSS §542: TDG terms evidenced in chat, par pinned; add clause 3.3 finding (#1802)
 560c29b | 2026-11-08 14:29:51 +0800 | chore(previews): refresh Beer Hall preview (2026-11-08 UTC)
@@ -340,9 +343,6 @@ a346915 | 2026-11-04 14:51:58 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT
 53d675d | 2026-11-04 03:52:41 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-03 UTC)
 d83b921 | 2026-11-03 15:06:18 +0800 | chore(previews): refresh Beer Hall preview (2026-11-03 UTC)
 0a7a6c8 | 2026-11-03 15:06:17 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-03 UTC)
-1a8e888 | 2026-11-03 13:46:36 +0800 | Merge pull request #1790 from TrueSightDAO/auto/advisory-refresh-2026-11-03
-f8479bb | 2026-11-03 05:46:21 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-03 UTC)
-4a522a6 | 2026-11-03 05:52:42 +0800 | chore(previews): refresh Beer Hall preview (2026-11-02 UTC)
 … (truncated)
 ```
 
@@ -515,7 +515,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
 | 2026-10 | 460 | 18944.34386 | 10/31/2026 |
-| 2026-11 | 216.75 | 19161.09386 | 11/8/2026 9:51:19 |
+| 2026-11 | 216.75 | 19161.09386 | 11/8/2026 13:50:58 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-11-01`; scanned last **600** data rows)
 
