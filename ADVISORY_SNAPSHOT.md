@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-11-07T22:11:32Z`
-- Look-back: **7** calendar days (`2026-10-31` → today UTC)
+- Generated (UTC): `2026-11-08T06:29:30Z`
+- Look-back: **7** calendar days (`2026-11-01` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -33,21 +33,17 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 ### Event-type rollup
 
 - `[TREE PLANTING EVENT]` × 14
-- `[CONTRIBUTION EVENT]` × 10
+- `[CONTRIBUTION EVENT]` × 11
 - `[SALES EVENT]` × 7
 - `[PRACTICE EVENT]` × 3
 - `[EMAIL VERIFICATION EVENT]` × 2
 - `[INVENTORY MOVEMENT]` × 2
-- `[ASSET RECEIPT EVENT]` × 1
 - `[EMAIL REGISTERED EVENT]` × 1
 - `[REGISTER IDENTITY EVENT]` × 1
 - _free-form (no bracket tag)_ × 1
 
 ### Latest entries
 
-- `Edgar_20261107155427_2992` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261107155431_2994` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261107155438_2996` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
 - `Edgar_20261107155446_2998` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
 - `Edgar_20261107155450_3000` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
 - `Edgar_20261107155458_3002` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Criolla
@@ -65,6 +61,9 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20261107192121_3026` · **Edgar** · [REGISTER IDENTITY EVENT] Email: pentest@example.com · Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnSL13ulBFN5GxfEIcOSVC+gRpccZjkSkY…
 - `Edgar_20261107192321_3028` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: PENTEST79370 · Recipient Name: VerificationRecipient · Inventory Item: ceremonial-cacao-test-200g
 - `Edgar_20261107192411_3030` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: PTEST79450 · Recipient Name: VerifyRecv · Inventory Item: test-sku-1
+- `Edgar_20261108011645_3032` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-08T01:16:44.271Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20261108013632_3034` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 540 · Description: Cacao Mass Bar (500g) — ship, launch, and Merchant Center feed compliance
+- `Edgar_20261108031336_3036` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Tree submission audit (1,528 events → 401 captures) + daily tree-planting em…
 
 ---
 
@@ -191,41 +190,44 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 ### Stock at production shippers
 
 **Kirsten Ritschel** _( San Francisco — retail / online fulfilment / partner restock )_
-- Manager record: `Kirsten Ritschel` · 25 SKU lines · 1,437.50 total units · $4,570.63
+- Manager record: `Kirsten Ritschel` · 26 SKU lines · 1,606.50 total units · $6,899.45
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
   | Packaging Material | Bulk | 4 | 892 | $649.90 |
   | (uncategorized) | (unspecified) | 15 | 309 | $956.98 |
+  | Cacao Mass | Retail Ready | 1 | 169 | $2,328.82 |
   | Cacao Nib | Retail Ready | 1 | 129 | $1,355.79 |
   | Cacao Mass | Bulk | 2 | 87 | $898.06 |
   | Cacao Nib | Bulk | 2 | 15.50 | $537.90 |
   | Cacao Butter | Bulk | 1 | 5 | $172.00 |
 
 **Matheus Reis** _( Ilhéus, Brazil — bulk warehouse + freight to SF )_
-- Manager record: `Matheus Reis` · 21 SKU lines · 1,008 total units · $942.81
+- Manager record: `Matheus Reis` · 23 SKU lines · 1,272.59 total units · $5,753.59
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
   | Packaging Material | Bulk | 2 | 773 | $540.46 |
-  | (uncategorized) | (unspecified) | 18 | 230 | $369.15 |
+  | (uncategorized) | (unspecified) | 19 | 493.59 | $5,169.56 |
   | Cacao Nib | Retail Ready | 1 | 5 | $33.20 |
+  | Cacao Mass | Retail Ready | 1 | 1 | $10.37 |
 
 **Gary Teh** _( Operational cash + assorted retail inventory )_
-- Manager record: `Gary Teh` · 26 SKU lines · 7,388.53 total units · $7,269.63
+- Manager record: `Gary Teh` · 30 SKU lines · 7,630.86 total units · $7,330.82
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 25 | 7,314.53 | $7,219.64 |
+  | (uncategorized) | (unspecified) | 28 | 7,554.68 | $7,280.83 |
   | Packaging Material | Bulk | 1 | 74 | $49.98 |
+  | Cacao Tea | Bulk | 1 | 2.18 | $0.00 |
 
 ### Other managers (top 8 by USD value)
 
 | Manager | Items | Units | Value (USD) |
 |---------|-------|-------|-------------|
-| Val Lapidus | 15 | 1,454 | $7,472.41 |
+| Val Lapidus | 16 | 1,464 | $7,825.21 |
+| Sacred Earth Farms | 3 | 458.50 | $2,240.50 |
 | AGL13 | 1 | 2,214.61 | $2,214.61 |
-| Sacred Earth Farms | 2 | 390.50 | $2,172.50 |
 | Orlantildes | 1 | 108 | $1,311.12 |
 | Coopercabruca | 1 | 1,706 | $1,199.87 |
 | Aga Marecka | 1 | 20 | $537.46 |
@@ -236,9 +238,9 @@ _(+34 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$2,005.41**
+- USD on hand: **$2,005.33**
 - Brazilian Reis: R$130.00 · rate `0.2323` USD/BRL → ≈ **$30.20**
-- USD provisioned for voting-rights cash-out: **$58.05**
+- USD provisioned for voting-rights cash-out: **$58.13**
 
 ### In-transit freight (0 rows)
 
@@ -253,7 +255,7 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_(No `YYYY-MM-DD |` lines on/after 2026-10-31 in CONTEXT_UPDATES.md.)_
+_(No `YYYY-MM-DD |` lines on/after 2026-11-01 in CONTEXT_UPDATES.md.)_
 
 ---
 
@@ -272,6 +274,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-10-31 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+516e48b | 2026-11-07 22:14:15 +0000 | chore(stats): refresh stats indexes [skip ci]
 7770bfe | 2026-11-07 13:27:58 +0000 | chore(stats): refresh stats indexes [skip ci]
 5905e64 | 2026-11-07 06:29:12 +0000 | chore(stats): refresh stats indexes [skip ci]
 ca1d716 | 2026-11-06 19:38:45 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -287,9 +290,6 @@ e4c9140 | 2026-11-02 06:42:00 +0000 | chore(stats): refresh stats indexes [skip 
 efa455d | 2026-11-01 22:17:13 +0000 | chore(stats): refresh stats indexes [skip ci]
 7f282cf | 2026-11-01 18:03:19 +0000 | chore(stats): refresh stats indexes [skip ci]
 3f1d04d | 2026-11-01 06:44:09 +0000 | chore(stats): refresh stats indexes [skip ci]
-e458f96 | 2026-10-31 21:49:01 +0000 | chore(stats): refresh stats indexes [skip ci]
-129eca6 | 2026-10-31 12:58:47 +0000 | chore(stats): refresh stats indexes [skip ci]
-45278c4 | 2026-10-31 06:11:22 +0000 | chore(stats): refresh stats indexes [skip ci]
 ```
 
 ### `market_research` → `go_to_market`
@@ -301,6 +301,8 @@ e458f96 | 2026-10-31 21:49:01 +0000 | chore(stats): refresh stats indexes [skip 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+59c949a | 2026-11-08 06:11:56 +0800 | chore(previews): refresh Beer Hall preview (2026-11-07 UTC)
+59effc6 | 2026-11-08 06:11:54 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-07 UTC)
 1520a19 | 2026-11-08 01:56:50 +0800 | File follow-up: shipment pages fetch farm-keyed collection slugs (#1800)
 1a3c2d8 | 2026-11-07 21:24:40 +0800 | chore(previews): refresh Beer Hall preview (2026-11-07 UTC)
 b534aed | 2026-11-07 21:24:39 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-07 UTC)
@@ -339,14 +341,14 @@ f8479bb | 2026-11-03 05:46:21 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT
 789503b | 2026-11-02 14:36:22 +0800 | chore(previews): refresh Beer Hall preview (2026-11-02 UTC)
 82c344c | 2026-11-02 14:36:20 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-02 UTC)
 a1db643 | 2026-11-02 06:15:54 +0800 | chore(previews): refresh Beer Hall preview (2026-11-01 UTC)
-e1c65a8 | 2026-11-02 06:15:52 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-01 UTC)
-37665a0 | 2026-11-02 02:01:54 +0800 | chore(previews): refresh Beer Hall preview (2026-11-01 UTC)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+3c496fb | 2026-11-08 13:29:16 +0800 | fix(gas): restore missing Credentials.js in canonical TDG Email Identity Mgmt project (#618)
+21289f4 | 2026-11-08 11:14:41 +0800 | Add tree digest doGet router to tree planting scanner (#617)
 a740fe7 | 2026-11-05 21:17:34 +0000 | Restore repo root; remove path-exploded artifact from receipts/2026
 7dd861d | 2026-11-05 21:17:11 +0000 | Remove path-exploded artifact from receipts/2026
 c5ca1e2 | 2026-11-06 00:41:32 +0800 | Upload file file: receipts/2026/20261105_lvss_vista_flow_service_agreement_signed.pdf). This settles Clause 3.1(a): USD 1,000.00 first tranche paid in BRL via Pix at the PTAX reference rate of 5.0277, i.e. R$ 5,027.70. Pix 2026-11-05 13:30 from Bco Rendimento S.A. acct ...4172 (Zhiwen Teh) to LVSS, Pix ID E68900810202611051629T0MBVfi0Q6E, ref 578404196, message 'Lawyer fees'. Funded same day by Wise USD->BRL conversion (offchain rows 5354/5355, memo 'For vista flow lawyer fees'); USD 931.48 actually left the account, so the USD 1,000 obligation was settled with a USD 68.52 FX gain. Expensed against Gary Teh's Brazilian Reis balance. Outstanding and NOT covered by this entry: Clause 3.1(b) USD 2,500.00 payable in TDG per Clause 3.2.
@@ -400,8 +402,6 @@ c4497d2 | 2026-11-02 16:32:31 +0000 | chore: refresh currencies.json [skip ci]
 0e58426 | 2026-11-02 16:01:02 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 d0ace62 | 2026-11-01 13:46:41 +0000 | chore: refresh currencies.json [skip ci]
 e4633b7 | 2026-11-01 13:30:01 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
-59219f2 | 2026-10-31 13:03:28 +0000 | chore: refresh currencies.json [skip ci]
-d1e9864 | 2026-10-31 12:38:13 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -508,9 +508,9 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
 | 2026-10 | 460 | 18944.34386 | 10/31/2026 |
-| 2026-11 | 216.75 | 19161.09386 | 11/7/2026 12:52:00 |
+| 2026-11 | 216.75 | 19161.09386 | 11/7/2026 21:51:50 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-10-31`; scanned last **600** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-11-01`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
