@@ -1508,6 +1508,14 @@ The package is installed **editable** into `.venv`, so code changes need only a 
 
 **Workaround applied 2026-10-15.** Backfilled the 15 in place from watermark reads (rows 986/987/990-1002); index rebuilt to 243 features; all 86/86 payout links resolve. The 2 dropped dups (`_103`,`_105`) were left blank (not payable).
 
+**RECURRENCE 2026-11-07 (filed 2026-11-08, thread `#tree-digest`). Root cause still unfixed — this is a *second* batch, not the same one.** Rows **1215–1222** (8 rows, all `Status date=20261107`, all `Status=NEW`, species Forestero×7 / Criolla×1) landed with **blank lat, blank lng, and blank plot_id**. Surfaced by the first dry render of the new daily tree-planting digest (`tree_planting_digest.js`, reports `Missing coordinates: 8`).
+
+**Why this recurrence matters more than the first.** Per the governor's pseudo-tree ruling (blank K/L **+ plot_id** = legitimate pseudo tree), rows 1215–1222 satisfy **neither** definition: they have no coordinates (so they are not real, mappable trees) **and no plot_id** (so they are not valid pseudo trees either). They are therefore **invisible on every surface simultaneously** — absent from `trees/index.geojson` (needs coords), and not exempted as pseudo trees by any plot-scoped view. A row can rot in this state indefinitely without any report flagging it; the digest's `Missing coordinates` line is currently the *only* automated signal, and it ships to `garyjob@agroverse.shop` only.
+
+**What the digest now provides (partial mitigation, shipped 2026-11-08).** `tree_planting_digest.js` (+3 governor-gated `doGet` actions in `process_tree_planting_telegram_logs.js`, PR #617) emits a daily email naming every coordinate-less submission with its sheet row, and a 30-assertion regression suite (PR #622, `tests/gas/digest_test.js`) pins its no-new-trees gate. This **detects** the drop within 24h; it does not **prevent** it.
+
+**Still required.** The two root-cause options above remain unclaimed: (a) append watermark GPS to the submitted log text, or (b) OCR the watermark when the log lacks coords. Additionally worth adding, given the pseudo-tree blind spot: **flag a NEW row that has a photo but blank K/L *and* blank plot_id** as `INVALID` — such a row is neither a tree nor a pseudo tree and should never be silently accepted as `NEW`.
+
 **Evidence.** `/tmp/blanklat_gps_read.json` (15 vision-read coords); `app/tools/timemark_watermark.py` (watermark layout bottom-left = date/place/`<lat>°S,<lon>°W`); `process_tree_planting_telegram_logs.js` (K/L + INVALID gate); `sunmint/trees/index.geojson` (`generated_at 2026-10-15T22:46Z`, 243 features); `cfr.truesight.me/my-trees/?tree=` resolves 200 for sampled backfilled trees.
 
 ### ✅ SHIPPED 2026-10-27 — `[MANAGED LEDGER TRANSACTION EVENT]` **GAS handler** deployed (the third piece this entry asked for)
