@@ -6,6 +6,11 @@
 > (1) treating a macro-wide selloff as 75 individual "dips", and
 > (2) recommending a portfolio-fit name (LMT) without checking its Bollinger position.
 >
+> **Revised 2026-11-08** after a paying Edgar subscriber (6 years active, 1,000+ executions) read v2
+> of the report and stopped three pages in: *"The entire thing is a data dump."* The §10 format
+> below already existed and was violated anyway — so this revision adds a **forcing function**
+> (§10.0.1) rather than another format. See §10.0 tests 5–7.
+>
 > **Scope:** Gary's personal portfolio work and Perch analysis. This is analytical support,
 > NOT investment advice, and NOT a mandate to trade.
 >
@@ -54,6 +59,40 @@ timeout 240 bundle exec ruby /tmp/q.rb 2>&1 | tail -5
 ```
 
 Ruby here is **2.6.5** — no `filter_map`, no endless methods, no `Hash#except`.
+
+### The active universe is ~5,600, not ~25,500 — filter before you aggregate
+
+`companies` holds ~25,470 rows, but **only ~5,598 have a `daily_trades` row on a given trading
+date**. The remainder are dead crypto pairs, delisted shells, and symbols that stopped updating.
+Quoting the raw table count as "the universe" is wrong and makes a tractable scan look impossible.
+
+| Count | What it is |
+|---|---|
+| 25,470 | raw `companies` rows |
+| **5,598** | symbols with a trade on the as-of date ← **the real universe** |
+| 5,553 | after symbol-shape filter (`A–Z`, 1–5 chars) |
+| 5,698 | with ≥900 daily bars over 5 years (usable history) |
+| 4,884 | ≥900 bars **and** a live close on the as-of date |
+
+Start every universe-wide read from the **active** set — build a temp table of as-of-date company
+ids and join it. Never aggregate `daily_trades` unbounded: a `count(distinct company_id)` with no
+date bound is a full table scan and will hang the session.
+
+### `statement_timeout` is the real blocker — not a missing index
+
+A full-universe 5-year aggregate takes **~340 s**; the app's connection kills anything longer,
+which looks like "the query is impossible" but is a timeout. **`dt_by_company (company_id,
+date_published)` already exists** — do not propose a new index as the fix for slow aggregates.
+
+```ruby
+c = ActiveRecord::Base.connection
+c.execute("set statement_timeout = 0")     # universe-wide aggregate
+# ... then restore for normal queries:
+c.execute("set statement_timeout = '120s'")
+```
+
+Background the job with `nohup` and poll a log file; a chat turn cannot wait ~6 minutes. Persist
+output to `/tmp/*.jsonl` as you go so a killed turn does not lose the scan.
 
 ### `daily_trades` — real column names (do not guess)
 
@@ -220,6 +259,8 @@ These degrade every screen and must be disclosed, not silently absorbed:
 | **Leveraged ETFs in the set** | `TQQQ` (3×), any inverse product | Its "dip" is arithmetic, not a valuation event — exclude by default |
 | **No split calendar** | 18 of 75 names needed heuristic repair | Heuristic only; mark repaired rows `*` and tell the governor |
 | **Stale caches** | `LARGE_DIP_CACHE_EXPIRY = 24.hours` | Confirm the trading date; never assume "today" |
+| **Dead crypto / shell rows inflate every universe count** | `companies` ~25,470 vs ~5,598 with a trade on the as-of date | Never quote the raw table count as the universe; ~20k rows are dead pairs and shells |
+| **Corrupted multi-year series** | 5-year range percentile = 0 alongside an impossible 1Y return (e.g. **BKNG −96.7%** 1Y, CTVA −80.9%, ADBE 0th-pctile) | Reject any name with 1Y < −70% or off-5y-high < −85% as a probable bad series; never shortlist on percentile alone |
 
 **Fix direction (small PRs to `sentiment_importer`):** `stock_splits` reference table + adjust on
 ingest; sector backfill + NOT-NULL guard on new `companies` rows; `is_leveraged` flag excluded from
@@ -245,6 +286,16 @@ The report exists to make a decision obvious. Test it as a **reader**, not as it
    it to the appendix.
 4. **The "so what" test** — every table is immediately followed by the one sentence saying what it
    means and what to do about it. A table without a verdict line is a data dump.
+5. **The ticker test** (added 2026-11-08) — if the only thing a reader extracts is the **list of
+   tickers**, the report has added zero value: they can get that from the screen in ten seconds.
+   Before sending, write down what the reader learned that they could **not** have learned from the
+   symbol list plus a quote lookup. If there is no answer, do not send it.
+6. **The "already knew it" test** — a seasoned reader must find at least one claim that changes
+   their prior. If every sentence is inferable from the tickers and one search, it is packaging,
+   not analysis.
+7. **The "what next" test** — read your own final line. If it is a question *back* to the reader
+   ("want me to append…?", "shall I run…?"), the report decided nothing. **Every issue ends with a
+   call and a trigger, never with an offer.** Handing the decision back is not a deliverable.
 
 **Length budget: 4 pages of body + unlimited appendix.** If the body overflows 4 pages, the analysis
 is being dumped, not communicated. The full universe table is *always* appendix.
@@ -254,6 +305,39 @@ is being dumped, not communicated. The full universe table is *always* appendix.
 > and 1,000+ executions: *"I read the PDF and my eyes just glazed over it. I stopped reading 3 pages
 > in."* Every structure rule below follows from that correction. The analysis was not wrong — the
 > **ordering** was. **A report is not a container for analysis; it is a decision aid.**
+
+### 10.0.1 Pre-send compliance gate (hard — assert it in the outgoing message)
+
+A rule in a document that is never invoked is decoration. Before any report leaves the box, post
+**all** of these as an explicit line in the delivery message. If any is false, do not send:
+
+- [ ] Body is **≤ 4 pages**; the universe table is in the appendix.
+- [ ] **Page 1 alone** names the call and the avoid list — nothing on it needs page 2.
+- [ ] Every shortlisted name carries entry zone, invalidation level, size, and a dated catalyst.
+- [ ] The **ticker test** (§10.0 #5) is answered in writing.
+- [ ] **Zero** of these strings appear in the body: `want me to`, `shall I`, `let me know if`.
+- [ ] Page 1 was re-read **as a stranger** — did the verdict survive first contact?
+
+> **Why this exists.** On 2026-11-08 a 17-page v2 shipped to subscribers while §10.0 sat in this
+> very file saying the body must be 4 pages and the appendix must stay in the appendix. The rules
+> were correct and unused. The failure mode is **not knowing better** — it is **not checking**. The
+> gate converts a principle into an action with a yes/no answer.
+
+### 10.0.2 The subscriber feedback loop (this ships to paying subscribers — close the loop)
+
+An issue with no feedback is an unmeasured product. Soliciting none is the operating error.
+
+1. **Ship with the questions attached**, to at least **3 active subscribers**, in the same message:
+   - *Did you act on anything in here? Which line?*
+   - *Would you have found this yourself from the ticker list?*
+   - *What did you want that isn't here?*
+2. **Record the answers** in `OPEN_FOLLOWUPS.md` under `## Pending` — raw quotes, not summaries.
+   Verbatim reader language is the only reliable specification for the next issue.
+3. **If nobody answered the previous issue, the next issue does not ship until someone does.**
+   Silence means either nobody reads it or nobody was asked; both are fatal to a paid product and
+   neither is fixed by writing another report.
+4. Any structural criticism goes into this SOP in the same PR that changes the format — see the
+   revision note at the top of this file.
 
 ### 10.1 Page 1 — the verdict page (all of it)
 
