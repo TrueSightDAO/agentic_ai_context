@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-11-09T07:00:22Z`
+- Generated (UTC): `2026-11-09T22:37:35Z`
 - Look-back: **7** calendar days (`2026-11-02` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,25 +32,16 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 16
+- `[CONTRIBUTION EVENT]` × 18
 - `[TREE PLANTING EVENT]` × 14
-- `[SALES EVENT]` × 4
-- `[PRACTICE EVENT]` × 4
+- `[PRACTICE EVENT]` × 3
+- `[CONTRIBUTOR ADD EVENT]` × 3
 - `[INVENTORY MOVEMENT]` × 2
 - `[REGISTER IDENTITY EVENT]` × 1
 - _free-form (no bracket tag)_ × 1
 
 ### Latest entries
 
-- `Edgar_20261107155530_3012` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261107155535_3014` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261107164818_3016` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 420 · Description: Pull Vivi 70%, breakdown and clean temporary production space at 630 Treat, …
-- `Edgar_20261107165619_3018` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
-- `Edgar_20261107191823_3020` · **Edgar** · test
-- `Edgar_20261107192056_3022` · **Edgar** · [CONTRIBUTION EVENT] Title: Security test contribution · Body: Testing signature verification bypass · Contributors: TestUser
-- `Edgar_20261107192119_3024` · **Edgar** · [CONTRIBUTION EVENT] Title: Security test contribution · Body: Testing signature verification · Contributors: TestUser
-- `Edgar_20261107192121_3026` · **Edgar** · [REGISTER IDENTITY EVENT] Email: pentest@example.com · Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnSL13ulBFN5GxfEIcOSVC+gRpccZjkSkY…
-- `Edgar_20261107192321_3028` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: PENTEST79370 · Recipient Name: VerificationRecipient · Inventory Item: ceremonial-cacao-test-200g
 - `Edgar_20261107192411_3030` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: PTEST79450 · Recipient Name: VerifyRecv · Inventory Item: test-sku-1
 - `Edgar_20261108011645_3032` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-08T01:16:44.271Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20261108013632_3034` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 540 · Description: Cacao Mass Bar (500g) — ship, launch, and Merchant Center feed compliance
@@ -62,6 +53,15 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20261109034110_3046` · **Edgar** · [CONTRIBUTION EVENT] Amount: 300 · Contributor(s): Gary Teh and Lawrence Kwek · Description: 5 hours (300 min) - Gary Teh and Lawrence Kwek discussing alternative models…
 - `Edgar_20261109034117_3048` · **Edgar** · [CONTRIBUTION EVENT] Amount: 10 · Contributor(s): Lawrence Kwek · Description: 10 minutes - Lawrence Kwek's share of the coordination and travel involved i…
 - `Edgar_20261109043852_3050` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Schwab Trader API registration + read-only portfolio integration status veri…
+- `Edgar_20261109075941_3052` · **Edgar** · [CONTRIBUTOR ADD EVENT] Contributor Name: Baluca · Contributor Email: 1346337704@qq.com · Submitted At: 2026-11-06
+- `Edgar_20261109080229_3054` · **Edgar** · [CONTRIBUTOR ADD EVENT] Contributor Name: Baluca · Contributor Email: 1346337704@qq.com · Initial Digital Signature: (none — contributor will self-register via the email-verificat…
+- `Edgar_20261109081911_3056` · **Edgar** · [CONTRIBUTOR ADD EVENT] Contributor Name: Baluca · Contributor Email: 1346337704@qq.com
+- `Edgar_20261109084553_3058` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Envoy sessions restart: re-auth + rebuild + spin-up script fix
+- `Edgar_20261109084938_3060` · **Edgar** · [CONTRIBUTION EVENT] Contributor(s): Sophia Truesight (admin+sophia@truesight.me) · Type: Time (Minutes) · Amount: 240
+- `Edgar_20261109084943_3062` · **Edgar** · [CONTRIBUTION EVENT] Amount: 180 · Contributor(s): Gary Teh · Description: Governor direction and subject-matter decisions across the Blueprint/TrueTec…
+- `Edgar_20261109114916_3064` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 2500 · Contributor(s): LVSS Negócios Internacionais Ltda (Flow Vista)
+- `Edgar_20261109120139_3066` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Contributor(s): Gary Teh
+- `Edgar_20261109221228_3068` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-09T22:12:26.637Z · Program: truesight-grounding · Practice Type: oracle-consultation
 
 ---
 
@@ -76,7 +76,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-11-08T11:59:14.466Z`
+- Generated (UTC): `2026-11-09T11:59:15.274Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -91,7 +91,7 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **89** stores — sum logged **warmup** sends (AU): **725**, sum logged **follow-up** sends (AV): **4**; warmup depth (none / once / ≥2): **47** / **0** / **42**; follow-up depth (none / once / ≥2): **88** / **0** / **1**
+- **AI: Warm up prospect**: **86** stores — sum logged **warmup** sends (AU): **691**, sum logged **follow-up** sends (AV): **4**; warmup depth (none / once / ≥2): **46** / **0** / **40**; follow-up depth (none / once / ≥2): **85** / **0** / **1**
 - **Manager Follow-up**: **28** stores — sum logged **warmup** sends (AU): **23**, sum logged **follow-up** sends (AV): **55**; warmup depth (none / once / ≥2): **22** / **1** / **5**; follow-up depth (none / once / ≥2): **10** / **4** / **14**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: _(no rows in this status)_
@@ -272,6 +272,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-11-02 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+ecc530c | 2026-11-09 07:04:47 +0000 | chore(stats): refresh stats indexes [skip ci]
 a4750ac | 2026-11-08 22:24:11 +0000 | chore(stats): refresh stats indexes [skip ci]
 4076711 | 2026-11-08 13:49:10 +0000 | chore(stats): refresh stats indexes [skip ci]
 7704931 | 2026-11-08 06:35:58 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -299,6 +300,12 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+846d739 | 2026-11-09 16:44:41 +0800 | Merge pull request #1812 from TrueSightDAO/fix/envoy-spinup-trust-dialog
+c0554c8 | 2026-11-09 16:44:07 +0800 | fix(infra): envoy-spinup trust-dialog auto-confirm (2 -> Enter)
+89603dc | 2026-11-09 16:41:19 +0800 | handoffs: register Redis dispatch + Blueprint/LVSS threads, release claims per §9.2 (#1811)
+c27f92c | 2026-11-09 15:57:16 +0800 | Add STAGED_ROLLOUT_SOP.md (curated subset → visual UAT → full rollout) (#1808)
+80a4b99 | 2026-11-09 15:00:45 +0800 | chore(previews): refresh Beer Hall preview (2026-11-09 UTC)
+6a33e58 | 2026-11-09 15:00:44 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-09 UTC)
 a62c88d | 2026-11-09 14:53:02 +0800 | SOP: add ticker test, pre-send gate, feedback loop, universe fix (#1810)
 2e7a382 | 2026-11-09 13:46:46 +0800 | Record GAS deployment topology + staging vs production gate (#1807)
 189d58c | 2026-11-09 13:08:14 +0800 | Merge pull request #1806 from TrueSightDAO/auto/advisory-refresh-2026-11-09
@@ -333,18 +340,13 @@ a5b9bb4 | 2026-11-06 05:20:17 +0800 | OPEN_FOLLOWUPS: file attachment-path-mangl
 268aec5 | 2026-11-05 15:10:32 +0800 | chore(previews): refresh Beer Hall preview (2026-11-05 UTC)
 d391458 | 2026-11-05 15:10:30 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-05 UTC)
 29a6337 | 2026-11-05 13:40:03 +0800 | Merge pull request #1793 from TrueSightDAO/auto/advisory-refresh-2026-11-05
-cc04c0e | 2026-11-05 05:39:49 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-05 UTC)
-2e572f9 | 2026-11-05 03:58:25 +0800 | chore(previews): refresh Beer Hall preview (2026-11-04 UTC)
-34c4d2f | 2026-11-05 03:58:23 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-04 UTC)
-69327e9 | 2026-11-04 18:10:04 +0800 | Merge pull request #1792 from TrueSightDAO/docs/firewall-guide-pointers
-c6eb800 | 2026-11-04 18:08:05 +0800 | docs: link Great Firewall guide from README + OPERATING_INSTRUCTIONS
-097979e | 2026-11-04 18:05:22 +0800 | Merge pull request #1791 from TrueSightDAO/docs/china-firewall-github-access
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+4ff92ee | 2026-11-09 19:52:45 +0800 | Add TDG 2,500 submission proof (Edgar_20261109114916_3064)
 56335f8 | 2026-11-08 23:00:13 +0800 | Add node regression suite for tree planting digest gate (#622)
 69294cf | 2026-11-08 15:40:21 +0800 | tree digest: surface rows with no photo id instead of silently counting them (#620)
 7ed5d1e | 2026-11-08 15:10:41 +0800 | fix(gas): inline QR onboarding email template, drop DocumentApp dependency (#621)
@@ -383,6 +385,9 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+ad41de9 | 2026-11-09 16:52:35 +0000 | chore: refresh partners-velocity snapshot [skip ci]
+cad68af | 2026-11-09 16:51:04 +0000 | chore: refresh currencies.json [skip ci]
+46873a3 | 2026-11-09 16:26:49 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 d486e73 | 2026-11-08 13:51:27 +0000 | chore: refresh currencies.json [skip ci]
 2ab2b91 | 2026-11-08 13:29:55 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 80c2689 | 2026-11-07 13:32:37 +0000 | chore: refresh currencies.json [skip ci]
@@ -509,7 +514,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
 | 2026-10 | 460 | 18944.34386 | 10/31/2026 |
-| 2026-11 | 216.75 | 19161.09386 | 11/8/2026 22:53:09 |
+| 2026-11 | 216.75 | 19161.09386 | 11/9/2026 13:54:23 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-11-02`; scanned last **600** data rows)
 
