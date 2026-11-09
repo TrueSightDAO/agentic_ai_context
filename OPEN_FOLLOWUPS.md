@@ -39,6 +39,18 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Sophia Redis mark-and-claim dispatch — plan doc not yet on `main`
+
+**Filed 2026-11-09. Owner: Envoy (supervisor loop). Priority: MEDIUM — work is actively landing, this entry only exists because the manifest's `Plan file` cell needs a real anchor.**
+
+The actual plan doc (`SOPHIA_REDIS_MARK_AND_CLAIM_DISPATCH_PLAN.md`) lives only on the unmerged
+branch `plan/sophia-redis-mark-and-claim-dispatch` (`truesight_autopilot` PR #1735, open) — it is
+**not on `main`**, which already caused one real false-positive "phantom plan" diagnosis mid-thread
+(a `git for-each-ref` search only sees already-fetched local refs; `git ls-remote` finds it fine).
+See `handoffs/HANDOFF_MANIFEST.md`'s row for this plan and the live claim in
+`handoffs/active_supervision.json` for current status (PR1/PR2 merged, RESUME HERE = PR-D). Either
+merge PR #1735 to land the plan doc properly, or leave this anchor as the pointer until it does.
+
 ### `daily_trades.latest_closes` is still computed on request — maintain a summary table instead
 
 **Filed 2026-11-07. Owner: unclaimed. Priority: MEDIUM-HIGH — the read path is correct now but still costs seconds, and it silently degrades whenever the cache is cold.**
