@@ -26,20 +26,29 @@ for i in "${!ROLES[@]}"; do
   tmux kill-session -t "$role" 2>/dev/null || true
   tmux new-session -d -s "$role"
   tmux send-keys -t "$role" "claude --name $role --permission-mode ${PERMS[$i]} --remote-control $role" Enter
-  sleep 8
-  tmux send-keys -t "$role" Enter
-  sleep 10
-  tmux send-keys -t "$role" "${PROMPTS[$i]}" Enter
-done
 
-sleep 25
-for round in 1 2 3; do
-  for role in "${ROLES[@]}"; do tmux send-keys -t "$role" "2" Enter; done
-  sleep 8
+  # Wait for claude to boot. If the "trust this folder" / Security-guide dialog
+  # appears, accept it with Enter ("1. Yes, I trust this folder" is the default).
+  # Stop waiting once remote control is active (claude is ready for input).
+  for attempt in $(seq 1 20); do
+    sleep 2
+    pane=$(tmux capture-pane -t "$role" -p 2>/dev/null || true)
+    if echo "$pane" | grep -q "trust this folder"; then
+      tmux send-keys -t "$role" Enter
+      sleep 2
+      continue
+    fi
+    if echo "$pane" | grep -qE "remote-control is active|bypass permissions on"; then
+      break
+    fi
+  done
+
+  tmux send-keys -t "$role" "${PROMPTS[$i]}" Enter
+  sleep 5
 done
 
 echo "=== remote-control URLs ==="
 for role in "${ROLES[@]}"; do
-  url=$(tmux capture-pane -t "$role" -p 2>/dev/null | grep -oE "https://claude.ai/code/session_[A-Za-z0-9]+" | head -1)
+  url=$(tmux capture-pane -t "$role" -p -S -200 2>/dev/null | grep -oE "https://claude.ai/code/session_[A-Za-z0-9]+" | head -1)
   echo "$role: ${url:-<not ready yet>}"
 done
