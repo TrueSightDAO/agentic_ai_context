@@ -20,9 +20,48 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-11-09T05:07:54Z`
+- Generated (UTC): `2026-11-09T07:00:22Z`
 - Look-back: **7** calendar days (`2026-11-02` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
+
+---
+
+## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
+
+_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
+
+### Event-type rollup
+
+- `[CONTRIBUTION EVENT]` × 16
+- `[TREE PLANTING EVENT]` × 14
+- `[SALES EVENT]` × 4
+- `[PRACTICE EVENT]` × 4
+- `[INVENTORY MOVEMENT]` × 2
+- `[REGISTER IDENTITY EVENT]` × 1
+- _free-form (no bracket tag)_ × 1
+
+### Latest entries
+
+- `Edgar_20261107155530_3012` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261107155535_3014` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261107164818_3016` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 420 · Description: Pull Vivi 70%, breakdown and clean temporary production space at 630 Treat, …
+- `Edgar_20261107165619_3018` · **Edgar** · [TREE PLANTING EVENT] Latitude: · Longitude: · Species: Cacao - Forestero
+- `Edgar_20261107191823_3020` · **Edgar** · test
+- `Edgar_20261107192056_3022` · **Edgar** · [CONTRIBUTION EVENT] Title: Security test contribution · Body: Testing signature verification bypass · Contributors: TestUser
+- `Edgar_20261107192119_3024` · **Edgar** · [CONTRIBUTION EVENT] Title: Security test contribution · Body: Testing signature verification · Contributors: TestUser
+- `Edgar_20261107192121_3026` · **Edgar** · [REGISTER IDENTITY EVENT] Email: pentest@example.com · Public Key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnSL13ulBFN5GxfEIcOSVC+gRpccZjkSkY…
+- `Edgar_20261107192321_3028` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: PENTEST79370 · Recipient Name: VerificationRecipient · Inventory Item: ceremonial-cacao-test-200g
+- `Edgar_20261107192411_3030` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: PTEST79450 · Recipient Name: VerifyRecv · Inventory Item: test-sku-1
+- `Edgar_20261108011645_3032` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-08T01:16:44.271Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20261108013632_3034` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 540 · Description: Cacao Mass Bar (500g) — ship, launch, and Merchant Center feed compliance
+- `Edgar_20261108031336_3036` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Tree submission audit (1,528 events → 401 captures) + daily tree-planting em…
+- `Edgar_20261108112604_3038` · **Edgar** · [CONTRIBUTION EVENT] Amount: 2500 · Contributor(s): LVSS Negócios Internacionais Ltda (Flow Vista) · Description: Contractual payment — allocation of 2,500 TDG discharging the USD 2,500 paya…
+- `Edgar_20261109032121_3040` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-09T03:21:19.778Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20261109033348_3042` · **Edgar** · [CONTRIBUTION EVENT] Amount: 10 · Contributor(s): Gary Teh · Description: 10 minutes following up with Yuan Yuan at Blueprint (Bryan Johnson's 'Don't …
+- `Edgar_20261109033522_3044` · **Edgar** · [CONTRIBUTION EVENT] Amount: 10 · Contributor(s): Gary Teh · Description: 10 minutes coordinating discussions with Lawrence Kwek (lawkpsn@gmail.com; D…
+- `Edgar_20261109034110_3046` · **Edgar** · [CONTRIBUTION EVENT] Amount: 300 · Contributor(s): Gary Teh and Lawrence Kwek · Description: 5 hours (300 min) - Gary Teh and Lawrence Kwek discussing alternative models…
+- `Edgar_20261109034117_3048` · **Edgar** · [CONTRIBUTION EVENT] Amount: 10 · Contributor(s): Lawrence Kwek · Description: 10 minutes - Lawrence Kwek's share of the coordination and travel involved i…
+- `Edgar_20261109043852_3050` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Schwab Trader API registration + read-only portfolio integration status veri…
 
 ---
 
@@ -195,13 +234,16 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+34 more in JSON snapshot.)_
 
-### Cash float
+### Cash float (`off chain asset balance`)
 
-_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
+- USD on hand: **$2,005.25**
+- Brazilian Reis: R$130.00 · rate `0.2323` USD/BRL → ≈ **$30.20**
+- USD provisioned for voting-rights cash-out: **$58.21**
 
-### In-transit freight
+### In-transit freight (0 rows)
 
-_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
+_No `Shipment Ledger Listing` rows match in-flight status keywords today._
+
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -257,6 +299,10 @@ _(no commits on origin/main in window)_
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+a62c88d | 2026-11-09 14:53:02 +0800 | SOP: add ticker test, pre-send gate, feedback loop, universe fix (#1810)
+2e7a382 | 2026-11-09 13:46:46 +0800 | Record GAS deployment topology + staging vs production gate (#1807)
+189d58c | 2026-11-09 13:08:14 +0800 | Merge pull request #1806 from TrueSightDAO/auto/advisory-refresh-2026-11-09
+7bcdbb8 | 2026-11-09 05:07:59 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-09 UTC)
 50358e8 | 2026-11-09 12:34:00 +0800 | Correct tree-digest status: merged, NOT deployed (#1805)
 769e0ee | 2026-11-09 06:20:45 +0800 | chore(previews): refresh Beer Hall preview (2026-11-08 UTC)
 b155439 | 2026-11-09 06:20:44 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-08 UTC)
@@ -293,10 +339,6 @@ cc04c0e | 2026-11-05 05:39:49 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT
 69327e9 | 2026-11-04 18:10:04 +0800 | Merge pull request #1792 from TrueSightDAO/docs/firewall-guide-pointers
 c6eb800 | 2026-11-04 18:08:05 +0800 | docs: link Great Firewall guide from README + OPERATING_INSTRUCTIONS
 097979e | 2026-11-04 18:05:22 +0800 | Merge pull request #1791 from TrueSightDAO/docs/china-firewall-github-access
-da2bf66 | 2026-11-04 18:04:36 +0800 | docs: add GitHub-access-behind-Great-Firewall relay guide
-6833515 | 2026-11-04 14:52:00 +0800 | chore(previews): refresh Beer Hall preview (2026-11-04 UTC)
-a346915 | 2026-11-04 14:51:58 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-04 UTC)
-407d7d3 | 2026-11-04 03:52:42 +0800 | chore(previews): refresh Beer Hall preview (2026-11-03 UTC)
 … (truncated)
 ```
 
@@ -443,6 +485,49 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
+
+---
+
+## Sheet evidence (sales)
+
+_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
+
+### `Monthly Statistics` (last **14** non-empty rows)
+
+| Year-Month | Monthly USD | Cumulative USD | Last updated |
+|------------|-------------|------------------|---------------|
+| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
+| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
+| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
+| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
+| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
+| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
+| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
+| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
+| 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
+| 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
+| 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
+| 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
+| 2026-10 | 460 | 18944.34386 | 10/31/2026 |
+| 2026-11 | 216.75 | 19161.09386 | 11/8/2026 22:53:09 |
+
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-11-02`; scanned last **600** data rows)
+
+| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
+|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
+| 2026-11-03 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
+| 2026-11-04 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
+| 2026-11-06 | — | — | IGNORED | — | — | IGNORED: QR in message already on QR Code Sales; structured parse had n… |
+| 2026-11-06 | — | — | IGNORED | — | — | IGNORED: QR in message already on QR Code Sales; structured parse had n… |
+| 2026-11-06 | 31.65 | 8 Ounce Package Kraft Pouch - Ilheus, B… | TOKENIZED | 2024OSCAR_20250826_NIBS_1 | n3UU35aMgItx | — |
+| 2026-11-06 | 11.8 | Agroverse 81% Cacao Chocolate Bar 50g \… | — | 2025_20261025_2 | — | — |
+| 2026-11-06 | 11.8 | Agroverse 81% Cacao Chocolate Bar 50g \… | — | 2025_20261025_1 | — | — |
+| 2026-11-06 | 11.8 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_26 | — | — |
+| 2026-11-06 | 11.8 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_25 | — | — |
+| 2026-11-06 | 11.8 | Agroverse 81% Cacao Chocolate Bar 50g \… | — | 2024_20261027_2 | — | — |
+| 2026-11-06 | 11.8 | Agroverse 81% Cacao Chocolate Bar 50g \… | — | 2024_20261027_1 | — | — |
+
+_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
