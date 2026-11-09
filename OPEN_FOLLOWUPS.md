@@ -39,6 +39,39 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### `daily_trades.latest_closes` is still computed on request — maintain a summary table instead
+
+**Filed 2026-11-07. Owner: unclaimed. Priority: MEDIUM-HIGH — the read path is correct now but still costs seconds, and it silently degrades whenever the cache is cold.**
+
+**What is already fixed.** `DailyTrade.latest_closes` (backs the `/daily_trades` feed) was a
+`ROW_NUMBER() OVER (PARTITION BY company_id ORDER BY date_published DESC)` window function over
+`daily_trades` — **111 GB / ~24M rows**. Measured plans: `Seq Scan` (24M) → `Sort` → `WindowAgg`,
+**>120s timeout** (~9 min realistically). A `DISTINCT ON` rewrite is equally bad (Postgres has no
+skip-scan). Rewritten to `JOIN LATERAL … ORDER BY date_published DESC LIMIT 1` in
+**sentiment_importer PR #1147**, using the pre-existing `dt_by_company (company_id, date_published)`
+index: **18.08s cold, 0.6s warm** for 25,419 companies. Also fixed: `SgxPriceRefresher` used to
+unconditionally `Rails.cache.delete("daily_trades/latest")`, which forced that rebuild on the next
+user request — now guarded by `NEVER_CLEAR_KEYS` (**PR #1146**).
+
+**What still needs doing.** Even the LATERAL form is 18s on a cold buffer pool, and it grows with
+company count. It is only tolerable because of the 1-hour `Rails.cache` TTL — so any cache miss is
+a multi-second-to-tens-of-seconds page render. Do **not** warm or shorten the TTL until this is
+solved.
+
+**Recommended fix (~60 min):** stop computing on request. Add a `latest_closes` summary table
+(`company_id` PK, `date_published`, `close`, `updated_at`) written by the EOD price inserters
+(`EodhdPriceRefresher`, `SgxPriceRefresher`) via a single upsert per run, then serve the feed from a
+plain `JOIN companies USING (company_id)` — a 25k-row read, sub-100ms, no cache required.
+
+**Verify before/after:** `EXPLAIN` the new feed query (expect an index scan on a ~25k-row table, no
+`Seq Scan` on `daily_trades`), then confirm the feed still returns identical rows/columns
+(`company_name`, `stock_symbol`, `company_id`, `date_published`, `close`) and the same
+`stock_symbol ASC` order. **Known trap:** run the summary-table backfill as its own job, not inside a
+web request; and remember dev and prod use **different Redis hosts** (see `STAGED_ROLLOUT_SOP.md` §2.4).
+
+**Related:** `daily_trades` had `last_vacuum: never` / `last_analyze: never` and ~490k dead tuples
+before this work; `ANALYZE` was run manually but a deliberate `VACUUM (ANALYZE)` is still owed.
+
 ### Shipment pages fetch a **farm-keyed** media collection slug — all 11 (`agl0`–`agl14`) 404, and AGL4's gallery is empty
 
 **Symptom.** `shipments/agl4/index.html` 404s on
