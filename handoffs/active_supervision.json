@@ -1,5 +1,18 @@
 {
   "schema_version": 1,
   "_comment": "Supervisor-written, NOT generated. Claim a thread by adding an entry to 'claims'; release it by removing that entry. plan_file is the path as it appears in HANDOFF_MANIFEST.md (backticks optional); claimed_at is ISO-8601 UTC. Claims older than ~60 min are surfaced as stale by scripts/build_handoff_index.py so an abandoned claim is never silently trusted.",
-  "claims": []
+  "claims": [
+    {
+      "plan_file": "OPEN_FOLLOWUPS.md#sophia-redis-mark-and-claim-dispatch-plan-doc-not-yet-on-main",
+      "supervisor": "Envoy (nelanco-claude, supervisor loop)",
+      "claimed_at": "2026-11-09T07:10:00Z",
+      "note": "Discord #envoy-server (channel 1562008028079726622). Resumed after a real nelanco-claude box outage: Claude Code OAuth tokens on this box had expired/gone empty (epoch-0 expiry), all four tmux panes authenticated-but-credential-less; Sophia independently diagnosed it, fixed her own broken fleet SSH key + a 0-byte `claude` binary shadow she found along the way, and surfaced it. Gary re-authenticated; I independently verified all four panes live (I'm running in one of them). Pinged Sophia to re-verify + resume -- she found the plan's PR3/PR-C numbering was stale (PR3=Discord marks already merged #565 2026-10-28; PR-C=GitHub rate-limit semaphore already merged+deployed, she'd misread it as still open on a first pass and self-corrected before acting). Authorized PR-C's go anyway since it was already shipped -- no-op, she declined to duplicate work, good discipline. RESUME HERE = Gary's go on PR-D (Redis marks-reaper: consume/expire the `marks` zset, currently 51 and growing with no TTL) -- own-repo, self-contained, autonomous-safe once go'd. Separately flagged, NOT bundled: a `maxmemory` 64->512 MB raise she wants held for Gary's explicit approval as its own prod-config decision."
+    },
+    {
+      "plan_file": "plans/SUNMINT_PSEUDO_TREE_QR_PLAN.md",
+      "supervisor": "Envoy (nelanco-claude, supervisor loop)",
+      "claimed_at": "2026-11-09T06:58:00Z",
+      "note": "Discord #sunmint (channel 1559724628862173335). Sophia correctly self-parked this gate after 9 unanswered nudges over ~9 hours (`clasp push` on a live GAS tree-ingestion project -- always-stop, human-only, she declined to self-authorize despite the pressure). Dismissed the thread goal with reason=blocked (not completed) -- state documented in OPEN_FOLLOWUPS.md, 30/30 test suite green, GAS backup taken, PR #617/#620/#622 + docs #1805/#1807 merged. NOTHING FOR A SUPERVISOR TO DO HERE except not re-nudge: she will resume on a bare `push it` / `push and trigger` / `wrap up` reply from Gary, no re-derivation needed. check_sophia_stalled.py reads this channel as stalled (no post in 5 min) but that's a false positive against a deliberate, complete stop -- do not treat it as a hang needing intervention."
+    }
+  ]
 }
