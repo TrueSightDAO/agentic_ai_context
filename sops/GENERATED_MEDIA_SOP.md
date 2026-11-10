@@ -154,6 +154,29 @@ both are "Lane A, `derived_from` a real sha256."
   Both must pass; neither substitutes for the other.
 - **R6.3 —** Default when unknown is **pending**, not granted. A frame whose people-status
   has not been resolved is treated as containing an identifiable person.
+- **R6.3a — Recognizability threshold (added 2026-11-10, per Envoy/Gary review).** The
+  conservative default is **kept**, but "identifiable" is now *defined* rather than assumed:
+  it means **a face that is recognizably visible and in focus** — enough that a viewer could
+  pick that person out again. A human-shaped presence that is distant, blurred, silhouetted,
+  seen from behind, masked by helmet/gear, or under ~5% of frame area is **not** identifiable
+  and does **not** trigger R6. Neither is a crowd so wide that no individual face resolves.
+  The threshold narrows the *trigger*, not the obligation: once a face does meet it, consent
+  is required exactly as R6.1 says.
+- **R6.3b — The determination is a one-time human call, recorded on the frame — not a
+  per-generation question.** Write it into the frame's own metadata (a sidecar keyed by the
+  frame's `sha256`): `people_status: none | not_identifiable | identifiable | pending` plus
+  `people_status_by` and `people_status_at`, so every future generation from that same frame
+  **reuses** the ruling instead of re-asking. This is the difference between a policy that
+  gets followed and one that gets routed around: an analyst generating 20 variants from one
+  frame should answer the people-question **once**, and the answer should outlive the session.
+- **R6.3c — Genuine ambiguity still defaults to `pending`, and `pending` still blocks
+  generation.** The threshold exists to prevent paralysis on clearly-fine frames (a distant
+  worker at the treeline), not to license a judgment call in favour of shipping. If two
+  reasonable people would disagree about whether the face is recognizable, it is `pending` —
+  pick another frame rather than spend the argument.
+- **R6.3d — `people_status` is separate from `consent_ref`.** `not_identifiable` means no
+  consent was triggered; `identifiable` means consent **is** sought and generation waits on
+  `consent_ref`. Neither value may be inferred from the other.
 - **R6.4 —** No people ⇒ no consent step (see §7.1: this is why product shots are the
   clean pilot).
 
@@ -248,8 +271,28 @@ fermentation box. You need ~3 s of connective tissue.
   `derived_from: [sha256(frame)]`, `motion: "extended"`, `motion_seconds: 3`. **No
   disclosure needed.** Caption stays silent or generic; it may not imply the extension is
   recorded footage.
-- **Also correct (Lane A):** extend *forward* from clip B's first real frame instead, if
-  that reads better.
+- **Also correct (Lane A), but a *different operation* — read the caveat:** extend from
+  clip B's **first real frame** instead, if that reads better.
+
+  **Caveat — "generate forward" and "play reversed" are not the same thing.** Unless the
+  provider genuinely supports **end-frame conditioning** (frame *N* as the terminal target,
+  with the model solving for the frames that arrive there), the only way to get motion that
+  *resolves into* clip B is: generate from B's first frame, then **play the result backward**
+  in the edit. Seedance's documented conditioning is **first-frame (or first+last)** — so
+  before relying on last-frame conditioning, verify it on the actual endpoint. Falling back
+  silently to reverse-in-post changes what the clip *is*, not just how it is assembled.
+
+  **Reverse-in-post only reads naturally for content without inherent directionality.**
+  A pan, push-in, drift, or rise reverses fine — motion is roughly symmetric, and the eye
+  reads it as a slow settle either way. **Do not reverse** anything with causal or physical
+  directionality: pouring, falling, breaking, opening, unwrapping, steam rising, a knife
+  cutting, liquid being absorbed. Reversed, these read as physically impossible and viewers
+  catch it immediately — and it is a **silent** failure, because the manifest still says
+  Lane A and the `derived_from` chain is still honest. The provenance is fine; the physics
+  is wrong.
+
+  **Practical rule:** if you cannot name the direction of the motion in the source frame in
+  one word, do not reverse it — extend forward from clip A instead, and cut the seam.
 - **Acceptable with label (Lane B):** no adjacent frame exists (clip A ends on a hard cut /
   black) → prompted transition. Now `derived_from: []`, `disclosure_required: true`, visible
   AI label.
@@ -362,8 +405,43 @@ Target: `go_to_market/scripts/verify_newsletter_images.py` (~40 lines, additive)
 | 4 | Manifest row + `index.json` `entity_type: generated` | invariants §8 |
 | 5 | One labelled social post; record actual cost | report back |
 
+### ⛔ STEP 1 IS THE ONLY BLOCKING ITEM — and it is an account action, not engineering
+
+**Status as of 2026-11-10: BLOCKED ON GOVERNOR.** Steps 2–5 are fully specified and every
+prerequisite already exists (source photo sha256'd and gate-approved, manifest schema
+defined, gate logic drafted). Step 1 cannot be performed by the autopilot under standing
+policy:
+
+- Opening a provider account is an **account/identity action with a payment instrument** —
+  the same class as money movement. A governor must choose the route and put a card behind it.
+- The credential then lands in the **vault**, never `.env`. Verified on 2026-11-10: the vault
+  holds **zero** generation-related names — no Seedance, Seedream, fal, or Volcano entry.
+  There is no route to execute against today.
+
+**What a governor must supply to unblock** — pick one, then hand over the key:
+
+| Route | What it needs | Note |
+|---|---|---|
+| **Aggregator** (fal / LinkModel / APIMart) | account + USD card | **Recommended** — no mainland-phone requirement |
+| Volcano Ark direct | Chinese mainland phone + real-name verification | discouraged for this team |
+
+**Do not work around this.** No scraping a free tier, no borrowing a key from another
+project, no "just testing" call on someone else's account. The first inference call on a farm
+or product asset is a data-residency decision as much as a billing one.
+
+### Target placement — build the sample for a real slot
+
+The pilot clip is **not** a generic test. It must be built against a specific upcoming
+calendar row, so the output is usable and the cost line is attributable to a real post.
+Upcoming Reels and their themes are enumerated in `tokenomics/SCHEMA.md` §5. Candidate slots
+are raised with the governor rather than picked unilaterally, because the theme constrains
+what the clip may claim — `Recipes & Rituals` and `Community Impact` want different assets
+than a product hero shot does, and §7.1's product animation is only a natural fit for some
+of them.
+
 **Deliberately not in the pilot:** farm footage (consent + location questions), fillers/
-joiners (needs two real clips sequenced first), any Lane B synthetic.
+joiners (needs two real clips sequenced first), any Lane B synthetic, reversal effects (§7.3
+caveat).
 
 ---
 
