@@ -101,6 +101,57 @@ and costs one line.
 
 ---
 
+### 4.1 Image content correctness
+
+The rules above govern image *mechanics*. They do not govern whether the image **depicts
+what we say it depicts** — and that is the failure mode that actually reaches readers,
+because it is invisible to every mechanical check.
+
+**The image must depict its own claim.** Right farm (not merely *a* farm), right subject,
+right activity, right shipment mode. If the caption says "Paulo's La do Sitio farm, Pará",
+the picture must be that farm in Pará — not a different farm in a different state, and not
+a map pin marking where it sits. If the letter's thesis is that a shipment moved by **air
+cargo**, the hero must not depict a river ferry.
+
+**Never dress a placeholder as evidence.** Map screenshots, logo slates, generic stock, and
+AI renders must never be presented as farm, product, or packing photography. A location pin
+is a *location*, not a farm. A rendered illustration is not a photograph of a real bag.
+Where no honest photograph exists, ship the newsletter with fewer images rather than with a
+substitute that asserts something untrue — §4 already sets a low bar of "one or two
+substantive images", and zero is better than a false one.
+
+**Filename and alt text are untrusted inputs, not verification.** Both are written by the
+same person who made the mistake, and a wrong image almost always carries a confident,
+plausible filename. `freight-cargo-boat-header.jpg` looks exactly like a cargo boat;
+`cacao-flower-to-bar.jpg` looks exactly like flower-to-bar production. Neither is evidence.
+Open the pixels.
+
+**People in photographs — consent before publication.** For any public marketing send,
+confirm that every *identifiable* person in the frame has agreed to appear, including
+bystanders who are not the subject of the photo. A crowded dock or ferry deck is not
+consent. Default preference: use people-free assets for public sends; a product or packing
+photograph can almost always be taken without strangers in it. Where people are the point
+— team, farmers, packing day — treat consent as a prerequisite of the send, not a
+follow-up to it.
+
+**Verification is a line item, not a vibe.** Before a campaign is approved, each image gets
+a row: `filename | claimed subject | caption/alt text | verdict`. Verdict is reached by
+opening the image, not by reading its name. Anything not explicitly verified is, for send
+purposes, unverified.
+
+#### 4.1.1 Candidate automation (recorded, not built)
+
+This class of defect is mechanically detectable: a vision model given the candidate image
+together with its proposed caption/alt text can be asked whether the image supports the
+claim — right subject, right scene type (photo vs map vs render), and whether identifiable
+people are present. That would catch a map screenshot captioned as a farm, a wrong-farm
+photo, and an unconsented crowd, without depending on a human noticing after the fact.
+
+Not built as of 2026-11. Recorded here so the gap is written down rather than rediscovered.
+See `OPEN_FOLLOWUPS.md` for status.
+
+---
+
 ## 5. Copy and typography limits
 
 - **Subject:** aim ≤50 characters. No ALL CAPS, no emoji, at most one exclamation mark.
