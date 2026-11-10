@@ -1,12 +1,64 @@
-# SOP — Payout Report Format (pre-payout PDF)
+# SOP — Payout Schedule (PS)
 
-> **Applies to:** any farmer payout (e.g. CFR Anapu tree planting, PIX/BRL) where a PDF
-> schedule is produced to accompany the transfer. **This PDF is required BEFORE the
+> **Official document class: PAYOUT SCHEDULE (abbrev. `PS`).** Use this name — not
+> "payout report", "payout PDF", or "tree payment PDF" — when referring to it or
+> requesting one. See §0.
+
+> **Applies to:** any farmer payout (e.g. CFR Anapu tree planting, PIX/BRL) where a PS
+> is produced to accompany the transfer. **The PS is required BEFORE the
 > payout is processed**, so the payer and any reviewer can see exactly who is paid, how
 > much, under which PIX key, and *which items* the payment covers.
 >
 > Filed 2026-10-15 after the CFR Anapu payout PDF (86 trees × R$5 = R$430, one PIX key).
 > Governor: Gary. Author: Sophia Truesight.
+
+## 0. Naming — the official name, and how to request one
+
+| | |
+|---|---|
+| **Official name** | **Payout Schedule** |
+| **Abbreviation** | **`PS`** |
+| **Never call it** | "payout report", "payout PDF", "PIX PDF", "tree payment PDF", "the report" |
+| **Generator** | `/tmp/gen_pix_payout_pdf.py` (reportlab — see §4) |
+
+### 0.1 Canonical document ID and filename
+
+```
+PS_<program-slug>_<YYYY-MM-DD>_<count>trees.pdf
+```
+
+- `program-slug` — same slug as the `payout registrations` row, e.g. `crf-anapu`
+- `YYYY-MM-DD` — date the PS was generated
+- `count` — payable tree/item count, e.g. `217trees`
+
+**Example:** `PS_crf-anapu_2026-11-08_217trees.pdf`
+
+The date and count are in the filename **on purpose**: two PS documents for the same
+program are distinguishable at a glance, and a stale one can never be handed over as
+current.
+
+### 0.2 How to ask for one
+
+Say: **"generate a PS for `<program-slug>`"** — optionally "as of `<date>`".
+That phrasing is unambiguous and never means a build, digest, or verification document.
+
+### 0.3 What a PS is NOT — check this before generating
+
+A PS is a **pre-payment instruction for money leaving the DAO**. It is not any of the
+following, which are the documents it is most often confused with:
+
+| Not a PS | What that actually is |
+|---|---|
+| Tree-planting **digest** report | The automated daily email, or its build-verification PDF (`tree_planting_digest`) |
+| Deploy / build-verification report | CI, GAS-push, or test-suite output |
+| Ledger or inventory export | Raw data dump — no payment grouping, no payable set |
+| Signed [PAYOUT EVENT] receipt | Post-payment proof — always comes *after* a PS, never instead of one |
+
+**Test:** if the document is not grouped by PIX key, has no per-item payable table, and
+carries no `NOT PAID` status block, it is **not** a PS and must not be sent in response
+to a request for one.
+
+---
 
 ## 1. Why this format
 
@@ -93,3 +145,4 @@ Define Tree ID / TxID semantics + the link target template.
 - [ ] Pseudo/not-indexed rows flagged + fallback link applied
 - [ ] Excluded duplicates listed with reason
 - [ ] STATUS = NOT PAID until governor explicitly says go
+- [ ] Saved under the canonical name `PS_<program-slug>_<YYYY-MM-DD>_<count>trees.pdf` (§0.1)
