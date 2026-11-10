@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-11-10T07:37:36Z`
+- Generated (UTC): `2026-11-10T19:55:10Z`
 - Look-back: **7** calendar days (`2026-11-03` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -42,7 +42,6 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Latest entries
 
-- `Edgar_20261108011645_3032` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-08T01:16:44.271Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20261108013632_3034` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 540 · Description: Cacao Mass Bar (500g) — ship, launch, and Merchant Center feed compliance
 - `Edgar_20261108031336_3036` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Tree submission audit (1,528 events → 401 captures) + daily tree-planting em…
 - `Edgar_20261108112604_3038` · **Edgar** · [CONTRIBUTION EVENT] Amount: 2500 · Contributor(s): LVSS Negócios Internacionais Ltda (Flow Vista) · Description: Contractual payment — allocation of 2,500 TDG discharging the USD 2,500 paya…
@@ -62,6 +61,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20261109120139_3066` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Contributor(s): Gary Teh
 - `Edgar_20261109221228_3068` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-09T22:12:26.637Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20261110070927_3070` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Email image-content gate: verify each image depicts its caption (Envoy revie…
+- `Edgar_20261110093957_3072` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Description: Unblocked AGL16 payment — produced signed TrueTech→BionPact invoice (REV3)
 
 ---
 
@@ -76,7 +76,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-11-09T11:59:15.274Z`
+- Generated (UTC): `2026-11-10T11:59:14.561Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -91,7 +91,7 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **86** stores — sum logged **warmup** sends (AU): **691**, sum logged **follow-up** sends (AV): **4**; warmup depth (none / once / ≥2): **46** / **0** / **40**; follow-up depth (none / once / ≥2): **85** / **0** / **1**
+- **AI: Warm up prospect**: **83** stores — sum logged **warmup** sends (AU): **673**, sum logged **follow-up** sends (AV): **4**; warmup depth (none / once / ≥2): **44** / **0** / **39**; follow-up depth (none / once / ≥2): **82** / **0** / **1**
 - **Manager Follow-up**: **28** stores — sum logged **warmup** sends (AU): **23**, sum logged **follow-up** sends (AV): **55**; warmup depth (none / once / ≥2): **22** / **1** / **5**; follow-up depth (none / once / ≥2): **10** / **4** / **14**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: _(no rows in this status)_
@@ -272,6 +272,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-11-03 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+807c8ff | 2026-11-10 07:40:32 +0000 | chore(stats): refresh stats indexes [skip ci]
 7746d2a | 2026-11-09 22:39:07 +0000 | chore(stats): refresh stats indexes [skip ci]
 ecc530c | 2026-11-09 07:04:47 +0000 | chore(stats): refresh stats indexes [skip ci]
 a4750ac | 2026-11-08 22:24:11 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -299,6 +300,9 @@ ec08950 | 2026-11-10 15:04:06 +0800 | feat(newsletter): verify each image depict
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+97277b0 | 2026-11-10 17:40:07 +0800 | Record AGL16 signed invoice so payment can proceed (#1819)
+942f19e | 2026-11-10 15:38:00 +0800 | chore(previews): refresh Beer Hall preview (2026-11-10 UTC)
+4b2dffa | 2026-11-10 15:37:58 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-10 UTC)
 714da3f | 2026-11-10 14:53:42 +0800 | docs(email style): §4.1 image CONTENT correctness + consent, not just sizing (#1815)
 57d740a | 2026-11-10 13:19:26 +0800 | Give the pre-payout document an official name: Payout Schedule (PS) + naming convention (#1814)
 739d65e | 2026-11-10 13:11:28 +0800 | docs: add EMAIL_STYLE_CONVENTION.md (Saffron Monk for inbox) (#1813)
@@ -336,15 +340,13 @@ b534aed | 2026-11-07 21:24:39 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT
 942c9b4 | 2026-11-07 14:22:08 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-07 UTC)
 6b54638 | 2026-11-07 13:04:14 +0800 | Merge pull request #1795 from TrueSightDAO/auto/advisory-refresh-2026-11-07
 46407a1 | 2026-11-07 05:03:59 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-07 UTC)
-7e6ccf6 | 2026-11-07 03:38:17 +0800 | chore(previews): refresh Beer Hall preview (2026-11-06 UTC)
-29ce22d | 2026-11-07 03:38:15 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-06 UTC)
-84d54f2 | 2026-11-06 15:10:44 +0800 | chore(previews): refresh Beer Hall preview (2026-11-06 UTC)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+b82f3fa | 2026-11-10 18:10:29 +0800 | Deprecate TDG - update balance in wallets on Ledger (1QKqUTyl3) (#626)
 287c289 | 2026-11-10 15:36:01 +0800 | docs(SCHEMA): add §5 Content Marketing Schedule spreadsheet + MAP/generation cross-refs (#625)
 98d28d9 | 2026-11-10 14:57:11 +0800 | feat(digest): daily Payout Schedule (PS) auto-attachment (#624)
 0f8cb91 | 2026-11-10 12:37:40 +0800 | Restore missing Credentials.js for 5 more GAS projects broken by the .gitignore rule (#623)
@@ -387,6 +389,8 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+3fb2262 | 2026-11-10 15:14:06 +0000 | chore: refresh currencies.json [skip ci]
+e92bde3 | 2026-11-10 14:57:20 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 ad41de9 | 2026-11-09 16:52:35 +0000 | chore: refresh partners-velocity snapshot [skip ci]
 cad68af | 2026-11-09 16:51:04 +0000 | chore: refresh currencies.json [skip ci]
 46873a3 | 2026-11-09 16:26:49 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
@@ -513,7 +517,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
 | 2026-10 | 460 | 18944.34386 | 10/31/2026 |
-| 2026-11 | 216.75 | 19161.09386 | 11/9/2026 22:52:36 |
+| 2026-11 | 216.75 | 19161.09386 | 11/10/2026 10:51:10 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-11-03`; scanned last **600** data rows)
 
