@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-11-09T22:37:35Z`
-- Look-back: **7** calendar days (`2026-11-02` → today UTC)
+- Generated (UTC): `2026-11-10T07:37:36Z`
+- Look-back: **7** calendar days (`2026-11-03` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -42,7 +42,6 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Latest entries
 
-- `Edgar_20261107192411_3030` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: PTEST79450 · Recipient Name: VerifyRecv · Inventory Item: test-sku-1
 - `Edgar_20261108011645_3032` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-08T01:16:44.271Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20261108013632_3034` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 540 · Description: Cacao Mass Bar (500g) — ship, launch, and Merchant Center feed compliance
 - `Edgar_20261108031336_3036` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Tree submission audit (1,528 events → 401 captures) + daily tree-planting em…
@@ -62,6 +61,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20261109114916_3064` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 2500 · Contributor(s): LVSS Negócios Internacionais Ltda (Flow Vista)
 - `Edgar_20261109120139_3066` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Contributor(s): Gary Teh
 - `Edgar_20261109221228_3068` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-09T22:12:26.637Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20261110070927_3070` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Email image-content gate: verify each image depicts its caption (Envoy revie…
 
 ---
 
@@ -236,9 +236,9 @@ _(+34 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$2,005.25**
+- USD on hand: **$2,005.18**
 - Brazilian Reis: R$130.00 · rate `0.2323` USD/BRL → ≈ **$30.20**
-- USD provisioned for voting-rights cash-out: **$58.21**
+- USD provisioned for voting-rights cash-out: **$58.28**
 
 ### In-transit freight (0 rows)
 
@@ -253,7 +253,7 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_(No `YYYY-MM-DD |` lines on/after 2026-11-02 in CONTEXT_UPDATES.md.)_
+_(No `YYYY-MM-DD |` lines on/after 2026-11-03 in CONTEXT_UPDATES.md.)_
 
 ---
 
@@ -261,7 +261,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-11-02 in CONTEXT_UPDATES.md.)_
 
 | Pipeline | Mapped clone | Activity in window |
 |----------|----------------|----------------------|
-| `go_to_market` | `market_research` | **no** |
+| `go_to_market` | `market_research` | **yes** |
 | `TrueChain` | `TrueChain` | **no** |
 | `oracle` | `iching_oracle` | **no** |
 
@@ -272,6 +272,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-11-02 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+7746d2a | 2026-11-09 22:39:07 +0000 | chore(stats): refresh stats indexes [skip ci]
 ecc530c | 2026-11-09 07:04:47 +0000 | chore(stats): refresh stats indexes [skip ci]
 a4750ac | 2026-11-08 22:24:11 +0000 | chore(stats): refresh stats indexes [skip ci]
 4076711 | 2026-11-08 13:49:10 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -287,19 +288,22 @@ ca1d716 | 2026-11-06 19:38:45 +0000 | chore(stats): refresh stats indexes [skip 
 413de39 | 2026-11-04 06:55:17 +0000 | chore(stats): refresh stats indexes [skip ci]
 9b403a1 | 2026-11-03 19:45:12 +0000 | chore(stats): refresh stats indexes [skip ci]
 cd6722b | 2026-11-03 07:10:14 +0000 | chore(stats): refresh stats indexes [skip ci]
-caa92b8 | 2026-11-02 21:53:24 +0000 | chore(stats): refresh stats indexes [skip ci]
-e4c9140 | 2026-11-02 06:42:00 +0000 | chore(stats): refresh stats indexes [skip ci]
 ```
 
 ### `market_research` → `go_to_market`
 
 ```
-_(no commits on origin/main in window)_
+ec08950 | 2026-11-10 15:04:06 +0800 | feat(newsletter): verify each image depicts its caption before send (#203)
 ```
 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+714da3f | 2026-11-10 14:53:42 +0800 | docs(email style): §4.1 image CONTENT correctness + consent, not just sizing (#1815)
+57d740a | 2026-11-10 13:19:26 +0800 | Give the pre-payout document an official name: Payout Schedule (PS) + naming convention (#1814)
+739d65e | 2026-11-10 13:11:28 +0800 | docs: add EMAIL_STYLE_CONVENTION.md (Saffron Monk for inbox) (#1813)
+2563bec | 2026-11-10 06:37:54 +0800 | chore(previews): refresh Beer Hall preview (2026-11-09 UTC)
+e019f42 | 2026-11-10 06:37:53 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-09 UTC)
 846d739 | 2026-11-09 16:44:41 +0800 | Merge pull request #1812 from TrueSightDAO/fix/envoy-spinup-trust-dialog
 c0554c8 | 2026-11-09 16:44:07 +0800 | fix(infra): envoy-spinup trust-dialog auto-confirm (2 -> Enter)
 89603dc | 2026-11-09 16:41:19 +0800 | handoffs: register Redis dispatch + Blueprint/LVSS threads, release claims per §9.2 (#1811)
@@ -335,17 +339,15 @@ b534aed | 2026-11-07 21:24:39 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT
 7e6ccf6 | 2026-11-07 03:38:17 +0800 | chore(previews): refresh Beer Hall preview (2026-11-06 UTC)
 29ce22d | 2026-11-07 03:38:15 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-06 UTC)
 84d54f2 | 2026-11-06 15:10:44 +0800 | chore(previews): refresh Beer Hall preview (2026-11-06 UTC)
-018eeb2 | 2026-11-06 15:10:42 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-06 UTC)
-a5b9bb4 | 2026-11-06 05:20:17 +0800 | OPEN_FOLLOWUPS: file attachment-path-mangling + submit-idempotency defects (#1794)
-268aec5 | 2026-11-05 15:10:32 +0800 | chore(previews): refresh Beer Hall preview (2026-11-05 UTC)
-d391458 | 2026-11-05 15:10:30 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-05 UTC)
-29a6337 | 2026-11-05 13:40:03 +0800 | Merge pull request #1793 from TrueSightDAO/auto/advisory-refresh-2026-11-05
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+287c289 | 2026-11-10 15:36:01 +0800 | docs(SCHEMA): add §5 Content Marketing Schedule spreadsheet + MAP/generation cross-refs (#625)
+98d28d9 | 2026-11-10 14:57:11 +0800 | feat(digest): daily Payout Schedule (PS) auto-attachment (#624)
+0f8cb91 | 2026-11-10 12:37:40 +0800 | Restore missing Credentials.js for 5 more GAS projects broken by the .gitignore rule (#623)
 4ff92ee | 2026-11-09 19:52:45 +0800 | Add TDG 2,500 submission proof (Edgar_20261109114916_3064)
 56335f8 | 2026-11-08 23:00:13 +0800 | Add node regression suite for tree planting digest gate (#622)
 69294cf | 2026-11-08 15:40:21 +0800 | tree digest: surface rows with no photo id instead of silently counting them (#620)
@@ -405,9 +407,6 @@ e7ff241 | 2026-11-05 14:57:22 +0000 | chore: refresh currencies.json [skip ci]
 d806bec | 2026-11-04 19:23:37 +0800 | chore(inventory): refresh currencies.json (repackaging ingest)
 9e4f8a3 | 2026-11-03 14:39:37 +0000 | chore: refresh currencies.json [skip ci]
 33ccd51 | 2026-11-03 14:20:42 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
-34a222d | 2026-11-02 16:34:11 +0000 | chore: refresh partners-velocity snapshot [skip ci]
-c4497d2 | 2026-11-02 16:32:31 +0000 | chore: refresh currencies.json [skip ci]
-0e58426 | 2026-11-02 16:01:02 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -514,9 +513,9 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
 | 2026-10 | 460 | 18944.34386 | 10/31/2026 |
-| 2026-11 | 216.75 | 19161.09386 | 11/9/2026 13:54:23 |
+| 2026-11 | 216.75 | 19161.09386 | 11/9/2026 22:52:36 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-11-02`; scanned last **600** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-11-03`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
