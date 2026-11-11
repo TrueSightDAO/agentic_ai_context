@@ -83,10 +83,15 @@ So the pairing lives **only** on the `Email Newsletter` tab. The blog tab is rea
 look up its `primary_key` / URL and record that on the newsletter row. No blog-tab edit is needed
 or safe.
 
-**Status note.** The blog tab's row count and `status` column are unreliable as a history: the
-sync clears and rewrites rows, and many past-dated rows carry a blank `status` (measured
-2026-11-11: of a 16-row past-dated block, 1 `PUBLISHED`, 2 `SCHEDULED`, 13 blank). Treat blog
-tab statuses as hints; the send log and `Email Newsletter` tab are the reliable record.
+**Status note.** The blog tab's `status` column is unreliable as a history *unless the reconcile
+script has run*: the script sets `status = PUBLISHED` only for posts it finds live on
+agroverse.shop/blog, and a row it has not yet reconciled keeps whatever it had (often blank).
+Measured 2026-11-11: `Agroverse Blog` col B = 51 `PUBLISHED` / 13 blank / 2 `SCHEDULED`;
+`TrueSight Blog` col C = 41 `PUBLISHED` / 1 `SCHEDULED`; `Instagram` col B = **0 `PUBLISHED`** /
+**182 blank** / 38 `PLANNED` / 16 `SCHEDULED`. Read blog statuses as *"reconciled against the live
+site"* rather than *"someone asserted it shipped"*, and Instagram statuses as drafting intent only.
+The canonical vocabulary lives in the workbook's `Configuration!A9:A13`:
+`PLANNED` → `CRAFTING` → `SCHEDULED` → `PUBLISHED`.
 
 **Monthly ritual** (~12 posts/year — a sustainable restart, not the old weekly cadence):
 
@@ -102,9 +107,29 @@ tab statuses as hints; the send log and `Email Newsletter` tab are the reliable 
 relevant already-published post sits unlinked. The post is the cheaper click (no purchase
 commitment) and the durable one (it keeps working after the send is archived).
 
-**Snapshot caveat.** Any row or publish counts in this section are a **dated snapshot**. The
-workbook is machine-synced by `agroverse-ledger-manager@` (roughly daily), so row counts move;
-re-read the sheet and timestamp the number before quoting it.
+**Snapshot caveat.** Any row or publish counts in this section are a **dated snapshot**. Re-read
+the tab and timestamp the number before quoting it.
+
+**Who actually writes the content workbook** (established 2026-11-11 — do not assume a scheduled
+sync):
+
+| Tab | Writer | Behaviour |
+|---|---|---|
+| Agroverse Blog / TrueSight Blog | ad-hoc scripts on the autopilot box: `~/blog_reconcile.py`, `~/ts_blog_reconcile.py` | scrape the **live** site, `values().append()` + targeted `update()` — **append-only, never `clear()`**, and they set `status = PUBLISHED` |
+| Instagram | `~/write_content_plan.py` (+ `sync_content_schedule.py`, which **is** in CI on push / `workflow_dispatch`) | plan script writes explicit row ranges and clears only the **unused tail** (`A238:N400`) |
+
+None of these is on cron or a systemd timer — they were run by hand on 2026-11-11. The observed
+`agroverse-ledger-manager@` revisions (08:24 / 08:43 / 09:20 UTC today) are these manual runs, not
+a daily daemon. A count quoted from an earlier turn can therefore be stale by a few minutes **or**
+by hours depending on when someone last ran a script.
+
+**⚠️ Latent data-loss hazard — do not run the git-CSV sync scripts.**
+`online_content/agroverse_shop/blog_post/sync_blog_schedule.py` and
+`online_content/truesight_dao/blog_post/sync_truesight_blog_schedule.py` do
+`worksheet.clear()` then rewrite from `blog_schedule.csv` in git. Measured 2026-11-11, those CSVs
+hold **1 and 2 data rows**, while the live tabs hold **66 and 42** primary keys. Running either
+script would **delete ~106 rows**. They are not in CI and are evidently not the live writer —
+treat them as destructive and unused. Filed in `OPEN_FOLLOWUPS.md`.
 
 ---
 
@@ -322,6 +347,7 @@ Share **both** spreadsheet IDs with the right service accounts as above.
 
 ## 8. Changelog
 
+- **2026-11-11 (third pass)** — **Corrected the writer claim and filed a data-loss hazard.** Pass 2 said the content workbook is "machine-synced by `agroverse-ledger-manager@` (roughly daily)"; that is **wrong**. The real writers are ad-hoc box scripts — `~/blog_reconcile.py` / `~/ts_blog_reconcile.py` (scrape the live site, `append` + targeted `update`, **never `clear()`**, and set `status = PUBLISHED`) and `~/write_content_plan.py` (explicit ranges, clears only the unused tail). None is on cron or a systemd timer. Also documented the canonical status vocabulary, which lives in `Configuration!A9:A13` (`PLANNED` → `CRAFTING` → `SCHEDULED` → `PUBLISHED`) — correcting pass 1's implication that no terminal state existed — and flagged the dormant **`sync_blog_schedule.py` / `sync_truesight_blog_schedule.py` hazard**: their git CSVs hold 1 and 2 rows versus 66 and 42 live keys, and each does `worksheet.clear()`, so running one would delete ~106 rows.
 - **2026-11-11 (later same day)** — **Corrected §2a's data model.** The first version told readers to add `newsletter_campaign` to the blog tab; that is impossible to sustain, because `sync_blog_schedule.py` derives the blog tab's header from `blog_schedule.csv` in git and rewrites the whole sheet (header included) on every sync — a hand-added column is wiped. The pairing now lives **only** on the `Email Newsletter` tab (`Campaign`, `Blog primary_key`, `Blog URL`), which no sync owns. `Email Newsletter` gained its header this day (16 columns, frozen, `status` dropdown `PLANNED`/`CRAFTING`/`SCHEDULED`/`SENT`). Also noted: blog-tab `status` is not a reliable history (a past-dated 16-row block measured 1 `PUBLISHED`, 2 `SCHEDULED`, 13 blank). Reversing the query direction requires a `blog_schedule.csv` change in `go_to_market` — not a sheet write.
 - **2026-11-11** — New **§2a newsletter ↔ blog pairing**. Measured the gap before documenting it: the blog tab carries no newsletter/email/campaign column (though it does have `Instagram Tie-In`), this SOP had zero "blog" mentions, `send_newsletter.py` had zero blog/permalink references, and the send log has no content column. §2a names `campaign` (col C, already script-written) as the existing join key and specifies two fields to add — `newsletter_campaign` on the blog tab, `content_ref` on the send log — together with a monthly ritual. **Spec only: no sheet columns were added by this edit.** Prompted by the observation that 44 recipients were sent a campaign while published posts sat unlinked.
 - **2026-11-10** — New **§4.1a image content gate** (`scripts/verify_newsletter_images.py`, TrueSightDAO/go_to_market PR #203), plus the rule it enforces in `conventions/EMAIL_STYLE_CONVENTION.md` §4.1 (agentic_ai_context PR #1815). The gate opens each image and checks scene type (photo vs map/render), subjects-vs-claim, and identifiable-people count, exiting non-zero on `FAIL`. Trigger: a 2026-11 freight campaign where **3 of 4** images did not depict their captions (passenger luggage as an air-cargo hero; a map screenshot captioned as a Pará farm; a packing-room shot captioned "flower to bar") — all with plausible filenames. Also in this edit: stale `market_research/` paths corrected to the current `go_to_market` layout, including the `source venv/bin/activate` step, which pointed at a venv that no longer exists.
