@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-11-11T06:55:21Z`
+- Generated (UTC): `2026-11-11T19:48:04Z`
 - Look-back: **7** calendar days (`2026-11-04` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,8 +32,8 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 19
-- `[TREE PLANTING EVENT]` × 12
+- `[CONTRIBUTION EVENT]` × 20
+- `[TREE PLANTING EVENT]` × 11
 - `[PRACTICE EVENT]` × 4
 - `[CONTRIBUTOR ADD EVENT]` × 3
 - `[INVENTORY MOVEMENT]` × 2
@@ -42,7 +42,6 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Latest entries
 
-- `Edgar_20261108112604_3038` · **Edgar** · [CONTRIBUTION EVENT] Amount: 2500 · Contributor(s): LVSS Negócios Internacionais Ltda (Flow Vista) · Description: Contractual payment — allocation of 2,500 TDG discharging the USD 2,500 paya…
 - `Edgar_20261109032121_3040` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-09T03:21:19.778Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20261109033348_3042` · **Edgar** · [CONTRIBUTION EVENT] Amount: 10 · Contributor(s): Gary Teh · Description: 10 minutes following up with Yuan Yuan at Blueprint (Bryan Johnson's 'Don't …
 - `Edgar_20261109033522_3044` · **Edgar** · [CONTRIBUTION EVENT] Amount: 10 · Contributor(s): Gary Teh · Description: 10 minutes coordinating discussions with Lawrence Kwek (lawkpsn@gmail.com; D…
@@ -62,6 +61,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20261110093957_3072` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Description: Unblocked AGL16 payment — produced signed TrueTech→BionPact invoice (REV3)
 - `Edgar_20261111030525_3074` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-11T03:05:23.069Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20261111035559_3076` · **Edgar** · [CONTRIBUTION EVENT] Amount: 30 · Contributor(s): Gary Teh and Jerry Luk · Description: 30 minutes - Gary Teh and Jerry Luk discussing four strategic questions for …
+- `Edgar_20261111105137_3078` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 390 · Description: Agroverse brand film v9 — motion picture generation, scoring, publishing & m…
 
 ---
 
@@ -76,7 +76,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-11-10T11:59:14.561Z`
+- Generated (UTC): `2026-11-11T11:59:14.653Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -86,16 +86,16 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ## Email outreach visibility (logged sends + Hit List AU/AV)
 
-- **Email Agent Follow Up** — logged sends: warmup **1129**, follow_up **71**, bulk **0**, unknown **2** (data rows: **1202**)
+- **Email Agent Follow Up** — logged sends: warmup **1129**, follow_up **72**, bulk **0**, unknown **2** (data rows: **1203**)
 - Distinct recipient addresses (`to_email`, by log `status`): warmup **88**, follow_up **23**, bulk **0**, unknown **2**
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **83** stores — sum logged **warmup** sends (AU): **673**, sum logged **follow-up** sends (AV): **4**; warmup depth (none / once / ≥2): **44** / **0** / **39**; follow-up depth (none / once / ≥2): **82** / **0** / **1**
-- **Manager Follow-up**: **28** stores — sum logged **warmup** sends (AU): **23**, sum logged **follow-up** sends (AV): **55**; warmup depth (none / once / ≥2): **22** / **1** / **5**; follow-up depth (none / once / ≥2): **10** / **4** / **14**
+- **AI: Warm up prospect**: **81** stores — sum logged **warmup** sends (AU): **656**, sum logged **follow-up** sends (AV): **4**; warmup depth (none / once / ≥2): **43** / **0** / **38**; follow-up depth (none / once / ≥2): **80** / **0** / **1**
+- **Manager Follow-up**: **28** stores — sum logged **warmup** sends (AU): **23**, sum logged **follow-up** sends (AV): **56**; warmup depth (none / once / ≥2): **22** / **1** / **5**; follow-up depth (none / once / ≥2): **10** / **4** / **14**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: _(no rows in this status)_
-- **Follow-up pipeline (combined)**: **28** stores — sum logged **warmup** sends (AU): **23**, sum logged **follow-up** sends (AV): **55**; warmup depth (none / once / ≥2): **22** / **1** / **5**; follow-up depth (none / once / ≥2): **10** / **4** / **14**
+- **Follow-up pipeline (combined)**: **28** stores — sum logged **warmup** sends (AU): **23**, sum logged **follow-up** sends (AV): **56**; warmup depth (none / once / ≥2): **22** / **1** / **5**; follow-up depth (none / once / ≥2): **10** / **4** / **14**
 
 ---
 
@@ -272,6 +272,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-11-04 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+c9fc53c | 2026-11-11 06:59:18 +0000 | chore(stats): refresh stats indexes [skip ci]
 85c79cf | 2026-11-10 19:57:36 +0000 | chore(stats): refresh stats indexes [skip ci]
 807c8ff | 2026-11-10 07:40:32 +0000 | chore(stats): refresh stats indexes [skip ci]
 7746d2a | 2026-11-09 22:39:07 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -299,6 +300,19 @@ ca1d716 | 2026-11-06 19:38:45 +0000 | chore(stats): refresh stats indexes [skip 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+97b2b39 | 2026-11-11 17:46:45 +0800 | Correct content-workbook writer claim; file dormant data-loss hazard (#1828)
+25b4f38 | 2026-11-11 17:40:41 +0800 | MAP: add generated-artifact archive + YouTube indexing checklist (#1827)
+145feec | 2026-11-11 17:23:14 +0800 | Fix §2a: blog headers are git-CSV-sourced; link from newsletter side (#1826)
+28a8426 | 2026-11-11 17:12:17 +0800 | SOP §2a: pair one blog post with each newsletter send (#1825)
+65eb88b | 2026-11-11 16:58:10 +0800 | SOP: make a brand-token endcard the mandatory final frame (#1824)
+dc4dd06 | 2026-11-11 16:24:52 +0800 | Add brand-film SOPs: music sourcing/licensing + video production &amp; QC (#1823)
+37ea490 | 2026-11-11 16:24:24 +0800 | Backup: full content schedule snapshot before Nov 2026 cadence rewrite
+1da41a9 | 2026-11-11 16:05:38 +0800 | docs(content-schedule): measured asset capacity + real defect list (#1822)
+3dc52f9 | 2026-11-11 15:52:01 +0800 | docs: file send-log header drift followup + fix CMS §7 markdown nit (#1821)
+afa0314 | 2026-11-11 15:48:19 +0800 | docs(newsletter SOP): §4.1a image content gate + stale path fixes (#1816)
+9d3223a | 2026-11-11 15:46:28 +0800 | docs: add CONTENT_MARKETING_SCHEDULE.md + index cross-refs (#1820)
+304e29f | 2026-11-11 14:55:43 +0800 | chore(previews): refresh Beer Hall preview (2026-11-11 UTC)
+573c868 | 2026-11-11 14:55:41 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-11 UTC)
 7e68558 | 2026-11-11 03:55:33 +0800 | chore(previews): refresh Beer Hall preview (2026-11-10 UTC)
 cd5e54f | 2026-11-11 03:55:31 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-10 UTC)
 97277b0 | 2026-11-10 17:40:07 +0800 | Record AGL16 signed invoice so payment can proceed (#1819)
@@ -326,19 +340,6 @@ b155439 | 2026-11-09 06:20:44 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT
 d906c68 | 2026-11-09 02:00:41 +0800 | chore(previews): refresh Beer Hall preview (2026-11-08 UTC)
 4a50fc2 | 2026-11-09 02:00:39 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-08 UTC)
 37a4060 | 2026-11-08 19:27:17 +0800 | Correct LVSS §542: agreement EXECUTED 2026-10-27; USD 1,000 fiat leg confirmed paid (#1803)
-bfd1c2b | 2026-11-08 18:12:46 +0800 | Amend LVSS §542: TDG terms evidenced in chat, par pinned; add clause 3.3 finding (#1802)
-560c29b | 2026-11-08 14:29:51 +0800 | chore(previews): refresh Beer Hall preview (2026-11-08 UTC)
-f9d0778 | 2026-11-08 14:29:50 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-08 UTC)
-59c949a | 2026-11-08 06:11:56 +0800 | chore(previews): refresh Beer Hall preview (2026-11-07 UTC)
-59effc6 | 2026-11-08 06:11:54 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-07 UTC)
-1520a19 | 2026-11-08 01:56:50 +0800 | File follow-up: shipment pages fetch farm-keyed collection slugs (#1800)
-1a3c2d8 | 2026-11-07 21:24:40 +0800 | chore(previews): refresh Beer Hall preview (2026-11-07 UTC)
-b534aed | 2026-11-07 21:24:39 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-07 UTC)
-8c1c152 | 2026-11-07 19:41:04 +0800 | Rewrite SOP report-generation section: answer-first, data to appendix (#1798)
-2a8cb2f | 2026-11-07 19:02:51 +0800 | Add STOCK_ANALYSIS_AND_PORTFOLIO_SOP.md — market analysis, portfolio mgmt, position recommendations (#1797)
-02f5e16 | 2026-11-07 14:55:49 +0800 | File takedown runbook + cache PII-screening + auth-gated audit sweep follow-ups (#1796)
-41c2396 | 2026-11-07 14:22:09 +0800 | chore(previews): refresh Beer Hall preview (2026-11-07 UTC)
-942c9b4 | 2026-11-07 14:22:08 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-07 UTC)
 … (truncated)
 ```
 
@@ -388,6 +389,8 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+fcc57f8 | 2026-11-11 14:42:32 +0000 | chore: refresh currencies.json [skip ci]
+46ec89a | 2026-11-11 14:28:15 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 3fb2262 | 2026-11-10 15:14:06 +0000 | chore: refresh currencies.json [skip ci]
 e92bde3 | 2026-11-10 14:57:20 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 ad41de9 | 2026-11-09 16:52:35 +0000 | chore: refresh partners-velocity snapshot [skip ci]
@@ -514,7 +517,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
 | 2026-10 | 460 | 18944.34386 | 10/31/2026 |
-| 2026-11 | 216.75 | 19161.09386 | 11/10/2026 22:50:52 |
+| 2026-11 | 216.75 | 19161.09386 | 11/11/2026 10:51:01 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-11-04`; scanned last **600** data rows)
 
