@@ -124,7 +124,7 @@ become channel-builders).
 | Marketplace listings — Faire | 🟩 | New v0 inventory-sync + drift-detection landing now; orders → ledger via `[INVENTORY MOVEMENT EVENT]` with `channel=Faire` | (forthcoming) `sync_faire_listings.py` |
 | Marketplace listings — Etsy | 🔻 | App banned by Etsy 2026-05-19; passive listings only, no integration | (this doc) |
 | Marketplace listings — Amazon | 🔻 | Dormant; brand-flattening concern; no engineering investment | (this doc) |
-| Content Marketing | 🟧 | truesight.me, Beer Hall daily digest, garyteh.com long-form | `LLM_DISCOVERY_SURFACE.md`, `EDITORIAL_TONE.md` |
+| Content Marketing | 🟧 | truesight.me, Beer Hall daily digest, garyteh.com long-form | `LLM_DISCOVERY_SURFACE.md`, `EDITORIAL_TONE.md`, **`CONTENT_MARKETING_SCHEDULE.md`** (forward calendar) |
 | QR Code traceback | 🟧 | Each cacao bag QR scan → tree-financed page on truesight.me, customer reveal of supply-chain lineage | `AGROVERSE_QR_CODE_BATCH_GENERATION.md` |
 | Industry / program partnerships | 🟩 | BE / capoeira / Vipassana onboarding via credentialing platform | `CREDENTIALING_PLATFORM.md`, `BUTTERFLY_EFFECT_COHORT_ONBOARDING_PLAN.md` |
 | SEM / Paid Advertising | ⬜ | Not pursued; cost discipline + brand-story preservation | n/a |
