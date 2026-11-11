@@ -40,6 +40,51 @@ All newsletter drafts/sent mail get a label of shape `Newsletter/<campaign-label
 
 The label auto-creates if it doesn't exist. Aligns with the broader AI/* label convention (`AI/Follow-up`, `AI/Warm-up`, `AI/Sent Follow-up`, `AI/Sent Warm-up`) documented in `PARTNER_OUTREACH_PROTOCOL.md` §9.7.
 
+### 2a. Newsletter ↔ blog pairing — one send, one post
+
+**Purpose:** every newsletter send gets an evergreen landing destination, and every published
+blog post gets a distribution event. The two assets exist; the join between them does not.
+
+**Why this section exists.** As of **2026-11-11** no field anywhere links a send to a post:
+
+| Artifact | What it carries | Newsletter link? |
+|---|---|---|
+| `Agroverse News Letter Emails` (send log) | `message_uuid`, `gmail_message_id`, `campaign`, `subject`, `recipient_email`, `sent_at_utc`, `status`, open/click cols | **no content/permalink column** |
+| `Agroverse Blog Content Schedule` (16 cols) | `primary_key`, `status`, `Wix Draft ID`, `Week`, `Publish Date`, `Blog Title`, `Theme`, `SEO Keywords`, `Instagram Tie-In`, `CTA`, … | **none** — no `newsletter`/`email`/`campaign`/`send` column |
+| `scripts/send_newsletter.py` | body markdown → HTML; `--campaign` tag | **no** blog/permalink/article reference |
+
+The blog tab already carries **`Instagram Tie-In`**, so the cross-channel pattern is established
+for Instagram but was never extended to email.
+
+**The join key is `campaign`.** `send_newsletter.py --campaign <slug>` already writes column C
+of the send log. Use it as the shared identifier; do not invent a second one.
+
+Target schema (spec — **not yet applied**):
+
+| Artifact | Field | Written by | Role |
+|---|---|---|---|
+| Send log, col C | `campaign` | script (exists) | **join key** |
+| Blog tab | `newsletter_campaign` *(to add)* | human | campaign tag(s) featuring this post |
+| Send log | `content_ref` *(to add)* | human or script | blog `primary_key` the send featured |
+
+**Monthly ritual** (~12 posts/year — a sustainable restart, not the old weekly cadence):
+
+1. Choose the post; note its blog-tab `primary_key` and its live URL.
+2. Write `newsletter_drafts/YYYY-MM-DD_<slug>.md` per §4.1, linking the post with
+   `[read it here](https://agroverse.shop/blog/…)`.
+3. Pass `--campaign <slug>` matching the blog row's `newsletter_campaign`.
+4. Run the §4.1a image content gate **before** the review round.
+5. Send per §4.3.
+6. After publishing: set the blog row `status=PUBLISHED`; record `content_ref` in the send log.
+
+**Anti-pattern — don't do this.** Sending a campaign whose only CTA is a product page while a
+relevant already-published post sits unlinked. The post is the cheaper click (no purchase
+commitment) and the durable one (it keeps working after the send is archived).
+
+**Snapshot caveat.** Any row or publish counts in this section are a **dated snapshot**. The
+workbook is machine-synced by `agroverse-ledger-manager@` (roughly daily), so row counts move;
+re-read the sheet and timestamp the number before quoting it.
+
 ---
 
 ## 3. Sheet schema — `Agroverse News Letter Emails`
@@ -256,6 +301,7 @@ Share **both** spreadsheet IDs with the right service accounts as above.
 
 ## 8. Changelog
 
+- **2026-11-11** — New **§2a newsletter ↔ blog pairing**. Measured the gap before documenting it: the blog tab carries no newsletter/email/campaign column (though it does have `Instagram Tie-In`), this SOP had zero "blog" mentions, `send_newsletter.py` had zero blog/permalink references, and the send log has no content column. §2a names `campaign` (col C, already script-written) as the existing join key and specifies two fields to add — `newsletter_campaign` on the blog tab, `content_ref` on the send log — together with a monthly ritual. **Spec only: no sheet columns were added by this edit.** Prompted by the observation that 44 recipients were sent a campaign while published posts sat unlinked.
 - **2026-11-10** — New **§4.1a image content gate** (`scripts/verify_newsletter_images.py`, TrueSightDAO/go_to_market PR #203), plus the rule it enforces in `conventions/EMAIL_STYLE_CONVENTION.md` §4.1 (agentic_ai_context PR #1815). The gate opens each image and checks scene type (photo vs map/render), subjects-vs-claim, and identifiable-people count, exiting non-zero on `FAIL`. Trigger: a 2026-11 freight campaign where **3 of 4** images did not depict their captions (passenger luggage as an air-cargo hero; a map screenshot captioned as a Pará farm; a packing-room shot captioned "flower to bar") — all with plausible filenames. Also in this edit: stale `market_research/` paths corrected to the current `go_to_market` layout, including the `source venv/bin/activate` step, which pointed at a venv that no longer exists.
 - **2026-04-27** — Three updates landed in `send_newsletter.py` (TrueSightDAO/go_to_market PR #79):
   (1) `--track-opens` / `--track-clicks` now default ON (`BooleanOptionalAction`); a forgotten flag can no longer silently produce an untracked send. Pass `--no-track-opens` / `--no-track-clicks` only for an explicit one-off untracked test.
