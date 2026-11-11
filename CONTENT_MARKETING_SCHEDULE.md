@@ -140,7 +140,88 @@ rows = svc.spreadsheets().values().get(
 
 ---
 
-## 8. Related
+## 8. Asset capacity, dependencies & measured defects
+
+Everything in this section was **measured** (2026-11-10) from the live sheet, the S3 bucket
+`media.agroverse.shop`, and the `farm_media_manifests` repo — not copied from prose.
+
+### 8.1 Theme distribution — there are 5 themes, and one is thin
+
+| `Theme` (col I) | Posts | Share |
+|---|---|---|
+| `Cacao Education` | 73 | 23% |
+| `Recipes & Rituals` | 72 | 23% |
+| `Community Impact` | 72 | 23% |
+| `Regenerative Farming` | 68 | 22% |
+| `Behind-the-Scenes` | **29** | **9%** |
+
+⚠️ **`Origin/Adventure` does not exist in this sheet — 0 rows.** If it is a proposed *new*
+theme, a 25% forward allocation is **100% net-new content**, not a redistribution of existing
+rows. That is a materially different risk from "the theme with the least existing content" —
+the thinnest *existing* theme is `Behind-the-Scenes` (29).
+
+### 8.2 MAP capacity — the answer to "do we have enough real footage?"
+
+| Metric | Value | Source |
+|---|---|---|
+| Videos indexed in manifests | **728** | `farm_media_manifests` (22 manifest files) |
+| Already on YouTube (`yt_id`) — embeddable now | **508** | manifest `yt_id` field |
+| Pending upload (no `yt_id`) | **220** | manifest gap |
+| Photos indexed | **177** | manifests |
+| S3 `raw/` source namespaces | **31** | `media.agroverse.shop` |
+
+25% of 314 planned posts = **78 posts**. MAP holds **~9x** that in indexed clips alone, with
+**508 already distributable today**. Also note **235 of 314 posts (75%) are `Reel`** — Reels
+need *cutting*, and real MOV footage is exactly the right input.
+
+**Conclusion: a 25% Origin/Adventure allocation does NOT depend on the Seedance I2V pipeline.**
+I2V (preview-frame → motion b-roll) is a fallback for stills-only assets, and only becomes
+necessary once real footage is exhausted. It is nowhere near exhausted.
+
+**The real bottleneck is indexing, not volume:** 220/728 clips (30%) have no `yt_id` and are
+therefore unusable, and **31 S3 namespaces map to only 22 manifests**, so several farms hold
+raw footage with no index at all. Clearing that requires **no generative credential and no
+spend** — it is simultaneously the cheapest and the blocking step.
+
+### 8.3 ⚠️ `sops/GENERATED_MEDIA_SOP.md` is NOT merged
+
+Cited in review as "PR #1817, merged". Authoritative state as of 2026-11-10:
+
+```
+state: OPEN · isDraft: false · mergedAt: null · updatedAt 2026-11-10T07:38:42Z
+GET contents/sops/GENERATED_MEDIA_SOP.md?ref=main  ->  404
+```
+
+The doc exists **only on its PR branch**, never on `main`. Treat it as a **proposal**, not an
+in-force policy: its Lane A/B rules, its `pending` people-status default, and its cost table
+are not current constraints. Do not sequence work against it until it merges.
+
+### 8.4 Measured defects — bookkeeping, not cadence
+
+**Cadence is genuinely sound:** 24 months (`202509` → `202708`), steady **12–14 posts/month**
+from 2026-02 onward. The plan's *shape* is fine. Its *bookkeeping* is not:
+
+| Defect | Measured | Impact |
+|---|---|---|
+| 🔴 `status` (B) ~95% empty | **298 blank / 16 `SCHEDULED` / 0 published** | Sheet cannot answer "what shipped?" — it is a wish list with dates |
+| 🔴 No terminal published state | vocab is `PLANNED → CRAFTING → SCHEDULED` | Nothing ever records a post as *done* |
+| 🔴 Duplicate `primary_key` | **314 rows, 304 unique → 10 dupes** | Every join on row identity silently mis-joins |
+| 🟠 `Post Day` collisions | **299 unique → 15 collisions** | Two posts/day with no ordering column |
+| 🟠 `Week` vs `Date Range` disagree | **100 vs 101 unique** | At least one row's label mismatches its date span |
+| 🟠 Copy ~82% templated | `Description` 112 uniq · `Caption` 114 · `CTA` 104 · `Hashtags` 61 | Boilerplate visibly recurs ~every 3 weeks on a public feed |
+
+### 8.5 Ranked fixes (risk removed ÷ effort)
+
+1. **De-dupe `primary_key`** to 314 unique + add immutable id — *~15 min; identity precedes all joins.*
+2. **Make `status` real** — add a `PUBLISHED` terminal state and commit to updating it — *nothing downstream is measurable without this.*
+3. **Add an `asset_ref` column** → manifest clip id per post — *this is the missing bridge; neither this sheet nor MAP links a planned post to the footage that serves it.*
+4. **Clear the 220-clip `yt_id` backlog** + manifest the ~9 unindexed namespaces — *no credentials, unblocks real footage.*
+5. **Diversify templated copy** — 112 unique descriptions cannot sustain 24 months.
+6. **Header + populate `Email Newsletter` / `Linkedin`** — see §7.
+
+---
+
+## 9. Related
 
 - `tokenomics/SCHEMA.md` §5 — **authoritative** schema (update it there first, then mirror here)
 - `MEDIA_ARCHIVE_PIPELINE.md` — supply side (what media we hold)
@@ -156,3 +237,4 @@ rows = svc.spreadsheets().values().get(
 | Date | Change |
 |---|---|
 | 2026-11-10 | Created. Sheet was previously findable only via `tokenomics/SCHEMA.md` §5 — 0 hits in `agentic_ai_context` for the ID, title, or "content calendar". Includes live-verified tab list, column schema, access notes (SA not in `read_google_sheet` allowlist), and the headerless `Email Newsletter` / `LinkedIn` gap. |
+| 2026-11-10 | Added §8: measured MAP capacity (728 videos / 508 with `yt_id` / 220 pending / 31 S3 namespaces), the real 5-theme distribution, correction that PR #1817 (`GENERATED_MEDIA_SOP.md`) is **OPEN not merged**, and the measured defect list (status 95% blank, 10 duplicate `primary_key`, 15 `Post Day` collisions). |
