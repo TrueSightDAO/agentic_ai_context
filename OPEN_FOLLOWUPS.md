@@ -39,6 +39,41 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Dormant `sync_blog_schedule.py` / `sync_truesight_blog_schedule.py` would DELETE ~106 content-schedule rows if anyone runs them
+
+**Filed 2026-11-11 (Sophia). Owner: unclaimed. Priority: HIGH — a one-command accident, irreversible, and the scripts look like the obvious way to "sync the sheet".**
+
+`online_content/agroverse_shop/blog_post/sync_blog_schedule.py` and
+`online_content/truesight_dao/blog_post/sync_truesight_blog_schedule.py` each:
+
+1. read their CSV from git (`blog_schedule.csv` / `truesight_blog_schedule.csv`),
+2. `worksheet.clear()` — wiping the whole tab,
+3. rewrite header + rows from the CSV.
+
+**Measured 2026-11-11 — CSV vs live tab:**
+
+| Tab | Git CSV data rows | Live tab primary keys | Rows lost if run |
+|---|---|---|---|
+| `Agroverse Blog Content Schedule` | **1** | **66** | 66 |
+| `TrueSight Blog Content Schedule` | **2** | **42** | 40 |
+
+So these scripts are **not** the live writer (if they were, the tabs would hold 1 and 2 rows). The
+actual writers are ad-hoc box scripts: `~/blog_reconcile.py` and `~/ts_blog_reconcile.py` scrape
+`https://agroverse.shop/blog/` and **append** + targeted-`update`, never clearing; and
+`~/write_content_plan.py` writes explicit ranges (clearing only the unused tail). None is on cron
+or a systemd timer.
+
+Neither script is referenced by any GitHub workflow (`sync-to-sheets.yml` covers only the
+Instagram schedule + hashtags, on `push`/`workflow_dispatch` — no `cron`).
+
+**Why it's worth a backlog entry:** the sheet is the source of truth for the content calendar, the
+scripts carry inviting names, and the failure is a silent mass deletion of rows that exist nowhere
+else (the git CSVs are far behind).
+
+**Suggested fix (not done):** make both scripts refuse to run when `len(csv_rows) < len(sheet_rows)`
+behind a `--force` flag, or delete them and point the README at `blog_reconcile.py`. Add a test
+asserting the guard fires on a 1-row CSV against a 66-row sheet.
+
 ### Newsletter send-log header reads `'2026'` instead of `message_uuid` — every appended row is silently one column off
 
 **Filed 2026-11-11 (Sophia). Owner: unclaimed. Priority: MEDIUM-HIGH — the data still lands correctly today, but nothing guards it, and the failure mode is invisible per-row.**
