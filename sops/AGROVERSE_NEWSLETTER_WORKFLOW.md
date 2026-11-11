@@ -15,11 +15,11 @@ How AI assistants should generate and send community emails to the Agroverse new
 | Subscriber list (canonical) | **Main Ledger** (`1GE7PUq-…`) → tab **`Agroverse News Letter Subscribers`** | Email, Status (`CONFIRMED`), Created Date, Imported Date, Source. Only `CONFIRMED` rows get mail. |
 | Sent / open / click log (canonical) | **Newsletter workbook** (`1ed3q3…`) → tab **`Agroverse News Letter Emails`** | One row per (recipient × campaign). Appended by `send_newsletter.py`; **opened** / **clicked** columns updated by **Edgar** (`Gdrive::NewsletterEmails` uses the same spreadsheet ID). |
 | Planning mirrors + lookup | **Newsletter workbook** (`1ed3q3…`) | Tabs **`Agroverse News Letter Subscribers`**, **`Agroverse QR codes`**, **`Agroverse SKUs`**, **`Currencies`** are **live `IMPORTRANGE` mirrors** from Main Ledger (formula in **A1**). Tab **`Email 360`**: enter email in **B2** to cross-reference sends, QR rows (Owner Email), SKUs (ledger slug → **Shipment**), subscriber row, campaigns digest. Tab **`Workbook context`**: operator notes (rewritten when you re-run the setup script). |
-| Send / draft script | **`market_research/scripts/send_newsletter.py`** | Drafts or sends from `garyjob@agroverse.shop`; **`--recipients-from-sheet`** still reads subscribers from **Main Ledger**; append rows go to **`NEWSLETTER_LOG_SPREADSHEET_ID`** (must match Edgar). Optional **`--track-opens`** / **`--track-clicks`**. |
-| Mirror + Email 360 setup | **`market_research/scripts/setup_newsletter_workbook_mirrors.py`** | (Re)binds IMPORTRANGE mirrors, rebuilds **Email 360** formulas from detected header row, refreshes **Workbook context**. Run with **`--yes`** after sharing both spreadsheets with the market-research service account. |
+| Send / draft script | **`scripts/send_newsletter.py`** | Drafts or sends from `garyjob@agroverse.shop`; **`--recipients-from-sheet`** still reads subscribers from **Main Ledger**; append rows go to **`NEWSLETTER_LOG_SPREADSHEET_ID`** (must match Edgar). Optional **`--track-opens`** / **`--track-clicks`**. |
+| Mirror + Email 360 setup | **`scripts/setup_newsletter_workbook_mirrors.py`** | (Re)binds IMPORTRANGE mirrors, rebuilds **Email 360** formulas from detected header row, refreshes **Workbook context**. Run with **`--yes`** after sharing both spreadsheets with the market-research service account. |
 | Open-tracking endpoint | **Edgar**: `GET https://edgar.truesight.me/newsletter/open.gif?mid=…&r=…` | Serves 1x1 GIF, updates the sheet row keyed by `message_uuid`. |
 | Click-tracking endpoint | **Edgar**: `GET https://edgar.truesight.me/newsletter/click?mid=…&r=…&to=…` | Redirects to the original URL and records click columns on the same row. |
-| Body drafts | **`market_research/newsletter_drafts/YYYY-MM-DD_<slug>.md`** | Markdown body with `**Subject:** …` in the preamble; everything after the first `---` is the email body. |
+| Body drafts | **`newsletter_drafts/YYYY-MM-DD_<slug>.md`** | Markdown body with `**Subject:** …` in the preamble; everything after the first `---` is the email body. |
 
 ### 1b. **Email 360** — purpose and how it works
 
@@ -27,7 +27,7 @@ How AI assistants should generate and send community emails to the Agroverse new
 
 **What it is not:** The send log does **not** store SKU IDs or “products mentioned in copy.” **Campaign + subject** next to the spilled rows are still the human-readable bridge for “what we told them about.”
 
-**Implementation:** All logic lives in the **newsletter workbook** tab **`Email 360`**, built by **`market_research/scripts/setup_newsletter_workbook_mirrors.py --yes`**, which reads **row 1** on Main Ledger tabs to detect email / shipment columns and writes `FILTER` / `COUNTIF` / `IMPORTRANGE`-backed formulas. **B2** is the only required input. Re-run the script after **header renames** or **new join rules** so formulas stay aligned.
+**Implementation:** All logic lives in the **newsletter workbook** tab **`Email 360`**, built by **`scripts/setup_newsletter_workbook_mirrors.py --yes`**, which reads **row 1** on Main Ledger tabs to detect email / shipment columns and writes `FILTER` / `COUNTIF` / `IMPORTRANGE`-backed formulas. **B2** is the only required input. Re-run the script after **header renames** or **new join rules** so formulas stay aligned.
 
 ---
 
@@ -73,7 +73,7 @@ Row 1 (bold, frozen):
 
 ### 4.1 Write the body
 
-Create `market_research/newsletter_drafts/YYYY-MM-DD_<slug>.md`:
+Create `newsletter_drafts/YYYY-MM-DD_<slug>.md`:
 
 ```markdown
 # Newsletter draft — YYYY-MM-DD — <topic>
@@ -94,11 +94,59 @@ garyjob@agroverse.shop
 
 The first `---` splits preamble (which carries the `**Subject:**` line) from the body. The script parses both.
 
-### 4.2 Copy review round (drafts to 2–3 trusted humans, no tracking)
+### 4.1a Image content gate — verify every image depicts its caption
+
+**Verify before the review draft, not just before the live send.** A wrong image caught in
+review costs a reviewer's attention; one that reaches the list costs trust.
 
 ```bash
-cd market_research
-source venv/bin/activate
+python3 scripts/verify_newsletter_images.py \
+  --body-md newsletter_drafts/<file>.md
+```
+
+The gate opens each image and returns a per-image verdict on three facts:
+
+| Fact | Why it matters |
+|------|----------------|
+| **scene type** — photo / map / screenshot / render | A map pin is a location, not a farm. |
+| **subjects vs claim** — yes / partial / no | Right farm, not merely *a* farm. |
+| **identifiable people** | The consent question, before a public send. |
+
+Verdicts are `PASS` / `WARN` / `FAIL`, and it **exits 1 on any FAIL** so it can gate a send.
+`--markdown-report` emits the `filename | claimed subject | caption/alt text | verdict` table
+that `conventions/EMAIL_STYLE_CONVENTION.md` §4.1 requires as a line item.
+
+**`--body-md` only reads body `![alt](src)` refs.** `--header-image` is passed separately on
+the command line, so verify it explicitly:
+
+```bash
+python3 scripts/verify_newsletter_images.py \
+  --images "https://<public-header-url>.jpg" \
+  --caption "Packing day, Black King warehouse, Ilhéus — 27 boxes on two pallets"
+```
+
+`--header-image` takes a **public URL**, not a local path (§5), and the gate accepts `https://`
+sources directly — so the header is verified with the same call, via `--images`.
+
+`--allow-people` downgrades consent findings to `WARN` when the people *are* the point (team,
+farmers, packing crew). Never use it to quiet an unconsented bystander.
+
+**Why this exists, concretely.** In the 2026-11 freight campaign, four candidate images were
+audited and **three were wrong**: a river-ferry shot of passenger luggage used as the hero for
+an *air cargo* story; a Google-Maps screenshot captioned as Paulo's Pará farm (the pin actually
+read "Fazenda São Jorge" — Bahia); and two people handling paper strips captioned
+"flower to bar". A later "fix" replaced the header with an outdoor beach selfie. Every one
+carried a confident, plausible filename — the gate caught all four mechanically.
+
+**Zero images beats a false one.** If the only honest option is "no hero", ship without a hero.
+
+### 4.2 Copy review round (drafts to 2–3 trusted humans, no tracking)
+
+Run from the `go_to_market` repo root. Dependencies are system-installed — there is no in-repo
+`venv` (the older `cd market_research` / `source venv/bin/activate` prefix was stale).
+
+```bash
+cd go_to_market
 python3 scripts/send_newsletter.py \
   --mode draft \
   --to kirsten@kikiscocoa.com --to fatoledojob@gmail.com \
@@ -133,6 +181,7 @@ python3 scripts/send_newsletter.py \
 - **`--exclude-buyers-of-substring TEXT`** (repeatable) drops any recipient whose email appears in the **`Agroverse QR codes`** tab as **Owner Email** on a row whose **Currency** contains TEXT (case-insensitive substring match) AND whose **status** matches `--exclude-buyers-status` (default `SOLD`). **Use this on every campaign about a specific SKU** — see §4.3a for the rationale.
 - Each recipient gets their own `message_uuid` — the pixel URL is unique per (recipient × send), so opens disaggregate cleanly.
 - Use `--max-recipients N` as a safety cap; the script aborts if the resolved list exceeds `N`. Recommended: pass the current subscriber count + 5 as the cap.
+- **Run the image gate first (§4.1a).** A `FAIL` blocks the campaign — there is deliberately no override flag. Note `--body-md` does not cover `--header-image`; verify the header separately with `--images`.
 
 ### 4.3a Buyer exclusion — don't pitch a SKU to someone who already owns it
 
@@ -186,8 +235,8 @@ Implemented in `sentiment_importer/`:
 
 | Purpose | File / env | Notes |
 |---------|------------|-------|
-| Gmail OAuth (send / draft from `garyjob@agroverse.shop`) | `market_research/credentials/gmail/token.json` (local) or `GMAIL_TOKEN_JSON` (CI secret) | See `GMAIL_OAUTH_WORKFLOW.md`. Scope: `gmail.modify`. |
-| Main Ledger read/write (script side) | `market_research/google_credentials.json` (**agroverse-market-research@…**) | Needs read on **`1GE7PUq-…`** (subscribers + IMPORTRANGE source) and **Editor** on **`1ed3q3…`** (append send rows + run mirror setup). |
+| Gmail OAuth (send / draft from `garyjob@agroverse.shop`) | `credentials/gmail/token.json` (repo-root relative; **absent by default**) or the `GMAIL_TOKEN_JSON` env var — **which is what the autopilot box actually uses**, so a missing local token file is normal, not broken | See `GMAIL_OAUTH_WORKFLOW.md`. Scope: `gmail.modify`. |
+| Main Ledger read/write (script side) | `google_credentials.json` (**agroverse-market-research@…**) | Needs read on **`1GE7PUq-…`** (subscribers + IMPORTRANGE source) and **Editor** on **`1ed3q3…`** (append send rows + run mirror setup). |
 | Newsletter workbook write (Edgar side) | `sentiment_importer/config/edgar_dapp_listener_key.json` (**edgar-dapp-listener@…**) | Editor on **`1ed3q3…`** for open/click updates. |
 
 Share **both** spreadsheet IDs with the right service accounts as above.
@@ -207,6 +256,7 @@ Share **both** spreadsheet IDs with the right service accounts as above.
 
 ## 8. Changelog
 
+- **2026-11-10** — New **§4.1a image content gate** (`scripts/verify_newsletter_images.py`, TrueSightDAO/go_to_market PR #203), plus the rule it enforces in `conventions/EMAIL_STYLE_CONVENTION.md` §4.1 (agentic_ai_context PR #1815). The gate opens each image and checks scene type (photo vs map/render), subjects-vs-claim, and identifiable-people count, exiting non-zero on `FAIL`. Trigger: a 2026-11 freight campaign where **3 of 4** images did not depict their captions (passenger luggage as an air-cargo hero; a map screenshot captioned as a Pará farm; a packing-room shot captioned "flower to bar") — all with plausible filenames. Also in this edit: stale `market_research/` paths corrected to the current `go_to_market` layout, including the `source venv/bin/activate` step, which pointed at a venv that no longer exists.
 - **2026-04-27** — Three updates landed in `send_newsletter.py` (TrueSightDAO/go_to_market PR #79):
   (1) `--track-opens` / `--track-clicks` now default ON (`BooleanOptionalAction`); a forgotten flag can no longer silently produce an untracked send. Pass `--no-track-opens` / `--no-track-clicks` only for an explicit one-off untracked test.
   (2) New `--exclude-buyers-of-substring TEXT` (repeatable) + `--exclude-buyers-status STATUS` (default `SOLD`) — drops recipients who already hold the campaign's SKU per the **Agroverse QR codes** tab. **§4.3a** documents the rule and the canonical schema. Use on every SKU-specific campaign.
@@ -219,12 +269,14 @@ Share **both** spreadsheet IDs with the right service accounts as above.
 
 ## 9. Link index
 
-- Script: `market_research/scripts/send_newsletter.py`
-- Mirror / Email 360 setup: `market_research/scripts/setup_newsletter_workbook_mirrors.py`
-- Body drafts: `market_research/newsletter_drafts/`
+- Script: `scripts/send_newsletter.py` — run from the `go_to_market` repo root (the older `market_research/scripts/…` prefix is stale; so is the `venv` activation step)
+- Image gate (§4.1a): `scripts/verify_newsletter_images.py`
+- Mirror / Email 360 setup: `scripts/setup_newsletter_workbook_mirrors.py`
+- Body drafts: `newsletter_drafts/`
 - Edgar controller: `sentiment_importer/app/controllers/newsletter_controller.rb`
 - Edgar model: `sentiment_importer/app/models/gdrive/newsletter_emails.rb`
 - Edgar route: `config/routes.rb` → `GET /newsletter/open.gif`, `GET /newsletter/click`
 - Main Ledger: https://docs.google.com/spreadsheets/d/1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU/edit
 - Newsletter workbook (sends + tracking + mirrors + Email 360): https://docs.google.com/spreadsheets/d/1ed3q3SJ8ztGwfWit6Wxz_S72Cn5jKQFkNrHpeOVXP8s/edit
 - Related: `PARTNER_OUTREACH_PROTOCOL.md` (outreach tone), `GMAIL_OAUTH_WORKFLOW.md` (Gmail auth), `STORE_FOLLOW_UP_EMAIL_TEMPLATE.md` (register reference)
+- Related: `conventions/EMAIL_STYLE_CONVENTION.md` — email style authority (§3/§4 rendering, **§4.1 image content correctness**, §4.1.1 automation notes). Its §9 records that `markdown_to_html` **does not yet** emit the branded wrapper, so §3/§4 are a target state, not current behaviour
