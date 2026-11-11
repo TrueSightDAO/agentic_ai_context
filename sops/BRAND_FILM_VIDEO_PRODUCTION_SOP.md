@@ -18,6 +18,9 @@
 > Resolve every pick to a **file**, then **verify the file itself** — full frame, at the
 > timestamp you will actually use.
 
+> **And every film ends on a brand endcard built from the site's design tokens (§6.3).**
+> No dark plate, no invented colour, no cold stop on footage. Wrap every cut — always.
+
 Of the six failed builds on 2026-11-11, **two** came from skipping exactly that step. Details
 in §4.
 
@@ -213,6 +216,57 @@ before shipping. "Close enough" is how brand drift starts.
 before changing the background. And if the gold emblem is needed at size, source a **vector or
 high-res** file — the favicon is only 192×192 and goes soft when scaled.
 
+### 6.3 The standard endcard — MANDATORY final frame
+
+> **Rule (approved by the governor 2026-11-11): every brand film ends on a brand endcard
+> built from the site's own design tokens.** No dark plate, no invented colour, no
+> footage-only cold stop. This is not optional styling — it is the brand close.
+
+**Why this is a rule and not a preference:** the endcard is the last thing a viewer sees and
+the only frame guaranteed to be on screen long enough to read. A dark plate swallowed a
+black-ink logo entirely ("the logo doesn't show up clearly"), and an eyeballed cream
+(`#f9f9f4`) drifted off-spec. Both defects were in the *final frame* — the frame with the
+least excuse for being wrong.
+
+#### The recipe
+
+| Element | Spec | Source of truth |
+|---|---|---|
+| Background | **`#ffffff`** (`--color-bg`) | `agroverse_shop_beta/index.html` `:root` |
+| Alternate plate | `#f7f7f7` (`--color-bg-light`) | same |
+| Logo | **gold `#ffb020` emblem** (site header mark) | `assets/images/logo/favicon-192x192.jpeg` |
+| Body / tagline ink | **`#3b3333`** (`--color-primary`) | same |
+| Composition | Logo centred, tagline directly beneath | — |
+| Hold | **≥ 2.5 s**, ideally 3.0 s, after the last picture beat | §6.3.2 |
+
+**Default treatment = the site's own header pairing: gold emblem on a `#ffffff` plate.** If the
+governor picks a different token-valid variant, record the choice in the deliverable notes; do
+not quietly substitute a similar-looking colour.
+
+> **The site settles it:** `.logo img { background: white; }` — the canonical pairing is the
+> logo on **white**. Any endcard that is not built on a site token is off-spec by definition.
+
+#### 6.3.1 Mandatory verification before the endcard ships
+
+- [ ] Sample the actual corner pixel and print it as `#%02x%02x%02x` — it must **equal** the token
+- [ ] Confirm logo ink vs background gives real contrast (a black-ink mark on dark = invisible)
+- [ ] Gemini: `endcard_on_white: true`, `logo_clear: true`, `tagline_legible: true`
+- [ ] Confirm the tagline reads correctly **character-for-character** (OCR/vision misreads brand
+      copy more often than it misreads pictures)
+- [ ] `burned_in_third_party_text_or_logo: "none"` — a logo over someone else's form is a fail
+
+#### 6.3.2 Hold length — the endcard must be readable
+
+A 0.5 s endcard is a flash frame, not a brand close. Reserve **≥ 2.5 s** (3.0 s preferred) of
+the total runtime for the card, **after** the final picture beat. If the cut is time-boxed,
+shorten a middle beat — never the endcard.
+
+#### 6.3.3 The endcard is content — QC it like content
+
+Do **not** QC the endcard with a leading question ("does this look like a logo?"). Ask
+**"describe what is in this frame"** across *all* candidate endcard clips first. A leading
+question is how a person holding paperwork got shipped as our brand close (§5).
+
 ---
 
 ## 7. Rendering: never let a timeout truncate a write
@@ -316,7 +370,10 @@ of process — hiding that it took six is.
 - [ ] Full **uncropped** frame verified for every pick
 - [ ] Best timestamp probed per clip (≥6–10 samples)
 - [ ] Transitions probed densely before accepting an "artefact" verdict
-- [ ] Endcard QC'd with "describe what is in this frame"
+- [ ] **Endcard present as the final frame**, built on a site token (§6.3) — `#ffffff` default
+- [ ] **Endcard holds ≥ 2.5 s** after the last picture beat (§6.3.2)
+- [ ] Endcard QC'd with "describe what is in this frame" across all candidates
+- [ ] Tagline verified character-for-character
 - [ ] Brand tokens read from `index.html :root`; corner pixel sampled and compared
 - [ ] Logo ink colour checked against background
 - [ ] Renders detached + `ffprobe`-verified (frames, duration, geometry)
