@@ -59,20 +59,41 @@ for Instagram but was never extended to email.
 **The join key is `campaign`.** `send_newsletter.py --campaign <slug>` already writes column C
 of the send log. Use it as the shared identifier; do not invent a second one.
 
-Target schema (spec — **not yet applied**):
+**⚠️ The link goes on the newsletter side, not the blog side.**
+
+The blog tab's **header row is git-owned**: `online_content/agroverse_shop/blog_post/sync_blog_schedule.py`
+reads `blog_schedule.csv` from git, derives `df.columns` from it, calls `worksheet.clear()` and
+rewrites `A1` onward — header included. (It preserves **status values** and orders
+`primary_key, status` first, but it does not preserve columns it doesn't know about.)
+
+Consequence: **a hand-added column on the blog tab is destroyed on the next sync.** Never add
+one there. To surface "which sends featured this post?", the column must be added to
+`blog_schedule.csv` **in git** — a code change to `go_to_market`, not a sheet write.
+
+Current schema:
 
 | Artifact | Field | Written by | Role |
 |---|---|---|---|
 | Send log, col C | `campaign` | script (exists) | **join key** |
-| Blog tab | `newsletter_campaign` *(to add)* | human | campaign tag(s) featuring this post |
-| Send log | `content_ref` *(to add)* | human or script | blog `primary_key` the send featured |
+| `Email Newsletter` tab | `Campaign` | human | same tag, planned |
+| `Email Newsletter` tab | `Blog primary_key`, `Blog URL` | human | points at the post |
+| `Email Newsletter` tab | `status` | human | `PLANNED`→`CRAFTING`→`SCHEDULED`→`SENT` |
+
+So the pairing lives **only** on the `Email Newsletter` tab. The blog tab is read-only here:
+look up its `primary_key` / URL and record that on the newsletter row. No blog-tab edit is needed
+or safe.
+
+**Status note.** The blog tab's row count and `status` column are unreliable as a history: the
+sync clears and rewrites rows, and many past-dated rows carry a blank `status` (measured
+2026-11-11: of a 16-row past-dated block, 1 `PUBLISHED`, 2 `SCHEDULED`, 13 blank). Treat blog
+tab statuses as hints; the send log and `Email Newsletter` tab are the reliable record.
 
 **Monthly ritual** (~12 posts/year — a sustainable restart, not the old weekly cadence):
 
 1. Choose the post; note its blog-tab `primary_key` and its live URL.
 2. Write `newsletter_drafts/YYYY-MM-DD_<slug>.md` per §4.1, linking the post with
    `[read it here](https://agroverse.shop/blog/…)`.
-3. Pass `--campaign <slug>` matching the blog row's `newsletter_campaign`.
+3. Pass `--campaign <slug>` matching the `Campaign` value on the `Email Newsletter` row.
 4. Run the §4.1a image content gate **before** the review round.
 5. Send per §4.3.
 6. After publishing: set the blog row `status=PUBLISHED`; record `content_ref` in the send log.
@@ -301,6 +322,7 @@ Share **both** spreadsheet IDs with the right service accounts as above.
 
 ## 8. Changelog
 
+- **2026-11-11 (later same day)** — **Corrected §2a's data model.** The first version told readers to add `newsletter_campaign` to the blog tab; that is impossible to sustain, because `sync_blog_schedule.py` derives the blog tab's header from `blog_schedule.csv` in git and rewrites the whole sheet (header included) on every sync — a hand-added column is wiped. The pairing now lives **only** on the `Email Newsletter` tab (`Campaign`, `Blog primary_key`, `Blog URL`), which no sync owns. `Email Newsletter` gained its header this day (16 columns, frozen, `status` dropdown `PLANNED`/`CRAFTING`/`SCHEDULED`/`SENT`). Also noted: blog-tab `status` is not a reliable history (a past-dated 16-row block measured 1 `PUBLISHED`, 2 `SCHEDULED`, 13 blank). Reversing the query direction requires a `blog_schedule.csv` change in `go_to_market` — not a sheet write.
 - **2026-11-11** — New **§2a newsletter ↔ blog pairing**. Measured the gap before documenting it: the blog tab carries no newsletter/email/campaign column (though it does have `Instagram Tie-In`), this SOP had zero "blog" mentions, `send_newsletter.py` had zero blog/permalink references, and the send log has no content column. §2a names `campaign` (col C, already script-written) as the existing join key and specifies two fields to add — `newsletter_campaign` on the blog tab, `content_ref` on the send log — together with a monthly ritual. **Spec only: no sheet columns were added by this edit.** Prompted by the observation that 44 recipients were sent a campaign while published posts sat unlinked.
 - **2026-11-10** — New **§4.1a image content gate** (`scripts/verify_newsletter_images.py`, TrueSightDAO/go_to_market PR #203), plus the rule it enforces in `conventions/EMAIL_STYLE_CONVENTION.md` §4.1 (agentic_ai_context PR #1815). The gate opens each image and checks scene type (photo vs map/render), subjects-vs-claim, and identifiable-people count, exiting non-zero on `FAIL`. Trigger: a 2026-11 freight campaign where **3 of 4** images did not depict their captions (passenger luggage as an air-cargo hero; a map screenshot captioned as a Pará farm; a packing-room shot captioned "flower to bar") — all with plausible filenames. Also in this edit: stale `market_research/` paths corrected to the current `go_to_market` layout, including the `source venv/bin/activate` step, which pointed at a venv that no longer exists.
 - **2026-04-27** — Three updates landed in `send_newsletter.py` (TrueSightDAO/go_to_market PR #79):
