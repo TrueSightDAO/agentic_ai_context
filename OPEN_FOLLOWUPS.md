@@ -39,6 +39,35 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Newsletter send-log header reads `'2026'` instead of `message_uuid` — every appended row is silently one column off
+
+**Filed 2026-11-11 (Sophia). Owner: unclaimed. Priority: MEDIUM-HIGH — the data still lands correctly today, but nothing guards it, and the failure mode is invisible per-row.**
+
+`scripts/send_newsletter.py` appends one row per recipient to the tracking workbook
+(`NEWSLETTER_LOG_SPREADSHEET_ID`). The header cell `A1` holds the literal string `2026` where it
+must hold `message_uuid`. Column names and appended values are therefore shifted against each
+other by one position at the header row, so any downstream reader that resolves columns *by name*
+reads the wrong field for every row.
+
+**Reproduced twice, including at production volume.** First on a small sample send, then on the
+2026-11-10 `freight_landed` campaign (**44 recipients**). On the 44-row send every value landed
+*positionally correct* — `recipient_email`, `campaign`, and `sent_at_utc` all resolved where expected,
+all 44 rows unique, 0 duplicates — so **tracking data survived this time**. That is the point: it
+survived by luck of ordering, not by contract. The real hazard is latent: the moment anyone inserts
+or reorders a column, a name-based reader silently shifts every value one cell and mis-attributes
+emails to the wrong recipients. No current check would catch it.
+
+**Proposed fix (~small).** (a) Repair `A1` to `message_uuid` on the live tracking workbook (one-cell
+write); and (b) make the append path *assert* its header before writing — read row 1, compare to the
+expected column list, and refuse (or self-heal with a loud log line) on mismatch rather than
+appending into a mis-labelled sheet. (b) is the part that matters; (a) alone fixes today and not tomorrow.
+
+**Evidence.** Box `i-05276b8ae82d6b88c`, 2026-11-10: campaign `freight_landed`, `EMAIL_RESULT
+mode=send count=44`, 44 rows appended, 44 unique recipients, first row `2026-11-10T10:05:02Z`;
+`A1` = `'2026'`. Also noted in the same send: two test fixtures (`garyjob+test2@gmail.com`,
+`garyjob+test3@gmail.com`) are still in the Main Ledger subscriber list and received real mail —
+worth removing before the next campaign.
+
 ### Sophia Redis mark-and-claim dispatch — plan doc not yet on `main`
 
 **Filed 2026-11-09. Owner: Envoy (supervisor loop). Priority: MEDIUM — work is actively landing, this entry only exists because the manifest's `Plan file` cell needs a real anchor.**

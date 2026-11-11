@@ -136,7 +136,7 @@ rows = svc.spreadsheets().values().get(
   untracked against the content plan. A header mirroring the Instagram tab
   (`primary_key`, `status`, `Post Day`, theme, subject, etc.) would close this.
 - **`Linkedin Content Schedule` is likewise headerless. If a task implies this sheet already
-  schedules LinkedIn or newsletter content, it does not — only Instagram and the two blogs do.
+  schedules LinkedIn or newsletter content, it does not — only Instagram and the two blogs do.**
 
 ---
 
