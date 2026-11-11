@@ -235,7 +235,7 @@ Implemented in `sentiment_importer/`:
 
 | Purpose | File / env | Notes |
 |---------|------------|-------|
-| Gmail OAuth (send / draft from `garyjob@agroverse.shop`) | `credentials/gmail/token.json` (local) or `GMAIL_TOKEN_JSON` (CI secret) | See `GMAIL_OAUTH_WORKFLOW.md`. Scope: `gmail.modify`. |
+| Gmail OAuth (send / draft from `garyjob@agroverse.shop`) | `credentials/gmail/token.json` (repo-root relative; **absent by default**) or the `GMAIL_TOKEN_JSON` env var — **which is what the autopilot box actually uses**, so a missing local token file is normal, not broken | See `GMAIL_OAUTH_WORKFLOW.md`. Scope: `gmail.modify`. |
 | Main Ledger read/write (script side) | `google_credentials.json` (**agroverse-market-research@…**) | Needs read on **`1GE7PUq-…`** (subscribers + IMPORTRANGE source) and **Editor** on **`1ed3q3…`** (append send rows + run mirror setup). |
 | Newsletter workbook write (Edgar side) | `sentiment_importer/config/edgar_dapp_listener_key.json` (**edgar-dapp-listener@…**) | Editor on **`1ed3q3…`** for open/click updates. |
 
