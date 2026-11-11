@@ -15,11 +15,11 @@ How AI assistants should generate and send community emails to the Agroverse new
 | Subscriber list (canonical) | **Main Ledger** (`1GE7PUq-…`) → tab **`Agroverse News Letter Subscribers`** | Email, Status (`CONFIRMED`), Created Date, Imported Date, Source. Only `CONFIRMED` rows get mail. |
 | Sent / open / click log (canonical) | **Newsletter workbook** (`1ed3q3…`) → tab **`Agroverse News Letter Emails`** | One row per (recipient × campaign). Appended by `send_newsletter.py`; **opened** / **clicked** columns updated by **Edgar** (`Gdrive::NewsletterEmails` uses the same spreadsheet ID). |
 | Planning mirrors + lookup | **Newsletter workbook** (`1ed3q3…`) | Tabs **`Agroverse News Letter Subscribers`**, **`Agroverse QR codes`**, **`Agroverse SKUs`**, **`Currencies`** are **live `IMPORTRANGE` mirrors** from Main Ledger (formula in **A1**). Tab **`Email 360`**: enter email in **B2** to cross-reference sends, QR rows (Owner Email), SKUs (ledger slug → **Shipment**), subscriber row, campaigns digest. Tab **`Workbook context`**: operator notes (rewritten when you re-run the setup script). |
-| Send / draft script | **`market_research/scripts/send_newsletter.py`** | Drafts or sends from `garyjob@agroverse.shop`; **`--recipients-from-sheet`** still reads subscribers from **Main Ledger**; append rows go to **`NEWSLETTER_LOG_SPREADSHEET_ID`** (must match Edgar). Optional **`--track-opens`** / **`--track-clicks`**. |
-| Mirror + Email 360 setup | **`market_research/scripts/setup_newsletter_workbook_mirrors.py`** | (Re)binds IMPORTRANGE mirrors, rebuilds **Email 360** formulas from detected header row, refreshes **Workbook context**. Run with **`--yes`** after sharing both spreadsheets with the market-research service account. |
+| Send / draft script | **`scripts/send_newsletter.py`** | Drafts or sends from `garyjob@agroverse.shop`; **`--recipients-from-sheet`** still reads subscribers from **Main Ledger**; append rows go to **`NEWSLETTER_LOG_SPREADSHEET_ID`** (must match Edgar). Optional **`--track-opens`** / **`--track-clicks`**. |
+| Mirror + Email 360 setup | **`scripts/setup_newsletter_workbook_mirrors.py`** | (Re)binds IMPORTRANGE mirrors, rebuilds **Email 360** formulas from detected header row, refreshes **Workbook context**. Run with **`--yes`** after sharing both spreadsheets with the market-research service account. |
 | Open-tracking endpoint | **Edgar**: `GET https://edgar.truesight.me/newsletter/open.gif?mid=…&r=…` | Serves 1x1 GIF, updates the sheet row keyed by `message_uuid`. |
 | Click-tracking endpoint | **Edgar**: `GET https://edgar.truesight.me/newsletter/click?mid=…&r=…&to=…` | Redirects to the original URL and records click columns on the same row. |
-| Body drafts | **`market_research/newsletter_drafts/YYYY-MM-DD_<slug>.md`** | Markdown body with `**Subject:** …` in the preamble; everything after the first `---` is the email body. |
+| Body drafts | **`newsletter_drafts/YYYY-MM-DD_<slug>.md`** | Markdown body with `**Subject:** …` in the preamble; everything after the first `---` is the email body. |
 
 ### 1b. **Email 360** — purpose and how it works
 
@@ -27,7 +27,7 @@ How AI assistants should generate and send community emails to the Agroverse new
 
 **What it is not:** The send log does **not** store SKU IDs or “products mentioned in copy.” **Campaign + subject** next to the spilled rows are still the human-readable bridge for “what we told them about.”
 
-**Implementation:** All logic lives in the **newsletter workbook** tab **`Email 360`**, built by **`market_research/scripts/setup_newsletter_workbook_mirrors.py --yes`**, which reads **row 1** on Main Ledger tabs to detect email / shipment columns and writes `FILTER` / `COUNTIF` / `IMPORTRANGE`-backed formulas. **B2** is the only required input. Re-run the script after **header renames** or **new join rules** so formulas stay aligned.
+**Implementation:** All logic lives in the **newsletter workbook** tab **`Email 360`**, built by **`scripts/setup_newsletter_workbook_mirrors.py --yes`**, which reads **row 1** on Main Ledger tabs to detect email / shipment columns and writes `FILTER` / `COUNTIF` / `IMPORTRANGE`-backed formulas. **B2** is the only required input. Re-run the script after **header renames** or **new join rules** so formulas stay aligned.
 
 ---
 
@@ -73,7 +73,7 @@ Row 1 (bold, frozen):
 
 ### 4.1 Write the body
 
-Create `market_research/newsletter_drafts/YYYY-MM-DD_<slug>.md`:
+Create `newsletter_drafts/YYYY-MM-DD_<slug>.md`:
 
 ```markdown
 # Newsletter draft — YYYY-MM-DD — <topic>
@@ -235,8 +235,8 @@ Implemented in `sentiment_importer/`:
 
 | Purpose | File / env | Notes |
 |---------|------------|-------|
-| Gmail OAuth (send / draft from `garyjob@agroverse.shop`) | `market_research/credentials/gmail/token.json` (local) or `GMAIL_TOKEN_JSON` (CI secret) | See `GMAIL_OAUTH_WORKFLOW.md`. Scope: `gmail.modify`. |
-| Main Ledger read/write (script side) | `market_research/google_credentials.json` (**agroverse-market-research@…**) | Needs read on **`1GE7PUq-…`** (subscribers + IMPORTRANGE source) and **Editor** on **`1ed3q3…`** (append send rows + run mirror setup). |
+| Gmail OAuth (send / draft from `garyjob@agroverse.shop`) | `credentials/gmail/token.json` (local) or `GMAIL_TOKEN_JSON` (CI secret) | See `GMAIL_OAUTH_WORKFLOW.md`. Scope: `gmail.modify`. |
+| Main Ledger read/write (script side) | `google_credentials.json` (**agroverse-market-research@…**) | Needs read on **`1GE7PUq-…`** (subscribers + IMPORTRANGE source) and **Editor** on **`1ed3q3…`** (append send rows + run mirror setup). |
 | Newsletter workbook write (Edgar side) | `sentiment_importer/config/edgar_dapp_listener_key.json` (**edgar-dapp-listener@…**) | Editor on **`1ed3q3…`** for open/click updates. |
 
 Share **both** spreadsheet IDs with the right service accounts as above.
