@@ -228,6 +228,91 @@ exiftool -s -s -GPSCoordinates out.mp4   # VERIFY before upload
 ### 10. Manifest PR to agentic_ai_context
 - `farm_media_manifests/<farm-id>.json` (+ update index). `git_push_changes` on the data repo (TrueSightDAO/farm_media_manifests). Include v2 fields when transcription ran: `creation_date`, `transcription`, `transcription_status`. The nearest-location fields (§4) ride along in the same file.
 
+## Generated artifacts — `generated-media-raw` namespace (documented 2026-11-11, brand-film v9)
+
+**Raw capture and generated output are different things and must not share a repo.**
+
+| | Repo | Holds |
+|---|---|---|
+| Raw capture | `farm-media-raw` | original HEIC/MOV from farm visits |
+| **Generated** | **`generated-media-raw`** | compiled films/animatics + their lineage |
+| Manifests (raw) | `farm_media_manifests` | sha256, GPS, objects, `yt_id` |
+
+MAP indexes **raw** footage and has no vocabulary for the *inverse* edge: **which raw clips a
+generated video consumed.** Without that edge the same establishing shot gets re-cut into every
+film and nobody notices — the archive degenerates into the same 6 clips on rotation.
+
+Manifest path: `generated_video_manifests/<slug>.json` (+ row in `index.json`). Mirrors MAP field
+names (`sha256`, `yt_id`, `duration`, `entity_type`) so the anti-reuse query works alongside the
+farm tooling. Key fields: `entity_type: "generated"`, `is_raw_footage: false`, `lineage[]`,
+`clearance_flags[]`, `reuse_guard.reserved_sources[]`.
+
+Per beat record `{beat, label, in, out, source_sha256, source_path, in_point, out_point, confidence, method}`.
+
+> **Honesty rule.** An untraced beat is `"confidence": "unknown"` **plus the search method that
+> failed.** Never guess, never leave blank — blank is indistinguishable from "nobody looked".
+> Writing *"swept all 12 raw MOVs at fps=1/3, best corr 0.31 = noise"* tells the next agent the
+> work was done and to try something else.
+
+**Before compiling a new video:** open every manifest in `generated_video_manifests/` and check
+`reuse_guard.reserved_sources`. Already spent in v9: `S1_BARPHOTO.jpg`, `IMG_7654.MOV@6.5-9.0`.
+
+### Decision: browser-facing deliverables are public
+Governor decision 2026-11-11: **generated videos upload to YouTube `public`**, prefixed
+`[GENERATED]`. One v9 caveat on record — its aerial beat has unverified provenance (detailed in
+its manifest); beats marked `unknown` are flagged `clearance_required` and blocked from **paid**
+media until traced, which is a stricter bar than public organic posting.
+
+## YouTube indexing checklist — public ≠ indexable
+
+An upload that is `privacyStatus: public` can still be near-invisible to YouTube search. Verified
+gaps on the v9 upload, all fixed there:
+
+| Field | v9 before | v9 after |
+|---|---|---|
+| caption tracks | **0** | 1 (`en`, descriptive) |
+| hashtags in description | **none** | 10 |
+| playlist | **none** | 1 |
+| `categoryId` | 24 Entertainment | **29 Nonprofits & Activism** |
+| `defaultLanguage` / `defaultAudioLanguage` | unset (YouTube guesses) | `en` |
+| tags | 11 | 17 |
+
+**Upload recipe** (`config/youtube/upload_video_to_youtube.py` uploads only; metadata is a
+follow-up `videos().update(part="snippet")`):
+
+1. Title prefixed `[GENERATED]` for compiled work.
+2. Description: disclaimer first line → what it depicts → **hashtags (10–15)** → chapters `M:SS Label` (**3+ required** to render).
+3. `categoryId` chosen deliberately, not left at the default.
+4. `defaultLanguage: en` so word-level search and captions work.
+5. Attach an **SRT caption track** (`captions().insert`) — see below.
+6. Create/find a **playlist** and insert (`playlistItems().insert`).
+7. Verify with `videos().list(part="status,snippet,contentDetails,topicDetails")`.
+
+### "Proper caption" = three different fields
+A governor saying "caption" may mean any of these; **setting one does not set the others**:
+
+- **title** — `[GENERATED]` prefix, survives search results, embeds, re-uploads
+- **description** — the disclaimer text, chapters, hashtags
+- **caption track** (SRT via `captions().insert`) — accessibility **and text indexing**
+
+For a video with **no voiceover**, an SRT of `[bracketed scene descriptions]` is still worth
+uploading: it gives YouTube text to index and gives a deaf viewer the information a hearing
+viewer gets from music and imagery. It is **not** burned into the picture, so it costs nothing
+visually and can be corrected later.
+
+### Naming risk: `agroverse` is a contested query
+Multiple unrelated **AgroVerse** channels (future-farming/AI content) compete for the bare term.
+Measured 2026-11-11: v9 ranks **#1 for `agroverse`** and **#2 for
+`ceremonial cacao amazon rainforest restoration`** — but that is against 893 videos on a
+105-subscriber channel and can erode. Pair `agroverse` with `cacao` / `truesight dao` rather than
+relying on the bare term. A channel custom URL (`@truesightdao`) helps but does not win the query.
+
+> ⚠️ **YouTube `search.list` staleness trap.** Searching a video's own exact title returns only
+> that video while the general index lags, so a "not in top 10" result *immediately after* a
+> metadata change is **not** evidence the video is unindexed. Re-query a general term before
+> concluding failure. (Seen live in v9: `agroverse` reported NOT IN TOP 10, then rank #1 minutes
+> later with no further change.)
+
 ## Handoff checklist (governor → another Sophia instance)
 Include in the handoff message:
 - [ ] zip path on box (`/media/upload_zips/<farm>.zip`) or new upload
@@ -243,3 +328,15 @@ Include in the handoff message:
 - ❌ Duplicate uploads (sha-dedupe before EVERY upload).
 - ✅ exiftool inject `GPSCoordinates` AFTER convert; verify before upload.
 - ✅ YouTube = videos, GitHub = photos; S3 not needed (governor choice).
+- ❌ "Uploaded public" assumed to mean "indexed" — a public video with 0 caption tracks, no
+  hashtags, no playlist and a default category is close to unfindable. Run the indexing checklist.
+- ❌ Setting the title to `[GENERATED]` and considering the provenance question closed — the
+  marking is for the *viewer*; lineage is for the *archive*. Both are required.
+- ❌ Recording a generated video's source beats from memory. Trace them, and record `unknown`
+  where tracing fails.
+- ❌ Concluding "unindexed" from a `search.list` run made minutes after a metadata change (see
+  staleness trap above).
+- ❌ Treating a generated video as though it inherits its parents' provenance — a compiled film
+  can contain one clearanced clip and one un-cleared one.
+- ✅ Keep large generated blobs on YouTube and reference by `yt_id`; commit only the small
+  diffable manifest.
