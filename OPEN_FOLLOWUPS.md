@@ -39,6 +39,57 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### No retail sales fact table — repeat-purchase rate, SKU loyalty and purchase cadence are all estimates, not measurements
+
+**Filed 2026-11-12 (Sophia). Owner: unclaimed. Priority: MEDIUM-HIGH — the governor asked a plain customer question ("how many are repeat customers, do they buy the same stuff, at what cadence") and the honest answer required three caveats. Provisional numbers exist; they cannot be trusted for a retention metric or an investor deck until this is fixed.**
+
+**The two tabs are complementary and mutually insufficient.**
+
+| Source | Has buyer email? | Has transaction timestamp? |
+|---|---|---|
+| Main Ledger → `QR Code Sales` (687 rows, 198 with email, 34 distinct) | **yes** | **no** — `Sales Date` is the date the sale was batch-logged into Telegram |
+| Main Ledger → `Stripe Social Media Checkout ID` (68 rows) | **no column at all** (only Customer *Name*, session id, Wix order id, items, amount) | yes (Timestamp) |
+
+1. **`Sales Date` is a recording date, not a transaction date.** Measured examples:
+   `will.chen85@gmail.com` → 12 rows all `20260430`; `nora@noraharon.com` → 4 rows
+   all `20260613`; `david@soha.center` → 43 rows all `20260620`. Consequence: purchase
+   span reads 0 days and gap=0 for most repeat buyers. Across the whole retail cohort
+   there are only **5 clean calendar gaps**, i.e. cadence is measurable for exactly
+   **one** retail buyer (`topcoat_cheesy_1h@icloud.com`, 4 purchases / 130 days, gaps
+   15/33/31 → ~monthly). The monthly-cadence hypothesis is real but n=1.
+2. **The Stripe routing tab cannot supply the missing email.** No `email`/
+   `customer_email` column exists. A regex sweep over all 68 rows found 4 addresses,
+   all internal test checkouts (`garyjob@gmail.com`, `garyjob@truesight.me`,
+   `topcoat_cheesy_1h@icloud.com`, `singhua11@hotmail.com`). So even the tab with a
+   trustworthy timestamp cannot be joined to a person.
+
+**Provisional numbers worth preserving** (from `QR Code Sales`, retail only, wholesale/partner aliases — `david@soha.center`, `ewong@gogreatop.com`, `ggfguest@sfzc.org` (SF Zen Center guest alias), `info@thewayhomeshop.com`, `gary@truesight.me` — excluded):
+
+- **8 of 29 identified retail buyers are repeat (≈28%)**; 20 are one-timers.
+- Concentration is extreme: two accounts (`topcoat_cheesy_1h@icloud.com` 35 orders,
+  `will.chen85@gmail.com` 12) hold 47 of the 60 retail repeat orders. "Repeat" is
+  really two loyal customers, not a cohort.
+- SKU loyalty is **split**: 4 of the 8 are ≥60% one SKU (Nibs, Ceremonial, Chocolate
+  Bar — consumables, consistent with replenishment); the 5 two-purchase buyers are
+  ~50/50 mixed and look like sampler/gift buyers who did not return.
+- **49% of all sale rows (188 of 386) carry no email at all**, so the denominator for
+  any repeat-rate claim is itself unknown.
+
+**Remedy — either path closes it; (a) is cheaper.**
+
+- **(a) Stripe API backfill:** pull `customer_details.email` + `created` for the 68
+  sessions in `Stripe Social Media Checkout ID` and join to SKU. Gives a true per-order
+  fact table. Needs a live Stripe key verified on the box first (do not assume one is
+  present). Note the 68 rows are mostly `cs_test_*` sessions — check how many are
+  live-mode before investing.
+- **(b) Edgar SALES EVENT query:** SALES EVENT records may already carry owner email
+  plus a real event timestamp. Query via `seni_sql` (host reachable, 2026-11-12). This
+  may make (a) unnecessary — check (b) first.
+
+**Target artifact:** one per-order retail fact table — `(buyer_email, transaction_ts,
+sku, units, amount, stripe_session_id, qr_code)` — materialised (sheet tab or table) so
+repeat rate, SKU loyalty and repurchase cadence are one query instead of three caveats.
+
 ### Dormant `sync_blog_schedule.py` / `sync_truesight_blog_schedule.py` would DELETE ~106 content-schedule rows if anyone runs them
 
 **Filed 2026-11-11 (Sophia). Owner: unclaimed. Priority: HIGH — a one-command accident, irreversible, and the scripts look like the obvious way to "sync the sheet".**
