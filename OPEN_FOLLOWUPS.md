@@ -39,6 +39,30 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Contribution reporting has no prior-art check — one R$1,000 expense accrued 410 claimed minutes across 4 rows and 2 agent instances
+
+**Filed 2026-11-12 (Sophia). Owner: unclaimed. Priority: HIGH — this is not a cosmetic gap. It produced a 6.8-hour claim on a single R$1,000 accountant payment and it recurs every time two agent instances touch the same thread.**
+
+**Symptom.** The Brazil accountant expense (Jussileide Bomfim Alves Longo, Sep + Oct 2026, R$1,000 Pix of 2026-11-12 08:16) ended up with **four separate `[CONTRIBUTION EVENT]` rows** on the intake tab (`Telegram Chat Logs`, spreadsheet `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`), all dated `20261112`:
+
+| Intake row | Minutes | Filed by | Status |
+|---|---|---|---|
+| `r14922` | **150** | Sophia (this instance) | Successfully Completed |
+| `r15070` | **180** | a concurrent autopilot run on the same thread | Full Provision Awarded |
+| `r15069` | 20 | Gary Teh (governor review) | Full Provision Awarded |
+| `r15071` | 60 | Sophia (re-report after wrongly believing r14922 had vanished) | Successfully Completed |
+
+**Total 410 minutes (6.8 h) for one expense booking**, against a realistic ~60 minutes of durable output. Gary's `r15069` is legitimately separate (governor supervision is its own category — cf. `r12560`); the other three overlap heavily. `r15072` (Amount 0) was filed as a corrective supersede of `r14922`/`r15071`, but that only *documents* the problem.
+
+**Root causes (three, all real).**
+1. **No prior-art check before filing.** Neither `report_contribution` nor the `create_dao_submission` tool checks whether a contribution for this thread/work already exists. Nothing warns on a second claim. The agent has no cheap way to ask "has this work already been reported?"
+2. **`create_dao_submission` returns a FALSE NEGATIVE.** On 2026-11-12 two submits returned `{"status":"error","message":"Submission failed"}` while `journalctl -u dao_protocol` logged **`POST /dao/submit_contribution` → `200 OK`** for both (12:29:20, 12:29:23). The API accepted requests the tool reported as failures. The retry-on-failure reflex then *creates* duplicates. This is the inverse of the already-filed idempotency entry (L267, "not idempotent across a retry — a 200 response that was actually a duplicate") and deserves its own line because the failure mode (silent double-fire) is different.
+3. **The intake sink is undiscoverable.** `submit_contribution` / `report_contribution` write to **`1qbZZhf-…` / `Telegram Chat Logs`**, *not* the Main Ledger (`1GE7PUq-…`) and *not* the `Contribution submission` tab (stale since 2023-11-23). An agent searching the Main Ledger for its own submission — the natural assumption, since every expense/balance row lives there — finds nothing and concludes the submit failed, then re-submits. This is precisely how `r14922` → `r15071` happened. Neither tool returns the row it wrote.
+
+**Proposed fix (~30-40 min).** (a) Have `report_contribution` and `create_dao_submission` **return the written row id and spreadsheet/tab** in the response, and (b) add a `--check-existing` / prior-art pass that lists any same-date `[CONTRIBUTION EVENT]` rows whose description shares the thread's key entity (e.g. contributor name + subject) before writing, prompting on a hit. (c) Independently, fix the false negative in `create_dao_submission` so a 200 is reported as success.
+
+**Verification discipline note.** Three separate turns in this thread asserted a state that was not checked (a balance of "1,215.00" that was drifting under concurrent writes; a "success" treated as unverified because of a wrong-sheet search; a "not found" that was a capped `A1:J9000` read of a 12,556-row sheet). The 9,000-row cap silently truncating results is its own trap — reads should use `get_all_values()`, not a fixed range.
+
 ### No retail sales fact table — repeat-purchase rate, SKU loyalty and purchase cadence are all estimates, not measurements
 
 **Filed 2026-11-12 (Sophia). Owner: unclaimed. Priority: MEDIUM-HIGH — the governor asked a plain customer question ("how many are repeat customers, do they buy the same stuff, at what cadence") and the honest answer required three caveats. Provisional numbers exist; they cannot be trusted for a retention metric or an investor deck until this is fixed.**
