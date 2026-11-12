@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-11-11T19:48:04Z`
-- Look-back: **7** calendar days (`2026-11-04` → today UTC)
+- Generated (UTC): `2026-11-12T07:31:53Z`
+- Look-back: **7** calendar days (`2026-11-05` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -33,8 +33,8 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 ### Event-type rollup
 
 - `[CONTRIBUTION EVENT]` × 20
-- `[TREE PLANTING EVENT]` × 11
-- `[PRACTICE EVENT]` × 4
+- `[TREE PLANTING EVENT]` × 10
+- `[PRACTICE EVENT]` × 5
 - `[CONTRIBUTOR ADD EVENT]` × 3
 - `[INVENTORY MOVEMENT]` × 2
 - `[REGISTER IDENTITY EVENT]` × 1
@@ -42,7 +42,6 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Latest entries
 
-- `Edgar_20261109032121_3040` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-09T03:21:19.778Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20261109033348_3042` · **Edgar** · [CONTRIBUTION EVENT] Amount: 10 · Contributor(s): Gary Teh · Description: 10 minutes following up with Yuan Yuan at Blueprint (Bryan Johnson's 'Don't …
 - `Edgar_20261109033522_3044` · **Edgar** · [CONTRIBUTION EVENT] Amount: 10 · Contributor(s): Gary Teh · Description: 10 minutes coordinating discussions with Lawrence Kwek (lawkpsn@gmail.com; D…
 - `Edgar_20261109034110_3046` · **Edgar** · [CONTRIBUTION EVENT] Amount: 300 · Contributor(s): Gary Teh and Lawrence Kwek · Description: 5 hours (300 min) - Gary Teh and Lawrence Kwek discussing alternative models…
@@ -62,6 +61,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20261111030525_3074` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-11T03:05:23.069Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20261111035559_3076` · **Edgar** · [CONTRIBUTION EVENT] Amount: 30 · Contributor(s): Gary Teh and Jerry Luk · Description: 30 minutes - Gary Teh and Jerry Luk discussing four strategic questions for …
 - `Edgar_20261111105137_3078` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 390 · Description: Agroverse brand film v9 — motion picture generation, scoring, publishing & m…
+- `Edgar_20261112001758_3080` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-12T00:17:55.477Z · Program: truesight-grounding · Practice Type: oracle-consultation
 
 ---
 
@@ -236,9 +236,9 @@ _(+34 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$2,005.10**
+- USD on hand: **$2,005.02**
 - Brazilian Reis: R$130.00 · rate `0.2323` USD/BRL → ≈ **$30.20**
-- USD provisioned for voting-rights cash-out: **$58.36**
+- USD provisioned for voting-rights cash-out: **$58.44**
 
 ### In-transit freight (0 rows)
 
@@ -253,7 +253,7 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_(No `YYYY-MM-DD |` lines on/after 2026-11-04 in CONTEXT_UPDATES.md.)_
+_(No `YYYY-MM-DD |` lines on/after 2026-11-05 in CONTEXT_UPDATES.md.)_
 
 ---
 
@@ -272,6 +272,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-11-04 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+27553bb | 2026-11-11 19:49:13 +0000 | chore(stats): refresh stats indexes [skip ci]
 c9fc53c | 2026-11-11 06:59:18 +0000 | chore(stats): refresh stats indexes [skip ci]
 85c79cf | 2026-11-10 19:57:36 +0000 | chore(stats): refresh stats indexes [skip ci]
 807c8ff | 2026-11-10 07:40:32 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -287,19 +288,20 @@ ca1d716 | 2026-11-06 19:38:45 +0000 | chore(stats): refresh stats indexes [skip 
 2ca5900 | 2026-11-06 07:17:39 +0000 | chore(stats): refresh stats indexes [skip ci]
 8c86c33 | 2026-11-05 20:12:54 +0000 | chore(stats): refresh stats indexes [skip ci]
 2775333 | 2026-11-05 07:16:19 +0000 | chore(stats): refresh stats indexes [skip ci]
-50763d4 | 2026-11-04 19:58:56 +0000 | chore(stats): refresh stats indexes [skip ci]
-413de39 | 2026-11-04 06:55:17 +0000 | chore(stats): refresh stats indexes [skip ci]
 ```
 
 ### `market_research` → `go_to_market`
 
 ```
-27abe42 | 2026-11-11 13:34:49 +0800 | Kling 4.0 I2V pilot — executed, with label-drift finding (#205)
+c2a2b4e | 2026-11-12 12:16:02 +0800 | Add content schedule ↔ Google Calendar sync + blog tab reconciliation (#207)
 ```
 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+bd3ad82 | 2026-11-12 11:05:49 +0800 | File follow-up: retail repeat-purchase/cadence data gap (#1829)
+18fd9fe | 2026-11-12 03:48:29 +0800 | chore(previews): refresh Beer Hall preview (2026-11-11 UTC)
+108f129 | 2026-11-12 03:48:27 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-11 UTC)
 97b2b39 | 2026-11-11 17:46:45 +0800 | Correct content-workbook writer claim; file dormant data-loss hazard (#1828)
 25b4f38 | 2026-11-11 17:40:41 +0800 | MAP: add generated-artifact archive + YouTube indexing checklist (#1827)
 145feec | 2026-11-11 17:23:14 +0800 | Fix §2a: blog headers are git-CSV-sourced; link from newsletter side (#1826)
@@ -337,9 +339,6 @@ a62c88d | 2026-11-09 14:53:02 +0800 | SOP: add ticker test, pre-send gate, feedb
 769e0ee | 2026-11-09 06:20:45 +0800 | chore(previews): refresh Beer Hall preview (2026-11-08 UTC)
 b155439 | 2026-11-09 06:20:44 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-08 UTC)
 9aae24b | 2026-11-09 02:33:18 +0800 | OPEN_FOLLOWUPS: note 2026-11-07 GPS-drop recurrence + pseudo-tree blind spot (#1804)
-d906c68 | 2026-11-09 02:00:41 +0800 | chore(previews): refresh Beer Hall preview (2026-11-08 UTC)
-4a50fc2 | 2026-11-09 02:00:39 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-08 UTC)
-37a4060 | 2026-11-08 19:27:17 +0800 | Correct LVSS §542: agreement EXECUTED 2026-10-27; USD 1,000 fiat leg confirmed paid (#1803)
 … (truncated)
 ```
 
@@ -407,10 +406,6 @@ d486e73 | 2026-11-08 13:51:27 +0000 | chore: refresh currencies.json [skip ci]
 05bec5a | 2026-11-06 18:28:44 +0800 | chore: refresh Agroverse store inventory snapshot
 e7ff241 | 2026-11-05 14:57:22 +0000 | chore: refresh currencies.json [skip ci]
 65af7e2 | 2026-11-05 14:43:07 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
-04a65ea | 2026-11-04 14:52:24 +0000 | chore: refresh currencies.json [skip ci]
-43abcd2 | 2026-11-04 14:37:37 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
-4efeda1 | 2026-11-04 19:23:40 +0800 | chore(inventory): repackaging composition 9e969d3f-8cd9-40a1-b456-3a8a7189adc2
-d806bec | 2026-11-04 19:23:37 +0800 | chore(inventory): refresh currencies.json (repackaging ingest)
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -517,13 +512,12 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
 | 2026-10 | 460 | 18944.34386 | 10/31/2026 |
-| 2026-11 | 216.75 | 19161.09386 | 11/11/2026 10:51:01 |
+| 2026-11 | 216.75 | 19161.09386 | 11/11/2026 22:51:23 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-11-04`; scanned last **600** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-11-05`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
-| 2026-11-04 | — | — | IGNORED | — | — | IGNORED: Grok did not return a usable QR + price. |
 | 2026-11-06 | — | — | IGNORED | — | — | IGNORED: QR in message already on QR Code Sales; structured parse had n… |
 | 2026-11-06 | — | — | IGNORED | — | — | IGNORED: QR in message already on QR Code Sales; structured parse had n… |
 | 2026-11-06 | 31.65 | 8 Ounce Package Kraft Pouch - Ilheus, B… | TOKENIZED | 2024OSCAR_20250826_NIBS_1 | n3UU35aMgItx | — |
