@@ -1,0 +1,195 @@
+# Brazil Monthly Accountant — recurring BRL obligation runbook
+
+> **Status:** SOP, first written 2026-11-12. Owner: Sophia. Applies to the recurring
+> accounting fee for the Black King / Mateus Reis lane.
+>
+> **Read this before booking any monthly accountant payment.** The sequence below is
+> ordered deliberately; running the steps out of order produces a negative balance and an
+> invisible expense (see §4).
+
+---
+
+## 1. The obligation
+
+| Field | Value |
+|---|---|
+| **Counterparty** | **Jussileide Bomfim Alves Longo** — accountant |
+| CPF (Pix key) | `96466189520` |
+| Bank | BCO SANTANDER (BRASIL) S.A. |
+| **Billing entity** | **MATEUS REIS PEREIRA** — CNPJ `50.042.585/0001-80` |
+| **Amount** | **R$ 500,00 / month** |
+| **Due** | 15th of the **following** month (Sept service → due 15.10; Oct service → due 15.11) |
+| Document | `RECIBO DE HONORÁRIOS PROFISSIONAIS` (one per service month) |
+| Delivery channel | WhatsApp group **“Black King - Contab”** — she is **not** on Telegram; Gary relays |
+| Payer of record | Pix from **Zhiwen Teh**, BCO RENDIMENTO (individual, not the LLC) |
+
+Jussileide is the same contracted accountant already recorded in
+`brazil/BRAZIL_TO_SF_FREIGHT_PREFLIGHT_CHECKLIST.md` §contacts (line ~66), alongside
+Saymon (NF-e specialist). This fee is the recurring cost of the Black King CNPJ
+reinstatement / NF-e work tracked there — **not** a new vendor.
+
+---
+
+## 2. Two-leg booking — order is load-bearing
+
+Paying a BRL obligation from a USD balance is **always two ledger events**, never one.
+
+### Leg 1 — fund the BRL balance
+
+```
+python3 -m truesight_dao_client.modules.report_currency_conversion \
+  --ledger offchain \
+  --warehouse-manager "Gary Teh" \
+  --source-currency USD \
+  --source-amount <USD actually debited> \
+  --target-currency "Brazilian Reis" \
+  --target-amount <R$ total> \
+  --implied-rate <target/source> \
+  --conversion-date <YYYYMMDD> \
+  --description "Currency conversion to settle <counterparty> accountant fees <months>" \
+  --attached-filename <conversion receipt> \
+  --dry-run
+```
+
+- `offchain` is the ledger for **every** historical conversion (54/54) — do not invent another.
+- `--dry-run` first, always. Drop the flag only after reading the payload back.
+- The GAS processor (`currency_conversion_processing.gs`) writes the **two** offchain rows
+  itself: source debit **negative**, target credit **positive**. Never hand-write those rows.
+
+### ⏸ Gate — do not proceed until Leg 1 is PROCESSED
+
+Re-read the conversion intake row and confirm `Status = PROCESSED`, then confirm the BRL
+balance actually rose by the target amount. If it has not landed, **wait**. Do not resubmit
+(see §5).
+
+### Leg 2 — book the expense, one row per service month
+
+```
+python3 -m truesight_dao_client.modules.report_dao_expenses \
+  --dao-member-name "Gary Teh" \
+  --amount 500 \
+  --currency "Brazilian Reis" \
+  --ledger offchain \
+  --description "Accountant fees — Jussileide Bomfim Alves Longo (Mateus Reis Pereira, CNPJ 50.042.585/0001-80) — services rendered <Month>/<Year>. Pix ID <id>, ref <ref>" \
+  --attached-filename <recibo .docx/.pdf> \
+  --dry-run
+```
+
+- **One row per service month**, not one combined row. The recibos are per-month documents;
+  combining them loses the monthly P&L attribution.
+- Attach the month's own recibo. Put the Pix image on one row (or both) and cite the Pix ID
+  in the description of both, so either row reconciles to the single payment.
+- The expense is **not** a new obligation being created — it discharges a recibo already
+  issued. Description should say “services rendered”, not “advance”.
+
+---
+
+## 3. Pre-flight and post-flight assertions
+
+**Before submitting anything:**
+
+1. Read the recibos and confirm the amounts sum **exactly** to the Pix amount. (Sept R$500 +
+   Oct R$500 = R$1,000 = the Pix. Any mismatch means stop and reconcile the documents first.)
+2. Confirm the **implied rate** is sane against the reference rate of the day. If the USD
+   debit is outside a plausible band for the BRL received, the conversion and the payment do
+   not reconcile — investigate before booking.
+3. **Search for existing rows first.** Grep the `offchain transactions` Description column for
+   the counterparty name, the billing CNPJ, and “accountant”. Zero hits is the expected
+   clean-slate state; any hit means part of this is already booked.
+4. Confirm the `Brazilian Reis` balance currently reads the expected opening figure.
+
+**After Leg 2:**
+
+5. `Brazilian Reis` must return to **exactly** its pre-conversion value. A pure pass-through
+   leaves the BRL balance unchanged — no value is created, the real cost sits in the USD leg.
+   *If it does not return to the opening figure, arithmetic is wrong somewhere: stop.*
+6. Verify the written amount back as an **`UNFORMATTED_VALUE` float**, not a formatted string
+   (§9c.5a — `RAW` input silently types numbers as text and `QUERY sum()` then ignores them).
+7. Confirm the offchain net for `Brazilian Reis` across all rows equals the stated balance
+   (col B of `off chain asset balance` is a **stored** value the processor increments — it is
+   **not** a `SUMIFS` formula, so it will not self-heal if a row is added out of band).
+
+---
+
+## 4. Why the order matters — the failure mode this avoids
+
+If the expense lands **before** the conversion is `PROCESSED`, the BRL balance goes negative
+for as long as the gap persists. That is not merely cosmetic:
+
+- `treasury-cache-publisher` **silently drops negative balances** at three separate guards
+  (`treasury-cache/gas/treasury-cache-publisher/Code.gs` L208 / L269 / L332).
+- Consequence: the DApp holdings page shows **no BRL row at all**, so a correctly-booked
+  expense looks entirely unbacked to anyone reading the holdings view.
+
+The conversion must therefore be *seen to land* before the expense is submitted.
+
+---
+
+## 5. Duplicate discipline
+
+`report_dao_expenses` **is not idempotent across a retry** — a `HTTP 200` +
+`signature_verification: success` response does not mean the POST cannot be repeated. On
+2026-11-05 a verification re-run double-posted a −R$5,027.70 expense (offchain rows 5356 /
+5357, distinct `Request Transaction ID`s), driving Brazilian Reis to −4,897.70.
+
+Therefore:
+
+- **Never** re-execute a submit “just to check”. Verify by **reading the sheet**, not by
+  resubmitting.
+- After the gate, scan for rows matching (entity, amount, currency, description) before
+  submitting Leg 2.
+- If a duplicate does slip through, the correction is **append-only**: one unsigned
+  `[SANCTIONED ONE-OFF CORRECTION]` reversal row, **never** a row edit or delete
+  (`OPERATING_INSTRUCTIONS.md` §9c.4b / §9c.4c — signed rows bind their signature and
+  scoring hash to content; editing or deleting forges the attestation).
+
+> The underlying gap is already filed in `OPEN_FOLLOWUPS.md` — “`report_dao_expenses` is not
+> idempotent across a retry”. Do not re-file it; add instances there if it recurs.
+
+---
+
+## 6. `BRL` vs `Brazilian Reis` — do not confuse the buckets
+
+**Both currencies exist** on this ledger and are not interchangeable at the typing level.
+Use the literal string **`Brazilian Reis`**. `BRL` is a separate bucket (rows 4881–4884 record
+a 1:1 `BRL ⇄ Brazilian Reis` normalisation pair, and a negative `BRL` line exists in another
+ledger). Typing `BRL` lands the expense in the wrong bucket: the row posts, the hash footer
+looks valid, and the **`Brazilian Reis` balance does not move**.
+
+---
+
+## 7. Standing risks — ranked
+
+| # | Gap | Status |
+|---|---|---|
+| **0** | This runbook (docs only). | ✅ This document |
+| **1** | No `--idempotency-key` on `report_dao_expenses`; a retry double-posts. | Filed in `OPEN_FOLLOWUPS.md` |
+| **2** | No `--reverse-of <row>` — a correction needs a reversal row **plus** a hand-sync of the balance column, which is itself a footgun. | Not filed |
+| **3** | No `BRL → Brazilian Reis` alias/normalisation on input. | Not filed |
+| **4** | Monthly manual conversion. Keeping a standing **BRL float** (~R$2,000) would eliminate most conversions and all negative-balance windows, at the cost of parked capital carrying BRL FX exposure. | Governor decision |
+
+Items 2 and 3 are the two cheapest code-level wins: `--reverse-of` removes the hand-sync step,
+and the alias removes the wrong-bucket trap permanently.
+
+---
+
+## 8. Worked example — 2026-11 payment (Sept + Oct)
+
+| Doc | Amount | Service month | Due |
+|---|---|---|---|
+| Recibo 1 | R$ 500,00 | September 2026 | 15.10.2026 |
+| Recibo 2 | R$ 500,00 | October 2026 | 15.11.2026 |
+| **Pix** | **R$ 1,000,00** | paid 12/11/2026 08:16 | Pix ID `E689008102026111211167d4YZBTFAm`, ref `579736505` |
+
+Expected ledger shape:
+
+- Leg 1 — one `[CURRENCY CONVERSION EVENT]`, USD → **Brazilian Reis 1000.00** → two offchain rows.
+- Leg 2 — two `[DAO Inventory Expense Event]` rows, −500.00 each, currency `Brazilian Reis`.
+- Opening `Brazilian Reis` 130.00 → after Leg 1 **1,130.00** → after Leg 2 **130.00**.
+
+**Anomalies to note on the documents** (not blockers): both recibos carry the identical footer
+date *“10 de Outubro de 2026”*, so the October invoice is signed before the month it bills —
+likely a templated footer, but the Brazilian tax accountant may want it redated. And the Pix
+payer is **Zhiwen Teh personally**, not TRUESIGHT DAO LLC and not the BR entity — if the cost
+should sit on the BR entity's books, book it as an intercompany advance rather than a direct
+expense, and say so in the description.
