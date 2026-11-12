@@ -84,6 +84,60 @@ python3 -m truesight_dao_client.modules.report_dao_expenses \
 
 ---
 
+### ⚠️ Book Leg 2 in exactly ONE bucket — never both
+
+This is the trap that actually fired on 2026-11-12, and it is easy to walk into because
+each individual row looks correct.
+
+**What happened.** The Sep/Oct recibos were booked **twice**, in two different currency
+buckets, from what looked like two different sources of truth:
+
+| Rows | Bucket | Amount each | Basis |
+|---|---|---|---|
+| **5386 / 5387** | `Brazilian Reis` | **R$500,00** | the recibo's native face value |
+| **5544 / 5545** | `USD` | **US$89,54** | R$500 converted at BRL 5.5840 |
+
+Both are arithmetically defensible in isolation. Booked together they count the same two
+recibos twice — and the USD side is **doubly wrong**, because Leg 1's conversion rows
+(5384/5385, USD 378.05 → R$ 2,085) **already carry the USD cost**. The BRL is the funded
+side; expensing a USD equivalent on top charges the DAO twice for one Pix.
+
+**The rule.** Leg 2 is booked in the **target** currency only (`Brazilian Reis`). Never also
+post a source-currency (`USD`) equivalent of the same document. The source-currency cost
+lives in Leg 1 and nowhere else.
+
+**Detection.** Pre-flight assertion 3 must search **every** currency bucket, not just the one
+you intend to write to. Grep `offchain transactions` for the counterparty + billing CNPJ and
+inspect **all** currencies returned:
+
+```
+# per service month, expect ONE row total across ALL currencies
+# 500 BRL in Brazilian Reis  XOR  ~89.54 USD  — never both
+```
+
+A row in a *different* bucket than the one you're about to write is the signature of this
+bug, and a same-currency-only check will never find it.
+
+**Fix if it fires.** Both rows are signed, so neither can be edited in place
+(`OPERATING_INSTRUCTIONS.md` §9c.4c — an amount change is a restatement). Append **one
+unsigned reversal row per duplicated row** in the bucket being zeroed, and do **not** re-enter
+the expense — the surviving row already is the correct entry:
+
+| Reversal | Amount | Currency | Zeroes |
+|---|---|---|---|
+| 5797 | +89.54 | USD | 5544 (Sept) |
+| 5798 | +89.54 | USD | 5545 (Oct) |
+
+Verify the four rows net to **0.00**, and write each reversal's amount with
+`USER_ENTERED` then read it back as an `UNFORMATTED_VALUE` float (§9c.5a) — `RAW` types it as
+text and every `sum()` silently ignores it.
+
+**Note on row identity.** 5544 and 5545 are *not* duplicates of each other — they are
+September and October. They are duplicates of 5386 and 5387. Confirm month-by-month before
+zeroing anything; treating the pair as mutually duplicate would erase a real month's expense.
+
+---
+
 ## 3. Pre-flight and post-flight assertions
 
 **Before submitting anything:**
