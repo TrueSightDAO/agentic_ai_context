@@ -181,11 +181,43 @@ and the alias removes the wrong-bucket trap permanently.
 | Recibo 2 | R$ 500,00 | October 2026 | 15.11.2026 |
 | **Pix** | **R$ 1,000,00** | paid 12/11/2026 08:16 | Pix ID `E689008102026111211167d4YZBTFAm`, ref `579736505` |
 
-Expected ledger shape:
+**Actual ledger shape (verified live 2026-11-12 — this is not hypothetical):**
 
-- Leg 1 — one `[CURRENCY CONVERSION EVENT]`, USD → **Brazilian Reis 1000.00** → two offchain rows.
-- Leg 2 — two `[DAO Inventory Expense Event]` rows, −500.00 each, currency `Brazilian Reis`.
-- Opening `Brazilian Reis` 130.00 → after Leg 1 **1,130.00** → after Leg 2 **130.00**.
+| Step | Rows | Effect on `Brazilian Reis` |
+|---|---|---|
+| Leg 1 conversion | offchain **5384 / 5385** | +2,085.00 → balance **2215.00** |
+| CRF Anapu 217-tree payout | **NOT BOOKED** | (−1,085.00) owed |
+| Leg 2 Sept recibo | pending | −500.00 |
+| Leg 2 Oct recibo | pending | −500.00 |
+| **Closing** | | **130.00** |
+
+The conversion was **not** R$1,000 for the accountant alone. Rows 5384/5385 record
+**USD 378.05 → R$ 2,085.00** on `20261112`, blended rate 5.5151 (Wise fee USD 4.67; bank leg
+USD 373.38 @ 5.5840), with a memo stating it funds the **217-tree CRF Anapu payout of
+R$1,085.00** and that *"unspent residual of R$ 1,000.00 remains in the Brazilian Reis
+balance"* — i.e. **one conversion funded two separate obligations**.
+
+### ⚠️ The R$1,085.00 CRF Anapu payout is NOT on the ledger
+
+Searched every Brazilian Reis row for the amount and for the Pix E2E
+`E68900810202611121118xTBTdiHgQD7`: **zero hits.** It exists only as prose inside the
+conversion memo. Balance row 25 reads **2215.00**, and the sum of all **74** Brazilian Reis
+rows is **2215.00** (delta `0E-8`) — so the balance is internally consistent but **overstated
+by R$1,085.00 against real cash**.
+
+Booking only the accountant fee therefore leaves the balance at **1215.00** while the actual
+account holds roughly **zero**. The payout needs its own evidence and its own expense row
+before the account reads true. **Do not treat the account as reconciled until it is booked.**
+
+**Generalised lesson for future months:** the closing assertion (“balance returns to opening”)
+must cover **every** disbursement the conversion memo refers to — not just the one being
+booked. Read the memo as an obligation list, not a single-purpose note.
+
+**Attachment path trap hit in practice (2026-11-12).** These files live in the directory of the
+**adapter that received them**. This session was **Discord**, so the three attachments were in
+`/tmp/discord_attachments/` — *not* `/tmp/tg_attachments/`, where a Telegram upload would land.
+Passing the `tg_` path to `--attachment` fails silently with a file-not-found. Check the real
+path (`find /tmp -name '<hash>*'`) before every submit.
 
 **Anomalies to note on the documents** (not blockers): both recibos carry the identical footer
 date *“10 de Outubro de 2026”*, so the October invoice is signed before the month it bills —
