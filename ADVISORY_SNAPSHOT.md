@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-11-12T07:31:53Z`
+- Generated (UTC): `2026-11-12T20:16:18Z`
 - Look-back: **7** calendar days (`2026-11-05` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,36 +32,31 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 20
-- `[TREE PLANTING EVENT]` × 10
-- `[PRACTICE EVENT]` × 5
-- `[CONTRIBUTOR ADD EVENT]` × 3
-- `[INVENTORY MOVEMENT]` × 2
-- `[REGISTER IDENTITY EVENT]` × 1
-- _free-form (no bracket tag)_ × 1
+- `[PAYOUT EVENT]` × 36
+- `[CONTRIBUTION EVENT]` × 6
 
 ### Latest entries
 
-- `Edgar_20261109033348_3042` · **Edgar** · [CONTRIBUTION EVENT] Amount: 10 · Contributor(s): Gary Teh · Description: 10 minutes following up with Yuan Yuan at Blueprint (Bryan Johnson's 'Don't …
-- `Edgar_20261109033522_3044` · **Edgar** · [CONTRIBUTION EVENT] Amount: 10 · Contributor(s): Gary Teh · Description: 10 minutes coordinating discussions with Lawrence Kwek (lawkpsn@gmail.com; D…
-- `Edgar_20261109034110_3046` · **Edgar** · [CONTRIBUTION EVENT] Amount: 300 · Contributor(s): Gary Teh and Lawrence Kwek · Description: 5 hours (300 min) - Gary Teh and Lawrence Kwek discussing alternative models…
-- `Edgar_20261109034117_3048` · **Edgar** · [CONTRIBUTION EVENT] Amount: 10 · Contributor(s): Lawrence Kwek · Description: 10 minutes - Lawrence Kwek's share of the coordination and travel involved i…
-- `Edgar_20261109043852_3050` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Schwab Trader API registration + read-only portfolio integration status veri…
-- `Edgar_20261109075941_3052` · **Edgar** · [CONTRIBUTOR ADD EVENT] Contributor Name: Baluca · Contributor Email: 1346337704@qq.com · Submitted At: 2026-11-06
-- `Edgar_20261109080229_3054` · **Edgar** · [CONTRIBUTOR ADD EVENT] Contributor Name: Baluca · Contributor Email: 1346337704@qq.com · Initial Digital Signature: (none — contributor will self-register via the email-verificat…
-- `Edgar_20261109081911_3056` · **Edgar** · [CONTRIBUTOR ADD EVENT] Contributor Name: Baluca · Contributor Email: 1346337704@qq.com
-- `Edgar_20261109084553_3058` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Envoy sessions restart: re-auth + rebuild + spin-up script fix
-- `Edgar_20261109084938_3060` · **Edgar** · [CONTRIBUTION EVENT] Contributor(s): Sophia Truesight (admin+sophia@truesight.me) · Type: Time (Minutes) · Amount: 240
-- `Edgar_20261109084943_3062` · **Edgar** · [CONTRIBUTION EVENT] Amount: 180 · Contributor(s): Gary Teh · Description: Governor direction and subject-matter decisions across the Blueprint/TrueTec…
-- `Edgar_20261109114916_3064` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 2500 · Contributor(s): LVSS Negócios Internacionais Ltda (Flow Vista)
-- `Edgar_20261109120139_3066` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Contributor(s): Gary Teh
-- `Edgar_20261109221228_3068` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-09T22:12:26.637Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20261110070927_3070` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Email image-content gate: verify each image depicts its caption (Envoy revie…
-- `Edgar_20261110093957_3072` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Description: Unblocked AGL16 payment — produced signed TrueTech→BionPact invoice (REV3)
-- `Edgar_20261111030525_3074` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-11T03:05:23.069Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20261111035559_3076` · **Edgar** · [CONTRIBUTION EVENT] Amount: 30 · Contributor(s): Gary Teh and Jerry Luk · Description: 30 minutes - Gary Teh and Jerry Luk discussing four strategic questions for …
-- `Edgar_20261111105137_3078` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 390 · Description: Agroverse brand film v9 — motion picture generation, scoring, publishing & m…
-- `Edgar_20261112001758_3080` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-12T00:17:55.477Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20261112123646_3620` · **Edgar** · [PAYOUT EVENT] Program: crf-anapu · Amount: 5 · Currency: Brazilian Reis
+- `Edgar_20261112123648_3622` · **Edgar** · [PAYOUT EVENT] Program: crf-anapu · Amount: 5 · Currency: Brazilian Reis
+- `Edgar_20261112123650_3624` · **Edgar** · [PAYOUT EVENT] Program: crf-anapu · Amount: 5 · Currency: Brazilian Reis
+- `Edgar_20261112123654_3626` · **Edgar** · [PAYOUT EVENT] Program: crf-anapu · Amount: 5 · Currency: Brazilian Reis
+- `Edgar_20261112123656_3628` · **Edgar** · [PAYOUT EVENT] Program: crf-anapu · Amount: 5 · Currency: Brazilian Reis
+- `Edgar_20261112123703_3630` · **Edgar** · [PAYOUT EVENT] Program: crf-anapu · Amount: 5 · Currency: Brazilian Reis
+- `Edgar_20261112123710_3632` · **Edgar** · [PAYOUT EVENT] Program: crf-anapu · Amount: 5 · Currency: Brazilian Reis
+- `Edgar_20261112123713_3634` · **Edgar** · [PAYOUT EVENT] Program: crf-anapu · Amount: 5 · Currency: Brazilian Reis
+- `Edgar_20261112123717_3636` · **Edgar** · [PAYOUT EVENT] Program: crf-anapu · Amount: 5 · Currency: Brazilian Reis
+- `Edgar_20261112123721_3638` · **Edgar** · [PAYOUT EVENT] Program: crf-anapu · Amount: 5 · Currency: Brazilian Reis
+- `Edgar_20261112123723_3640` · **Edgar** · [PAYOUT EVENT] Program: crf-anapu · Amount: 5 · Currency: Brazilian Reis
+- `Edgar_20261112123726_3642` · **Edgar** · [PAYOUT EVENT] Program: crf-anapu · Amount: 5 · Currency: Brazilian Reis
+- `Edgar_20261112123729_3644` · **Edgar** · [PAYOUT EVENT] Program: crf-anapu · Amount: 5 · Currency: Brazilian Reis
+- `Edgar_20261112123731_3646` · **Edgar** · [PAYOUT EVENT] Program: crf-anapu · Amount: 5 · Currency: Brazilian Reis
+- `Edgar_20261112123925_3648` · **Edgar** · [CONTRIBUTION EVENT] Amount: 29.98 · Contributor(s): Elizabeth Wong · Description: DeepSeek API technical service invoice paid personally by Elizabeth Wong on …
+- `Edgar_20261112123930_3650` · **Edgar** · [CONTRIBUTION EVENT] Amount: 45.03 · Contributor(s): Elizabeth Wong · Description: DeepSeek API technical service invoice paid personally by Elizabeth Wong on …
+- `Edgar_20261112124047_3652` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Description: Brazil accountant payment (Sep + Oct 2026) — governor review, document relay…
+- `Edgar_20261112124054_3654` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Process Brazil accountant fees (Sep + Oct 2026): document reconciliation, ra…
+- `Edgar_20261112130437_3656` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Accountant expense booking + ledger integrity repair (Jussileide Bomfim Alve…
+- `Edgar_20261112130920_3658` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 0 · Description: CORRECTION (supersedes my r14922 150-min entry and my r15071 60-min entry fo…
 
 ---
 
@@ -76,7 +71,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-11-11T11:59:14.653Z`
+- Generated (UTC): `2026-11-12T11:59:19.809Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -91,7 +86,7 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **81** stores — sum logged **warmup** sends (AU): **656**, sum logged **follow-up** sends (AV): **4**; warmup depth (none / once / ≥2): **43** / **0** / **38**; follow-up depth (none / once / ≥2): **80** / **0** / **1**
+- **AI: Warm up prospect**: **79** stores — sum logged **warmup** sends (AU): **639**, sum logged **follow-up** sends (AV): **4**; warmup depth (none / once / ≥2): **42** / **0** / **37**; follow-up depth (none / once / ≥2): **78** / **0** / **1**
 - **Manager Follow-up**: **28** stores — sum logged **warmup** sends (AU): **23**, sum logged **follow-up** sends (AV): **56**; warmup depth (none / once / ≥2): **22** / **1** / **5**; follow-up depth (none / once / ≥2): **10** / **4** / **14**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: _(no rows in this status)_
@@ -211,11 +206,11 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
   | Cacao Mass | Retail Ready | 1 | 1 | $10.37 |
 
 **Gary Teh** _( Operational cash + assorted retail inventory )_
-- Manager record: `Gary Teh` · 30 SKU lines · 7,630.86 total units · $7,330.82
+- Manager record: `Gary Teh` · 31 SKU lines · 8,337.81 total units · $7,204.81
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 28 | 7,554.68 | $7,280.83 |
+  | (uncategorized) | (unspecified) | 29 | 8,261.63 | $7,154.83 |
   | Packaging Material | Bulk | 1 | 74 | $49.98 |
   | Cacao Tea | Bulk | 1 | 2.18 | $0.00 |
 
@@ -236,7 +231,7 @@ _(+34 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$2,005.02**
+- USD on hand: **$1,626.97**
 - Brazilian Reis: R$130.00 · rate `0.2323` USD/BRL → ≈ **$30.20**
 - USD provisioned for voting-rights cash-out: **$58.44**
 
@@ -272,6 +267,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-11-05 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+1507cd6 | 2026-11-12 07:37:40 +0000 | chore(stats): refresh stats indexes [skip ci]
 27553bb | 2026-11-11 19:49:13 +0000 | chore(stats): refresh stats indexes [skip ci]
 c9fc53c | 2026-11-11 06:59:18 +0000 | chore(stats): refresh stats indexes [skip ci]
 85c79cf | 2026-11-10 19:57:36 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -299,6 +295,12 @@ c2a2b4e | 2026-11-12 12:16:02 +0800 | Add content schedule ↔ Google Calendar s
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+731b746 | 2026-11-12 21:13:50 +0800 | Runbook: add dual-bucket double-booking failure mode (#1833)
+c1b6191 | 2026-11-12 21:10:50 +0800 | File follow-up: no prior-art check on contribution reporting (#1832)
+48bc462 | 2026-11-12 20:20:13 +0800 | Correct accountant runbook worked example with actual 2026-11 conversion; document unbooked CRF Anapu payout (#1831)
+4682cfc | 2026-11-12 19:49:30 +0800 | Add Brazil monthly accountant runbook (recurring BRL obligation SOP) (#1830)
+e7a6fdc | 2026-11-12 15:32:14 +0800 | chore(previews): refresh Beer Hall preview (2026-11-12 UTC)
+d6b9569 | 2026-11-12 15:32:13 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-12 UTC)
 bd3ad82 | 2026-11-12 11:05:49 +0800 | File follow-up: retail repeat-purchase/cadence data gap (#1829)
 18fd9fe | 2026-11-12 03:48:29 +0800 | chore(previews): refresh Beer Hall preview (2026-11-11 UTC)
 108f129 | 2026-11-12 03:48:27 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-11 UTC)
@@ -333,18 +335,17 @@ c27f92c | 2026-11-09 15:57:16 +0800 | Add STAGED_ROLLOUT_SOP.md (curated subset 
 6a33e58 | 2026-11-09 15:00:44 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-09 UTC)
 a62c88d | 2026-11-09 14:53:02 +0800 | SOP: add ticker test, pre-send gate, feedback loop, universe fix (#1810)
 2e7a382 | 2026-11-09 13:46:46 +0800 | Record GAS deployment topology + staging vs production gate (#1807)
-189d58c | 2026-11-09 13:08:14 +0800 | Merge pull request #1806 from TrueSightDAO/auto/advisory-refresh-2026-11-09
-7bcdbb8 | 2026-11-09 05:07:59 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-09 UTC)
-50358e8 | 2026-11-09 12:34:00 +0800 | Correct tree-digest status: merged, NOT deployed (#1805)
-769e0ee | 2026-11-09 06:20:45 +0800 | chore(previews): refresh Beer Hall preview (2026-11-08 UTC)
-b155439 | 2026-11-09 06:20:44 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-08 UTC)
-9aae24b | 2026-11-09 02:33:18 +0800 | OPEN_FOLLOWUPS: note 2026-11-07 GPS-drop recurrence + pseudo-tree blind spot (#1804)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+7b32bbc | 2026-11-12 20:26:51 +0800 | Add Pix receipt R$1085 for 217 trees (Jhordan)
+3ec42ac | 2026-11-12 20:26:42 +0800 | Add Wise USD 378.05 to R$2085 conversion receipt
+b67f636 | 2026-11-12 20:26:38 +0800 | Add Pix receipt R$1000 to Jussileide (accountant Sep+Oct 2026)
+d6d63a6 | 2026-11-12 20:26:26 +0800 | Add Jussileide accountant recibo - Oct 2026 (R$500)
+3f3b231 | 2026-11-12 20:26:22 +0800 | Add Jussileide accountant recibo - Sept 2026 (R$500)
 b82f3fa | 2026-11-10 18:10:29 +0800 | Deprecate TDG - update balance in wallets on Ledger (1QKqUTyl3) (#626)
 287c289 | 2026-11-10 15:36:01 +0800 | docs(SCHEMA): add §5 Content Marketing Schedule spreadsheet + MAP/generation cross-refs (#625)
 98d28d9 | 2026-11-10 14:57:11 +0800 | feat(digest): daily Payout Schedule (PS) auto-attachment (#624)
@@ -388,6 +389,8 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+a8575d7 | 2026-11-12 15:35:56 +0000 | chore: refresh currencies.json [skip ci]
+a16cb69 | 2026-11-12 15:20:00 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 fcc57f8 | 2026-11-11 14:42:32 +0000 | chore: refresh currencies.json [skip ci]
 46ec89a | 2026-11-11 14:28:15 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 3fb2262 | 2026-11-10 15:14:06 +0000 | chore: refresh currencies.json [skip ci]
@@ -512,7 +515,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
 | 2026-10 | 460 | 18944.34386 | 10/31/2026 |
-| 2026-11 | 216.75 | 19161.09386 | 11/11/2026 22:51:23 |
+| 2026-11 | 216.75 | 19161.09386 | 11/12/2026 11:52:03 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-11-05`; scanned last **600** data rows)
 
