@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-11-13T07:02:30Z`
+- Generated (UTC): `2026-11-13T19:56:49Z`
 - Look-back: **7** calendar days (`2026-11-06` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,15 +32,12 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[PAYOUT EVENT]` × 32
-- `[CONTRIBUTION EVENT]` × 9
+- `[PAYOUT EVENT]` × 29
+- `[CONTRIBUTION EVENT]` × 12
 - `[PRACTICE EVENT]` × 1
 
 ### Latest entries
 
-- `Edgar_20261112123656_3628` · **Edgar** · [PAYOUT EVENT] Program: crf-anapu · Amount: 5 · Currency: Brazilian Reis
-- `Edgar_20261112123703_3630` · **Edgar** · [PAYOUT EVENT] Program: crf-anapu · Amount: 5 · Currency: Brazilian Reis
-- `Edgar_20261112123710_3632` · **Edgar** · [PAYOUT EVENT] Program: crf-anapu · Amount: 5 · Currency: Brazilian Reis
 - `Edgar_20261112123713_3634` · **Edgar** · [PAYOUT EVENT] Program: crf-anapu · Amount: 5 · Currency: Brazilian Reis
 - `Edgar_20261112123717_3636` · **Edgar** · [PAYOUT EVENT] Program: crf-anapu · Amount: 5 · Currency: Brazilian Reis
 - `Edgar_20261112123721_3638` · **Edgar** · [PAYOUT EVENT] Program: crf-anapu · Amount: 5 · Currency: Brazilian Reis
@@ -58,6 +55,9 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20261113035941_3662` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 100 · Description: High level details of discussion with @⁨Kirsten Ritschel⁩
 - `Edgar_20261113052056_3664` · **Edgar** · [CONTRIBUTION EVENT] Amount: 74.98 · Contributor(s): Elizabeth Wong · Description: China market expansion funding advanced personally by Elizabeth Wong. Inboun…
 - `Edgar_20261113054855_3666` · **Edgar** · [CONTRIBUTION EVENT] Amount: 738.08 · Type: USD · Contributor(s): Elizabeth Wong
+- `Edgar_20261113113205_3668` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 420 · Description: China market entry — field research compilation & decision memo (Gary Teh, 7…
+- `Edgar_20261113145344_3670` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 11 · Contributor(s): Gary Teh
+- `Edgar_20261113145348_3672` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 11 · Contributor(s): Lawrence Kwek
 
 ---
 
@@ -72,7 +72,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-11-12T11:59:19.809Z`
+- Generated (UTC): `2026-11-13T11:59:14.467Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -87,7 +87,7 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **79** stores — sum logged **warmup** sends (AU): **639**, sum logged **follow-up** sends (AV): **4**; warmup depth (none / once / ≥2): **42** / **0** / **37**; follow-up depth (none / once / ≥2): **78** / **0** / **1**
+- **AI: Warm up prospect**: **76** stores — sum logged **warmup** sends (AU): **604**, sum logged **follow-up** sends (AV): **4**; warmup depth (none / once / ≥2): **41** / **0** / **35**; follow-up depth (none / once / ≥2): **75** / **0** / **1**
 - **Manager Follow-up**: **28** stores — sum logged **warmup** sends (AU): **23**, sum logged **follow-up** sends (AV): **56**; warmup depth (none / once / ≥2): **22** / **1** / **5**; follow-up depth (none / once / ≥2): **10** / **4** / **14**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: _(no rows in this status)_
@@ -268,6 +268,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-11-06 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+b9dbd50 | 2026-11-13 07:07:51 +0000 | chore(stats): refresh stats indexes [skip ci]
 f3485fe | 2026-11-12 20:20:36 +0000 | chore(stats): refresh stats indexes [skip ci]
 1507cd6 | 2026-11-12 07:37:40 +0000 | chore(stats): refresh stats indexes [skip ci]
 27553bb | 2026-11-11 19:49:13 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -295,6 +296,13 @@ c2a2b4e | 2026-11-12 12:16:02 +0800 | Add content schedule ↔ Google Calendar s
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+02838f6 | 2026-11-13 18:44:04 +0800 | File: Oscar farm century-old/80-year tree claim unsubstantiated (#1845)
+8bb29ed | 2026-11-13 16:49:39 +0800 | Errata v2: retract part of my McCann critique; 5 remaining fixes (#1840)
+15c452c | 2026-11-13 16:47:44 +0800 | Reconciliation + errata: discovery-box composition, McCann reading, price arithmetic (#1839)
+638a0b8 | 2026-11-13 16:42:30 +0800 | China SKU positioning: McCann Truth Well Told lens + USA cross-market (#1838)
+50a8208 | 2026-11-13 16:33:06 +0800 | Field audit + SWOT + positioning: Dongguan chocolate, 2026-11-13 (#1837)
+50c70f9 | 2026-11-13 15:02:54 +0800 | chore(previews): refresh Beer Hall preview (2026-11-13 UTC)
+e3efd2f | 2026-11-13 15:02:50 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-13 UTC)
 4bee267 | 2026-11-13 13:50:54 +0800 | Register PDF multibyte SOP in workspace context + project index (#1836)
 f5badab | 2026-11-13 13:50:46 +0800 | Add PDF generation SOP: mandatory CJK/multibyte support + verification gate (#1835)
 0f1a424 | 2026-11-13 12:57:52 +0800 | Research: Dongguan grocery market positioning — JiaRong SPAR & competitors (#1834)
@@ -328,13 +336,6 @@ cd5e54f | 2026-11-11 03:55:31 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT
 942f19e | 2026-11-10 15:38:00 +0800 | chore(previews): refresh Beer Hall preview (2026-11-10 UTC)
 4b2dffa | 2026-11-10 15:37:58 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-10 UTC)
 714da3f | 2026-11-10 14:53:42 +0800 | docs(email style): §4.1 image CONTENT correctness + consent, not just sizing (#1815)
-57d740a | 2026-11-10 13:19:26 +0800 | Give the pre-payout document an official name: Payout Schedule (PS) + naming convention (#1814)
-739d65e | 2026-11-10 13:11:28 +0800 | docs: add EMAIL_STYLE_CONVENTION.md (Saffron Monk for inbox) (#1813)
-2563bec | 2026-11-10 06:37:54 +0800 | chore(previews): refresh Beer Hall preview (2026-11-09 UTC)
-e019f42 | 2026-11-10 06:37:53 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-09 UTC)
-846d739 | 2026-11-09 16:44:41 +0800 | Merge pull request #1812 from TrueSightDAO/fix/envoy-spinup-trust-dialog
-c0554c8 | 2026-11-09 16:44:07 +0800 | fix(infra): envoy-spinup trust-dialog auto-confirm (2 -> Enter)
-89603dc | 2026-11-09 16:41:19 +0800 | handoffs: register Redis dispatch + Blueprint/LVSS threads, release claims per §9.2 (#1811)
 … (truncated)
 ```
 
@@ -385,6 +386,8 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+64a2f45 | 2026-11-13 14:54:12 +0000 | chore: refresh currencies.json [skip ci]
+0efb11c | 2026-11-13 14:39:22 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 a8575d7 | 2026-11-12 15:35:56 +0000 | chore: refresh currencies.json [skip ci]
 a16cb69 | 2026-11-12 15:20:00 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 fcc57f8 | 2026-11-11 14:42:32 +0000 | chore: refresh currencies.json [skip ci]
@@ -509,7 +512,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
 | 2026-10 | 460 | 18944.34386 | 10/31/2026 |
-| 2026-11 | 216.75 | 19161.09386 | 11/12/2026 22:51:14 |
+| 2026-11 | 216.75 | 19161.09386 | 11/13/2026 11:50:46 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-11-06`; scanned last **600** data rows)
 
