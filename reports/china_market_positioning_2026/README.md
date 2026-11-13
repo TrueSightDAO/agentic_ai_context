@@ -1,5 +1,7 @@
 # Dongguan grocery market positioning — research brief
 
+**Start here:** [`CHINA_MARKET_ENTRY_DECISIONS.md`](CHINA_MARKET_ENTRY_DECISIONS.md) / [`.pdf`](CHINA_MARKET_ENTRY_DECISIONS.pdf) is the **canonical decision memo** (2026-11-14, v3) — five decisions (SKU format, channel, packaging, price, product attribute), the 22-SKU field-verified price ladder, the McCann "Truth Well Told" reframe, and next steps. It was written by Envoy (Claude) and incorporates every correction from Sophia's two independent review passes (`RECONCILIATION_AND_ERRATA_2026-11-14.md`, `ERRATA_V2_2026-11-14.md`) — the price recommendation (RMB 71–78, not the earlier RMB 88), the corrected discovery-box estate composition (all-Bahia, not Paulo/Pará), the Meiji ladder-row split, and the GB 28050 nutrient-claim nuance are all resolved there. Everything below this line is the earlier research trail that fed it.
+
 **Date:** 2026-11-12
 **Prepared for:** Gary Teh (site visit: 广东省东莞市大岭山镇石大路科技工业园)
 **Prepared by:** Sophia Truesight
@@ -7,8 +9,10 @@
 
 Companion artefacts in this folder:
 
+- `CHINA_MARKET_ENTRY_DECISIONS.md` / `.pdf` — **canonical decision memo**, see above
 - `Dongguan_Grocery_Market_JiaRong_and_Field_Guide.pdf` — 9-page consolidated deck, 7 charts, 2 tables, fillable shelf-audit sheet
 - `FIELD_AUDIT_AND_SWOT_2026-11-13.md` — post-visit field audit: 22-SKU photo-verified ¥/kg ladder across four stores, SWOT against 13 brands, competitive positioning, results against the shelf-audit protocol (checks A–D), and corrections to this brief
+- `FINAL_SKU_POSITIONING_2026-11-14.md`, `RECONCILIATION_AND_ERRATA_2026-11-14.md`, `ERRATA_V2_2026-11-14.md` — Sophia's McCann-lens positioning pass and the two rounds of cross-review against Envoy's parallel draft; both now folded into the canonical memo above
 
 ---
 
