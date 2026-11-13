@@ -8,6 +8,7 @@
 Companion artefacts in this folder:
 
 - `Dongguan_Grocery_Market_JiaRong_and_Field_Guide.pdf` — 9-page consolidated deck, 7 charts, 2 tables, fillable shelf-audit sheet
+- `FIELD_AUDIT_AND_SWOT_2026-11-13.md` — post-visit field audit: 22-SKU photo-verified ¥/kg ladder across four stores, SWOT against 13 brands, competitive positioning, results against the shelf-audit protocol (checks A–D), and corrections to this brief
 
 ---
 
