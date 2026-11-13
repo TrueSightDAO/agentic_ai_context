@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-11-12T20:16:18Z`
-- Look-back: **7** calendar days (`2026-11-05` → today UTC)
+- Generated (UTC): `2026-11-13T07:02:30Z`
+- Look-back: **7** calendar days (`2026-11-06` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -32,15 +32,12 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[PAYOUT EVENT]` × 36
-- `[CONTRIBUTION EVENT]` × 6
+- `[PAYOUT EVENT]` × 32
+- `[CONTRIBUTION EVENT]` × 9
+- `[PRACTICE EVENT]` × 1
 
 ### Latest entries
 
-- `Edgar_20261112123646_3620` · **Edgar** · [PAYOUT EVENT] Program: crf-anapu · Amount: 5 · Currency: Brazilian Reis
-- `Edgar_20261112123648_3622` · **Edgar** · [PAYOUT EVENT] Program: crf-anapu · Amount: 5 · Currency: Brazilian Reis
-- `Edgar_20261112123650_3624` · **Edgar** · [PAYOUT EVENT] Program: crf-anapu · Amount: 5 · Currency: Brazilian Reis
-- `Edgar_20261112123654_3626` · **Edgar** · [PAYOUT EVENT] Program: crf-anapu · Amount: 5 · Currency: Brazilian Reis
 - `Edgar_20261112123656_3628` · **Edgar** · [PAYOUT EVENT] Program: crf-anapu · Amount: 5 · Currency: Brazilian Reis
 - `Edgar_20261112123703_3630` · **Edgar** · [PAYOUT EVENT] Program: crf-anapu · Amount: 5 · Currency: Brazilian Reis
 - `Edgar_20261112123710_3632` · **Edgar** · [PAYOUT EVENT] Program: crf-anapu · Amount: 5 · Currency: Brazilian Reis
@@ -57,6 +54,10 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20261112124054_3654` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Process Brazil accountant fees (Sep + Oct 2026): document reconciliation, ra…
 - `Edgar_20261112130437_3656` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Accountant expense booking + ledger integrity repair (Jussileide Bomfim Alve…
 - `Edgar_20261112130920_3658` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 0 · Description: CORRECTION (supersedes my r14922 150-min entry and my r15071 60-min entry fo…
+- `Edgar_20261113015019_3660` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-13T01:50:16.330Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20261113035941_3662` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 100 · Description: High level details of discussion with @⁨Kirsten Ritschel⁩
+- `Edgar_20261113052056_3664` · **Edgar** · [CONTRIBUTION EVENT] Amount: 74.98 · Contributor(s): Elizabeth Wong · Description: China market expansion funding advanced personally by Elizabeth Wong. Inboun…
+- `Edgar_20261113054855_3666` · **Edgar** · [CONTRIBUTION EVENT] Amount: 738.08 · Type: USD · Contributor(s): Elizabeth Wong
 
 ---
 
@@ -231,9 +232,9 @@ _(+34 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$1,626.97**
+- USD on hand: **$1,626.90**
 - Brazilian Reis: R$130.00 · rate `0.2323` USD/BRL → ≈ **$30.20**
-- USD provisioned for voting-rights cash-out: **$58.44**
+- USD provisioned for voting-rights cash-out: **$58.52**
 
 ### In-transit freight (0 rows)
 
@@ -248,7 +249,7 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_(No `YYYY-MM-DD |` lines on/after 2026-11-05 in CONTEXT_UPDATES.md.)_
+_(No `YYYY-MM-DD |` lines on/after 2026-11-06 in CONTEXT_UPDATES.md.)_
 
 ---
 
@@ -267,6 +268,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-11-05 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+f3485fe | 2026-11-12 20:20:36 +0000 | chore(stats): refresh stats indexes [skip ci]
 1507cd6 | 2026-11-12 07:37:40 +0000 | chore(stats): refresh stats indexes [skip ci]
 27553bb | 2026-11-11 19:49:13 +0000 | chore(stats): refresh stats indexes [skip ci]
 c9fc53c | 2026-11-11 06:59:18 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -282,8 +284,6 @@ a4750ac | 2026-11-08 22:24:11 +0000 | chore(stats): refresh stats indexes [skip 
 5905e64 | 2026-11-07 06:29:12 +0000 | chore(stats): refresh stats indexes [skip ci]
 ca1d716 | 2026-11-06 19:38:45 +0000 | chore(stats): refresh stats indexes [skip ci]
 2ca5900 | 2026-11-06 07:17:39 +0000 | chore(stats): refresh stats indexes [skip ci]
-8c86c33 | 2026-11-05 20:12:54 +0000 | chore(stats): refresh stats indexes [skip ci]
-2775333 | 2026-11-05 07:16:19 +0000 | chore(stats): refresh stats indexes [skip ci]
 ```
 
 ### `market_research` → `go_to_market`
@@ -295,6 +295,11 @@ c2a2b4e | 2026-11-12 12:16:02 +0800 | Add content schedule ↔ Google Calendar s
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+4bee267 | 2026-11-13 13:50:54 +0800 | Register PDF multibyte SOP in workspace context + project index (#1836)
+f5badab | 2026-11-13 13:50:46 +0800 | Add PDF generation SOP: mandatory CJK/multibyte support + verification gate (#1835)
+0f1a424 | 2026-11-13 12:57:52 +0800 | Research: Dongguan grocery market positioning — JiaRong SPAR & competitors (#1834)
+3df142c | 2026-11-13 04:16:42 +0800 | chore(previews): refresh Beer Hall preview (2026-11-12 UTC)
+e5a3dd0 | 2026-11-13 04:16:40 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-12 UTC)
 731b746 | 2026-11-12 21:13:50 +0800 | Runbook: add dual-bucket double-booking failure mode (#1833)
 c1b6191 | 2026-11-12 21:10:50 +0800 | File follow-up: no prior-art check on contribution reporting (#1832)
 48bc462 | 2026-11-12 20:20:13 +0800 | Correct accountant runbook worked example with actual 2026-11 conversion; document unbooked CRF Anapu payout (#1831)
@@ -330,11 +335,6 @@ e019f42 | 2026-11-10 06:37:53 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT
 846d739 | 2026-11-09 16:44:41 +0800 | Merge pull request #1812 from TrueSightDAO/fix/envoy-spinup-trust-dialog
 c0554c8 | 2026-11-09 16:44:07 +0800 | fix(infra): envoy-spinup trust-dialog auto-confirm (2 -> Enter)
 89603dc | 2026-11-09 16:41:19 +0800 | handoffs: register Redis dispatch + Blueprint/LVSS threads, release claims per §9.2 (#1811)
-c27f92c | 2026-11-09 15:57:16 +0800 | Add STAGED_ROLLOUT_SOP.md (curated subset → visual UAT → full rollout) (#1808)
-80a4b99 | 2026-11-09 15:00:45 +0800 | chore(previews): refresh Beer Hall preview (2026-11-09 UTC)
-6a33e58 | 2026-11-09 15:00:44 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-09 UTC)
-a62c88d | 2026-11-09 14:53:02 +0800 | SOP: add ticker test, pre-send gate, feedback loop, universe fix (#1810)
-2e7a382 | 2026-11-09 13:46:46 +0800 | Record GAS deployment topology + staging vs production gate (#1807)
 … (truncated)
 ```
 
@@ -356,10 +356,6 @@ b82f3fa | 2026-11-10 18:10:29 +0800 | Deprecate TDG - update balance in wallets 
 7ed5d1e | 2026-11-08 15:10:41 +0800 | fix(gas): inline QR onboarding email template, drop DocumentApp dependency (#621)
 3c496fb | 2026-11-08 13:29:16 +0800 | fix(gas): restore missing Credentials.js in canonical TDG Email Identity Mgmt project (#618)
 21289f4 | 2026-11-08 11:14:41 +0800 | Add tree digest doGet router to tree planting scanner (#617)
-a740fe7 | 2026-11-05 21:17:34 +0000 | Restore repo root; remove path-exploded artifact from receipts/2026
-7dd861d | 2026-11-05 21:17:11 +0000 | Remove path-exploded artifact from receipts/2026
-c5ca1e2 | 2026-11-06 00:41:32 +0800 | Upload file file: receipts/2026/20261105_lvss_vista_flow_service_agreement_signed.pdf). This settles Clause 3.1(a): USD 1,000.00 first tranche paid in BRL via Pix at the PTAX reference rate of 5.0277, i.e. R$ 5,027.70. Pix 2026-11-05 13:30 from Bco Rendimento S.A. acct ...4172 (Zhiwen Teh) to LVSS, Pix ID E68900810202611051629T0MBVfi0Q6E, ref 578404196, message 'Lawyer fees'. Funded same day by Wise USD->BRL conversion (offchain rows 5354/5355, memo 'For vista flow lawyer fees'); USD 931.48 actually left the account, so the USD 1,000 obligation was settled with a USD 68.52 FX gain. Expensed against Gary Teh's Brazilian Reis balance. Outstanding and NOT covered by this entry: Clause 3.1(b) USD 2,500.00 payable in TDG per Clause 3.2.
-97b8770 | 2026-11-06 00:41:14 +0800 | Add LVSS Vista Flow service agreement (signed 2026-10-21)
 ```
 
 ### `dapp` → `dapp`
@@ -407,8 +403,6 @@ d486e73 | 2026-11-08 13:51:27 +0000 | chore: refresh currencies.json [skip ci]
 909645b | 2026-11-06 14:20:18 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 9c0a049 | 2026-11-06 18:28:46 +0800 | chore: refresh Agroverse SKU catalog snapshot
 05bec5a | 2026-11-06 18:28:44 +0800 | chore: refresh Agroverse store inventory snapshot
-e7ff241 | 2026-11-05 14:57:22 +0000 | chore: refresh currencies.json [skip ci]
-65af7e2 | 2026-11-05 14:43:07 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -515,9 +509,9 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
 | 2026-10 | 460 | 18944.34386 | 10/31/2026 |
-| 2026-11 | 216.75 | 19161.09386 | 11/12/2026 11:52:03 |
+| 2026-11 | 216.75 | 19161.09386 | 11/12/2026 22:51:14 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-11-05`; scanned last **600** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-11-06`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
