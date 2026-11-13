@@ -13,6 +13,7 @@ Companion artefacts in this folder:
 - `Dongguan_Grocery_Market_JiaRong_and_Field_Guide.pdf` — 9-page consolidated deck, 7 charts, 2 tables, fillable shelf-audit sheet
 - `FIELD_AUDIT_AND_SWOT_2026-11-13.md` — post-visit field audit: 22-SKU photo-verified ¥/kg ladder across four stores, SWOT against 13 brands, competitive positioning, results against the shelf-audit protocol (checks A–D), and corrections to this brief
 - `FINAL_SKU_POSITIONING_2026-11-14.md`, `RECONCILIATION_AND_ERRATA_2026-11-14.md`, `ERRATA_V2_2026-11-14.md` — Sophia's McCann-lens positioning pass and the two rounds of cross-review against Envoy's parallel draft; both now folded into the canonical memo above
+- `CACAO_TCM_Application_Practitioner_Review_EN-ZH-PT.pdf` — Sophia's 2026-10 discussion document for Dr. Wong and Oscar's sister (TCM practitioners), exploring whether TCM 配伍/炮制 logic can legally inform *formulation* (never the label). Referenced in the canonical memo's "possible second product attribute" subsection as a Phase 2, not-yet-validated idea — practitioner review is still pending (7 open questions, unanswered as of this writing).
 
 ---
 
