@@ -39,6 +39,32 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Oscar's farm carries a published "century-old / 80-year Criolla trees" claim that traces to no primary record — and a primary visit report that is silent on it
+
+**Filed 2026-11-13 (Sophia). Owner: unclaimed. Priority: HIGH — this claim is currently the hero line on a China retail pack and the anchor for a second sourcing pitch. Being wrong here is 虚假宣传 on a label.**
+
+**The claim, as published** at `agroverse.shop/farms/oscar-bahia/index.html`: *"His 100-year-old farm features 80-year-old Criolla trees yielding 900-1000kg/hectare, proving that well-tended native varieties can thrive for over a century"* and *"Oscar's grandfather planted trees 80 years ago."*
+
+**What was checked, and what each source returned:**
+
+| Source | Result |
+|---|---|
+| `agroverse.shop/farms/oscar-bahia/index.html` (published) | **Carries the claim** — it is the assertion, not the evidence |
+| `fda_fsvp` → `20250920_Black_King_site_visit_to_oscar_farm.pdf` (**signed primary record**, 4 pp, digitally produced with text layer) | **SILENT on tree age and on Criolla.** Documents harvest selectivity, wood-box fermentation, drying facility, no-pesticide observation. Its geo-location `-14.052624, -39.438206` matches the farm page and maps link exactly, so this *is* the right property — it simply does not record tree age. |
+| `SUNMINT_PLOTS_REGISTRY.md` | **No Oscar / Fazenda Iracy plot registered at all.** Line 89's "century-old groves" is a *category definition example* for `mature`, not a record about Oscar. |
+| `handoffs/liz_bahia_deck/deck.html` | "Old Criolla trees (~80 years)" — **Liz's farm, a different property** |
+| `backups/content_schedule_backup_20261111.json` | Marketing content schedule — derivative of the farm page |
+
+**Conclusion.** Every secondary carrier traces back to the farm page. There is no measurement, harvest record, visit note, or plot registration establishing tree age. `search_context("century")` returns only the registry category definition and Liz's deck; `search_context("Oscar farm century-old trees criollo")` returns zero.
+
+**Secondary finding — the page self-contradicts.** 80-year-old trees cannot evidence "over a century" of viability; that is a non-sequitur. And a "100-year-old farm" whose trees were planted 80 years ago by the grandfather is internally consistent only if explained — currently it is asserted, not reasoned.
+
+**Why now.** (1) Unsubstantiated age/origin claims on a Chinese label are 虚假宣传 exposure, and GB 7718 requires the 真实属性名称 be accurate. (2) The agreed anchoring rule for the F5 guardian-spirit art series is that characters anchor to *provenance* (the century-old grove) and never to a *benefit* — if the grove claim collapses, the art's permitted referent collapses with it. (3) A second sourcing pitch leans on the same number.
+
+**Proposed resolution (~30 min, farm-side).** Either **substantiate** — Oscar or Coopercabruca supplies planting records, a dated certifier/MAPA statement, or equivalent; then register the plot in `SUNMINT_PLOTS_REGISTRY.md` as `mature` with a `planted_year` — or **strike** the claim from the farm page and the pack. Do not print it on a China SKU until one of the two has happened.
+
+**Note on the fix path.** The farm page lives in the agroverse **shop** repo, so correcting published copy is beta-first (`agroverse_shop_beta` → governor review → `sync_beta_to_prod`), never a direct prod edit.
+
 ### Contribution reporting has no prior-art check — one R$1,000 expense accrued 410 claimed minutes across 4 rows and 2 agent instances
 
 **Filed 2026-11-12 (Sophia). Owner: unclaimed. Priority: HIGH — this is not a cosmetic gap. It produced a 6.8-hour claim on a single R$1,000 accountant payment and it recurs every time two agent instances touch the same thread.**
