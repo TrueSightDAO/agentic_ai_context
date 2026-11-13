@@ -179,7 +179,7 @@ Every premium comparable found in the field (Café-Tasse, Bouchard, Lindt, Galax
 
 ## 5. The pricing revision — why the 4th stop matters more than the first three
 
-Before blt was found, the working conclusion (based on NB, SPAR, and Sam's only) was that **¥1,420/kg "has no shelf rung in this city"** and could only be sold D2C or as gifting — a 2.4–5.1× stretch above the cheapest SKU in the ladder. That conclusion was **correct for those three stores** but **incomplete**, because those three stores are mass/discount-to-mid-tier format, not the channel a premium single-origin bar actually competes in.
+Before blt was found, the working conclusion (based on NB, SPAR, and Sam's only) was that **¥1,420/kg "has no shelf rung in this city"** and could only be sold D2C or as gifting — a 2.4–5.1× stretch above the best mass-market SKU. That conclusion was **correct for those three stores** but **incomplete**, because those three stores are mass/discount-to-mid-tier format, not the channel a premium single-origin bar actually competes in.
 
 **blt changes the comparator entirely.** Café-Tasse — a real, shelved, Belgian 77% cacao product — sells at ¥1,250/kg in exactly the kind of store a premium import belongs in. Against that comparable, our existing $10/50g US price (¥1,420/kg) is only a **1.14× premium**, not an outlier. The shelf gap closes almost entirely once the comparator store is the right one.
 
@@ -252,7 +252,7 @@ Per Gary's direct request, one representative photo-set per venue, so the shelf 
 *Storefront/checkout area — general mid-tier supermarket format, SPAR-badged under JiaRong operation.*
 
 ![Dove 0-sugar dark chocolate, 38g, ¥11.50 electronic shelf tag, at SPAR](report_images/12_spar_dove_price_tag.jpg)
-· *Representative SPAR chocolate price point — mass-market ¥302.63/kg. Note the tension this creates for §5:* that is **above** the Café-Tasse comparable (¥1,250/kg), because it is a high-price-per-gram small pack, not a premium-tier product. Price per kilogram alone therefore does not separate premium from mass — which is why §4's format argument carries the weight, not the ¥/kg figure by itself.*
+· *Representative SPAR chocolate price point — mass-market ¥302.63/kg.*
 
 ### Sam's Club
 
