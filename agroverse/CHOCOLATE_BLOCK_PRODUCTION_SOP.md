@@ -62,6 +62,51 @@ The `81%` figure refers to **cacao mass as a share of finished weight**, not to 
 | Block 2.5 kg at true 81%, zero loss | 1.925 kg | 0.10 kg | 0.475 kg | 2.50 kg | 81% |
 | Block 2.5 kg at true 81%, ~5% loss | 1.93 kg | 0.10 kg | 0.475 kg | ~2.38 kg | ~81% |
 
+### 2.1 Corner case — an asserted `%` the mass balance cannot produce
+
+A `%` arriving from a human (governor, maker, buyer) is a **claim**, not a derivation. It is the weakest input in this document, because it asserts a *ratio* while supplying **neither mass**. Rank the evidence before using any of it:
+
+| Source | Reliability |
+|---|---|
+| Weighed finished weight | **highest** — closes the balance directly |
+| Weighed inputs | high |
+| Derived figure (e.g. sugar by subtraction) | conditional — inherits whatever closing assumption it was solved against |
+| **An asserted `%`** | **lowest** — implies masses but does not state them |
+
+**Never rename a currency to an asserted `%` while the substrate still implies another.** That recreates exactly the name-vs-substrate divergence §5.1 exists to prevent, and the damage lands at the next conversion: bars get cut from a block whose label and ledger disagree, and the bars *are* sold.
+
+**Procedure — inverse-solve before writing anything.** For an asserted fraction `p`, compute what it implies:
+
+```
+sugar  = nibs × (1/p - 1) - butter     # sugar needed to hit p
+weight = (nibs + butter) / p           # finished mass implied by p
+nibs   = weight × p - butter           # nibs implied by p
+```
+
+Worked for Block #1 (booked: nibs 2.0, butter 0.1, block 2.5; labelled 81%; arithmetic 84%):
+
+| Scenario | Nibs | Butter | Sugar | Finished | % cacao | Verdict |
+|---|---|---|---|---|---|---|
+| **Booked (current)** | 2.0 | 0.1 | 0.4 *(derived)* | 2.5 | **84.0%** | state as booked |
+| 71% — block bigger than booked | 2.0 | 0.1 | **0.858** | **2.958** | 71.0% | sugar **and** block weight understated |
+| 70% — round numbers | 2.0 | 0.1 | **0.900** | **3.000** | 70.0% | same defect, tidy figures |
+| 71% — less cacao used | **1.775** | 0.1 | 0.625 | 2.5 | 71.0% | requires **reversing 0.225 kg of booked nib consumption** |
+| 71% — label only, inputs & weight unchanged | 2.0 | 0.1 | 0.4 | 2.5 | **84.0%** | **impossible — 71% is unreachable** |
+
+The last row is the rule: **an asserted `%` cannot be applied by editing the label alone.** It is only reachable by changing the finished mass **or** changing a booked input quantity — either of which is a money leg, not a rename.
+
+**Resolving it:**
+
+1. **If a finished weight exists, it decides.** Weigh the block; ≈2.96 kg ⇒ "block bigger" (sugar was understated); exactly 2.5 kg ⇒ "less cacao used" (nibs were overstated). One weighing ends the argument.
+2. **If no weight exists, the assertion is unresolved.** Record it as a **working assumption with provenance** (who asserted it, when) — never as a corrected fact, and never by rewriting a consumption leg on an assumption.
+3. **Do not propagate an unresolved `%` into a sold unit.**
+
+> **Block #1 status (2026-11-14).** Governor instruction: *"just assume the final block is 71%."* Recorded as an **assumption**, not reconciled — the booked quantities still imply **84%**, and 71% is unreachable without either finished weight ≈2.96 kg (sugar ≈0.86 kg) or nibs 1.775 kg. **No ledger leg was rewritten.** See §8.8.
+
+**Why the plug amplifies here (§8.2).** Block #1's sugar was *derived* as `2.5 − 2.0 − 0.1 = 0.4 kg`, which silently assumes **zero yield loss**. If the block in fact came out near 2.96 kg, then ~0.86 kg of sugar went in — over **double** the booked 0.4 kg. An asserted `%` below the arithmetic `%` is therefore *evidence that a derived input was too small*, which is exactly the failure mode §8.2 warns about. This is why the corner case is a **data-capture** problem, not a naming problem.
+
+**Labelling stakes differ by unit type.** A block is interim inventory and never sold, so correcting its `%` is a naming fix with no consumer exposure. **A bar is sold** — a `%` on a sold pack is a product-attribute claim, and in China GB 7718 requires the **真实属性名称 (true attribute name)** to be accurate. So: an asserted `%` may be applied to a block's internal label on governor direction, but **must not reach a bar SKU name, label, or listing until the mass balance closes.**
+
 **Butter is an ingredient, not a processing aid.** It is consumed into the block and must be booked as a consumption leg, not left as a rounding adjustment. 0.1 kg per batch is the established convention (one per bar batch per the 20261114 governor ruling).
 
 ---
@@ -318,6 +363,8 @@ The block's composition JSON (`agroverse-inventory/currency-compositions/2abac3b
 
 **Because blocks are interim inventory and never sold, this is a naming issue, not a product-recall issue** — lower stakes than it first appears. It is still not ignorable: the 50 g bars cut from this block **are** sold, and their label must reflect the block's true composition rather than the block's name. Options: relabel the block `84%`, or reformulate to a true 81% going forward (nibs 1.925 + butter 0.1 + sugar 0.475 → 2.5 kg).
 
+> **Partly superseded 2026-11-14.** The governor directed that the block be *assumed* **71%**. That figure is not reachable from the booked quantities under any zero-loss change to the label — see the inverse-solve in **§2.1** and the tracking entry in **§8.8**. This section's arithmetic (84% from the inputs) still stands; it is the *label* that is now contested three ways (81% named, 84% arithmetic, 71% asserted).
+
 ### 8.2 Block sugar was a plug, not a measurement
 
 0.4 kg = `2.5 − 2.0 − 0.1`, which **assumes zero yield loss**. The bar batch on the same equipment by the same operator lost **4.8%**. At 4.8% loss the real sugar figure is ≈ 0.52 kg. The ledger legs are arithmetically self-consistent; the *physical* number is unverified.
@@ -354,6 +401,27 @@ Consequences:
 
 **Action:** confirm brown vs white with Kirsten; re-point the currency at the verified shelf price; re-cost Block #1. Also confirm *which* SKU she actually buys — neither registered row is verified as the product purchased.
 
+### 8.8 Block #1 carries three competing percentages — 81% named, 84% arithmetic, 71% asserted
+
+Not a defect in the sheet; a **provenance** defect. Three figures, none of them a measurement:
+
+| Figure | Source | Status |
+|---|---|---|
+| **81%** | currency name / original label | aspiration or target, never verified |
+| **84%** | `(2.0 nibs + 0.1 butter) / 2.5` | arithmetically certain **given** the inputs — but those inputs are a plug |
+| **71%** | governor instruction 2026-11-14 (*"just assume"*) | **asserted, unreconciled** |
+
+**71% is not reachable from the booked substrate.** Per §2.1 it requires a finished mass of ~2.96 kg (implying sugar ≈0.86 kg, not 0.4 kg) or nibs of 1.775 kg (implying 0.225 kg of booked nib consumption never occurred). Neither can be asserted into existence.
+
+**What was and was not done.** The `%` was treated as an *assumption*; **no ledger leg, quantity, or asset value was rewritten**, and the currency name was not changed to a figure the substrate contradicts. Sugar remains the derived plug of §8.2 — consistent with a block materially heavier than 2.5 kg.
+
+**Action (one weighing settles it):**
+- [ ] Weigh the finished Block #1. ≈2.96 kg ⇒ sugar/weight understated (amend r61/r62 family and re-cost). Exactly 2.5 kg ⇒ nibs overstated (reverse ~0.225 kg).
+- [ ] Then reconcile name, `cacao_mass_fraction`, and quantities to the **measured** figure in one pass.
+- [ ] Until then, **do not carry 71% onto any bar cut from this block** — see the GB 7718 note in §2.1.
+- [ ] If the block was never weighed and cannot be, record 71% **with provenance** in the currency description and accept that the composition is unverified rather than silently "correct".
+
+
 ---
 
 ## 9. Blocks get no QR codes (settled)
@@ -374,6 +442,7 @@ The block currency still carries `Serializable = TRUE` (col 2). That flag is a l
 
 **Before production**
 - [ ] Target weight and target % cacao agreed.
+- [ ] If a `%` is asserted by a human rather than measured, run the **§2.1 inverse-solve** before registering the currency, and record **whose** assertion it is.
 - [ ] Nibs lot identified; landed $/kg confirmed.
 - [ ] Butter and sugar sourced; the **more expensive** sugar link registered.
 
@@ -392,6 +461,7 @@ The block currency still carries `Serializable = TRUE` (col 2). That flag is a l
 - [ ] Unit cost computed from landed prices; block asset + quantity booked.
 - [ ] `Balance` verified — quantities numeric, equity increased, nets reconcile.
 - [ ] Any derived (not weighed) figure flagged as such in the description.
+- [ ] The `%` in the currency name agrees with the mass balance in its description. An unresolved asserted `%` is written up as an **assumption with provenance**, never presented as measured fact.
 
 ---
 
@@ -414,3 +484,11 @@ The block currency still carries `Serializable = TRUE` (col 2). That flag is a l
 | r66 | equity +$2.46035884 |
 | MAIN `offchain transactions` r6064–r6066 | receipt, injection out, equity holdings |
 | `Currencies` r178 / r180 | sugar, block |
+
+### Percentage provenance for Block #1
+
+| Figure | Where it lives | Nature |
+|---|---|---|
+| 81% | currency name | target/aspiration |
+| 84% | derivable from r59/r60/r62 | arithmetic on plugged inputs |
+| 71% | governor assertion 2026-11-14 | assumption, unreconciled (§2.1, §8.8) |
