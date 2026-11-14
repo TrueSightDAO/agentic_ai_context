@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-11-14T06:52:47Z`
+- Generated (UTC): `2026-11-14T18:23:57Z`
 - Look-back: **7** calendar days (`2026-11-07` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,14 +32,13 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 23
-- `[PAYOUT EVENT]` × 13
+- `[CONTRIBUTION EVENT]` × 24
+- `[PAYOUT EVENT]` × 12
 - `[PRACTICE EVENT]` × 3
 - `[SALES EVENT]` × 3
 
 ### Latest entries
 
-- `Edgar_20261113054855_3666` · **Edgar** · [CONTRIBUTION EVENT] Amount: 738.08 · Type: USD · Contributor(s): Elizabeth Wong
 - `Edgar_20261113113205_3668` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 420 · Description: China market entry — field research compilation & decision memo (Gary Teh, 7…
 - `Edgar_20261113145344_3670` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 11 · Contributor(s): Gary Teh
 - `Edgar_20261113145348_3672` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 11 · Contributor(s): Lawrence Kwek
@@ -59,6 +58,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20261114041022_3700` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 2.46035884 · Contributor(s): Kirsten Ritschel (kirsten@kikiscocoa.com)
 - `Edgar_20261114043448_3702` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 2.46035884 · Contributor(s): Kirsten Ritschel
 - `Edgar_20261114043724_3704` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 2.46035884 · Description: Contribution in kind: 0.4 kg organic evaporated cane sugar (Rainbow Grocery,…
+- `Edgar_20261114154753_3706` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Feedback on the chocolate bars from Vivi’s and Oscar’s
 
 ---
 
@@ -73,7 +73,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-11-13T11:59:14.467Z`
+- Generated (UTC): `2026-11-14T11:59:16.813Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -88,11 +88,11 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **76** stores — sum logged **warmup** sends (AU): **604**, sum logged **follow-up** sends (AV): **4**; warmup depth (none / once / ≥2): **41** / **0** / **35**; follow-up depth (none / once / ≥2): **75** / **0** / **1**
-- **Manager Follow-up**: **28** stores — sum logged **warmup** sends (AU): **23**, sum logged **follow-up** sends (AV): **56**; warmup depth (none / once / ≥2): **22** / **1** / **5**; follow-up depth (none / once / ≥2): **10** / **4** / **14**
+- **AI: Warm up prospect**: **74** stores — sum logged **warmup** sends (AU): **587**, sum logged **follow-up** sends (AV): **4**; warmup depth (none / once / ≥2): **40** / **0** / **34**; follow-up depth (none / once / ≥2): **73** / **0** / **1**
+- **Manager Follow-up**: **27** stores — sum logged **warmup** sends (AU): **22**, sum logged **follow-up** sends (AV): **56**; warmup depth (none / once / ≥2): **22** / **0** / **5**; follow-up depth (none / once / ≥2): **9** / **4** / **14**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: _(no rows in this status)_
-- **Follow-up pipeline (combined)**: **28** stores — sum logged **warmup** sends (AU): **23**, sum logged **follow-up** sends (AV): **56**; warmup depth (none / once / ≥2): **22** / **1** / **5**; follow-up depth (none / once / ≥2): **10** / **4** / **14**
+- **Follow-up pipeline (combined)**: **27** stores — sum logged **warmup** sends (AU): **22**, sum logged **follow-up** sends (AV): **56**; warmup depth (none / once / ≥2): **22** / **0** / **5**; follow-up depth (none / once / ≥2): **9** / **4** / **14**
 
 ---
 
@@ -185,17 +185,18 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 ### Stock at production shippers
 
 **Kirsten Ritschel** _( San Francisco — retail / online fulfilment / partner restock )_
-- Manager record: `Kirsten Ritschel` · 28 SKU lines · 1,609.26 total units · $6,900.93
+- Manager record: `Kirsten Ritschel` · 32 SKU lines · 1,622.45 total units · $6,898.38
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
   | Packaging Material | Bulk | 4 | 892 | $649.90 |
-  | (uncategorized) | (unspecified) | 17 | 313.96 | $1,019.84 |
+  | (uncategorized) | (unspecified) | 18 | 325.95 | $1,031.83 |
   | Cacao Mass | Retail Ready | 1 | 169 | $2,328.82 |
   | Cacao Nib | Retail Ready | 1 | 129 | $1,355.79 |
   | Cacao Mass | Bulk | 2 | 87 | $898.06 |
-  | Cacao Nib | Bulk | 2 | 13.50 | $483.40 |
-  | Cacao Butter | Bulk | 1 | 4.80 | $165.12 |
+  | (uncategorized) | Bulk | 3 | 7.50 | $217.03 |
+  | Cacao Nib | Bulk | 2 | 7.50 | $262.14 |
+  | Cacao Butter | Bulk | 1 | 4.50 | $154.80 |
 
 **Matheus Reis** _( Ilhéus, Brazil — bulk warehouse + freight to SF )_
 - Manager record: `Matheus Reis` · 23 SKU lines · 1,272.59 total units · $5,753.59
@@ -233,7 +234,7 @@ _(+34 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$1,686.96**
+- USD on hand: **$1,669.39**
 - Brazilian Reis: R$130.00 · rate `0.2323` USD/BRL → ≈ **$30.20**
 - USD provisioned for voting-rights cash-out: **$58.60**
 
@@ -271,6 +272,7 @@ _All dated lines on/after 2026-11-07_ (1):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+f24d770 | 2026-11-14 06:56:09 +0000 | chore(stats): refresh stats indexes [skip ci]
 10e3d8c | 2026-11-13 19:58:11 +0000 | chore(stats): refresh stats indexes [skip ci]
 b9dbd50 | 2026-11-13 07:07:51 +0000 | chore(stats): refresh stats indexes [skip ci]
 f3485fe | 2026-11-12 20:20:36 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -298,6 +300,11 @@ c2a2b4e | 2026-11-12 12:16:02 +0800 | Add content schedule ↔ Google Calendar s
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+88de227 | 2026-11-14 18:02:41 +0800 | docs(SOP): corner case - asserted % the mass balance cannot produce (Block #1 71%) (#1856)
+ac72881 | 2026-11-14 17:00:26 +0800 | docs(SOP): per-kg unit-of-account convention + derived-tab spill guard; Block #1 Unit Weight 2500->1000 (#1855)
+4f13ca7 | 2026-11-14 16:56:09 +0800 | SOP v1.2: reconcile block production SOP with live ledger (#1854)
+fe02e23 | 2026-11-14 14:53:12 +0800 | chore(previews): refresh Beer Hall preview (2026-11-14 UTC)
+6912cb2 | 2026-11-14 14:53:09 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-14 UTC)
 b276917 | 2026-11-14 13:32:02 +0800 | SOP v1.1: blocks are interim inventory, not for sale, no QR codes (#1853)
 281e5a6 | 2026-11-14 13:17:11 +0800 | Document: Equity/Asset imbalance = accrued net profit (not an error) (#1851)
 58dfba2 | 2026-11-14 12:43:47 +0800 | File: Edgar contribution pipeline frozen since 2026-09-30 (silent drop) (#1850)
@@ -333,11 +340,6 @@ bd3ad82 | 2026-11-12 11:05:49 +0800 | File follow-up: retail repeat-purchase/cad
 145feec | 2026-11-11 17:23:14 +0800 | Fix §2a: blog headers are git-CSV-sourced; link from newsletter side (#1826)
 28a8426 | 2026-11-11 17:12:17 +0800 | SOP §2a: pair one blog post with each newsletter send (#1825)
 65eb88b | 2026-11-11 16:58:10 +0800 | SOP: make a brand-token endcard the mandatory final frame (#1824)
-dc4dd06 | 2026-11-11 16:24:52 +0800 | Add brand-film SOPs: music sourcing/licensing + video production &amp; QC (#1823)
-37ea490 | 2026-11-11 16:24:24 +0800 | Backup: full content schedule snapshot before Nov 2026 cadence rewrite
-1da41a9 | 2026-11-11 16:05:38 +0800 | docs(content-schedule): measured asset capacity + real defect list (#1822)
-3dc52f9 | 2026-11-11 15:52:01 +0800 | docs: file send-log header drift followup + fix CMS §7 markdown nit (#1821)
-afa0314 | 2026-11-11 15:48:19 +0800 | docs(newsletter SOP): §4.1a image content gate + stale path fixes (#1816)
 … (truncated)
 ```
 
@@ -388,6 +390,11 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+e2ed0a8 | 2026-11-14 13:47:16 +0000 | chore: refresh currencies.json [skip ci]
+f9a42fb | 2026-11-14 13:36:12 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
+3f475b0 | 2026-11-14 18:16:59 +0800 | Add composition JSON for Oscar cacao block #2 (70%, 2.5 kg, MAIN)
+990150f | 2026-11-14 18:16:55 +0800 | Add composition JSON for Oscar cacao block #1 (81%, 2.5 kg, MAIN)
+911b925 | 2026-11-14 18:16:50 +0800 | Add composition JSON for Vivi cacao block #2 (71%, 2.5 kg, AGL13)
 b43ca63 | 2026-11-14 13:28:41 +0800 | Add composition for Vivi 81% block #1 (2.5kg) incl. cane sugar
 761571f | 2026-11-14 11:28:49 +0800 | chore: refresh Agroverse SKU catalog snapshot
 67694e8 | 2026-11-14 11:28:47 +0800 | chore: refresh Agroverse store inventory snapshot
@@ -511,7 +518,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
 | 2026-10 | 460 | 18944.34386 | 10/31/2026 |
-| 2026-11 | 276.9 | 19221.24386 | 11/13/2026 22:51:03 |
+| 2026-11 | 276.9 | 19221.24386 | 11/14/2026 9:52:51 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-11-07`; scanned last **600** data rows)
 
