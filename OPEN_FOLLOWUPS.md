@@ -39,6 +39,32 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Edgar contribution pipeline is FROZEN since 2026-09-30 — `submit_contribution` returns 200 but the event never persists
+
+**Filed 2026-11-14 (Sophia). Owner: unclaimed. Priority: CRITICAL — silently loses TDG-bearing contribution events while telling the caller "success".**
+
+**Symptom.** Submitted a CONTRIBUTION EVENT twice; Edgar returned `Contribution submitted successfully` both times; **`Ledger history` got no new row** (still 12556). Investigating that surfaced three independent failures, all pointing at a frozen pipeline rather than a bad payload.
+
+**Evidence.**
+
+- **`Ledger history` is frozen ~6 weeks.** Newest row by col H = **20260930**. 1,388 distinct dates, range `20171231 .. 20260930`.
+- **The sheet grid was exactly full** — data_rows 12556 = grid_row_count 12556, **0 trailing blank rows**. Sheets **silently discards** appends past the grid with no error. Same condition on `Outstanding Airdrops` (2003/2003), `Contributors voting weight` (1519/1519), `Recent Contributions - 180` (1003/1003).
+- **`GET /dao/review_queue` is also frozen** — 10 items, newest `generated_at = 2026-09-10`. Submissions did not reach the queue either.
+- **`submit_contribution` cannot detect the failure.** `app/edgar_logger.py` returns `True` whenever `resp.ok` (HTTP 200); acceptance is conflated with persistence.
+- **Edgar is not the `dao_protocol` fleet host.** Real backend is nginx upstream `18.232.199.204:8081` on `krake_nginx`; the `dao_protocol` host reports `inactive`.
+
+**Why it matters.** Any contribution submitted since **2026-10-01** may have been silently lost while reporting success — governors' and agents' TDG-bearing work alike. The failure is invisible from the caller side, so nobody would report it.
+
+**Recommended fix.**
+
+1. **Edgar must expand-then-assert:** grow the target sheet, append, then read back and fail loudly on a blank row. Returning 200 on a dropped write is the core defect.
+2. **`submit_contribution` should verify persistence** — stop treating HTTP 200 as success; read back via `/dao/review_queue` or the target sheet.
+3. **Audit and replay** the `2026-10-01 → today` gap in `Ledger history` and `review_queue`.
+
+**Mitigated this session (patch, not fix).** `Ledger history` grid expanded 12556 → 14056. `Recent Contributions - 180` is **cell-protected**, so `add_rows()` raises `400: You are trying to edit a protected cell or object` — that sheet cannot be self-healed and needs the owner to unprotect or Edgar to handle it.
+
+**Outstanding for my own event.** Kirsten's sugar CONTRIBUTION EVENT (`Type=USD`, `Amount=2.46035884`) is submitted-but-unpersisted. **Do not blindly resubmit** — two attempts may both be queued somewhere; a third plus a queue drain would double-book her contribution. Resolve the queue first. The ledger side of the block IS booked (MAIN `r6064`–`r6066`, AGL13 `r59`–`r63`), so only the TDG recognition leg is missing.
+
 ### Cane sugar appears in no recipe, composition, or currency — yet the label declares 19% cane sugar
 
 **Filed 2026-11-14 (Sophia). Owner: unclaimed. Priority: HIGH — our cost model cannot price a declared ingredient, and the declared mass balance does not close.**
