@@ -92,6 +92,35 @@ When the allocated cost lands **in inventory**, fold it into unit cost by the sa
 
 ---
 
+### 9.8 Assets ≠ Equity after a sale = accrued net profit (NOT a defect)
+
+**Governor ruling (Gary Teh, 2026-11-14).** Do **not** treat an imbalance between the **Assets** side and the **Equity** side of a managed ledger as an error to be corrected. It is the intended representation of **net profit accrued against the equity**.
+
+**Mechanism.** When inventory is sold, the two legs move different amounts on purpose:
+
+| Leg | Moves | Amount |
+|---|---|---|
+| **Assets** (inventory out) | the bag / block leaves the shelf at its **landed book cost** | `unit_cost × qty` |
+| **Equity** (proceeds in) | cash (or claim) arrives at the **sale price** | `sale_price × qty` |
+
+The difference `sale_price − unit_cost` is the **net profit accrued against the equity**. `Σ Assets ≠ Σ Equity` is therefore the *correct* post-sale state, and the gap **is** the profit.
+
+**Consequences — read before "fixing" a ledger.**
+
+1. **Never add a plug / balancing / adjustment row to force the totals equal.** Doing so erases the profit record and is not reversible by inspection later.
+2. **`Σ Assets ≡ Σ Equity` is a capital-formation-time invariant only.** It holds when cash converts into goods, and when goods are injected in kind (§9.4, §9.5). **Trading deliberately breaks it.** Do not assert it as a global invariant.
+3. **Do not flag the gap as an error in a governor report.** If you see Assets < Equity after sales, that is revenue, not a reconciliation failure. Report the two sides separately.
+
+**Replacement verification** (what to assert instead of a global equality):
+
+- **Per-currency asset quantities** reconcile to physical counts / inventory records — independently of any equity figure.
+- **Equity** reconciles to financier contributions and capital injections per financier — independently of any asset figure.
+- Any *unexplained* movement — a change on one side with **no counterparting economic event** — is still a defect. The rule above excuses a gap **explained by a sale (or expense/write-off)**; it does not excuse a one-sided entry.
+
+**Related:** §9.4 (entity labelling on injections), §9.7 (numeric-not-text amounts, read substrate then view), `OPEN_FOLLOWUPS.md` (equity excluded from amounts due).
+
+---
+
 ## Repackaging planner flow (`dapp/repackaging_planner.html`)
 
 **Single-sitting, Edgar-routed submit** — same shape as every other DApp page.
