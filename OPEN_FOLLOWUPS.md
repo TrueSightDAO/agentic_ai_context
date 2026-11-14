@@ -138,6 +138,20 @@ Scanning all 6060 MAIN rows found **13 distinct** composition UUIDs. Fetching ea
 
 **Fix.** Audit `agroverse-inventory/currency-compositions/` against the UUIDs cited in MAIN; restore or regenerate the 9 missing files, or annotate the citing rows with the correct path. Add a CI check that every composition UUID referenced in the ledger resolves.
 
+### `check_retail_margins.py` compares a SKU price to a `Currencies` cost without multiplying by `Unit Weight` — safe today, a silent 2.5× understatement the moment a bulk currency gains a retail SKU
+
+**Filed 2026-11-14 (Sophia). Owner: unclaimed. Priority: MEDIUM — no live failure, but the guard is the *only* automated check on retail price sanity and it reads cost as if every unit were the sale unit.**
+
+`go_to_market/scripts/check_retail_margins.py` joins `Agroverse SKUs` to `Currencies` col M and then does `cost = parse_money(row[CUR_COL_COST])` → `gross_margin = (price - cost - tree_charge) / price`. `CUR_COL_GRAMS` (col 10) is **defined but never used** in the margin math.
+
+That is correct for every retail SKU today: each attached currency is a per-*bar* (or per-*unit*) cost, so col B already equals the cost of the thing being priced. It becomes wrong the moment a **per-kg** currency (e.g. any `Unit Weight = 1000` row — nibs r83 at `$27.25/kg`, tea r90, and the new Block #1 r180 at `$24.160143536/kg`) is joined to a SKU sold in a different quantity. A 2.5 kg block priced at `$60.40` against a `$24.16` per-kg cost would compute a **62% margin** where the true margin is **0%** — the guard would pass a zero-margin price.
+
+**Why MEDIUM not HIGH.** Blocks are `Sale Type = Bulk` (per the 2026-11-14 governor ruling) and `evaluate()` only considers `is_retail` SKUs, so nothing is mis-evaluated right now.
+
+**Fix (~20 min).** Either (a) assert `CUR_COL_GRAMS == SKU weight` for every joined pair and fail loudly on mismatch, or (b) normalise: `unit_cost = cost / (grams / 1000)` for per-kg rows before comparing, keyed off `Sale Type` / `Unit Weight`. (a) is the cheaper guard and catches the misconfiguration rather than silently rescaling it. Add a test with a `Unit Weight = 1000` currency joined to a 50 g SKU asserting the guard raises.
+
+**Related.** `agroverse/CHOCOLATE_BLOCK_PRODUCTION_SOP.md` §5.1 now documents the underlying convention — `Price in USD` is the cost of one *unit of account* and `Unit Weight` declares that unit. The code gap is the reason that convention has teeth.
+
 ### Silent ledger-append failure when a sheet has hit its grid row limit — a write can report success and land nowhere
 
 **Filed 2026-11-14 (Sophia). Owner: unclaimed. Priority: HIGH — silent data-loss trap on the money ledger; cost ~5 diagnostic rounds to isolate.**

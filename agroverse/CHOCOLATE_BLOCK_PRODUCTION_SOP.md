@@ -145,6 +145,46 @@ Agroverse <pct>% Cacao Chocolate Block (Kilograms) #<n> | <nib origin> | <maker>
 
 **Do not put the weight in the name.** It is already carried as a number in `Unit Weight (grams)` (col 10). Duplicating it in the name invites the two drifting apart, and a block is a **per-kg asset**: `Amount` is in kilograms, and `Amount × Price in USD = total USD`.
 
+### 5.1 `Price in USD` is the cost of one *unit of account* — and `Unit Weight` declares that unit
+
+Two fields together define what one "unit" is. They **must** agree, and checking only one of them is how a 2.5× error slips through:
+
+| Field | Means |
+|---|---|
+| `Price in USD` (col 1) | cost of **ONE** unit |
+| `Unit Weight (grams)` (col 10) | mass of **ONE** unit, in grams |
+| `Amount` (ledger) | **number of units** |
+
+Cross-checked against the live `Currencies` catalog:
+
+| Currency | `Unit Weight` | `Price in USD` | One unit is | `Amount` booked |
+|---|---|---|---|---|
+| 81% bar (r26/r28) | `50` | 2.709 | one 50 g bar | 40 bars |
+| Cacao Nibs Santos + SF (r83) | `1000` | 27.25 | one kilogram | 95.5 kg |
+| Cacao Tea (r90) | `1000` | 10.18234711 | one kilogram | 21 kg |
+| **Block #1 (r180)** | **`1000`** | **24.160143536** | **one kilogram** | **2.5 kg** |
+
+The rule that ties them together: **for a per-kg commodity, `Unit Weight = 1000` and `Amount` is in kilograms.** `Amount × Price in USD = total USD` then holds on every row above.
+
+**Why the block is `1000`, not `2500`.** The block is a **per-kg asset** — its `Amount` is 2.5 *kilograms*, not 1 block. Setting `Unit Weight = 2500` while `Amount = 2.5` **mixes units**: it declares "one unit weighs 2.5 kg" and then books 2.5 of those units — **6.25 kg of asset for a 2.5 kg block**. `2500` is correct only if the whole block is sold as one indivisible SKU priced `$60.40035884`, which is neither how it is booked nor how it will be consumed by a later conversion.
+
+> **Corrected 2026-11-14 (governor instruction, Gary).** Block #1 `Unit Weight (grams)` changed **`2500` → `1000`**, and the currency was renamed from the old `<weight>kg` form to `(Kilograms)`. **No quantity or value changed** — `Balance` still reads 2.5 / 2.5 and `$60.40035884`; `2.5 × 24.160143536 = 60.40035884` exactly. The earlier "`2500` ✅" in this document was tracking the **physical size** of the block rather than the **unit of account** — the exact conflation this section now exists to prevent.
+
+> ⚠️ **Live consumer — do not give a per-kg currency a retail SKU.** `go_to_market/scripts/check_retail_margins.py` reads `Currencies` col B as the **per-unit cost** and compares it directly to a SKU's retail price **without** multiplying by `Unit Weight`. That is correct for 50 g bars (col B already *is* the bar cost), but a per-kg currency attached to a whole-block SKU would understate cost **2.5×** and let a sub-cost price pass the margin guard silently. Blocks are `Sale Type = Bulk` and so are skipped today; if a bulk currency ever gains a retail SKU, divide by the unit mass first.
+
+### 5.2 Never write into a derived tab's spill range
+
+`Balance` is **entirely derived** in every managed location ledger (AGL8 / AGL13 / AGL15): `A6`, `E6`, `H6` and `L6` are `QUERY()` array formulas that spill down the whole tab, and each location's `State!A1` is an `IMPORTRANGE("1GE7PUq-…", "Currencies!A:B")` spill. MAIN's `offchain asset location` behaves the same way (`sops/REPACKAGING_SETTLEMENT_SOP.md`).
+
+A **literal write into any cell inside a spill range blocks the formula** and cascades. On 2026-11-14, a literal placed in AGL13 `Balance!E7` and `!J7` produced `#REF!` at row 6 and blanked `E:J` on rows 7–10 — including a real bar balance — and a literal at `State!A180` turned `State!A1` itself into `#REF!`.
+
+**Pre-write guard — the check that is NOT sufficient.** Asking *"does any formula reference this currency name?"* is **not** a guard: it returned `0` before that write, the write was judged safe, and it still broke the sheet.
+
+1. Read the target tab in **FORMULA** view — `get_all_values(value_render_option="FORMULA")`.
+2. Find every array formula (`QUERY`, `IMPORTRANGE`, `FILTER`, `SORT`, `UNIQUE`, `ARRAYFORMULA`) and treat **every cell below and to the right of it** as spill-owned.
+3. Change the **substrate** (`Transactions`, or MAIN `Currencies`) — never the derived view. Derived tabs repair themselves; hand-written cells do not.
+4. If a literal already landed, `batch_clear` the cell and let the formula re-spill, then re-read and confirm **zero** `#REF!` / `#NAME?` remain across the tab.
+
 ### Required fields (col index)
 
 | Col | Field | Block #1 value | Status |
@@ -156,12 +196,12 @@ Agroverse <pct>% Cacao Chocolate Block (Kilograms) #<n> | <nib origin> | <maker>
 | 5 | ledger | MAIN spreadsheet URL | ✅ |
 | 6/7/8 | farm / state / country | Jesus do Deus / Bahia / Brazil | ✅ |
 | 9 | Year | — | ❌ missing |
-| 10 | Unit Weight (grams) | `2500` | ✅ |
+| 10 | Unit Weight (grams) | `1000` | ✅ per-kg unit of account — see §5.1 |
 | 12 | SKU Product ID | — | n/a — not sold, so no SKU |
 | 15 | Inventory Type | — | ❌ should identify it as a block |
 | 16 | Sale Type | — | ❌ **must be `Bulk`** |
 
-**Unit Weight (grams) is not optional** — bars carry it (col 10 = `50`) and it is what a later conversion divides by. A block without it cannot be cut correctly. (It is now populated on Block #1.)
+**Unit Weight (grams) is not optional** — bars carry it (col 10 = `50`) and it is what a later conversion divides by. A block without it cannot be cut correctly. Block #1 carries **`1000`**, because it is booked as a **per-kg asset** (`Amount` = 2.5 kg). The value states the *unit of account*, **not** the physical size of the block — see §5.1.
 
 **`Sale Type` must be `Bulk`, never `Retail Ready`** — see the ruling at the top. The ledger already follows this convention: bars r21/r22 and ceremonial r123 are `Retail Ready`; nibs r83 and butter r131 are `Bulk`. Misclassifying a block as `Retail Ready` would push interim inventory into retail-facing channels.
 
@@ -300,7 +340,7 @@ Roast profile, melanger duration, tempering curve, equipment ID, cold-hold time 
 
 ### 8.6 Currency fields incomplete
 
-Block currency was missing `Unit Weight (grams)` (col 10) — **now populated as 2500**. Still missing `Year` (col 9); `SKU Product ID` (col 12) is not applicable since the block is not sold. `Sale Type` / `Inventory Type` (cols 15/16) unset and should be `Bulk`. Note `Serializable = TRUE` (col 2) is a creation leftover and is **not** a serialization instruction — see §9.
+Block currency was missing `Unit Weight (grams)` (col 10) — **now populated as `1000`** (per-kg unit of account; see §5.1). Still missing `Year` (col 9); `SKU Product ID` (col 12) is not applicable since the block is not sold. `Sale Type` / `Inventory Type` (cols 15/16) unset and should be `Bulk`. Note `Serializable = TRUE` (col 2) is a creation leftover and is **not** a serialization instruction — see §9.
 
 ### 8.7 Sugar unit price is unverified (affects every block cost)
 
@@ -348,7 +388,7 @@ The block currency still carries `Serializable = TRUE` (col 2). That flag is a l
 - [ ] Inputs received into MAIN (asset + equity if in kind).
 - [ ] Injected MAIN → location (two legs each).
 - [ ] Consumption legs booked at the location.
-- [ ] Block registered in `Currencies` — **including Unit Weight = grams**.
+- [ ] Block registered in `Currencies` — **`Unit Weight (grams) = 1000`** for a per-kg block (§5.1). Do **not** enter the block's physical size (`2500`).
 - [ ] Unit cost computed from landed prices; block asset + quantity booked.
 - [ ] `Balance` verified — quantities numeric, equity increased, nets reconcile.
 - [ ] Any derived (not weighed) figure flagged as such in the description.
