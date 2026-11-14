@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-11-14T18:23:57Z`
+- Generated (UTC): `2026-11-14T22:40:13Z`
 - Look-back: **7** calendar days (`2026-11-07` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,14 +32,13 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 24
-- `[PAYOUT EVENT]` × 12
+- `[CONTRIBUTION EVENT]` × 25
+- `[PAYOUT EVENT]` × 11
 - `[PRACTICE EVENT]` × 3
 - `[SALES EVENT]` × 3
 
 ### Latest entries
 
-- `Edgar_20261113113205_3668` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 420 · Description: China market entry — field research compilation & decision memo (Gary Teh, 7…
 - `Edgar_20261113145344_3670` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 11 · Contributor(s): Gary Teh
 - `Edgar_20261113145348_3672` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 11 · Contributor(s): Lawrence Kwek
 - `Edgar_20261113230750_3674` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-13T23:07:47.905Z · Program: truesight-grounding · Practice Type: oracle-consultation
@@ -59,6 +58,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20261114043448_3702` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 2.46035884 · Contributor(s): Kirsten Ritschel
 - `Edgar_20261114043724_3704` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 2.46035884 · Description: Contribution in kind: 0.4 kg organic evaporated cane sugar (Rainbow Grocery,…
 - `Edgar_20261114154753_3706` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Feedback on the chocolate bars from Vivi’s and Oscar’s
+- `Edgar_20261114210354_3708` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Phone call to talk about Chocolate tasting profiles for various products fro…
 
 ---
 
@@ -272,6 +272,7 @@ _All dated lines on/after 2026-11-07_ (1):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+4a61f5e | 2026-11-14 18:26:19 +0000 | chore(stats): refresh stats indexes [skip ci]
 f24d770 | 2026-11-14 06:56:09 +0000 | chore(stats): refresh stats indexes [skip ci]
 10e3d8c | 2026-11-13 19:58:11 +0000 | chore(stats): refresh stats indexes [skip ci]
 b9dbd50 | 2026-11-13 07:07:51 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -300,6 +301,8 @@ c2a2b4e | 2026-11-12 12:16:02 +0800 | Add content schedule ↔ Google Calendar s
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+e4eb6cd | 2026-11-15 02:24:21 +0800 | chore(previews): refresh Beer Hall preview (2026-11-14 UTC)
+e49ff34 | 2026-11-15 02:24:18 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-14 UTC)
 88de227 | 2026-11-14 18:02:41 +0800 | docs(SOP): corner case - asserted % the mass balance cannot produce (Block #1 71%) (#1856)
 ac72881 | 2026-11-14 17:00:26 +0800 | docs(SOP): per-kg unit-of-account convention + derived-tab spill guard; Block #1 Unit Weight 2500->1000 (#1855)
 4f13ca7 | 2026-11-14 16:56:09 +0800 | SOP v1.2: reconcile block production SOP with live ledger (#1854)
@@ -338,8 +341,6 @@ bd3ad82 | 2026-11-12 11:05:49 +0800 | File follow-up: retail repeat-purchase/cad
 97b2b39 | 2026-11-11 17:46:45 +0800 | Correct content-workbook writer claim; file dormant data-loss hazard (#1828)
 25b4f38 | 2026-11-11 17:40:41 +0800 | MAP: add generated-artifact archive + YouTube indexing checklist (#1827)
 145feec | 2026-11-11 17:23:14 +0800 | Fix §2a: blog headers are git-CSV-sourced; link from newsletter side (#1826)
-28a8426 | 2026-11-11 17:12:17 +0800 | SOP §2a: pair one blog post with each newsletter send (#1825)
-65eb88b | 2026-11-11 16:58:10 +0800 | SOP: make a brand-token endcard the mandatory final frame (#1824)
 … (truncated)
 ```
 
@@ -518,7 +519,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
 | 2026-10 | 460 | 18944.34386 | 10/31/2026 |
-| 2026-11 | 276.9 | 19221.24386 | 11/14/2026 9:52:51 |
+| 2026-11 | 276.9 | 19221.24386 | 11/14/2026 13:52:12 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-11-07`; scanned last **600** data rows)
 
