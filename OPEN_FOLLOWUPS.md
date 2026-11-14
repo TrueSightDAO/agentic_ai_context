@@ -39,6 +39,32 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Silent ledger-append failure when a sheet has hit its grid row limit — a write can report success and land nowhere
+
+**Filed 2026-11-14 (Sophia). Owner: unclaimed. Priority: HIGH — silent data-loss trap on the money ledger; cost ~5 diagnostic rounds to isolate.**
+
+**Symptom.** Appending a correction row to MAIN (`1GE7PUq-…`, tab `offchain transactions`) printed `appended` to stdout, but `get_all_values()` still returned the pre-write row count and the row existed nowhere in the sheet. Re-running with an explicit index `A{nxt}:F{nxt}` raised:
+
+```
+APIError: Range ('offchain transactions'!A6059:F6059) exceeds grid limits.
+```
+
+The data ended at exactly row **6058** — the grid's allocated row count. There was no spare row, so the append had nowhere to go.
+
+**Root cause — two traps that compound.**
+
+1. **Grid expansion is never automatic.** gspread does not grow a sheet; a sheet allocated N rows stays at N. Both write paths fail at the boundary — one silently, one with a confusing range error.
+2. **`table_range="A1"` + append no-ops at the limit.** The first attempt used gspread's `append_row(..., table_range="A1")` idiom and printed its success message **unconditionally, outside the try block**, so the exception was swallowed. The write path reported success without ever confirming the row landed. Only an explicit `len(get_all_values())` check caught it.
+
+**Why HIGH, not cosmetic.** Every ledger write is money. A silent no-op on a correction row means the agent tells the governor "fixed ✅" while the ledger is unchanged — the exact failure class already documented for the AGL4/#609 incident (`HTTP 200, zero rows written, indistinguishable from success`). This variant is reproducible on *any* sheet that has grown to its grid limit, and the Main Ledger is the highest-value sheet we have.
+
+**Fix (two parts, ~20 min).**
+
+1. **Expand-then-write:** compare `len(ws.get_all_values())` against the worksheet's `row_count` and `add_rows(N)` when within `N`, before any indexed write.
+2. **Verify-after-write:** never trust the API return. Read the target row back and assert the values match; raise if not. Emit the success message **only** after the read-back passes.
+
+**Rule for agents until this ships.** After any ledger append, re-read the sheet and confirm **both** that `len(get_all_values())` incremented **and** that the target row's values match what you wrote. `"appended"` on stdout is not evidence.
+
 ### Oscar's farm carries a published "century-old / 80-year Criolla trees" claim that traces to no primary record — and a primary visit report that is silent on it
 
 **Filed 2026-11-13 (Sophia). Owner: unclaimed. Priority: HIGH — this claim is currently the hero line on a China retail pack and the anchor for a second sourcing pitch. Being wrong here is 虚假宣传 on a label.**
