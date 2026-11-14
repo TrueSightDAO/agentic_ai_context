@@ -39,6 +39,57 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Cane sugar appears in no recipe, composition, or currency — yet the label declares 19% cane sugar
+
+**Filed 2026-11-14 (Sophia). Owner: unclaimed. Priority: HIGH — our cost model cannot price a declared ingredient, and the declared mass balance does not close.**
+
+**Symptom.** The 50 g 81% bar is declared **81% cacao / 19% cane sugar** (`brazil/USA_SANTOS_PRODUCTION_SPEC.md` L48, L56: *"the recipe is two ingredients only — 81% cacao and 19% cane sugar, nothing else"*). But sugar exists **nowhere** in the accounting:
+
+- `Currencies` (177 rows): **zero** sugar/jaggery/panela/muscovado/sucrose keys.
+- `MAIN offchain transactions` (6060 rows): only 6 'sugar' hits, all historical **USD retail expenses** by Gary (r53 16 oz Sugar in the Raw $4.99; r573 brown sugar $1.99/454 g; r621/r809/r831/r1759 cacao-circle batches). **No commodity row, ever.**
+- `offchain assets in transit`: Kirsten's other items are all listed (butter r28, nibs r23/r26, tea r27, almonds r24, pouches r25, mass bar r22) — **no sugar row**.
+- AGL13 `Transactions` / `Balance` / `State` / `Entities` / `Unit Costing Economics`: **zero** sugar hits.
+- All **13** `currency-compositions` UUIDs referenced in MAIN: **not one contains 'sugar'**. The r5286 bar settlement (40 × 50 g, $2.709/unit) prices exactly three inputs — 2 kg nibs $83.38, 40 Joyberg envelopes $2.82, 40 Sticker Mule labels $22.16 = $108.36. **No sugar line.**
+- No sheet is sugar-aware: `Agroverse Price Components`, `Agroverse Cacao Processing Cost`, `Agroverse Cacao Category Pricing` (Organic/Gourmet/Bulk multipliers only), `Commodity Prices Exchange Rate` (equities feed) — none mention sugar.
+
+**Why this is a real problem, not a bookkeeping nicety.**
+
+1. **An input is consumed but never costed.** Every bar made consumes sugar at 19% of mass, yet the bar's unit cost omits it. This is the same defect class as the un-capitalized butter ($3.44/batch — see the AGL13 butter reconciliation), one layer down.
+2. **The declared mass balance does not close.** Rr5286 consumed **2.0 kg nibs → 40 × 50 g = 2.0 kg finished bar**. If the bar were truly 19% sugar, 40 × 50 g = 2.0 kg would require **~0.38 kg sugar + 1.62 kg nibs**, not 2.0 kg nibs. Either the finished bar weighs **more than 50 g** (~59.5 g if 2.0 kg nibs were 81% of it), or the declared 19% sugar is **not actually in the recipe**, or the sugar is unbooked. **Any of those three is material** and they cannot all be true. Needs a physical bar-weight check.
+3. **The standard for other receipts already disagrees.** `research/BRAZIL_SUGARCANE_ENV_REPORT.md` L127 explicitly recommends positioning *"Brazilian cane sugar (esp. certified, low-ILUC) is among the most"* sustainable inputs — so sugar is a marketing- and compliance-relevant ingredient we cannot substantiate.
+
+**Compliance risk.** Kirsten's own label review (Canva comment on "Regenerative Amazon Caramelized Cacao Beans", 2025-06-30) asks: *"Is the cane sugar organic? can we use any certifications on the labels?"* — **still unanswered**, and we hold no sugar provenance record to answer it from.
+
+**Recommended fix.**
+
+1. Determine the **actual bar mass** (weigh a finished bar) to settle whether the 19% sugar is real.
+2. If sugar is genuinely used: create `Cane Sugar (KG)` + a `… + 047-3175-3223 - San Francisco` delivered twin (mirroring the two-tier `Coopercabruca Cacao Butter (KG)` $17.33 / `… - San Francisco` $34.40 pattern) with `Serializable=TRUE`, a real `landing_page`, and a populated `ledger` column — note `Currencies` r177 shows the half-built-key failure mode (`Serializable`/images/landing_page/ledger all blank).
+3. Add sugar to `currency-compositions` for **every bar SKU**, then re-derive unit cost (see also the 5 divergent 81% bar keys: r25 $2.903378, r26 $2.709, r27 $2.70831, r28 $1.987, r177 $2.795).
+4. Record the receipt as a CURRENCY CONVERSION / inventory receipt, **not** a CONTRIBUTION EVENT — per the r4288 Mattheus butter precedent (a material receipt, not a TDG award). If donor recognition in TDG is also wanted, file a separate CONTRIBUTION EVENT.
+
+**Pricing reference (researched 2026-11-14, for when the key is created).** US wholesale: conventional refined 50 lb bags **$1.14–$1.52/kg**; commercial refined 1,000+ lb **$1.28–$1.43/kg**; organic cane **$3.22–$3.73/kg**; USDA Sugar in the Raw retail $11.01/kg. Note **US sugar runs ~2× world** (tariff/quota program), so pricing a Brazil-sourced donation at US replacement cost deliberately overstates — acceptable as a donation basis **only if labelled as such**. Do NOT mine the ledger's historical rows for precedent: r53 → $11.00/kg and r573 → $4.38/kg are single-unit retail, ~3–7× wholesale.
+
+### 9 of 13 `currency-compositions/*.json` referenced by MAIN return 404 — composition lineage is broken for most sku
+
+**Filed 2026-11-14 (Sophia). Owner: unclaimed. Priority: MEDIUM — the ledger's own audit trail points at files that no longer resolve.**
+
+**Symptom.** Every `[REPACKAGING SETTLEMENT EVENT]` cites its inputs as a composition URL, e.g. r5286 →
+`https://raw.githubusercontent.com/TrueSightDAO/agroverse-inventory/main/currency-compositions/7b9d3b16-57d1-4f2f-a27e-59fd67c6e34b.json`
+
+Scanning all 6060 MAIN rows found **13 distinct** composition UUIDs. Fetching each resolved only **4**:
+
+| UUID | Resolves | Sugar present |
+|---|---|---|
+| `3c53976f` | yes | no |
+| `7b9d3b16` | yes (Oscar 20261027 bar) | no |
+| `d8ca658e` | yes (shipment bundle) | no |
+| `e963c8ff` | yes (almonds) | no |
+| `0bb85d69`, `1d4b8ae0`, `2cda0abc`, `74fdc0d7`, `7590a266`, `9b8037ae`, `b31d74b2`, `e31ea418`, `f7ce6fd8` | **404** | — |
+
+**Impact.** For 9 of 13 costed settlements, the ledger names a composition file that returns HTTP 404 — so the cost derivation is **unverifiable from the record itself**. This is exactly the situation that made the Oscar butter omission hard to prove: the only way to know whether butter (or sugar) was included was to fetch the JSON, and for most SKUs that fetch fails.
+
+**Fix.** Audit `agroverse-inventory/currency-compositions/` against the UUIDs cited in MAIN; restore or regenerate the 9 missing files, or annotate the citing rows with the correct path. Add a CI check that every composition UUID referenced in the ledger resolves.
+
 ### Silent ledger-append failure when a sheet has hit its grid row limit — a write can report success and land nowhere
 
 **Filed 2026-11-14 (Sophia). Owner: unclaimed. Priority: HIGH — silent data-loss trap on the money ledger; cost ~5 diagnostic rounds to isolate.**
