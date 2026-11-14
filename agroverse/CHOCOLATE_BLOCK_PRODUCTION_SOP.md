@@ -1,7 +1,7 @@
 # Chocolate Block Production & Ledger Booking — SOP
 
 **Scope:** producing a bulk tempered cacao block (e.g. 2.5 kg) and booking it correctly in the DAO ledger.
-**Status:** v1.1 (amended 2026-11-14 per governor ruling). Every figure below is sourced from the live ledger.
+**Status:** v1.2 (amended 2026-11-14). v1.1 recorded the governor ruling; **v1.2 reconciles the document with the live ledger** — §5 currency naming and registry location, §6 sugar-price caveat, §7 append/row-placement guard, and the §4 MAIN mirror `Section` rule. Every figure below is sourced from the live ledger, except where explicitly flagged as provisional.
 **Search terms:** chocolate block, slab, 2.5kg, bulk block, melanger, tempering, formulation, yield, sugar, block currency, interim inventory.
 
 > ### Ruling (governor, 2026-11-14): blocks are interim inventory
@@ -28,7 +28,7 @@
 | QR codes | **Yes** — batch-generated per bar | **None** — interim inventory, never serialized |
 | Sale Type | `Retail Ready` | **`Bulk`** |
 | Purpose | sale unit | **production-stage asset**; consumed by a later conversion |
-| Currency example | `... Chocolate Bar 50g \| Vivi Cacao Nibs \| Kirsten 20261025 \| San Francisco - AGL13` | `... Chocolate Block 2.5kg #1 \| Vivi Cacao Nibs \| Kirsten 20261114 \| San Francisco - AGL13` |
+| Currency example | `... Chocolate Bar 50g \| Vivi Cacao Nibs \| Kirsten 20261025 \| San Francisco - AGL13` | `... Chocolate Block (Kilograms) #1 \| Vivi Cacao Nibs \| Kirsten 20261114 \| San Francisco - AGL13` |
 
 A block and a bar batch consume the **same inputs** but are **different currencies** with different unit costs. Booking a block as bars (or vice versa) breaks the conversion chain.
 
@@ -101,6 +101,17 @@ This is where blocks go wrong. AGL13 Block #1 needed a reversal (r64) because su
 
 Also required on MAIN: an **equity holdings** leg mirroring leg 5 (`AGL13 equity holdings`) so the injection nets correctly at both ends.
 
+**Which `Section` does that MAIN mirror row take? `Assets` — not `Equity`.** The instrument is *named* "…equity holdings" but on MAIN it is an **asset-side** row. Confirmed 2026-11-14: MAIN r6047 and r6058 were booked `Assets`; r6066 was wrongly booked `Equity` and was corrected to `Assets`.
+
+Reason: per the §9.1 identity the **origin ledger stays flat** — `Assets −$V +$V = 0`, **Equity unchanged**. An `Equity` row on MAIN therefore double-counts the contribution.
+
+Do not conflate the two sides:
+
+| Row | Ledger | Section |
+|---|---|---|
+| Leg 5 — equity increase (in kind) | **consuming location** | `Equity` |
+| Netting pair (`offchain asset location` + `AGL13 equity holdings`) | **MAIN** | `Assets` |
+
 ### Booking order that avoids corrections
 
 1. Receive ALL inputs into MAIN (assets + equity for any in-kind contribution).
@@ -127,14 +138,18 @@ Every production row must carry, in its description:
 A block needs its own row in `Currencies`. Naming convention:
 
 ```
-Agroverse <pct>% Cacao Chocolate Block <weight>kg #<n> | <nib origin> | <maker> <YYYYMMDD> | <location>
+Agroverse <pct>% Cacao Chocolate Block (Kilograms) #<n> | <nib origin> | <maker> <YYYYMMDD> | <location>
 ```
+
+**`(Kilograms)` is literal and required.** It states the unit that `Price in USD` is quoted in. Without it a reader must guess whether `24.160143536` is the cost of *one kilogram* or of *one whole 2.5 kg block* — a **2.5× error** on every deduction and on the price of every bar later cut from it. (Renamed from the older `<weight>kg` form, e.g. `2.5kg`, on 2026-11-14; the ledger was renamed but this document was not.)
+
+**Do not put the weight in the name.** It is already carried as a number in `Unit Weight (grams)` (col 10). Duplicating it in the name invites the two drifting apart, and a block is a **per-kg asset**: `Amount` is in kilograms, and `Amount × Price in USD = total USD`.
 
 ### Required fields (col index)
 
 | Col | Field | Block #1 value | Status |
 |---|---|---|---|
-| 0 | Currencies (name) | `...Chocolate Block 2.5kg #1 \| Vivi Cacao Nibs \| Kirsten 20261114 \| San Francisco - AGL13` | ✅ |
+| 0 | Currencies (name) | `...Chocolate Block (Kilograms) #1 \| Vivi Cacao Nibs \| Kirsten 20261114 \| San Francisco - AGL13` | ✅ |
 | 1 | Price in USD | `24.160143536` | ✅ per-kg |
 | 2 | Serializable | `TRUE` | ⚠️ leftover — see §9 |
 | 4 | landing_page | `https://agroverse.shop/shipments/agl13/index.html` | ✅ |
@@ -156,6 +171,18 @@ A trailing `#1` means **block #2 gets its own currency row**, because its unit c
 
 Since blocks are **not sold and carry no QR codes**, they do *not* need the stable consumer-facing identity a bar SKU does — which makes per-batch keys (`#1`, `#2`, …) the natural choice.
 
+### Which spreadsheet? `Currencies` lives on MAIN only
+
+**Create and edit block currencies in MAIN `Currencies` — never in a location ledger.**
+
+Each location ledger's `State` tab is a live **read-only mirror**:
+
+```
+=IMPORTRANGE("1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU", "Currencies!A:B")
+```
+
+Block #1 appears at AGL13 `State` **r180** only because MAIN `Currencies` r180 exists. Writing a currency into the imported block is futile — IMPORTRANGE owns those cells and will overwrite or reject the edit. `Balance` reads through the mirror, so a currency created there is invisible to it.
+
 ---
 
 ## 6. Unit cost formula
@@ -166,17 +193,27 @@ unit_cost_per_kg = (nibs_kg × nibs_price + butter_kg × butter_price + sugar_kg
 
 **Use the landed cost at the consuming location**, i.e. the currency whose name includes the freight leg.
 
-### Worked example — AGL13 Block #1, verified to the cent
+### Worked example — AGL13 Block #1 (arithmetic exact; sugar unit price provisional)
 
 | Input | kg | $/kg | USD | Source |
 |---|---|---|---|---|
 | Cacao nibs | 2.00 | 27.25 | 54.50 | `Currencies` r83 — *Santos 20260213 - AGL13 + SF* (landed SF) |
 | Cacao butter | 0.10 | 34.40 | 3.44 | `Currencies` Coopercabruca butter |
-| Cane sugar | 0.40 | 6.1508971 | 2.46035884 | `Currencies` r178 — wholesale per-lb (the **more expensive** of the two sugar links) |
+| Cane sugar | 0.40 | 6.1508971 ⚠️ | 2.46035884 ⚠️ | `Currencies` r178 — **unit price in dispute, see the warning below** |
 | **Total** | | | **60.40035884** | ÷ 2.5 kg |
 | **Unit cost** | | | **24.160143536 /kg** | ✅ matches ledger exactly |
 
-> **Landing-page trap.** Two sugar rows were registered: r178 wholesale @ $6.1508971/kg and r179 retail 2 lb box @ $6.0516891/kg. **Use the more expensive one** — it reflects actual acquisition cost. Getting this wrong understates the block and every bar cut from it.
+> ⚠️ **Sugar price is unresolved — do not treat r178 as settled.** v1.1 instructed *"use the more expensive one — it reflects actual acquisition cost."* **That premise does not hold:**
+>
+> - `$6.1508971/kg` is **$2.79/lb**, which traces to an **Instacart aggregator snippet**, not a Rainbow Grocery shelf price.
+> - Rainbow's own product pages show **brown sugar $2.49/lb ($5.48951/kg)** and **white cane sugar $1.79/lb ($3.946274/kg)**.
+> - Neither registered row is confirmed to be the SKU actually bought, and the lb→kg conversion is our arithmetic, not a shelf quote.
+>
+> **Standing rule:** a currency `Price in USD` must trace to a **first-party shelf price for an identified SKU**. An aggregator snippet is **not** sufficient, and "more expensive" is not a proxy for "accurate".
+>
+> Until brown-vs-white is confirmed, Block #1's `$60.40035884` total and `$24.160143536/kg` are **provisional**. The exposure is small (~$0.011 per 50 g bar, i.e. immaterial to retail price) but the figures must not be quoted as verified.
+>
+> **To close it:** confirm with Kirsten whether the sugar is brown or white, re-point the currency at the verified shelf price, then re-cost the block. Recorded as defect §8.7.
 
 > **Nibs price trap.** The nibs currency exists in three forms: base ($10.18/kg), and + SF ($27.25/kg landed). Use the **landed** figure for the location. Do not use $7.56/kg — that is beans, not nibs.
 
@@ -196,6 +233,34 @@ After booking, confirm on the location's `Balance` tab:
 check = ws.get(f"D{row}:D{row}", value_render_option='UNFORMATTED_VALUE')[0]
 assert isinstance(check[0], (int, float)), "written as TEXT — Balance will show 0"
 ```
+
+### Row placement — the append trap
+
+Both ledgers have a **title row above the header**, so an `append` with `INSERT_ROWS` lands *at row 2 and shifts the header down*:
+
+| Ledger | Tab | Layout |
+|---|---|---|
+| AGL13 | `Transactions` | title **r1**, blank r2, header **r3**, data r4+ |
+| MAIN | `offchain transactions` | header **r1**, data r2+ |
+
+This silently corrupts the sheet while looking like a successful write — and it happened twice in one session on 2026-11-14.
+
+**Always write to an explicit cell range, then assert the header is still where it belongs:**
+
+```python
+row = len(existing_values) + 1          # explicit, computed
+ws.update(f"A{row}:F{row}", [row_values], value_input_option='RAW')
+
+# header integrity — run AFTER every write
+hdr = ws.get("A3:F3", value_render_option='UNFORMATTED_VALUE')[0]
+assert hdr[0] == 'Date', f"HEADER MOVED — found {hdr[0]!r}, expected 'Date'"
+title = ws.get("A1:A1")[0]
+assert 'Contract URL' in str(title[0]), "TITLE ROW DAMAGED"
+```
+
+If the grid is full, `append` fails with *"exceeds grid limits"* — expand it with `update_sheet_properties(gridProperties={'rowCount': n})` rather than reaching for `append`.
+
+If you do corrupt the layout, delete the inserted row via `deleteDimension` and rewrite at an explicit range. **Do not leave the shifted header in place** — `Balance` is `QUERY`-driven and will read garbage.
 
 ---
 
@@ -236,6 +301,18 @@ Roast profile, melanger duration, tempering curve, equipment ID, cold-hold time 
 ### 8.6 Currency fields incomplete
 
 Block currency was missing `Unit Weight (grams)` (col 10) — **now populated as 2500**. Still missing `Year` (col 9); `SKU Product ID` (col 12) is not applicable since the block is not sold. `Sale Type` / `Inventory Type` (cols 15/16) unset and should be `Bulk`. Note `Serializable = TRUE` (col 2) is a creation leftover and is **not** a serialization instruction — see §9.
+
+### 8.7 Sugar unit price is unverified (affects every block cost)
+
+`Currencies` r178 carries **$6.1508971/kg**, which equals **$2.79/lb** — a figure traceable to an **Instacart aggregator snippet**, not to a Rainbow Grocery shelf price. Verified first-party prices are **brown $2.49/lb ($5.48951/kg)** and **white cane $1.79/lb ($3.946274/kg)**.
+
+Consequences:
+
+- Block #1's `$60.40035884` and `$24.160143536/kg` are **provisional**, though the arithmetic on top of the sugar price is exact.
+- Every block and every bar cut from a block inherits the error.
+- Materiality is low (~$0.011 per 50 g bar) — this is a **documentation-integrity** defect, not a pricing crisis. Fix it before it becomes the default input to a bigger batch.
+
+**Action:** confirm brown vs white with Kirsten; re-point the currency at the verified shelf price; re-cost Block #1. Also confirm *which* SKU she actually buys — neither registered row is verified as the product purchased.
 
 ---
 
