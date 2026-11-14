@@ -63,11 +63,33 @@ cross-session** items that would otherwise rot in chat transcripts.
 **Recommended fix.**
 
 1. Determine the **actual bar mass** (weigh a finished bar) to settle whether the 19% sugar is real.
-2. If sugar is genuinely used: create `Cane Sugar (KG)` + a `… + 047-3175-3223 - San Francisco` delivered twin (mirroring the two-tier `Coopercabruca Cacao Butter (KG)` $17.33 / `… - San Francisco` $34.40 pattern) with `Serializable=TRUE`, a real `landing_page`, and a populated `ledger` column — note `Currencies` r177 shows the half-built-key failure mode (`Serializable`/images/landing_page/ledger all blank).
+2. ~~If sugar is genuinely used: create `Cane Sugar (KG)` + a `… + 047-3175-3223 - San Francisco` delivered twin~~ **DONE 2026-11-14 — see status block below.**
 3. Add sugar to `currency-compositions` for **every bar SKU**, then re-derive unit cost (see also the 5 divergent 81% bar keys: r25 $2.903378, r26 $2.709, r27 $2.70831, r28 $1.987, r177 $2.795).
-4. Record the receipt as a CURRENCY CONVERSION / inventory receipt, **not** a CONTRIBUTION EVENT — per the r4288 Mattheus butter precedent (a material receipt, not a TDG award). If donor recognition in TDG is also wanted, file a separate CONTRIBUTION EVENT.
+4. **Book sugar donations as BOTH legs** (governor ruling 2026-11-14, Gary):
+   (a) **material receipt** — sugar kg lands in Kirsten's inventory balance at the key's unit cost, so it can be consumed into bars and costed (mirrors the MAIN r4288 Mattheus butter receipt);
+   (b) **CONTRIBUTION EVENT** — `Type=USD`, `Amount` = kg × unit cost, `Contributor` = Kirsten Ritschel → TDG issued by the scoring rubric.
+   The follow-up originally said "material receipt, NOT a contribution event". **That is superseded** — Gary's ruling is that her sugar contributions *are* booked as contributions. Always assert-non-blank after writing (the grid-limit trap, see the silent-append entry above).
 
-**Pricing reference (researched 2026-11-14, for when the key is created).** US wholesale: conventional refined 50 lb bags **$1.14–$1.52/kg**; commercial refined 1,000+ lb **$1.28–$1.43/kg**; organic cane **$3.22–$3.73/kg**; USDA Sugar in the Raw retail $11.01/kg. Note **US sugar runs ~2× world** (tariff/quota program), so pricing a Brazil-sourced donation at US replacement cost deliberately overstates — acceptable as a donation basis **only if labelled as such**. Do NOT mine the ledger's historical rows for precedent: r53 → $11.00/kg and r573 → $4.38/kg are single-unit retail, ~3–7× wholesale.
+**STATUS 2026-11-14 — sugar currencies CREATED and live.**
+
+Two keys now exist in `Currencies` (written with expand-guard + read-back assertion, verified 179 data rows):
+
+| Row | Key | $/kg | landing_page (col E) |
+|---|---|---|---|
+| **r178** | `Cane Sugar (KG) - Organic Evaporated Cane Sugar (Bulk) \| Rainbow Grocery, San Francisco` | **6.1508971** | `instacart.com/products/325012-wholesome-organic-cane-sugar-per-lb` |
+| **r179** | `Cane Sugar (KG) - Wholesome Organic Cane Sugar 2 lb Box \| Rainbow Grocery, San Francisco` | **6.0516891** | `instacart.com/products/156539?retailerSlug=rainbow-grocery` |
+
+Both `Serializable=TRUE`, `ledger` populated, origin California / USA, modelled on the r80 + r28 precedent rows.
+
+**Pricing basis is now ACTUAL COST, not replacement cost.** Rainbow Grocery is where the sugar was bought, so store price *is* the acquisition basis — strictly stronger evidence than the wholesale replacement-cost estimate below, and needing no "donation basis" caveat. `$2.79/lb × 2.20462262 = $6.1508971/kg` — **the per-pound → per-kilogram conversion is the trap**: mixing units silently misprices by 2.2×.
+
+**Still open on this entry:**
+1. **Sugar quantity donated is unknown.** Searched all 38 MAIN worksheets (55 total 'sugar' hits — 6 are historic Gary USD retail expenses, 1 is a competitor reference, 2 are the new currency rows above), all four AGL13 sheets, and admin Gmail. **Kirsten has 1,562 ledger rows and not one mentions sugar.** So the kg exists only off-ledger/verbally and no receipt is booked until it is stated.
+2. **The 19% sugar mass balance still does not close** (2.0 kg nibs → 40 × 50 g bars with no sugar booked, no sugar in any composition). Per Gary 2026-11-14, **do not reconcile the previously-made bars** — the policy applies to sugar moving forward. The mass-balance question remains open for *future* batches (weigh a finished bar).
+3. Instacart prices likely carry a markup over Rainbow's in-store shelf price, so $6.15/kg is an upper bound; `shop.rainbow.coop` may be cheaper.
+4. Minor provenance gap: r179's $5.49 box price came from Rainbow listing **56022** but E179 links **156539** (also Rainbow's Wholesome 2 lb). Per-kg figures agree within 1.6%, so immaterial — re-point if strict 1:1 is wanted.
+
+**Pricing reference — SUPERSEDED for our own sugar by the Rainbow actual-cost basis in the status block above; kept for comparison only.** US wholesale: conventional refined 50 lb bags **$1.14–$1.52/kg**; commercial refined 1,000+ lb **$1.28–$1.43/kg**; organic cane **$3.22–$3.73/kg**; USDA Sugar in the Raw retail $11.01/kg. Note **US sugar runs ~2× world** (tariff/quota program), so pricing a Brazil-sourced donation at US replacement cost deliberately overstates — acceptable as a donation basis **only if labelled as such**. Do NOT mine the ledger's historical rows for precedent: r53 → $11.00/kg and r573 → $4.38/kg are single-unit retail, ~3–7× wholesale.
 
 ### 9 of 13 `currency-compositions/*.json` referenced by MAIN return 404 — composition lineage is broken for most sku
 
