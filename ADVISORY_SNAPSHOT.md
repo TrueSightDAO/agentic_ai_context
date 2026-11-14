@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-11-13T19:56:49Z`
-- Look-back: **7** calendar days (`2026-11-06` → today UTC)
+- Generated (UTC): `2026-11-14T06:52:47Z`
+- Look-back: **7** calendar days (`2026-11-07` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -32,32 +32,33 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[PAYOUT EVENT]` × 29
-- `[CONTRIBUTION EVENT]` × 12
-- `[PRACTICE EVENT]` × 1
+- `[CONTRIBUTION EVENT]` × 23
+- `[PAYOUT EVENT]` × 13
+- `[PRACTICE EVENT]` × 3
+- `[SALES EVENT]` × 3
 
 ### Latest entries
 
-- `Edgar_20261112123713_3634` · **Edgar** · [PAYOUT EVENT] Program: crf-anapu · Amount: 5 · Currency: Brazilian Reis
-- `Edgar_20261112123717_3636` · **Edgar** · [PAYOUT EVENT] Program: crf-anapu · Amount: 5 · Currency: Brazilian Reis
-- `Edgar_20261112123721_3638` · **Edgar** · [PAYOUT EVENT] Program: crf-anapu · Amount: 5 · Currency: Brazilian Reis
-- `Edgar_20261112123723_3640` · **Edgar** · [PAYOUT EVENT] Program: crf-anapu · Amount: 5 · Currency: Brazilian Reis
-- `Edgar_20261112123726_3642` · **Edgar** · [PAYOUT EVENT] Program: crf-anapu · Amount: 5 · Currency: Brazilian Reis
-- `Edgar_20261112123729_3644` · **Edgar** · [PAYOUT EVENT] Program: crf-anapu · Amount: 5 · Currency: Brazilian Reis
-- `Edgar_20261112123731_3646` · **Edgar** · [PAYOUT EVENT] Program: crf-anapu · Amount: 5 · Currency: Brazilian Reis
-- `Edgar_20261112123925_3648` · **Edgar** · [CONTRIBUTION EVENT] Amount: 29.98 · Contributor(s): Elizabeth Wong · Description: DeepSeek API technical service invoice paid personally by Elizabeth Wong on …
-- `Edgar_20261112123930_3650` · **Edgar** · [CONTRIBUTION EVENT] Amount: 45.03 · Contributor(s): Elizabeth Wong · Description: DeepSeek API technical service invoice paid personally by Elizabeth Wong on …
-- `Edgar_20261112124047_3652` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Description: Brazil accountant payment (Sep + Oct 2026) — governor review, document relay…
-- `Edgar_20261112124054_3654` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Process Brazil accountant fees (Sep + Oct 2026): document reconciliation, ra…
-- `Edgar_20261112130437_3656` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Accountant expense booking + ledger integrity repair (Jussileide Bomfim Alve…
-- `Edgar_20261112130920_3658` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 0 · Description: CORRECTION (supersedes my r14922 150-min entry and my r15071 60-min entry fo…
-- `Edgar_20261113015019_3660` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-13T01:50:16.330Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20261113035941_3662` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 100 · Description: High level details of discussion with @⁨Kirsten Ritschel⁩
-- `Edgar_20261113052056_3664` · **Edgar** · [CONTRIBUTION EVENT] Amount: 74.98 · Contributor(s): Elizabeth Wong · Description: China market expansion funding advanced personally by Elizabeth Wong. Inboun…
 - `Edgar_20261113054855_3666` · **Edgar** · [CONTRIBUTION EVENT] Amount: 738.08 · Type: USD · Contributor(s): Elizabeth Wong
 - `Edgar_20261113113205_3668` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 420 · Description: China market entry — field research compilation & decision memo (Gary Teh, 7…
 - `Edgar_20261113145344_3670` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 11 · Contributor(s): Gary Teh
 - `Edgar_20261113145348_3672` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 11 · Contributor(s): Lawrence Kwek
+- `Edgar_20261113230750_3674` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-13T23:07:47.905Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20261113232847_3676` · **Edgar** · [CONTRIBUTION EVENT] Amount: 10 · Contributor(s): Gary Teh · Description: Time spent compiling and drafting the consolidated shipping request to Kirst…
+- `Edgar_20261113234635_3678` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-13T23:46:32.918Z · Program: capoeira-tribo-mirim · Practice Type: training-session
+- `Edgar_20261114015833_3680` · **Edgar** · [SALES EVENT] Item: 2024OSCAR_20250826_NIBS_5 · Sales price: 30.075 · Sold by: Kirsten Ritschel
+- `Edgar_20261114015839_3682` · **Edgar** · [SALES EVENT] Item: 2024OSCAR_20250826_NIBS_6 · Sales price: 30.075 · Sold by: Kirsten Ritschel
+- `Edgar_20261114015910_3684` · **Edgar** · [SALES EVENT] Attached Filename: f6f19def991a46c9a5841c8d2e6cff0a.pdf · Cash proceeds collected by: Gary Teh · Item: 2024OSCAR_20250826_NIBS_6
+- `Edgar_20261114020633_3686` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Contributor(s): Sophia Truesight
+- `Edgar_20261114020642_3688` · **Edgar** · [CONTRIBUTION EVENT] Amount: 90 · Contributor(s): Sophia Truesight · Description: Direct time (engagement/analysis) — estimate of the reasoning, diagnosis and…
+- `Edgar_20261114020646_3690` · **Edgar** · [CONTRIBUTION EVENT] Amount: 60 · Contributor(s): Gary Teh · Description: Gary Teh direct time — directing the AGL13 20261027 bar-batch ledger injecti…
+- `Edgar_20261114025308_3692` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 92 · Description: AGL13 Oscar/Vivi butter reconciliation — 5 ledger defects fixed, state verif…
+- `Edgar_20261114025311_3694` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Governor rulings — Oscar batch placement (B), dual 0.1 kg butter consumption…
+- `Edgar_20261114031459_3696` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Agroverse white-label packaging dimension sheet + per-mode dieline templates…
+- `Edgar_20261114031502_3698` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Scope direction and review of the Agroverse white-label label + envelope dim…
+- `Edgar_20261114041022_3700` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 2.46035884 · Contributor(s): Kirsten Ritschel (kirsten@kikiscocoa.com)
+- `Edgar_20261114043448_3702` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 2.46035884 · Contributor(s): Kirsten Ritschel
+- `Edgar_20261114043724_3704` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 2.46035884 · Description: Contribution in kind: 0.4 kg organic evaporated cane sugar (Rainbow Grocery,…
 
 ---
 
@@ -184,17 +185,17 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 ### Stock at production shippers
 
 **Kirsten Ritschel** _( San Francisco — retail / online fulfilment / partner restock )_
-- Manager record: `Kirsten Ritschel` · 26 SKU lines · 1,606.50 total units · $6,899.45
+- Manager record: `Kirsten Ritschel` · 28 SKU lines · 1,609.26 total units · $6,900.93
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
   | Packaging Material | Bulk | 4 | 892 | $649.90 |
-  | (uncategorized) | (unspecified) | 15 | 309 | $956.98 |
+  | (uncategorized) | (unspecified) | 17 | 313.96 | $1,019.84 |
   | Cacao Mass | Retail Ready | 1 | 169 | $2,328.82 |
   | Cacao Nib | Retail Ready | 1 | 129 | $1,355.79 |
   | Cacao Mass | Bulk | 2 | 87 | $898.06 |
-  | Cacao Nib | Bulk | 2 | 15.50 | $537.90 |
-  | Cacao Butter | Bulk | 1 | 5 | $172.00 |
+  | Cacao Nib | Bulk | 2 | 13.50 | $483.40 |
+  | Cacao Butter | Bulk | 1 | 4.80 | $165.12 |
 
 **Matheus Reis** _( Ilhéus, Brazil — bulk warehouse + freight to SF )_
 - Manager record: `Matheus Reis` · 23 SKU lines · 1,272.59 total units · $5,753.59
@@ -207,11 +208,11 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
   | Cacao Mass | Retail Ready | 1 | 1 | $10.37 |
 
 **Gary Teh** _( Operational cash + assorted retail inventory )_
-- Manager record: `Gary Teh` · 31 SKU lines · 8,337.81 total units · $7,204.81
+- Manager record: `Gary Teh` · 31 SKU lines · 8,397.96 total units · $7,264.96
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 29 | 8,261.63 | $7,154.83 |
+  | (uncategorized) | (unspecified) | 29 | 8,321.78 | $7,214.98 |
   | Packaging Material | Bulk | 1 | 74 | $49.98 |
   | Cacao Tea | Bulk | 1 | 2.18 | $0.00 |
 
@@ -232,9 +233,9 @@ _(+34 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$1,626.90**
+- USD on hand: **$1,686.96**
 - Brazilian Reis: R$130.00 · rate `0.2323` USD/BRL → ≈ **$30.20**
-- USD provisioned for voting-rights cash-out: **$58.52**
+- USD provisioned for voting-rights cash-out: **$58.60**
 
 ### In-transit freight (0 rows)
 
@@ -249,7 +250,9 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_(No `YYYY-MM-DD |` lines on/after 2026-11-06 in CONTEXT_UPDATES.md.)_
+_All dated lines on/after 2026-11-07_ (1):
+
+- 2026-11-13 | sophia | **New policy §5i in OPERATING_INSTRUCTIONS.md: member-readable artifacts.** Triggered by Gary's “regular members should be able to perform such read operations” after Lawrence asked for agroverse.shop images and the only path was Sophia cloning the repo + hand-sending files. Rule: any already-published artifact (site images, product data, certificates, farm pages, public ledgers) must be readable by an ordinary member **without an agent, shell, or git clone** — if reaching public content needs a write-class tool, that is a **missing index, not a normal request**. Publish a static machine-readable index next to the artifact (prefer CDN/github-pages static file over a new authed API), add a browsable view for non-technical members, regenerate in CI. **Does NOT relax any gate** — credentials/vault/internal financials/member PII stay gated; check before publishing. Worked example: agroverse_shop_beta PR #369 (`assets/images/manifest.json`, 502 records + `scripts/generate_image_manifest.py`).
 
 ---
 
@@ -268,6 +271,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-11-06 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+10e3d8c | 2026-11-13 19:58:11 +0000 | chore(stats): refresh stats indexes [skip ci]
 b9dbd50 | 2026-11-13 07:07:51 +0000 | chore(stats): refresh stats indexes [skip ci]
 f3485fe | 2026-11-12 20:20:36 +0000 | chore(stats): refresh stats indexes [skip ci]
 1507cd6 | 2026-11-12 07:37:40 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -283,8 +287,6 @@ a4750ac | 2026-11-08 22:24:11 +0000 | chore(stats): refresh stats indexes [skip 
 516e48b | 2026-11-07 22:14:15 +0000 | chore(stats): refresh stats indexes [skip ci]
 7770bfe | 2026-11-07 13:27:58 +0000 | chore(stats): refresh stats indexes [skip ci]
 5905e64 | 2026-11-07 06:29:12 +0000 | chore(stats): refresh stats indexes [skip ci]
-ca1d716 | 2026-11-06 19:38:45 +0000 | chore(stats): refresh stats indexes [skip ci]
-2ca5900 | 2026-11-06 07:17:39 +0000 | chore(stats): refresh stats indexes [skip ci]
 ```
 
 ### `market_research` → `go_to_market`
@@ -296,6 +298,15 @@ c2a2b4e | 2026-11-12 12:16:02 +0800 | Add content schedule ↔ Google Calendar s
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+b276917 | 2026-11-14 13:32:02 +0800 | SOP v1.1: blocks are interim inventory, not for sale, no QR codes (#1853)
+281e5a6 | 2026-11-14 13:17:11 +0800 | Document: Equity/Asset imbalance = accrued net profit (not an error) (#1851)
+58dfba2 | 2026-11-14 12:43:47 +0800 | File: Edgar contribution pipeline frozen since 2026-09-30 (silent drop) (#1850)
+92d403b | 2026-11-14 11:46:10 +0800 | Sugar: mark currency-creation DONE (Currencies r178/r179), correct booking policy per Gary ruling (#1849)
+85503a7 | 2026-11-14 11:36:07 +0800 | File: sugar absent from every bar recipe/composition; 9/13 composition JSONs 404 (#1848)
+7d23262 | 2026-11-14 10:38:07 +0800 | File follow-up: silent ledger-append failure at sheet grid row limit (#1847)
+258145c | 2026-11-14 07:57:16 +0800 | docs: add policy 5i — member-readable artifacts (publish an index, not an agent round-trip) (#1846)
+9f972ff | 2026-11-14 03:57:10 +0800 | chore(previews): refresh Beer Hall preview (2026-11-13 UTC)
+85151db | 2026-11-14 03:57:08 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-13 UTC)
 02838f6 | 2026-11-13 18:44:04 +0800 | File: Oscar farm century-old/80-year tree claim unsubstantiated (#1845)
 8bb29ed | 2026-11-13 16:49:39 +0800 | Errata v2: retract part of my McCann critique; 5 remaining fixes (#1840)
 15c452c | 2026-11-13 16:47:44 +0800 | Reconciliation + errata: discovery-box composition, McCann reading, price arithmetic (#1839)
@@ -327,15 +338,6 @@ dc4dd06 | 2026-11-11 16:24:52 +0800 | Add brand-film SOPs: music sourcing/licens
 1da41a9 | 2026-11-11 16:05:38 +0800 | docs(content-schedule): measured asset capacity + real defect list (#1822)
 3dc52f9 | 2026-11-11 15:52:01 +0800 | docs: file send-log header drift followup + fix CMS §7 markdown nit (#1821)
 afa0314 | 2026-11-11 15:48:19 +0800 | docs(newsletter SOP): §4.1a image content gate + stale path fixes (#1816)
-9d3223a | 2026-11-11 15:46:28 +0800 | docs: add CONTENT_MARKETING_SCHEDULE.md + index cross-refs (#1820)
-304e29f | 2026-11-11 14:55:43 +0800 | chore(previews): refresh Beer Hall preview (2026-11-11 UTC)
-573c868 | 2026-11-11 14:55:41 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-11 UTC)
-7e68558 | 2026-11-11 03:55:33 +0800 | chore(previews): refresh Beer Hall preview (2026-11-10 UTC)
-cd5e54f | 2026-11-11 03:55:31 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-10 UTC)
-97277b0 | 2026-11-10 17:40:07 +0800 | Record AGL16 signed invoice so payment can proceed (#1819)
-942f19e | 2026-11-10 15:38:00 +0800 | chore(previews): refresh Beer Hall preview (2026-11-10 UTC)
-4b2dffa | 2026-11-10 15:37:58 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-10 UTC)
-714da3f | 2026-11-10 14:53:42 +0800 | docs(email style): §4.1 image CONTENT correctness + consent, not just sizing (#1815)
 … (truncated)
 ```
 
@@ -386,6 +388,11 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+b43ca63 | 2026-11-14 13:28:41 +0800 | Add composition for Vivi 81% block #1 (2.5kg) incl. cane sugar
+761571f | 2026-11-14 11:28:49 +0800 | chore: refresh Agroverse SKU catalog snapshot
+67694e8 | 2026-11-14 11:28:47 +0800 | chore: refresh Agroverse store inventory snapshot
+8064e23 | 2026-11-14 10:28:52 +0800 | chore: refresh Agroverse SKU catalog snapshot
+907e554 | 2026-11-14 10:28:49 +0800 | chore: refresh Agroverse store inventory snapshot
 64a2f45 | 2026-11-13 14:54:12 +0000 | chore: refresh currencies.json [skip ci]
 0efb11c | 2026-11-13 14:39:22 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 a8575d7 | 2026-11-12 15:35:56 +0000 | chore: refresh currencies.json [skip ci]
@@ -402,15 +409,12 @@ d486e73 | 2026-11-08 13:51:27 +0000 | chore: refresh currencies.json [skip ci]
 80c2689 | 2026-11-07 13:32:37 +0000 | chore: refresh currencies.json [skip ci]
 1d440e2 | 2026-11-07 13:07:36 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 2b19135 | 2026-11-07 07:01:59 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
-38fcea8 | 2026-11-06 14:36:31 +0000 | chore: refresh currencies.json [skip ci]
-909645b | 2026-11-06 14:20:18 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
-9c0a049 | 2026-11-06 18:28:46 +0800 | chore: refresh Agroverse SKU catalog snapshot
-05bec5a | 2026-11-06 18:28:44 +0800 | chore: refresh Agroverse store inventory snapshot
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
 
 ```
+42e7212 | 2026-11-14 07:53:35 +0800 | Add machine-readable image manifest for assets/images (read-only member access) (#369)
 5b3c585 | 2026-11-07 22:34:04 +0800 | test(feed): give the Merchant Center feed an owner (freshness guard + CI) (#368)
 d15f04b | 2026-11-07 19:17:57 +0800 | fix(feed): parse annex products, truthful availability, GTIN compliance (#367)
 d0f81c7 | 2026-11-07 16:39:08 +0800 | Past Harvests: drop duplicate "Out of stock" badge, keep single "Sold out" label (#366)
@@ -419,11 +423,6 @@ e237954 | 2026-11-07 12:40:54 +0800 | Fix: untracked SKU rendered as "Out of sto
 c56278b | 2026-11-07 11:53:50 +0800 | Correct 500g product metadata: AGL4 + TAP AWB, record 37-bar stock (#363)
 305c4e1 | 2026-11-07 11:25:28 +0800 | Add 500g card to AGL4 grid; correct courier to TAP air freight AWB (#362)
 b0d3aa3 | 2026-11-07 11:22:28 +0800 | Correct 500g bar provenance: AGL4 landing + MAIN ledger, AWB not Correios (#361)
-c108ce7 | 2026-11-06 21:24:04 +0800 | Add Oscar's 500g cacao mass bar card to AGL10 shipment grid (#360)
-8a07c5f | 2026-11-06 20:17:35 +0800 | Attribute 500g cacao mass bar to Oscar's farm + confirm $60 pricing (#359)
-cc2229c | 2026-11-06 17:47:55 +0800 | Add Cacao Mass Bar 500g SKU page + wire into catalog, sitemap, homepage (#356)
-b851c43 | 2026-11-06 17:46:16 +0800 | Add Cacao Mass Bar 500g product photo 2
-71b2fd2 | 2026-11-06 17:46:11 +0800 | Add Cacao Mass Bar 500g product photo 1
 ```
 
 ### `iching_oracle` → `oracle`
@@ -512,21 +511,15 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
 | 2026-10 | 460 | 18944.34386 | 10/31/2026 |
-| 2026-11 | 216.75 | 19161.09386 | 11/13/2026 11:50:46 |
+| 2026-11 | 276.9 | 19221.24386 | 11/13/2026 22:51:03 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-11-06`; scanned last **600** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-11-07`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
-| 2026-11-06 | — | — | IGNORED | — | — | IGNORED: QR in message already on QR Code Sales; structured parse had n… |
-| 2026-11-06 | — | — | IGNORED | — | — | IGNORED: QR in message already on QR Code Sales; structured parse had n… |
-| 2026-11-06 | 31.65 | 8 Ounce Package Kraft Pouch - Ilheus, B… | TOKENIZED | 2024OSCAR_20250826_NIBS_1 | n3UU35aMgItx | — |
-| 2026-11-06 | 11.8 | Agroverse 81% Cacao Chocolate Bar 50g \… | — | 2025_20261025_2 | — | — |
-| 2026-11-06 | 11.8 | Agroverse 81% Cacao Chocolate Bar 50g \… | — | 2025_20261025_1 | — | — |
-| 2026-11-06 | 11.8 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_26 | — | — |
-| 2026-11-06 | 11.8 | 81% Dark Chocolate Bar 50g \| Cacao Alm… | TOKENIZED | 2024_20260710_25 | — | — |
-| 2026-11-06 | 11.8 | Agroverse 81% Cacao Chocolate Bar 50g \… | — | 2024_20261027_2 | — | — |
-| 2026-11-06 | 11.8 | Agroverse 81% Cacao Chocolate Bar 50g \… | — | 2024_20261027_1 | — | — |
+| 2026-11-14 | — | — | IGNORED | — | — | IGNORED: Duplicate QR code already on QR Code Sales when this message w… |
+| 2026-11-14 | 30.075 | 8 Ounce Package Kraft Pouch - Ilheus, B… | TOKENIZED | 2024OSCAR_20250826_NIBS_6 | VKBZKQgi71s7 | — |
+| 2026-11-14 | 30.075 | 8 Ounce Package Kraft Pouch - Ilheus, B… | TOKENIZED | 2024OSCAR_20250826_NIBS_5 | VKBZKQgi71s7 | — |
 
 _Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
