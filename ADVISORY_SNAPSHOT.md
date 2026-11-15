@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-11-15T06:57:00Z`
+- Generated (UTC): `2026-11-15T19:01:46Z`
 - Look-back: **7** calendar days (`2026-11-08` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -73,7 +73,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-11-14T11:59:16.813Z`
+- Generated (UTC): `2026-11-15T11:59:13.800Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -88,11 +88,11 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **74** stores — sum logged **warmup** sends (AU): **587**, sum logged **follow-up** sends (AV): **4**; warmup depth (none / once / ≥2): **40** / **0** / **34**; follow-up depth (none / once / ≥2): **73** / **0** / **1**
-- **Manager Follow-up**: **27** stores — sum logged **warmup** sends (AU): **22**, sum logged **follow-up** sends (AV): **56**; warmup depth (none / once / ≥2): **22** / **0** / **5**; follow-up depth (none / once / ≥2): **9** / **4** / **14**
+- **AI: Warm up prospect**: **71** stores — sum logged **warmup** sends (AU): **553**, sum logged **follow-up** sends (AV): **4**; warmup depth (none / once / ≥2): **39** / **0** / **32**; follow-up depth (none / once / ≥2): **70** / **0** / **1**
+- **Manager Follow-up**: **26** stores — sum logged **warmup** sends (AU): **20**, sum logged **follow-up** sends (AV): **55**; warmup depth (none / once / ≥2): **22** / **0** / **4**; follow-up depth (none / once / ≥2): **9** / **3** / **14**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: _(no rows in this status)_
-- **Follow-up pipeline (combined)**: **27** stores — sum logged **warmup** sends (AU): **22**, sum logged **follow-up** sends (AV): **56**; warmup depth (none / once / ≥2): **22** / **0** / **5**; follow-up depth (none / once / ≥2): **9** / **4** / **14**
+- **Follow-up pipeline (combined)**: **26** stores — sum logged **warmup** sends (AU): **20**, sum logged **follow-up** sends (AV): **55**; warmup depth (none / once / ≥2): **22** / **0** / **4**; follow-up depth (none / once / ≥2): **9** / **3** / **14**
 
 ---
 
@@ -272,6 +272,7 @@ _All dated lines on/after 2026-11-08_ (1):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+fac37c1 | 2026-11-15 07:04:13 +0000 | chore(stats): refresh stats indexes [skip ci]
 7ecbe8d | 2026-11-14 22:41:29 +0000 | chore(stats): refresh stats indexes [skip ci]
 4a61f5e | 2026-11-14 18:26:19 +0000 | chore(stats): refresh stats indexes [skip ci]
 f24d770 | 2026-11-14 06:56:09 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -299,6 +300,8 @@ c2a2b4e | 2026-11-12 12:16:02 +0800 | Add content schedule ↔ Google Calendar s
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+cd2acb6 | 2026-11-15 14:57:19 +0800 | chore(previews): refresh Beer Hall preview (2026-11-15 UTC)
+ecea623 | 2026-11-15 14:57:15 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-15 UTC)
 7e7e8f1 | 2026-11-15 06:40:36 +0800 | chore(previews): refresh Beer Hall preview (2026-11-14 UTC)
 7d131b2 | 2026-11-15 06:40:33 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-14 UTC)
 e4eb6cd | 2026-11-15 02:24:21 +0800 | chore(previews): refresh Beer Hall preview (2026-11-14 UTC)
@@ -337,8 +340,6 @@ e7a6fdc | 2026-11-12 15:32:14 +0800 | chore(previews): refresh Beer Hall preview
 d6b9569 | 2026-11-12 15:32:13 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-12 UTC)
 bd3ad82 | 2026-11-12 11:05:49 +0800 | File follow-up: retail repeat-purchase/cadence data gap (#1829)
 18fd9fe | 2026-11-12 03:48:29 +0800 | chore(previews): refresh Beer Hall preview (2026-11-11 UTC)
-108f129 | 2026-11-12 03:48:27 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-11 UTC)
-97b2b39 | 2026-11-11 17:46:45 +0800 | Correct content-workbook writer claim; file dormant data-loss hazard (#1828)
 … (truncated)
 ```
 
@@ -389,6 +390,8 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+a763ae3 | 2026-11-15 14:18:19 +0000 | chore: refresh currencies.json [skip ci]
+2598979 | 2026-11-15 13:59:53 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 e2ed0a8 | 2026-11-14 13:47:16 +0000 | chore: refresh currencies.json [skip ci]
 f9a42fb | 2026-11-14 13:36:12 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 3f475b0 | 2026-11-14 18:16:59 +0800 | Add composition JSON for Oscar cacao block #2 (70%, 2.5 kg, MAIN)
@@ -506,7 +509,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
 | 2026-10 | 460 | 18944.34386 | 10/31/2026 |
-| 2026-11 | 276.9 | 19221.24386 | 11/14/2026 22:51:17 |
+| 2026-11 | 276.9 | 19221.24386 | 11/15/2026 10:50:45 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-11-08`; scanned last **600** data rows)
 
