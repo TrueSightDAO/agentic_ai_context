@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-11-16T07:02:29Z`
+- Generated (UTC): `2026-11-16T22:25:39Z`
 - Look-back: **7** calendar days (`2026-11-09` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -74,7 +74,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-11-15T11:59:13.800Z`
+- Generated (UTC): `2026-11-16T11:59:13.735Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -89,7 +89,7 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **71** stores — sum logged **warmup** sends (AU): **553**, sum logged **follow-up** sends (AV): **4**; warmup depth (none / once / ≥2): **39** / **0** / **32**; follow-up depth (none / once / ≥2): **70** / **0** / **1**
+- **AI: Warm up prospect**: **69** stores — sum logged **warmup** sends (AU): **553**, sum logged **follow-up** sends (AV): **4**; warmup depth (none / once / ≥2): **37** / **0** / **32**; follow-up depth (none / once / ≥2): **68** / **0** / **1**
 - **Manager Follow-up**: **26** stores — sum logged **warmup** sends (AU): **20**, sum logged **follow-up** sends (AV): **55**; warmup depth (none / once / ≥2): **22** / **0** / **4**; follow-up depth (none / once / ≥2): **9** / **3** / **14**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: _(no rows in this status)_
@@ -273,6 +273,7 @@ _All dated lines on/after 2026-11-09_ (1):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+f1da324 | 2026-11-16 07:10:36 +0000 | chore(stats): refresh stats indexes [skip ci]
 adb9281 | 2026-11-15 19:03:02 +0000 | chore(stats): refresh stats indexes [skip ci]
 fac37c1 | 2026-11-15 07:04:13 +0000 | chore(stats): refresh stats indexes [skip ci]
 7ecbe8d | 2026-11-14 22:41:29 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -299,6 +300,8 @@ c2a2b4e | 2026-11-12 12:16:02 +0800 | Add content schedule ↔ Google Calendar s
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+7418aad | 2026-11-16 15:02:56 +0800 | chore(previews): refresh Beer Hall preview (2026-11-16 UTC)
+1a4190c | 2026-11-16 15:02:51 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-16 UTC)
 6cadb63 | 2026-11-16 03:02:16 +0800 | chore(previews): refresh Beer Hall preview (2026-11-15 UTC)
 0e90058 | 2026-11-16 03:02:12 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-15 UTC)
 cd2acb6 | 2026-11-15 14:57:19 +0800 | chore(previews): refresh Beer Hall preview (2026-11-15 UTC)
@@ -337,8 +340,6 @@ e5a3dd0 | 2026-11-13 04:16:40 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT
 c1b6191 | 2026-11-12 21:10:50 +0800 | File follow-up: no prior-art check on contribution reporting (#1832)
 48bc462 | 2026-11-12 20:20:13 +0800 | Correct accountant runbook worked example with actual 2026-11 conversion; document unbooked CRF Anapu payout (#1831)
 4682cfc | 2026-11-12 19:49:30 +0800 | Add Brazil monthly accountant runbook (recurring BRL obligation SOP) (#1830)
-e7a6fdc | 2026-11-12 15:32:14 +0800 | chore(previews): refresh Beer Hall preview (2026-11-12 UTC)
-d6b9569 | 2026-11-12 15:32:13 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-12 UTC)
 … (truncated)
 ```
 
@@ -384,6 +385,9 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+7697efa | 2026-11-16 16:28:02 +0000 | chore: refresh partners-velocity snapshot [skip ci]
+d2657ad | 2026-11-16 16:25:17 +0000 | chore: refresh currencies.json [skip ci]
+7efe659 | 2026-11-16 15:52:45 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 a763ae3 | 2026-11-15 14:18:19 +0000 | chore: refresh currencies.json [skip ci]
 2598979 | 2026-11-15 13:59:53 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 e2ed0a8 | 2026-11-14 13:47:16 +0000 | chore: refresh currencies.json [skip ci]
@@ -501,7 +505,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
 | 2026-10 | 460 | 18944.34386 | 10/31/2026 |
-| 2026-11 | 276.9 | 19221.24386 | 11/15/2026 22:51:42 |
+| 2026-11 | 276.9 | 19221.24386 | 11/16/2026 13:51:24 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-11-09`; scanned last **600** data rows)
 
