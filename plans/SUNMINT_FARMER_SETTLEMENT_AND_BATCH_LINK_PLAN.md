@@ -116,6 +116,55 @@ Observed split (dump ending 2026-11-11):
 funder expense and the farmer payouts sit in different buckets and the two halves of one
 transaction cannot be reconciled.
 
+#### ROOT CAUSE (established 2026-11-17): the alias exists — three write paths bypass it
+
+**Do NOT "fix" this by changing `PAYOUT_EVENT_DEFAULT_CURRENCY`.** The alias machinery is
+already present and correct in `process_payout_event_telegram_logs.js`:
+
+```js
+var FPE_CURRENCY_ALIASES = { BRL: 'Brazilian Reis' };   // line 122
+function fpeCanonicalCurrency_(literal) { ... }         // line 131, fail-open
+```
+
+The function's own comment describes this exact failure mode verbatim — *"booking a cash
+leg verbatim mints a SECOND main-ledger bucket for a currency that already exists ... every
+downstream rollup (treasury-cache, balance tab, view_inventory_holdings) reports a
+different number for the same money."*
+
+`fpeCanonicalCurrency_` has **exactly one call site**. Two paths write a literal raw:
+
+| Line | Path | Aliased? |
+|---|---|---|
+| 634 | `currency: fpeCanonicalCurrency_(base.currency)` | yes |
+| 766 | `currency: payoutEventCleanValue_(f.currency) \|\| PAYOUT_EVENT_DEFAULT_CURRENCY` | **NO** |
+| 918 | `currency: String(row[idx['currency']] \|\| '')` | **NO** |
+
+Lines 766 and 918 are how the 217 `[PAYOUT EVENT]` rows (CFR / `crf-anapu` route) landed
+under raw `BRL` while the create path was already booking `Brazilian Reis`. **The fix is to
+wrap those two call sites in `fpeCanonicalCurrency_()`.**
+
+#### Resolution status (verified live, 6,089 rows, 2026-11-17)
+
+| Literal | Holders | Net |
+|---|---|---|
+| `BRL` | all | **0.00** (retired) |
+| `Brazilian Reis` | Gary Teh | **0.00** |
+| `Brazilian Reis` | Paloma | +220.00 |
+| `Brazilian Reis` | `pk-qkejKJJW3IAD` | −1,605.00 |
+
+Jhordan's −1,605 composes from four known events (−90 residual of the 2026-10-13
+reverse-direction swap, −1,085 the 217 trees, −430 legacy bucket relocated by the
+`Edgar_20261117` 1:1 consolidation); `BRL` nets 0 via `+90 −90 −430 +430`.
+
+**Watch the 2026-10-13 precedent (intake rows 12/13):** row 13 moved `Brazilian Reis → BRL`,
+the inverse of its own stated intent, leaving a −180 `BRL` residue that the 217 payouts then
+grew to −430. When retiring a literal, source must be the **mislabeled** one and target the
+**canonical** one — check the sign of the resulting ledger legs before declaring done.
+
+**Date-field hazard:** the consolidation legs above landed with `Conversion Date`
+`19700101` (epoch zero), so they sort to the top of the sheet rather than by real date.
+Always send a real `YYYYMMDD` conversion date.
+
 ---
 
 ## 0. Decisions (ruled in the 2026-09-20 conversation)
