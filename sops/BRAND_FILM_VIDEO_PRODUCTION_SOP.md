@@ -9,6 +9,11 @@
 > Filed **2026-11-11** after the Agroverse brand-film build (Gary + Sophia) took **six
 > rebuilds** to converge. Every rebuild was caused by a defect this SOP now prevents.
 > Governor: Gary Teh. Author: Sophia Truesight.
+>
+> **Extended 2026-11-17** (§2.4, §7A) after the Agroverse *"Where Flavor Is Decided"*
+> Instagram Reel. A delivered cut shipped captions clipping **114 px off each edge**, over a
+> title that promised content the footage did not contain — and the session's three "proofs"
+> of correctness were all false. Details in §7A.4 and §7A.5.
 
 ---
 
@@ -20,6 +25,9 @@
 
 > **And every film ends on a brand endcard built from the site's design tokens (§6.3).**
 > No dark plate, no invented colour, no cold stop on footage. Wrap every cut — always.
+
+> **And no text crosses the safe area — ever.** Captions and titles are measured, wrapped and
+> **asserted** before the render, never hand-positioned (§7A).
 
 Of the six failed builds on 2026-11-11, **two** came from skipping exactly that step. Details
 in §4.
@@ -69,6 +77,28 @@ A folder named after cacao (`pacaje_work/pr4_assets/cacau-na-veia-pacaje/`) cont
 A Python per-file colour screen **timed out at 290 s** over 1,769 clips. The equivalent `awk` /
 shell one-pass loop completed in a single call. For archive-scale scanning, prefer streaming
 shell over Python subprocess-per-file.
+
+### 2.4 Source originals over public HTTPS — a credential test is not an access test
+
+S3 originals under `media.agroverse.shop` are **public-read**. No credentials are required:
+
+```bash
+curl -sI "https://s3.us-east-1.amazonaws.com/media.agroverse.shop/raw/<farm>/<file>.MOV"
+# HTTP/1.1 206 Partial Content   -> range supported: resumable, seekable
+```
+
+On 2026-11-17 a session probed the archive with `aws s3 ls` and boto3, got
+`NoCredentialsError`, and concluded *"the archive is unreachable, therefore this footage does
+not exist"* — then recommended **changing the content plan** on that basis. The footage was
+downloadable the entire time. The lesson is general:
+
+> **A credential failure proves you lack credentials. It does not prove the object is
+> unavailable (Rule 11).** Test the public URL before concluding a resource is missing —
+> and before recommending a plan change that depends on the gap being real.
+
+**Probe path variants too.** One clip lived at `raw/sitio-torres-pacaja-para/` (folder spelled
+out) while its manifest slug was `sitio-torres`. A single exact-path attempt would have missed
+it; folder names describe provenance, not identity (§2.2).
 
 ---
 
@@ -293,6 +323,126 @@ successful exit code is not proof — a killed process can leave a plausible-loo
 
 ---
 
+## 7A. Captions & titles — make overflow structurally impossible
+
+> Filed 2026-11-17 after the *"Where Flavor Is Decided"* Agroverse Reel. The cut was
+> delivered with **6 of 14 caption lines running off both edges** — up to **114 px clipped per
+> side** — and every check that had been run passed it.
+
+### 7A.1 The cause: `drawtext` has no width constraint
+
+This looks correct and is not:
+
+```bash
+drawtext=text='…':fontsize=58:x=(w-text_w)/2:box=1:boxcolor=black@0.45:boxborderw=28
+```
+
+`x=(w-text_w)/2` **centres** a line; it does not **fit** it. When `text_w > w` the line is
+centred *past both edges* and `ffmpeg` clips it silently — no warning, no non-zero exit.
+`boxborderw=28` then paints another **56 px** of background beyond the glyph extent, so the
+visible overflow is worse than the text metrics alone suggest.
+
+**Sizing the box is the whole job, and the box is `boxborderw*2 + text_w`.**
+
+### 7A.2 The rule: render captions as PNG overlays, with a hard assertion
+
+Measure with real font metrics, wrap, auto-shrink — then **abort the render** if anything
+crosses the safe area:
+
+```python
+from PIL import ImageFont
+SAFE    = 90            # px each side, 1080-wide portrait
+CONTENT = W - 2 * SAFE  # 900
+
+def fit(lines, fontpath, start):
+    fs = start
+    while fs > 18:
+        f = ImageFont.truetype(fontpath, fs)
+        if all(f.getbbox(l)[2] - f.getbbox(l)[0] <= CONTENT for l in lines):
+            return f, fs
+        fs -= 1
+    raise SystemExit("caption cannot fit")
+
+# …draw onto a transparent 1080x1920 RGBA canvas, then:
+l, t, r, b = img.getbbox()
+assert l >= SAFE and (W - r) >= SAFE, f"OVERFLOW left={l} right={W - r}"
+```
+
+Then `overlay=0:0` the PNG onto the beat. Because the overlay is placed **unmodified at the
+origin**, the PNG's `getbbox()` **is** the on-screen extent — which is what makes the
+verification in §7A.4 sound.
+
+Measured on that build: worst-case margin went from **−114 px (clipped)** to **+91 px (clear)**,
+max line width **897 of 1080**. Apply the same assertion to the **endcard/outro** text, which is
+usually drawn separately and is easy to forget.
+
+### 7A.3 Portrait / Reel geometry
+
+- Target **1080×1920, 30 fps, yuv420p, `-video_track_timescale 15360`** on every segment.
+  Identical params are required for a stream-copy concat (§8).
+- Keep text out of the **Reels UI zones**: roughly the bottom ~250 px (caption/CTA overlay) and
+  the right ~120 px (action rail). A band starting at y≈1140 with the last glyph below y≈1560
+  cleared Instagram's overlay in testing — **confirm on the published post**, not just locally.
+- Sourced phone footage often reports `1920×1080` **with `rotate=90`** — it is already portrait.
+  Do **not** transpose it, and do not infer landscape from the raw width/height.
+
+### 7A.4 Verify on the RENDERED frames — and don't trust these three proxies
+
+The source PNG being correct says **nothing** about what got composited. Pull a frame from the
+**final concatenated file** and check it there.
+
+Three methods that produced **false verdicts** on the 2026-11-17 build. All three looked
+authoritative:
+
+| ❌ Method | Why it lies |
+|---|---|
+| **Bright-pixel extent** over the frame | Counts sunlit foliage, white shirts, sky. Reported *“CLIPPED, L=0”* on all 7 beats **and** *“173 text pixels”* in a left strip where no caption pixel existed. Wrong in both directions. |
+| **OCR at downscaled resolution** | A 540-px downscale OCR'd poorly and reported a beat as having **no subtitle at all**. At full resolution the text was present. OCR false-negatives on small text over busy backgrounds. |
+| **Frame diff at mismatched timestamps** | Diffing a segment frame at t=2.0 s against a source frame from a *different* moment differences the whole scene, so every beat reads as “clipped”. |
+
+✅ **Do instead:**
+
+1. **Geometry** — read `getbbox()` off the caption PNG (valid because of the `0:0` overlay): the
+   authoritative on-screen margin.
+2. **Legibility** — OCR a **full-resolution crop** of the caption band (never downscaled) and
+   diff the returned string against the intended text.
+3. **Presence & continuity** — per-beat `ffprobe` plus `volumedetect`. A silent beat is a
+   production bug the picture checks will not catch, and `-v error` **hides** `volumedetect`
+   output (it logs at info level) — an empty result there means a broken probe, not silence.
+
+### 7A.5 The title must be falsifiable against the beats
+
+A cut shipped titled **“28 FLAVOR WORLDS”** over footage of farmers explaining four *farm
+decisions*. Nothing in the archive showed anyone tasting 28 anything — the title promised a
+catalogue the footage never delivered. **The governor caught it; QC did not.**
+
+**Rule:** every line on the endcard/outro must map to a **specific beat that shows it.** Put the
+mapping in the beat sheet (§1):
+
+| Outro line | Beat | Proof |
+|---|---|---|
+| Commodity or selected | b0–b1 | `cacau-na-veia` IMG_9556 |
+| Fermented hot or cool | b2 | `santa-ana` IMG_8072 |
+| Roasted at 120 °C | b3 | `sitio-torres` IMG_9697 |
+
+If a line has no beat, **change the line** — never widen the claim to cover weaker footage. And
+if the claim comes from the content-calendar row, treat it as unverified too: the row for this
+Reel described flavor *tasting notes* for footage that was actually about flavor *determinants*.
+
+### 7A.6 ASR subtitles are not publishable text
+
+`faster-whisper` output is a **translation**, not a quote. Observed in a single pass:
+`cacau → “cow”`, `amêndoas → “amênd”`, `optou → “opitou”`.
+
+- **Never** put ASR text on screen as a quotation until a speaker of the source language has
+  checked it.
+- **Numeric claims are a hard gate.** *“120 °C / 25–30 min”* is an instruction a viewer may act
+  on; an ASR mishear there is a correctness bug, not a typo.
+- Where possible render **source-language subtitles** with the translation beneath, so nothing
+  is translation-mediated.
+
+---
+
 ## 8. Stitching
 
 - Keep **every beat as its own encoded clip** at identical geometry/fps before stitching.
@@ -381,3 +531,9 @@ of process — hiding that it took six is.
 - [ ] Third-party clip provenance confirmed before public release
 - [ ] Music licence logged (§ BFM SOP §6)
 - [ ] Rebuild log included in the deliverable record
+- [ ] Captions/titles rendered as **measured PNG overlays** with a safe-area `assert` (§7A.2) — endcard text too
+- [ ] No line exceeds the safe area, verified on **rendered** frames from the final concat (not the source PNG) (§7A.4)
+- [ ] Portrait geometry confirmed (1080×1920 @30, `timescale 15360`); `rotate=90` honoured, **not** transposed (§7A.3)
+- [ ] Every outro/endcard line mapped to a beat that actually shows it (§7A.5)
+- [ ] ASR subtitles checked by a source-language speaker; numeric claims verified (§7A.6)
+- [ ] **Every beat has audio** — `volumedetect` at info level, not `-v error` (§7A.4)
