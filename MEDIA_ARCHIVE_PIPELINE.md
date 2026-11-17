@@ -293,8 +293,17 @@ title lines on a static end card). Everything else goes through PIL.
 |---|---|---|---|
 | Reel / Story 1080×1920 | 1080 | **90px** each side | **900px** |
 
-Keep all burned-in text inside the safe area. Bottom ~15% is additionally at risk from platform UI
-(Instagram's own caption/CTA overlay) — keep text above it.
+Keep all burned-in text inside the safe area. Two bands are also at risk from platform UI that only
+appears **on device**, not in your render:
+
+| Band | What covers it |
+|---|---|
+| Top ~220–250px | Instagram username, audio label |
+| Bottom ~420–480px | Caption, action buttons, CTA |
+
+Keep text out of both. A title that sits perfectly in `ffmpeg` output can land under the username row
+once Instagram draws its own chrome — confirm against the on-device preview. Treat those pixel values
+as **approximate** (platforms adjust them), not as fixed constants.
 
 ### Procedure: render text as a transparent PNG, then overlay
 
@@ -384,6 +393,47 @@ factory.
 - Log the divergence: when a produced asset departs from its scheduled row (title *and* format), the
   row is now stale and should be corrected — but that's a content-plan edit, so get governor sign-off.
 
+### The title belongs on the FIRST frame — cold open
+
+The title is a **hook**, not a label. It goes on screen in the first **0–3s**, stylized, so a viewer
+knows the context of the video before deciding whether to keep watching.
+
+A title that only appears at the **end** serves nobody: by the time it lands, the retention decision
+was made several seconds ago. (
+"Where Flavor Is Decided" shipped this way — see the anti-pattern.) The end card is the wrong home
+for the thing that is supposed to earn the watch.
+
+**Why the first frame specifically:**
+
+- **It is the cover.** Instagram uses the first frame as the Reels-grid thumbnail and the feed's
+  initial autoplay frame. Putting the title there means the asset identifies itself everywhere it
+  appears — no separate cover image to design, export, or keep in sync.
+- **It survives muted autoplay.** Most feed views start silent, so the first frame must carry meaning
+  with no audio at all.
+- **It front-loads context.** One read tells a scroller what they are about to watch and why it might
+  be worth their time.
+
+**Cold open — title over motion, not a title card.**
+
+| Approach | Effect |
+|---|---|
+| ✅ Title composited over the first moving shot | Picture and audio start at t=0; nothing reads as "intro" |
+| ❌ Static title card held 1–3s | Reads as a stall; costs retention in exactly the seconds that matter |
+
+A static card is acceptable only when the opening footage is too busy for legible text — then hold it
+**≤1.5s** and cut into motion.
+
+**Consequence: the end card is redundant.** If the video opened with its title, do not repeat the
+title at the close. The final frame should carry only what the open could not — the **CTA**:
+
+- ✅ Open: title + one-line promise. **Close: CTA only.**
+- ❌ Open: nothing. Close: the title (so it never hooks anyone, and the last seconds repeat information
+  the viewer does not yet have reason to care about).
+
+**Placement.** The top of a Reel is crowded with Instagram's own chrome (username, audio label). Keep
+the opening title **below the top UI band** and clear of the bottom caption zone — see *Safe area* — so
+it is never obscured once the platform draws over it.
+
 ## YouTube indexing checklist — public ≠ indexable
 
 An upload that is `privacyStatus: public` can still be near-invisible to YouTube search. Verified
@@ -472,3 +522,12 @@ Include in the handoff message:
   beats in the cut. "28 Flavor Worlds" promised a tasting catalogue over farm-process footage.
 - ✅ Verify rendered text on a frame pulled from the **concatenated deliverable**, not from the source
   PNG — a correct PNG says nothing about what got composited.
+- ❌ Saving the video's title for the closing card. As shipped in "Where Flavor Is Decided", the title
+  appears **only** at the end — so it never piques curiosity, and the closing seconds are spent on a
+  label instead of a CTA. Cold-open the title; close with the CTA only.
+- ❌ Repeating the title on the end card after the video already opened with it — that's two of the
+  most valuable seconds spent saying something the viewer already read.
+- ✅ Composite the opening title **over the first moving shot**, not on a static card; hold a card
+  ≤1.5s only when the footage behind it is too busy to read against.
+- ❌ Placing on-screen text in the top ~250px or bottom ~450px bands — Instagram's own UI (username,
+  audio label, caption, action buttons) covers them on device even though they look clear in your render.
