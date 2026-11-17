@@ -30,6 +30,94 @@ ledger-booking step at link time changes.
 
 ---
 
+## 0.00 (MANDATORY) PIX / tree-planting payouts need a SEPARATE payer expense booking
+
+**Added 2026-11-17 after a real miss (R$ 1,085.00 / 217 trees, Pix of 2026-11-12).**
+
+> **Rule: a `[PAYOUT EVENT]` records the FARMER's side, not the payer's cash outflow.
+> Every PIX tree-planting payout MUST be paired with a separate funder-side expense
+> booking, or the payer's balance never draws down and the real money leaves the
+> treasury unrecorded.**
+
+### Why (source-level, not inference)
+
+`process_payout_event_telegram_logs.js` computes legs as:
+
+```js
+var legs = fpeComputeLegs_({
+  amount: base.amount,
+  currency: base.currency,
+  contributor: String(base.recipient_pk_hash || ''),   // <- the FARMER, not the payer
+  committed: committed,
+  qrLedgerIsMain: qrLedgerIsMain
+});
+```
+
+and `fpeWriteLeg_` writes it into the Fund Handler column:
+
+```js
+sh.appendRow([today, desc, leg.contributor, leg.amount, leg.literal, '', leg.isRevenue]);
+```
+
+So the three legs all land against the **recipient's** PK hash:
+
+| Currency literal | Sign | What it means |
+|---|---|---|
+| `BRL` | − | the farmer's cash credit |
+| `Cacao Tree - To Be Paid For` | − | the accrued liability discharged |
+| `Cacao Tree Planted - Unassigned` | + | the settled tree asset |
+
+**Verified empirically** (2026-11-17): across 311 `[FARMER PAYMENT EVENT]` rows the only
+Fund Handler is `pk-qkejKJJW3IAD` (Jhordan / CFR Anapu), and **zero** rows debit
+`Gary Teh` or `Zhiwen Teh` in `BRL` or `Brazilian Reis`. The handler is structurally
+incapable of recording who funded the cash.
+
+### The companion booking
+
+For every PIX / tree-planting payout, also file:
+
+- **`[DAO INVENTORY EXPENSE EVENT]`** — `DAO Member Name` = the funder, `Inventory Type`
+  = the funding currency literal (e.g. `Brazilian Reis`), `Inventory Quantity` = the amount,
+  `Target Ledger` = `offchain`, plus the bank receipt URL. See
+  `Edgar_20261117032909_3726` for the 217-tree worked example.
+- Attach the actual Pix receipt. The `Receipt URL` on the PAYOUT EVENT is the farmer-side
+  evidence; the expense event needs the payer-side bank confirmation.
+
+### Two debugging rules learned the hard way
+
+1. **Absence of a Pix ID in a ledger dump only proves anything if the dump postdates the
+transfer.** On 2026-11-17 a grep for `TBTdiHgQD7` against `/tmp/tcl.json`
+   (last modified **2026-11-08**, four days *before* the 12 Nov Pix) returned zero and was
+   wrongly read as proof the payment was unbooked.
+2. **The treasury-cache is not a transaction ledger.**
+   `dao_offchain_treasury.json` is a `Currencies`-sheet rollup and lags/hides rows; a
+   balance still showing on hand does **not** mean no transaction occurred. Never use it
+   to overrule primary ledger rows.
+
+The correct question is never *"is the Pix ID anywhere in the ledger"* (the PAYOUT rows
+carry it) but **"is the Pix ID on a row that debits the payer"** — and by construction it
+never is.
+
+### Known blocker: the `BRL` / `Brazilian Reis` literal split
+
+One currency is written under two literals. The payout machinery uses
+`PAYOUT_EVENT_DEFAULT_CURRENCY = 'BRL'`; the manual/balance side uses `Brazilian Reis`
+(priced at USD 0.2323 in `Currencies`). There is **no `BRL` row in `Currencies`**, so the
+BRL bucket has no USD price and renders as `$0` on the balance tab.
+
+Observed split (dump ending 2026-11-11):
+
+| Literal | Rows | Net |
+|---|---|---|
+| `Brazilian Reis` | 73 | +130.00 |
+| `BRL` | 108 | −430.00 |
+
+**Resolve this normalization before trusting any Brazilian-Reis total.** Until then a
+funder expense and the farmer payouts sit in different buckets and the two halves of one
+transaction cannot be reconciled.
+
+---
+
 ## 0. Decisions (ruled in the 2026-09-20 conversation)
 
 | # | Decision | Choice |
