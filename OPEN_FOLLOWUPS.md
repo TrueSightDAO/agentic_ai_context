@@ -39,30 +39,58 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
-### Stage-2 scoring trigger silent-stalled 2026-11-17 01:07 UTC — and `Successfully Completed` is stamped on unscored rows
+### Stage-2: today's two contributions are unscored — **with retraction** (originally mis-filed as an "8-hour trigger stall")
 
 **Filed 2026-11-17 (Sophia). Owner: unclaimed. Priority: MEDIUM — no data loss at Stage 1, but the derived view freezes and nothing alerts.**
 
-**Measured live 2026-11-17 09:15 UTC** (`tdg_scoring` SA for Stage 2, default SA for Stage 1).
+**Measured 2026-11-17.** Priority: **LOW** — no data loss at Stage 1, Stage 2 healthy overall.
+
+> ### ⚠️ RETRACTION (same day) — the "8-hour trigger stall" in this entry's first version was WRONG
+>
+> The first version of this entry claimed the scoring trigger had been silent for ~8 hours. **It
+> had not.** The error: `Pipeline Health` timestamps are in the **sheet's timezone
+> (`America/Los_Angeles`)**, and I compared the newest one (`11/17/2026 01:07`) against a **UTC**
+> clock. In PT the trigger had fired **six minutes** before I measured. The row count also grew
+> `2185 → 2186` during the investigation — a stalled trigger cannot append rows.
+>
+> **This is the second time this file has been corrupted by a stale-tail / clock reading.** Read
+> the timestamp's timezone before drawing a liveness conclusion.
+
+**Measured live 2026-11-17** (`tdg_scoring` SA for Stage 2, default SA for Stage 1).
 
 > **This is NOT a revival of the debunked "frozen after row 7224" claim.** That one was a
 > range-sampling artefact (see the 2026-10-30 correction below). This finding is measured a
 > different way: **trigger liveness against the trigger's own 15-minute cadence.**
 
-**Finding A — the GAS scoring trigger has not fired for ~8 hours.**
+**Finding A (retracted) — the "trigger has not fired for ~8 hours" claim.**
 
-- `Pipeline Health` has **2185** rows; newest is `11/17/2026 1:07:13`, outcome `OK`,
-  `Processed 0 new message(s); backfilled 0 status row(s).`, `intake rows scanned: 15123`.
-- The cadence is **15 minutes** (`installScoringTrigger`, installed 2026-10-25), so ~32 ticks
-  are missing.
-- The **last 300** `Pipeline Health` outcomes are **100% `OK`**. A stalled trigger logs
-  **nothing** — its absence is the only signal, which is precisely why this file exists.
-- Corroboration: `Scored Chatlogs` newest col-H date is **`20261114`** (3 days stale);
-  `Submissions Left to Score` = **290** (sheet cell — do **not** reconcile against Stage-1 `Pending`).
-- The trigger *was* alive right up to the stop: `intake rows scanned` advanced `15121 → 15123`
-  at `0:37`. Today's submissions landed at `08:32`, **above** `15123`, and have never been scanned.
+- The retracted numbers: `Pipeline Health` was read as having a newest row of `1:07:13` with
+  ~32 ticks missing against a 15-minute cadence. **Both figures are void** — the timestamp is PT,
+  and `Pipeline Health` in fact had rows through `11/17 01:21` PT (= `09:21` UTC), i.e. current.
+- Still valid and unchanged: the **last 300 `Pipeline Health` outcomes are 100% `OK`**, and a
+  stalled trigger would log **nothing** at all. That negative-evidence principle holds even though
+  the stall conclusion was wrong.
+- `Submissions Left to Score` = **290** (sheet cell — do **not** reconcile against Stage-1 `Pending`).
+  This counter is Edgar-API-derived and moving a 290 backlog is not evidence of a stall.
+**Finding A (actual) — Stage 2 is HEALTHY; two specific rows are simply not scored.**
 
-**Cause NOT established.** Needs the GAS editor on project
+- `Scored Chatlogs` has **7,508** rows including rows dated **`20261117`** — so scoring is
+  running today, not stalled.
+- Today's *reel* contributions are **absent** from `Scored Chatlogs` (0 matches on 4 distinctive
+  phrases): `Edgar_20261117083216_3732` (Sophia, 210 min) and `Edgar_20261117083223_3734`
+  (Gary, 45 min), reel `Df1WNc-x2g5`.
+- But two **different** `20261117` rows *are* scored: **Sophia Truesight 75 TDG** (`Amount: 45`,
+  hash `817/bJKLK2…`, `Pending Review`) and **Gary Teh 41.67 TDG** (`Amount: 25`, hash
+  `riIWCWpAYwZ…`).
+- **So intake→scoring works, yet 210-min and 45-min reel rows filed at `08:32` are skipped while a
+  45-min row was picked up.** The differentiator is not the contributor and not the date. Worth
+  checking first: whether the trigger's scan window has advanced past those row positions, and
+  whether `[CONTRIBUTION EVENT]` bodies arriving via Edgar (vs Telegram) are routed differently.
+- **Risk to the governor's own record:** today's 210 + 45 minutes of reel work is filed in Stage 1
+  and verifiable there, but will not appear in the derived scoring view until this is resolved.
+
+**Cause of the two missing rows is NOT established** (the trigger itself IS running — see the
+retraction above). Needs the GAS editor on project
 `1BHAGZd_T1I5mQnqnAFqUJKX2x_N8Uv05n1O2OohRA908Ja8wVwVxaR7K` (`tokenomics`): list installed
 **triggers**, confirm the scoring trigger still exists, then manually run
 `processTelegramChatLogs` once. Worth checking as a hypothesis: GAS's **daily execution-time

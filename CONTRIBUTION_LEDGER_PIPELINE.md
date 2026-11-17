@@ -18,11 +18,20 @@ Verified live 2026-10-26 against all three sheets.
 > A row parked in Stage 1 for weeks is a **failure**, and Stage 1 looks perfectly healthy
 > while it happens — the write succeeds, the derived view silently freezes.
 >
-> **Status as of 2026-11-17 09:15 UTC (supersedes the 2026-10-26 note below):** Stage 2 *is*
-> running again but is **lagging**. Newest `Scored Chatlogs` date is `20261114` (3 days stale) and
-> the newest `Pipeline Health` row is `11/17/2026 01:07` against a **15-minute** cadence — i.e. the
-> trigger has silently stopped. `Submissions Left to Score` = 290. See `OPEN_FOLLOWUPS.md` →
-> "Stage-2 scoring trigger silent-stalled 2026-11-17".
+> **Status as of 2026-11-17 (supersedes the 2026-10-26 note below):** Stage 2 **is running** —
+> `Pipeline Health` appends on its ~15-minute cadence and `Scored Chatlogs` holds rows dated
+> `20261117` (e.g. Sophia Truesight 75 TDG, Gary Teh 41.67 TDG).
+>
+> An earlier same-day note here claimed the trigger had "stalled for 8 hours". **That was wrong and
+> is retracted** — it compared a `Pipeline Health` timestamp in the sheet's `America/Los_Angeles`
+> timezone against a UTC clock. The trigger had fired 6 minutes before measurement.
+>
+> **What is genuinely open:** that day's two *reel* contributions (Sophia 210 min, Gary 45 min) are
+> in Stage 1 with valid col-N hashes but have **no** `Scored Chatlogs` counterpart, while other
+> `20261117` rows do. See `OPEN_FOLLOWUPS.md`.
+>
+> The 2026-10-26 note below is **retained for history but is no longer the current state**. Do not
+> re-assert "Stage 2 is dead" from it.
 >
 > The 2026-10-26 note below is **retained for history but is no longer the current state** — the
 > scorer has since written rows through `20261114`. Do not re-assert "Stage 2 is dead" from it.
@@ -135,15 +144,21 @@ report the row as **stuck in Stage 1 pending a broken scorer**, not as progressi
   already produced false readings in past sessions.
 - **`Pipeline Health` is the only liveness signal, and it is negative-evidence only.** It logs
   `OK` rows every 15 minutes while healthy, so a *stopped* trigger produces **no rows at all** —
-  not an error. Check the newest timestamp, not the outcome column. On 2026-11-17 the trigger had
-  been silent for ~8 hours with the previous 300 outcomes all `OK`.
+  not an error. Check the newest timestamp, not the outcome column.
+- **`Pipeline Health` timestamps are in the SHEET timezone (`America/Los_Angeles`), NOT UTC.**
+  A 2026-11-17 entry in this repo declared an "8-hour stall" by comparing a PT sheet timestamp
+  against a UTC clock — the trigger had actually fired 6 minutes earlier. Convert first, or compare
+  sheet-time to sheet-time.
 
 ---
 
 _Last verified 2026-11-17 09:15 UTC — Stage 1 at **15,110** rows, Stage 2 at **7,508**. Today's
 two reel contributions (`Edgar_20261117083216_3732` Sophia 210 min, `Edgar_20261117083223_3734`
 Gary 45 min) are present in Stage 1 with valid col-N hashes but **not yet in Stage 2**. Stage 2's
-newest date is `20261114`; the scoring trigger last fired `11/17 01:07` against a 15-minute cadence._
+_Last verified 2026-11-17 — Stage 2 is **live** (7,508 rows, rows dated `20261117` present, e.g.
+Sophia Truesight 75 TDG / Gary Teh 41.67 TDG). **Open:** that day's two reel contributions
+(Sophia 210 min, Gary 45 min) are in Stage 1 with valid col-N hashes yet have no `Scored Chatlogs`
+counterpart — so intake→scoring is not uniformly stalled, and why those two are skipped is unresolved._
 
 _Re-verify Stage 2 liveness on every future check of this document — that is the stage that
 fails silently, and the one this file exists to stop agents from misreading._
