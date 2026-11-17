@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-11-17T08:18:17Z`
+- Generated (UTC): `2026-11-17T21:12:10Z`
 - Look-back: **7** calendar days (`2026-11-10` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -33,23 +33,15 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 ### Event-type rollup
 
 - `[CONTRIBUTION EVENT]` × 29
-- `[PRACTICE EVENT]` × 6
+- `[PRACTICE EVENT]` × 5
 - `[SALES EVENT]` × 3
+- `[CURRENCY CONVERSION EVENT]` × 2
 - `[CONTRIBUTOR ADD EVENT]` × 1
 - `[BATCH QR CODE REQUEST]` × 1
-- `[CURRENCY CONVERSION EVENT]` × 1
 - _free-form (no bracket tag)_ × 1
 
 ### Latest entries
 
-- `Edgar_20261114025308_3692` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 92 · Description: AGL13 Oscar/Vivi butter reconciliation — 5 ledger defects fixed, state verif…
-- `Edgar_20261114025311_3694` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Governor rulings — Oscar batch placement (B), dual 0.1 kg butter consumption…
-- `Edgar_20261114031459_3696` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Agroverse white-label packaging dimension sheet + per-mode dieline templates…
-- `Edgar_20261114031502_3698` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Scope direction and review of the Agroverse white-label label + envelope dim…
-- `Edgar_20261114041022_3700` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 2.46035884 · Contributor(s): Kirsten Ritschel (kirsten@kikiscocoa.com)
-- `Edgar_20261114043448_3702` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 2.46035884 · Contributor(s): Kirsten Ritschel
-- `Edgar_20261114043724_3704` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 2.46035884 · Description: Contribution in kind: 0.4 kg organic evaporated cane sugar (Rainbow Grocery,…
-- `Edgar_20261114154753_3706` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Feedback on the chocolate bars from Vivi’s and Oscar’s
 - `Edgar_20261114210354_3708` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 60 · Description: Phone call to talk about Chocolate tasting profiles for various products fro…
 - `Edgar_20261115015405_3710` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-15T01:54:01.692Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20261115225847_3712` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-15T22:58:44.521Z · Program: truesight-grounding · Practice Type: oracle-consultation
@@ -62,6 +54,14 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20261117032909_3726` · **Edgar** · [DAO Inventory Expense Event] · Attached Filename: 20261112_jhordan_217_trees_pix_1085_brl.jpg · DAO Member Name: Gary Teh
 - `Edgar_20261117034359_3728` · **Edgar** · [CONTRIBUTION EVENT] Amount: 30 · Contributor(s): Gary Teh · Description: Review of the AGROVERSE Contrato Social for Bicolunado (bilingual PT/EN soci…
 - `Edgar_20261117042953_3730` · **Edgar** · [CURRENCY CONVERSION EVENT] Ledger: offchain · Ledger URL: https://docs.google.com/spreadsheets/d/1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_… · Warehouse Manager: pk-qkejKJJW3IAD
+- `Edgar_20261117083216_3732` · **Edgar** · [CONTRIBUTION EVENT] Amount: 210 · Contributor(s): Sophia Truesight (admin+sophia@truesight.me) · Description: Compiled the Agroverse 'Where Flavor Is Decided' Instagram Reel from Santa A…
+- `Edgar_20261117083223_3734` · **Edgar** · [CONTRIBUTION EVENT] Amount: 45 · Contributor(s): Gary Teh · Description: Creative direction, review of 8 successive reel drafts (v2 through v8), and …
+- `Edgar_20261117092434_3736` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 150 · Description: Bilibili × DeepSeek Harness — feasibility research, QR-login live-fire, and …
+- `Edgar_20261117120835_3738` · **Edgar** · [CURRENCY CONVERSION EVENT] Ledger: offchain · Warehouse Manager: Gary Teh · Source Currency: USD
+- `Edgar_20261117122715_3740` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Contribution report — Elizabeth Wong CNY→USD reconciliations, PDF CJK/multib…
+- `Edgar_20261117122743_3742` · **Edgar** · [CONTRIBUTION EVENT] Amount: 25 · Contributor(s): Gary Teh · Description: Time spent clarifying federal tax treatment and the corporate succession arr…
+- `Edgar_20261117123304_3744` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 25 · Description: Accountant call — Black King SIMPLES tax, new CNPJ handover, R$674.37 payment
+- `Edgar_20261117192351_3746` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 540 · Description: Foiling  chocolate bars, packaging, QR code printing, packaging to send off …
 
 ---
 
@@ -76,7 +76,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-11-16T11:59:13.735Z`
+- Generated (UTC): `2026-11-17T11:59:14.936Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -91,7 +91,7 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **69** stores — sum logged **warmup** sends (AU): **553**, sum logged **follow-up** sends (AV): **4**; warmup depth (none / once / ≥2): **37** / **0** / **32**; follow-up depth (none / once / ≥2): **68** / **0** / **1**
+- **AI: Warm up prospect**: **68** stores — sum logged **warmup** sends (AU): **553**, sum logged **follow-up** sends (AV): **4**; warmup depth (none / once / ≥2): **36** / **0** / **32**; follow-up depth (none / once / ≥2): **67** / **0** / **1**
 - **Manager Follow-up**: **26** stores — sum logged **warmup** sends (AU): **20**, sum logged **follow-up** sends (AV): **55**; warmup depth (none / once / ≥2): **22** / **0** / **4**; follow-up depth (none / once / ≥2): **9** / **3** / **14**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: _(no rows in this status)_
@@ -212,11 +212,11 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
   | Cacao Mass | Retail Ready | 1 | 1 | $10.37 |
 
 **Gary Teh** _( Operational cash + assorted retail inventory )_
-- Manager record: `Gary Teh` · 30 SKU lines · 7,312.96 total units · $7,012.92
+- Manager record: `Gary Teh` · 31 SKU lines · 7,868.63 total units · $7,050.87
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 28 | 7,236.78 | $6,962.93 |
+  | (uncategorized) | (unspecified) | 29 | 7,792.45 | $7,000.89 |
   | Packaging Material | Bulk | 1 | 74 | $49.98 |
   | Cacao Tea | Bulk | 1 | 2.18 | $0.00 |
 
@@ -237,8 +237,8 @@ _(+34 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$1,669.12**
-- Brazilian Reis: R$-1,385.00 · rate `0.2323` USD/BRL → ≈ **$-321.74**
+- USD on hand: **$1,550.42**
+- Brazilian Reis: R$-710.63 · rate `0.2323` USD/BRL → ≈ **$-165.08**
 - USD provisioned for voting-rights cash-out: **$58.87**
 
 ### In-transit freight (0 rows)
@@ -275,6 +275,7 @@ _All dated lines on/after 2026-11-10_ (1):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+68083f0 | 2026-11-17 08:23:27 +0000 | chore(stats): refresh stats indexes [skip ci]
 e9c8adc | 2026-11-16 22:27:38 +0000 | chore(stats): refresh stats indexes [skip ci]
 f1da324 | 2026-11-16 07:10:36 +0000 | chore(stats): refresh stats indexes [skip ci]
 adb9281 | 2026-11-15 19:03:02 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -295,12 +296,17 @@ c9fc53c | 2026-11-11 06:59:18 +0000 | chore(stats): refresh stats indexes [skip 
 ### `market_research` → `go_to_market`
 
 ```
-1b93a1b | 2026-11-17 10:46:52 +0800 | content: Week 2 (Nov 19) flavor-worlds carousel - 7 [GENERATED] plates + copy deck (#208)
+91ea162 | 2026-11-17 16:43:32 +0800 | Mark 20261117 Reel as PUBLISHED with real caption in schedule CSV (#209)
 ```
 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+ab4bda9 | 2026-11-17 20:32:46 +0800 | Add accountant call evidence 2026-11-17 (SIMPLES, CNPJ handover)
+b2bcb0f | 2026-11-17 17:29:08 +0800 | docs(pipeline): retract "8h Stage-2 stall" — timezone artifact, not an outage (#1864)
+95a9878 | 2026-11-17 17:17:38 +0800 | docs(pipeline): Stage-2 trigger silent-stalled 8h; correct stale liveness claims (#1863)
+f6e54df | 2026-11-17 16:18:39 +0800 | chore(previews): refresh Beer Hall preview (2026-11-17 UTC)
+8906422 | 2026-11-17 16:18:37 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-17 UTC)
 fcece56 | 2026-11-17 14:48:16 +0800 | SOP: correct BRL/Brazilian Reis root cause - alias exists, three write paths bypass it (#1862)
 3b9aaaa | 2026-11-17 12:58:18 +0800 | BFP SOP: add caption safe-area & verification rules (§2.4, §7A) (#1861)
 1839f4a | 2026-11-17 12:34:52 +0800 | SOP: title on the first frame (cold open), end card is CTA-only (#1860)
@@ -336,17 +342,13 @@ b276917 | 2026-11-14 13:32:02 +0800 | SOP v1.1: blocks are interim inventory, no
 8bb29ed | 2026-11-13 16:49:39 +0800 | Errata v2: retract part of my McCann critique; 5 remaining fixes (#1840)
 15c452c | 2026-11-13 16:47:44 +0800 | Reconciliation + errata: discovery-box composition, McCann reading, price arithmetic (#1839)
 638a0b8 | 2026-11-13 16:42:30 +0800 | China SKU positioning: McCann Truth Well Told lens + USA cross-market (#1838)
-50a8208 | 2026-11-13 16:33:06 +0800 | Field audit + SWOT + positioning: Dongguan chocolate, 2026-11-13 (#1837)
-50c70f9 | 2026-11-13 15:02:54 +0800 | chore(previews): refresh Beer Hall preview (2026-11-13 UTC)
-e3efd2f | 2026-11-13 15:02:50 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-13 UTC)
-4bee267 | 2026-11-13 13:50:54 +0800 | Register PDF multibyte SOP in workspace context + project index (#1836)
-f5badab | 2026-11-13 13:50:46 +0800 | Add PDF generation SOP: mandatory CJK/multibyte support + verification gate (#1835)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+f4ff570 | 2026-11-17 20:38:53 +0800 | Fix silent drop of Telegram contribution rows in the TDG scorer (#627)
 8038021 | 2026-11-17 11:28:56 +0800 | Add R$1,085 Pix receipt — 217 trees, Jhordan Madian Costa de Oliveira
 7b32bbc | 2026-11-12 20:26:51 +0800 | Add Pix receipt R$1085 for 217 trees (Jhordan)
 3ec42ac | 2026-11-12 20:26:42 +0800 | Add Wise USD 378.05 to R$2085 conversion receipt
@@ -386,6 +388,8 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+14c7050 | 2026-11-17 16:28:34 +0000 | chore: refresh currencies.json [skip ci]
+e662808 | 2026-11-17 16:04:57 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 7697efa | 2026-11-16 16:28:02 +0000 | chore: refresh partners-velocity snapshot [skip ci]
 d2657ad | 2026-11-16 16:25:17 +0000 | chore: refresh currencies.json [skip ci]
 7efe659 | 2026-11-16 15:52:45 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
@@ -503,7 +507,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
 | 2026-10 | 460 | 18944.34386 | 10/31/2026 |
-| 2026-11 | 276.9 | 19221.24386 | 11/16/2026 23:50:59 |
+| 2026-11 | 276.9 | 19221.24386 | 11/17/2026 13:03:55 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-11-10`; scanned last **600** data rows)
 
