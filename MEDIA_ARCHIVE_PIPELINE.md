@@ -263,6 +263,127 @@ Governor decision 2026-11-11: **generated videos upload to YouTube `public`**, p
 its manifest); beats marked `unknown` are flagged `clearance_required` and blocked from **paid**
 media until traced, which is a stricter bar than public organic posting.
 
+## Burned-in text — captions, subtitles & title cards (documented 2026-11-17, Reel "Where Flavor Is Decided")
+
+Applies whenever text is **composited into pixels**: burned-in captions, translated subtitles, title
+cards, end-card CTAs. Compiling the first Instagram Reel surfaced a whole class of defects here, so
+treat this section as mandatory for any rendered video deliverable.
+
+### The rule: never use `drawtext` for multi-line or variable-length text
+
+`drawtext` will silently overflow the frame and there is nothing in the filter that stops it:
+
+```
+# WRONG — this shipped 114px of clipped text off each side of a 1080px frame
+drawtext=fontfile=…:text='a long line':fontsize=58:x=(w-text_w)/2:box=1:boxborderw=28
+```
+
+`x=(w-text_w)/2` centres the text using its own width. **Nothing constrains that width** — any line
+wider than the frame is centred *past* both edges, symmetrically clipped. `boxborderw=28` adds a
+further 56px of background beyond the glyphs, so the visible bleed is worse than the text extent.
+
+Observed: **6 of 14 caption lines overflowed**, worst by 228px.
+
+`drawtext` is fine only for fixed, short, known-safe strings you have measured (e.g. the hand-checked
+title lines on a static end card). Everything else goes through PIL.
+
+### Safe area
+
+| Frame | Width | Safe margin | Max content width |
+|---|---|---|---|
+| Reel / Story 1080×1920 | 1080 | **90px** each side | **900px** |
+
+Keep all burned-in text inside the safe area. Bottom ~15% is additionally at risk from platform UI
+(Instagram's own caption/CTA overlay) — keep text above it.
+
+### Procedure: render text as a transparent PNG, then overlay
+
+1. Build the text on a transparent `Image.new("RGBA", (W, H), (0,0,0,0))` at full frame size.
+2. **Wrap to the content width**, then **shrink the font until every line fits**. Wrapping alone is
+   insufficient — a single unbreakable token can still exceed the width.
+3. **Assert** the rendered bounding box honours the safe area, and let the render abort if it doesn't.
+4. Overlay the PNG at `0:0` and composite.
+
+```python
+from PIL import Image, ImageDraw, ImageFont
+W, H = 1080, 1920
+SAFE = 90
+CONTENT = W - 2 * SAFE
+FONT_B = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
+
+def fit(lines, fontpath, start, maxw=CONTENT):
+    fs = start
+    while fs > 18:
+        f = ImageFont.truetype(fontpath, fs)
+        if all(f.getbbox(l)[2] - f.getbbox(l)[0] <= maxw for l in lines):
+            return f, fs
+        fs -= 1
+    raise SystemExit(f"cannot fit {lines} in {maxw}px")
+
+img = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+d = ImageDraw.Draw(img)
+ft, fs_t = fit(["WHERE FLAVOR", "IS DECIDED"], FONT_B, 74)
+y = 620
+for l in ["WHERE FLAVOR", "IS DECIDED"]:
+    bb = ft.getbbox(l)
+    d.text(((W - (bb[2] - bb[0])) // 2, y), l, font=ft, fill=(0xE9, 0xB9, 0x49, 255))
+    y += int(fs_t * 1.28)
+
+l, t, r, b = img.getbbox()
+assert l >= SAFE and (W - r) >= SAFE, f"OVERFLOW left={l} right={W-r}"
+img.save("card.png")
+```
+
+Overflow then becomes **structurally impossible** rather than hand-tuned. Measured result on the
+Reel: worst-case margin improved from −114px (clipped) to **+91px** of clearance; widest line 897px
+of 1080.
+
+### Verifying the render — check pixels, not intentions
+
+A correct PNG proves nothing about what got **composited**. Verify in the final concatenated file:
+
+```bash
+ffmpeg -y -v error -ss 44.8 -i final.mp4 -frames:v 1 -vf "crop=1080:700:0:600,scale=1620:1050" band.png
+tesseract band.png - --psm 6          # does the text read back correctly?
+```
+
+The authoritative geometric check is the **caption PNG's own bounding box** (the overlay is applied
+at `0:0` unmodified, so PNG extent *is* on-screen extent):
+
+| Beat | capL | capR | width | L margin | R margin |
+|---|---|---|---|---|---|
+| b2 (widest) | 92 | 989 | 897 | 92 | 91 |
+| b0 | 175 | 906 | 731 | 175 | 174 |
+
+### False-verdict traps (all four cost real time on the Reel)
+
+- ❌ **Bright-pixel edge detection.** Counting white pixels in the left/right strips counts *the
+  footage*, not the text — sunlight and bright clothing trip it. It reported `CLIPPED` on every beat
+  after the fix was already correct (173 "text" px in b2's left strip where no caption pixel exists
+  left of x=92).
+- ❌ **Frame-diff without aligned timestamps.** Differencing a segment frame at t=2.0s against a
+  source frame from a different moment differenced the entire scene, not the caption.
+- ❌ **OCR as authority.** Unreliable in both directions over busy video — it reported a subtitle
+  *missing* (a 540px downscale artifact) and later could not read a subtitle that was present.
+- ❌ **Trusting the source PNG.** Always re-extract a frame from the concatenated deliverable.
+- ✅ Verify in this order: subtitle **timing** from the transcription → **stream spec + decode**
+  (`ffprobe`, `ffmpeg -f null -`) → **audio present** (`volumedetect` mean, and check *no `-v error`*
+  which suppresses the `info`-level log volumedetect emits) → **text extent** via the PNG bbox →
+  **legibility** via OCR as a weak secondary signal only.
+
+### The title must match the footage — not the plan
+
+A title inherited from the content calendar is a **claim about the video**, and it can be wrong. The
+Reel shipped as "28 Flavor Worlds" with the subline "Taste cacao like you taste wine" — both retired,
+because they promise a **tasting-notes catalogue** while the archive holds only farm-process footage
+(fermentation, roasting, terroir). The title was selling the destination while the footage showed the
+factory.
+
+- Check every title/subline against the **beats actually in the cut**, one line to one beat.
+- If a line can't be pointed at a beat that shows it, it's a claim, not a caption — cut it.
+- Log the divergence: when a produced asset departs from its scheduled row (title *and* format), the
+  row is now stale and should be corrected — but that's a content-plan edit, so get governor sign-off.
+
 ## YouTube indexing checklist — public ≠ indexable
 
 An upload that is `privacyStatus: public` can still be near-invisible to YouTube search. Verified
@@ -340,3 +461,14 @@ Include in the handoff message:
   can contain one clearanced clip and one un-cleared one.
 - ✅ Keep large generated blobs on YouTube and reference by `yt_id`; commit only the small
   diffable manifest.
+- ❌ Bare `drawtext` for multi-line/variable-length burned-in text — it has no width constraint, so
+  wide lines are centred past both frame edges and silently clipped. Render text as a PNG via PIL
+  with wrap → shrink → assert. See "Burned-in text".
+- ❌ Verifying caption fit with bright-pixel edge detection — it counts the footage (sunlight, bright
+  clothing) as text and reports CLIPPED on correct renders.
+- ❌ Concluding "no subtitle" from OCR — OCR is unreliable in both directions over busy video, and a
+  downscaled crop will fail to read text that is plainly there.
+- ❌ Shipping a video whose title came from the content calendar without checking it against the
+  beats in the cut. "28 Flavor Worlds" promised a tasting catalogue over farm-process footage.
+- ✅ Verify rendered text on a frame pulled from the **concatenated deliverable**, not from the source
+  PNG — a correct PNG says nothing about what got composited.
