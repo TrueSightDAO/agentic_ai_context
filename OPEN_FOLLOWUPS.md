@@ -39,6 +39,61 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Stage-2 scoring trigger silent-stalled 2026-11-17 01:07 UTC — and `Successfully Completed` is stamped on unscored rows
+
+**Filed 2026-11-17 (Sophia). Owner: unclaimed. Priority: MEDIUM — no data loss at Stage 1, but the derived view freezes and nothing alerts.**
+
+**Measured live 2026-11-17 09:15 UTC** (`tdg_scoring` SA for Stage 2, default SA for Stage 1).
+
+> **This is NOT a revival of the debunked "frozen after row 7224" claim.** That one was a
+> range-sampling artefact (see the 2026-10-30 correction below). This finding is measured a
+> different way: **trigger liveness against the trigger's own 15-minute cadence.**
+
+**Finding A — the GAS scoring trigger has not fired for ~8 hours.**
+
+- `Pipeline Health` has **2185** rows; newest is `11/17/2026 1:07:13`, outcome `OK`,
+  `Processed 0 new message(s); backfilled 0 status row(s).`, `intake rows scanned: 15123`.
+- The cadence is **15 minutes** (`installScoringTrigger`, installed 2026-10-25), so ~32 ticks
+  are missing.
+- The **last 300** `Pipeline Health` outcomes are **100% `OK`**. A stalled trigger logs
+  **nothing** — its absence is the only signal, which is precisely why this file exists.
+- Corroboration: `Scored Chatlogs` newest col-H date is **`20261114`** (3 days stale);
+  `Submissions Left to Score` = **290** (sheet cell — do **not** reconcile against Stage-1 `Pending`).
+- The trigger *was* alive right up to the stop: `intake rows scanned` advanced `15121 → 15123`
+  at `0:37`. Today's submissions landed at `08:32`, **above** `15123`, and have never been scanned.
+
+**Cause NOT established.** Needs the GAS editor on project
+`1BHAGZd_T1I5mQnqnAFqUJKX2x_N8Uv05n1O2OohRA908Ja8wVwVxaR7K` (`tokenomics`): list installed
+**triggers**, confirm the scoring trigger still exists, then manually run
+`processTelegramChatLogs` once. Worth checking as a hypothesis: GAS's **daily execution-time
+quota** against 96 runs/day each scanning ~15k rows would kill a trigger cleanly with no error row.
+
+**Finding B — `col J = Successfully Completed` appears on rows that were never scored.**
+
+- Today's `Edgar_20261117083216_3732` (Sophia, 210 min) and `…3734` (Gary, 45 min), reel
+  `Df1WNc-x2g5`, are in Stage 1 with full body and **non-empty col N `Scoring Hash Key`** — so they
+  satisfy the scorer's routing precondition — yet have **`col I` (TDGs Provisioned) empty** and
+  **`col J = Successfully Completed`**, and are **absent from `Scored Chatlogs`** (0 matches on 4
+  distinctive phrases from their descriptions).
+- `CONTRIBUTION_LEDGER_PIPELINE.md` documented J as `Pending` → `Successfully Completed` /
+  `Full Provision Awarded`. These rows show the **terminal value before scoring**.
+- Distribution across the last 200 Stage-1 rows: `Pending` 168 / `Successfully Completed` 21 /
+  `Full Provision Awarded` 11 — so J is not uniformly broken; something stamps the terminal value early.
+- **Decision needed:** either J's meaning has changed (then document it), or Edgar should stop
+  stamping it on unscored `[CONTRIBUTION EVENT]` rows. As written, `Successfully Completed` is a
+  false positive for "scored and provisioned" — trust-destroying for anyone reading the intake tab.
+
+**Measurement traps (each already cost a session).**
+
+- Stage 1 `Telegram Chat Logs` header is **row 2**, not row 1 — a stray `Next Expected Airdrop Date` row sits above it.
+- Stage 2 `Scored Chatlogs` has **two preamble rows**, so its header is **row 3**.
+- Always name the counter's source: `Submissions Left to Score` is a **sheet cell**;
+  `pendingContributionEvent` is the **Edgar API**. They are not reconcilable.
+
+**Fix options.** (1) Silent-failure alarm on an attention surface if `Pipeline Health`'s newest row
+is older than ~1 hour — the trigger cannot report its own death. (2) Establish why it stopped
+(quota vs deleted trigger vs error thrown before `logPipelineHealth_`). (3) Fix or redefine col J.
+
 ### Edgar contribution pipeline is FROZEN since 2026-09-30 — `submit_contribution` returns 200 but the event never persists
 
 **Filed 2026-11-14 (Sophia). Owner: unclaimed. Priority: CRITICAL — silently loses TDG-bearing contribution events while telling the caller "success".**
