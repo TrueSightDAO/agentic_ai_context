@@ -39,6 +39,21 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Reel build script + caption renderer exist only in `/tmp/reel/work` on the autopilot box
+
+**Filed 2026-11-17 (Sophia). Owner: unclaimed. Priority: MEDIUM — the fix is documented in `MEDIA_ARCHIVE_PIPELINE.md` but the working code will be lost on box rebuild.**
+
+**Symptom.** The first Instagram Reel ("Where Flavor Is Decided", 45.77s, 1080×1920) was built by scripts living only at `/tmp/reel/work/build.py`, `cap.py`, and the per-beat caption PNGs. `/tmp` does not survive an EC2 rebuild of `i-05276b8ae82d6b88c`.
+
+**Why this matters even though the SOP now exists.** `MEDIA_ARCHIVE_PIPELINE.md` "Burned-in text" documents the *procedure* (PIL overlay, wrap→shrink→assert, verify pixels not intentions) and ships an embeddable snippet. But the full working pipeline — S3 source resolution, per-beat transcription timings from `faster-whisper`, segment cutting, stream-copy concat, Discord/Telegram size re-encode — is not in any repo. The next compiler would rebuild all of it from scratch.
+
+**Suggested home.** A `scripts/reel_build/` in `go_to_market` (same repo as the existing content-schedule tooling) or a dedicated media repo — decided by whoever picks it up.
+
+**Include.** `build.py` (beats + concat), `cap.py` (caption PNG renderer with the safe-area assertion), the outro card generator, and the S3 public-URL resolver (`https://s3.us-east-1.amazonaws.com/media.agroverse.shop/…` — note public-read works, no credentials needed; see the doc for the canonical path form).
+
+**Blocker.** None — code is on disk now. Capture it before the box is rebuilt.
+
+---
 ### Edgar contribution pipeline is FROZEN since 2026-09-30 — `submit_contribution` returns 200 but the event never persists
 
 **Filed 2026-11-14 (Sophia). Owner: unclaimed. Priority: CRITICAL — silently loses TDG-bearing contribution events while telling the caller "success".**
