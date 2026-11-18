@@ -434,6 +434,114 @@ title at the close. The final frame should carry only what the open could not �
 the opening title **below the top UI band** and clear of the bottom caption zone — see *Safe area* — so
 it is never obscured once the platform draws over it.
 
+### The brand mark on the front frame — logo standard
+
+**The first frame carries two things: the brand mark and the title. Both are standardized here.**
+This section was added after the 2026-11-18 Pará Reel shipped with the **wrong brand** on frame 0
+(`TRUESIGHT DAO` on consumer-facing Agroverse farm content), and then surfaced that the logo asset
+itself is duplicated and divergent across the repos.
+
+#### 1. Which mark
+
+| Content | Mark |
+|---|---|
+| Farm footage, product, retail, recipe, farmer story — i.e. **anything a consumer sees** | ✅ **Agroverse** |
+| Governance, tokenomics, DAO-internal or developer-facing explainers where the DAO *is* the subject | ✅ TrueSight DAO |
+
+❌ **Never TrueSight DAO on Agroverse consumer content.** Agroverse is the consumer brand; TrueSight
+DAO is the governing entity behind it. A cacao reel is an Agroverse artifact. This is a
+**brand-routing** rule, not a style preference — the two marks are not interchangeable.
+
+If the cut is genuinely joint-branded, that is a governor decision, not an editor default.
+
+#### 2. Canonical asset — and the duplicate trap
+
+Use the **trademark-filing** mark as the single source of truth: **668 × 944 px**, saffron
+background. Full context and PDF sizing live in `PRINT_ON_DEMAND_MOCKUP_GENERATION.md` §
+*The logo asset* — read that before substituting anything.
+
+⚠️ **`agroverse_logo.*` is NOT unambiguous — there are four copies in two different crops.**
+Verified 2026-11-18 by `sha256sum` + PIL:
+
+| Path | Size | Mode | sha256 (short) | Aspect |
+|---|---|---|---|---|
+| `tokenomics/python_scripts/agroverse_qr_code_generator/agroverse_logo.png` | 910×1082 | RGBA | `d50140fb` | 0.841 |
+| `tokenomics/python_scripts/agroverse_qr_code_generator/agroverse_logo.jpeg` | 300×375 | RGB | `d28e1086` | 0.800 |
+| `tokenomics/agroverse_qr_code_web_service/logos/agroverse_logo.jpeg` | 300×375 | RGB | `d28e1086` | 0.800 |
+| `qrgen_run/scripts/qr_generator/agroverse_logo.jpeg` | — | — | `d28e1086` | 0.800 |
+
+**Two distinct crops (0.841 vs 0.800).** They are not interchangeable — check aspect before
+swapping one for another, or the mark will visibly distort. The 300×375 JPEGs are QR-centre
+assets, sized for a ~192px hole; do not scale them up for a 1080×1920 frame.
+
+❌ **Never the `favicon-192x192`** — it runs at **3.70× upscale** and is visibly soft.
+
+#### 3. The mark has an opaque white background — mount it, don't key it
+
+The 910×1082 PNG reports `RGBA` but carries **no usable alpha**: ~73% of its pixels are pure
+white `(255,255,255)` and all four corners are opaque. Compositing it straight onto footage
+draws a hard white rectangle around the mark.
+
+| Approach | Result |
+|---|---|
+| ✅ **Mount on a white badge card** (rounded rect, small inset) | Reads as a deliberate brand plate |
+| ❌ Key out the white → transparent | **Grey fringes** on the antialiased edges — the artwork is a ~25%-ink scan, so the edge pixels are neither white nor ink |
+
+The badge is not a workaround for a bad asset; it is the correct treatment for a mark that ships
+with its own background. If a vector or true-alpha mark arrives, re-evaluate.
+
+#### 4. Placement — logo and title are ONE block
+
+| Check | Standard |
+|---|---|
+| Mark position | **Above** the title, left-aligned with it |
+| Gap between mark and title | **≤ 120px** — a larger gap reads as two unrelated elements |
+| Content top edge | **y ≥ 280px** (clear of the 0–250px top-UI band) |
+| Mark height on 1080×1920 | **300–360px** — smaller is illegible on the grid thumbnail |
+| Left/right margins | **≥ 90px** each (unchanged — see *Safe area*) |
+
+**Measured reference (the passing 2026-11-18 Pará Reel intro, 1080×1920):**
+
+```
+badge   x 365–714      (y 150–534)
+title   x 200–878      margins 200 / 198 px   width 682 px
+top     y = 300        clear of top-UI band
+bottom  y = 840        clear of bottom caption zone
+```
+
+That render **failed twice before it passed** — see §5. Treat the numbers above as a regression
+baseline, not a suggestion.
+
+#### 5. Verify by measuring the render — not the intent
+
+Three defects in the Pará Reel were all invisible to inspection and only caught by measurement:
+
+1. **The new title was composited onto a frame from the ALREADY-RENDERED video**, which had the old
+   title burned in at y≈147 — so the output carried **two titles**, the wrong one still on top.
+   Root cause: the "clean frame" base was not clean. **Always source frame-0 from the original
+   footage, never from a previously-rendered MP4.**
+2. **OCR failed on busy footage** and produced garbage — proving nothing either way. Fix: render
+   the *identical text layer on solid black* and OCR that in isolation; if the layer reads
+   correctly there, the composite does too.
+3. **A colour-search for brand-saffron matched the footage**, not the text — a false positive.
+   Do not use colour as a proxy for text presence.
+
+**Required checks before delivery:**
+
+- [ ] Frame 0 extracted from **original** footage (not a prior render)
+- [ ] Alpha-channel bbox measured → margins ≥90px, top ≥280px, width ≤900px
+- [ ] Text layer OCR'd **in isolation on black** and read back correctly
+- [ ] Search the delivered frame for the **retired brand** (`TRUESIGHT DAO`) → must be 0 hits
+- [ ] Confirm the mark is **Agroverse**, matching the content type per §1
+
+#### 6. Known gap: no vector artwork
+
+There is **no SVG or high-resolution vector** Agroverse mark in any repo; the 668×944 JPEG is the
+ceiling. That is adequate for a 1080×1920 video frame and near-adequate for 300 DPI print, but it
+blocks large-format and white-label customer print. Recorded in `PRINT_ON_DEMAND_MOCKUP_GENERATION.md`
+as a real brand-asset gap — it is not a pipeline problem. **When a vector arrives, replace this
+section's asset references and re-derive the badge sizing.**
+
 ## YouTube indexing checklist — public ≠ indexable
 
 An upload that is `privacyStatus: public` can still be near-invisible to YouTube search. Verified
