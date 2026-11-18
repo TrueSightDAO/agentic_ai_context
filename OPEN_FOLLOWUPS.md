@@ -39,6 +39,32 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Sales-event money convention (gross price + separate expense rows) is UNDOCUMENTED — cost a false alarm already
+
+**Filed 2026-11-14 (Sophia Truesight). Owner: unclaimed. Priority: LOW-MEDIUM — data is correct, documentation is absent.**
+
+**What is already correct — do NOT "fix" it.** The 2026-11-14 `NIBS_5`/`NIBS_6` sale booked fully and correctly:
+
+| Row | Entity | Amount | Currency | Meaning |
+|---|---|---|---|---|
+| r6049 / r6052 | Gary Teh | +30.075 | USD | `Sales price`, recorded **GROSS** |
+| r6054 | Gary Teh | −2.04 | USD | `[EXPENSE]` Stripe processing fee (session id + balance txn; gross 60.15 → net settled 58.11) |
+| r6055 | Gary Teh | −10.07 | USD | `[EXPENSE]` UPS Ground Saver label (tracking; label cost vs 10.15 charged; +0.08 margin) |
+
+Net = 60.15 − 2.04 − 10.07 = **$48.04**.
+
+**The gap is documentation, not data.** Nothing in `agentic_ai_context` states that a `[SALES EVENT]` records the **gross** `Sales price` and that Stripe fees + shipping labels are booked as **separate `[EXPENSE]` rows**.
+
+**Measured cost of leaving it implicit.** On 2026-11-14 an autopilot session read only the gross rows and reported to a governor that "the $10.07 shipping expense was never booked." It **had** been booked (r6055). A false alarm reached the governor because the convention lived only in practice.
+
+**Three traps a reader hits.**
+
+1. `Sales price` silently **bundles item + shipping share** ($25 item + $5.075 shipping = 30.075); no field separates them.
+2. Stripe fee and shipping label are **separate `[EXPENSE]` rows**, not deductions applied to the sale row.
+3. Those `[EXPENSE]` rows carry a **blank `State`** column — which also means the `offchain asset location` QUERY (sums by Entity) picks them up even though they are not inventory.
+
+**Action.** Document the convention in `LEDGER_CONVERSION_AND_REPACKAGING.md` (or a sibling money runbook) and in `tokenomics/SCHEMA.md`: gross-vs-net definition, the required fee/shipping expense rows, and the `State` value expense rows should carry.
+
 ### Stage-2: today's two contributions are unscored — **with retraction** (originally mis-filed as an "8-hour trigger stall")
 
 **Filed 2026-11-17 (Sophia). Owner: unclaimed. Priority: MEDIUM — no data loss at Stage 1, but the derived view freezes and nothing alerts.**
