@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-11-18T07:49:43Z`
+- Generated (UTC): `2026-11-18T20:48:14Z`
 - Look-back: **7** calendar days (`2026-11-11` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,21 +32,16 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 26
+- `[CONTRIBUTION EVENT]` × 27
 - `[PRACTICE EVENT]` × 7
 - `[DAO INVENTORY EXPENSE EVENT]` × 3
 - `[CURRENCY CONVERSION EVENT]` × 2
-- `[SALES EVENT]` × 1
 - `[CONTRIBUTOR ADD EVENT]` × 1
 - `[BATCH QR CODE REQUEST]` × 1
 - _free-form (no bracket tag)_ × 1
 
 ### Latest entries
 
-- `Edgar_20261117034359_3728` · **Edgar** · [CONTRIBUTION EVENT] Amount: 30 · Contributor(s): Gary Teh · Description: Review of the AGROVERSE Contrato Social for Bicolunado (bilingual PT/EN soci…
-- `Edgar_20261117042953_3730` · **Edgar** · [CURRENCY CONVERSION EVENT] Ledger: offchain · Ledger URL: https://docs.google.com/spreadsheets/d/1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_… · Warehouse Manager: pk-qkejKJJW3IAD
-- `Edgar_20261117083216_3732` · **Edgar** · [CONTRIBUTION EVENT] Amount: 210 · Contributor(s): Sophia Truesight (admin+sophia@truesight.me) · Description: Compiled the Agroverse 'Where Flavor Is Decided' Instagram Reel from Santa A…
-- `Edgar_20261117083223_3734` · **Edgar** · [CONTRIBUTION EVENT] Amount: 45 · Contributor(s): Gary Teh · Description: Creative direction, review of 8 successive reel drafts (v2 through v8), and …
 - `Edgar_20261117092434_3736` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 150 · Description: Bilibili × DeepSeek Harness — feasibility research, QR-login live-fire, and …
 - `Edgar_20261117120835_3738` · **Edgar** · [CURRENCY CONVERSION EVENT] Ledger: offchain · Warehouse Manager: Gary Teh · Source Currency: USD
 - `Edgar_20261117122715_3740` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Contribution report — Elizabeth Wong CNY→USD reconciliations, PDF CJK/multib…
@@ -63,6 +58,10 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20261118072405_3762` · **Edgar** · [DAO INVENTORY EXPENSE EVENT] Attached Filename: 20261118_matheus_reis_simples_nacional_das_674_37_brl_pix.png · DAO Member Name: Gary Teh · Destination Expense File Location: https://github.com/TrueSightDAO/store_interaction_atta…
 - `Edgar_20261118073500_3764` · **Edgar** · [DAO INVENTORY EXPENSE EVENT] Attached Filename: 20261118_matheus_reis_simples_nacional_das_674_37_brl_pix.png · DAO Member Name: Gary Teh · Destination Expense File Location: https://github.com/TrueSightDAO/store_interaction_atta…
 - `Edgar_20261118074016_3766` · **Edgar** · [DAO INVENTORY EXPENSE EVENT] Attached Filename: 20261118_matheus_reis_simples_nacional_das_674_37_brl_pix.png · DAO Member Name: Gary Teh · Destination Expense File Location: https://github.com/TrueSightDAO/store_interaction_atta…
+- `Edgar_20261118101801_3768` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Brazilian federal import tax amortized into unit cost + 3 ledgers (AWB 047-3…
+- `Edgar_20261118102737_3770` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: gotde print-on-demand engine evaluation: 20 verified render tests, logo-plac…
+- `Edgar_20261118102745_3772` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Direction, UAT and acceptance of gotde POD engine evaluation and bilingual v…
+- `Edgar_20261118143144_3774` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 150.00 · Description: Parking — SpotHero monthly reserved self park, USD 150.00 (Nov 9 2026)
 
 ---
 
@@ -77,7 +76,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-11-17T11:59:14.936Z`
+- Generated (UTC): `2026-11-18T11:59:14.947Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -189,18 +188,18 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 ### Stock at production shippers
 
 **Kirsten Ritschel** _( San Francisco — retail / online fulfilment / partner restock )_
-- Manager record: `Kirsten Ritschel` · 32 SKU lines · 1,622.45 total units · $6,898.38
+- Manager record: `Kirsten Ritschel` · 32 SKU lines · 1,622.45 total units · $6,935.13
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
   | Packaging Material | Bulk | 4 | 892 | $649.90 |
   | (uncategorized) | (unspecified) | 18 | 325.95 | $1,031.83 |
-  | Cacao Mass | Retail Ready | 1 | 169 | $2,328.82 |
-  | Cacao Nib | Retail Ready | 1 | 129 | $1,355.79 |
-  | Cacao Mass | Bulk | 2 | 87 | $898.06 |
+  | Cacao Mass | Retail Ready | 1 | 169 | $2,342.10 |
+  | Cacao Nib | Retail Ready | 1 | 129 | $1,367.28 |
+  | Cacao Mass | Bulk | 2 | 87 | $905.33 |
   | (uncategorized) | Bulk | 3 | 7.50 | $217.03 |
-  | Cacao Nib | Bulk | 2 | 7.50 | $262.14 |
-  | Cacao Butter | Bulk | 1 | 4.50 | $154.80 |
+  | Cacao Nib | Bulk | 2 | 7.50 | $265.08 |
+  | Cacao Butter | Bulk | 1 | 4.50 | $156.57 |
 
 **Matheus Reis** _( Ilhéus, Brazil — bulk warehouse + freight to SF )_
 - Manager record: `Matheus Reis` · 23 SKU lines · 1,272.59 total units · $5,753.59
@@ -213,11 +212,11 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
   | Cacao Mass | Retail Ready | 1 | 1 | $10.37 |
 
 **Gary Teh** _( Operational cash + assorted retail inventory )_
-- Manager record: `Gary Teh` · 31 SKU lines · 7,868.63 total units · $7,050.87
+- Manager record: `Gary Teh` · 30 SKU lines · 7,194.26 total units · $6,894.22
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 29 | 7,792.45 | $7,000.89 |
+  | (uncategorized) | (unspecified) | 28 | 7,118.08 | $6,844.23 |
   | Packaging Material | Bulk | 1 | 74 | $49.98 |
   | Cacao Tea | Bulk | 1 | 2.18 | $0.00 |
 
@@ -225,7 +224,7 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 | Manager | Items | Units | Value (USD) |
 |---------|-------|-------|-------------|
-| Val Lapidus | 16 | 1,464 | $7,825.21 |
+| Val Lapidus | 16 | 1,464 | $7,900.24 |
 | Sacred Earth Farms | 3 | 458.50 | $2,240.50 |
 | AGL13 | 1 | 2,214.61 | $2,214.61 |
 | Orlantildes | 1 | 108 | $1,311.12 |
@@ -239,7 +238,7 @@ _(+34 more in JSON snapshot.)_
 ### Cash float (`off chain asset balance`)
 
 - USD on hand: **$1,550.33**
-- Brazilian Reis: R$-710.63 · rate `0.2323` USD/BRL → ≈ **$-165.08**
+- Brazilian Reis: R$-1,385.00 · rate `0.2323` USD/BRL → ≈ **$-321.74**
 - USD provisioned for voting-rights cash-out: **$58.96**
 
 ### In-transit freight (0 rows)
@@ -276,6 +275,7 @@ _All dated lines on/after 2026-11-11_ (1):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+25b2c1a | 2026-11-18 07:52:30 +0000 | chore(stats): refresh stats indexes [skip ci]
 3c4d8b3 | 2026-11-17 21:15:55 +0000 | chore(stats): refresh stats indexes [skip ci]
 68083f0 | 2026-11-17 08:23:27 +0000 | chore(stats): refresh stats indexes [skip ci]
 e9c8adc | 2026-11-16 22:27:38 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -302,6 +302,11 @@ c9fc53c | 2026-11-11 06:59:18 +0000 | chore(stats): refresh stats indexes [skip 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+b91f4ca | 2026-11-19 01:14:52 +0800 | SOP: standardize the brand mark on the first frame (logo standard) (#1869)
+db2b8b1 | 2026-11-18 17:49:31 +0800 | Add PRINT_ON_DEMAND_MOCKUP_GENERATION.md — gotde.cn engine + real-logo compositing (Approach A) (#1868)
+ab8e79d | 2026-11-18 17:28:45 +0800 | docs(open-followups): document SALES EVENT gross-price + separate expense-row convention (#1867)
+8a8060e | 2026-11-18 15:49:59 +0800 | chore(previews): refresh Beer Hall preview (2026-11-18 UTC)
+30ef7c4 | 2026-11-18 15:49:58 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-18 UTC)
 317859c | 2026-11-18 14:20:00 +0800 | Add Nathan printing company SKU evidence 2026-11-18
 ffc3392 | 2026-11-18 05:12:27 +0800 | chore(previews): refresh Beer Hall preview (2026-11-17 UTC)
 b546c9e | 2026-11-18 05:12:25 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-17 UTC)
@@ -337,11 +342,6 @@ b276917 | 2026-11-14 13:32:02 +0800 | SOP v1.1: blocks are interim inventory, no
 58dfba2 | 2026-11-14 12:43:47 +0800 | File: Edgar contribution pipeline frozen since 2026-09-30 (silent drop) (#1850)
 92d403b | 2026-11-14 11:46:10 +0800 | Sugar: mark currency-creation DONE (Currencies r178/r179), correct booking policy per Gary ruling (#1849)
 85503a7 | 2026-11-14 11:36:07 +0800 | File: sugar absent from every bar recipe/composition; 9/13 composition JSONs 404 (#1848)
-7d23262 | 2026-11-14 10:38:07 +0800 | File follow-up: silent ledger-append failure at sheet grid row limit (#1847)
-258145c | 2026-11-14 07:57:16 +0800 | docs: add policy 5i — member-readable artifacts (publish an index, not an agent round-trip) (#1846)
-9f972ff | 2026-11-14 03:57:10 +0800 | chore(previews): refresh Beer Hall preview (2026-11-13 UTC)
-85151db | 2026-11-14 03:57:08 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-13 UTC)
-02838f6 | 2026-11-13 18:44:04 +0800 | File: Oscar farm century-old/80-year tree claim unsubstantiated (#1845)
 … (truncated)
 ```
 
@@ -384,6 +384,8 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+4dc35c4 | 2026-11-18 15:57:49 +0000 | chore: refresh currencies.json [skip ci]
+9c9c2f9 | 2026-11-18 15:44:01 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 14c7050 | 2026-11-17 16:28:34 +0000 | chore: refresh currencies.json [skip ci]
 e662808 | 2026-11-17 16:04:57 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 7697efa | 2026-11-16 16:28:02 +0000 | chore: refresh partners-velocity snapshot [skip ci]
@@ -501,7 +503,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
 | 2026-10 | 460 | 18944.34386 | 10/31/2026 |
-| 2026-11 | 276.9 | 19221.24386 | 11/17/2026 22:51:06 |
+| 2026-11 | 276.9 | 19221.24386 | 11/18/2026 11:51:44 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-11-11`; scanned last **600** data rows)
 
