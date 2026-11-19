@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-11-18T20:48:14Z`
-- Look-back: **7** calendar days (`2026-11-11` → today UTC)
+- Generated (UTC): `2026-11-19T07:45:57Z`
+- Look-back: **7** calendar days (`2026-11-12` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -32,23 +32,18 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 27
-- `[PRACTICE EVENT]` × 7
+- `[CONTRIBUTION EVENT]` × 20
+- `[PRACTICE EVENT]` × 8
+- `[EMAIL REGISTERED EVENT]` × 4
 - `[DAO INVENTORY EXPENSE EVENT]` × 3
 - `[CURRENCY CONVERSION EVENT]` × 2
+- `[EMAIL VERIFICATION EVENT]` × 2
 - `[CONTRIBUTOR ADD EVENT]` × 1
 - `[BATCH QR CODE REQUEST]` × 1
 - _free-form (no bracket tag)_ × 1
 
 ### Latest entries
 
-- `Edgar_20261117092434_3736` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 150 · Description: Bilibili × DeepSeek Harness — feasibility research, QR-login live-fire, and …
-- `Edgar_20261117120835_3738` · **Edgar** · [CURRENCY CONVERSION EVENT] Ledger: offchain · Warehouse Manager: Gary Teh · Source Currency: USD
-- `Edgar_20261117122715_3740` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Contribution report — Elizabeth Wong CNY→USD reconciliations, PDF CJK/multib…
-- `Edgar_20261117122743_3742` · **Edgar** · [CONTRIBUTION EVENT] Amount: 25 · Contributor(s): Gary Teh · Description: Time spent clarifying federal tax treatment and the corporate succession arr…
-- `Edgar_20261117123304_3744` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 25 · Description: Accountant call — Black King SIMPLES tax, new CNPJ handover, R$674.37 payment
-- `Edgar_20261117192351_3746` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 540 · Description: Foiling  chocolate bars, packaging, QR code printing, packaging to send off …
-- `Edgar_20261118005302_3748` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-18T00:52:59.965Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20261118031054_3750` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-18T03:10:52.266Z · Program: capoeira-tribo-mirim · Practice Type: training-session
 - `Edgar_20261118054621_3752` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-18T05:46:16.996Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20261118054624_3754` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-18T05:46:17.005Z · Program: truesight-grounding · Practice Type: oracle-consultation
@@ -62,6 +57,13 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20261118102737_3770` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: gotde print-on-demand engine evaluation: 20 verified render tests, logo-plac…
 - `Edgar_20261118102745_3772` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Direction, UAT and acceptance of gotde POD engine evaluation and bilingual v…
 - `Edgar_20261118143144_3774` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 150.00 · Description: Parking — SpotHero monthly reserved self park, USD 150.00 (Nov 9 2026)
+- `Edgar_20261119002818_3776` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-11-19T00:28:17.683Z · Email: beth@therapeutic-bodywork.com
+- `Edgar_20261119002839_3778` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-11-19T00:28:37.381Z · Email: beth@therapeutic-bodywork.com
+- `Edgar_20261119002842_3780` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-11-19T00:28:40.440Z · Email: beth@therapeutic-bodywork.com
+- `Edgar_20261119003521_3782` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-11-19T00:35:19.476Z · Email: beth@therapeutic-bodywork.com · Verification Key: wSFut-Cxnv-2q-LgIR_9YnY8rRwwCTj4kB0T_8uQRD0
+- `Edgar_20261119003735_3784` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-11-19T00:37:34.357Z · Email: beth@therapeutic-bodywork.com · Verification Key: wSFut-Cxnv-2q-LgIR_9YnY8rRwwCTj4kB0T_8uQRD0
+- `Edgar_20261119011956_3786` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-19T01:19:53.614Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20261119050059_3788` · **Edgar** · [EMAIL REGISTERED EVENT] Email: admin+muse@truesight.me
 
 ---
 
@@ -237,9 +239,9 @@ _(+34 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$1,550.33**
+- USD on hand: **$1,550.25**
 - Brazilian Reis: R$-1,385.00 · rate `0.2323` USD/BRL → ≈ **$-321.74**
-- USD provisioned for voting-rights cash-out: **$58.96**
+- USD provisioned for voting-rights cash-out: **$59.04**
 
 ### In-transit freight (0 rows)
 
@@ -254,7 +256,7 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_All dated lines on/after 2026-11-11_ (1):
+_All dated lines on/after 2026-11-12_ (1):
 
 - 2026-11-13 | sophia | **New policy §5i in OPERATING_INSTRUCTIONS.md: member-readable artifacts.** Triggered by Gary's “regular members should be able to perform such read operations” after Lawrence asked for agroverse.shop images and the only path was Sophia cloning the repo + hand-sending files. Rule: any already-published artifact (site images, product data, certificates, farm pages, public ledgers) must be readable by an ordinary member **without an agent, shell, or git clone** — if reaching public content needs a write-class tool, that is a **missing index, not a normal request**. Publish a static machine-readable index next to the artifact (prefer CDN/github-pages static file over a new authed API), add a browsable view for non-technical members, regenerate in CI. **Does NOT relax any gate** — credentials/vault/internal financials/member PII stay gated; check before publishing. Worked example: agroverse_shop_beta PR #369 (`assets/images/manifest.json`, 502 records + `scripts/generate_image_manifest.py`).
 
@@ -275,6 +277,7 @@ _All dated lines on/after 2026-11-11_ (1):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+386d962 | 2026-11-18 20:51:02 +0000 | chore(stats): refresh stats indexes [skip ci]
 25b2c1a | 2026-11-18 07:52:30 +0000 | chore(stats): refresh stats indexes [skip ci]
 3c4d8b3 | 2026-11-17 21:15:55 +0000 | chore(stats): refresh stats indexes [skip ci]
 68083f0 | 2026-11-17 08:23:27 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -289,8 +292,6 @@ f24d770 | 2026-11-14 06:56:09 +0000 | chore(stats): refresh stats indexes [skip 
 b9dbd50 | 2026-11-13 07:07:51 +0000 | chore(stats): refresh stats indexes [skip ci]
 f3485fe | 2026-11-12 20:20:36 +0000 | chore(stats): refresh stats indexes [skip ci]
 1507cd6 | 2026-11-12 07:37:40 +0000 | chore(stats): refresh stats indexes [skip ci]
-27553bb | 2026-11-11 19:49:13 +0000 | chore(stats): refresh stats indexes [skip ci]
-c9fc53c | 2026-11-11 06:59:18 +0000 | chore(stats): refresh stats indexes [skip ci]
 ```
 
 ### `market_research` → `go_to_market`
@@ -302,6 +303,8 @@ c9fc53c | 2026-11-11 06:59:18 +0000 | chore(stats): refresh stats indexes [skip 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+4a2f38d | 2026-11-19 04:48:34 +0800 | chore(previews): refresh Beer Hall preview (2026-11-18 UTC)
+a2b0307 | 2026-11-19 04:48:32 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-18 UTC)
 b91f4ca | 2026-11-19 01:14:52 +0800 | SOP: standardize the brand mark on the first frame (logo standard) (#1869)
 db2b8b1 | 2026-11-18 17:49:31 +0800 | Add PRINT_ON_DEMAND_MOCKUP_GENERATION.md — gotde.cn engine + real-logo compositing (Approach A) (#1868)
 ab8e79d | 2026-11-18 17:28:45 +0800 | docs(open-followups): document SALES EVENT gross-price + separate expense-row convention (#1867)
@@ -340,8 +343,6 @@ fe02e23 | 2026-11-14 14:53:12 +0800 | chore(previews): refresh Beer Hall preview
 b276917 | 2026-11-14 13:32:02 +0800 | SOP v1.1: blocks are interim inventory, not for sale, no QR codes (#1853)
 281e5a6 | 2026-11-14 13:17:11 +0800 | Document: Equity/Asset imbalance = accrued net profit (not an error) (#1851)
 58dfba2 | 2026-11-14 12:43:47 +0800 | File: Edgar contribution pipeline frozen since 2026-09-30 (silent drop) (#1850)
-92d403b | 2026-11-14 11:46:10 +0800 | Sugar: mark currency-creation DONE (Currencies r178/r179), correct booking policy per Gary ruling (#1849)
-85503a7 | 2026-11-14 11:36:07 +0800 | File: sugar absent from every bar recipe/composition; 9/13 composition JSONs 404 (#1848)
 … (truncated)
 ```
 
@@ -407,8 +408,6 @@ b43ca63 | 2026-11-14 13:28:41 +0800 | Add composition for Vivi 81% block #1 (2.5
 0efb11c | 2026-11-13 14:39:22 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 a8575d7 | 2026-11-12 15:35:56 +0000 | chore: refresh currencies.json [skip ci]
 a16cb69 | 2026-11-12 15:20:00 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
-fcc57f8 | 2026-11-11 14:42:32 +0000 | chore: refresh currencies.json [skip ci]
-46ec89a | 2026-11-11 14:28:15 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -503,9 +502,9 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
 | 2026-10 | 460 | 18944.34386 | 10/31/2026 |
-| 2026-11 | 276.9 | 19221.24386 | 11/18/2026 11:51:44 |
+| 2026-11 | 276.9 | 19221.24386 | 11/18/2026 22:51:00 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-11-11`; scanned last **600** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-11-12`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
