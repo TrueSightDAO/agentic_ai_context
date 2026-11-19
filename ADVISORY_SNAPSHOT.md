@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-11-19T07:45:57Z`
+- Generated (UTC): `2026-11-19T20:53:36Z`
 - Look-back: **7** calendar days (`2026-11-12` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -44,8 +44,6 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Latest entries
 
-- `Edgar_20261118031054_3750` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-18T03:10:52.266Z · Program: capoeira-tribo-mirim · Practice Type: training-session
-- `Edgar_20261118054621_3752` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-18T05:46:16.996Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20261118054624_3754` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-18T05:46:17.005Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20261118062017_3756` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: SKU packaging spec session — 3h with Nathan (printing company, Changsha, Hun…
 - `Edgar_20261118062146_3758` · **Edgar** · [CONTRIBUTION EVENT] Amount: 180 · Contributor(s): Gary Teh · Description: Three hours of discussion with a wholesale supplier of package printing and …
@@ -64,6 +62,8 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20261119003735_3784` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-11-19T00:37:34.357Z · Email: beth@therapeutic-bodywork.com · Verification Key: wSFut-Cxnv-2q-LgIR_9YnY8rRwwCTj4kB0T_8uQRD0
 - `Edgar_20261119011956_3786` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-19T01:19:53.614Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20261119050059_3788` · **Edgar** · [EMAIL REGISTERED EVENT] Email: admin+muse@truesight.me
+- `Edgar_20261119075033_3790` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Description: Cacao legacy project — 20min with Lawrence Kwek (atom logistics, SG/BR carbo…
+- `Edgar_20261119081905_3792` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 1 · Description: CORRECTION — Nathan is Nathan LUI (Sha Tin, HK); Changsha contact mis-attrib…
 
 ---
 
@@ -78,7 +78,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-11-18T11:59:14.947Z`
+- Generated (UTC): `2026-11-19T11:59:15.487Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -277,6 +277,7 @@ _All dated lines on/after 2026-11-12_ (1):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+268f4f9 | 2026-11-19 07:49:24 +0000 | chore(stats): refresh stats indexes [skip ci]
 386d962 | 2026-11-18 20:51:02 +0000 | chore(stats): refresh stats indexes [skip ci]
 25b2c1a | 2026-11-18 07:52:30 +0000 | chore(stats): refresh stats indexes [skip ci]
 3c4d8b3 | 2026-11-17 21:15:55 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -303,6 +304,10 @@ f3485fe | 2026-11-12 20:20:36 +0000 | chore(stats): refresh stats indexes [skip 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+50de500 | 2026-11-19 16:18:37 +0800 | Corrected evidence: SKU printing session is Nathan LUI (Sha Tin HK), not the Changsha contact
+0dcad91 | 2026-11-19 15:51:55 +0800 | Add UI_UX_REVIEW_SOP — repeatable headless measurement procedure for client mockups (#1870)
+ea15afa | 2026-11-19 15:46:22 +0800 | chore(previews): refresh Beer Hall preview (2026-11-19 UTC)
+f8fe705 | 2026-11-19 15:46:20 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-19 UTC)
 4a2f38d | 2026-11-19 04:48:34 +0800 | chore(previews): refresh Beer Hall preview (2026-11-18 UTC)
 a2b0307 | 2026-11-19 04:48:32 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-18 UTC)
 b91f4ca | 2026-11-19 01:14:52 +0800 | SOP: standardize the brand mark on the first frame (logo standard) (#1869)
@@ -339,10 +344,6 @@ e49ff34 | 2026-11-15 02:24:18 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT
 ac72881 | 2026-11-14 17:00:26 +0800 | docs(SOP): per-kg unit-of-account convention + derived-tab spill guard; Block #1 Unit Weight 2500->1000 (#1855)
 4f13ca7 | 2026-11-14 16:56:09 +0800 | SOP v1.2: reconcile block production SOP with live ledger (#1854)
 fe02e23 | 2026-11-14 14:53:12 +0800 | chore(previews): refresh Beer Hall preview (2026-11-14 UTC)
-6912cb2 | 2026-11-14 14:53:09 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-14 UTC)
-b276917 | 2026-11-14 13:32:02 +0800 | SOP v1.1: blocks are interim inventory, not for sale, no QR codes (#1853)
-281e5a6 | 2026-11-14 13:17:11 +0800 | Document: Equity/Asset imbalance = accrued net profit (not an error) (#1851)
-58dfba2 | 2026-11-14 12:43:47 +0800 | File: Edgar contribution pipeline frozen since 2026-09-30 (silent drop) (#1850)
 … (truncated)
 ```
 
@@ -385,6 +386,16 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+a9b1343 | 2026-11-19 16:03:25 +0000 | chore: refresh currencies.json [skip ci]
+fd0fd18 | 2026-11-19 15:48:43 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
+c2499cc | 2026-11-19 17:16:31 +0800 | Add AWB 047-3175-3223 tax-amendment provenance: Coopercabruca Butter KG
+deab917 | 2026-11-19 17:16:26 +0800 | Add AWB 047-3175-3223 tax-amendment provenance: Ceremonial Pouch 200g AGL8
+8f9023f | 2026-11-19 17:16:21 +0800 | Add AWB 047-3175-3223 tax-amendment provenance: Cacao Tea Santos AGL13
+edff8a4 | 2026-11-19 17:16:16 +0800 | Add AWB 047-3175-3223 tax-amendment provenance: Cacao Nibs Santos AGL13
+889cfc9 | 2026-11-19 17:16:11 +0800 | Add AWB 047-3175-3223 tax-amendment provenance: Cacao Nibs KG Ilheus
+2c33f16 | 2026-11-19 17:16:06 +0800 | Add AWB 047-3175-3223 tax-amendment provenance: Cacao Mass Bar 500g
+3e7b5d8 | 2026-11-19 17:16:00 +0800 | Add AWB 047-3175-3223 tax-amendment provenance: Cacao Almonds Paulo AGL8
+0b7ff7d | 2026-11-19 17:15:55 +0800 | Add AWB 047-3175-3223 tax-amendment provenance: 8 Ounce Pouch
 4dc35c4 | 2026-11-18 15:57:49 +0000 | chore: refresh currencies.json [skip ci]
 9c9c2f9 | 2026-11-18 15:44:01 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 14c7050 | 2026-11-17 16:28:34 +0000 | chore: refresh currencies.json [skip ci]
@@ -502,7 +513,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
 | 2026-10 | 460 | 18944.34386 | 10/31/2026 |
-| 2026-11 | 276.9 | 19221.24386 | 11/18/2026 22:51:00 |
+| 2026-11 | 276.9 | 19221.24386 | 11/19/2026 12:51:16 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-11-12`; scanned last **600** data rows)
 
