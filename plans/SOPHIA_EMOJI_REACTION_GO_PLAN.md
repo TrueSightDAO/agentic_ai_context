@@ -124,13 +124,13 @@ settings. All changes are in `truesight_autopilot`. No new dependencies.
 
 ## 4. Resume tracker
 
-**RESUME HERE = PR3 contribution (TDG gate) → Deploy (gate)**
+**RESUME HERE = Deploy (gate)**
 
 | Unit | PR opened | Merged (human) | Contribution reported | Deployed |
 |------|-----------|----------------|-----------------------|----------|
 | PR1 — receive reactions | ☑ [#331](https://github.com/TrueSightDAO/truesight_autopilot/pull/331) | ☑ | ☑ | — |
 | PR2 — resume registry + flag | ☑ [#333](https://github.com/TrueSightDAO/truesight_autopilot/pull/333) | ☑ | ☑ | — |
-| PR3 — reaction → go-signal | ☑ [#334](https://github.com/TrueSightDAO/truesight_autopilot/pull/334) | ☑ | ☐ | — |
+| PR3 — reaction → go-signal | ☑ [#334](https://github.com/TrueSightDAO/truesight_autopilot/pull/334) | ☑ | ☑ | — |
 | PR4 — docs | ☐ | ☐ | ☐ | — |
 | Deploy (gate) | — | — | — | ☐ |
 | UAT (gate) | — | — | — | ☐ |
