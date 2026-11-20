@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-11-19T20:53:36Z`
-- Look-back: **7** calendar days (`2026-11-12` → today UTC)
+- Generated (UTC): `2026-11-20T07:37:51Z`
+- Look-back: **7** calendar days (`2026-11-13` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -32,24 +32,16 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 20
-- `[PRACTICE EVENT]` × 8
+- `[CONTRIBUTION EVENT]` × 24
+- `[PRACTICE EVENT]` × 6
 - `[EMAIL REGISTERED EVENT]` × 4
 - `[DAO INVENTORY EXPENSE EVENT]` × 3
 - `[CURRENCY CONVERSION EVENT]` × 2
 - `[EMAIL VERIFICATION EVENT]` × 2
-- `[CONTRIBUTOR ADD EVENT]` × 1
-- `[BATCH QR CODE REQUEST]` × 1
 - _free-form (no bracket tag)_ × 1
 
 ### Latest entries
 
-- `Edgar_20261118054624_3754` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-18T05:46:17.005Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20261118062017_3756` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: SKU packaging spec session — 3h with Nathan (printing company, Changsha, Hun…
-- `Edgar_20261118062146_3758` · **Edgar** · [CONTRIBUTION EVENT] Amount: 180 · Contributor(s): Gary Teh · Description: Three hours of discussion with a wholesale supplier of package printing and …
-- `Edgar_20261118070131_3760` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 100 · Description: Agentic AI Brand Agencies Competitive Landscape — deep research + brand-valu…
-- `Edgar_20261118072405_3762` · **Edgar** · [DAO INVENTORY EXPENSE EVENT] Attached Filename: 20261118_matheus_reis_simples_nacional_das_674_37_brl_pix.png · DAO Member Name: Gary Teh · Destination Expense File Location: https://github.com/TrueSightDAO/store_interaction_atta…
-- `Edgar_20261118073500_3764` · **Edgar** · [DAO INVENTORY EXPENSE EVENT] Attached Filename: 20261118_matheus_reis_simples_nacional_das_674_37_brl_pix.png · DAO Member Name: Gary Teh · Destination Expense File Location: https://github.com/TrueSightDAO/store_interaction_atta…
 - `Edgar_20261118074016_3766` · **Edgar** · [DAO INVENTORY EXPENSE EVENT] Attached Filename: 20261118_matheus_reis_simples_nacional_das_674_37_brl_pix.png · DAO Member Name: Gary Teh · Destination Expense File Location: https://github.com/TrueSightDAO/store_interaction_atta…
 - `Edgar_20261118101801_3768` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Brazilian federal import tax amortized into unit cost + 3 ledgers (AWB 047-3…
 - `Edgar_20261118102737_3770` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: gotde print-on-demand engine evaluation: 20 verified render tests, logo-plac…
@@ -64,6 +56,12 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20261119050059_3788` · **Edgar** · [EMAIL REGISTERED EVENT] Email: admin+muse@truesight.me
 - `Edgar_20261119075033_3790` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Description: Cacao legacy project — 20min with Lawrence Kwek (atom logistics, SG/BR carbo…
 - `Edgar_20261119081905_3792` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 1 · Description: CORRECTION — Nathan is Nathan LUI (Sha Tin, HK); Changsha contact mis-attrib…
+- `Edgar_20261119225353_3794` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-19T22:53:50.753Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20261120000730_3796` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: Cacao Innovation Center follow-up — heavy metal test reports for 6 samples (…
+- `Edgar_20261120001407_3798` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 150 · Description: 2.5h — China distribution discussion (with cacao meeting + Chinese mould-sou…
+- `Edgar_20261120001747_3800` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Kirsten follow-up — 5g chocolate mould availability for potential Chinese ma…
+- `Edgar_20261120003612_3802` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Kirsten — 10min sourcing two 5g PC mould options (PCB209 $29.99, Chocolate W…
+- `Edgar_20261120011751_3804` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Cristiano (CIC) follow-up — heavy metal reports still outstanding, China sid…
 
 ---
 
@@ -239,9 +237,9 @@ _(+34 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$1,550.25**
+- USD on hand: **$1,550.16**
 - Brazilian Reis: R$-1,385.00 · rate `0.2323` USD/BRL → ≈ **$-321.74**
-- USD provisioned for voting-rights cash-out: **$59.04**
+- USD provisioned for voting-rights cash-out: **$59.13**
 
 ### In-transit freight (0 rows)
 
@@ -256,7 +254,7 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_All dated lines on/after 2026-11-12_ (1):
+_All dated lines on/after 2026-11-13_ (1):
 
 - 2026-11-13 | sophia | **New policy §5i in OPERATING_INSTRUCTIONS.md: member-readable artifacts.** Triggered by Gary's “regular members should be able to perform such read operations” after Lawrence asked for agroverse.shop images and the only path was Sophia cloning the repo + hand-sending files. Rule: any already-published artifact (site images, product data, certificates, farm pages, public ledgers) must be readable by an ordinary member **without an agent, shell, or git clone** — if reaching public content needs a write-class tool, that is a **missing index, not a normal request**. Publish a static machine-readable index next to the artifact (prefer CDN/github-pages static file over a new authed API), add a browsable view for non-technical members, regenerate in CI. **Does NOT relax any gate** — credentials/vault/internal financials/member PII stay gated; check before publishing. Worked example: agroverse_shop_beta PR #369 (`assets/images/manifest.json`, 502 records + `scripts/generate_image_manifest.py`).
 
@@ -277,6 +275,7 @@ _All dated lines on/after 2026-11-12_ (1):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+4f91eb4 | 2026-11-19 20:55:23 +0000 | chore(stats): refresh stats indexes [skip ci]
 268f4f9 | 2026-11-19 07:49:24 +0000 | chore(stats): refresh stats indexes [skip ci]
 386d962 | 2026-11-18 20:51:02 +0000 | chore(stats): refresh stats indexes [skip ci]
 25b2c1a | 2026-11-18 07:52:30 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -291,8 +290,6 @@ fac37c1 | 2026-11-15 07:04:13 +0000 | chore(stats): refresh stats indexes [skip 
 f24d770 | 2026-11-14 06:56:09 +0000 | chore(stats): refresh stats indexes [skip ci]
 10e3d8c | 2026-11-13 19:58:11 +0000 | chore(stats): refresh stats indexes [skip ci]
 b9dbd50 | 2026-11-13 07:07:51 +0000 | chore(stats): refresh stats indexes [skip ci]
-f3485fe | 2026-11-12 20:20:36 +0000 | chore(stats): refresh stats indexes [skip ci]
-1507cd6 | 2026-11-12 07:37:40 +0000 | chore(stats): refresh stats indexes [skip ci]
 ```
 
 ### `market_research` → `go_to_market`
@@ -304,6 +301,9 @@ f3485fe | 2026-11-12 20:20:36 +0000 | chore(stats): refresh stats indexes [skip 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+bc586c6 | 2026-11-20 08:13:47 +0800 | Evidence: 2.5h China distribution discussion (meeting + mould sourcing references)
+5f81593 | 2026-11-20 04:53:59 +0800 | chore(previews): refresh Beer Hall preview (2026-11-19 UTC)
+5e8edcd | 2026-11-20 04:53:57 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-19 UTC)
 50de500 | 2026-11-19 16:18:37 +0800 | Corrected evidence: SKU printing session is Nathan LUI (Sha Tin HK), not the Changsha contact
 0dcad91 | 2026-11-19 15:51:55 +0800 | Add UI_UX_REVIEW_SOP — repeatable headless measurement procedure for client mockups (#1870)
 ea15afa | 2026-11-19 15:46:22 +0800 | chore(previews): refresh Beer Hall preview (2026-11-19 UTC)
@@ -341,9 +341,6 @@ ecea623 | 2026-11-15 14:57:15 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT
 e4eb6cd | 2026-11-15 02:24:21 +0800 | chore(previews): refresh Beer Hall preview (2026-11-14 UTC)
 e49ff34 | 2026-11-15 02:24:18 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-14 UTC)
 88de227 | 2026-11-14 18:02:41 +0800 | docs(SOP): corner case - asserted % the mass balance cannot produce (Block #1 71%) (#1856)
-ac72881 | 2026-11-14 17:00:26 +0800 | docs(SOP): per-kg unit-of-account convention + derived-tab spill guard; Block #1 Unit Weight 2500->1000 (#1855)
-4f13ca7 | 2026-11-14 16:56:09 +0800 | SOP v1.2: reconcile block production SOP with live ledger (#1854)
-fe02e23 | 2026-11-14 14:53:12 +0800 | chore(previews): refresh Beer Hall preview (2026-11-14 UTC)
 … (truncated)
 ```
 
@@ -352,11 +349,6 @@ fe02e23 | 2026-11-14 14:53:12 +0800 | chore(previews): refresh Beer Hall preview
 ```
 f4ff570 | 2026-11-17 20:38:53 +0800 | Fix silent drop of Telegram contribution rows in the TDG scorer (#627)
 8038021 | 2026-11-17 11:28:56 +0800 | Add R$1,085 Pix receipt — 217 trees, Jhordan Madian Costa de Oliveira
-7b32bbc | 2026-11-12 20:26:51 +0800 | Add Pix receipt R$1085 for 217 trees (Jhordan)
-3ec42ac | 2026-11-12 20:26:42 +0800 | Add Wise USD 378.05 to R$2085 conversion receipt
-b67f636 | 2026-11-12 20:26:38 +0800 | Add Pix receipt R$1000 to Jussileide (accountant Sep+Oct 2026)
-d6d63a6 | 2026-11-12 20:26:26 +0800 | Add Jussileide accountant recibo - Oct 2026 (R$500)
-3f3b231 | 2026-11-12 20:26:22 +0800 | Add Jussileide accountant recibo - Sept 2026 (R$500)
 ```
 
 ### `dapp` → `dapp`
@@ -417,8 +409,6 @@ b43ca63 | 2026-11-14 13:28:41 +0800 | Add composition for Vivi 81% block #1 (2.5
 907e554 | 2026-11-14 10:28:49 +0800 | chore: refresh Agroverse store inventory snapshot
 64a2f45 | 2026-11-13 14:54:12 +0000 | chore: refresh currencies.json [skip ci]
 0efb11c | 2026-11-13 14:39:22 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
-a8575d7 | 2026-11-12 15:35:56 +0000 | chore: refresh currencies.json [skip ci]
-a16cb69 | 2026-11-12 15:20:00 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -513,9 +503,9 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
 | 2026-10 | 460 | 18944.34386 | 10/31/2026 |
-| 2026-11 | 276.9 | 19221.24386 | 11/19/2026 12:51:16 |
+| 2026-11 | 276.9 | 19221.24386 | 11/19/2026 22:59:46 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-11-12`; scanned last **600** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-11-13`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
