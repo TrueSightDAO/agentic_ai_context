@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-11-20T07:37:51Z`
+- Generated (UTC): `2026-11-20T20:38:42Z`
 - Look-back: **7** calendar days (`2026-11-13` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -38,13 +38,10 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `[DAO INVENTORY EXPENSE EVENT]` × 3
 - `[CURRENCY CONVERSION EVENT]` × 2
 - `[EMAIL VERIFICATION EVENT]` × 2
-- _free-form (no bracket tag)_ × 1
+- `[ASSET RECEIPT EVENT]` × 1
 
 ### Latest entries
 
-- `Edgar_20261118074016_3766` · **Edgar** · [DAO INVENTORY EXPENSE EVENT] Attached Filename: 20261118_matheus_reis_simples_nacional_das_674_37_brl_pix.png · DAO Member Name: Gary Teh · Destination Expense File Location: https://github.com/TrueSightDAO/store_interaction_atta…
-- `Edgar_20261118101801_3768` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Brazilian federal import tax amortized into unit cost + 3 ledgers (AWB 047-3…
-- `Edgar_20261118102737_3770` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: gotde print-on-demand engine evaluation: 20 verified render tests, logo-plac…
 - `Edgar_20261118102745_3772` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Direction, UAT and acceptance of gotde POD engine evaluation and bilingual v…
 - `Edgar_20261118143144_3774` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 150.00 · Description: Parking — SpotHero monthly reserved self park, USD 150.00 (Nov 9 2026)
 - `Edgar_20261119002818_3776` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-11-19T00:28:17.683Z · Email: beth@therapeutic-bodywork.com
@@ -62,6 +59,9 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20261120001747_3800` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Kirsten follow-up — 5g chocolate mould availability for potential Chinese ma…
 - `Edgar_20261120003612_3802` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Kirsten — 10min sourcing two 5g PC mould options (PCB209 $29.99, Chocolate W…
 - `Edgar_20261120011751_3804` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Cristiano (CIC) follow-up — heavy metal reports still outstanding, China sid…
+- `Edgar_20261120122508_3806` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Ealvin (Liuyang organic farm) — 3h on hosting cacao circles at his venue + c…
+- `Edgar_20261120122949_3808` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Lawrence Kwek — 15min on cacao legacy program template + Sunmint data struct…
+- `Edgar_20261120132940_3810` · **Edgar** · [ASSET RECEIPT EVENT] Amount: 1000.00 · Attached Filename: liz_elizabeth_wong_rmb1000_whatsapp_transfer_china_travel_2026-11-20.p… · Currency: RMB (CNY, ¥)
 
 ---
 
@@ -76,7 +76,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-11-19T11:59:15.487Z`
+- Generated (UTC): `2026-11-20T11:59:13.998Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -91,7 +91,7 @@ _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in 
 
 ### Hit List cohorts (stores in stage × AU/AV send counts)
 
-- **AI: Warm up prospect**: **68** stores — sum logged **warmup** sends (AU): **553**, sum logged **follow-up** sends (AV): **4**; warmup depth (none / once / ≥2): **36** / **0** / **32**; follow-up depth (none / once / ≥2): **67** / **0** / **1**
+- **AI: Warm up prospect**: **67** stores — sum logged **warmup** sends (AU): **553**, sum logged **follow-up** sends (AV): **4**; warmup depth (none / once / ≥2): **35** / **0** / **32**; follow-up depth (none / once / ≥2): **66** / **0** / **1**
 - **Manager Follow-up**: **26** stores — sum logged **warmup** sends (AU): **20**, sum logged **follow-up** sends (AV): **55**; warmup depth (none / once / ≥2): **22** / **0** / **4**; follow-up depth (none / once / ≥2): **9** / **3** / **14**
 - **Bulk Info Requested**: _(no rows in this status)_
 - **AI: Prospect replied**: _(no rows in this status)_
@@ -212,11 +212,11 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
   | Cacao Mass | Retail Ready | 1 | 1 | $10.37 |
 
 **Gary Teh** _( Operational cash + assorted retail inventory )_
-- Manager record: `Gary Teh` · 30 SKU lines · 7,194.26 total units · $6,894.22
+- Manager record: `Gary Teh` · 31 SKU lines · 8,194.26 total units · $7,044.22
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 28 | 7,118.08 | $6,844.23 |
+  | (uncategorized) | (unspecified) | 29 | 8,118.08 | $6,994.23 |
   | Packaging Material | Bulk | 1 | 74 | $49.98 |
   | Cacao Tea | Bulk | 1 | 2.18 | $0.00 |
 
@@ -275,6 +275,7 @@ _All dated lines on/after 2026-11-13_ (1):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+dab09c2 | 2026-11-20 07:40:43 +0000 | chore(stats): refresh stats indexes [skip ci]
 4f91eb4 | 2026-11-19 20:55:23 +0000 | chore(stats): refresh stats indexes [skip ci]
 268f4f9 | 2026-11-19 07:49:24 +0000 | chore(stats): refresh stats indexes [skip ci]
 386d962 | 2026-11-18 20:51:02 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -295,12 +296,16 @@ b9dbd50 | 2026-11-13 07:07:51 +0000 | chore(stats): refresh stats indexes [skip 
 ### `market_research` → `go_to_market`
 
 ```
-91ea162 | 2026-11-17 16:43:32 +0800 | Mark 20261117 Reel as PUBLISHED with real caption in schedule CSV (#209)
+a664e98 | 2026-11-20 21:29:41 +0800 | Document F5 Content Schedule tab + fix primary_key formula
 ```
 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+e8236ca | 2026-11-20 21:29:37 +0800 | Media pipeline SOP: Agroverse/F5 market split, F5 logo standard, reel-proposal method
+be22b4d | 2026-11-20 21:26:18 +0800 | China market entry decisions: F5 brand, single-estate pivot, collectible-mechanic comparison
+136822b | 2026-11-20 15:38:17 +0800 | chore(previews): refresh Beer Hall preview (2026-11-20 UTC)
+823d4a2 | 2026-11-20 15:38:15 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-20 UTC)
 bc586c6 | 2026-11-20 08:13:47 +0800 | Evidence: 2.5h China distribution discussion (meeting + mould sourcing references)
 5f81593 | 2026-11-20 04:53:59 +0800 | chore(previews): refresh Beer Hall preview (2026-11-19 UTC)
 5e8edcd | 2026-11-20 04:53:57 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-19 UTC)
@@ -337,10 +342,6 @@ cc55253 | 2026-11-17 06:26:01 +0800 | chore(previews): refresh Beer Hall preview
 cd2acb6 | 2026-11-15 14:57:19 +0800 | chore(previews): refresh Beer Hall preview (2026-11-15 UTC)
 ecea623 | 2026-11-15 14:57:15 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-15 UTC)
 7e7e8f1 | 2026-11-15 06:40:36 +0800 | chore(previews): refresh Beer Hall preview (2026-11-14 UTC)
-7d131b2 | 2026-11-15 06:40:33 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-14 UTC)
-e4eb6cd | 2026-11-15 02:24:21 +0800 | chore(previews): refresh Beer Hall preview (2026-11-14 UTC)
-e49ff34 | 2026-11-15 02:24:18 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-14 UTC)
-88de227 | 2026-11-14 18:02:41 +0800 | docs(SOP): corner case - asserted % the mass balance cannot produce (Block #1 71%) (#1856)
 … (truncated)
 ```
 
@@ -378,6 +379,8 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+8635229 | 2026-11-20 15:45:09 +0000 | chore: refresh currencies.json [skip ci]
+4b89e93 | 2026-11-20 15:31:09 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 a9b1343 | 2026-11-19 16:03:25 +0000 | chore: refresh currencies.json [skip ci]
 fd0fd18 | 2026-11-19 15:48:43 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 c2499cc | 2026-11-19 17:16:31 +0800 | Add AWB 047-3175-3223 tax-amendment provenance: Coopercabruca Butter KG
@@ -503,7 +506,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
 | 2026-10 | 460 | 18944.34386 | 10/31/2026 |
-| 2026-11 | 276.9 | 19221.24386 | 11/19/2026 22:59:46 |
+| 2026-11 | 276.9 | 19221.24386 | 11/20/2026 11:51:05 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-11-13`; scanned last **600** data rows)
 
