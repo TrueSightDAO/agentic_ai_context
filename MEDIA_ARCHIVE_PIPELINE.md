@@ -24,6 +24,51 @@ Standardized pipeline for ingesting raw farm media (HEIC photos + MOV videos zip
 
 Written so **any Sophia instance** can process a farm end-to-end or pick up a farm handed off by a governor. Governors: hand off a zip + this file's checklist; the receiving instance follows this doc.
 
+## Market split — Agroverse vs F5 (decision 2026-11-20, thread `agroverse-content-marketing`)
+
+**Two consumer brands draw from the same farm media archive, for two different markets, and
+never mix.** This governs every downstream distribution decision in this doc — language,
+platform, logo, and framing all follow from which brand a given cut is for.
+
+| | **Agroverse** | **F5** |
+|---|---|---|
+| Market | USA & Europe | China |
+| Spoken/written language | English | Chinese (spoken where appropriate, Chinese text/captions) |
+| Platforms | Instagram (primary) | 小红书 XiaoHongShu, B站 BiliBili |
+| Logo | Agroverse mark (§ *The brand mark on the front frame*, below) | F5 mark (same section) |
+| Content schedule tab | `Instagram Content Schedule` | `F5 Content Schedule` (separate tab, same spreadsheet `1ghZXeMqFq97Vl6yLKrtDmMQdQkd-4EN5yQs34NA_sBQ`, created 2026-11-20 — schema documented in `go_to_market/online_content/agroverse_shop/social_media/README.md` § *F5 content* ) |
+| Positioning reference | — | `reports/china_market_positioning_2026/CHINA_MARKET_ENTRY_DECISIONS.md` — gift-sincerity human truth, century-old-estate heritage, never a functional/health claim (regulatory, see that doc §2) |
+
+**Never log an F5 post in the Instagram tab, or an Agroverse post in the F5 tab** — same rule as
+the logo-routing rule below, applied to the scheduling record instead of the video frame.
+
+**The same underlying footage can serve both.** The archive is market-agnostic — a fermentation
+clip or a century-old-tree shot does not belong to one brand. The cheapest correct pattern is
+**one master edit, two localized deliveries**: cut the sequence once, then swap (a) the
+language track/subtitles, (b) the brand lockup on frame 0 per the logo-standard section below,
+(c) the caption/hashtag set for the target platform's conventions. Do not run two separate
+edit pipelines for the same story unless the beats themselves need to differ for the market
+(e.g. a claim that's safe in English but needs reframing for China's regulatory register —
+check the positioning doc above before translating copy verbatim).
+
+⚠️ **This does not hold for burned-in text.** The cold-open rule below requires the title to be
+**composited into the pixels**, not carried as a soft overlay — so a localized delivery is not
+"swap the audio track on the existing render," it is **re-render from the original source clips
+with the target-language text layer**. The two-delivery pattern only works as cheaply as
+described if the source clip list and render script are archived alongside the master; a
+burned-in master cannot be re-captioned after the fact, only re-rendered from scratch. Archive
+the build script and source references with every master, not just the final MP4.
+
+**Brand-routing is documentation, not enforcement, until checked by hand.** A free-text
+hashtag field cannot stop `#truesightdao` from landing on consumer content (it already has, on
+a published Agroverse row) — **scan the caption and hashtags for the other brand's handles
+before publish**, every time, for both tabs. This is a checklist line, not a solved problem;
+no validator exists yet.
+
+**Never cross-post.** An Agroverse-branded cut does not go to XiaoHongShu/BiliBili, and an
+F5-branded cut does not go to Instagram — the brand-routing rule in the logo-standard section
+is not just a frame-0 detail, it is which audience the whole artifact is for.
+
 ## Autopilot box disk layout (2026-09-08 — storage migration)
 
 > The pipeline runs on the **autopilot EC2 box** (t3.medium, `i-05276b8ae82d6b88c`). Since 2026-09-08 the media pipeline lives on a **dedicated 250GB gp3 EBS volume mounted at `/media`** — NOT on the root disk (root was 97% full; a flood risk as more farms upload).
@@ -263,6 +308,59 @@ Governor decision 2026-11-11: **generated videos upload to YouTube `public`**, p
 its manifest); beats marked `unknown` are flagged `clearance_required` and blocked from **paid**
 media until traced, which is a stricter bar than public organic posting.
 
+## Proposing a reel from the archive — the repeatable method (documented 2026-11-17/20)
+
+**The pattern, in one line: don't pick a theme and hope the footage exists — mine the archive
+first, then let what's actually there determine the format and the beats.**
+
+### Step 1 — Read the calendar before touching the archive
+
+Pull the relevant Content Schedule tab (per-brand — see *Market split* above) and find what's
+scheduled for the window in question. Note the **Post Type** column (Reel vs Carousel) — this
+tells you what you're being asked to produce, and a mismatch is worth flagging rather than
+silently reinterpreting (a planned Carousel is a different production path than a Reel, even
+on the same theme).
+
+### Step 2 — Inventory the archive by beat-type, not by farm
+
+Clone the relevant manifests (`farm_media_manifests` for farm-media-sourced content), and for
+the scheduled theme, bucket available clips into the **beats the story needs** (e.g. for a
+flavor/fermentation theme: fermentation, harvest, tasting, drink/pour, chocolate-making), not
+just by which farm they came from. Count clips per bucket. This is the step that catches a gap
+before it becomes a stuck edit — e.g. the 2026-11-17 flavor-worlds mining found 13 fermentation
+clips but **zero** clips of anyone actually tasting/drinking on camera (5 "tasting" hits were
+all farmers *discussing* flavor, not performing it) — a story built around "taste this" would
+have had no footage for its own payoff.
+
+### Step 3 — Let the clip count pick the format
+
+| Signal | Implication |
+|---|---|
+| Rich, varied footage for the theme's core beat | Reel — footage carries the story |
+| Thin or missing footage for the theme's core beat, but strong photo coverage | Carousel — stills can carry a theme a video can't |
+| Footage exists but for a *different* beat than the scheduled theme implies | Say so — propose the theme that matches what's there, don't force the calendar's wording onto footage it doesn't fit |
+
+### Step 4 — Draft named beats against named clips, not abstractions
+
+A beat list is not "intro, body, payoff" — it is specific source files with a function and an
+approximate cut length, e.g.:
+
+```
+1. The split — commodity vs. selected   | IMG_9556        | ~6s | Hook
+2. Flavor is decided here — fermentation| IMG_8072+drying | ~7s | Reframe
+3. Terroir as energy                    | IMG_9704        | ~7s | Depth
+```
+
+If you cannot name the source clip for a beat, the beat is a hope, not a plan — go back to
+Step 2.
+
+### Step 5 — Propose, then execute only after sign-off
+
+Post the proposal (calendar context, archive findings, the beat table, and the format
+recommendation) and wait for a decision before cutting. Producing a deliverable in the same
+turn as the proposal skips the one checkpoint that catches a wrong-theme or wrong-format call
+before render time is spent on it.
+
 ## Burned-in text — captions, subtitles & title cards (documented 2026-11-17, Reel "Where Flavor Is Decided")
 
 Applies whenever text is **composited into pixels**: burned-in captions, translated subtitles, title
@@ -445,12 +543,14 @@ itself is duplicated and divergent across the repos.
 
 | Content | Mark |
 |---|---|
-| Farm footage, product, retail, recipe, farmer story — i.e. **anything a consumer sees** | ✅ **Agroverse** |
+| Farm footage, product, retail, recipe, farmer story, for **USA/Europe** — i.e. anything an Agroverse consumer sees | ✅ **Agroverse** |
+| Same class of content, localized for **China** — Instagram equivalents on XiaoHongShu/BiliBili | ✅ **F5** |
 | Governance, tokenomics, DAO-internal or developer-facing explainers where the DAO *is* the subject | ✅ TrueSight DAO |
 
-❌ **Never TrueSight DAO on Agroverse consumer content.** Agroverse is the consumer brand; TrueSight
-DAO is the governing entity behind it. A cacao reel is an Agroverse artifact. This is a
-**brand-routing** rule, not a style preference — the two marks are not interchangeable.
+❌ **Never TrueSight DAO on consumer content, in either market.** TrueSight DAO is the governing
+entity, not a consumer-facing brand. ❌ **Never Agroverse on an F5-market delivery, or F5 on an
+Agroverse-market delivery** — see *Market split* above; this is a brand-routing rule, not a
+style preference, and the two mark pairs are not interchangeable in either direction.
 
 If the cut is genuinely joint-branded, that is a governor decision, not an editor default.
 
@@ -476,7 +576,32 @@ assets, sized for a ~192px hole; do not scale them up for a 1080×1920 frame.
 
 ❌ **Never the `favicon-192x192`** — it runs at **3.70× upscale** and is visibly soft.
 
-#### 3. The mark has an opaque white background — mount it, don't key it
+#### 2a. F5 canonical asset
+
+Extracted directly from the live F5 site (`F5_Website_Latest.html`, `a.brand img`), 2026-11-20 —
+not a design file in a repo yet. **Committed here:** `assets/f5_logo_canonical.png`.
+
+| Property | Value |
+|---|---|
+| Native resolution | **159 × 90 px** |
+| Format | WebP source, re-exported as PNG |
+| Alpha | **Real transparency** — ~51% transparent, ~44% opaque by histogram. Unlike the Agroverse
+asset below, this one genuinely has usable alpha. |
+| Composition | Icon mark + "F5" wordmark + "FOOD · LIFE · FOREST" tagline, as one lockup |
+
+**Opposite treatment from Agroverse:** because the alpha is real, **key it, do not badge it** —
+compositing straight onto footage will NOT produce the white-rectangle problem the Agroverse
+asset has (§3 below is an Agroverse-specific workaround, not a general rule).
+
+⚠️ **Known gap, same shape as Agroverse's §6:** 159×90 is a web-resolution asset, not a
+video-production one. A 1080×1920 frame at the Agroverse 300–360px mark-height standard would
+need a **3.3–4×+ upscale** — past the 3.70× line already flagged as "visibly soft" for the
+Agroverse favicon mistake. **Do not scale this asset past ~240px mark-height without a visual
+softness check.** Request a native-resolution export (PNG/SVG, ≥600px tall) from whoever
+maintains the F5 site before this ships at scale. Treat the current asset as adequate for a
+first cut, not a long-term source.
+
+#### 3. The mark has an opaque white background — mount it, don't key it (Agroverse only — see §2a for F5's different treatment)
 
 The 910×1082 PNG reports `RGBA` but carries **no usable alpha**: ~73% of its pixels are pure
 white `(255,255,255)` and all four corners are opaque. Compositing it straight onto footage
@@ -497,10 +622,17 @@ with its own background. If a vector or true-alpha mark arrives, re-evaluate.
 | Mark position | **Above** the title, left-aligned with it |
 | Gap between mark and title | **≤ 120px** — a larger gap reads as two unrelated elements |
 | Content top edge | **y ≥ 280px** (clear of the 0–250px top-UI band) |
-| Mark height on 1080×1920 | **300–360px** — smaller is illegible on the grid thumbnail |
+| Mark height on 1080×1920 — **Agroverse** | **300–360px** — smaller is illegible on the grid thumbnail |
+| Mark height on 1080×1920 — **F5** | **≤ 240px** — §2a's resolution ceiling overrides this row; the Agroverse 300–360px range is a **2.67–4× upscale** of the 159×90 native asset, past the softness threshold already established by the favicon mistake (§2, 3.70×) |
 | Left/right margins | **≥ 90px** each (unchanged — see *Safe area*) |
 
-**Measured reference (the passing 2026-11-18 Pará Reel intro, 1080×1920):**
+⚠️ **This row previously stated one universal range (300–360px) that silently contradicted §2a's
+F5 ceiling — caught 2026-11-20 before any F5 video shipped against it.** If a higher-resolution
+F5 asset ever replaces the current one (§2a's known gap), re-derive this ceiling from the new
+asset's native resolution rather than assuming the Agroverse range applies.
+
+**Measured reference (the passing 2026-11-18 Pará Reel intro, 1080×1920) — Agroverse only, not
+yet reproduced for F5:**
 
 ```
 badge   x 365–714      (y 150–534)
@@ -510,7 +642,8 @@ bottom  y = 840        clear of bottom caption zone
 ```
 
 That render **failed twice before it passed** — see §5. Treat the numbers above as a regression
-baseline, not a suggestion.
+baseline for Agroverse, not a suggestion, and not yet a baseline for F5 — the first F5 render
+needs its own measured reference logged here once it ships.
 
 #### 5. Verify by measuring the render — not the intent
 
