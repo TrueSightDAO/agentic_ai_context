@@ -51,6 +51,20 @@ edit pipelines for the same story unless the beats themselves need to differ for
 (e.g. a claim that's safe in English but needs reframing for China's regulatory register —
 check the positioning doc above before translating copy verbatim).
 
+⚠️ **This does not hold for burned-in text.** The cold-open rule below requires the title to be
+**composited into the pixels**, not carried as a soft overlay — so a localized delivery is not
+"swap the audio track on the existing render," it is **re-render from the original source clips
+with the target-language text layer**. The two-delivery pattern only works as cheaply as
+described if the source clip list and render script are archived alongside the master; a
+burned-in master cannot be re-captioned after the fact, only re-rendered from scratch. Archive
+the build script and source references with every master, not just the final MP4.
+
+**Brand-routing is documentation, not enforcement, until checked by hand.** A free-text
+hashtag field cannot stop `#truesightdao` from landing on consumer content (it already has, on
+a published Agroverse row) — **scan the caption and hashtags for the other brand's handles
+before publish**, every time, for both tabs. This is a checklist line, not a solved problem;
+no validator exists yet.
+
 **Never cross-post.** An Agroverse-branded cut does not go to XiaoHongShu/BiliBili, and an
 F5-branded cut does not go to Instagram — the brand-routing rule in the logo-standard section
 is not just a frame-0 detail, it is which audience the whole artifact is for.
@@ -608,10 +622,17 @@ with its own background. If a vector or true-alpha mark arrives, re-evaluate.
 | Mark position | **Above** the title, left-aligned with it |
 | Gap between mark and title | **≤ 120px** — a larger gap reads as two unrelated elements |
 | Content top edge | **y ≥ 280px** (clear of the 0–250px top-UI band) |
-| Mark height on 1080×1920 | **300–360px** — smaller is illegible on the grid thumbnail |
+| Mark height on 1080×1920 — **Agroverse** | **300–360px** — smaller is illegible on the grid thumbnail |
+| Mark height on 1080×1920 — **F5** | **≤ 240px** — §2a's resolution ceiling overrides this row; the Agroverse 300–360px range is a **2.67–4× upscale** of the 159×90 native asset, past the softness threshold already established by the favicon mistake (§2, 3.70×) |
 | Left/right margins | **≥ 90px** each (unchanged — see *Safe area*) |
 
-**Measured reference (the passing 2026-11-18 Pará Reel intro, 1080×1920):**
+⚠️ **This row previously stated one universal range (300–360px) that silently contradicted §2a's
+F5 ceiling — caught 2026-11-20 before any F5 video shipped against it.** If a higher-resolution
+F5 asset ever replaces the current one (§2a's known gap), re-derive this ceiling from the new
+asset's native resolution rather than assuming the Agroverse range applies.
+
+**Measured reference (the passing 2026-11-18 Pará Reel intro, 1080×1920) — Agroverse only, not
+yet reproduced for F5:**
 
 ```
 badge   x 365–714      (y 150–534)
@@ -621,7 +642,8 @@ bottom  y = 840        clear of bottom caption zone
 ```
 
 That render **failed twice before it passed** — see §5. Treat the numbers above as a regression
-baseline, not a suggestion.
+baseline for Agroverse, not a suggestion, and not yet a baseline for F5 — the first F5 render
+needs its own measured reference logged here once it ships.
 
 #### 5. Verify by measuring the render — not the intent
 
