@@ -36,7 +36,11 @@ platform, logo, and framing all follow from which brand a given cut is for.
 | Spoken/written language | English | Chinese (spoken where appropriate, Chinese text/captions) |
 | Platforms | Instagram (primary) | 小红书 XiaoHongShu, B站 BiliBili |
 | Logo | Agroverse mark (§ *The brand mark on the front frame*, below) | F5 mark (same section) |
+| Content schedule tab | `Instagram Content Schedule` | `F5 Content Schedule` (separate tab, same spreadsheet `1ghZXeMqFq97Vl6yLKrtDmMQdQkd-4EN5yQs34NA_sBQ`, created 2026-11-20 — schema documented in `go_to_market/online_content/agroverse_shop/social_media/README.md` § *F5 content* ) |
 | Positioning reference | — | `reports/china_market_positioning_2026/CHINA_MARKET_ENTRY_DECISIONS.md` — gift-sincerity human truth, century-old-estate heritage, never a functional/health claim (regulatory, see that doc §2) |
+
+**Never log an F5 post in the Instagram tab, or an Agroverse post in the F5 tab** — same rule as
+the logo-routing rule below, applied to the scheduling record instead of the video frame.
 
 **The same underlying footage can serve both.** The archive is market-agnostic — a fermentation
 clip or a century-old-tree shot does not belong to one brand. The cheapest correct pattern is
