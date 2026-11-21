@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-11-21T07:33:43Z`
+- Generated (UTC): `2026-11-21T19:38:36Z`
 - Look-back: **7** calendar days (`2026-11-14` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -76,7 +76,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-11-20T11:59:13.998Z`
+- Generated (UTC): `2026-11-21T11:59:14.912Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -273,6 +273,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-11-14 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+cb78208 | 2026-11-21 07:38:11 +0000 | chore(stats): refresh stats indexes [skip ci]
 751f10c | 2026-11-20 20:40:02 +0000 | chore(stats): refresh stats indexes [skip ci]
 dab09c2 | 2026-11-20 07:40:43 +0000 | chore(stats): refresh stats indexes [skip ci]
 4f91eb4 | 2026-11-19 20:55:23 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -299,6 +300,8 @@ a664e98 | 2026-11-20 21:29:41 +0800 | Document F5 Content Schedule tab + fix pri
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+b31b73d | 2026-11-21 15:34:05 +0800 | chore(previews): refresh Beer Hall preview (2026-11-21 UTC)
+5e733af | 2026-11-21 15:34:04 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-21 UTC)
 14e99f9 | 2026-11-21 04:39:02 +0800 | chore(previews): refresh Beer Hall preview (2026-11-20 UTC)
 8ff0d09 | 2026-11-21 04:39:00 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-20 UTC)
 e8236ca | 2026-11-20 21:29:37 +0800 | Media pipeline SOP: Agroverse/F5 market split, F5 logo standard, reel-proposal method
@@ -337,14 +340,13 @@ cc55253 | 2026-11-17 06:26:01 +0800 | chore(previews): refresh Beer Hall preview
 7418aad | 2026-11-16 15:02:56 +0800 | chore(previews): refresh Beer Hall preview (2026-11-16 UTC)
 1a4190c | 2026-11-16 15:02:51 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-16 UTC)
 6cadb63 | 2026-11-16 03:02:16 +0800 | chore(previews): refresh Beer Hall preview (2026-11-15 UTC)
-0e90058 | 2026-11-16 03:02:12 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-15 UTC)
-cd2acb6 | 2026-11-15 14:57:19 +0800 | chore(previews): refresh Beer Hall preview (2026-11-15 UTC)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+da73fc4 | 2026-11-21 17:51:08 +0800 | Document live trigger + root cause for deprecated TDG wallet-balance project (#628)
 f4ff570 | 2026-11-17 20:38:53 +0800 | Fix silent drop of Telegram contribution rows in the TDG scorer (#627)
 8038021 | 2026-11-17 11:28:56 +0800 | Add R$1,085 Pix receipt — 217 trees, Jhordan Madian Costa de Oliveira
 ```
@@ -376,6 +378,8 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+62bfa43 | 2026-11-21 14:55:53 +0000 | chore: refresh currencies.json [skip ci]
+ae499a7 | 2026-11-21 14:43:00 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 8635229 | 2026-11-20 15:45:09 +0000 | chore: refresh currencies.json [skip ci]
 4b89e93 | 2026-11-20 15:31:09 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 a9b1343 | 2026-11-19 16:03:25 +0000 | chore: refresh currencies.json [skip ci]
@@ -501,7 +505,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
 | 2026-10 | 460 | 18944.34386 | 10/31/2026 |
-| 2026-11 | 276.9 | 19221.24386 | 11/20/2026 22:52:21 |
+| 2026-11 | 276.9 | 19221.24386 | 11/21/2026 10:50:43 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-11-14`; scanned last **600** data rows)
 
