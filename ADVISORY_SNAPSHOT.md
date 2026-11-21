@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-11-20T20:38:42Z`
-- Look-back: **7** calendar days (`2026-11-13` → today UTC)
+- Generated (UTC): `2026-11-21T07:33:43Z`
+- Look-back: **7** calendar days (`2026-11-14` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -32,8 +32,8 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 24
-- `[PRACTICE EVENT]` × 6
+- `[CONTRIBUTION EVENT]` × 23
+- `[PRACTICE EVENT]` × 7
 - `[EMAIL REGISTERED EVENT]` × 4
 - `[DAO INVENTORY EXPENSE EVENT]` × 3
 - `[CURRENCY CONVERSION EVENT]` × 2
@@ -42,7 +42,6 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Latest entries
 
-- `Edgar_20261118102745_3772` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Direction, UAT and acceptance of gotde POD engine evaluation and bilingual v…
 - `Edgar_20261118143144_3774` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 150.00 · Description: Parking — SpotHero monthly reserved self park, USD 150.00 (Nov 9 2026)
 - `Edgar_20261119002818_3776` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-11-19T00:28:17.683Z · Email: beth@therapeutic-bodywork.com
 - `Edgar_20261119002839_3778` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-11-19T00:28:37.381Z · Email: beth@therapeutic-bodywork.com
@@ -62,6 +61,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20261120122508_3806` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Ealvin (Liuyang organic farm) — 3h on hosting cacao circles at his venue + c…
 - `Edgar_20261120122949_3808` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Lawrence Kwek — 15min on cacao legacy program template + Sunmint data struct…
 - `Edgar_20261120132940_3810` · **Edgar** · [ASSET RECEIPT EVENT] Amount: 1000.00 · Attached Filename: liz_elizabeth_wong_rmb1000_whatsapp_transfer_china_travel_2026-11-20.p… · Currency: RMB (CNY, ¥)
+- `Edgar_20261121025116_3812` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-21T02:51:13.889Z · Program: truesight-grounding · Practice Type: oracle-consultation
 
 ---
 
@@ -237,9 +237,9 @@ _(+34 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$1,550.16**
+- USD on hand: **$1,550.09**
 - Brazilian Reis: R$-1,385.00 · rate `0.2323` USD/BRL → ≈ **$-321.74**
-- USD provisioned for voting-rights cash-out: **$59.13**
+- USD provisioned for voting-rights cash-out: **$59.20**
 
 ### In-transit freight (0 rows)
 
@@ -254,9 +254,7 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_All dated lines on/after 2026-11-13_ (1):
-
-- 2026-11-13 | sophia | **New policy §5i in OPERATING_INSTRUCTIONS.md: member-readable artifacts.** Triggered by Gary's “regular members should be able to perform such read operations” after Lawrence asked for agroverse.shop images and the only path was Sophia cloning the repo + hand-sending files. Rule: any already-published artifact (site images, product data, certificates, farm pages, public ledgers) must be readable by an ordinary member **without an agent, shell, or git clone** — if reaching public content needs a write-class tool, that is a **missing index, not a normal request**. Publish a static machine-readable index next to the artifact (prefer CDN/github-pages static file over a new authed API), add a browsable view for non-technical members, regenerate in CI. **Does NOT relax any gate** — credentials/vault/internal financials/member PII stay gated; check before publishing. Worked example: agroverse_shop_beta PR #369 (`assets/images/manifest.json`, 502 records + `scripts/generate_image_manifest.py`).
+_(No `YYYY-MM-DD |` lines on/after 2026-11-14 in CONTEXT_UPDATES.md.)_
 
 ---
 
@@ -275,6 +273,7 @@ _All dated lines on/after 2026-11-13_ (1):
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+751f10c | 2026-11-20 20:40:02 +0000 | chore(stats): refresh stats indexes [skip ci]
 dab09c2 | 2026-11-20 07:40:43 +0000 | chore(stats): refresh stats indexes [skip ci]
 4f91eb4 | 2026-11-19 20:55:23 +0000 | chore(stats): refresh stats indexes [skip ci]
 268f4f9 | 2026-11-19 07:49:24 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -289,8 +288,6 @@ fac37c1 | 2026-11-15 07:04:13 +0000 | chore(stats): refresh stats indexes [skip 
 7ecbe8d | 2026-11-14 22:41:29 +0000 | chore(stats): refresh stats indexes [skip ci]
 4a61f5e | 2026-11-14 18:26:19 +0000 | chore(stats): refresh stats indexes [skip ci]
 f24d770 | 2026-11-14 06:56:09 +0000 | chore(stats): refresh stats indexes [skip ci]
-10e3d8c | 2026-11-13 19:58:11 +0000 | chore(stats): refresh stats indexes [skip ci]
-b9dbd50 | 2026-11-13 07:07:51 +0000 | chore(stats): refresh stats indexes [skip ci]
 ```
 
 ### `market_research` → `go_to_market`
@@ -302,6 +299,8 @@ a664e98 | 2026-11-20 21:29:41 +0800 | Document F5 Content Schedule tab + fix pri
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+14e99f9 | 2026-11-21 04:39:02 +0800 | chore(previews): refresh Beer Hall preview (2026-11-20 UTC)
+8ff0d09 | 2026-11-21 04:39:00 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-20 UTC)
 e8236ca | 2026-11-20 21:29:37 +0800 | Media pipeline SOP: Agroverse/F5 market split, F5 logo standard, reel-proposal method
 be22b4d | 2026-11-20 21:26:18 +0800 | China market entry decisions: F5 brand, single-estate pivot, collectible-mechanic comparison
 136822b | 2026-11-20 15:38:17 +0800 | chore(previews): refresh Beer Hall preview (2026-11-20 UTC)
@@ -340,8 +339,6 @@ cc55253 | 2026-11-17 06:26:01 +0800 | chore(previews): refresh Beer Hall preview
 6cadb63 | 2026-11-16 03:02:16 +0800 | chore(previews): refresh Beer Hall preview (2026-11-15 UTC)
 0e90058 | 2026-11-16 03:02:12 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-15 UTC)
 cd2acb6 | 2026-11-15 14:57:19 +0800 | chore(previews): refresh Beer Hall preview (2026-11-15 UTC)
-ecea623 | 2026-11-15 14:57:15 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-15 UTC)
-7e7e8f1 | 2026-11-15 06:40:36 +0800 | chore(previews): refresh Beer Hall preview (2026-11-14 UTC)
 … (truncated)
 ```
 
@@ -410,14 +407,12 @@ b43ca63 | 2026-11-14 13:28:41 +0800 | Add composition for Vivi 81% block #1 (2.5
 67694e8 | 2026-11-14 11:28:47 +0800 | chore: refresh Agroverse store inventory snapshot
 8064e23 | 2026-11-14 10:28:52 +0800 | chore: refresh Agroverse SKU catalog snapshot
 907e554 | 2026-11-14 10:28:49 +0800 | chore: refresh Agroverse store inventory snapshot
-64a2f45 | 2026-11-13 14:54:12 +0000 | chore: refresh currencies.json [skip ci]
-0efb11c | 2026-11-13 14:39:22 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
 
 ```
-42e7212 | 2026-11-14 07:53:35 +0800 | Add machine-readable image manifest for assets/images (read-only member access) (#369)
+_(no commits on origin/main in window)_
 ```
 
 ### `iching_oracle` → `oracle`
@@ -506,9 +501,9 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
 | 2026-10 | 460 | 18944.34386 | 10/31/2026 |
-| 2026-11 | 276.9 | 19221.24386 | 11/20/2026 11:51:05 |
+| 2026-11 | 276.9 | 19221.24386 | 11/20/2026 22:52:21 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-11-13`; scanned last **600** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-11-14`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
