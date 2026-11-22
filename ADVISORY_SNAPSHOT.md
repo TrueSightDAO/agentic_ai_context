@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-11-22T07:15:52Z`
+- Generated (UTC): `2026-11-22T19:54:45Z`
 - Look-back: **7** calendar days (`2026-11-15` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -76,7 +76,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-11-21T11:59:14.912Z`
+- Generated (UTC): `2026-11-22T11:59:14.532Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -273,6 +273,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-11-15 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+9c655f1 | 2026-11-22 07:20:36 +0000 | chore(stats): refresh stats indexes [skip ci]
 74a5f58 | 2026-11-21 19:42:18 +0000 | chore(stats): refresh stats indexes [skip ci]
 cb78208 | 2026-11-21 07:38:11 +0000 | chore(stats): refresh stats indexes [skip ci]
 751f10c | 2026-11-20 20:40:02 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -298,6 +299,8 @@ a664e98 | 2026-11-20 21:29:41 +0800 | Document F5 Content Schedule tab + fix pri
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+699eeb4 | 2026-11-22 15:16:14 +0800 | chore(previews): refresh Beer Hall preview (2026-11-22 UTC)
+521ddbd | 2026-11-22 15:16:13 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-22 UTC)
 0aa9f74 | 2026-11-22 03:39:01 +0800 | chore(previews): refresh Beer Hall preview (2026-11-21 UTC)
 bc45687 | 2026-11-22 03:38:59 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-21 UTC)
 b31b73d | 2026-11-21 15:34:05 +0800 | chore(previews): refresh Beer Hall preview (2026-11-21 UTC)
@@ -336,8 +339,6 @@ fcece56 | 2026-11-17 14:48:16 +0800 | SOP: correct BRL/Brazilian Reis root cause
 058b284 | 2026-11-17 11:54:33 +0800 | Document burned-in text SOP (captions, subtitles, title cards) (#1858)
 e430a0a | 2026-11-17 11:44:10 +0800 | SOP: PIX tree planting must book the payer expense separately (#1857)
 cc55253 | 2026-11-17 06:26:01 +0800 | chore(previews): refresh Beer Hall preview (2026-11-16 UTC)
-71210d6 | 2026-11-17 06:26:00 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-16 UTC)
-7418aad | 2026-11-16 15:02:56 +0800 | chore(previews): refresh Beer Hall preview (2026-11-16 UTC)
 … (truncated)
 ```
 
@@ -376,6 +377,8 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+da9db4a | 2026-11-22 14:54:08 +0000 | chore: refresh currencies.json [skip ci]
+7003894 | 2026-11-22 14:39:17 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 62bfa43 | 2026-11-21 14:55:53 +0000 | chore: refresh currencies.json [skip ci]
 ae499a7 | 2026-11-21 14:43:00 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 8635229 | 2026-11-20 15:45:09 +0000 | chore: refresh currencies.json [skip ci]
@@ -493,7 +496,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
 | 2026-10 | 460 | 18944.34386 | 10/31/2026 |
-| 2026-11 | 276.9 | 19221.24386 | 11/21/2026 22:53:43 |
+| 2026-11 | 276.9 | 19221.24386 | 11/22/2026 11:50:41 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-11-15`; scanned last **600** data rows)
 
