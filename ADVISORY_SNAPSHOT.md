@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-11-21T19:38:36Z`
-- Look-back: **7** calendar days (`2026-11-14` → today UTC)
+- Generated (UTC): `2026-11-22T07:15:52Z`
+- Look-back: **7** calendar days (`2026-11-15` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -33,16 +33,15 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 ### Event-type rollup
 
 - `[CONTRIBUTION EVENT]` × 23
-- `[PRACTICE EVENT]` × 7
+- `[PRACTICE EVENT]` × 8
 - `[EMAIL REGISTERED EVENT]` × 4
 - `[DAO INVENTORY EXPENSE EVENT]` × 3
-- `[CURRENCY CONVERSION EVENT]` × 2
 - `[EMAIL VERIFICATION EVENT]` × 2
+- `[CURRENCY CONVERSION EVENT]` × 1
 - `[ASSET RECEIPT EVENT]` × 1
 
 ### Latest entries
 
-- `Edgar_20261118143144_3774` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 150.00 · Description: Parking — SpotHero monthly reserved self park, USD 150.00 (Nov 9 2026)
 - `Edgar_20261119002818_3776` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-11-19T00:28:17.683Z · Email: beth@therapeutic-bodywork.com
 - `Edgar_20261119002839_3778` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-11-19T00:28:37.381Z · Email: beth@therapeutic-bodywork.com
 - `Edgar_20261119002842_3780` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-11-19T00:28:40.440Z · Email: beth@therapeutic-bodywork.com
@@ -62,6 +61,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20261120122949_3808` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Lawrence Kwek — 15min on cacao legacy program template + Sunmint data struct…
 - `Edgar_20261120132940_3810` · **Edgar** · [ASSET RECEIPT EVENT] Amount: 1000.00 · Attached Filename: liz_elizabeth_wong_rmb1000_whatsapp_transfer_china_travel_2026-11-20.p… · Currency: RMB (CNY, ¥)
 - `Edgar_20261121025116_3812` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-21T02:51:13.889Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20261122032000_3814` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-22T03:19:59.310Z · Program: truesight-grounding · Practice Type: oracle-consultation
 
 ---
 
@@ -237,9 +237,9 @@ _(+34 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$1,550.09**
+- USD on hand: **$1,550.02**
 - Brazilian Reis: R$-1,385.00 · rate `0.2323` USD/BRL → ≈ **$-321.74**
-- USD provisioned for voting-rights cash-out: **$59.20**
+- USD provisioned for voting-rights cash-out: **$59.27**
 
 ### In-transit freight (0 rows)
 
@@ -254,7 +254,7 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_(No `YYYY-MM-DD |` lines on/after 2026-11-14 in CONTEXT_UPDATES.md.)_
+_(No `YYYY-MM-DD |` lines on/after 2026-11-15 in CONTEXT_UPDATES.md.)_
 
 ---
 
@@ -273,6 +273,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-11-14 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+74a5f58 | 2026-11-21 19:42:18 +0000 | chore(stats): refresh stats indexes [skip ci]
 cb78208 | 2026-11-21 07:38:11 +0000 | chore(stats): refresh stats indexes [skip ci]
 751f10c | 2026-11-20 20:40:02 +0000 | chore(stats): refresh stats indexes [skip ci]
 dab09c2 | 2026-11-20 07:40:43 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -286,9 +287,6 @@ e9c8adc | 2026-11-16 22:27:38 +0000 | chore(stats): refresh stats indexes [skip 
 f1da324 | 2026-11-16 07:10:36 +0000 | chore(stats): refresh stats indexes [skip ci]
 adb9281 | 2026-11-15 19:03:02 +0000 | chore(stats): refresh stats indexes [skip ci]
 fac37c1 | 2026-11-15 07:04:13 +0000 | chore(stats): refresh stats indexes [skip ci]
-7ecbe8d | 2026-11-14 22:41:29 +0000 | chore(stats): refresh stats indexes [skip ci]
-4a61f5e | 2026-11-14 18:26:19 +0000 | chore(stats): refresh stats indexes [skip ci]
-f24d770 | 2026-11-14 06:56:09 +0000 | chore(stats): refresh stats indexes [skip ci]
 ```
 
 ### `market_research` → `go_to_market`
@@ -300,6 +298,8 @@ a664e98 | 2026-11-20 21:29:41 +0800 | Document F5 Content Schedule tab + fix pri
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+0aa9f74 | 2026-11-22 03:39:01 +0800 | chore(previews): refresh Beer Hall preview (2026-11-21 UTC)
+bc45687 | 2026-11-22 03:38:59 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-21 UTC)
 b31b73d | 2026-11-21 15:34:05 +0800 | chore(previews): refresh Beer Hall preview (2026-11-21 UTC)
 5e733af | 2026-11-21 15:34:04 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-21 UTC)
 14e99f9 | 2026-11-21 04:39:02 +0800 | chore(previews): refresh Beer Hall preview (2026-11-20 UTC)
@@ -338,8 +338,6 @@ e430a0a | 2026-11-17 11:44:10 +0800 | SOP: PIX tree planting must book the payer
 cc55253 | 2026-11-17 06:26:01 +0800 | chore(previews): refresh Beer Hall preview (2026-11-16 UTC)
 71210d6 | 2026-11-17 06:26:00 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-16 UTC)
 7418aad | 2026-11-16 15:02:56 +0800 | chore(previews): refresh Beer Hall preview (2026-11-16 UTC)
-1a4190c | 2026-11-16 15:02:51 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-16 UTC)
-6cadb63 | 2026-11-16 03:02:16 +0800 | chore(previews): refresh Beer Hall preview (2026-11-15 UTC)
 … (truncated)
 ```
 
@@ -401,16 +399,6 @@ d2657ad | 2026-11-16 16:25:17 +0000 | chore: refresh currencies.json [skip ci]
 7efe659 | 2026-11-16 15:52:45 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 a763ae3 | 2026-11-15 14:18:19 +0000 | chore: refresh currencies.json [skip ci]
 2598979 | 2026-11-15 13:59:53 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
-e2ed0a8 | 2026-11-14 13:47:16 +0000 | chore: refresh currencies.json [skip ci]
-f9a42fb | 2026-11-14 13:36:12 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
-3f475b0 | 2026-11-14 18:16:59 +0800 | Add composition JSON for Oscar cacao block #2 (70%, 2.5 kg, MAIN)
-990150f | 2026-11-14 18:16:55 +0800 | Add composition JSON for Oscar cacao block #1 (81%, 2.5 kg, MAIN)
-911b925 | 2026-11-14 18:16:50 +0800 | Add composition JSON for Vivi cacao block #2 (71%, 2.5 kg, AGL13)
-b43ca63 | 2026-11-14 13:28:41 +0800 | Add composition for Vivi 81% block #1 (2.5kg) incl. cane sugar
-761571f | 2026-11-14 11:28:49 +0800 | chore: refresh Agroverse SKU catalog snapshot
-67694e8 | 2026-11-14 11:28:47 +0800 | chore: refresh Agroverse store inventory snapshot
-8064e23 | 2026-11-14 10:28:52 +0800 | chore: refresh Agroverse SKU catalog snapshot
-907e554 | 2026-11-14 10:28:49 +0800 | chore: refresh Agroverse store inventory snapshot
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -505,15 +493,13 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
 | 2026-10 | 460 | 18944.34386 | 10/31/2026 |
-| 2026-11 | 276.9 | 19221.24386 | 11/21/2026 10:50:43 |
+| 2026-11 | 276.9 | 19221.24386 | 11/21/2026 22:53:43 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-11-14`; scanned last **600** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-11-15`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
-| 2026-11-14 | — | — | IGNORED | — | — | IGNORED: Duplicate QR code already on QR Code Sales when this message w… |
-| 2026-11-14 | 30.075 | 8 Ounce Package Kraft Pouch - Ilheus, B… | TOKENIZED | 2024OSCAR_20250826_NIBS_6 | VKBZKQgi71s7 | — |
-| 2026-11-14 | 30.075 | 8 Ounce Package Kraft Pouch - Ilheus, B… | TOKENIZED | 2024OSCAR_20250826_NIBS_5 | VKBZKQgi71s7 | — |
+| — | — | — | — | — | — | _No rows in scan window (try larger `--sheet-sales-qr-scan` or `--since-days`)._ |
 
 _Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
