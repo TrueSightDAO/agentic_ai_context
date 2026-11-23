@@ -68,6 +68,28 @@ Neither the messages nor the mailbox carried a **file attachment** — the recei
 
 **Mitigated this session.** The single retrievable PDF was archived to `store_interaction_attachments/asset_receipts/anthropic/`, plus a 13-row manifest CSV recording every receipt number, date, amount, and **retrieval status** so the 12 missing PDFs are a known, enumerated gap rather than a silent one — and recoverable via the Stripe dashboard or an API key later.
 
+### Rock salt (road salt) is a live commodity line with ZERO context — no runbook, no cost model, and one unverified port claim gating the whole plan
+
+**Filed 2026-11-23 (Sophia Truesight). Owner: unclaimed. Priority: MEDIUM — a supplier conversation is already running against no documented basis.**
+
+**What happened.** Milena (Brazilian supply / chain-of-custody contact, see `research/BRAZIL_SUGARCANE_ENV_REPORT.md` line 125) asked about **rock salt** delivery for an Ohio destination. Spec confirmed in-thread: **mined rock salt (halite), NOT solar salt**. Destination question: **Port of Cleveland vs Port of Toledo**, with her stated preference being **Ashtabula, inbound via the St Lawrence Seaway**.
+
+**The gap.** `search_context("rock salt")` = **0 hits**. Prior ledger filings for `rock salt` / `Matheus` / `Ashtabula` = **0**. Cacao, sugar and honey each have runbooks, cost models and chain-of-custody notes; rock salt has nothing, yet is already in supplier dialogue.
+
+**The single unverified claim that decides the plan.** Whether **Ashtabula can currently discharge bulk salt**. Its docks were **closed by Norfolk Southern in 2015**, and its historic cargo is **iron-ore transfer**, not salt. Milena's preference is reasonable geographically (Seaway-direct, avoids extra rail/haul) but **must be verified against current operator capability before any commitment** — do not treat "Ashtabula is best" as established.
+
+| Port | Status for inbound rock salt |
+|---|---|
+| **Toledo** | The **proven** inbound Canadian rock-salt port; established bulk-discharge capability |
+| **Cleveland** | Has a **domestic mine competing directly** with imported salt — commercial conflict, not just logistics |
+| **Ashtabula** | Geographically ideal via Seaway; **capability unverified**; docks closed 2015 |
+
+**Hard seasonal deadline.** The Great Lakes / St Lawrence Seaway closes for winter ice. Any plan targeting the **2026-27 de-icing season** is time-critical; a missed window pushes delivery ~5 months.
+
+**Also worth noting.** Rock salt is a **different business shape** from cacao/sugar: bulk tonnage, thin per-unit margin, seasonal demand, municipal/public-sector buyers, competing with a domestic mine. None of the DAO's existing commodity assumptions (premium pricing, QR/bag-level lineage, ceremonial grade) transfer. If this becomes real it needs its own unit-economics sketch, not a cacao template.
+
+**Action.** (1) Verify Ashtabula bulk-salt discharge capability with the current port operator before advising. (2) Decide whether rock salt is in-scope for the DAO at all — if yes it needs its own runbook; if no, record that and stop consuming governor time on it.
+
 ### Sales-event money convention (gross price + separate expense rows) is UNDOCUMENTED — cost a false alarm already
 
 **Filed 2026-11-14 (Sophia Truesight). Owner: unclaimed. Priority: LOW-MEDIUM — data is correct, documentation is absent.**
