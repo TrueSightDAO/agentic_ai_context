@@ -20,6 +20,87 @@
 > Legacy filenames keep the `farm-media` prefix (this file, the repo, the manifests dir)
 > as the first namespace; new sources add their own namespace (e.g. `EVENT_MEDIA_MANIFESTS/`).
 
+## Terminology — media artifacts (clip / beat / segment / cut / master / share copy / reel)
+
+> Added 2026-11-23. The MAP section above names the **pipeline stages**. This section names
+> the **artifacts** that flow through them.
+
+These words were previously used interchangeably. That caused a shipped defect, not just
+fuzzy language: a **caption list belonging to one market ended up in another market's cut**, and
+the beats were shared while the copy was not. Nothing in the vocabulary separated them, so
+nothing in the code did either. **Each rung below is a different artifact with a different
+identity, and you never hand-edit a lower rung to fix a problem at a higher one.**
+
+| # | Term | What it is | Identity | Mutable? |
+|---|---|---|---|---|
+| 1 | **Clip** | One immutable source file as captured (e.g. `IMG_2437.MOV` → `.mp4`). Never edited in place; never re-encoded to "fix" a cut. | source filename (`IMG_2437`) | **no** — archived original |
+| 2 | **Beat** | A *narrative unit in the plan*, named by intent, with no file attached yet: "the pour", "the drum interior", "the end card". Describes what the story needs. | beat name (shared across markets) | yes, until sign-off |
+| 3 | **Segment** | A beat **resolved onto the timeline**: one clip + in-point + duration + caption windows. This is the `SEGS` row in a build script. | EDL row | yes, but only via the build script |
+| 4 | **Cut** (EDL) | The **ordered list of segments** — the edit decision list. A cut is a *plan*, not a file. It has a version (`v6`) because plans get revised. | cut id + version | yes, versioned |
+| 5 | **Variant** | A cut **plus one market's copy** (title, captions, end card, place line). Same beats, different words. Agroverse = English, F5 = Chinese (§ *Market split* above). | `(cut, market)` | yes |
+| 6 | **Master** | The **rendered, full-quality** file for one variant. Full bitrate, `bt709`, safe-area asserted. This is the archival render. | file + content hash | **no** — regenerate, never trim |
+| 7 | **Share copy** | A **derivative encode** of a master, sized for one delivery target (platform upload limits, chat attachment limits). Loses quality by design; never a source of record. | file | derived, disposable |
+| 8 | **Reel** / **video** | The **platform-facing published artifact** — what an audience sees once posted, with its platform id / post URL. The only rung with an audience. | post / release id | published = frozen |
+
+**Ladder:** `Clip → Beat → Segment → Cut → Variant → Master → Share copy → Reel`
+
+Read it as: *source is immutable, beats are shared, segments are per-cut, copy is per-variant,
+masters are per-variant, share copies are disposable, reels are public.*
+
+### Naming — a filename should say which rung it is
+
+```
+{cut}-{variant}-v{n}-{stage}.mp4
+
+  santos-roast-agroverse-v6-master.mp4
+  santos-roast-f5-v6-master.mp4
+  santos-roast-f5-v6-share.mp4
+```
+
+- **stage** ∈ `master` | `share`. A file with no stage token is not a deliverable.
+- **version** belongs in the filename because "the latest" is mentally tracked and therefore
+  wrong exactly when it matters. This cut reached **v6** for these reasons in order:
+  v2 = no roaster in the footage; v3 = roaster found, but a 4s dead black tail; v4 = tail
+  fixed, title over faces; v5 = title off faces, but caption lists cross-contaminated between
+  markets; v6 = declarative per-market copy + assertions. **Six revisions is normal; pretending
+  v1 shipped is not.**
+- A `-share` copy may be deleted freely. A `-master` may only be regenerated from its cut.
+
+### Structural rule (the code consequence)
+
+Because beats are shared and copy is per variant, per-market data is declared **once**, not
+patched per market:
+
+```python
+BEATS = [(clip, in_point, duration), ...]      # shared narrative timeline
+COPY  = {"agroverse": {"title": ..., "caps": [...], "end": [...], "place": ...},
+         "f5":        {"title": ..., "caps": [...], "end": [...], "place": ...}}
+```
+
+and the render **asserts before encoding**:
+
+1. every variant's `caps` has exactly one entry per beat (same count as `BEATS`);
+2. the market's language is actually present — CJK required for F5, CJK forbidden for Agroverse;
+3. no caption contains a literal `\u` escape or a double escape (it would burn in as text);
+4. no caption window exceeds its beat duration;
+5. no segment requests more footage than its source clip contains (§ anti-patterns).
+
+Any assertion failing must abort the render. **A wrong-language master must be impossible to
+produce, not merely caught later by a human reading a screen.**
+
+### Anti-patterns
+
+- **"Reel" meaning a source clip.** A reel is published; a clip is raw. If the sentence still
+  makes sense with "reel" replaced by "clip", it is the wrong word.
+- **Patching one variant's SEGS with another variant's text.** This is the observed root cause
+  of wrong-language captions shipping twice. Copy is per-variant data — declare it, never splice it.
+- **Fixing a master to avoid re-rendering its cut.** A master is regenerated from its cut. Hand
+  edits to a master silently detach it from the EDL that produced it.
+- **Reporting "the video" without a rung.** Say *cut*, *master*, or *share copy* — the person
+  you are telling needs to know which one you mean, because the fixes differ.
+
+---
+
 Standardized pipeline for ingesting raw farm media (HEIC photos + MOV videos zips) from TrueSightDAO partner farms: GPS extraction, plot registration, SHA-256 dedupe, object detection, MOV→MP4 (GPS-preserving), **public** YouTube upload, photo storage in `farm-media-raw` (Contents-API only), farm-page wiring, and a searchable manifest index.
 
 Written so **any Sophia instance** can process a farm end-to-end or pick up a farm handed off by a governor. Governors: hand off a zip + this file's checklist; the receiving instance follows this doc.
