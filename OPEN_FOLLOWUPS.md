@@ -39,6 +39,35 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Vendor expense receipts are unretrievable in bulk — Stripe e-mail links expire, so only same-month receipts can be filed with evidence
+
+**Filed 2026-11-23 (Sophia Truesight). Owner: unclaimed. Priority: MEDIUM — it silently degrades expense provenance, not the amounts.**
+
+**Symptom.** A governor asked for all Anthropic (Claude Pro) receipts in the inbox to be attached and filed as USD contributions. **13 receipts** were enumerated (2026-01-08 .. 2026-11-22, total **USD 471.52**). Only **1 of 13** PDFs could actually be retrieved.
+
+**Root cause — two different Stripe link types, both decaying.**
+
+| Link in the e-mail | Host | Result |
+|---|---|---|
+| `Download receipt` | `dashboard.stripe.com/receipts/invoices/…/pdf` | newest **HTTP 200**; older ones **HTTP 410 Gone** |
+| `Download invoice` | `pay.stripe.com/invoice/acct_…/pdf` | **HTTP 400**, body literally `This URL has expired.` |
+
+Neither the messages nor the mailbox carried a **file attachment** — the receipts are link-only. So "grab the receipts attached to them" is impossible as stated; the PDFs must be fetched at the time, or regenerated later.
+
+**Why it matters.** Any expense-filing workflow that batches historical receipts will file the **amounts** (readable from the e-mail body forever) while silently losing the **evidence**. For a DAO whose audit trail is the product, an expense row without its receipt PDF is a weak record. It also means the loss is invisible: the amount books fine, so nothing looks broken.
+
+**Second, independent finding worth its own attention.** The retrieved receipt's bill-to is **TrueTech Inc**, *not* the DAO. These subscriptions are therefore **contributor-paid expenses**, not DAO vendor liabilities — and filing them as ordinary contribution events would record a corporate third party's cost as DAO contribution. Needs a documented convention (see the sibling gross-vs-expense entry above for the same class of ambiguity).
+
+**Third: amounts are not uniform.** 3 of 13 are **not** $20.00 — `2914-5219-1159` **USD 80.65**, `2529-3686-6324` **USD 110.25**, `2354-4725-3095` **USD 80.62**. Filing a batch on the assumption of a flat monthly $20 would mis-book **USD 271.52** of the 471.52. (Also suspicious: two receipts in May 2026 — 21 May and 22 May — plus a 15 May one, i.e. a mid-cycle pattern consistent with retries or plan changes. Worth reconciling against the Stripe subscription history.)
+
+**Recommended fix.**
+
+1. **Stop relying on e-mail links for provenance.** On receipt, pull the PDF immediately (a mail-rule/poller hook that fetches and archives on arrival) — a receipt is only recoverable in its birth month.
+2. **Add a Stripe read-only API key** to the autopilot vault so expired links become irrelevant: regenerate any receipt/invoice PDF by charge or invoice id at any time. This is the durable fix; without it every historical batch hits this wall.
+3. **Record the bill-to entity on the event**, so contributor-paid vs DAO-liability is explicit rather than inferred.
+
+**Mitigated this session.** The single retrievable PDF was archived to `store_interaction_attachments/asset_receipts/anthropic/`, plus a 13-row manifest CSV recording every receipt number, date, amount, and **retrieval status** so the 12 missing PDFs are a known, enumerated gap rather than a silent one — and recoverable via the Stripe dashboard or an API key later.
+
 ### Sales-event money convention (gross price + separate expense rows) is UNDOCUMENTED — cost a false alarm already
 
 **Filed 2026-11-14 (Sophia Truesight). Owner: unclaimed. Priority: LOW-MEDIUM — data is correct, documentation is absent.**
