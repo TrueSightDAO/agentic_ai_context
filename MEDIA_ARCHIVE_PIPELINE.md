@@ -361,6 +361,25 @@ recommendation) and wait for a decision before cutting. Producing a deliverable 
 turn as the proposal skips the one checkpoint that catches a wrong-theme or wrong-format call
 before render time is spent on it.
 
+### Step 6 — Gemini QC gate before human review
+
+Before any generated cut goes to a human for review, run an automated QC pass over **the rendered
+deliverable** — not the plan, not the source clips. Sample frames across each beat, send the final
+script/caption text together with those frames, and have the model answer:
+
+- Does each caption line describe **what is on screen at the moment it appears**?
+- Does the title describe the footage that **follows** it?
+- Is any burned-in text clipped, colliding with platform UI, or unreadable?
+- Is the text in the **intended language for the market**?
+
+This is a **gate, not a substitute for governor sign-off**. It catches the mechanical and descriptive
+failures — copy drifted from the cut, wrong market language, garbled glyphs — before a human spends
+attention on them. Record the QC verdict alongside the deliverable.
+
+Why it exists: the 2026-11-22 F5 cut reached human review with **English subtitles on a
+Chinese-market video**, and nothing in the pipeline was positioned to notice. A human caught it by
+reading.
+
 ## Burned-in text — captions, subtitles & title cards (documented 2026-11-17, Reel "Where Flavor Is Decided")
 
 Applies whenever text is **composited into pixels**: burned-in captions, translated subtitles, title
@@ -490,6 +509,29 @@ factory.
 - If a line can't be pointed at a beat that shows it, it's a claim, not a caption — cut it.
 - Log the divergence: when a produced asset departs from its scheduled row (title *and* format), the
   row is now stale and should be corrected — but that's a content-plan edit, so get governor sign-off.
+
+### Copy is bound to the cut — changing a clip invalidates the copy
+
+Captions, subtitles, narration and the title are **derived from the beats in the cut**, not from the
+theme in the content calendar. They are not assets that travel with the project: swap, insert or
+reorder a source clip and every line that pointed at the old footage is now unverified.
+
+When the underlying clip changes, re-derive **all** of:
+
+- the **script / caption lines** — each must still point at a beat that shows it
+- the **voice / narration** — a line written over a farm shot reads wrong over a factory shot
+- the **title** — a title is a claim about what follows it
+- the **place / attribution line** — new footage means a new farm or facility credit
+- the **market language** — a re-render for another market re-derives independently; never re-caption
+
+Because the text is burned into pixels, this is a **re-render from source**, never a re-caption of
+the previous master.
+
+Worked example (2026-11-22, roasting Reel): the cut was assembled entirely from a farm folder and
+never showed a roaster — a real weakness in a video titled "where roasting decides the taste". Adding
+Santos factory footage meant the copy, the attribution line ("x Santos, Brazil") and the beat order
+all had to be rewritten. Reusing the farm-era lines would have left the video describing footage it
+no longer contained.
 
 ### The title belongs on the FIRST frame — cold open
 
@@ -752,6 +794,14 @@ Include in the handoff message:
   can contain one clearanced clip and one un-cleared one.
 - ✅ Keep large generated blobs on YouTube and reference by `yt_id`; commit only the small
   diffable manifest.
+- ❌ Reusing copy across a clip swap — captions are derived from the beats, so replacing footage
+  invalidates every line that pointed at the old clip. Re-derive, then re-render from source.
+- ❌ Sending a generated cut to a human before a Gemini QC pass over the **rendered frames** — copy
+  drift and wrong-market language are exactly what a human should not be the first to notice.
+- ❌ Running two renders concurrently from one shared work dir — fixed-name temp files (caption text,
+  end card, place line) are written by both processes and one market silently inherits the other's
+  language. Give each render its own work dir. This shipped: the F5 cut reached review with English
+  subtitles because both renders shared `WORK` and `tf()` wrote `end.txt` / `s0_0.txt` by name.
 - ❌ Bare `drawtext` for multi-line/variable-length burned-in text — it has no width constraint, so
   wide lines are centred past both frame edges and silently clipped. Render text as a PNG via PIL
   with wrap → shrink → assert. See "Burned-in text".
