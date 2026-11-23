@@ -20,9 +20,48 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-11-23T06:18:30Z`
+- Generated (UTC): `2026-11-23T07:59:34Z`
 - Look-back: **7** calendar days (`2026-11-16` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
+
+---
+
+## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
+
+_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
+
+### Event-type rollup
+
+- `[CONTRIBUTION EVENT]` × 22
+- `[PRACTICE EVENT]` × 9
+- `[EMAIL REGISTERED EVENT]` × 4
+- `[DAO INVENTORY EXPENSE EVENT]` × 3
+- `[EMAIL VERIFICATION EVENT]` × 2
+- `[CURRENCY CONVERSION EVENT]` × 1
+- `[ASSET RECEIPT EVENT]` × 1
+
+### Latest entries
+
+- `Edgar_20261119002842_3780` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-11-19T00:28:40.440Z · Email: beth@therapeutic-bodywork.com
+- `Edgar_20261119003521_3782` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-11-19T00:35:19.476Z · Email: beth@therapeutic-bodywork.com · Verification Key: wSFut-Cxnv-2q-LgIR_9YnY8rRwwCTj4kB0T_8uQRD0
+- `Edgar_20261119003735_3784` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-11-19T00:37:34.357Z · Email: beth@therapeutic-bodywork.com · Verification Key: wSFut-Cxnv-2q-LgIR_9YnY8rRwwCTj4kB0T_8uQRD0
+- `Edgar_20261119011956_3786` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-19T01:19:53.614Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20261119050059_3788` · **Edgar** · [EMAIL REGISTERED EVENT] Email: admin+muse@truesight.me
+- `Edgar_20261119075033_3790` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Description: Cacao legacy project — 20min with Lawrence Kwek (atom logistics, SG/BR carbo…
+- `Edgar_20261119081905_3792` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 1 · Description: CORRECTION — Nathan is Nathan LUI (Sha Tin, HK); Changsha contact mis-attrib…
+- `Edgar_20261119225353_3794` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-19T22:53:50.753Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20261120000730_3796` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: Cacao Innovation Center follow-up — heavy metal test reports for 6 samples (…
+- `Edgar_20261120001407_3798` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 150 · Description: 2.5h — China distribution discussion (with cacao meeting + Chinese mould-sou…
+- `Edgar_20261120001747_3800` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Kirsten follow-up — 5g chocolate mould availability for potential Chinese ma…
+- `Edgar_20261120003612_3802` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Kirsten — 10min sourcing two 5g PC mould options (PCB209 $29.99, Chocolate W…
+- `Edgar_20261120011751_3804` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Cristiano (CIC) follow-up — heavy metal reports still outstanding, China sid…
+- `Edgar_20261120122508_3806` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Ealvin (Liuyang organic farm) — 3h on hosting cacao circles at his venue + c…
+- `Edgar_20261120122949_3808` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Lawrence Kwek — 15min on cacao legacy program template + Sunmint data struct…
+- `Edgar_20261120132940_3810` · **Edgar** · [ASSET RECEIPT EVENT] Amount: 1000.00 · Attached Filename: liz_elizabeth_wong_rmb1000_whatsapp_transfer_china_travel_2026-11-20.p… · Currency: RMB (CNY, ¥)
+- `Edgar_20261121025116_3812` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-21T02:51:13.889Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20261122032000_3814` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-22T03:19:59.310Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20261122224332_3816` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-22T22:43:30.338Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20261123041337_3818` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 20.00 · Description: Anthropic / Claude Pro receipt #2893-9096-8721 — USD 20.00 (2026-11-22)
 
 ---
 
@@ -196,13 +235,16 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+34 more in JSON snapshot.)_
 
-### Cash float
+### Cash float (`off chain asset balance`)
 
-_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
+- USD on hand: **$1,549.95**
+- Brazilian Reis: R$-1,385.00 · rate `0.2323` USD/BRL → ≈ **$-321.74**
+- USD provisioned for voting-rights cash-out: **$59.34**
 
-### In-transit freight
+### In-transit freight (0 rows)
 
-_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
+_No `Shipment Ledger Listing` rows match in-flight status keywords today._
+
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -256,6 +298,8 @@ a664e98 | 2026-11-20 21:29:41 +0800 | Document F5 Content Schedule tab + fix pri
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+9011efd | 2026-11-23 14:18:53 +0800 | Merge pull request #1875 from TrueSightDAO/auto/advisory-refresh-2026-11-23
+115a381 | 2026-11-23 06:18:37 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-23 UTC)
 624c2d8 | 2026-11-23 12:13:30 +0800 | File follow-up: Stripe receipt links expire, blocking bulk expense-receipt filings (#1874)
 21a269c | 2026-11-23 12:12:15 +0800 | SOP: copy is bound to the cut + Gemini QC gate before human review (#1873)
 5161ad0 | 2026-11-23 03:55:05 +0800 | chore(previews): refresh Beer Hall preview (2026-11-22 UTC)
@@ -294,8 +338,6 @@ b2bcb0f | 2026-11-17 17:29:08 +0800 | docs(pipeline): retract "8h Stage-2 stall"
 95a9878 | 2026-11-17 17:17:38 +0800 | docs(pipeline): Stage-2 trigger silent-stalled 8h; correct stale liveness claims (#1863)
 f6e54df | 2026-11-17 16:18:39 +0800 | chore(previews): refresh Beer Hall preview (2026-11-17 UTC)
 8906422 | 2026-11-17 16:18:37 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-17 UTC)
-fcece56 | 2026-11-17 14:48:16 +0800 | SOP: correct BRL/Brazilian Reis root cause - alias exists, three write paths bypass it (#1862)
-3b9aaaa | 2026-11-17 12:58:18 +0800 | BFP SOP: add caption safe-area & verification rules (§2.4, §7A) (#1861)
 … (truncated)
 ```
 
@@ -427,6 +469,39 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
+
+---
+
+## Sheet evidence (sales)
+
+_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
+
+### `Monthly Statistics` (last **14** non-empty rows)
+
+| Year-Month | Monthly USD | Cumulative USD | Last updated |
+|------------|-------------|------------------|---------------|
+| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
+| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
+| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
+| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
+| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
+| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
+| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
+| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
+| 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
+| 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
+| 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
+| 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
+| 2026-10 | 460 | 18944.34386 | 10/31/2026 |
+| 2026-11 | 276.9 | 19221.24386 | 11/22/2026 23:50:40 |
+
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-11-16`; scanned last **600** data rows)
+
+| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
+|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
+| — | — | — | — | — | — | _No rows in scan window (try larger `--sheet-sales-qr-scan` or `--since-days`)._ |
+
+_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
