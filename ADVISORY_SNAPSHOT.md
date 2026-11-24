@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-11-23T07:59:34Z`
-- Look-back: **7** calendar days (`2026-11-16` → today UTC)
+- Generated (UTC): `2026-11-24T00:11:09Z`
+- Look-back: **7** calendar days (`2026-11-17` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -76,7 +76,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-11-22T11:59:14.532Z`
+- Generated (UTC): `2026-11-23T11:59:14.831Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -254,7 +254,7 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_(No `YYYY-MM-DD |` lines on/after 2026-11-16 in CONTEXT_UPDATES.md.)_
+_(No `YYYY-MM-DD |` lines on/after 2026-11-17 in CONTEXT_UPDATES.md.)_
 
 ---
 
@@ -273,6 +273,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-11-16 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+3423d84 | 2026-11-23 08:05:19 +0000 | chore(stats): refresh stats indexes [skip ci]
 b0e99f9 | 2026-11-22 19:55:50 +0000 | chore(stats): refresh stats indexes [skip ci]
 9c655f1 | 2026-11-22 07:20:36 +0000 | chore(stats): refresh stats indexes [skip ci]
 74a5f58 | 2026-11-21 19:42:18 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -285,8 +286,6 @@ dab09c2 | 2026-11-20 07:40:43 +0000 | chore(stats): refresh stats indexes [skip 
 25b2c1a | 2026-11-18 07:52:30 +0000 | chore(stats): refresh stats indexes [skip ci]
 3c4d8b3 | 2026-11-17 21:15:55 +0000 | chore(stats): refresh stats indexes [skip ci]
 68083f0 | 2026-11-17 08:23:27 +0000 | chore(stats): refresh stats indexes [skip ci]
-e9c8adc | 2026-11-16 22:27:38 +0000 | chore(stats): refresh stats indexes [skip ci]
-f1da324 | 2026-11-16 07:10:36 +0000 | chore(stats): refresh stats indexes [skip ci]
 ```
 
 ### `market_research` → `go_to_market`
@@ -298,6 +297,10 @@ a664e98 | 2026-11-20 21:29:41 +0800 | Document F5 Content Schedule tab + fix pri
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+e2e2699 | 2026-11-24 03:20:23 +0800 | SOP: standardize media artifact terminology (clip/beat/segment/cut/master/share copy/reel) (#1877)
+4aa0f3a | 2026-11-24 00:49:35 +0800 | File rock salt (road salt) as an untracked commodity line in OPEN_FOLLOWUPS (#1876)
+ba666fa | 2026-11-23 15:59:55 +0800 | chore(previews): refresh Beer Hall preview (2026-11-23 UTC)
+1b9e955 | 2026-11-23 15:59:53 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-23 UTC)
 9011efd | 2026-11-23 14:18:53 +0800 | Merge pull request #1875 from TrueSightDAO/auto/advisory-refresh-2026-11-23
 115a381 | 2026-11-23 06:18:37 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-23 UTC)
 624c2d8 | 2026-11-23 12:13:30 +0800 | File follow-up: Stripe receipt links expire, blocking bulk expense-receipt filings (#1874)
@@ -334,10 +337,6 @@ ab8e79d | 2026-11-18 17:28:45 +0800 | docs(open-followups): document SALES EVENT
 ffc3392 | 2026-11-18 05:12:27 +0800 | chore(previews): refresh Beer Hall preview (2026-11-17 UTC)
 b546c9e | 2026-11-18 05:12:25 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-17 UTC)
 ab4bda9 | 2026-11-17 20:32:46 +0800 | Add accountant call evidence 2026-11-17 (SIMPLES, CNPJ handover)
-b2bcb0f | 2026-11-17 17:29:08 +0800 | docs(pipeline): retract "8h Stage-2 stall" — timezone artifact, not an outage (#1864)
-95a9878 | 2026-11-17 17:17:38 +0800 | docs(pipeline): Stage-2 trigger silent-stalled 8h; correct stale liveness claims (#1863)
-f6e54df | 2026-11-17 16:18:39 +0800 | chore(previews): refresh Beer Hall preview (2026-11-17 UTC)
-8906422 | 2026-11-17 16:18:37 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-17 UTC)
 … (truncated)
 ```
 
@@ -376,6 +375,9 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+e1da971 | 2026-11-23 18:46:10 +0000 | chore: refresh partners-velocity snapshot [skip ci]
+78cf9c8 | 2026-11-23 18:44:28 +0000 | chore: refresh currencies.json [skip ci]
+acbc736 | 2026-11-23 18:15:44 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 da9db4a | 2026-11-22 14:54:08 +0000 | chore: refresh currencies.json [skip ci]
 7003894 | 2026-11-22 14:39:17 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 62bfa43 | 2026-11-21 14:55:53 +0000 | chore: refresh currencies.json [skip ci]
@@ -396,9 +398,6 @@ edff8a4 | 2026-11-19 17:16:16 +0800 | Add AWB 047-3175-3223 tax-amendment proven
 9c9c2f9 | 2026-11-18 15:44:01 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 14c7050 | 2026-11-17 16:28:34 +0000 | chore: refresh currencies.json [skip ci]
 e662808 | 2026-11-17 16:04:57 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
-7697efa | 2026-11-16 16:28:02 +0000 | chore: refresh partners-velocity snapshot [skip ci]
-d2657ad | 2026-11-16 16:25:17 +0000 | chore: refresh currencies.json [skip ci]
-7efe659 | 2026-11-16 15:52:45 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -493,9 +492,9 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
 | 2026-10 | 460 | 18944.34386 | 10/31/2026 |
-| 2026-11 | 276.9 | 19221.24386 | 11/22/2026 23:50:40 |
+| 2026-11 | 276.9 | 19221.24386 | 11/23/2026 16:07:27 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-11-16`; scanned last **600** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-11-17`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
