@@ -28,10 +28,13 @@ Every defect we have actually found was found by a *number*, not by looking.
 | Sample | Delivered as | Desktop page H | Mobile page H (390) | Ratio | Outcome |
 |---|---|---|---|---|---|
 | **GO · IAMNOTAI** | 4.59 MB static single-file HTML | 12,889 px | 3,494 px | **0.271** | ✗ shrunken poster |
+| **F5 · 把可可种回森林** | 12.2 MB "self-contained" single-file HTML | 9,684 px | 10,574 px | **1.092** | ✓ healthy reflow, ✗ packaging defect (§8) |
 | **EPIX Apollo** | pnpm monorepo, React 19 + Vite 7 | 7,091 px | 8,338 px | **1.176** | ✓ healthy reflow |
 | **cacao-legacy-site-v1.53** | zip behind Google Drive link | — | — | — | blocked (§7) |
 
 Note 390 / 1440 = **0.271**. That coincidence is the whole trick — see §4.1.
+
+F5 is the sharpest lesson of the three: it **passes both decisive tests** (reflow ratio 1.092, ~130 real breakpoints, root font steady at 16px) and is correctly the stronger build of the two single-file-HTML samples — but a ratio/root-font pass is not the whole checklist. Its three real defects (below) all live in §5's ground-truth fields, which the two decisive tests do not cover. **A page can reflow perfectly and still ship broken.**
 
 ---
 
@@ -258,6 +261,24 @@ review what we cannot open, and neither can a stakeholder.
 > readings (`l/I`, `o/0`). Prefer the emailed text over the screenshot, and always
 > report which variant you tried.
 
+**Figma `/make/` links are a second, distinct blocker class** (confirmed directly,
+2026-11-16, chasing a name-card design): `figma.com/make/<id>/...` is a client-rendered
+AI-generation workspace, not a static page. `curl`/`WebFetch` returns the empty app
+shell — no image, no layout, no text — indistinguishable from "nothing is there."
+This is *not* the same failure as a Drive sign-in wall (which at least returns a
+real, identifiable HTML page); a Figma `/make/` fetch returns a shell that could
+easily be mistaken for "the link is dead" rather than "this needs a session." Do not
+report a `/make/` link as empty/broken without saying so explicitly. Two real unblock
+paths, neither of which is "try WebFetch harder":
+1. Ask the owner to export/screenshot the file and attach it directly.
+2. Use the Figma REST API with a personal access token (`X-Figma-Token` header,
+   `GET /v1/files/:key`) — read-only scope is enough; no token was available in
+   this box's `.env` files as of 2026-11-16.
+
+Standard Figma file links (`figma.com/file/...` or `figma.com/design/...`, not
+`/make/`) behave differently and may render further via public share settings — check
+which URL shape you actually have before concluding it's blocked.
+
 ---
 
 ## 8. Anti-patterns observed in real samples
@@ -267,9 +288,13 @@ review what we cannot open, and neither can a stakeholder.
 | `font-size: calc(100vw / N)` on `html` | GO·IAMNOTAI | whole design is a rubber sheet; mobile half-height, 4–5 px text | `clamp()` + real breakpoints |
 | Motion preference, zero width queries | GO·IAMNOTAI | 1 media query, `prefers-reduced-motion` only | add 1024/768/480 px queries |
 | Multi-MB inline single-file HTML | GO·IAMNOTAI (4.59 MB) | slow first paint, no caching, no lazy-load | split assets, `loading="lazy"` |
+| **False self-containment** — "single-file" HTML with `<img src>` pointing at bare relative filenames (siblings on disk, not inlined) | F5 (5 of 35 images) | loads fine *only* if the HTML stays next to its asset folder; `net::ERR_FILE_NOT_FOUND` the instant it's opened alone, emailed, or dropped on a different machine — exactly the scenario a "self-contained" deliverable exists to prevent | verify every `src` is `data:` before calling a file self-contained; `grep -o 'src="[^"]*"' *.html \| grep -v '^src="data:'` lists every one that will break |
+| Empty `src=""` on product-shot `<img>` tags | F5 (3 of 35 images, incl. both tin-view shots) | markup present, image absent — reads as a merge/export mistake, not a missing asset; browser emits a *different* console signature than a 404 (no `ERR_FILE_NOT_FOUND`) so it undercounts in a naive error-log check | check `broken` **and** `src === ""` separately — the ground-truth probe (Appendix) must flag both |
+| Sub-floor font size co-existing with a good reflow ratio | F5 (7px min on mobile, 8px desktop) despite ratio=1.092 ✓ | the two decisive tests (§4) can both pass while `minFontOnPage` fails — reflow and readability are independent checks, never let one stand in for the other | always run the full §5 checklist even after the decisive tests pass |
 | 2 links on an 8-section page | EPIX Apollo | 3 focusables total; no in-page nav | sticky section nav, keyboard-visible anchors |
 | Radix under `static` ancestor | EPIX Apollo | scroll-offset warning in console | `position: relative` wrapper |
 | CTA under 44 px | both | main commercial button hard to tap | pad the anchor, not just the label |
+| Tap targets scaled 1:1 from desktop | F5 (27 of 52, 52%, same count as desktop) | controls aren't re-sized for touch even when the surrounding layout reflows correctly | audit `tapUnder44` separately from the reflow test — a page can reflow and still ship unusable touch targets |
 
 ---
 
@@ -388,3 +413,4 @@ out.save("compare_hero.png", quality=88)
 | Date | Change |
 |---|---|
 | 2026-11-19 | Initial SOP. Derived from GO·IAMNOTAI (poster bug), EPIX Apollo (clean), cacao-legacy v1.53 (blocked). |
+| 2026-11-19 | Envoy review: added the missing third sample (F5 · 把可可种回森林) to §2's evidence table — the initial table only tabulated 2 of the 3 samples the header claimed, omitting F5's three real findings entirely. Added those as three new §8 anti-patterns, the sharpest being **false self-containment** (a "self-contained" single-file HTML whose `<img src>` points at sibling files, breaking the moment it's opened anywhere else) — a genuinely new defect class, distinct from a generic broken image. Also added the Figma `/make/` link blocker to §7, confirmed firsthand the same day chasing an unrelated name-card design. |
