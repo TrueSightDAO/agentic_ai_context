@@ -27,8 +27,28 @@ Verified live 2026-10-26 against all three sheets.
 > timezone against a UTC clock. The trigger had fired 6 minutes before measurement.
 >
 > **What is genuinely open:** that day's two *reel* contributions (Sophia 210 min, Gary 45 min) are
-> in Stage 1 with valid col-N hashes but have **no** `Scored Chatlogs` counterpart, while other
-> `20261117` rows do. See `OPEN_FOLLOWUPS.md`.
+> in Stage 1 with **`J=Pending` and an EMPTY col-N hash**, and have **no** `Scored Chatlogs`
+> counterpart, while 5 other `20261117` rows are already scored. See `OPEN_FOLLOWUPS.md`.
+>
+> ⚠️ **An earlier revision of this note claimed those two rows had "valid col-N hashes". That was
+> FALSE** — col N is empty on both. It is also empty on most pending rows: of `20261117`'s 14
+> rows, 5 carry a hash (all `Full Provision Awarded`) and **9 are empty (all `Pending`)**. On
+> `20261106`, 13 of 17 were empty. **An empty col N is the normal state of an unscored row**, so
+> never cite a hash as evidence a row is progressing. The confusion likely arose because the raw
+> event text carries a *signature*; that is not the Scoring Hash Key.
+>
+> ### ⚠️ `Entry Error` is a LEGACY backlog, not a live regression
+>
+> This tab's 16 `Entry Error` rows are spread across a full year — `20251119`, `20260421`,
+> `20260428`×2, `20260429`, `20260430`×2, `20260504`×3, `20260505`, `20260710`×5 — newest
+> **`20260710`, about four months stale**. Do not treat them as fresh breakage; a change made
+> today cannot produce a row dated 2025-11-19. **Triage them on their own merits, separately from
+> any current-day pipeline question.**
+>
+> Also: the literal phrase `SCORING FAILED` **appears as description prose** in ~22 `Transferred` /
+> `Pending Review` rows (contributions *about* fixing scoring). The real `Status` value here is
+> `Entry Error` — **never** `SCORING FAILED`. Grepping for the phrase and reading it as a status
+> is a false-positive generator.
 >
 > The 2026-10-26 note below is **retained for history but is no longer the current state**. Do not
 > re-assert "Stage 2 is dead" from it.
