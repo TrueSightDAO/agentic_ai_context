@@ -163,22 +163,36 @@ Same rule throughout: **a number, or an explicit "not quoted".** No estimating.
 
 | Item | Rate / value | Unit | Basis (per what?) | Brazil benchmark |
 |---|---|---|---|---|
-| Farm-gate bean price | | IDR / kg | wet or dried? fermented? | ☐ known — cite source |
-| Fermentation service, if separate | | IDR / kg | | ☐ none |
-| Drying, if separate | | IDR / kg | | ☐ none |
-| Factory processing fee | | IDR / kg | liquor? nibs? | ☐ known — cite source |
-| Farm → warehouse freight | | IDR / kg or / trip | | ☐ known — cite source |
-| Warehouse → factory freight | | IDR / kg or / trip | | ☐ known — cite source |
-| Warehousing | | IDR / kg / month | | ☐ known — cite source |
-| Lab — metals (4-metal panel) | | IDR / sample | per ICP-MS run | ☐ known (AGL4/AGL8) |
-| Lab — active ingredients | | IDR / sample | | ☐ none — never commissioned |
-| Export clearance / agent | | IDR / shipment | | ☐ known — cite source |
-| Sea freight | | USD / container | which port → which port | ☐ known — cite source |
-| Air freight | | USD / kg | | ☐ known — cite source |
-| Payment service fee | | % or flat | | PIX ≈ 0 for individuals |
-| **Landed cost to destination** | | USD / kg | **the number that matters** | ☐ known — cite source |
+| Farm-gate bean price | | IDR / kg | wet or dried? fermented? | **No benchmark on file.** The only R$/kg figure in `brazil/` is **R$130/kg for finished 70% bars** (Santos, `USA_SANTOS_PRODUCTION_SPEC.md`) — a *finished-product* price, **not** a bean price. Do not treat it as comparable |
+| Fermentation service, if separate | | IDR / kg | | **None** — integrated at Black King, never billed separately |
+| Drying, if separate | | IDR / kg | | **None** — likewise integrated |
+| Factory processing fee | | IDR / kg | liquor? nibs? | **No per-kg rate on file.** Santos quoted R$130/kg on *finished bars* only. Must be asked for explicitly |
+| Farm → warehouse freight | | IDR / kg or / trip | | **No benchmark on file** |
+| Warehouse → factory freight | | IDR / kg or / trip | | **No benchmark on file** |
+| Warehousing | | IDR / kg / month | | **No benchmark on file.** `brazil/ILHEUS_WAREHOUSE_MANAGEMENT.md` covers hygiene, compliance and the action register — **no rate anywhere** |
+| Lab — metals (4-metal panel) | | IDR / sample | per ICP-MS run | **Panel known, price not.** AGL4/Oscar `LAP-339.2025.B` + AGL8/Paulo `LAP-340.2025.B`: As, Cd, Pb, Cu by ICP-MS to ANVISA. CIC quotes metals per package, not off a list |
+| Lab — cut test (ISO 2451 + IN 38) | | IDR / sample | ~1.5 kg; pH included | **R$120 / sample**, ~10 business days — CIC 2026 FAQ |
+| Lab — cupping (unroasted) | | IDR / sample | ~500 g | **R$150 / sample**, ~10 business days — CIC 2026 FAQ |
+| Lab — active ingredients | | IDR / sample | flavonoids / theobromine / caffeine | **Not evidenced.** Absent from both reports on file, and absent from CIC's public catalogue (sits behind *"entre outras"*). **Confirm NF 0097 first — see §4** |
+| Export clearance / agent | | IDR / shipment | | **Agent known, rate not.** Omega Services — Iolanda Santos (SISCOMEX) · Gerson Argolo (desembaraço). **No fee on file** |
+| Sea freight | | USD / container | which port → which port | **No benchmark exists.** The Brazil→SF lane has **only ever run air** — see §3.1 |
+| Air freight | | USD / kg | | **USD 2.30/kg — actual**, per HBL (`brazil/sources/2026-10-02_air_waybill_hawb_issued.md`), cross-checked against 5 Continent (`2026-10-08_envoy_crosscheck_5continent_1026-08_CLEAN.md`). **Basis: 302.06 kg net / 322.06 kg gross** — per-kg falls with volume, so compare only at similar scale |
+| Payment service fee | | % or flat | | **PIX ≈ 0** for individuals |
+| **Landed cost to destination** | | USD / kg | **the number that matters** | **Never recorded as a single figure.** US-side components are known from `BRAZIL_TO_SF_FREIGHT_PREFLIGHT_CHECKLIST.md`: import handling ≈ **$125**, customs clearance ≈ **$150**, FDA Prior Notice ≈ **$100**, MPF **0.3464%** (min $33.58 / max $651.50), customs exam ≈ **$250** |
 
-> **On the Brazil benchmark column:** the TrueSight Brazil lane already has freight, warehouse, and lab data in `brazil/BRAZIL_TO_SF_FREIGHT_PREFLIGHT_CHECKLIST.md`, `brazil/ILHEUS_WAREHOUSE_MANAGEMENT.md`, and the two lab reports. Those should be filled in from source **before** this table goes to Rusmin, so the comparison is available in the room rather than reconstructed afterwards.
+> **The column is now filled — and filling it produced the most useful finding in this document.** See §3.1.
+
+### 3.1 What the filled column actually tells us
+
+**Only three of the fifteen rows have a figure that is genuinely comparable.** That is not a gap in the research; it is the real state of our cost knowledge, and it matters before the visit rather than after.
+
+**Two structural findings:**
+
+1. **Sea freight has no benchmark at all.** The Brazil→SF lane has **only ever run air** — the HBL at USD 2.30/kg is the proof. Indonesia is a short-sea, high-volume origin where sea is the *normal* mode. **We therefore cannot compare our primary Indonesian mode against anything we have done.** The sea quote is the single most important number to bring back from this visit, and it must be captured **per container with the port pair named**, because per-kg air and per-container sea do not convert without a utilisation assumption.
+
+2. **Warehousing has no rate on file, and it is an unbounded exposure.** The Brazil warehouse documentation is thorough on hygiene and compliance and completely silent on cost. Our own freight runbook already flags that storage while held is *"a live cost exposure not in any current model, and arguably not ours to bear."* **Ask Indonesia for IDR/kg/month explicitly** — it is the one recurring cost that silently compounds.
+
+**One trap to avoid:** the only R$/kg figure in the Brazil corpus is **R$130/kg for finished 70% bars** (Santos). That is a *finished-product manufacturing* price. Putting it anywhere near a **farm-gate bean** question would be a category error and would misprice the entire project by an order of magnitude. **It is deliberately not used as a bean benchmark here.**
 
 ---
 
@@ -227,6 +241,6 @@ If the visit proceeds well, this document is the **input** to three existing art
 | 2 | **Which site(s)?** One farm + one factory, or a circuit? Affects how much of §2 is realistic in one visit |
 | 3 | **Does Rusmin see this document in advance, or is it our internal brief?** It reads differently depending on the answer — advance sharing turns it into a request, internal keeps it a prompt sheet |
 | 4 | **Budget approval** for the expanded lab panel (§4) — needed before we ask anyone for it |
-| 5 | **Fill the Brazil benchmark column** before issue — should I populate it from `brazil/` sources now? |
+| 5 | ~~**Fill the Brazil benchmark column** before issue~~ — **DONE 2026-11-25.** Filled from source; the exercise found that **sea freight and warehousing have no Brazil benchmark at all** (§3.1), which reprioritises what to capture on the visit |
 | 6 | **Confirm NF 0097's line items with CIC** (`recepcao@pctsul.org`), and ask them to quote the **flavonoid / theobromine / caffeine** panel explicitly — it is not on their public catalogue, so it needs naming |
 | 7 | **Should the CD test (ISO 2451 + IN 38) be requested of Indonesia too?** It is cheap (R$120), fast (~10 days), and is the classification buyers actually recognise. Indonesia has its own national norm — ask which |
