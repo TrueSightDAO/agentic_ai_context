@@ -151,6 +151,8 @@ A token that has been pasted into a chat transcript should be treated as semi-ex
 | `workflowscheme/project` returns `{"values": []}` | no explicit scheme mapped; default inherited | expected — not an error |
 | Anonymous `serverInfo` = 200 but `project/search` = `total: 0` | anonymous visibility does not imply project visibility | always verify **authenticated**, never conclude "0 projects" from an anonymous read |
 | Board shows fewer columns than the 5 stages | `Planned`/`In Progress`/`In Review` share Jira's *In Progress* **category** | admin UI board mapping — see §7 |
+| `400` **"Cannot add user. User is already a member"** on `POST /group/user` | the `products` field at user creation already granted access | **benign — do not retry.** Verify with `user/assignable/search` (§13c) instead of chasing the 400 |
+| `GET /rest/api/3/instance` → `404`; `/rest/api/3/jiraconfig` → `404` | not exposed on this tenant | read `applicationrole` + `groups/picker` instead. A 404 here is **not** evidence of a broken tenant |
 
 > Diagnostic discipline: an absolute URL or path in an error message is what a process *tried*,
 > not proof of where the fault lies. Establish authenticated ground truth before reporting a
@@ -169,6 +171,9 @@ These need an Atlassian **admin** login. Record them here so no agent promises t
 3. **Org connectors / API-token auth toggle** — Administration → Connectors. If a future
    integration stalls at consent or fails every call, check here first.
 4. **Token issuance and revocation** — §5.
+5. **Creating (or deactivating) a Jira user** — consumes a **paid seat** and is effectively
+   one-way: deactivating a user does not reliably free it, so treat creation as permanent.
+   Never create a seat without an explicit governor instruction. Recipe + traps: **§13**.
 
 ---
 
@@ -312,3 +317,71 @@ the last so handoffs run by another box are not mistaken for Sophia's own queue.
 
 **`handoffs/index.json` is NOT deleted.** It is still written by the supervisor loop and read
 by other tooling. Retiring the *view* is not the same as deleting the *data*.
+
+---
+
+## 13. Provisioning an agent identity on the tenant (verified 2026-11-25)
+
+§11 records that Sophia's identity **exists**; this section records **how to create one**, because
+two of the responses involved look fatal and are not, and one of them cost a debugging round.
+
+### 13a. The working call
+
+```json
+POST /rest/api/3/user
+{
+  "emailAddress": "sophia@truesight.me",
+  "displayName":  "Sophia Truesight",
+  "products":     ["jira-software"]
+}
+```
+
+`products` grants Jira product access **at creation**. That makes the follow-up group call
+redundant, which produces the misleading response in §13b.
+
+### 13b. Two `400`s that mean opposite things
+
+| Response | Meaning | Action |
+|---|---|---|
+| `400`, empty/absent body | validation rejected the payload (e.g. missing `emailAddress`) | **real error** — fix the payload |
+| `400` **"Cannot add user. User is already a member"** on `POST /group/user`, *after* a successful create | the `products` grant already put the user in the group | **benign — ignore, do not retry** |
+
+Do not "fix" the second one. The identity is already correct; confirm it with §13c.
+
+### 13c. Verify with assignability, not existence
+
+An account can exist and still not be assignable on the project, so **assignability is the only
+proof that matters**:
+
+```
+GET /rest/api/3/user/assignable/search?project=KAN
+```
+
+Before Sophia's seat: **6** assignable (Gary + 5 Rovo apps). After: **7**.
+
+### 13d. Why `POST /user` cannot create an "agent" account
+
+`POST /rest/api/3/user` only creates `accountType: atlassian` (human-type) accounts. It **cannot**
+create `accountType: app`, which is what Atlassian provisions for its own Rovo/AI identities — on
+this tenant the 40+ accounts named *Jira Triage Agent*, *Request Router*, *Jira Coding Agent*, and
+so on. Those are auto-provisioned and **not reusable** as an agent identity. An agent's own Jira
+identity is therefore necessarily a human-type seat — hence the billing note in §11 and the
+governor gate in §7 item 5.
+
+### 13e. Being assigned work ≠ acting as that identity
+
+Provisioning an identity is orthogonal to authenticating as it. `jira_query` authenticates with
+`JIRA_EMAIL` + `JIRA_API_TOKEN` (§5) — the account that **owns the token**. Creating
+`sophia@truesight.me` does not change who API calls run as, and there is no reason to change it:
+the token owner holds `ADMINISTER` and can assign work to the Sophia account freely.
+
+**Do not** swap `JIRA_EMAIL` to a newly created identity — that identity has no token and no
+login session, so every call would begin failing auth.
+
+### 13f. Governance note — an agent named in an org chart is not an independent reviewer
+
+Creating this seat carries a policy risk worth stating plainly: an agent with its own named Jira
+account can appear to be an independent reviewer when it is in fact the same automation (or the
+same model) as the worker. **Enforce human sign-off in the workflow or policy, never in the
+identity.** Do not treat "assigned to Sophia Truesight" as evidence that a second, independent
+set of eyes reviewed something. See §2 — `Done` requires *governor* acceptance.

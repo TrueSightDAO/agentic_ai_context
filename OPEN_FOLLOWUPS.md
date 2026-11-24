@@ -39,6 +39,18 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### `jira_query` has no `assign_issue` action — assignment needs a raw REST call
+
+**Filed 2026-11-25 (Sophia Truesight). Owner: unclaimed. Priority: LOW — harmless today, will bite at the next bulk-assign.**
+
+**Symptom.** `jira_query` can create, update, comment, transition and link PRs, but cannot set an assignee. Assigning the 57 migrated KAN tickets to `sophia@truesight.me` (`JIRA_WORKFLOW_SOP.md` §11) required a direct `PUT /rest/api/3/issue/<key>/assignee` via an ad-hoc script, bypassing the tool's write gate entirely.
+
+**Why it matters.** The write gate is the SOP's stated second line of defence (`JIRA_WORKFLOW_SOP.md` §4). A bulk reassignment is exactly the kind of write that should require `confirm_write=true`, and right now the sanctioned path does not exist — so the next person who writes a script has no gate at all. §11 also documents an identity that the tool cannot actually use, which reads as a capability the SOP does not have.
+
+**Recommended fix.** Add `assign_issue` as a write action (`confirm_write=true`): `PUT /rest/api/3/issue/{key}/assignee` with `{"accountId": ...}`, resolving an `assignee` email/name to an `accountId` via `user/assignable/search?project=<KEY>` so callers never hand-copy an account id. Wire into `app/tools/jira_tools.py` + the write-action allowlist + tests, then add a §4 row.
+
+**Acceptance.** `jira_query(action="assign_issue", issue_key="KAN-nn", assignee="sophia@truesight.me", confirm_write=true)` returns the assigned `accountId`; the same call without `confirm_write` is refused with the standard gate message.
+
 ### `tests/test_resolve_tdg_issued.py` is red on `main` — 5 failures, pre-existing, nobody owns it
 
 **Filed 2026-11-24 (Sophia Truesight). Owner: unclaimed. Priority: MEDIUM — a regression on `main` that every PR has to step around.**
