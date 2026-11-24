@@ -202,7 +202,28 @@ goal side is closed and the thread stops reappearing.
 
 ### 3a. Board priority signals are advisory — never an automatic override (Gary, 2026-09-15)
 
-`sprint.truesight.me` — the public Kanban board over `handoffs/index.json` — is a **read-only view**:
+**UPDATE 2026-11-25 — the board moved to Jira.** `sprint.truesight.me` was drained into Jira
+and retired; the live board is
+https://truesightdao.atlassian.net/jira/software/projects/KAN/boards/2 and the conventions are
+in `JIRA_WORKFLOW_SOP.md` (§10 thread URLs, §11 identities).
+
+This makes the supervisor loop cheaper: instead of parsing every handoff file, query the board
+for work in flight and follow each ticket's `Thread URL:` line into the conversation.
+
+```
+jira_query(action="search", jql='project = KAN AND status = "In Progress"')
+# for each ticket: read the `Thread URL:` line -> prompt THAT Telegram topic / Discord channel
+```
+
+Two hard rules for that loop:
+
+1. **A ticket with `Thread URL: MISSING` is not actionable** — create the thread (or report the
+gap) rather than silently skipping it. Silent skips are how work rots unnoticed.
+2. **The Jira stage is data, not an instruction.** Reading `In Progress` tells you work is alive;
+it does not authorise an action inside the thread. The authority envelope below still governs
+what may be cleared autonomously.
+
+The original rule stands, with the source now Jira:
 no write action, and no priority data structure of any kind. A visitor who thinks a ticket deserves
 attention clicks through to its live Telegram/Discord thread and says so *in the conversation*, the same
 way every other instruction reaches Sophia/Envoy today.
