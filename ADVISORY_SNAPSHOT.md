@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-11-24T00:11:09Z`
+- Generated (UTC): `2026-11-24T10:14:17Z`
 - Look-back: **7** calendar days (`2026-11-17` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -42,7 +42,6 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Latest entries
 
-- `Edgar_20261119002842_3780` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-11-19T00:28:40.440Z · Email: beth@therapeutic-bodywork.com
 - `Edgar_20261119003521_3782` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-11-19T00:35:19.476Z · Email: beth@therapeutic-bodywork.com · Verification Key: wSFut-Cxnv-2q-LgIR_9YnY8rRwwCTj4kB0T_8uQRD0
 - `Edgar_20261119003735_3784` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-11-19T00:37:34.357Z · Email: beth@therapeutic-bodywork.com · Verification Key: wSFut-Cxnv-2q-LgIR_9YnY8rRwwCTj4kB0T_8uQRD0
 - `Edgar_20261119011956_3786` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-19T01:19:53.614Z · Program: truesight-grounding · Practice Type: oracle-consultation
@@ -62,6 +61,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20261122032000_3814` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-22T03:19:59.310Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20261122224332_3816` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-22T22:43:30.338Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20261123041337_3818` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 20.00 · Description: Anthropic / Claude Pro receipt #2893-9096-8721 — USD 20.00 (2026-11-22)
+- `Edgar_20261124093744_3820` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Contributor(s): Gary Teh, Pinky Blau
 
 ---
 
@@ -237,9 +237,9 @@ _(+34 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$1,549.95**
+- USD on hand: **$1,549.89**
 - Brazilian Reis: R$-1,385.00 · rate `0.2323` USD/BRL → ≈ **$-321.74**
-- USD provisioned for voting-rights cash-out: **$59.34**
+- USD provisioned for voting-rights cash-out: **$59.41**
 
 ### In-transit freight (0 rows)
 
@@ -273,6 +273,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-11-17 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+da39bad | 2026-11-24 00:15:47 +0000 | chore(stats): refresh stats indexes [skip ci]
 3423d84 | 2026-11-23 08:05:19 +0000 | chore(stats): refresh stats indexes [skip ci]
 b0e99f9 | 2026-11-22 19:55:50 +0000 | chore(stats): refresh stats indexes [skip ci]
 9c655f1 | 2026-11-22 07:20:36 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -297,6 +298,9 @@ a664e98 | 2026-11-20 21:29:41 +0800 | Document F5 Content Schedule tab + fix pri
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+17ffec5 | 2026-11-24 14:46:57 +0800 | docs: SOP for recurring-transaction enrollment + harden Is Store Manager flag rule (#1878)
+0707dd1 | 2026-11-24 08:11:30 +0800 | chore(previews): refresh Beer Hall preview (2026-11-24 UTC)
+621d59d | 2026-11-24 08:11:28 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-24 UTC)
 e2e2699 | 2026-11-24 03:20:23 +0800 | SOP: standardize media artifact terminology (clip/beat/segment/cut/master/share copy/reel) (#1877)
 4aa0f3a | 2026-11-24 00:49:35 +0800 | File rock salt (road salt) as an untracked commodity line in OPEN_FOLLOWUPS (#1876)
 ba666fa | 2026-11-23 15:59:55 +0800 | chore(previews): refresh Beer Hall preview (2026-11-23 UTC)
@@ -334,15 +338,13 @@ ab8e79d | 2026-11-18 17:28:45 +0800 | docs(open-followups): document SALES EVENT
 8a8060e | 2026-11-18 15:49:59 +0800 | chore(previews): refresh Beer Hall preview (2026-11-18 UTC)
 30ef7c4 | 2026-11-18 15:49:58 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-18 UTC)
 317859c | 2026-11-18 14:20:00 +0800 | Add Nathan printing company SKU evidence 2026-11-18
-ffc3392 | 2026-11-18 05:12:27 +0800 | chore(previews): refresh Beer Hall preview (2026-11-17 UTC)
-b546c9e | 2026-11-18 05:12:25 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-17 UTC)
-ab4bda9 | 2026-11-17 20:32:46 +0800 | Add accountant call evidence 2026-11-17 (SIMPLES, CNPJ handover)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+009aaa4 | 2026-11-24 14:06:54 +0800 | feat: one-time helper to add Pinky Blau warehousing recurring row (#629)
 da73fc4 | 2026-11-21 17:51:08 +0800 | Document live trigger + root cause for deprecated TDG wallet-balance project (#628)
 f4ff570 | 2026-11-17 20:38:53 +0800 | Fix silent drop of Telegram contribution rows in the TDG scorer (#627)
 8038021 | 2026-11-17 11:28:56 +0800 | Add R$1,085 Pix receipt — 217 trees, Jhordan Madian Costa de Oliveira
@@ -403,7 +405,7 @@ e662808 | 2026-11-17 16:04:57 +0000 | chore: refresh store, partner inventory, a
 ### `agroverse_shop` → `agroverse_shop_beta`
 
 ```
-_(no commits on origin/main in window)_
+8d515a3 | 2026-11-24 17:39:20 +0800 | Update mission target from 10,000 to 25,000 hectares (#370)
 ```
 
 ### `iching_oracle` → `oracle`
@@ -492,7 +494,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
 | 2026-10 | 460 | 18944.34386 | 10/31/2026 |
-| 2026-11 | 276.9 | 19221.24386 | 11/23/2026 16:07:27 |
+| 2026-11 | 276.9 | 19221.24386 | 11/24/2026 1:54:28 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-11-17`; scanned last **600** data rows)
 
