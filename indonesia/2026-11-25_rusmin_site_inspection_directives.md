@@ -161,24 +161,51 @@ Each item below is written so it can be answered in one line and photographed in
 
 Same rule throughout: **a number, or an explicit "not quoted".** No estimating.
 
-| Item | Rate / value | Unit | Basis (per what?) | Brazil benchmark |
+| Item | Rate / value | Unit | Basis (per what?) | Brazil benchmark (sourced) |
 |---|---|---|---|---|
-| Farm-gate bean price | | IDR / kg | wet or dried? fermented? | ☐ known — cite source |
-| Fermentation service, if separate | | IDR / kg | | ☐ none |
-| Drying, if separate | | IDR / kg | | ☐ none |
-| Factory processing fee | | IDR / kg | liquor? nibs? | ☐ known — cite source |
-| Farm → warehouse freight | | IDR / kg or / trip | | ☐ known — cite source |
-| Warehouse → factory freight | | IDR / kg or / trip | | ☐ known — cite source |
-| Warehousing | | IDR / kg / month | | ☐ known — cite source |
-| Lab — metals (4-metal panel) | | IDR / sample | per ICP-MS run | ☐ known (AGL4/AGL8) |
-| Lab — active ingredients | | IDR / sample | | ☐ none — never commissioned |
-| Export clearance / agent | | IDR / shipment | | ☐ known — cite source |
-| Sea freight | | USD / container | which port → which port | ☐ known — cite source |
-| Air freight | | USD / kg | | ☐ known — cite source |
-| Payment service fee | | % or flat | | PIX ≈ 0 for individuals |
-| **Landed cost to destination** | | USD / kg | **the number that matters** | ☐ known — cite source |
+| Farm-gate bean price | | IDR / kg | wet or dried? fermented? | ⬜ **not on file** — see §3.1 |
+| Fermentation service, if separate | | IDR / kg | | ⬜ **not on file** |
+| Drying, if separate | | IDR / kg | | ⬜ **not on file** |
+| Factory processing fee | | IDR / kg | liquor? nibs? | ⬜ **not on file.** The only similar figure we hold is **R$130/kg for finished 70% bars** (Santos, prior quote) — a *product* price, **not a tolling fee**. Do not use it as a benchmark |
+| Farm → warehouse freight | | IDR / kg or / trip | | 🟢 **BRL 6,615** road transport per shipment **+ 0.15% ad-valorem** (Omega, May 2026) |
+| Warehouse → factory freight | | IDR / kg or / trip | | ⬜ **not on file** |
+| Warehousing | | IDR / kg / month | | ⬜ **not on file** — `ILHEUS_WAREHOUSE_MANAGEMENT.md` covers SOP, pest control and FSVP duties but carries **no storage rate** |
+| Lab — metals (4-metal panel) | | IDR / sample | per ICP-MS run | 🟡 **Quoted per package** by CIC, not off a price list. Paid: **NF 0097** (30 Sep 2026) — amount sits in the NFSe PDF |
+| Lab — active ingredients | | IDR / sample | | 🟡 **Not on CIC's public catalogue** — must be quoted by name (§2.5.1) |
+| Lab — cut test / classification | | IDR / sample | ISO 2451 + IN 38 | 🟢 **R$120**/sample, ~1.5 kg, ~10 business days (CIC) |
+| Lab — cupping / sensory | | IDR / sample | | 🟢 **R$150** cupping (~500 g) · **R$400** liquor/chocolate · **R$2,500** ADQ (CIC) |
+| Export clearance / agent | | IDR / shipment | | 🟢 **Export docs $95 · clearance $150 · FDA $100 · MPF 0.3464% · Brazil airport $0.30/kg (min $250) · US terminal $212.50 · US handling $125 · bond max($100, $6/$1k)** — Omega, May 2026 |
+| Sea freight | | USD / container | which port → which port | ⬜ **never quoted on this lane** — `BRAZIL_TO_HONG_KONG_IMPORT_SOP.md` §5 records *"Freight quote Brazil → HKG — not yet obtained"* |
+| Air freight | | USD / kg | | 🟢 **Quoted $3.20–3.50/kg tiered** (Omega, May 2026) → **actually billed USD 2.30/kg** on AWB `047-3175-3223` (TAP TP028, SSA→SFO). *The quote overstates reality by ~30–40% — see §3.2* |
+| Payment service fee | | % or flat | | PIX ≈ **0** for individuals |
+| **Landed cost to destination** | | USD / kg | **the number that matters** | 🟢 **Freight-only ≈ US$3,550** for a ~349 kg consolidated shipment (Omega, May 2026) ≈ **US$10.2/kg — derived arithmetic, not a quoted figure.** Treat as indicative only |
 
-> **On the Brazil benchmark column:** the TrueSight Brazil lane already has freight, warehouse, and lab data in `brazil/BRAZIL_TO_SF_FREIGHT_PREFLIGHT_CHECKLIST.md`, `brazil/ILHEUS_WAREHOUSE_MANAGEMENT.md`, and the two lab reports. Those should be filled in from source **before** this table goes to Rusmin, so the comparison is available in the room rather than reconstructed afterwards.
+### 3.1 What the Brazil benchmark does *not* cover — read before comparing
+
+**Our Brazil records are deep on export logistics and thin on upstream economics.** That asymmetry is the single most important caveat on this table.
+
+**What we can compare:** every cost from the warehouse door outward — freight, clearance, airport handling, FDA, MPF, lab. Those have primary sources and are directly usable.
+
+**What we cannot compare:** the farm and the factory. We hold **no Brazilian bean-gate price, no fermentation or drying fee, no warehouse storage rate, and no tolling/processing fee.** The R$130/kg we do hold is a *finished-bar* price from Santos, which measures something else entirely.
+
+**The consequence is concrete:** the Indonesian numbers gathered on this visit will be **more complete than the Brazilian benchmark they are being compared to.** So:
+
+1. **Do not present this as a like-for-like comparison to Rusmin.** It is a logistics comparison plus an open upstream question.
+2. **Before any commercial conclusion**, fill the Brazilian upstream gaps — bean-gate price, fermentation/drying, warehouse rate — from Black King / Matheus. Those are answers we already have access to and simply have not recorded.
+3. **A missing benchmark is a finding, not a gap to paper over.** An empty cell here means we do not know our own cost base, which is worth knowing before we negotiate against someone else's.
+
+### 3.2 Quotes are not prices — the air-freight lesson
+
+Omega quoted **$3.20–3.50/kg tiered** in May 2026. The shipment actually flew at **USD 2.30/kg** on AWB `047-3175-3223` — roughly **30–40% below the quote**.
+
+So when capturing Indonesian rates, ask for **two things, not one**:
+
+- a **written quote**, and
+- a **recent actual invoice** for a comparable shipment.
+
+The gap between the two is where the real number lives. A rate sheet alone will make Indonesia look more expensive than it is.
+
+> **On the Brazil benchmark column:** now populated from source (see §3.1 for what it covers and §3.2 for why quotes must be paired with actual invoices). Primary sources: `brazil/BRAZIL_EXPORT_LANE_LEARNINGS.md` §7 (Omega May-2026 quotation), `brazil/BRAZIL_TO_SF_FREIGHT_PREFLIGHT_CHECKLIST.md` §5.7 (AWB `047-3175-3223`, USD 2.30/kg actual), `brazil/ILHEUS_WAREHOUSE_MANAGEMENT.md`, the two lab reports (AGL4/AGL8), and CIC's service FAQ (§2.5.1).
 
 ---
 
