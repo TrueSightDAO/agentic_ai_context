@@ -43,6 +43,12 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 **Filed 2026-11-24 (Sophia Truesight). Owner: unclaimed. Priority: MEDIUM — a regression on `main` that every PR has to step around.**
 
+**RESOLVED 2026-11-25 (Sophia Truesight) — the root-cause diagnosis below is WRONG. Do not act on it.** There is no rubric stub and no SSOT defect. Verified: CI (`smoke` + `test`) is green on `main`; the autopilot's **live venv** `/opt/truesight_autopilot/.venv` carries `truesight-dao-client` **0.2.0** including `rubric.py`, and resolves `tdg_for('Time (Minutes)','60')` → **100.00**; full local suite on merged `main` (`68acd50`) is **2315 passed, 1 skipped, 4 xfailed, 3 xpassed**.
+
+**Actual root cause: a stale local install, not a code defect.** The *system* interpreter — what `python3 -m pytest` resolves to, `/usr/local/lib/python3.10/dist-packages` — held an older `truesight_dao_client` with no `rubric.py`. The call site catches the failed import and falls through to a stub returning `0.00`, hence `assert '0.00' == '100.00'`. Reinstalling the client from git `main` into that interpreter takes the file to **8/8 green**. Production never saw this: the systemd unit runs the venv, not the stale system interpreter — so the claim below that a submission would "book zero TDG" is **false in production**.
+
+**Transferable lesson:** run `pytest` with the venv the service actually uses, or the suite silently measures a different environment than production.
+
 **Symptom.** `python3 -m pytest -q` on a clean checkout of `main` (`d74c339`) gives **5 failed, 2295 passed, 1 skipped**. All five are in `tests/test_resolve_tdg_issued.py`: `test_absent_auto_computes`, `test_zero_string_auto_computes`, `test_zero_float_auto_computes`, `test_empty_auto_computes`, `test_unparseable_auto_computes`.
 
 **Root cause (localised).** The failures assert the TDG auto-compute rubric resolves a value, and get a stub instead — e.g. `assert '0.00' == '100.00'`. The rubric is stubbed/unresolved at `HEAD`, so the "auto-compute when `tdg_issued` is unset/zero/empty/unparseable" path returns `0.00` unconditionally.
