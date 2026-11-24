@@ -1,7 +1,7 @@
 # Indonesia site inspection directives — Rusmin collaboration
 
-**JIRA:** [KAN-8](https://truesightdao.atlassian.net/browse/KAN-8) — *Rusmin - execution directives to be associated with letter of intent*
-**Prepared by:** Sophia Truesight · **For:** Gary Teh, Director, BionPact Pte Ltd
+**Internal ref:** KAN-8 — *Rusmin - execution directives to be associated with letter of intent*
+**Prepared by:** Sophia · **For:** Gary Teh, Director, BionPact Pte Ltd
 **Date:** 2026-11-25 · **Status:** draft — not yet issued to Rusmin
 **Companion to:** `indonesia/2026-11-24_bionpact_loi_work_record.md` (the LOI itself was sent 2026-11-25)
 
@@ -20,7 +20,7 @@ This is the **execution annex** to the Letter of Intent. The LOI says what we in
 
 Conflating them is the usual failure: rates get buried inside a compliance form, and the compliance form starts reading like a negotiation.
 
-**Third column worth having: the Brazil benchmark.** Where TrueSight already knows the number from the Bahia/Amazon lane, it goes in the row. That changes the question from *"collect the rate"* to *"observe the rate against what we already pay"* — the difference between a form and a finding. Where we do not have a benchmark, the column says so rather than guessing.
+**Third column worth having: the Brazil benchmark.** Where we already know the number from the Bahia/Amazon lane, it goes in the row. That changes the question from *"collect the rate"* to *"observe the rate against what we already pay"* — the difference between a form and a finding. Where we do not have a benchmark, the column says so rather than guessing.
 
 ---
 
@@ -77,7 +77,7 @@ Each item below is written so it can be answered in one line and photographed in
 | C1 | **Bean storage** — bag type (jute / GrainPro), palletisation, stack height, capacity in tonnes | Quality retention; capacity ceiling | Photos |
 | C2 | **Temperature and humidity control** — measured or ambient? Any data logger? | Mould and insect risk; tropical ambient storage is the hard case | Ask for readings; photograph any hygrometer |
 | C3 | **Fumigation / IPM practice** — what is used, how often, and is residue a concern | Residue compliance; fumigation records are an FSVP artifact | Ask for the record |
-| C4 | **SOP** — does a written warehouse SOP exist? Ask for a copy | The brief asks: *"warehousing facility (check relevant SOP)"*. TrueSight has a Brazil counterpart (`brazil/ILHEUS_WAREHOUSE_MANAGEMENT.md`) but **no Indonesian SOP exists yet** — if they have one, it is a starting point | Copy of the document, if it exists |
+| C4 | **SOP** — does a written warehouse SOP exist? Ask for a copy | The brief asks: *"warehousing facility (check relevant SOP)"*. We have a Brazil counterpart (`brazil/ILHEUS_WAREHOUSE_MANAGEMENT.md`) but **no Indonesian SOP exists yet** — if they have one, it is a starting point | Copy of the document, if it exists |
 | C5 | **Security and shrinkage** — who has keys, any theft history | Cost of doing business | Ask |
 
 ### 2.4 Transport and export infrastructure
