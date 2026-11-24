@@ -94,15 +94,40 @@ Each item below is written so it can be answered in one line and photographed in
 
 ### 2.5 Lab testing
 
-**This is the section where our own ask exceeds our current practice — read §4 first.**
+**Use CIC as the template.** We already have a working lab — see §2.5.1. The Indonesian lab should be asked *the same questions CIC already answers*, so the two datasets are comparable. Read §4 for what we have and have not actually received.
 
-| # | Test | Status in our current panel |
+| # | Test | Status in what we hold |
 |---|---|---|
-| E1 | **Heavy metals — Arsenic (As), Cadmium (Cd), Lead (Pb), Copper (Cu)** | ✅ **Currently commissioned.** ICP-MS, to ANVISA limits — this is the panel in both existing reports (AGL4/Oscar `LAP-339.2025.B`, AGL8/Paulo `LAP-340.2025.B`) |
-| E2 | **Active ingredients — flavanols/flavonoids, theobromine, caffeine** | ⚠️ **Not currently commissioned anywhere.** Planned as tiers in `OSCAR_FARM_CHINA_ACTION_PLAN.md` (B1–B2 procyanidins/epicatechin by DP 1–10; **B5** theobromine + caffeine by HPLC), not existing practice |
-| E3 | **Ochratoxin A** | ⚠️ Planned (**B4**), not commissioned |
-| E4 | **Pesticide residues** | ⚠️ Planned (**C1**), not commissioned |
-| E5 | **Microbiological** (salmonella — a named FSVP hazard) | Not in the metals panel; confirm whether the Indonesian lab can do it |
+| E1 | **Heavy metals — Arsenic (As), Cadmium (Cd), Lead (Pb), Copper (Cu)** | ✅ **Evidenced.** ICP-MS, to ANVISA limits — the panel in both reports on file (AGL4/Oscar `LAP-339.2025.B`, AGL8/Paulo `LAP-340.2025.B`) |
+| E2 | **Active ingredients — flavanols/flavonoids, theobromine, caffeine** | 🟡 **Reported by the governor as offered by CIC; not visible in the two reports on file.** Whether the Sept-2026 CIC invoice (NF 0097) covers this panel is **unconfirmed** — see §4. Ask CIC to confirm and quote it explicitly |
+| E3 | **Ochratoxin A** | 🟡 Planned (**B4**); CIC lists "micotoxinas" among its food-safety analyses — quote it |
+| E4 | **Pesticide residues** | 🟡 Planned (**C1**); CIC lists "pesticidas" explicitly |
+| E5 | **Microbiological** (salmonella — a named FSVP hazard) | 🟡 CIC lists "microbiológica"; confirm both labs offer it |
+| E6 | **Cut test / classification** | ✅ **This is CIC's flagship.** ISO 2451 (export / fine-cacao reference) **and** IN 38/MAPA (Brazil's official norm). CIC is the **only MAPA-habilitated lab** for official cacao bean classification. **Ask Indonesia for its national equivalent and whether the lab is government-accredited** |
+| E7 | **pH** | ✅ Included in CIC's cut test at no extra charge |
+
+#### 2.5.1 How CIC does it — our benchmark lab
+
+**Centro de Inovação do Cacau (CIC)**, Ilhéus/BA — at UESC/IPAF, Rodovia Jorge Amado km 16. Contact `recepcao@pctsul.org` (análises) / `cic@pctsul.org` (parcerias, financeiro) / WhatsApp (73) 99142-0002. **We are an existing customer** — invoiced for análises on BLACK KING (NF 0097, VENDA 120634, 30 Sep 2026).
+
+**Published rates and sample requirements** (from CIC's own service FAQ, 2026):
+
+| Service | Price | Sample | Turnaround |
+|---|---|---|---|
+| Cut test / classification — **ISO 2451 + IN 38/MAPA** (pH included) | **R$120** / sample | **~1.5 kg** beans | ~10 business days |
+| Cupping — *unroasted* beans, sensory defects | **R$150** / sample | ~500 g | ~10 business days |
+| Sensory — liquor / finished chocolate | **R$400** | 500 g finished, or 2 kg beans if CIC must prepare | — |
+| **ADQ** — quantitative descriptive analysis (for comparing lots precisely) | **R$2,500** | 2 kg beans or 1.5 kg finished | — |
+| Metals / mycotoxins / microbiological / pesticides | *quoted per package* | — | — |
+| Soil analysis | *quoted* | — | — |
+
+**Method notes worth copying into the Indonesian ask:**
+
+- **One shipment can cover several tests.** ~1.5 kg covers ISO 2451 + IN 38 + cupping together — do not send three parcels where one will do.
+- **Sample logistics are the customer's risk.** CIC accepts hand delivery (Mon–Fri 08:00–12:00, 13:00–16:50) or carrier — **Águia Branca, Cidade Sol, Azul Cargo** — or Correios. Transit is entirely the client's responsibility.
+- **Metals and similar packages may need a dedicated submission form**; routine tests need only clear lot identification.
+- **Results arrive by email** as a laudo; packages are quoted by a human, not off a price list.
+- **The bioactive panel is not on the public catalogue.** CIC's published list names *metals, mycotoxins, microbiological, pesticides, "entre outras"* — the alkaloid/flavanol panel sits behind "among others". **This is exactly why it must be asked for explicitly rather than assumed.**
 
 **What to ascertain about the lab itself:**
 
@@ -159,13 +184,15 @@ Same rule throughout: **a number, or an explicit "not quoted".** No estimating.
 
 ## 4. The gap worth stating plainly
 
-**We are asking Indonesia for more testing than we have ever commissioned ourselves.**
+**The ask to Indonesia is broader than the evidence we currently hold.**
 
-The two reports we actually hold — AGL4/Oscar and AGL8/Paulo — cover **four heavy metals by ICP-MS against ANVISA**. Flavanols, theobromine, caffeine, ochratoxin A and pesticide residues appear in our research as **planned tiers**, not as results we have ever paid for.
+The two reports we actually hold — AGL4/Oscar and AGL8/Paulo — cover **four heavy metals by ICP-MS against ANVISA**. Flavanols, theobromine, caffeine, ochratoxin A and pesticide residues do **not** appear as results in either report.
+
+> **Correction (2026-11-25).** An earlier draft of this document said these had *"never been commissioned anywhere."* **That overstated the evidence.** What is actually known: two lab reports are on file and neither shows the bioactive panel. **Absence from two reports is not proof we never bought it** — and we are an existing CIC customer with a Sept-2026 analyses invoice (NF 0097) whose line items are **inside the attached NFSe PDF, which has not been opened.** The honest status is *"not evidenced in the reports on file"*, and the governor reports that CIC does offer caffeine, flavonoid and theobromine testing. **First action: confirm with CIC what NF 0097 covered and get the bioactive panel quoted explicitly.**
 
 That is not a reason to drop the ask — active-ingredient data is exactly what the premium-story positioning needs, and the LOI already leans on quality rather than yield. But it has three consequences:
 
-1. **Budget it.** This is new spend, not a routine request.
+1. **Budget it.** If the bioactive panel has not already been run, this is new spend, not a routine request.
 2. **Do not present it as existing practice** to Rusmin, or we will be asked to show our own reports and will have four metals and no flavanols.
 3. **Order it consistently.** If we test Indonesia for flavanols and never test Brazil, we have no comparison and cannot claim either is better. The honest sequence is to commission the same panel on **one Brazil lot** as a control.
 
@@ -201,3 +228,5 @@ If the visit proceeds well, this document is the **input** to three existing art
 | 3 | **Does Rusmin see this document in advance, or is it our internal brief?** It reads differently depending on the answer — advance sharing turns it into a request, internal keeps it a prompt sheet |
 | 4 | **Budget approval** for the expanded lab panel (§4) — needed before we ask anyone for it |
 | 5 | **Fill the Brazil benchmark column** before issue — should I populate it from `brazil/` sources now? |
+| 6 | **Confirm NF 0097's line items with CIC** (`recepcao@pctsul.org`), and ask them to quote the **flavonoid / theobromine / caffeine** panel explicitly — it is not on their public catalogue, so it needs naming |
+| 7 | **Should the CD test (ISO 2451 + IN 38) be requested of Indonesia too?** It is cheap (R$120), fast (~10 days), and is the classification buyers actually recognise. Indonesia has its own national norm — ask which |
