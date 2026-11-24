@@ -39,6 +39,47 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### `tests/test_resolve_tdg_issued.py` is red on `main` — 5 failures, pre-existing, nobody owns it
+
+**Filed 2026-11-24 (Sophia Truesight). Owner: unclaimed. Priority: MEDIUM — a regression on `main` that every PR has to step around.**
+
+**Symptom.** `python3 -m pytest -q` on a clean checkout of `main` (`d74c339`) gives **5 failed, 2295 passed, 1 skipped**. All five are in `tests/test_resolve_tdg_issued.py`: `test_absent_auto_computes`, `test_zero_string_auto_computes`, `test_zero_float_auto_computes`, `test_empty_auto_computes`, `test_unparseable_auto_computes`.
+
+**Root cause (localised).** The failures assert the TDG auto-compute rubric resolves a value, and get a stub instead — e.g. `assert '0.00' == '100.00'`. The rubric is stubbed/unresolved at `HEAD`, so the "auto-compute when `tdg_issued` is unset/zero/empty/unparseable" path returns `0.00` unconditionally.
+
+**Why it matters.** This is the SSOT rubric that decides TDG issuance for contribution events (`create_dao_submission` relies on it). It is **failing silently**: it returns `0.00` rather than raising, so a submission that should auto-compute TDG would book **zero TDG** with no error shown. Pre-existing red tests on `main` also train everyone to ignore the suite, which is how real regressions get missed.
+
+**Recommended fix.** Find where the rubric is stubbed (grep for the resolver behind `resolve_tdg_issued`), restore the real computation, and confirm the five cases — absent / `"0"` / `0.0` / `""` / unparseable — all auto-compute. Add a case asserting an explicit non-zero `tdg_issued` is still respected verbatim.
+
+**Acceptance.** `pytest -q` is fully green on `main`; the five cases pass; a real contribution submission with `tdg_issued` unset books non-zero TDG.
+
+### Board 2 does not visually separate Planned / In Progress / In Review — governor-only admin UI action
+
+**Filed 2026-11-24 (Sophia Truesight). Owner: Gary (Atlassian admin). Priority: LOW — cosmetic until stage discipline matters.**
+
+**Symptom.** `KAN`'s workflow has five statuses (Backlog `10003`, Planned `10005`, In Progress `3`, In Review `10004`, Done `10006`) — see `JIRA_WORKFLOW_SOP.md` §2. But `Planned`, `In Progress` and `In Review` all share Jira's **In Progress status category**, and no explicit workflow scheme is mapped (`/rest/api/3/workflowscheme/project?projectId=10001` → `{"values": []}`). A Kanban board groups by category, so board 2 collapses three real stages into a single column.
+
+**Why it matters.** The whole point of the five-stage SOP is that each stage is a distinct, evidenced claim. If the board renders three of them as one column, a governor scanning board 2 cannot tell "scoped but unstarted" from "actively moving" — which is precisely the distinction the SOP exists to make visible.
+
+**Why it is not an agent task.** Neither the board column mapping nor workflow schemes are cleanly settable over the REST API; both are admin-UI operations.
+
+**Recommended fix.** In Jira: **Board 2 → Board settings → Columns**, map `Planned`, `In Progress` and `In Review` to separate columns. Optionally, per `JIRA_WORKFLOW_SOP.md` §7, consider per-issue-type gating so an Epic cannot jump Backlog → Done in one hop.
+
+**Acceptance.** Board 2 renders five distinct columns matching the five statuses; a governor can tell Planned from In Progress at a glance.
+
+### Rotate `JIRA_API_TOKEN` — it was pasted into a chat transcript
+
+**Filed 2026-11-24 (Sophia Truesight). Owner: Gary. Priority: LOW-MEDIUM — hygiene, not an active incident.**
+
+**Symptom.** The Atlassian API token was pasted directly into a Telegram thread. It is now stored in the vault (correct) but also lives in the session transcript and message history (not correct for a credential).
+
+**Why it matters.** The token authenticates as `Gary Teh <garyjob@agroverse.shop>` and can read and write every project that account can see. Transcript storage is not a compromise, but it widens exposure to every party with access to session history or its backups, indefinitely.
+
+**Recommended fix.** After Jira access is confirmed working end-to-end, revoke the token at <https://id.atlassian.com/manage-profile/security/api-tokens>, issue a fresh one, and rewrite the vault value — **no code change, no redeploy** (`JIRA_WORKFLOW_SOP.md` §5). Going forward, credentials go straight into the vault, never into chat.
+
+**Acceptance.** The chat-pasted token is revoked; the vault holds a token that has never appeared in a transcript; `jira_query(action="myself")` still returns 200.
+
+
 ### Masters ship with a faceless frame 0 — the new "human on first frame" rule invalidates every existing master, and no assertion enforces it yet
 
 **Filed 2026-11-24 (Sophia Truesight). Owner: unclaimed. Priority: HIGH — it touches every published reel, and there is currently no automated gate.**
