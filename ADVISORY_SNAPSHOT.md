@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-11-24T10:14:17Z`
+- Generated (UTC): `2026-11-24T22:40:23Z`
 - Look-back: **7** calendar days (`2026-11-17` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,36 +32,34 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 22
-- `[PRACTICE EVENT]` × 9
+- `[CONTRIBUTION EVENT]` × 28
+- `[PRACTICE EVENT]` × 7
 - `[EMAIL REGISTERED EVENT]` × 4
-- `[DAO INVENTORY EXPENSE EVENT]` × 3
 - `[EMAIL VERIFICATION EVENT]` × 2
-- `[CURRENCY CONVERSION EVENT]` × 1
 - `[ASSET RECEIPT EVENT]` × 1
 
 ### Latest entries
 
-- `Edgar_20261119003521_3782` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-11-19T00:35:19.476Z · Email: beth@therapeutic-bodywork.com · Verification Key: wSFut-Cxnv-2q-LgIR_9YnY8rRwwCTj4kB0T_8uQRD0
-- `Edgar_20261119003735_3784` · **Edgar** · [EMAIL VERIFICATION EVENT] Timestamp: 2026-11-19T00:37:34.357Z · Email: beth@therapeutic-bodywork.com · Verification Key: wSFut-Cxnv-2q-LgIR_9YnY8rRwwCTj4kB0T_8uQRD0
-- `Edgar_20261119011956_3786` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-19T01:19:53.614Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20261119050059_3788` · **Edgar** · [EMAIL REGISTERED EVENT] Email: admin+muse@truesight.me
-- `Edgar_20261119075033_3790` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Description: Cacao legacy project — 20min with Lawrence Kwek (atom logistics, SG/BR carbo…
-- `Edgar_20261119081905_3792` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 1 · Description: CORRECTION — Nathan is Nathan LUI (Sha Tin, HK); Changsha contact mis-attrib…
-- `Edgar_20261119225353_3794` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-19T22:53:50.753Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20261120000730_3796` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Description: Cacao Innovation Center follow-up — heavy metal test reports for 6 samples (…
-- `Edgar_20261120001407_3798` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 150 · Description: 2.5h — China distribution discussion (with cacao meeting + Chinese mould-sou…
-- `Edgar_20261120001747_3800` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Kirsten follow-up — 5g chocolate mould availability for potential Chinese ma…
-- `Edgar_20261120003612_3802` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 10 · Description: Kirsten — 10min sourcing two 5g PC mould options (PCB209 $29.99, Chocolate W…
-- `Edgar_20261120011751_3804` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Cristiano (CIC) follow-up — heavy metal reports still outstanding, China sid…
-- `Edgar_20261120122508_3806` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: Ealvin (Liuyang organic farm) — 3h on hosting cacao circles at his venue + c…
-- `Edgar_20261120122949_3808` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 15 · Description: Lawrence Kwek — 15min on cacao legacy program template + Sunmint data struct…
-- `Edgar_20261120132940_3810` · **Edgar** · [ASSET RECEIPT EVENT] Amount: 1000.00 · Attached Filename: liz_elizabeth_wong_rmb1000_whatsapp_transfer_china_travel_2026-11-20.p… · Currency: RMB (CNY, ¥)
 - `Edgar_20261121025116_3812` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-21T02:51:13.889Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20261122032000_3814` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-22T03:19:59.310Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20261122224332_3816` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-22T22:43:30.338Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20261123041337_3818` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 20.00 · Description: Anthropic / Claude Pro receipt #2893-9096-8721 — USD 20.00 (2026-11-22)
 - `Edgar_20261124093744_3820` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Contributor(s): Gary Teh, Pinky Blau
+- `Edgar_20261124112152_3822` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 75 · Description: Raw machine execution — Asian Financial Forum 2027 speaker profile for Gary …
+- `Edgar_20261124112158_3824` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: Editorial analysis and drafting — Asian Financial Forum 2027 speaker profile…
+- `Edgar_20261124112204_3826` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Description: Direction and review — Asian Financial Forum 2027 speaker profile, v2 to v12…
+- `Edgar_20261124112353_3828` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Description: Direction and review — Asian Financial Forum 2027 speaker profile, v2 to v12…
+- `Edgar_20261124113635_3830` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Asian Financial Forum 2027 speaker profile for Gary Teh — v2 through v12, pl…
+- `Edgar_20261124113637_3832` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 64 · Description: Asian Financial Forum 2027 speaker profile for Gary Teh — direction, review …
+- `Edgar_20261124114228_3834` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Contributor(s): Gary Teh
+- `Edgar_20261124114233_3836` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 0 · Contributor(s): Sophia Truesight
+- `Edgar_20261124130711_3838` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-24T13:07:08.898Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20261124150131_3840` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-24T15:01:30.833Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20261124175206_3842` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 300 · Contributor(s): Gary Teh
+- `Edgar_20261124175208_3844` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Contributor(s): Sophia Truesight (admin+sophia@truesight.me)
+- `Edgar_20261124223423_3846` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 135 · Description: BionPact Indonesia LOI — 8 revisions, 4 research gates, signature-ready (v1–…
+- `Edgar_20261124223426_3848` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: AmCham International Winter Ball, Guangzhou — 3 hrs with Rusmin (Indonesian …
+- `Edgar_20261124223429_3850` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 360 · Description: Rusmin follow-up discussion, Guangzhou — 6 hrs on Indonesia proposal details
 
 ---
 
@@ -76,7 +74,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-11-23T11:59:14.831Z`
+- Generated (UTC): `2026-11-24T11:59:14.887Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -273,6 +271,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-11-17 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+cef6637 | 2026-11-24 10:20:09 +0000 | chore(stats): refresh stats indexes [skip ci]
 da39bad | 2026-11-24 00:15:47 +0000 | chore(stats): refresh stats indexes [skip ci]
 3423d84 | 2026-11-23 08:05:19 +0000 | chore(stats): refresh stats indexes [skip ci]
 b0e99f9 | 2026-11-22 19:55:50 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -298,6 +297,13 @@ a664e98 | 2026-11-20 21:29:41 +0800 | Document F5 Content Schedule tab + fix pri
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+538b76e | 2026-11-25 05:51:19 +0800 | Record Rusmin Indonesia outreach: AmCham Winter Ball (21 Nov) + follow-up (22 Nov) (#1884)
+f240342 | 2026-11-25 05:39:17 +0800 | Record BionPact Indonesia LOI work: directive log, version history, verification (#1883)
+e11ae91 | 2026-11-24 19:45:24 +0800 | SOP: masters must open on a human (face > body > hands; never faceless) (#1882)
+7fa1cc7 | 2026-11-24 18:55:24 +0800 | Add intro overlay standard (repairs #1880) (#1881)
+52581f5 | 2026-11-24 18:35:45 +0800 | Add Instagram caption SOP (personal-vlog register) (#1879)
+465a5d0 | 2026-11-24 18:14:33 +0800 | chore(previews): refresh Beer Hall preview (2026-11-24 UTC)
+113e6e0 | 2026-11-24 18:14:32 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-24 UTC)
 17ffec5 | 2026-11-24 14:46:57 +0800 | docs: SOP for recurring-transaction enrollment + harden Is Store Manager flag rule (#1878)
 0707dd1 | 2026-11-24 08:11:30 +0800 | chore(previews): refresh Beer Hall preview (2026-11-24 UTC)
 621d59d | 2026-11-24 08:11:28 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-24 UTC)
@@ -331,13 +337,6 @@ bc586c6 | 2026-11-20 08:13:47 +0800 | Evidence: 2.5h China distribution discussi
 ea15afa | 2026-11-19 15:46:22 +0800 | chore(previews): refresh Beer Hall preview (2026-11-19 UTC)
 f8fe705 | 2026-11-19 15:46:20 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-19 UTC)
 4a2f38d | 2026-11-19 04:48:34 +0800 | chore(previews): refresh Beer Hall preview (2026-11-18 UTC)
-a2b0307 | 2026-11-19 04:48:32 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-18 UTC)
-b91f4ca | 2026-11-19 01:14:52 +0800 | SOP: standardize the brand mark on the first frame (logo standard) (#1869)
-db2b8b1 | 2026-11-18 17:49:31 +0800 | Add PRINT_ON_DEMAND_MOCKUP_GENERATION.md — gotde.cn engine + real-logo compositing (Approach A) (#1868)
-ab8e79d | 2026-11-18 17:28:45 +0800 | docs(open-followups): document SALES EVENT gross-price + separate expense-row convention (#1867)
-8a8060e | 2026-11-18 15:49:59 +0800 | chore(previews): refresh Beer Hall preview (2026-11-18 UTC)
-30ef7c4 | 2026-11-18 15:49:58 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-18 UTC)
-317859c | 2026-11-18 14:20:00 +0800 | Add Nathan printing company SKU evidence 2026-11-18
 … (truncated)
 ```
 
@@ -377,6 +376,8 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+fb9dd09 | 2026-11-24 18:19:04 +0000 | chore: refresh currencies.json [skip ci]
+e2aa3ad | 2026-11-24 17:50:58 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 e1da971 | 2026-11-23 18:46:10 +0000 | chore: refresh partners-velocity snapshot [skip ci]
 78cf9c8 | 2026-11-23 18:44:28 +0000 | chore: refresh currencies.json [skip ci]
 acbc736 | 2026-11-23 18:15:44 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
@@ -494,7 +495,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
 | 2026-10 | 460 | 18944.34386 | 10/31/2026 |
-| 2026-11 | 276.9 | 19221.24386 | 11/24/2026 1:54:28 |
+| 2026-11 | 276.9 | 19221.24386 | 11/24/2026 13:50:47 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-11-17`; scanned last **600** data rows)
 
