@@ -1,8 +1,8 @@
 # Indonesia site inspection directives — Rusmin collaboration
 
 **JIRA:** [KAN-8](https://truesightdao.atlassian.net/browse/KAN-8) — *Rusmin - execution directives to be associated with letter of intent*
-**Prepared by:** Sophia Truesight (autopilot) · **For:** Gary Teh, Director, BionPact Pte Ltd
-**Date:** 2026-11-25 · **Status:** draft for governor review — not issued to Rusmin
+**Prepared by:** Sophia Truesight · **For:** Gary Teh, Director, BionPact Pte Ltd
+**Date:** 2026-11-25 · **Status:** draft — not yet issued to Rusmin
 **Companion to:** `indonesia/2026-11-24_bionpact_loi_work_record.md` (the LOI itself was sent 2026-11-25)
 
 ---
@@ -11,7 +11,7 @@
 
 This is the **execution annex** to the Letter of Intent. The LOI says what we intend; this says **what we must physically see and measure** before any cocoa is bought, financed, or shipped.
 
-**Design decision — two registers, one document.** The governor asked whether this should be a checklist, and whether rates belong in it. It needs both, kept apart, because they fail differently:
+**Design decision — two registers, one document.** The question raised was whether this should be a checklist, and whether rates belong in it. It needs both, kept apart, because they fail differently:
 
 | Register | Form | Why separate |
 |---|---|---|
@@ -77,7 +77,7 @@ Each item below is written so it can be answered in one line and photographed in
 | C1 | **Bean storage** — bag type (jute / GrainPro), palletisation, stack height, capacity in tonnes | Quality retention; capacity ceiling | Photos |
 | C2 | **Temperature and humidity control** — measured or ambient? Any data logger? | Mould and insect risk; tropical ambient storage is the hard case | Ask for readings; photograph any hygrometer |
 | C3 | **Fumigation / IPM practice** — what is used, how often, and is residue a concern | Residue compliance; fumigation records are an FSVP artifact | Ask for the record |
-| C4 | **SOP** — does a written warehouse SOP exist? Ask for a copy | The governor's note: *"warehousing facility (check relevant SOP)"*. TrueSight has a Brazil counterpart (`brazil/ILHEUS_WAREHOUSE_MANAGEMENT.md`) but **no Indonesian SOP exists yet** — if they have one, it is a starting point | Copy of the document, if it exists |
+| C4 | **SOP** — does a written warehouse SOP exist? Ask for a copy | The brief asks: *"warehousing facility (check relevant SOP)"*. TrueSight has a Brazil counterpart (`brazil/ILHEUS_WAREHOUSE_MANAGEMENT.md`) but **no Indonesian SOP exists yet** — if they have one, it is a starting point | Copy of the document, if it exists |
 | C5 | **Security and shrinkage** — who has keys, any theft history | Cost of doing business | Ask |
 
 ### 2.4 Transport and export infrastructure
@@ -99,7 +99,7 @@ Each item below is written so it can be answered in one line and photographed in
 | # | Test | Status in what we hold |
 |---|---|---|
 | E1 | **Heavy metals — Arsenic (As), Cadmium (Cd), Lead (Pb), Copper (Cu)** | ✅ **Evidenced.** ICP-MS, to ANVISA limits — the panel in both reports on file (AGL4/Oscar `LAP-339.2025.B`, AGL8/Paulo `LAP-340.2025.B`) |
-| E2 | **Active ingredients — flavanols/flavonoids, theobromine, caffeine** | 🟡 **Reported by the governor as offered by CIC; not visible in the two reports on file.** Whether the Sept-2026 CIC invoice (NF 0097) covers this panel is **unconfirmed** — see §4. Ask CIC to confirm and quote it explicitly |
+| E2 | **Active ingredients — flavanols/flavonoids, theobromine, caffeine** | 🟡 **Reported as offered by CIC; not visible in the two reports on file.** Whether the Sept-2026 CIC invoice (NF 0097) covers this panel is **unconfirmed** — see §4. Ask CIC to confirm and quote it explicitly |
 | E3 | **Ochratoxin A** | 🟡 Planned (**B4**); CIC lists "micotoxinas" among its food-safety analyses — quote it |
 | E4 | **Pesticide residues** | 🟡 Planned (**C1**); CIC lists "pesticidas" explicitly |
 | E5 | **Microbiological** (salmonella — a named FSVP hazard) | 🟡 CIC lists "microbiológica"; confirm both labs offer it |
@@ -202,7 +202,7 @@ Same rule throughout: **a number, or an explicit "not quoted".** No estimating.
 
 The two reports we actually hold — AGL4/Oscar and AGL8/Paulo — cover **four heavy metals by ICP-MS against ANVISA**. Flavanols, theobromine, caffeine, ochratoxin A and pesticide residues do **not** appear as results in either report.
 
-> **Correction (2026-11-25).** An earlier draft of this document said these had *"never been commissioned anywhere."* **That overstated the evidence.** What is actually known: two lab reports are on file and neither shows the bioactive panel. **Absence from two reports is not proof we never bought it** — and we are an existing CIC customer with a Sept-2026 analyses invoice (NF 0097) whose line items are **inside the attached NFSe PDF, which has not been opened.** The honest status is *"not evidenced in the reports on file"*, and the governor reports that CIC does offer caffeine, flavonoid and theobromine testing. **First action: confirm with CIC what NF 0097 covered and get the bioactive panel quoted explicitly.**
+> **Correction (2026-11-25).** An earlier draft of this document said these had *"never been commissioned anywhere."* **That overstated the evidence.** What is actually known: two lab reports are on file and neither shows the bioactive panel. **Absence from two reports is not proof we never bought it** — and we are an existing CIC customer with a Sept-2026 analyses invoice (NF 0097) whose line items are **inside the attached NFSe PDF, which has not been opened.** The honest status is *"not evidenced in the reports on file"*, and CIC is reported to offer caffeine, flavonoid and theobromine testing. **First action: confirm with CIC what NF 0097 covered and get the bioactive panel quoted explicitly.**
 
 That is not a reason to drop the ask — active-ingredient data is exactly what the premium-story positioning needs, and the LOI already leans on quality rather than yield. But it has three consequences:
 
@@ -216,7 +216,7 @@ That is not a reason to drop the ask — active-ingredient data is exactly what 
 
 - **Rusmin is a warm contact, not an audited supplier.** This checklist is thorough because the *facts* must be thorough, not because the relationship is adversarial. Language should stay collegial — the visit is "help us understand your operation", not "we are evaluating whether you qualify". The FSVP paperwork, if we proceed, is a separate downstream artifact.
 - **Consent for photos of people.** `A6` asks for farmer photos and stories. Those may later appear on agroverse.shop. **Ask permission at the time, and record that it was given.** A portrait taken without consent cannot be published, which makes it worthless for the purpose it was taken for.
-- **Never invent coordinates.** `fsvp/SITE_VISIT_PROCESS.md` is explicit on this: if EXIF GPS is absent — and messaging-app transit usually strips it — take coordinates from a device on site or from the governor. A compliance document with guessed coordinates is worse than one with none.
+- **Never invent coordinates.** `fsvp/SITE_VISIT_PROCESS.md` is explicit on this: if EXIF GPS is absent — and messaging-app transit usually strips it — take coordinates from a device on site or from the project lead. A compliance document with guessed coordinates is worse than one with none.
 - **Nothing here is a commitment.** Rates captured are observations for modelling, not agreed prices. No volume, price, or exclusivity should be implied during the visit.
 
 ---
@@ -233,7 +233,7 @@ If the visit proceeds well, this document is the **input** to three existing art
 
 ---
 
-## 7. Open questions for the governor
+## 7. Open questions
 
 | # | Question |
 |---|---|
