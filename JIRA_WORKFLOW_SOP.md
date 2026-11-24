@@ -55,8 +55,7 @@ healthy). If the evidence does not exist, the ticket is not in that stage yet.
 
 ## 3. Runtime discipline — never hard-code a transition id
 
-**This is the most important rule in this document.**\
-**This is the most important rule in this document.** <- see note below
+**This is the most important rule in this document.**
 
 Transition ids are **per-current-status** and their **labels do not match the status names**.
 Measured on `KAN-12` while it sat in *Planned*, the full set of legal moves was:
