@@ -21,8 +21,8 @@ It is **not** the DAO's system of record, and this SOP does not make it one:
 | Concern | Where it lives |
 |---|---|
 | Cross-session backlog / tooling gaps | `OPEN_FOLLOWUPS.md` — the **only** backlog file |
-| Public sprint board | `sprint.truesight.me` (over `handoffs/index.json`) |
-| Ops execution tracking | **Jira KAN** (this document) |
+| Ops execution tracking — **THE live board** | **Jira KAN** — https://truesightdao.atlassian.net/jira/software/projects/KAN/boards/2 (this document) |
+| ~~Public sprint board~~ — **RETIRED 2026-11-25** | `sprint.truesight.me` was drained into Jira (57 handoffs migrated) and retired. See §12. |
 
 Do **not** mirror `OPEN_FOLLOWUPS.md` into Jira, and do not create a second backlog there.
 The Nov 2026 tooling review left this exact question open ("what does Jira give us that the
@@ -91,10 +91,16 @@ Never cache a transition id across tickets, and never reuse one you read in an e
 Credentials come **only** from the encrypted vault. Nothing from env, nothing from chat, nothing logged.
 
 **Read actions (no gate):** `myself`, `list_projects`, `get_project`, `list_issue_types`,
-`search`, `get_issue`, `list_transitions`
+`search`, `get_issue`, `list_transitions`, `list_pr_links`
 
 **Write actions (`confirm_write=true` required):** `create_issue`, `update_issue`, `add_comment`,
-`transition_issue`
+`transition_issue`, `link_pr_in_comment`
+
+`link_pr_in_comment` posts a comment whose bare GitHub URLs Jira unfurls into clickable
+smart-link cards (ADF `inlineCard`); `list_pr_links` reads every GitHub PR/commit/repo URL back
+out of an issue's comments. Note: `_adf_to_text` must handle `inlineCard`/`blockCard` nodes —
+Jira stores smart-link URLs in `attrs.url`, **not** text, so a naive text-only reader silently
+returns zero links while the write reports success.
 
 The write gate is the SOP's second line of defence: a stage change is never one accidental call
 away. If a call is refused with
@@ -191,3 +197,118 @@ Read live 2026-11-24 from the autopilot box against `truesightdao.atlassian.net`
 | `GET /rest/api/3/issue/KAN-12/transitions` | id `11`→Backlog, id `3` "in execution"→In Progress |
 
 Board inventory is a **snapshot**, not a constant — re-read it, do not quote this table as current.
+
+---
+
+## 10. Thread URL — MANDATORY on every ticket (Gary, 2026-11-25)
+
+Every ticket's description MUST carry a line of exactly this shape:
+
+```
+Thread URL: <one URL>
+```
+
+or, when the handoff genuinely had no live thread:
+
+```
+Thread URL: MISSING (handoff recorded no Telegram topic / Discord channel)
+```
+
+The `MISSING` spelling is deliberate — it is greppable, so gaps are visible and countable
+instead of looking like an omission. Never simply leave the line out.
+
+### 10a. Why
+
+This is what makes a supervisor loop cheap. A supervising LLM (Envoy, DeepSeek Local, any
+sibling) does not need `HANDOFF_MANIFEST.md` prose parsing to find the conversation:
+
+```
+jira_query(action="search", jql='project = KAN AND status = "In Progress"')
+# for each ticket -> read the Thread URL -> prompt THAT channel/thread
+```
+
+One board query replaces a scan of every handoff file. Without the URL the ticket is a dead
+end: the supervisor knows work is in flight but cannot speak into it.
+
+### 10b. Accepted URL shapes
+
+Any of these resolves to a live conversation — record whichever the handoff has:
+
+| Source field | Shape |
+|---|---|
+| `telegram_topic_url` | `https://t.me/c/<chat>/<thread>` |
+| `discord_channel_id` / `discord_thread_id` | `https://discord.com/channels/<guild>/<channel>` |
+| fallback | `https://t.me/<group>/<topic_id>` when only ids are known |
+
+`telegram_topic_url` is preferred when present — it is already human-clickable.
+
+### 10c. Backfill state at migration (2026-11-25)
+
+| Result | Count |
+|---|---:|
+| Thread URL written from handoff data | 49 |
+| `Thread URL: MISSING` (handoff carried no thread) | 8 |
+| **Total migrated** | **57** |
+
+### 10d. Rule for new tickets
+
+A ticket created without a thread URL is **not actionable by a supervisor**. If you cannot
+supply the URL at creation time, still write the `MISSING` line, then create the thread and
+patch the ticket. Do not let it default to silence.
+
+---
+
+## 11. Sophia's Jira identity — how "assign to yourself" works
+
+Sophia has her own assignable account on the tenant:
+
+| Field | Value |
+|---|---|
+| Display name | **Sophia Truesight** |
+| Email | `sophia@truesight.me` |
+| `accountId` | `712020:d6880b79-56bc-41b7-80e4-1f4c62770a73` |
+| `accountType` | `atlassian` (human-type — `POST /user` cannot create `app` accounts) |
+| Group | `jira-users-truesightdao` (product access `jira-software`) |
+| Assignable on KAN | **yes** (verified via `user/assignable/search?project=KAN`) |
+
+Created 2026-11-25 at Gary's instruction. Before it existed, `user/search?query=sophia`
+returned **0 results** and the only assignable accounts were Gary plus Atlassian's own Rovo
+app identities (`Jira Triage Agent`, `Request Router`, etc. — all `accountType: app`,
+auto-provisioned, not user-created and not reusable for this purpose).
+
+**Billing note:** this identity occupies a real Jira seat. Do not create additional seats
+speculatively — deactivating a user does not reliably free a seat, so creation is effectively
+one-way.
+
+**Privacy note:** the tenant hides email addresses on all accounts, which is exactly the
+condition under which `POST /rest/api/3/user` requires site-admin rights. Sophia holds
+`ADMINISTER` on the site, so creation succeeded.
+
+---
+
+## 12. Retirement of `sprint.truesight.me` (2026-11-25)
+
+The public Kanban board (`TrueSightDAO/sprint-site`, GitHub Pages, reading
+`agentic_ai_context/handoffs/index.json`) was **drained into Jira and retired** at Gary's
+instruction. It had drifted into a second, competing status surface.
+
+| Handoff state | → Jira status | Count |
+|---|---|---:|
+| `awaiting_kickoff` | Backlog | 16 |
+| `paused_at_gate` + `blocked_on_human` | Planned | 23 |
+| `executing` | In Progress | 16 |
+| `human_uat_ready` | In Review | 2 |
+| `done` (33) + `stale` (1) | **not migrated** | 34 |
+
+**Provenance, not summary.** Each migrated ticket's description carries the handoff's
+`status_raw` **verbatim** — that is where real progress lives (e.g. "PR1/PR2 merged (#552,
+#555)"). Migrating only the coarse `state` field would have thrown that away.
+
+**Idempotency.** Every migrated description carries a hidden
+`sprint-migration:<plan_file>` marker, so a re-run finds and skips rather than duplicating.
+
+**Labels.** `sprint-migration` (57) · `blocked-on-human` (19) · `envoy-supervised` (2) —
+the last so handoffs run by another box are not mistaken for Sophia's own queue.
+
+**`handoffs/index.json` is NOT deleted.** It is still written by the supervisor loop and read
+by other tooling. Retiring the *view* is not the same as deleting the *data*.
