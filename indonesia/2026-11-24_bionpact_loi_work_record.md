@@ -1,7 +1,7 @@
 # BionPact Indonesia LOI — work record (v1 to v8)
 
 **Prepared by:** Sophia Truesight (autopilot) · **For:** Gary Teh, Director, BionPact Pte Ltd
-**Date:** 2026-11-24 · **Status:** signature-ready, **NOT SENT**
+**Date:** 2026-11-24 · **Status:** sent by Gary Teh — governor confirmed 2026-11-25 that the PDFs have already gone out
 
 Purpose: record what the Letter of Intent went through — the directives, what changed in each version and why, and how compliance was verified — so the final state can be audited without replaying the chat transcript.
 
@@ -41,7 +41,9 @@ Eight full drafts. Each was a rebuild rather than a patch, because every directi
 
 **Financing structure.** Described as *pre-financing / an advance against future delivery*, deliberately not "lending". Financing farmers in Indonesia sits inside an OJK-licensed perimeter (POJK 77/2016 — *pinjaman online* / P2P lending); an unlicensed entity lending to the public is exposed. An advance against delivery keeps it a **trade** transaction rather than a **credit** transaction.
 
-> ⚠️ **Open item: this needs Indonesian counsel review before any farmer signs anything.** If BionPact intends to actually lend, that is a licensing question; if it is an advance against offtake, it is not. The letter currently takes the second position.
+> ⚠️ **This needs Indonesian counsel review before any farmer signs anything.** If BionPact intends to actually lend, that is a licensing question; if it is an advance against offtake, it is not. The letter takes the second position.
+>
+> ✅ **Closed as an agent action item, 2026-11-25** — Gary confirmed the documents have already been sent. The characterisation question remains for Gary and Indonesian counsel; **do not re-raise it as a blocker.**
 
 **The concession material stays out.** Parigi Moutong, PT ATA/PT AAL, and the IUP→HGU regularisation argument are **not in the letter**. This is a general-capability introduction through a warm contact; naming a distressed concession to an unknown office is the wrong exposure, and would make the document transactional again. Those belong in a separate, specifically-addressed conversation.
 
@@ -73,9 +75,9 @@ Two verification traps worth recording:
 
 | Item | Status |
 |---|---|
-| **Contact block** | 🔴 **The one real blocker.** `gary@bionpact.com` bounces (551 5.1.1); no ACRA registered address on file. The letter has a signature but no direct reply path |
-| Indonesian counsel review of financing structure | 🔴 Recommended before any farmer agreement |
+| **Contact block** | ✅ **Closed 2026-11-25** — Gary reports the PDFs were already sent, so the missing reply path is moot. **Retained as a note for future letters:** `gary@bionpact.com` bounces (551 5.1.1) and no ACRA registered address is on file — supply one before drafting again |
+| Indonesian counsel review of financing structure | ✅ **Closed as an agent action item, 2026-11-25** — documents sent by Gary. The trade-advance vs credit characterisation is his and counsel's to settle, not an agent blocker |
+| **Send** | ✅ **Closed 2026-11-25** — Gary: "I already sent the PDFs." Recipients, version actually sent, and send date are **not recorded here**; ask Gary if that detail matters rather than asserting it |
 | Nominal addressee (AO/AA) | 🟡 "To Whomever It May Concern" stands until a name is supplied |
 | Length | 🟡 6 pp (4 letter + 2 background note). Cutting the background note returns it to 4 pp with nothing lost |
-| Bahasa Indonesia version | 🟡 Offered in the letter; not yet produced |
-| **Send** | ⛔ **Nothing sent to Rusmin or any Indonesian party.** Gary sends |
+| Bahasa Indonesia version | 🟡 Offered in the letter; not yet produced. May still be wanted if the sent copies were English only |
