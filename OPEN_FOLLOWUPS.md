@@ -39,6 +39,28 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Masters ship with a faceless frame 0 — the new "human on first frame" rule invalidates every existing master, and no assertion enforces it yet
+
+**Filed 2026-11-24 (Sophia Truesight). Owner: unclaimed. Priority: HIGH — it touches every published reel, and there is currently no automated gate.**
+
+**Rule added.** `MEDIA_ARCHIVE_PIPELINE.md` § *A human must be on the first frame — priority order* now makes a human on frame 0 normative for every master: tier 1 = face toward camera (best), tier 2 = human body in frame (acceptable), tier 3 = any presence incl. hands only (weakest acceptable), tier 4 = no human (not deliverable). Assertions 6 and 7 in the render-assertion list enforce it.
+
+**Symptom driving it.** The whole Santos roasting lineage (**v1–v9**) opens on a faceless frame. **v9 was verified `HUMAN=no`** by vision check — raw beans in a blue bin, nobody in shot — *after* it had passed a full 6/6 frame-vs-caption QC and been delivered for posting. The gate asked whether each caption matched its footage and never asked whether anyone was in the frame; a master can therefore be fully honest and still fail the new rule.
+
+**Why it matters.** Frame 0 is simultaneously the Reels-grid thumbnail and the feed autoplay frame, so it decides whether the other ~28 seconds are seen at all. It is also the one frame the brand is judged on at a glance — a faceless opening reads as commodity or stock footage, undermining the traceable/human-grown premise the whole lineage story rests on.
+
+**What is open.**
+
+1. **In-flight masters must not be posted as-is.** v9 (AV + F5) is queued for Instagram; its frame 0 needs a human-bearing opening shot first. Re-selecting the opening beat is a re-render from source, not a crop.
+2. **No automated enforcement.** The rule exists as prose plus assertion entries, but the build-script template (`build_reel*.py`) has no frame-0 human check. A vision check on the encoded master should run inside the render and abort on tier 4.
+3. **Nothing in the reel-proposal method selects for this.** § *Step 4 — Draft named beats against named clips* predates the rule; frame 0 should be chosen against the human tier, not just beat fit.
+4. **Retrofit audit owed.** The two existing `PUBLISHED` Instagram rows (238, 239) and any earlier reels should be checked against the rule. On-platform this cannot be fixed retroactively except by re-upload or a changed cover frame, so it may be a documented known-gap rather than a fix.
+5. **Tension with the honesty rule to resolve per-reel.** The v9 opening beat was chosen *because* it was the only verified raw-bean footage — honest, but faceless. The two rules must be satisfied together, which may mean a different beat rather than a different clip.
+
+**Recommended fix.** Add the frame-0 human assertion (vision check, `thinkingBudget: 0`) to the build-script template and the QC gate so a faceless master cannot be encoded; add "frame 0 human tier" to the reel-proposal method; audit the published rows and record the result.
+
+**Acceptance.** A build of any master aborts when its encoded frame 0 has no human; every master in the archive carries a documented frame-0 tier; the reel-proposal method names the tier as a selection criterion.
+
 ### Vendor expense receipts are unretrievable in bulk — Stripe e-mail links expire, so only same-month receipts can be filed with evidence
 
 **Filed 2026-11-23 (Sophia Truesight). Owner: unclaimed. Priority: MEDIUM — it silently degrades expense provenance, not the amounts.**
