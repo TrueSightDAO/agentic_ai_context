@@ -884,8 +884,12 @@ The `Recurring Transactions` tab is a *registry* of recurring rewards/charges, n
 | E | Billing Period (Monthly / Quarterly / …) |
 | F | Most Recent Tokenization Date (YYYYMMDD) |
 | G | Start Date |
-| H | Edgar AWS Billing Automation Security Key Identifier |
-| I | Automation Remarks |
+| H | *(blank on GAS-enrolled rows; `GARYJOB` security-key identifier on the Edgar AWS billing row only)* |
+| I | Automation Location (`Automation Location\n\n<url>`) |
+
+> **Corrected 2026-11-23** against live rows 12–25. H is an AWS-billing-specific key column, **not** a general field; **I is `Automation Location`, not "Automation Remarks"** — and the tokenization script never reads I at all. Two further traps worth knowing before enrolling anyone: the amount in col D must be a genuine **number** (`typeof amount === 'number'` is a hard filter — a quoted `"160"` is dropped with no log line), and col B must match the `Ledger history` col A contributor name **exactly** (`tokenizedAlready()` de-dups by exact string; any drift re-pays every run). The tab is also **owner-protected** — no service account can write it. Full procedure: **`sops/RECURRING_TRANSACTION_ENROLLMENT_SOP.md`**.
+
+The script treats whatever `getDataRange()` returns first as a header row and skips only that one row — it does **not** rely on the human header row's position, so banner rows above the table are harmless to the script but misleading to humans reading the schema.
 
 The lineage-engine build can compute "expected recurring activity since last tokenization" per recurring entry: number of billing-period units between F and today × D = pending recurring weight (USD). This isn't a contribution **claim** — it's a confidence-grade estimate of what the next quarterly tokenization will roll forward.
 
