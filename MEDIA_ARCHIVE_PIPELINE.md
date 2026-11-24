@@ -83,7 +83,11 @@ and the render **asserts before encoding**:
 2. the market's language is actually present — CJK required for F5, CJK forbidden for Agroverse;
 3. no caption contains a literal `\u` escape or a double escape (it would burn in as text);
 4. no caption window exceeds its beat duration;
-5. no segment requests more footage than its source clip contains (§ anti-patterns).
+5. no segment requests more footage than its source clip contains (§ anti-patterns);
+6. **frame 0 of the delivered master contains a human** — asserted on the *encoded master*, never
+   on the intended clip, and the tier found (1 face / 2 body / 3 hands) is logged. Tier 4 (no
+   human) aborts the render;
+7. the brand mark and title **do not overlap the human's face** on frame 0.
 
 Any assertion failing must abort the render. **A wrong-language master must be impossible to
 produce, not merely caught later by a human reading a screen.**
@@ -634,6 +638,52 @@ for the thing that is supposed to earn the watch.
 - **It front-loads context.** One read tells a scroller what they are about to watch and why it might
   be worth their time.
 
+#### A human must be on the first frame — priority order
+
+**Normative.** The first frame of every **master** must contain a human being. A frame with no
+person in it is not deliverable, no matter how good the footage is.
+
+Take the best tier available, and never deliver below tier 3:
+
+| Tier | What is on frame 0 | Verdict |
+|---|---|---|
+| 1 | **A face, looking toward camera** | ✅ **Best.** Strongest scroll-stopper; the grid thumbnail reads as a person, not a product |
+| 2 | **A human body in frame** — face angled away, back turned, working at the machine | ✅ Acceptable. Still a person; still not stock footage |
+| 3 | **Any human presence, incl. only hands** | ⚠️ Weakest acceptable — only when tiers 1–2 genuinely do not exist in the archive for this beat |
+| — | No human: product, ingredient, landscape, machine, empty room | ❌ **Not deliverable.** Change the in-point, the clip, or the beat |
+
+**Why.**
+
+- **Frame 0 is the cover.** Instagram uses it as the Reels-grid thumbnail and the feed's autoplay
+  frame. A face is the one thing that survives both — a tray of beans in a grid of nine competing
+  thumbnails is invisible.
+- **Cacao is made by people.** A faceless opening reads as commodity or stock footage, which works
+  against the entire premise: traceable, specific, human-grown. The lineage story starts with a
+  person, so the first frame should too.
+
+**Interaction with the mark and title — the human wins.** The brand mark and title composite *over*
+this same shot, so they must sit in **negative space** and never across a face. If the composition
+forces a choice between a legible mark and an unobstructed human, **move the mark**. Sizing and
+margins stay governed by `sops/INTRO_OVERLAY_STANDARD.md`.
+
+**Choose the frame — never manufacture it.** Pick a different in-point or a different clip. Do not
+crop, pan-scan or slide a frame to bring a human in: it reads as an accidental crop and drifts off
+the person as the shot plays.
+
+**If the archive holds no human-bearing footage for the intended opening beat,** change the beat —
+or change the format (a Carousel can carry a theme a video cannot — § *Let the clip count pick the
+format*). The answer is never a faceless frame 0.
+
+**Honesty still binds, independently.** A human on frame 0 does not license a caption the frame does
+not support, and an honest caption does not license a faceless frame. Both gates must pass at once:
+the words describe what is visible *and* a person is visible.
+
+**Case study (2026-11-24).** Every master in the Santos roasting lineage — v1 through v9 — shipped a
+faceless frame 0; v9 opens on raw beans in a blue bin with nobody in shot, verified `HUMAN=no` by
+vision check *after* the lineage had passed a full 6/6 frame-vs-caption QC. The existing gate asked
+"does the caption match the footage?" and never asked "is anyone in it?". That is why this is now an
+assertion rather than a preference.
+
 **Cold open — title over motion, not a title card.**
 
 | Approach | Effect |
@@ -789,6 +839,8 @@ Three defects in the Pará Reel were all invisible to inspection and only caught
 - [ ] Text layer OCR'd **in isolation on black** and read back correctly
 - [ ] Search the delivered frame for the **retired brand** (`TRUESIGHT DAO`) → must be 0 hits
 - [ ] Confirm the mark is **Agroverse**, matching the content type per §1
+- [ ] Frame 0 contains a **human** (§ *A human must be on the first frame*) → record the tier found
+      (1 face / 2 body / 3 hands); tier 4 blocks delivery
 
 #### 6. Known gap: no vector artwork
 
@@ -901,6 +953,16 @@ Include in the handoff message:
   most valuable seconds spent saying something the viewer already read.
 - ✅ Composite the opening title **over the first moving shot**, not on a static card; hold a card
   ≤1.5s only when the footage behind it is too busy to read against.
+- ❌ Opening a master on a faceless frame — product, ingredient, landscape, machine or empty room.
+  Frame 0 is the Reels-grid thumbnail; see § *A human must be on the first frame*.
+- ❌ Settling for a human-with-face-away shot (tier 2) when a **face looking toward camera** (tier 1)
+  exists in the archive. Tier 2 is the fallback, not the target.
+- ❌ Cropping or pan-scanning to manufacture human presence instead of choosing another in-point or
+  clip.
+- ❌ Compositing the brand mark or title across the subject's face to preserve a fixed layout. Move
+  the mark; the human wins.
+- ❌ Treating a caption that matches a faceless frame as sufficient. Honesty and human presence are
+  two separate gates and both must pass.
 - ❌ Placing on-screen text in the top ~250px or bottom ~450px bands — Instagram's own UI (username,
   audio label, caption, action buttons) covers them on device even though they look clear in your render.
 
