@@ -89,6 +89,10 @@ Attributes:
 - Col **U** (1-indexed = 21): full street address (e.g. `8437 SE Stark Street, Portland, OR 97216`)
 - Col **T** (1-indexed = 20): `FALSE` (or leave blank). **Do NOT set TRUE.** Col T = "Is Store Manager" is reserved for **online-fulfillment** managers (Gary + Kirsten) — i.e. people who can ship `agroverse.shop` orders from their physical inventory. A retail partner like Gergana holds consigned stock at her shop but does NOT fulfill online orders, so her bags must NOT count toward `Agroverse SKUs!I` (online-fulfillable totals). `partners-inventory.json` venue totals do **not** depend on col T — only on `Agroverse Partners.E` matching the ledger location string.
 
+**Warehousers are NOT store managers — col T stays blank.** Offering a physical location as a **warehousing** node is a different role from online fulfillment, so the flag must not be set. Critically: **do not infer col T from another warehouser's row.** `Kirsten Ritschel` (row 214) carries `TRUE`, but she is *separately* an online-fulfillment manager — a new warehouser does not inherit that by analogy. This exact mistake was made on 2026-11-23: `Pinky Blau` (Palo Verde CA warehousing) was given `TRUE` because "Kirsten is a warehouser with TRUE," and had to be cleared.
+
+> **Sanity check:** only **2** of 1,219 contributor rows carry `TRUE` — Gary Teh (row 145) and Kirsten Ritschel (row 214). 1,215 are blank and exactly 1 is `FALSE`. **If your edit makes the count 3, you are almost certainly wrong.** Clearing col T to blank (not `FALSE`) matches the dominant convention.
+
 ### 3.3 Append row to `Agroverse Partners`
 
 **Tool:** Direct gspread write (no Edgar event covers this sheet).
@@ -242,6 +246,19 @@ The 2026-04-28 onboarding hit two failure modes that are worth memorizing:
 **Root cause:** `cacao-journeys/pacific-west-coast-path/index.html` defaults to `.jpg` for stop images and only switches to `.jpeg` for slugs in a hardcoded list.
 
 **Mitigation:** If your header is `.jpeg`, add the slug to the conditional at the bottom of the file. (Or rename the file to `.jpg`.)
+
+### 6d. Col T (`Is Store Manager`) set by copying a neighbouring row
+
+**Symptom:** A new warehouser or retail contact who fulfils nothing online starts appearing in physical-store lead scoring, manager follow-up draft generation, or partner-velocity reporting.
+
+**Root cause:** Col T was set to `TRUE` on the reasoning "the last warehousing row had `TRUE`, so I'll mirror it." Col T is **role**-based, not row-similarity-based: it means *can this person ship `agroverse.shop` orders from their own inventory?* Warehousing a pallet and fulfilling an order are different jobs. The nearby-row heuristic fails because the only two `TRUE` rows belong to people who hold **both** roles.
+
+**Downstream blast radius** — col T gates, across `go_to_market`:
+`sync_agroverse_store_inventory.py` · `suggest_manager_followup_drafts.py` · `sync_partners_velocity.py` · `hit_list_promote_status.py`, plus `store_interaction_history_api.gs` in `tokenomics`. A wrongly-flagged contact can be pulled into drafted outreach for a store they have no role in.
+
+**Mitigation:** Default col T to **blank**. Set `TRUE` only for the small set of genuine online-fulfillment managers (currently Gary Teh and Kirsten Ritschel). Verify with a distribution count before and after — `TRUE` should still be 2. If you have already written it, clear to blank (matching 1,215 of 1,219 rows), not `FALSE`.
+
+**Detection:** Count `TRUE` values in col T. More than 2 means someone has been over-flagged.
 
 ---
 
