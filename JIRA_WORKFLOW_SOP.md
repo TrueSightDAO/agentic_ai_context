@@ -1,6 +1,6 @@
 # Jira / KAN board workflow — SOP
 
-**Status:** compiled 2026-11-24 (Sophia Truesight, at Gary's request). Every fact below was read
+**Status:** compiled 2026-11-24, amended 2026-11-25 (§13) (Sophia Truesight, at Gary's request). Every fact below was read
 live from the tenant — see §9 for the exact calls. Re-verify rather than trust a stale copy.
 
 **Applies to:** `truesightdao.atlassian.net`, project **KAN** ("TrueSight DAO", id `10001`),
@@ -202,6 +202,12 @@ Board inventory is a **snapshot**, not a constant — re-read it, do not quote t
 
 ## 10. Thread URL — MANDATORY on every ticket (Gary, 2026-11-25)
 
+> **Amended 2026-11-25 — see §13.** The description URL is now the *primary* routing
+> signal, not the only one. A Discord channel whose name carries the ticket key
+> (`kan-15-…`) resolves on its own, so a ticket can be routed without any description
+> edit. §10 stays mandatory — the URL is still what makes a ticket portable across
+> transports — but it is no longer a hard blocker for Discord routing.
+
 Every ticket's description MUST carry a line of exactly this shape:
 
 ```
@@ -352,3 +358,74 @@ the last so handoffs run by another box are not mistaken for Sophia's own queue.
 
 **`handoffs/index.json` is NOT deleted.** It is still written by the supervisor loop and read
 by other tooling. Retiring the *view* is not the same as deleting the *data*.
+
+---
+
+## 13. Channel-name convention — `kan-<n>-<slug>` (Gary, 2026-11-25)
+
+**The rule:** if a Discord channel is the conversation for a JIRA ticket, its name MUST start
+with that ticket's key, lowercased, followed by a slug:
+
+```
+kan-15-cacao-mug-iteration      → KAN-15
+kan-16-cacao-legacy-project-singapore → KAN-16
+```
+
+### 13a. Why (measured, not aesthetic)
+
+| Property | Measured value |
+|---|---|
+| Collisions across all **78** KAN titles | **0** |
+| Title characters kept, key-prefixed | **31.5** avg |
+| Discord name limit | 40 chars |
+
+So the convention costs ~8 characters of title and is unambiguous across the whole board.
+It is **measured against real data**, not a preference.
+
+The load-bearing win is routing: the supervisor loop (`app/jira_loop.py`) can resolve a
+target from the channel name alone via `target_from_channel_name()`, with
+`LOOP_JIRA_CHANNEL_FALLBACK` (default **on**). It removes the need to hand-write a
+`Thread URL:` into every description — a field that was populated on **0 of 57**
+migrated tickets, i.e. a requirement nobody followed.
+
+### 13b. Precedence
+
+1. **`Thread URL:`** in the description — always wins (explicit, survives a rename).
+2. **Keyed channel name** — fallback, only when there is no URL.
+3. **Neither** → the ticket is reported in the sweep's `unmapped` digest. **Never guess.**
+
+### 13c. Hard rules
+
+- **One key per channel.** `kan-15-cacao-mug` — never two keys in one name.
+- **Never rename a channel without establishing the association from the ticket's own
+  summary.** A shared generic token (`agroverse`, `cacao`) is **not** an association:
+  scanning 78 tickets against 113 channels produced 69 "matches" on that basis, nearly
+  all false positives. Only rename where the channel is unambiguously *that ticket's*
+  conversation.
+- **Key at the start, hyphenated.** `foo-kan-15` does not parse. The parser is
+  `^kan-(\d+)(?![0-9])`, so `kan-250-x` → `KAN-250`, never `KAN-25`.
+- **Renaming is reversible and safe.** Discord keeps history and the channel id; the key is
+  a prefix, not a replacement. Do not delete a channel to "re-create it with the right name".
+
+### 13d. Current state (2026-11-25)
+
+| Ticket | Channel | id |
+|---|---|---|
+| KAN-15 | `kan-15-cacao-mug-iteration` | `1567010139993677884` |
+| KAN-16 | `kan-16-cacao-legacy-project-singapore` | `1569368154218569850` |
+
+**2 of 113** text channels carry a key. The convention is deliberately being introduced
+**gradually and only where verified** — a wrong rename misroutes a nudge to the wrong
+conversation, which is worse than an unmapped ticket (an unmapped ticket is *reported*; a
+misrouted nudge is *silent*). `keyed_channels` in the sweep digest reports coverage, so the
+number to watch is that count rising.
+
+### 13e. Naming a new channel
+
+When creating a channel for a ticket, name it in the same breath:
+
+```
+kan-<n>-<short-slug>     # e.g. kan-45-cli-sales-event-audit
+```
+
+Then no description edit and no URL are needed for the loop to find it.
