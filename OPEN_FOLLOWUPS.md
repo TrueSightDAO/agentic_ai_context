@@ -39,6 +39,32 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Sprint->Jira migration dropped every `Thread URL:` — 0 of 58 migrated tickets link to a thread
+
+**Filed 2026-11-25 (Sophia Truesight). Owner: unclaimed. Priority: HIGH — it is the sole reason the new Jira supervisor cannot reach 25 of 27 watched tickets.**
+
+**Symptom.** Verified live against the tenant (58 migrated tickets, KAN-18…KAN-74 + KAN-79). **All 58 have a description and a `sprint-migration:` marker, and 0 of 58 carry a `Thread URL:` line.** The `plan()` path in `app/jira_loop.py` needs a resolvable target per ticket; with no thread URL the only fallback is the Discord channel-name convention, and **only 2 of 84 live channels are keyed** (`kan-15-…`, `kan-16-…`). Live digest after the 2026-11-25 deploy: `scanned=27 keyed_channels=2 via_channel=2 unmapped=25`.
+
+**Why it matters.** The supervisor is deployed and running, but it monitors exactly 2 tickets. The other 25 are reported as `unmapped` on every sweep (correctly — they are not silently dropped), so the feature is live but starved. Backfilling thread URLs is the cheapest repair and needs no channel renames.
+
+**Source inventory (why this is not a one-liner).** The source `handoffs/index.json` has **57 non-terminal** handoffs; **40 carry a thread reference** and **17 carry none** (`telegram_thread_id: None`, `telegram_topic: "—"`). But my plan-file→marker join only matched **10** of them cleanly, because migrated markers are inconsistent: some are `plans/X.md`, some `OPEN_FOLLOWUPS.md#anchor` (many anchors with no ticket), and some have ADF escape junk captured next to the path. **Writing 40 thread URLs against a 10/40-confident join risks attaching the wrong thread to the wrong ticket** — worse than leaving them missing. Needs a deliberate, reviewed pass, not a bulk script.
+
+**Recommended fix.** (1) Rebuild the source→KAN join from `handoffs/index.json` `plan_file` + `telegram_topic_url`/`discord_thread_id`, tolerating the three marker shapes. (2) For the 40 with a thread ref, prepend/replace the `Thread URL:` line via the description-update path already proven on the 58 (read-modify-write ADF). (3) Leave the 17 without a ref explicitly `Thread URL: MISSING (no thread ever created)`. (4) Re-run `loop_alert.py --jira-dry-run` and confirm `unmapped` drops from 25 toward 2.
+
+**Acceptance.** `unmapped` under 5 on a live dry run; no ticket carries a thread URL that does not resolve to a real thread; the 17 genuinely-threadless tickets say so explicitly rather than looking unfilled.
+
+### `jira_query` has no `assign_issue` write action — only a throwaway REST script can assign
+
+**Filed 2026-11-25 (Sophia Truesight). Owner: unclaimed. Priority: MEDIUM — needed for repeatable assignment; the 2026-11-25 reassignment was done by ad-hoc script.**
+
+**Symptom.** `jira_query`'s advertised write actions are `create_issue`, `update_issue`, `add_comment`, `transition_issue`, `link_pr_in_comment`. There is **no `assign_issue`**. Assignment is only possible via a direct `PUT /rest/api/3/issue/{key}/assignee` call, which is what the 58-ticket reassignment to the live account required.
+
+**Why it matters.** The stored `accountId` in config had gone stale (an `active: False` tombstone holding no groups and no product access) — a silent trap where assignments succeed but land on a dead identity. Fixing that was a one-off script. Without a first-class action, the *next* identity change hits the same trap with the same throwaway tooling, and nothing in the codebase can detect or repair it.
+
+**Recommended fix.** Add `assign_issue(issue_key, account_id)` plus an account resolver (search by email → live `accountId`, assert `active == True` before assigning) as `jira_query` actions, `confirm_write`-gated like the other writes. Document in `JIRA_WORKFLOW_SOP.md` §4. Add a test asserting a tombstoned account id is **refused**, not silently used.
+
+**Acceptance.** `jira_query(action='assign_issue')` assigns and reports the resolved displayName; assigning to an `active: False` account fails loudly; SOP §4 documents it.
+
 ### `tests/test_resolve_tdg_issued.py` is red on `main` — 5 failures, pre-existing, nobody owns it
 
 **Filed 2026-11-24 (Sophia Truesight). Owner: unclaimed. Priority: MEDIUM — a regression on `main` that every PR has to step around.**
