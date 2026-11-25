@@ -100,7 +100,7 @@ fully archived** (the 244 Bahia objs), so it was **moved** (not deleted) to
    "MAP intake has no per-zip context channel"): identity arrives out-of-band in chat and a
    zip that never gets context **stalls invisibly**. Design = a sibling
    `foo.zip.context.json` dropped with the zip (inert to the claimer; travels the funnel)
-   + a **fail-visible** hold. **Not yet built.**
+   + a **fail-visible** hold. **✅ BUILT & LIVE — see §4.4.**
 2. **Never wire `/media/quarantine/` as an intake/archive root** — it would re-loop the bad
    zip. Parking lot, not a source.
 
@@ -173,6 +173,70 @@ four `la_do_sitio_*` patches, and the two ilheus warehouse zips. `cic_complete.z
 > `*.zip.context.json` cards (`farm_id: facility-black-king-warehouse`) and resolve via the
 > **§4.1 context-card path once #37 is deployed**. Their current `skipped` log lines are
 > expected until that deploy.
+
+### §4.4 — VERIFIED STATE, 2026-11-25 (supersedes §3 and the §4 marker above)
+
+Both doors are live and the plan's last product gap (the context card) is **built and
+proven in production**. Everything below was measured live on the autopilot box, read-only.
+
+**Front door (#1) — LIVE.**
+
+- `farm-media-intake.timer` active/enabled, firing every ~5 min.
+- Last four cycles, all clean: `claimed=0 duplicate=0 conflict=0 refused=None awaiting_context=0`.
+  `claimed=0` because `/media/to_process/` and `/media/processing/` are **both empty** —
+  nothing stuck, nothing dropped.
+- End-to-end proved with **zero intervention** (arrivals 2026-10-24): `santos_2026.zip` →
+  10 entries, `anna_luanna.zip` → 3 entries, auto-claimed → archived → promoted.
+- Previously HELD set fully drained: `santos_complete.zip` 149, `santa_anna_farzenda_bahia.zip`
+  151, `santa_anna_fazenda_bahia_complete.zip` 160 entries. `ilheus_warehouse_2.zip` → 0
+  entries is the known benign stills-only (HEIC) case, **not** a fault.
+
+**Back door (FORM 3) — LIVE.**
+
+- `farm-media-archive.service` active/enabled.
+- `archive.roots[38].zip_farm_ids` now holds **16** mappings (plan §0 lists 11; §4.3 snapshot
+  said 12). Added since: `founder_haus_startup_summit_20260930.zip`→`event-media`,
+  `anna_luanna.zip`→`fazenda-analuana-bahia`, `santos_2026.zip` + `santos_complete.zip`→
+  `facility-santos-chocolate-factory`.
+- Fail-closed is intact: a zip absent from the map is skipped with a warning, never mis-filed.
+
+**Context card (§4 item 1) — ✅ BUILT & LIVE (this corrects "Not yet built").**
+
+- `farm_media_intake.py` implements the full design: `CONTEXT_SUFFIX = ".zip.context.json"`
+  (:64), `context_card_path()`, `read_context_card()`, and `awaiting_context_zips()` (:142).
+- The fail-visible hold is wired: entries flagged `entry["awaiting_context"] = True` (:350,
+  :354), including a distinct `"(bad card)"` reason (:352) for a malformed card.
+- `awaiting_context` is emitted in **every** intake summary line — i.e. it is observable in
+  normal operation, not just on the unhappy path.
+- **10 cards are present in `/media/processed/`** (`santos_complete`, `santos_2026`, `anna_luanna`,
+  `santa_anna_farzenda_bahia`, both `ilheus_warehouse*`, four `la_do_sitio_*`) — they travelled
+  the whole funnel, which is the proof the path works.
+
+**Totals.** `/media/processed/`: **22 zips + 22 sidecars + 10 context cards**.
+
+**Conclusion — KAN-71's go-live done-criteria are MET.** "A governor drops `*.zip`; the
+pipeline claims it, resolves its own `farm_id`, archives to the right prefix, promotes —
+no hand-typed path, never mis-filed." All four clauses are evidenced above.
+
+**RESUME HERE → the ONLY remaining unit is the #36 `source_zip` backfill** (§4.1), which is
+provenance enrichment on already-archived data — **not** part of making the funnel live. It
+is tracked twice, deliberately:
+
+1. `OPEN_FOLLOWUPS.md` — "MAP `source_zip` backfill (#36) leaves ~235 sidecars unstamped",
+   now refined with the precise root cause (a `build_zip_index()` **alias-map collision**:
+   the index keys on the *inbox folder* `farm_id` while archive entries carry a different
+   `farm_id`, so the tuple never collides; plus single-root scope reading 22 of 62 sidecars).
+   Live coverage **185 / 624**. ⚠️ Do **not** alias `la-do-sitio` → `paulo-la-do-sitio`
+   (distinct farms, §0 trap). Do **not** retry a merged cross-zip index — tested and
+   **rejected** (199 matched / 361 ambiguous vs 350 / 210: worse).
+2. `OPEN_FOLLOWUPS.md` — "`farm_media_daemon/` is entirely unversioned": 0 commits in
+   `origin/main`, 0 tracked files, excluded by box-local `.git/info/exclude:7`. This is the
+   **blocker** on landing the backfill fix as a reviewable PR with CI. Payload is clean and
+   committable (29 files, 273.7 KB, no secrets). **Awaiting governor decision A (version it)
+   vs B (hand-patch on the box).**
+
+**Still open, out of scope for KAN-71:** stills have no `source_zip` (§4.2, accepted gap).
+**Standing warning:** never wire `/media/quarantine/` as an intake/archive root (§4 item 2).
 
 ## Gates
 
