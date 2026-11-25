@@ -439,6 +439,61 @@ files (~21 per 10 min ≈ ~3k/day, ~0.4 GB/day at the observed ~138 KB/file). Di
 is at 35% so this is not urgent, but at that rate the retention fix becomes
 worth scheduling rather than merely noting.
 
+**Unit 4 checkpoint 2 (2026-11-25 ~18:31Z) — two corrections, one of them to my own
+method.**
+
+**Correction 1 — the soak is ~20h, not the ~4h reported at checkpoint 1.** I measured
+from the current process start (14:19:52Z) and missed that earlier processes had
+already been folding. First genuine fold in journald: **Nov 24 23:25:58**; KAN-30's
+60-day audit places it at **Nov 24 21:58:11**. Latest: Nov 25 18:30:39. That is
+**~20.5h of continuous soak and 223 folds**, i.e. the 24h window closes around
+**Nov 25 21:58Z**. Checkpoint 1 understated soak length by ~16h because I used
+process start as the soak start; the soak begins at the *first fold*, which survives
+restarts.
+
+**Correction 2 — my band test was too weak, and it hid a real cost.** Checkpoint 1
+treated "before-counts sit in a stable band" as success. A stable band has **two**
+readings, and I only tested for one:
+
+1. the fold holds a ceiling while the turn does genuinely new work — *good*; or
+2. the fold re-folds the same content repeatedly because it removes only the
+   minimum — *churn*.
+
+Per-session fold counts over just one hour expose reading 2:
+
+| Session | Folds | Trajectory |
+|---|---|---|
+| `a8209b9a63b1` | **27x** | `62>53 61>53 61>53 61>53 64>56 64>56 64>56 64>56 73>65 73>63 63>54 62>54 …` |
+| `db6d3aa764c5` | 7x | `66>58 66>58 71>63 71>63 71>63 63>55 83>75` |
+| `81dbcd615f3a` | 5x | `79>70 78>70 78>70 77>68 76>68` |
+| `434b53fd293b` | 4x | `74>65 73>65 73>65 73>65` |
+
+The repeated identical pairs (`61>53` then `61>53`, `66>58` then `66>58`) are the
+tell: the fold removes exactly the **K=4 rounds (~8 messages)** it is permitted to,
+the turn adds ~8 back, and it folds again ~4 rounds later — roughly every 2 minutes
+on a long-running session. Note `db6d3aa764c5` 7x shows `71>63` **three times
+identically.**
+
+**What this does and does not mean.** The *primary* goal still holds — before-counts
+never climb toward the 94K/111K pathology, so there is no unbounded growth. What is
+*newly* measured is a **secondary cost** the plan never specified a metric for:
+- **summariser churn** — one LLM summariser call per fold, ~27/hour on a busy session;
+- **summary depth** — each fold extends the running `[TURN IN PROGRESS — EARLIER
+  ROUNDS SUMMARY]` entry, so a session folding 27x may be building a
+  summary-of-a-summary 27 levels deep. `default_round_summarizer` re-summarises the
+  prior summary, so **semantic drift with depth is a live risk, unquantified.**
+Filed in `OPEN_FOLLOWUPS.md`.
+
+So Unit 4's acceptance criterion must gain a **second dimension**: not only "does
+pressure stay bounded" (yes) but "at what summariser cost and what summary depth"
+(unknown, and now measurable). A fold count of 223 with per-session spikes to 27/h is
+exactly the evidence needed to size it.
+
+**Measurement trap repeats.** The per-session awk parse again yielded a phantom
+"session `Nov`" — a session id extracted from echoed log text, same self-referential
+journald trap recorded above. This is the second occurrence; any parser reading
+journald must exclude lines that are themselves tool output.
+
 **Unit 4 is a gate.** Folding now runs inside the live per-round loops, so
 deploying changes production behaviour. Do not deploy without an explicit
 governor go. Rollback is a single env var — `CONTEXT_INTRATURN_COMPACTION_AUTO=0`
