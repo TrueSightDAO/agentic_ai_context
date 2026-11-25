@@ -58,38 +58,47 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 **Acceptance criteria.** The discipline rule appears where diagnosis is instructed; a log-signature helper exists that derives patterns from source rather than prose; and a zero-hit result from any hand-written pattern is treated as "pattern possibly wrong" — requiring a positive-control grep against a known-present string — before any conclusion is drawn from it.
 
-### `farm_media_daemon/` — the entire Media Archive Pipeline daemon is UNVERSIONED (never in `origin/main`); its 15 test files too
+### ~~`farm_media_daemon/` is fully UNVERSIONED~~ — **RETRACTED 2026-11-26: the premise was FALSE**
 
-**Priority:** HIGH · **Filed:** 2026-11-25 · **Component:** `farm_media_daemon/` · **Related:** KAN-71, `MEDIA_ARCHIVE_PIPELINE.md`
+**Priority:** ~~HIGH~~ **WITHDRAWN** · **Filed:** 2026-11-25 · **Retracted:** 2026-11-26 · **Component:** `farm_media_daemon/`
 
-**Symptom.** Verified against the remote, not just local state:
+> **Retraction.** This entry claimed the Media Archive Pipeline daemon "exists only on the
+> autopilot box" with "no history, no review path, no CI, and no rollback". **All of that was
+> wrong.** The daemon has its **own repo — `TrueSightDAO/farm-media-daemon`** (SSH remote,
+> merged PRs **#35–#42**, HEAD `0c8f0d2`). `/opt/truesight_autopilot/farm_media_daemon/` is a
+> **nested clone** of it, and its presence in the parent repo's `.git/info/exclude` is
+> **correct and intentional** — you don't want a nested working tree tracked twice. Nothing
+> needs "versioning". The A/B decision this entry demanded from the governor was **void**, and
+> it needlessly blocked the #36 backfill for a turn. The backfill then shipped normally as
+> **PR #42 with a green test suite (154 passed)** — exactly the "reviewable PR with CI" outcome
+> the entry said was impossible.
 
-| Check | Result |
+**How the false negative was produced (the transferable defect).** The table below was
+*accurately measured* — but against the **wrong repository**:
+
+| Check (run against `truesight_autopilot`) | Result — correct, and irrelevant |
 |---|---|
-| `git ls-tree origin/main \| grep farm_media` | **nothing** |
-| `git log origin/main -- farm_media_daemon/` | **0 commits, ever** |
-| `git ls-files farm_media_daemon/` | **0 files** |
-| `git check-ignore -v farm_media_daemon/farm_media_backfill_source_zip.py` | `.git/info/exclude:7: farm_media_daemon/` |
+| `git ls-tree origin/main \| grep farm_media` | nothing |
+| `git log origin/main -- farm_media_daemon/` | 0 commits |
+| `git ls-files farm_media_daemon/` | 0 files |
+| `git check-ignore -v farm_media_daemon/…` | `.git/info/exclude:7` |
 
-The archive worker (`farm_media_archive.py`), intake front door (`farm_media_intake.py`), publisher, captions, gallery, manifest, photo enrich, `farm_media_backfill_source_zip.py` **and all 15 test files** exist only on the autopilot box.
+Every row is true for the *parent* repo and says nothing about whether the daemon is
+versioned, because **the question "is this directory versioned?" is not answerable from the
+parent repo alone** — a nested clone answers to its own `.git`. The tell was sitting in plain
+sight and I skipped it: the entry never ran `ls -a farm_media_daemon/` or `git -C
+farm_media_daemon remote -v`. Checking the *containing* repo and concluding about the
+*contained* one is the error. One command would have settled it.
 
-**Why it matters.** Production code with no history, no review path, no CI, and no rollback:
+This is the **same failure family** as "Verifying log-based behaviour by grepping a plan's prose
+word instead of the code's format string" (earlier entry): a real measurement, aimed at the
+wrong target, producing a confident and wrong negative. Guard: **for any "X is missing /
+unversioned" claim, name the process that would own X and interrogate *that* — never its
+parent, its wrapper, or its directory listing.**
 
-1. `read_repo_file` → 404 and `search_code` → 0 hits for daemon paths. Initially misdiagnosed as a GitHub API rate limit; the code was simply never committed.
-2. The #36 `source_zip` backfill fix cannot obtain a real PR + CI run, so it is hand-patched or deferred indefinitely.
-3. Loss of the box = total loss of the pipeline (no reconstructable source).
+**No action required.** Kept only as a retraction record so no future session re-files it.
 
-**Evidence it's accidental drift, not policy.** The repo *does* track the daemon's companion artifacts — `media_archive_daemon_config.yaml.example` at the root and the `systemd/` units — while the code they configure is absent. `.git/info/exclude` is **box-local** (not a tracked `.gitignore`), consistent with drift rather than a deliberate decision.
-
-**Payload size (verified).** 29 source files, **273.7 KB** total. No `.env`, `*.key`, `*.pem`, or token files. `locations_cache.json` (28.6 KB) is a derived geocode cache — commit it or gitignore it, but decide explicitly.
-
-**Recommended fix.**
-1. Remove `farm_media_daemon/` from `.git/info/exclude`.
-2. Commit source + tests + `DESIGN.md`.
-3. Add `__pycache__/`, `*.pyc`, and optionally `locations_cache.json` to the **tracked** `.gitignore`.
-4. Then land the #36 backfill fix as a normal PR that CI exercises.
-
-**Acceptance criteria.** `git ls-files farm_media_daemon/ | wc -l` > 0 on `main`; the backfill fix ships via a PR with CI evidence; a fresh box can be rebuilt from the repo alone.
+---
 
 ### MAP `source_zip` backfill (#36) — precise root cause: `build_zip_index` alias-map collision + single-root scope (refines the entry below)
 
@@ -2853,6 +2862,18 @@ correcting a pre-guard duplicate and referencing the original Request Transactio
 **Evidence.** Box `i-05276b8ae82d6b88c`, 2026-10-05: read via the `agroverse-qr-code-manager` SA — AGL9 `Balance` 5 non-empty rows all `#VALUE!`, `Transactions` empty, `State!A1` = `#REF!`, `Contract URL` = `20250627_agl10.pdf`.
 
 ### MAP `source_zip` backfill (#36) leaves ~235 sidecars unstamped — tool scope + a farm_id-divergence join miss (incl. ONE zip-sourced farm)
+
+> **✅ RESOLVED 2026-11-26.** Fixed and applied: **PR #42** (`farm-media-daemon`, merged
+> `0c8f0d2`) made `DEFAULT_PROCESSED_DIRS` multi-root (`/media/processed`,
+> `/media/upload_zips`, `/home/ubuntu` → zips indexed **19 → 59**) and added explicit
+> inbox→archive alias resolution with an `UNALIASED_BY_DESIGN` guard so `la-do-sitio` can
+> never silently resolve to `paulo-la-do-sitio` (the §0 conflation trap).
+> **Live coverage 185/624 (29.6%) → 398/624 (63.8%)**, 213 newly stamped (14 via alias),
+> farms at 100% **4 → 12**; idempotent on re-run (`stamped: 0`).
+> The remaining **226 are by design, not defects**: 151 `ambiguous` (same-name farms —
+> `fazenda-santa-ana-bahia`; refusing beats mis-filing) and 75 `unmatched` (never
+> zip-sourced, so there is no origin to stamp). See the precise-root-cause entry above
+> (alias-map collision + single-root scope), now closed by the same PR.
 **Filed 2026-10-03 (thread 30550, §4.1 verification). Owner: unclaimed. Media pipeline; ~small.**
 
 **Symptom.** `farm_media_backfill_source_zip.py` (farm-media-daemon PR #36) reports `unmatched = 434` on the live box. That number is **not** "non-zip-sourced farms only" — it hides a real gap. Verified by re-running the tool's join over **all 48** `.archive.json` on the box (`sudo find /media /home/ubuntu -name '*.archive.json'`) rather than the tool's default 8: widening recovers 199, leaving **235** — in three classes:

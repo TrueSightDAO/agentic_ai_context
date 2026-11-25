@@ -218,8 +218,8 @@ proven in production**. Everything below was measured live on the autopilot box,
 pipeline claims it, resolves its own `farm_id`, archives to the right prefix, promotes —
 no hand-typed path, never mis-filed." All four clauses are evidenced above.
 
-**RESUME HERE → the ONLY remaining unit is the #36 `source_zip` backfill** (§4.1), which is
-provenance enrichment on already-archived data — **not** part of making the funnel live. It
+**✅ RESUME HERE → COMPLETE (2026-11-26). The #36 `source_zip` backfill is DONE** — see §4.5.
+It was provenance enrichment on already-archived data, **not** part of making the funnel live. It
 is tracked twice, deliberately:
 
 1. `OPEN_FOLLOWUPS.md` — "MAP `source_zip` backfill (#36) leaves ~235 sidecars unstamped",
@@ -237,6 +237,34 @@ is tracked twice, deliberately:
 
 **Still open, out of scope for KAN-71:** stills have no `source_zip` (§4.2, accepted gap).
 **Standing warning:** never wire `/media/quarantine/` as an intake/archive root (§4 item 2).
+
+### §4.5 — source_zip backfill COMPLETE (2026-11-26)
+
+**PR #42** (`TrueSightDAO/farm-media-daemon`, merged `0c8f0d2`) fixed the backfill tool's two
+defects and the backfill was **applied to live data**:
+
+1. **Single-root scope** → `DEFAULT_PROCESSED_DIRS` is now multi-root
+   (`/media/processed`, `/media/upload_zips`, `/home/ubuntu`). Zips indexed **19 → 59**.
+2. **Alias-map collision** → explicit inbox→archive alias resolution **plus** an
+   `UNALIASED_BY_DESIGN` guard so `la-do-sitio` can never silently resolve to
+   `paulo-la-do-sitio` (§0 conflation trap). Only safe aliases were added —
+   `raimundo-geniza-para`→`raimundo-geniza` resolved **14/14** items.
+
+**Result — coverage 185/624 (29.6%) → 398/624 (63.8%)**: 213 newly stamped (14 via alias),
+farms at 100% **4 → 12**. Idempotent: an immediate re-run reports `already 398 · stamped 0`.
+
+**The remaining 226 are by design, not defects:** **151 ambiguous** (`fazenda-santa-ana-bahia`
+— same-name farms; refusing beats mis-filing) and **75 unmatched** (never zip-sourced, so no
+origin exists to stamp). Tests: **154 passed**.
+
+**⚠️ Also retracted:** an earlier `OPEN_FOLLOWUPS` entry claimed `farm_media_daemon/` was
+"entirely unversioned" and demanded a governor A/B decision. **False** — the daemon has its own
+repo, `TrueSightDAO/farm-media-daemon` (PRs #35–#42); the directory is a nested clone, and its
+`.git/info/exclude` entry is correct. No decision was ever needed; the fix shipped as a normal
+PR with CI. Entry retracted in `OPEN_FOLLOWUPS.md`.
+
+**Genuinely still open (out of scope, unchanged):** stills have no `source_zip` (§4.2 —
+accepted by-design gap).
 
 ## Gates
 
