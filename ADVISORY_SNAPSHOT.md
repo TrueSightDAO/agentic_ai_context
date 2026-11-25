@@ -20,7 +20,7 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-11-25T08:58:45Z`
+- Generated (UTC): `2026-11-25T21:55:26Z`
 - Look-back: **7** calendar days (`2026-11-18` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
@@ -32,17 +32,13 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 27
-- `[PRACTICE EVENT]` × 7
-- `[EMAIL REGISTERED EVENT]` × 5
-- `[EMAIL VERIFICATION EVENT]` × 2
+- `[CONTRIBUTION EVENT]` × 29
+- `[PRACTICE EVENT]` × 8
+- `[EMAIL REGISTERED EVENT]` × 4
 - `[ASSET RECEIPT EVENT]` × 1
 
 ### Latest entries
 
-- `Edgar_20261124112158_3824` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: Editorial analysis and drafting — Asian Financial Forum 2027 speaker profile…
-- `Edgar_20261124112204_3826` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Description: Direction and review — Asian Financial Forum 2027 speaker profile, v2 to v12…
-- `Edgar_20261124112353_3828` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Description: Direction and review — Asian Financial Forum 2027 speaker profile, v2 to v12…
 - `Edgar_20261124113635_3830` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Asian Financial Forum 2027 speaker profile for Gary Teh — v2 through v12, pl…
 - `Edgar_20261124113637_3832` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 64 · Description: Asian Financial Forum 2027 speaker profile for Gary Teh — direction, review …
 - `Edgar_20261124114228_3834` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Contributor(s): Gary Teh
@@ -60,6 +56,9 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20261125080256_3858` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-11-25T08:02:49.203Z · Email: chaodac28@gmail.com
 - `Edgar_20261125080406_3860` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-11-25T08:04:01.308Z · Email: chaodac28@gmail.com
 - `Edgar_20261125080411_3862` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-11-25T08:04:03.883Z · Email: chaodac28@gmail.com
+- `Edgar_20261125091011_3864` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Contributor access onboarding — Jira account provisioning + contributors she…
+- `Edgar_20261125091013_3866` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Directed contributor access onboarding (Peter Da) — spec, credential routing…
+- `Edgar_20261125163419_3868` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-25T16:34:18.170Z · Program: truesight-grounding · Practice Type: oracle-consultation
 
 ---
 
@@ -74,7 +73,7 @@ _Not yet configured. Add `GROWTH_GOALS.json` at `/home/runner/work/go_to_market/
 _Auto-synced from the Pipeline Dashboard tab of the Holistic Hit List workbook._
 _Do not edit by hand — see `google_app_scripts/pipeline_metrics_snapshot/` in tokenomics._
 
-- Generated (UTC): `2026-11-24T11:59:14.887Z`
+- Generated (UTC): `2026-11-25T11:59:14.758Z`
 - Source: [Pipeline Dashboard](https://docs.google.com/spreadsheets/d/1eiqZr3LW-qEI6Hmy0Vrur_8flbRwxwA7jXVrbUnHbvc/edit#gid=1606881029)
 - Total stores tracked: **0**
 
@@ -271,6 +270,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-11-18 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+7bf9d10 | 2026-11-25 09:01:23 +0000 | chore(stats): refresh stats indexes [skip ci]
 975aeb9 | 2026-11-24 22:42:54 +0000 | chore(stats): refresh stats indexes [skip ci]
 cef6637 | 2026-11-24 10:20:09 +0000 | chore(stats): refresh stats indexes [skip ci]
 da39bad | 2026-11-24 00:15:47 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -290,12 +290,41 @@ dab09c2 | 2026-11-20 07:40:43 +0000 | chore(stats): refresh stats indexes [skip 
 ### `market_research` → `go_to_market`
 
 ```
-a664e98 | 2026-11-20 21:29:41 +0800 | Document F5 Content Schedule tab + fix primary_key formula
+16a9d30 | 2026-11-26 02:16:57 +0800 | Recover 2 published reels into CSV so the next sync stops deleting them (#212)
 ```
 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+c9fef21 | 2026-11-26 03:57:06 +0800 | OPEN_FOLLOWUPS: jira_stale nudge keeps firing after fix merged (deploy lag) + merge-gate CI reader false negative (#1932)
+580f236 | 2026-11-26 03:36:22 +0800 | docs(intraturn): make Unit 4 gate marker non-advanceable (stop 7x auto-advance churn) + refresh evidence row (#1931)
+0e3e3dc | 2026-11-26 03:33:18 +0800 | docs(intraturn): Unit 4 checkpoint 5 — strict band test PASSES; real accumulation corrects #1929 both ways (#1930)
+fe3f358 | 2026-11-26 03:29:49 +0800 | docs(intraturn): Unit 4 checkpoint 4 — source DISPROVES my checkpoint-2 risk (no LLM call, no nesting); real risk is summary accumulation (#1929)
+1160745 | 2026-11-26 02:35:04 +0800 | docs(kan30): runnable day-mark snippet now uses positive anchors (fixes false FAIL) (#1928)
+dd6980c | 2026-11-26 02:33:49 +0800 | docs(intraturn): Unit 4 checkpoint 3 — clean 219-fold record, 2 self-measurement errors caught (#1927)
+2a9fbd8 | 2026-11-26 02:32:22 +0800 | docs(intraturn): Unit 4 checkpoint 2 — soak is ~20h not 4h; fold churn (27/h) exposed by my own weak band test (#1926)
+d284389 | 2026-11-26 02:30:46 +0800 | docs(kan30): fix false-pass bug in day-mark procedure + 4h09m checkpoint (#1925)
+dec0486 | 2026-11-26 02:26:19 +0800 | docs(runbook): preserve Black King freight dispute figures + fix dangling §5.13 ref (#1924)
+b57f6b9 | 2026-11-26 01:52:36 +0800 | Formalize "Post text" term + record Agroverse frame-0 brand decision (#1923)
+2230c19 | 2026-11-26 01:35:30 +0800 | KAN-71: mark source_zip backfill DONE; retract false 'unversioned daemon' entry (#1922)
+471b577 | 2026-11-26 01:25:16 +0800 | docs(followups): file jira_stale/pr_evidence closed-loop bug + check-runs 403 workaround (#1921)
+1b41f7c | 2026-11-26 00:28:03 +0800 | docs(kan30): harden the echo filter ('stderr:' is a 3rd channel) + day-mark procedure (#1920)
+a102c75 | 2026-11-26 00:26:56 +0800 | docs(kan30): Unit 4 2h05m soak checkpoint; correct the token-threshold framing (#1919)
+faa2988 | 2026-11-26 00:25:08 +0800 | docs: file follow-up on log-signature grep discipline (false-negative postmortem) (#1918)
+71920ed | 2026-11-25 23:33:33 +0800 | KAN-71: record verified go-live state; RESUME HERE = #36 backfill only (#1917)
+d1b51d8 | 2026-11-25 23:26:02 +0800 | docs(intraturn): Unit 4 soak checkpoint — band test holding, + record phantom-error trap (#1916)
+8d86e4b | 2026-11-25 23:24:49 +0800 | docs: correct stale Unit 3 marker in manifest + file inert token-threshold follow-up (#1915)
+17c8617 | 2026-11-25 23:23:32 +0800 | docs(plan): record Unit 4 soak evidence — flat token curve, gate left open (#1914)
+978a49a | 2026-11-25 22:32:56 +0800 | File: farm_media_daemon/ is entirely unversioned (never in origin/main) (#1913)
+ebf1a70 | 2026-11-25 22:30:31 +0800 | docs(intraturn): record that Unit 4 is ALREADY live in prod + file backup retention gap (#1912)
+1741d39 | 2026-11-25 22:28:52 +0800 | docs: correct stale Unit 2 marker (0-3 shipped) + file reasoning_content fixture gap (#1911)
+20cfe14 | 2026-11-25 21:52:17 +0800 | Add bilingual EN/ZH gotde POD API evaluation report (#1910)
+8fde443 | 2026-11-25 21:21:56 +0800 | Black King: restore the missing RESUME HERE marker (injector pointed at a marker that did not exist) + record lane CLOSED and the true open list (#1909)
+49ccb49 | 2026-11-25 20:51:30 +0800 | POD runbook: logo fields exist; fix spec path, retract no-image-input claim, fix bbox detector (#1908)
+78b5cd7 | 2026-11-25 20:21:48 +0800 | Black King §5.16: RETRACT §5.15-B (Val holdings are governor-approved, not mis-attribution); DISSOLVE the QR blocker (QR Code: N/A is accepted); ledger is ahead of the runbook (#1907)
+5055b8d | 2026-11-25 19:20:44 +0800 | Black King §5.15: CRITICAL — movement already PARTIALLY booked (do not re-run); Val Lapidus holds 70kg of the nibs; correct §5.14 QR claim (#1906)
+9229f84 | 2026-11-25 16:59:09 +0800 | chore(previews): refresh Beer Hall preview (2026-11-25 UTC)
+50bd538 | 2026-11-25 16:59:07 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-25 UTC)
 6a46d35 | 2026-11-25 07:55:12 +0000 | followups: add checks-unreadable-but-CI-green variant to merge_pr ci-unavailable entry
 8bb1a19 | 2026-11-25 15:29:36 +0800 | Merge pull request #1905 from TrueSightDAO/auto/advisory-refresh-2026-11-25
 4b0a0c1 | 2026-11-25 07:29:21 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-25 UTC)
@@ -307,35 +336,6 @@ f3051cd | 2026-11-25 08:50:22 +0800 | SOP §13: change gap sentinel MISSING->UNA
 76dbb91 | 2026-11-25 08:36:33 +0800 | Record governor confirmation: Elizabeth Wong IS a governor (resolves roles-drift data half) (#1902)
 0170bfc | 2026-11-25 08:21:07 +0800 | docs(jira): add §13 channel-name convention (kan-<n>-<slug>) + amend §10 (#1901)
 2af80f6 | 2026-11-25 08:12:43 +0800 | Remove internal commentary sections 3-5 from the Rusmin directive (#1900)
-bd73660 | 2026-11-25 08:06:24 +0800 | Remove the last TrueSight URL from the Rusmin site-inspection directive (#1899)
-a073658 | 2026-11-25 08:04:09 +0800 | Jira SOP: correct Sophia accountId after account replacement + retract unverified backfill claim (#1898)
-1296685 | 2026-11-25 08:04:04 +0800 | Remove draft status line and internal-only language from Rusmin directive (#1897)
-fe0daeb | 2026-11-25 07:58:05 +0800 | Remove TrueSight org name from the Rusmin site-inspection directive (#1896)
-4e3fd5c | 2026-11-25 07:55:36 +0800 | Correct the test_resolve_tdg_issued root cause: stale local install, not a rubric stub (#1895)
-d700571 | 2026-11-25 07:50:32 +0800 | Drop internal 'governor' vocabulary from the Rusmin site-inspection directive (#1894)
-fe989ee | 2026-11-25 07:44:29 +0800 | Add software/API cost registry with DeepSeek receipt and Anthropic backlog (#1893)
-2c1bd1d | 2026-11-25 07:34:19 +0800 | docs(jira): Jira KAN is the canonical board; thread URL mandatory on every ticket (#1890)
-42bed4a | 2026-11-25 07:28:20 +0800 | Fill Brazil benchmark column in Rusmin directive; flag sea-freight and warehousing gaps (#1889)
-aeaf585 | 2026-11-25 07:18:13 +0800 | Anchor Rusmin lab section to CIC benchmark; correct 'never commissioned' overclaim (#1888)
-288f891 | 2026-11-25 07:15:11 +0800 | Add Rusmin site inspection directives (KAN-8) — checklist + rate capture (#1887)
-1d31371 | 2026-11-25 06:56:05 +0800 | docs(jira): SOP for the KAN board workflow + jira_query stage discipline (#1886)
-993606f | 2026-11-25 06:49:19 +0800 | Record LOI as sent: close contact-block, counsel-review and send items (#1885)
-5fe1299 | 2026-11-25 06:40:49 +0800 | chore(previews): refresh Beer Hall preview (2026-11-24 UTC)
-e8ae2b6 | 2026-11-25 06:40:47 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-24 UTC)
-538b76e | 2026-11-25 05:51:19 +0800 | Record Rusmin Indonesia outreach: AmCham Winter Ball (21 Nov) + follow-up (22 Nov) (#1884)
-f240342 | 2026-11-25 05:39:17 +0800 | Record BionPact Indonesia LOI work: directive log, version history, verification (#1883)
-e11ae91 | 2026-11-24 19:45:24 +0800 | SOP: masters must open on a human (face > body > hands; never faceless) (#1882)
-7fa1cc7 | 2026-11-24 18:55:24 +0800 | Add intro overlay standard (repairs #1880) (#1881)
-52581f5 | 2026-11-24 18:35:45 +0800 | Add Instagram caption SOP (personal-vlog register) (#1879)
-465a5d0 | 2026-11-24 18:14:33 +0800 | chore(previews): refresh Beer Hall preview (2026-11-24 UTC)
-113e6e0 | 2026-11-24 18:14:32 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-24 UTC)
-17ffec5 | 2026-11-24 14:46:57 +0800 | docs: SOP for recurring-transaction enrollment + harden Is Store Manager flag rule (#1878)
-0707dd1 | 2026-11-24 08:11:30 +0800 | chore(previews): refresh Beer Hall preview (2026-11-24 UTC)
-621d59d | 2026-11-24 08:11:28 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-24 UTC)
-e2e2699 | 2026-11-24 03:20:23 +0800 | SOP: standardize media artifact terminology (clip/beat/segment/cut/master/share copy/reel) (#1877)
-4aa0f3a | 2026-11-24 00:49:35 +0800 | File rock salt (road salt) as an untracked commodity line in OPEN_FOLLOWUPS (#1876)
-ba666fa | 2026-11-23 15:59:55 +0800 | chore(previews): refresh Beer Hall preview (2026-11-23 UTC)
-1b9e955 | 2026-11-23 15:59:53 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-23 UTC)
 … (truncated)
 ```
 
@@ -374,6 +374,8 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+70e2a1d | 2026-11-25 17:37:13 +0000 | chore: refresh currencies.json [skip ci]
+e3093de | 2026-11-25 17:17:33 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 fb9dd09 | 2026-11-24 18:19:04 +0000 | chore: refresh currencies.json [skip ci]
 e2aa3ad | 2026-11-24 17:50:58 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 e1da971 | 2026-11-23 18:46:10 +0000 | chore: refresh partners-velocity snapshot [skip ci]
@@ -491,7 +493,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
 | 2026-10 | 460 | 18944.34386 | 10/31/2026 |
-| 2026-11 | 276.9 | 19221.24386 | 11/25/2026 0:52:50 |
+| 2026-11 | 276.9 | 19221.24386 | 11/25/2026 13:50:24 |
 
 ### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-11-18`; scanned last **600** data rows)
 
