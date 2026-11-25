@@ -167,6 +167,59 @@ probably doing all the folding and the token threshold may be effectively
 inert**. That is unconfirmed and is a follow-up ticket, not a change to make
 mid-soak.
 
+**Unit 4 soak — verification procedure, and a trap that produces phantom failures
+(2026-11-25, first ~1h checkpoint).**
+
+Interim measurement (service up since 14:19:52Z; ~65 min):
+
+| Metric | Value |
+|---|---|
+| Intra-turn folds | **18** |
+| Sessions folded | 5 |
+| Real fold failures | **0** |
+| Chat requests handled | 25 |
+| DSML / special-token leak in output | **0 hits** |
+| error-level journal lines | 1 (unrelated, pre-existing) |
+
+**The band test — this is the real acceptance signal, not the fold count.** If the
+fold is working, the *before* message-count at each fold should sit in a stable
+band and never drift upward; if it is not working, the before-counts climb
+monotonically toward the original pathology. Observed before-counts, chronological:
+
+```
+85 82 63 81 63 81 63 69 64 69 69 69 85 73 70 69 82 76
+```
+
+That is a **band, not a slope** — it hovers ~63-85 and returns to ~68-76 after each
+fold. The single longest session's own trajectory:
+
+```
+85->74  82->73  81->73  81->73  85->74  76->68
+```
+
+Compare the pre-fix pathology this plan exists to remove: **94,264 tokens @ r12**
+and **111,148 @ r24**, each inside one still-open turn with *no* upper bound.
+So the band test is the claim Unit 4 must actually establish, and it is currently
+holding. Continue sampling; a band that stops holding (before-counts trending up
+across days) is the regression signature, and that — not an absence of log
+errors — is what should reopen this plan.
+
+**TRAP — do not verify absence-of-errors by grepping journald for error words.**
+A check of the form `journalctl -u truesight-autopilot | grep -icE 'intra-turn.*(Traceback|ERROR|failed|exception)'`
+returned **2**, which looks like two fold failures. Both were **phantom**: they
+matched *this autopilot's own echoed tool output* — a prior `ssh_run` whose stdout
+contained the literal phrase "intra-turn exception" was logged by journald and
+then matched by the grep. journald contains the agent's own transcript, so any
+error-word search is self-referential and will "find" failures that consist
+entirely of the search itself. Verify via the code's **own** emitted log lines
+(`Intra-turn compacted session …`, `Intra-turn compaction backup failed …`) and by
+exit-path counters, never by keyword-scanning echoed output.
+
+**Backup growth continues** as the retention follow-up predicted: 6,399 -> 6,420
+files (~21 per 10 min ≈ ~3k/day, ~0.4 GB/day at the observed ~138 KB/file). Disk
+is at 35% so this is not urgent, but at that rate the retention fix becomes
+worth scheduling rather than merely noting.
+
 **Unit 4 is a gate.** Folding now runs inside the live per-round loops, so
 deploying changes production behaviour. Do not deploy without an explicit
 governor go. Rollback is a single env var — `CONTEXT_INTRATURN_COMPACTION_AUTO=0`
