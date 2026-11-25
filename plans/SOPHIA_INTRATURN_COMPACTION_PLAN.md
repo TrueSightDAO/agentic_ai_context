@@ -133,6 +133,75 @@ relieving pressure), and any assistant output containing raw DSML special tokens
 Monitored honestly: 7 folds / 0 errors over ~9 minutes is a good signal, **not**
 a passed soak. Do not mark Unit 4 done on it.
 
+### Unit 4 — echo-filter hardening (2026-11-25 16:27Z): `"stderr":` is a third echo channel
+
+A re-measurement at the same ~2h07m window produced **2 `Traceback` hits**, which initially
+read as the first runtime tracebacks of the soak. They are both **echoes of the assistant's
+own failed diagnostic commands**, captured inside JSON `stderr` fields:
+
+- `15:24:38` — a `gh`/urllib HTTP call from a diagnostic script (`returncode: 1`)
+- `16:23:55` — an `AssertionError: limits anchor missing` from a failed plan edit (`returncode: 0`)
+
+**True runtime tracebacks in the soak window: 0.**
+
+**The lesson is that the echo filter documented above was incomplete.** It excluded
+`"stdout":` and `cmd=`, but the agent harness echoes failed commands in `"stderr":` as well —
+so a traceback count built on that filter yields false positives from the diagnostic
+commands *used to do the measuring*. This is the second instance of the same underlying
+trap (echo-noise masquerading as runtime signal) via a different field, which suggests the
+filter should be treated as a maintained list, not a fixed pair.
+
+**Corrected canonical filter** — drop lines containing any of:
+
+```
+"stdout":    "stderr":    "returncode":    cmd=    echo-filter-marker
+```
+
+i.e. exclude `"stdout":`, `"stderr":`, and `"returncode":` (all three are JSON envelope keys
+of an echoed tool result), not just `"stdout":`.
+
+**Re-measured with the corrected filter (2h07m window):**
+
+| Metric | Value |
+|---|---|
+| Intra-turn folds | **23** (was 21 at 16:25Z — +2 in ~2 min, normal cadence) |
+| Real fold failures | **0** |
+| True runtime tracebacks | **0** (2 matches were `stderr` echoes) |
+| DSML leaks | **0** |
+| Distinct sessions folded | 5 |
+| Before-counts, last 22 | `85 82 63 81 63 81 63 69 64 69 69 69 73 70 69 82 76 76 62 61 66 66` |
+
+The band is unchanged — still ~61–85 with each fold returning to ~53–76. The extra fold
+extends the tail (`… 66 66`), not the top of the range, which is the healthy shape.
+
+### Unit 4 — day-mark measurement procedure (the one remaining requirement is wall clock)
+
+**Unit 4 asks for ~a day. Elapsed at last measurement: 2h07m.** This cannot be compressed by
+effort or repeated re-measurement — the unit's remaining substance is *time*, so re-running
+the harvest every few minutes produces no new evidence. Run this **once at ≥24h uptime**:
+
+```bash
+START_H=$(systemctl show truesight-autopilot -p ActiveEnterTimestamp --value)
+NOW=$(systemctl show truesight-autopilot -p ActiveEnterTimestamp --value --timestamp=unix)
+echo "uptime h: $(( ($(date -u +%s)-NOW)/3600 ))"   # require >= 24
+J() { journalctl -u truesight-autopilot --since "$START_H" --no-pager 2>/dev/null \
+      | grep -vF '"stdout":' | grep -vF '"stderr":' | grep -vF '"returncode":' ; }
+echo "folds:        $(J | grep -cE 'Intra-turn compacted session')"
+echo "failures:     $(J | grep -cE 'Intra-turn compaction failed|backup failed')"
+echo "tracebacks:   $(J | grep -c 'Traceback')"
+echo "leaks:        $(J | grep -cE 'DSML|special.token leak')"
+echo "before-counts: $(J | grep -oE 'compacted session [a-f0-9]+: [0-9]+ ->' \
+      | sed -E 's/.*: ([0-9]+) ->/\1/' | tr '\n' ' ')"
+```
+
+**Pass criteria (day mark).** Folds > 0 · failures **0** · true tracebacks **0** · leaks **0** ·
+before-counts with **no upward trend** across the window (band bound, not a slope).
+
+**Fail criteria.** Any real failure/leak → set `CONTEXT_INTRATURN_COMPACTION_AUTO=0` to roll
+back with no redeploy, then investigate. Before-counts trending upward day-over-day → the
+fold is not keeping up and thresholds need re-tuning (see the `keep_last_k_rounds` /
+token-threshold follow-up).
+
 ### Unit 4 soak — 2h05m checkpoint (measured 2026-11-25 16:25Z, echo-filtered)
 
 Extends the ~15-minute window below. **Every figure here was echo-filtered first** (lines
