@@ -106,3 +106,33 @@ The standing rule that a calendar event created on a governor's behalf goes on *
 (`admin@truesight.me`) — the **only** calendar the background **`calendar_watchdog`** runner
 reads — and that people named in the source are invited **by email**. "Both calendars" is
 shorthand for clause (1). Full rule: `conventions/CALENDAR_EVENT_CONVENTION.md`.
+
+---
+
+## Post text — the governor's verbatim copy block for a published piece
+
+**"Post text"** is the exact copy published alongside a piece of content — caption body,
+hashtags and mentions, **as written**. When a governor says *"this is the post text"* or
+*"formalize this as a term,"* they mean: **this block is the source of truth for that
+publication — record it, do not rewrite it.**
+
+Rules:
+
+- **Verbatim, not editorial.** Preserve exactly what was supplied — capitalisation, line
+  breaks, spacing, and hashtag casing (`#cacau`, never `#Cacau`). Do not "tidy" it, expand
+  hashtags, fix perceived typos in a place name, or add tags the governor omitted.
+- **Post text ≠ Description.** On the **Instagram Content Schedule** tab the verbatim block
+  goes in the **`Caption`** column. `Description` is the internal production note — what the
+  footage shows, which farm/plot/site-code, and workflow provenance — and is written by us.
+  Never paste post text into `Description`, and never paraphrase it into `Caption`.
+- **Post text + a live URL = evidence of publication, not a plan.** Set status `PUBLISHED`,
+  and put the URL in `Description` together with the marker
+  *"Ad-hoc publication, not from forward plan."* (precedent: schedule rows 238–240).
+- **Brand scan before recording.** Post text is free text and nothing enforces brand-routing
+  — check it for the other brand's handles before it lands (a `#truesightdao` on
+  consumer-facing Agroverse content has already happened once). See
+  `MEDIA_ARCHIVE_PIPELINE.md` § *logo standard*. This is a human checklist line; no
+  validator exists.
+- **Where it lives depends on the table's source of truth.** On a derived sheet tab
+  (rewritten from a CSV by a sync script), recording post text in the sheet alone is
+  ephemeral — it must land in the upstream source or the next sync discards it.
