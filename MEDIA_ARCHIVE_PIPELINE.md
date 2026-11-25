@@ -727,6 +727,17 @@ style preference, and the two mark pairs are not interchangeable in either direc
 
 If the cut is genuinely joint-branded, that is a governor decision, not an editor default.
 
+#### 1a. Recorded brand decisions
+
+Governor rulings on specific artifacts, written down so the same question is not re-decided
+from scratch each time. A decision here is a **precedent, not a new rule** — the table in §1
+above still governs, and a genuinely joint-branded cut remains a governor call.
+
+| Date | Artifact | Mark | Note |
+|---|---|---|---|
+| 2026-11-25 | Cacau na Veia reel — Sítio Cacau na Veia, plot `N-06-37`, IG `DgLE4Suh-Yt` | ✅ **Agroverse** | Gary ruling. Farm/sítio footage for USA/Europe ⇒ Agroverse (§1, row 1). Use the **668 × 944 px saffron trademark mark** per §2 — **not** the 300 × 375 QR-centre JPEGs (distorts when scaled to a 1080 × 1920 frame) and **never** `favicon-192x192` (3.70× upscale, visibly soft). |
+
+
 #### 2. Canonical asset — and the duplicate trap
 
 Use the **trademark-filing** mark as the single source of truth: **668 × 944 px**, saffron
