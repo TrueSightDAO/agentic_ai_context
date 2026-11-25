@@ -57,6 +57,10 @@ Totals: **223 folds** over ~20.5h, 0 runtime failures.
 1. **Summariser LLM calls.** Every fold invokes the summariser. At 27/hour on a busy session this is a real, invisible latency + token cost, and it is paid on the *critical path* of a live turn.
 2. **Summary depth / semantic drift.** Each fold extends the running `[TURN IN PROGRESS — EARLIER ROUNDS SUMMARY]` entry. `default_round_summarizer` re-summarises the previous summary, so a session folding 27× may carry a summary-of-a-summary **27 levels deep**. Drift is likely and **entirely unquantified** — no depth counter is logged.
 
+**Update 2026-11-25 (checkpoint 3) — depth still unmeasured; marker counts are NOT depth.** Counting `EARLIER ROUNDS SUMMARY` occurrences across live session files yields 497 markers across 114 sessions (max 21 in one session). This is an **upper bound on activity, not nesting depth**: k markers may be k separate open turns each folded once, or genuine nesting. Telling them apart requires detecting a marker *inside another summary's text*, which nothing logs. Also: churn is **bursty, not continuous** — 27 folds in one ~1h slice on `a8209b9a63b1`, but only 79 over that session's month lifetime. Cost spikes during long investigation turns, which is precisely the target workload.
+
+**Separate but adjacent — unbounded debug logs.** `sessions/*_debug.log` totals **203 MB** (largest 8.1 MB), distinct from the ~1.2 GB of `pre-compact` backups. Both are unbounded operator-disk growth on the autopilot box; disk at 35% so not urgent. Size retention for both together.
+
 **Why it matters.** The plan's stated goal — "stop investigation-heavy turns blowing the context window" — is met (before-counts stay in a 58–85 band; no return of the 94,264 / 111,148-token turns). But the plan specified no metric for cost or fidelity, so a regression in *summary quality* would be invisible to the current acceptance test. Silent drift is worse than a loud failure here: it degrades the model's grasp of an in-progress turn while every log line looks healthy.
 
 **Recommended fix (cheap, ordering matters):**
