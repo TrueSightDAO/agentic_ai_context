@@ -11,16 +11,7 @@
 
 This is the **execution annex** to the Letter of Intent. The LOI says what we intend; this says **what we must physically see and measure** before any cocoa is bought, financed, or shipped.
 
-**Structure — two registers, one document.** This annex carries two kinds of question, kept apart because they fail differently:
-
-| Register | Form | Why separate |
-|---|---|---|
-| **A — Inspection checklist** (§2) | Evidence-based, per station | A fact about the site. Can be **PASS / GAP / ABSENT**. Auditable later for FSVP |
-| **B — Commercial capture** (§3) | Rate + unit + source | A number nobody knows until quoted. Cannot pass or fail; can only be **obtained** or **not obtained** |
-
-Conflating them is the usual failure: rates get buried inside a compliance form, and the compliance form starts reading like a negotiation.
-
-**Third column worth having: the Brazil benchmark.** Where we already know the number from the Bahia/Amazon lane, it goes in the row. That changes the question from *"collect the rate"* to *"observe the rate against what we already pay"* — the difference between a form and a finding. Where we do not have a benchmark, the column says so rather than guessing.
+**A single evidence-based checklist.** §2 is a single evidence-based checklist, split by station: farm (§2.1), factory (§2.2), warehousing (§2.3), transport and export (§2.4), lab testing (§2.5), digital and payments (§2.6) and capacity (§2.7). Every row is a fact about the site — it can be **PASS / GAP / ABSENT** — and can be audited later.
 
 ---
 
@@ -40,7 +31,7 @@ Each item below is written so it can be answered in one line and photographed in
 
 ---
 
-## 2. Register A — inspection checklist
+## 2. Inspection checklist
 
 ### 2.1 On the farm
 
@@ -51,7 +42,7 @@ Each item below is written so it can be answered in one line and photographed in
 | A3 | **Plot boundaries** — where the plot starts and stops; GPS polygon if possible | Origin claims; deforestation-free assurance | GPS track / 4 corner photos + coordinates |
 | A4 | **Fermentation facility** — box type (wood/synthetic), dimensions, batch size, turning schedule (frequency, day by day), duration | This is where flavour is made or lost. Turning regime is a named observation in our standard site-visit protocol | Photos of boxes, a written turning schedule |
 | A5 | **Drying facility** — sun (patio / raised bed) vs mechanical; thickness of bean layer; duration; rain protocol; mould observed anywhere? | Mould is the hazard FSVP names for drying. Mechanical drying too fast → acidic beans | Photos of beds/solar dryer; ask what happens when it rains |
-| A6 | **Farmers — photos and stories** | The provenance narrative for agroverse.shop; named farmer = traceable bag | Portraits **with consent** (see §5) |
+| A6 | **Farmers — photos and stories** | The provenance narrative for agroverse.shop; named farmer = traceable bag | Portraits **only where consent has been recorded** |
 | A7 | **Post-harvest sorting** — who sorts, where, what is rejected | Rejection rate drives effective yield and price | Photo of sorting area and reject pile |
 | A8 | **Pest / disease pressure** — any monilia or witches' broom visible; what is sprayed, if anything | Residue risk; pesticide is a named FSVP contamination row | Ask directly; photograph any spray equipment and product labels |
 | A9 | **Soil / water** — is irrigation used; water source; any known soil contamination history | Cadmium and heavy metals enter via soil. **This is the earliest warning we can get** | Ask; note any former mining/industrial use nearby |
@@ -94,21 +85,21 @@ Each item below is written so it can be answered in one line and photographed in
 
 ### 2.5 Lab testing
 
-**Use CIC as the template.** We already have a working lab — see §2.5.1. The Indonesian lab should be asked *the same questions CIC already answers*, so the two datasets are comparable. Read §4 for what we have and have not actually received.
+**Use CIC as the template.** §2.5.1 sets out how a well-run cacao lab answers these questions. The Indonesian lab should be asked *the same questions*, so the datasets are comparable.
 
 | # | Test | Status in what we hold |
 |---|---|---|
 | E1 | **Heavy metals — Arsenic (As), Cadmium (Cd), Lead (Pb), Copper (Cu)** | ✅ **Evidenced.** ICP-MS, to ANVISA limits — the panel in both reports on file (AGL4/Oscar `LAP-339.2025.B`, AGL8/Paulo `LAP-340.2025.B`) |
-| E2 | **Active ingredients — flavanols/flavonoids, theobromine, caffeine** | 🟡 **Reported as offered by CIC; not visible in the two reports on file.** Whether the Sept-2026 CIC invoice (NF 0097) covers this panel is **unconfirmed** — see §4. Ask CIC to confirm and quote it explicitly |
+| E2 | **Active ingredients — flavanols/flavonoids, theobromine, caffeine** | 🟡 **Offered by CIC, but not confirmed for us.** **Ask the Indonesian lab to quote this panel explicitly** — it is not on a standard menu |
 | E3 | **Ochratoxin A** | 🟡 Planned (**B4**); CIC lists "micotoxinas" among its food-safety analyses — quote it |
 | E4 | **Pesticide residues** | 🟡 Planned (**C1**); CIC lists "pesticidas" explicitly |
 | E5 | **Microbiological** (salmonella — a named FSVP hazard) | 🟡 CIC lists "microbiológica"; confirm both labs offer it |
 | E6 | **Cut test / classification** | ✅ **This is CIC's flagship.** ISO 2451 (export / fine-cacao reference) **and** IN 38/MAPA (Brazil's official norm). CIC is the **only MAPA-habilitated lab** for official cacao bean classification. **Ask Indonesia for its national equivalent and whether the lab is government-accredited** |
 | E7 | **pH** | ✅ Included in CIC's cut test at no extra charge |
 
-#### 2.5.1 How CIC does it — our benchmark lab
+#### 2.5.1 How CIC does it — a benchmark
 
-**Centro de Inovação do Cacau (CIC)**, Ilhéus/BA — at UESC/IPAF, Rodovia Jorge Amado km 16. Contact `recepcao@pctsul.org` (análises) / `cic@pctsul.org` (parcerias, financeiro) / WhatsApp (73) 99142-0002. **We are an existing customer** — invoiced for análises on BLACK KING (NF 0097, VENDA 120634, 30 Sep 2026).
+**Centro de Inovação do Cacau (CIC)**, Ilhéus/BA — at UESC/IPAF, Rodovia Jorge Amado km 16. Contact `recepcao@pctsul.org` (análises) / `cic@pctsul.org` (parcerias, financeiro) / WhatsApp (73) 99142-0002. CIC publishes its catalogue and rates, which makes it a useful reference for what to ask the Indonesian lab.
 
 **Published rates and sample requirements** (from CIC's own service FAQ, 2026):
 
@@ -157,71 +148,7 @@ Each item below is written so it can be answered in one line and photographed in
 
 ---
 
-## 3. Register B — commercial capture
-
-Same rule throughout: **a number, or an explicit "not quoted".** No estimating.
-
-| Item | Rate / value | Unit | Basis (per what?) | Brazil benchmark |
-|---|---|---|---|---|
-| Farm-gate bean price | | IDR / kg | wet or dried? fermented? | **No benchmark on file.** The only R$/kg figure on file is a *finished-product* price (70% bars at retail spec) — **not** a bean price. Do not treat it as comparable |
-| Fermentation service, if separate | | IDR / kg | | **None** — integrated at Black King, never billed separately |
-| Drying, if separate | | IDR / kg | | **None** — likewise integrated |
-| Factory processing fee | | IDR / kg | liquor? nibs? | **No per-kg rate on file.** Santos quoted R$130/kg on *finished bars* only. Must be asked for explicitly |
-| Farm → warehouse freight | | IDR / kg or / trip | | **No benchmark on file** |
-| Warehouse → factory freight | | IDR / kg or / trip | | **No benchmark on file** |
-| Warehousing | | IDR / kg / month | | **No benchmark on file.** Our Brazil warehouse SOP covers hygiene, compliance and the action register — **no rate anywhere** |
-| Lab — metals (4-metal panel) | | IDR / sample | per ICP-MS run | **Panel known, price not.** AGL4/Oscar `LAP-339.2025.B` + AGL8/Paulo `LAP-340.2025.B`: As, Cd, Pb, Cu by ICP-MS to ANVISA. CIC quotes metals per package, not off a list |
-| Lab — cut test (ISO 2451 + IN 38) | | IDR / sample | ~1.5 kg; pH included | **R$120 / sample**, ~10 business days — CIC 2026 FAQ |
-| Lab — cupping (unroasted) | | IDR / sample | ~500 g | **R$150 / sample**, ~10 business days — CIC 2026 FAQ |
-| Lab — active ingredients | | IDR / sample | flavonoids / theobromine / caffeine | **Not evidenced.** Absent from both reports on file, and absent from CIC's public catalogue (sits behind *"entre outras"*). **Confirm NF 0097 first — see §4** |
-| Export clearance / agent | | IDR / shipment | | **Agent known, rate not.** Omega Services — Iolanda Santos (SISCOMEX) · Gerson Argolo (desembaraço). **No fee on file** |
-| Sea freight | | USD / container | which port → which port | **No benchmark exists.** The Brazil→SF lane has **only ever run air** — see §3.1 |
-| Air freight | | USD / kg | | **USD 2.30/kg — actual**, per house air waybill, cross-checked against our freight forwarder. **Basis: 302.06 kg net / 322.06 kg gross** — per-kg falls with volume, so compare only at similar scale |
-| Payment service fee | | % or flat | | **PIX ≈ 0** for individuals |
-| **Landed cost to destination** | | USD / kg | **the number that matters** | **Never recorded as a single figure.** US-side components are tracked separately (import handling, customs clearance, FDA Prior Notice, MPF, customs exam) but have never been summed into a single figure |
-
-> **The column is now filled — and filling it produced the most useful finding in this document.** See §3.1.
-
-### 3.1 What the filled column actually tells us
-
-**Only three of the fifteen rows have a figure that is genuinely comparable.** That is not a gap in the research; it is the real state of our cost knowledge, and it matters before the visit rather than after.
-
-**Two structural findings:**
-
-1. **Sea freight has no benchmark at all.** The Brazil→SF lane has **only ever run air** — the HBL at USD 2.30/kg is the proof. Indonesia is a short-sea, high-volume origin where sea is the *normal* mode. **We therefore cannot compare our primary Indonesian mode against anything we have done.** The sea quote is the single most important number to bring back from this visit, and it must be captured **per container with the port pair named**, because per-kg air and per-container sea do not convert without a utilisation assumption.
-
-2. **Warehousing has no rate on file, and it is an unbounded exposure.** The Brazil warehouse documentation is thorough on hygiene and compliance and completely silent on cost. Our own freight runbook already flags that storage while held is *"a live cost exposure not in any current model, and arguably not ours to bear."* **Ask Indonesia for IDR/kg/month explicitly** — it is the one recurring cost that silently compounds.
-
-**One trap to avoid:** the only R$/kg figure in the Brazil corpus is **R$130/kg for finished 70% bars** (Santos). That is a *finished-product manufacturing* price. Putting it anywhere near a **farm-gate bean** question would be a category error and would misprice the entire project by an order of magnitude. **It is deliberately not used as a bean benchmark here.**
-
----
-
-## 4. The gap worth stating plainly
-
-**The ask to Indonesia is broader than the evidence we currently hold.**
-
-The two reports we actually hold — AGL4/Oscar and AGL8/Paulo — cover **four heavy metals by ICP-MS against ANVISA**. Flavanols, theobromine, caffeine, ochratoxin A and pesticide residues do **not** appear as results in either report.
-
-> **Status of this panel.** Two lab reports are on file and neither shows the bioactive panel. **Absence from two reports is not proof it was never tested** — and we are an existing CIC customer with a Sept-2026 analyses invoice (NF 0097) whose line items have not yet been reconciled. The honest position is *"not evidenced in the reports on file"*, and CIC is reported to offer caffeine, flavonoid and theobromine testing. **Confirm with CIC what NF 0097 covered and get the bioactive panel quoted explicitly.**
-
-That is not a reason to drop the ask — active-ingredient data is exactly what the premium-story positioning needs, and the LOI already leans on quality rather than yield. But it has three consequences:
-
-1. **Budget it.** If the bioactive panel has not already been run, this is new spend, not a routine request.
-2. **Do not present it as existing practice** to Rusmin, or we will be asked to show our own reports and will have four metals and no flavanols.
-3. **Order it consistently.** If we test Indonesia for flavanols and never test Brazil, we have no comparison and cannot claim either is better. The honest sequence is to commission the same panel on **one Brazil lot** as a control.
-
----
-
-## 5. Boundary conditions for the visit
-
-- **Rusmin is a warm contact, not an audited supplier.** This checklist is thorough because the *facts* must be thorough, not because the relationship is adversarial. Language should stay collegial — the visit is "help us understand your operation", not "we are evaluating whether you qualify". The FSVP paperwork, if we proceed, is a separate downstream artifact.
-- **Consent for photos of people.** `A6` asks for farmer photos and stories. Those may later appear on agroverse.shop. **Ask permission at the time, and record that it was given.** A portrait taken without consent cannot be published, which makes it worthless for the purpose it was taken for.
-- **Never invent coordinates.** Our site-visit protocol is explicit on this: if EXIF GPS is absent — and messaging-app transit usually strips it — take coordinates from a device on site or from the project lead. A compliance document with guessed coordinates is worse than one with none.
-- **Nothing here is a commitment.** Rates captured are observations for modelling, not agreed prices. No volume, price, or exclusivity should be implied during the visit.
-
----
-
-## 6. Downstream — what this feeds
+## 3. Downstream — what this feeds
 
 If the visit proceeds well, this document is the **input** to three existing artefacts, so no second trip is needed:
 
@@ -233,12 +160,10 @@ If the visit proceeds well, this document is the **input** to three existing art
 
 ---
 
-## 7. Open questions
+## 4. Open questions
 
 | # | Question |
 |---|---|
 | 1 | **Who attends?** Photo/measurement discipline is much easier with two people. Is this Gary alone, or with Rusmin hosting throughout? |
 | 2 | **Which site(s)?** One farm + one factory, or a circuit? Affects how much of §2 is realistic in one visit |
-| 3 | ~~**Fill the Brazil benchmark column** before issue~~ — **DONE 2026-11-25.** Filled from source; the exercise found that **sea freight and warehousing have no Brazil benchmark at all** (§3.1), which reprioritises what to capture on the visit |
-| 4 | **Confirm NF 0097's line items with CIC** (`recepcao@pctsul.org`), and ask them to quote the **flavonoid / theobromine / caffeine** panel explicitly — it is not on their public catalogue, so it needs naming |
-| 7 | **Should the CD test (ISO 2451 + IN 38) be requested of Indonesia too?** It is cheap (R$120), fast (~10 days), and is the classification buyers actually recognise. Indonesia has its own national norm — ask which |
+| 3 | **Should the CD test (ISO 2451 + IN 38) be requested of Indonesia too?** It is cheap (R$120), fast (~10 days), and is the classification buyers actually recognise. Indonesia has its own national norm — ask which |
