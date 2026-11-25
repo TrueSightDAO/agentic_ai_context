@@ -242,13 +242,25 @@ Any of these resolves to a live conversation — record whichever the handoff ha
 
 `telegram_topic_url` is preferred when present — it is already human-clickable.
 
-### 10c. Backfill state at migration (2026-11-25)
+### 10c. Backfill state at migration (2026-11-25) — **NOT APPLIED**
+
+> **Correction (2026-11-25, verified by read-back).** An earlier revision of this table
+> claimed 49 thread URLs had been written. That was reported from a script's own success
+> counter and is **false**. Verified state below.
 
 | Result | Count |
 |---|---:|
-| Thread URL written from handoff data | 49 |
-| `Thread URL: MISSING` (handoff carried no thread) | 8 |
-| **Total migrated** | **57** |
+| Tickets labelled `sprint-migration` | 57 |
+| **Actually carrying a `Thread URL:` block** | **0** |
+| Written by hand (KAN-79, the tracking ticket) | 1 |
+| **Still needing backfill** | **57** |
+
+**This is an open blocker.** A supervisor that nudges work by thread has nothing to nudge
+until the backfill is re-landed *and verified by re-reading a ticket*. Do not trust a write
+receipt for this — re-read the persisted description before reporting success.
+
+Source data is available: 77 of 91 handoffs in `handoffs/index.json` carry a
+`telegram_topic_url` or `discord_channel_id`.
 
 ### 10d. Rule for new tickets
 
@@ -264,12 +276,30 @@ Sophia has her own assignable account on the tenant:
 
 | Field | Value |
 |---|---|
-| Display name | **Sophia Truesight** |
-| Email | `sophia@truesight.me` |
-| `accountId` | `712020:d6880b79-56bc-41b7-80e4-1f4c62770a73` |
+| Display name | **`admin+sophia`** (auto-derived from the email at creation) |
+| Email | `admin+sophia@truesight.me` |
+| `accountId` | `712020:96b5508c-475a-4bab-b6c0-441ad3d7c2ce` |
 | `accountType` | `atlassian` (human-type — `POST /user` cannot create `app` accounts) |
-| Group | `jira-users-truesightdao` (product access `jira-software`) |
+| Groups | 7, incl. `jira-users-truesightdao` (product access `jira-software`) |
 | Assignable on KAN | **yes** (verified via `user/assignable/search?project=KAN`) |
+
+> ⚠️ **`accountId` is NOT stable — it changes if the account is deleted and re-created.**
+> The original account (`712020:d6880b79-56bc-41b7-80e4-1f4c62770a73`, email
+> `sophia@truesight.me`) was deleted on 2026-11-25 and re-created under the `admin+sophia@`
+> address. The old id still *resolves* via `GET /user?accountId=` — it returns an
+> `active: False` tombstone with **no groups and no product access** — which makes it a silent
+> trap: assignments to it succeed-looking but notify nobody.
+>
+> | | Old `d6880b79…` | New `96b5508c…` |
+> |---|---|---|
+> | `active` | **False** | True |
+> | displayName | `sophia` | `admin+sophia` |
+> | groups | **none** | 7 |
+> | product access | **NONE** | `jira-software` |
+>
+> **After the replacement, all 58 tickets were reassigned to the new id** and verified by
+> re-query (`OLD: 0`, `NEW: 58`). If this account is ever recreated again, sweep for
+> `assignee = "<old accountId>"` and reassign — do not assume assignment survived.
 
 Created 2026-11-25 at Gary's instruction. Before it existed, `user/search?query=sophia`
 returned **0 results** and the only assignable accounts were Gary plus Atlassian's own Rovo
@@ -278,7 +308,17 @@ auto-provisioned, not user-created and not reusable for this purpose).
 
 **Billing note:** this identity occupies a real Jira seat. Do not create additional seats
 speculatively — deactivating a user does not reliably free a seat, so creation is effectively
-one-way.
+one-way. *Observed 2026-11-25:* after deletion + re-creation the old account persisted as an
+`active: False` tombstone with product access `NONE`, while the new account holds
+`jira-software`. Whether the *seat count* actually returned to 1 (vs. the tombstone still
+billing) is **not verified** — check the admin billing page before assuming.
+
+**Notification note:** the tenant suppresses `emailAddress` for all accounts other than the
+calling token's own (`/myself` returns Gary's, everyone else `null`). So you cannot confirm by
+API which address a user's notifications go to. Verify by triggering a real notification and
+looking for it in the target mailbox. Note also that **assignment never sends an invitation**
+and needs no acceptance — in this IDP-directory tenant, users are provisioned directly as
+`Active` with no invite event in the audit log at all.
 
 **Privacy note:** the tenant hides email addresses on all accounts, which is exactly the
 condition under which `POST /rest/api/3/user` requires site-admin rights. Sophia holds
