@@ -863,6 +863,70 @@ Ceremonial … AGL8       -> 209 x https://agroverse.shop/agl8
 > **Before submitting ANY `[INVENTORY MOVEMENT]`, read `offchain asset location` for the destination currencies at the destination member and compute the delta.** Never submit from the register's manifest alone — the register records *intent*, the book records *state*, and the two can already have diverged. *(Filed as a tooling gap in `OPEN_FOLLOWUPS.md` §Pending.)*
 
 
+#### 5.16 🔴 CORRECTIONS TO §5.15 — the Val Lapidus holdings are GOVERNOR-APPROVED, and the QR blocker was never real. 🟢 NEW 2026-10-14
+
+> **How this was caught:** resuming again, a plain summary of the ledger's `offchain transactions` showed **correction events dated 2026-10-19** — *after* the date this runbook was being written. **The ledger is ahead of this runbook.** Treat that as a standing warning: read the transactions, not just the balances.
+
+### ✅ A. RETRACTED — §5.15 B (“70 kg at Val Lapidus = mis-attribution, un-book it”) is WRONG
+
+§5.15 B asserted the Val Lapidus holdings were *“the same Kirsten ↔ Val Lapidus mis-attribution this register already had to un-book once”* and proposed un-booking them. **That was an inference from balances alone, and it is contradicted by the transaction log.**
+
+These are **live, signed, governor-approved** events:
+
+| Row | Event | Detail |
+|---|---|---|
+| r5236 / r5237 | `[INVENTORY MOVEMENT]` | `Cacao Almonds … AGL8 + AWB` · **Val Lapidus → Kirsten Ritschel** · Qty **10** · *“REVERSAL of misrouted legs at offchain transactions r5230/r5231 … which landed on MAIN instead of AGL8. Restores Kirsten's custody before rebooking to AGL8.”* |
+| r5238 / r5239 | `[INVENTORY MOVEMENT]` | `Cacao Nibs (Kilograms) Santos 20260213 - AGL13 + AWB` · **Kirsten Ritschel → Val Lapidus** · Qty **90** · *“REBOOKING … Kirsten keeps 9.5kg; 90kg to Val Lapidus.”* |
+
+**Approval chain on both:** `Approved By: Gary Teh` · `Key FP: 9932f7a3` · `Session: …/sessions/2026-10-19/799be1df82f4/transcript.md` · quoted governor command **2026-10-14**.
+
+**And the arithmetic reconciles exactly:** `90 + 9.5 = 99.5` — which is **precisely** the register manifest for the AGL13 nibs line. A deliberate split, not an error.
+
+> **Rule violated — my own.** §5.15 F said *read the book before submitting*. The stronger rule is **read the transaction history before calling anything an error.** A balance is the *result* of decisions; calling it “wrong” without reading the decisions that produced it is how a sanctioned correction gets reversed a second time.
+
+### ✅ B. DISSOLVED — the QR prerequisite is not a blocker
+
+§5.14 raised, and §5.15 carried forward, that `[INVENTORY MOVEMENT]` *“takes a `QR Code` per line and no QR exists for the 8 Black King currencies.”* **The field is mandatory; the value may be `N/A`.** Every one of the live approved movements above carries:
+
+```
+- QR Code: N/A
+```
+
+⇒ **The QR gap is not a gate.** §5.15 D's correction (2 of 8 currencies *do* have QR codes) stands, but it is **not** an execution prerequisite. **Do not block the movement on QR.**
+
+### ✅ C. PARTLY RETRACTED — the §5.15 A “⬜ not booked” verdicts were a FALSE NEGATIVE
+
+§5.15 A marked lines 5–8 *“not booked.”* **Those checks only read the MAIN ledger tab.** Lines 5–6 route to **AGL8** and lines 7–8 to **AGL13** — booked on their **own ledger spreadsheets**, not on MAIN, so they could not appear in that scan. **The ⬜ marks were an artefact of where I looked.**
+
+Ledger workbooks confirmed (their tabs are `Unit Costing Economics · Balance · Transactions · State · Entities · Pricing Tiers` — **not** `offchain asset location`):
+
+| Ledger | Spreadsheet | Title |
+|---|---|---|
+| AGL8 | `1pdI1lMChyD2…` | 20250402 - Agroverse Shipment 8 Financing Ledger |
+| AGL13 | `1w3D0y9iPMu7…` | 20250914 - Agroverse Shipment 13 Financing Ledger |
+
+**⚠️ Still unverified:** the per-asset positions on the AGL8/AGL13 workbooks — their `Balance` tab is not keyed by currency string. **Do not restate the AGL-side quantities until that structure is mapped.**
+
+### ✅ D. STILL STANDING — what is genuinely true from §5.15
+
+Current net position **on the MAIN tab**, register manifest vs book:
+
+| Line | Register | Book (MAIN tab) | Δ |
+|---|---|---|---|
+| 8oz Kraft Pouch + AWB | 129 | **129** @ Kirsten | ✅ **0** |
+| Cacao Mass Bar 500g + AWB | 37 | **37** @ Kirsten | ✅ **0** |
+| `Cacao Nibs (KG) - Ilheus 2024 + AWB` | 80 | **70** @ Val + **4** @ Kirsten = 74 | 🔴 **−6** |
+| `Coopercabruca Cacao Butter (KG) + AWB` | 5 | **4.5** @ Kirsten | 🔴 **−0.5** |
+| lines 5–8 | 10 / 169 / 99,5 / 21 | **on AGL8 / AGL13** | ❓ unverified |
+
+- **✅ Lines 1–2 remain correct and must not be re-submitted** — they would double-book. **That part of §5.15 A is sound.**
+- 🔴 **Two genuine MAIN-tab shortfalls: nibs `−6`, butter `−0.5`.** These are **quantities to reconcile**, not proof of a wrong member. **Neither is a candidate for an `[INVENTORY MOVEMENT]` yet** — first check whether the 6 kg / 0,5 kg were **shipped but not booked**, or **never shipped**. A movement would paper over the difference.
+
+### 🔴 E. Standing rule added
+
+> **The register records intent, the book records state, and the transaction log records decisions. Read all three, in that order, before declaring any balance an error.** A sanitised balance with a governor's approval behind it outranks a tidy-looking manifest.
+
+
 ## 6. Hard rules & approval gates (checklist)
 
 - [ ] **No NF-e issuance without Gary's explicit approval.**
@@ -996,6 +1060,7 @@ Profit booked at the Próspera layer (1% flat tax, ZEDE regime).
 | 2026-09-29 | **NF-e nº 16 recorded as issued** (22/09/2026, chave `2926…0035`, R$ 35.828,76) — reconciled line-by-line vs. Rev 12 (§5.3); DANFE archived to `brazil/sources/`. Flipped §1 *IE/SEFAZ-BA* and *NF-e issued* 🔴→✅, unblocked DU-E; noted the **blank TRANSPORTADOR/VOLUMES block** (the weights/qty/package-type gap); corrected the now-stale “no NF-e issued” wording in the Correction Letter + ordem de coleta generators (regenerated both PDFs). |
 | 2026-09-29 | **NF-e nº 16 XML archived + reconciled** (SeaCoast-requested; Gary, thread 10800) — signed/authorized XML saved to `brazil/sources/2026-09-22_black_king_nfe_16.xml`; line-by-line match vs Rev 12 PL (fiscal sum **344,00 kg** vs PL commercial 344,06 kg — 3-decimal TON rounding); confirmed the XML `<transp>` is **empty except `modFrete=1` (FOB)** — the same blank the ordem de coleta REV 3 fills. Notes: `brazil/sources/2026-09-22_black_king_nfe_16_xml_reconciliation.md`. |
 | 2026-10-15 | **§5.15 added — Units A-D execution log, landing/conversion of the Black King corridor CLOSED.** All 8 custody transfers + currency transformations landed and verified; a real duplicate-conversion error (99.5 kg AGL13 leg) was self-caught and reversed cleanly. Governor's Unit D directive (packaging expense-off + pallet transfer) executed against exact held-SKU counts (22/25 Reinforced, 2/2 + 2/2 Foam, 2/3 Plastic Pallet — 1 remains at Matheus's warehouse). **Incident:** the settlement handler broke `offchain asset location` to `#REF!` by writing directly into its array-formula spill range; governor cleared the stray cells, and the handler was fixed to append to the `offchain transactions` substrate instead (`agroverse-inventory#18`, redeployed live + used to correctly process the real settlement). Companion fixes: `agentic_ai_context#1624` (SOP), `dao_protocol#186` (comment). Two tooling gaps filed in `OPEN_FOLLOWUPS.md` (movement Quantity validator; conversion same-intent dedupe). |
+| 2026-10-14 | **§5.16 added — 🔴 CORRECTIONS: §5.15 B RETRACTED (Val Lapidus holdings = governor-approved rebookings, 90+9.5=99.5 reconciles exactly); QR blocker DISSOLVED (`QR Code: N/A` is accepted in live approved movements); §5.15 A's “not booked” marks were a MAIN-tab false negative (lines 5–8 live on AGL8/AGL13). Ledger is AHEAD of this runbook.** |
 | 2026-10-14 | **§5.15 added — 🔴 BOOKING STATE AUDIT: the movement is ALREADY PARTIALLY BOOKED (do not re-run); 70 kg of nibs sit at Val Lapidus; register already flipped to Arrived; §5.14's QR claim CORRECTED; QR codes still route to the ruled-OUT AGL4.** Read live from `offchain asset location` / `Agroverse QR codes` / `offchain assets in transit`. |
 | 2026-10-14 | **§5.11 RULE CONFIRMED — governor ruling: Ilhéus trio → `MAIN`, not AGL4 (thread 10800).** |
 | 2026-10-14 | **§5.14 added — ARRIVAL CONFIRMED; custody gate CLOSED (governor, thread 10800).** iMessage screenshot `d72e9336c8b64726b8d8d9c57f0496bb.jpg`, re-read with **Grok vision** (auto-OCR 84.3% garbled the header). Contact **“Kirsten Ritschel”** (exact match to the register's Destination DAO member + the 1423 Hayes Fund Handler), **2:25 PM**, 4 truck thumbnails + a 0:16 video. **Verbatim:** *“He was so nice to actually load it into my garage. You can't tell shipping company, cause he'd get in trouble…”* ⇒ cargo **in the recipient's possession** = the named gate-closer ⇒ **arrival blocker cleared**; also resolves §5.13's indoor-space ambiguity (garage). Adds a **confidentiality note: DO NOT inform 5 Continent/carrier** (driver exceeded protocol as a favour), and carries forward 4 open caveats — **address (1423 Hayes vs 3041 Taraval)**, **un-done 27-box count**, condition, and screenshot-authenticity. Flags the **QR-code prerequisite** (no QR found yet for the 8 `+ 047-3175-3223` currencies). |
