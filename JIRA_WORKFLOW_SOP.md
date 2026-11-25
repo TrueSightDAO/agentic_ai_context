@@ -361,6 +361,134 @@ by other tooling. Retiring the *view* is not the same as deleting the *data*.
 
 ---
 
+## 13. Offline owner — MANDATORY on every ticket (Gary, 2026-11-29)
+
+**Access decision (2026-11-29):** *everyone lives in Discord; nobody gets a Jira seat unless
+they must actually act inside Jira.*
+
+That decision has a structural consequence. Jira assignees are now a very small set (Gary,
+`admin+sophia`), while **the person whose progress you chase is usually offline and not in
+Jira at all** — a farmer, a co-packer, a freight broker, a partner in another timezone.
+Assignee therefore answers the wrong question. Every ticket's description MUST carry a line
+of exactly this shape:
+
+```
+Offline Owner: <Name> · Discord: <@handle or <@user_id>> · Check-in: <YYYY-MM-DD>
+```
+
+or, when no offline person has been identified yet:
+
+```
+Offline Owner: MISSING (no offline person identified yet)
+```
+
+The `MISSING` spelling is deliberate — greppable, so gaps are visible and countable instead of
+looking like an omission. Same discipline as §10. Never simply leave the line out.
+
+### 13a. Assignee ≠ Offline Owner
+
+This is the whole point of the convention, so it is stated plainly:
+
+| | Assignee | Offline Owner |
+|---|---|---|
+| Means | who acts **inside Jira** | who you chase **in the real world** |
+| Typical values | `admin+sophia`, `Gary Teh` | Kirsten, a farmer, a freight broker, a partner |
+| Changes when | the working agent changes | the human relationship changes |
+
+A ticket may legitimately be assigned to `admin+sophia` while its offline owner is Kirsten.
+Overloading `assignee` to mean "the person to chase" is an anti-pattern: it would fire
+notifications at the wrong human and make the board unreadable.
+
+**One offline owner per ticket.** If two people each owe you a different thing, split the
+ticket — otherwise neither is actually being followed.
+
+### 13b. Which channel — and why the thread URL is NOT repeated here
+
+Discord is the contact of record, because the 2026-11-29 access decision puts the whole
+team there and a supervisor can *speak into* Discord programmatically.
+
+**Do not duplicate the conversation URL in this line.** §10 already mandates a `Thread URL:`
+per ticket and is the single channel-of-record. §13 names the **person**; §10 names the
+**place**. Keeping them separate means one place to fix when a conversation moves.
+
+Phone / WhatsApp may be recorded as well, but **is not sufficient alone** — a supervisor
+loop cannot post into WhatsApp, so a ticket whose only contact is a phone number is a dead
+end in the same way §10a describes. Record the number *in addition to* a Discord handle.
+
+### 13c. Resolving the person
+
+Every offline owner should resolve to a row in the Main Ledger's
+`Contributors contact information` tab:
+
+| Field | Column |
+|---|---|
+| Name | A |
+| **Discord ID** | **G** |
+| Email | D |
+| Phone / WhatsApp | F |
+
+If the person is not on the ledger, that is a **prerequisite gap, not a detail** — they cannot
+be nudged and cannot be credited. File it before treating the ticket as actionable.
+
+### 13d. Why — the supervisor loop
+
+A supervising LLM does not need to parse `HANDOFF_MANIFEST.md` prose to find who to chase:
+
+```
+jira_query(action="search", jql='project = KAN AND status != Done AND text ~ "Offline Owner: MISSING"')
+# -> every ticket with no named offline owner: the gap list
+```
+
+```
+jira_query(action="search", jql='project = KAN AND status != Done AND text ~ "Offline Owner"')
+# -> read each Offline Owner + §10 Thread URL, then nudge in the right Discord channel
+```
+
+One board query replaces a scan of every handoff file.
+
+### 13e. Known limitation — a date inside prose is not queryable
+
+JQL's `text ~` matches the *string*, but it cannot compare or sort a `YYYY-MM-DD` embedded in
+description prose. So this ships in two phases:
+
+| Phase | What | Admin needed |
+|---|---|---|
+| **1 (this spec)** | The greppable description line | **none** — works today |
+| **2 (future)** | A real **date** custom field, `Next offline check-in` | **Atlassian admin** (§7) |
+
+After phase 2 the nudge query becomes comparable rather than grep-only:
+
+```
+project = KAN AND status != Done AND "Next offline check-in" <= endOfDay()
+```
+
+Creating a custom field is a governor/admin action under §7. **An agent must not create
+fields unasked**, and phase 1 deliberately needs no admin so the convention is usable now.
+
+### 13f. Relationship to existing labels
+
+The `blocked-on-human` label (19 tickets) is **not** the same thing:
+
+- `blocked-on-human` = the ticket is **stalled** pending a human decision.
+- `Offline Owner` = who you **follow up with**, whether or not the ticket is stalled.
+
+A ticket can have an offline owner and not be blocked (routine progress chase), or be
+`blocked-on-human` with no offline owner yet (`MISSING`). Do not conflate them.
+
+### 13g. Backfill state — **NOT APPLIED**
+
+No existing ticket has been backfilled with an `Offline Owner:` line. Same discipline as
+§10c: **re-read the persisted description before reporting success.** A write receipt is not
+evidence.
+
+### 13h. Rule for new tickets
+
+A ticket created without an `Offline Owner:` line is **not followable**. If you cannot name
+the person at creation time, write the `MISSING` line anyway, then patch it once known. Do not
+let it default to silence.
+
+---
+
 ## 13. Channel-name convention — `kan-<n>-<slug>` (Gary, 2026-11-25)
 
 **The rule:** if a Discord channel is the conversation for a JIRA ticket, its name MUST start
