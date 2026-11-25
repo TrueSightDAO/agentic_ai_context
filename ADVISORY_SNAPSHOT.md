@@ -20,9 +20,46 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-11-25T07:29:17Z`
+- Generated (UTC): `2026-11-25T08:58:45Z`
 - Look-back: **7** calendar days (`2026-11-18` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
+
+---
+
+## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
+
+_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
+
+### Event-type rollup
+
+- `[CONTRIBUTION EVENT]` × 27
+- `[PRACTICE EVENT]` × 7
+- `[EMAIL REGISTERED EVENT]` × 5
+- `[EMAIL VERIFICATION EVENT]` × 2
+- `[ASSET RECEIPT EVENT]` × 1
+
+### Latest entries
+
+- `Edgar_20261124112158_3824` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: Editorial analysis and drafting — Asian Financial Forum 2027 speaker profile…
+- `Edgar_20261124112204_3826` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Description: Direction and review — Asian Financial Forum 2027 speaker profile, v2 to v12…
+- `Edgar_20261124112353_3828` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Description: Direction and review — Asian Financial Forum 2027 speaker profile, v2 to v12…
+- `Edgar_20261124113635_3830` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Asian Financial Forum 2027 speaker profile for Gary Teh — v2 through v12, pl…
+- `Edgar_20261124113637_3832` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 64 · Description: Asian Financial Forum 2027 speaker profile for Gary Teh — direction, review …
+- `Edgar_20261124114228_3834` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Contributor(s): Gary Teh
+- `Edgar_20261124114233_3836` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 0 · Contributor(s): Sophia Truesight
+- `Edgar_20261124130711_3838` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-24T13:07:08.898Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20261124150131_3840` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-24T15:01:30.833Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20261124175206_3842` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 300 · Contributor(s): Gary Teh
+- `Edgar_20261124175208_3844` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Contributor(s): Sophia Truesight (admin+sophia@truesight.me)
+- `Edgar_20261124223423_3846` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 135 · Description: BionPact Indonesia LOI — 8 revisions, 4 research gates, signature-ready (v1–…
+- `Edgar_20261124223426_3848` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: AmCham International Winter Ball, Guangzhou — 3 hrs with Rusmin (Indonesian …
+- `Edgar_20261124223429_3850` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 360 · Description: Rusmin follow-up discussion, Guangzhou — 6 hrs on Indonesia proposal details
+- `Edgar_20261125005309_3852` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Indonesia (Rusmin) site inspection directive — authored, honed to v5, PRs #1…
+- `Edgar_20261125005320_3854` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 150 · Description: Governor direction — Indonesia (Rusmin) inspection directive redaction and i…
+- `Edgar_20261125071059_3856` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 21.20 · Description: DeepSeek API credits — USD 21.20 paid 2026-11-24 (receipt 7PB95166B6013154G)
+- `Edgar_20261125080256_3858` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-11-25T08:02:49.203Z · Email: chaodac28@gmail.com
+- `Edgar_20261125080406_3860` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-11-25T08:04:01.308Z · Email: chaodac28@gmail.com
+- `Edgar_20261125080411_3862` · **Edgar** · [EMAIL REGISTERED EVENT] Timestamp: 2026-11-25T08:04:03.883Z · Email: chaodac28@gmail.com
 
 ---
 
@@ -196,13 +233,16 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+34 more in JSON snapshot.)_
 
-### Cash float
+### Cash float (`off chain asset balance`)
 
-_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
+- USD on hand: **$1,549.82**
+- Brazilian Reis: R$-1,385.00 · rate `0.2323` USD/BRL → ≈ **$-321.74**
+- USD provisioned for voting-rights cash-out: **$59.47**
 
-### In-transit freight
+### In-transit freight (0 rows)
 
-_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
+_No `Shipment Ledger Listing` rows match in-flight status keywords today._
+
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -256,6 +296,9 @@ a664e98 | 2026-11-20 21:29:41 +0800 | Document F5 Content Schedule tab + fix pri
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+6a46d35 | 2026-11-25 07:55:12 +0000 | followups: add checks-unreadable-but-CI-green variant to merge_pr ci-unavailable entry
+8bb1a19 | 2026-11-25 15:29:36 +0800 | Merge pull request #1905 from TrueSightDAO/auto/advisory-refresh-2026-11-25
+4b0a0c1 | 2026-11-25 07:29:21 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-25 UTC)
 d257eff | 2026-11-25 06:46:04 +0000 | followups: record PR-link audit result (prose-only, 10/58; no schema field)
 f980250 | 2026-11-25 06:44:17 +0000 | followups: correct the HIGH Jira entry - thread URLs were never dropped (33 tg / 12 dc present); real cause is the description API gap
 3d65c5f | 2026-11-25 01:30:56 +0000 | followups: file the two residual Jira-migration gaps (KAN-79 close-out item 4)
@@ -293,9 +336,6 @@ e2e2699 | 2026-11-24 03:20:23 +0800 | SOP: standardize media artifact terminolog
 4aa0f3a | 2026-11-24 00:49:35 +0800 | File rock salt (road salt) as an untracked commodity line in OPEN_FOLLOWUPS (#1876)
 ba666fa | 2026-11-23 15:59:55 +0800 | chore(previews): refresh Beer Hall preview (2026-11-23 UTC)
 1b9e955 | 2026-11-23 15:59:53 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-23 UTC)
-9011efd | 2026-11-23 14:18:53 +0800 | Merge pull request #1875 from TrueSightDAO/auto/advisory-refresh-2026-11-23
-115a381 | 2026-11-23 06:18:37 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-23 UTC)
-624c2d8 | 2026-11-23 12:13:30 +0800 | File follow-up: Stripe receipt links expire, blocking bulk expense-receipt filings (#1874)
 … (truncated)
 ```
 
@@ -427,6 +467,39 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
+
+---
+
+## Sheet evidence (sales)
+
+_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
+
+### `Monthly Statistics` (last **14** non-empty rows)
+
+| Year-Month | Monthly USD | Cumulative USD | Last updated |
+|------------|-------------|------------------|---------------|
+| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
+| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
+| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
+| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
+| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
+| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
+| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
+| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
+| 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
+| 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
+| 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
+| 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
+| 2026-10 | 460 | 18944.34386 | 10/31/2026 |
+| 2026-11 | 276.9 | 19221.24386 | 11/25/2026 0:52:50 |
+
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-11-18`; scanned last **600** data rows)
+
+| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
+|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
+| — | — | — | — | — | — | _No rows in scan window (try larger `--sheet-sales-qr-scan` or `--since-days`)._ |
+
+_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
