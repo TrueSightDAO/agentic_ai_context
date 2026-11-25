@@ -1268,6 +1268,34 @@ the start and prevents it recurring.
 
 ---
 
+### Black King freight-invoice dispute ($937.20) is documented nowhere durable — §5.13 forward-references a section that was never written
+**Filed 2026-11-25 (thread 10800). Owner: unclaimed. Governor: Gary. No code change — documentation preservation + a dangling cross-reference.**
+
+**The gap.** The Black King / 5 Continent freight-invoice dispute has been an open item in thread 10800 for many turns, flagged *"not re-verified since the $4,896.33 settlement"*. Verified by grep on 2026-11-25: the figures appear **nowhere** in the canonical runbook (`brazil/BRAZIL_TO_SF_FREIGHT_PREFLIGHT_CHECKLIST.md`) or in this file —
+
+```
+runbook:  '937' -> 0 hits   '1,355' -> 0   '1355' -> 0   "add'l" -> 0   'unquoted' -> 0
+followups: '937' -> 0 hits
+```
+
+— and yet **§5.13 line 652 already forward-references it** (*"Strengthens the open pallet-count question in the dispute."*). So the runbook points at a section that does not exist. The entire analysis survives only in a Telegram thread plus working context: **one compaction away from being lost.**
+
+**What the analysis was (⚠️ THREAD-RECONSTRUCTED — provenance = thread 10800 + PRs #1522–#1528, #1544, #1545. NOT independently re-derived; do not bill or claim from these without re-deriving against the source PDFs).**
+
+- **Quote rate table** (2026-08-26, embedded image p.2) — 7 lines summing **$3,510.60**: Inland Brazil 837.00 · Airport charges BRA 250.00 · Airline charges BRA 95.00 · Air Freight +300kgs 1,118.60 · Airline charges USA 200.00 · Handling Fee USA 125.00 · Delivery to door 885.00.
+- **Built-up cost** — `3,510.60 + 297.57 + 418.53 + 639.63` = **$4,866.33** (four independently-derived buckets; this is the figure the settlement used).
+- **Gap to the forwarder's invoice** = **$1,355.73**; of that, **$937.20 is actionable dispute exposure (69%)** and holds on *both* candidate derivations.
+- **Independent cross-check (Envoy)** agreed to the cent once bucketing was normalized: MATCH diff = **$40** add'l-lines; UNQUOTED diff = **$414.59** export clearance. ⚠️ Attribution matters — Envoy is an independent verifier, **not** the governor.
+- **Actually booked and paid:** air freight **$4,896.33** (= $4,866.33 + $30 admin), allocated by shipped kg — MAIN 45.6063% = $2,233.03 · AGL8 $710.00 · AGL13 $1,953.30 (check: sums to $4,896.33). See runbook §5.16 Step 1.
+- **Pallet-count argument (physical, already in the runbook):** two pallets photographed vs the invoice line *"Delivery to the door $885 (3 pallets)"* — the only 3-pallet figure in the file set, contradicted by the goods.
+- **2023 counterpart invoice** for the same corridor/person: **Seacoast Logistics Inc #102000607-1**, 2023-11-17, **$521.03** (Graziela Vedana: Seacoast → 5 Continent). Source `fda_fsvp/suppliers/coopercabruca/20231117_payment_for_customs_clearance_taxes_airport_handling.pdf`.
+
+**Why it is still open, and the honest status.** Because **$4,896.33 has already been settled and booked**, the dispute is no longer about un-paid cash — it is about whether the invoice **over-charged relative to the $4,866.33 derivation**, and whether any over-charge should be **claimed back or formally waived**. That question has **not** been re-opened since settlement. Note also the **fiscal risk** carried separately: **NF-e nº 16 was already ISSUED** (2026-09-22, 11 lines, R$35,828.76) for a physical cargo that later changed (27 boxes / 9 lines), needing a Saymon/Matheus correction route.
+
+**Next (governor-gated, read-only until then).** Re-read the quote PDF, 5 Continent invoice, and NF-e nº 16; re-derive the $1,355.73 / $937.20 split from scratch rather than trusting this entry; then choose **claim back** or **waive**, and record the decision in runbook §5.13. Until that is done this entry is a *preservation* record, not a verified position.
+
+---
+
 ### `jira_stale` nudges can NEVER clear when a PR is linked via `link_pr_in_comment` — `pr_evidence()` never reads comments (25 tickets affected)
 **Filed 2026-11-25 (thread 10800). Owner: unclaimed. Governor: Gary. Fix PR open: `truesight_autopilot#646`.**
 
