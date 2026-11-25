@@ -20,46 +20,9 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-11-24T22:40:23Z`
-- Look-back: **7** calendar days (`2026-11-17` → today UTC)
+- Generated (UTC): `2026-11-25T07:29:17Z`
+- Look-back: **7** calendar days (`2026-11-18` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
-
----
-
-## Recent ecosystem activity (Telegram Chat Logs — last 50 rows)
-
-_Real-time event stream across the DAO: each row is an Edgar-routed contribution, practice event, partner check-in, inventory move, currency conversion, or free-form message. Use this as the pulse of what is actually pulsing right now — not the funnel, the actual signal._
-
-### Event-type rollup
-
-- `[CONTRIBUTION EVENT]` × 28
-- `[PRACTICE EVENT]` × 7
-- `[EMAIL REGISTERED EVENT]` × 4
-- `[EMAIL VERIFICATION EVENT]` × 2
-- `[ASSET RECEIPT EVENT]` × 1
-
-### Latest entries
-
-- `Edgar_20261121025116_3812` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-21T02:51:13.889Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20261122032000_3814` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-22T03:19:59.310Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20261122224332_3816` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-22T22:43:30.338Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20261123041337_3818` · **Edgar** · [CONTRIBUTION EVENT] Type: USD · Amount: 20.00 · Description: Anthropic / Claude Pro receipt #2893-9096-8721 — USD 20.00 (2026-11-22)
-- `Edgar_20261124093744_3820` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 5 · Contributor(s): Gary Teh, Pinky Blau
-- `Edgar_20261124112152_3822` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 75 · Description: Raw machine execution — Asian Financial Forum 2027 speaker profile for Gary …
-- `Edgar_20261124112158_3824` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 120 · Description: Editorial analysis and drafting — Asian Financial Forum 2027 speaker profile…
-- `Edgar_20261124112204_3826` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Description: Direction and review — Asian Financial Forum 2027 speaker profile, v2 to v12…
-- `Edgar_20261124112353_3828` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 20 · Description: Direction and review — Asian Financial Forum 2027 speaker profile, v2 to v12…
-- `Edgar_20261124113635_3830` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Asian Financial Forum 2027 speaker profile for Gary Teh — v2 through v12, pl…
-- `Edgar_20261124113637_3832` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 64 · Description: Asian Financial Forum 2027 speaker profile for Gary Teh — direction, review …
-- `Edgar_20261124114228_3834` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Contributor(s): Gary Teh
-- `Edgar_20261124114233_3836` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 0 · Contributor(s): Sophia Truesight
-- `Edgar_20261124130711_3838` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-24T13:07:08.898Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20261124150131_3840` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-24T15:01:30.833Z · Program: truesight-grounding · Practice Type: oracle-consultation
-- `Edgar_20261124175206_3842` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 300 · Contributor(s): Gary Teh
-- `Edgar_20261124175208_3844` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Contributor(s): Sophia Truesight (admin+sophia@truesight.me)
-- `Edgar_20261124223423_3846` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 135 · Description: BionPact Indonesia LOI — 8 revisions, 4 research gates, signature-ready (v1–…
-- `Edgar_20261124223426_3848` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Description: AmCham International Winter Ball, Guangzhou — 3 hrs with Rusmin (Indonesian …
-- `Edgar_20261124223429_3850` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 360 · Description: Rusmin follow-up discussion, Guangzhou — 6 hrs on Indonesia proposal details
 
 ---
 
@@ -233,16 +196,13 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 
 _(+34 more in JSON snapshot.)_
 
-### Cash float (`off chain asset balance`)
+### Cash float
 
-- USD on hand: **$1,549.89**
-- Brazilian Reis: R$-1,385.00 · rate `0.2323` USD/BRL → ≈ **$-321.74**
-- USD provisioned for voting-rights cash-out: **$59.41**
+_Skipped — re-run with `--with-sheet-sales` (or fix `google_credentials.json`) to surface USD / BRL balances._
 
-### In-transit freight (0 rows)
+### In-transit freight
 
-_No `Shipment Ledger Listing` rows match in-flight status keywords today._
-
+_Skipped — re-run with `--with-sheet-sales` to surface in-flight `Shipment Ledger Listing` rows._
 
 _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The JSON snapshot reserves `sales_velocity_30d` / `days_of_cover_at_sf` slots so a dapp dashboard can be wired now and back-filled later._
 
@@ -252,7 +212,7 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_(No `YYYY-MM-DD |` lines on/after 2026-11-17 in CONTEXT_UPDATES.md.)_
+_(No `YYYY-MM-DD |` lines on/after 2026-11-18 in CONTEXT_UPDATES.md.)_
 
 ---
 
@@ -271,6 +231,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-11-17 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+975aeb9 | 2026-11-24 22:42:54 +0000 | chore(stats): refresh stats indexes [skip ci]
 cef6637 | 2026-11-24 10:20:09 +0000 | chore(stats): refresh stats indexes [skip ci]
 da39bad | 2026-11-24 00:15:47 +0000 | chore(stats): refresh stats indexes [skip ci]
 3423d84 | 2026-11-23 08:05:19 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -284,8 +245,6 @@ dab09c2 | 2026-11-20 07:40:43 +0000 | chore(stats): refresh stats indexes [skip 
 268f4f9 | 2026-11-19 07:49:24 +0000 | chore(stats): refresh stats indexes [skip ci]
 386d962 | 2026-11-18 20:51:02 +0000 | chore(stats): refresh stats indexes [skip ci]
 25b2c1a | 2026-11-18 07:52:30 +0000 | chore(stats): refresh stats indexes [skip ci]
-3c4d8b3 | 2026-11-17 21:15:55 +0000 | chore(stats): refresh stats indexes [skip ci]
-68083f0 | 2026-11-17 08:23:27 +0000 | chore(stats): refresh stats indexes [skip ci]
 ```
 
 ### `market_research` → `go_to_market`
@@ -297,6 +256,29 @@ a664e98 | 2026-11-20 21:29:41 +0800 | Document F5 Content Schedule tab + fix pri
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+d257eff | 2026-11-25 06:46:04 +0000 | followups: record PR-link audit result (prose-only, 10/58; no schema field)
+f980250 | 2026-11-25 06:44:17 +0000 | followups: correct the HIGH Jira entry - thread URLs were never dropped (33 tg / 12 dc present); real cause is the description API gap
+3d65c5f | 2026-11-25 01:30:56 +0000 | followups: file the two residual Jira-migration gaps (KAN-79 close-out item 4)
+f3051cd | 2026-11-25 08:50:22 +0800 | SOP §13: change gap sentinel MISSING->UNASSIGNED (JQL text~ tokenizes, proven false positive) (#1904)
+1fe3122 | 2026-11-25 08:38:07 +0800 | Add SOP §13: Offline Owner mandatory convention (Gary, 2026-11-29) (#1903)
+76dbb91 | 2026-11-25 08:36:33 +0800 | Record governor confirmation: Elizabeth Wong IS a governor (resolves roles-drift data half) (#1902)
+0170bfc | 2026-11-25 08:21:07 +0800 | docs(jira): add §13 channel-name convention (kan-<n>-<slug>) + amend §10 (#1901)
+2af80f6 | 2026-11-25 08:12:43 +0800 | Remove internal commentary sections 3-5 from the Rusmin directive (#1900)
+bd73660 | 2026-11-25 08:06:24 +0800 | Remove the last TrueSight URL from the Rusmin site-inspection directive (#1899)
+a073658 | 2026-11-25 08:04:09 +0800 | Jira SOP: correct Sophia accountId after account replacement + retract unverified backfill claim (#1898)
+1296685 | 2026-11-25 08:04:04 +0800 | Remove draft status line and internal-only language from Rusmin directive (#1897)
+fe0daeb | 2026-11-25 07:58:05 +0800 | Remove TrueSight org name from the Rusmin site-inspection directive (#1896)
+4e3fd5c | 2026-11-25 07:55:36 +0800 | Correct the test_resolve_tdg_issued root cause: stale local install, not a rubric stub (#1895)
+d700571 | 2026-11-25 07:50:32 +0800 | Drop internal 'governor' vocabulary from the Rusmin site-inspection directive (#1894)
+fe989ee | 2026-11-25 07:44:29 +0800 | Add software/API cost registry with DeepSeek receipt and Anthropic backlog (#1893)
+2c1bd1d | 2026-11-25 07:34:19 +0800 | docs(jira): Jira KAN is the canonical board; thread URL mandatory on every ticket (#1890)
+42bed4a | 2026-11-25 07:28:20 +0800 | Fill Brazil benchmark column in Rusmin directive; flag sea-freight and warehousing gaps (#1889)
+aeaf585 | 2026-11-25 07:18:13 +0800 | Anchor Rusmin lab section to CIC benchmark; correct 'never commissioned' overclaim (#1888)
+288f891 | 2026-11-25 07:15:11 +0800 | Add Rusmin site inspection directives (KAN-8) — checklist + rate capture (#1887)
+1d31371 | 2026-11-25 06:56:05 +0800 | docs(jira): SOP for the KAN board workflow + jira_query stage discipline (#1886)
+993606f | 2026-11-25 06:49:19 +0800 | Record LOI as sent: close contact-block, counsel-review and send items (#1885)
+5fe1299 | 2026-11-25 06:40:49 +0800 | chore(previews): refresh Beer Hall preview (2026-11-24 UTC)
+e8ae2b6 | 2026-11-25 06:40:47 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-24 UTC)
 538b76e | 2026-11-25 05:51:19 +0800 | Record Rusmin Indonesia outreach: AmCham Winter Ball (21 Nov) + follow-up (22 Nov) (#1884)
 f240342 | 2026-11-25 05:39:17 +0800 | Record BionPact Indonesia LOI work: directive log, version history, verification (#1883)
 e11ae91 | 2026-11-24 19:45:24 +0800 | SOP: masters must open on a human (face > body > hands; never faceless) (#1882)
@@ -314,39 +296,15 @@ ba666fa | 2026-11-23 15:59:55 +0800 | chore(previews): refresh Beer Hall preview
 9011efd | 2026-11-23 14:18:53 +0800 | Merge pull request #1875 from TrueSightDAO/auto/advisory-refresh-2026-11-23
 115a381 | 2026-11-23 06:18:37 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-23 UTC)
 624c2d8 | 2026-11-23 12:13:30 +0800 | File follow-up: Stripe receipt links expire, blocking bulk expense-receipt filings (#1874)
-21a269c | 2026-11-23 12:12:15 +0800 | SOP: copy is bound to the cut + Gemini QC gate before human review (#1873)
-5161ad0 | 2026-11-23 03:55:05 +0800 | chore(previews): refresh Beer Hall preview (2026-11-22 UTC)
-6ad9ed9 | 2026-11-23 03:55:03 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-22 UTC)
-699eeb4 | 2026-11-22 15:16:14 +0800 | chore(previews): refresh Beer Hall preview (2026-11-22 UTC)
-521ddbd | 2026-11-22 15:16:13 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-22 UTC)
-0aa9f74 | 2026-11-22 03:39:01 +0800 | chore(previews): refresh Beer Hall preview (2026-11-21 UTC)
-bc45687 | 2026-11-22 03:38:59 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-21 UTC)
-b31b73d | 2026-11-21 15:34:05 +0800 | chore(previews): refresh Beer Hall preview (2026-11-21 UTC)
-5e733af | 2026-11-21 15:34:04 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-21 UTC)
-14e99f9 | 2026-11-21 04:39:02 +0800 | chore(previews): refresh Beer Hall preview (2026-11-20 UTC)
-8ff0d09 | 2026-11-21 04:39:00 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-20 UTC)
-e8236ca | 2026-11-20 21:29:37 +0800 | Media pipeline SOP: Agroverse/F5 market split, F5 logo standard, reel-proposal method
-be22b4d | 2026-11-20 21:26:18 +0800 | China market entry decisions: F5 brand, single-estate pivot, collectible-mechanic comparison
-136822b | 2026-11-20 15:38:17 +0800 | chore(previews): refresh Beer Hall preview (2026-11-20 UTC)
-823d4a2 | 2026-11-20 15:38:15 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-20 UTC)
-bc586c6 | 2026-11-20 08:13:47 +0800 | Evidence: 2.5h China distribution discussion (meeting + mould sourcing references)
-5f81593 | 2026-11-20 04:53:59 +0800 | chore(previews): refresh Beer Hall preview (2026-11-19 UTC)
-5e8edcd | 2026-11-20 04:53:57 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-19 UTC)
-50de500 | 2026-11-19 16:18:37 +0800 | Corrected evidence: SKU printing session is Nathan LUI (Sha Tin HK), not the Changsha contact
-0dcad91 | 2026-11-19 15:51:55 +0800 | Add UI_UX_REVIEW_SOP — repeatable headless measurement procedure for client mockups (#1870)
-ea15afa | 2026-11-19 15:46:22 +0800 | chore(previews): refresh Beer Hall preview (2026-11-19 UTC)
-f8fe705 | 2026-11-19 15:46:20 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-19 UTC)
-4a2f38d | 2026-11-19 04:48:34 +0800 | chore(previews): refresh Beer Hall preview (2026-11-18 UTC)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+565e358 | 2026-11-25 15:04:08 +0800 | docs(SCHEMA): document Contributors contact information cols U–Z incl. new JIRA ID; fix header row (#630)
 009aaa4 | 2026-11-24 14:06:54 +0800 | feat: one-time helper to add Pinky Blau warehousing recurring row (#629)
 da73fc4 | 2026-11-21 17:51:08 +0800 | Document live trigger + root cause for deprecated TDG wallet-balance project (#628)
-f4ff570 | 2026-11-17 20:38:53 +0800 | Fix silent drop of Telegram contribution rows in the TDG scorer (#627)
-8038021 | 2026-11-17 11:28:56 +0800 | Add R$1,085 Pix receipt — 217 trees, Jhordan Madian Costa de Oliveira
 ```
 
 ### `dapp` → `dapp`
@@ -399,8 +357,6 @@ edff8a4 | 2026-11-19 17:16:16 +0800 | Add AWB 047-3175-3223 tax-amendment proven
 0b7ff7d | 2026-11-19 17:15:55 +0800 | Add AWB 047-3175-3223 tax-amendment provenance: 8 Ounce Pouch
 4dc35c4 | 2026-11-18 15:57:49 +0000 | chore: refresh currencies.json [skip ci]
 9c9c2f9 | 2026-11-18 15:44:01 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
-14c7050 | 2026-11-17 16:28:34 +0000 | chore: refresh currencies.json [skip ci]
-e662808 | 2026-11-17 16:04:57 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -425,6 +381,15 @@ _(no commits on origin/master in window)_
 
 ## Recent Beer Hall archives (newest entries)
 
+### `beer-hall_2026-11-25T072917Z_rusmin-directive-aff-speaker-profile-mission-target.md`
+
+- **posted_at_utc:** `2026-11-25T07:29:17Z`  
+- **slug:** `rusmin-directive-aff-speaker-profile-mission-target`  
+- **Message 1 excerpt (first two non-empty lines):**
+
+  *Automated daily digest of the DAO*
+  - **Rusmin Indonesia site inspection directive shipped through v5** — Brazil benchmark column filled, lab section anchored to CIC benchmark, all internal-only language and TrueSight identifiers redacted; signature-ready for partner delivery.
+
 ### `beer-hall_2026-11-23T061830Z_awb-provenance-tdg-scorer-fix-china-entry.md`
 
 - **posted_at_utc:** `2026-11-23T06:18:30Z`  
@@ -442,15 +407,6 @@ _(no commits on origin/master in window)_
 
   Automated daily digest of the DAO
   - **Past Harvests section live on Agroverse shop** — sold-out lots demoted below active inventory; duplicate "Out of stock" badge removed, replaced with single "Sold out" label.
-
-### `beer-hall_2026-11-07T050354Z_500g-cacao-mass-bar-live.md`
-
-- **posted_at_utc:** `2026-11-07T05:03:54Z`  
-- **slug:** `500g-cacao-mass-bar-live`  
-- **Message 1 excerpt (first two non-empty lines):**
-
-  Automated daily digest of the DAO
-  - **500g Cacao Mass Bar now live in Agroverse shop** — full product page, catalog card, homepage, sitemap, two product photos.
 
 ---
 
@@ -471,39 +427,6 @@ _(no commits on origin/master in window)_
 
 - **`20260509T000735Z.json`** — `2026-05-09T00:07:35Z`  
   **Esalen Institute Gift Shop** → `AI: Warm up prospect` (was `AI: Prospect replied`) | type: Wellness Center | sig: success
-
----
-
-## Sheet evidence (sales)
-
-_Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the main ledger; **QR Code Sales** on Telegram & Submissions. Figures are copied as-is from Sheets; verify before financial decisions._
-
-### `Monthly Statistics` (last **14** non-empty rows)
-
-| Year-Month | Monthly USD | Cumulative USD | Last updated |
-|------------|-------------|------------------|---------------|
-| 2025-10 | 595.22 | 10698.77386 | 2025-12-07 19:14:46 |
-| 2025-11 | 268.97 | 10967.74386 | 2025-12-07 19:14:46 |
-| 2025-12 | 1380.88 | 12348.62386 | 12/31/2025 |
-| 2026-01 | 1063.94 | 13412.56386 | 1/31/2026 18:52:06 |
-| 2026-02 | 144.42 | 13556.98386 | 2/28/2026 18:50:17 |
-| 2026-03 | 273.97 | 13830.95386 | 3/31/2026 19:51:02 |
-| 2026-04 | 1087.56 | 14918.51386 | 4/30/2026 19:52:11 |
-| 2026-05 | 58.6 | 14977.11386 | 5/31/2026 19:50:11 |
-| 2026-06 | 1732.47 | 16709.58386 | 6/30/2026 23:51:09 |
-| 2026-07 | 201.48 | 16911.06386 | 7/31/2026 19:50:17 |
-| 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
-| 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
-| 2026-10 | 460 | 18944.34386 | 10/31/2026 |
-| 2026-11 | 276.9 | 19221.24386 | 11/24/2026 13:50:47 |
-
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-11-17`; scanned last **600** data rows)
-
-| Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
-|-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
-| — | — | — | — | — | — | _No rows in scan window (try larger `--sheet-sales-qr-scan` or `--since-days`)._ |
-
-_Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
 ---
 
