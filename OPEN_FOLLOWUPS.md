@@ -39,6 +39,34 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### `jira_stale` loop nudge fires on already-fixed tickets — merged fix is not deployed, and the merge gate misreads green CI as "failing-or-pending"
+
+**Priority:** HIGH (burns a full agent turn per hour) · **Filed:** 2026-11-26 · **Component:** `app/jira_loop.py`, `app/github_client.py`, `scripts/deploy.sh`
+
+**Symptom.** KAN-17 generated the same `Loop needs a nudge — goal left open` alert four times (14h → 19h idle) with the reason *"in progress with no status change; needs a follow-up (no PR linked)"* — while the ticket carried **three merged PRs** (agentic_ai_context #1868, #1908, #1910). Each alert cost a turn to re-diagnose work already done.
+
+**Root cause (fixed).** `jira_loop.pr_evidence()` read only (a) the issue description and (b) `/remotelink`. A merged PR cited **only in a comment** was invisible, so the ticket evaluated as evidence-less. `jira_tools.list_pr_links` already scraped comments and returned all three — same question, two readers, one blind. Fixed in **truesight_autopilot#645** (`ac98a6d`) by adding `_comment_prs()` called from `pr_evidence()`.
+
+**Proof the fix works** (same ticket, two code versions, side by side):
+
+```
+NEW (main, contains ac98a6d)   pr_evidence -> 3   (all three URLs)
+OLD (deployed 28b918a)         pr_evidence -> 0   has _comment_prs? False
+```
+
+**Why the alert still fires: deploy lag, not a code defect.** The box runs `HEAD 28b918a`; `ac98a6d` is **not an ancestor** of the deployed commit. The fix is on `main` and dark. Until a deploy, the nudge will keep firing on this and every similar ticket. Do not re-investigate this entry's root cause — check deployment first.
+
+**Related defect: the merge gate misreads this repo's CI.** `github_client.py:434`, `:508`, `:548` consult the **check-runs** API, which returns *nothing* on this repo (`"(no check-runs yet)"`), while the **Actions workflow runs** for the same SHA are 3/3 `completed / success`. Result: `merge_pr` refused #645 with "CI not green (failing-or-pending: Tool smoke tests, Run tests, Run tests)" on genuinely green code, then a later attempt succeeded once checks registered. Two problems compound: (1) the wrong API is read, and (2) **"pending" and "failing" collapse into one message**, so a race is indistinguishable from a real failure. Each cost a turn.
+
+**Deploy hazard discovered while clearing this.** `scripts/deploy.sh:44` runs `git reset --hard origin/main && git clean -fd`. The box was carrying **545 insertions across 8 files** of uncommitted work (including the `_dev_status_prs()` implementation that is PR #640, untracked `tests/test_intraturn_validation.py`, and payout PDFs in `var/`). A deploy would have silently discarded it. Backed up to `/home/ubuntu/autopilot_backups/` (`dirty_20261125T185640Z.patch`, `untracked_20261125T185640Z.tgz`) before any attempt. Also note PR #640's branch diffs **−3,483 net lines** against `main` — the branch and working tree have diverged, so "the fix is in the dirty tree" cannot be assumed to mean it is in a mergeable branch.
+
+**Recommended fix.**
+1. Deploy `main` to the autopilot box (governed action) so merged fixes actually run — stash → deploy → restore, then confirm on the live process that KAN-17 resolves 3 PR URLs.
+2. Fix the merge gate to (a) fall back to the Actions workflow-runs API when check-runs is empty, and (b) report **pending** distinctly from **failing** so a race never reads as a verdict.
+3. Decide #646 (writer-side remote link — prevents this class for future tickets) vs #640 (dev-status reader); both still open.
+
+**Acceptance criteria.** No `jira_stale` nudge on a ticket whose PRs are all merged and cited anywhere (description, comment, remotelink, or dev-status); `merge_pr` on green CI never reports "failing"; a deploy cannot silently discard uncommitted work.
+
 ### Intra-turn compaction: summariser churn + unbounded summary depth (27 folds/hour observed)
 
 **Priority:** MEDIUM-HIGH · **Filed:** 2026-11-25 · **Owner:** unclaimed · **Component:** `app/context_compaction.py` (`compact_open_turn`, `default_round_summarizer`), wiring `app/main.py:6314`
