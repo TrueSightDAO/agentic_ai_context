@@ -39,6 +39,19 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+- **[MEDIUM] sprint.truesight.me -> Jira migration: PR links were never structured data in the source; only 10/58 tickets carry any PR reference (2026-11-25)**
+  - **Priority:** MEDIUM · **Filed:** 2026-11-25 · **Owner:** Sophia · **Related:** KAN-79 (umbrella), `JIRA_WORKFLOW_SOP.md`
+  - **Symptom:** The migration goal includes "all 58 non-terminal handoffs with status/labels/**PR links**". An audit shows PR-link coverage is effectively absent, but **not because the migration dropped it**.
+  - **Evidence (measured live, 2026-11-25):**
+    - Jira comments across KAN-18..KAN-74 + KAN-79: **0/58** contain a `github.com/TrueSightDAO/<repo>/pull/<n>` URL.
+    - Descriptions across the same 58: **0/58** contain a full PR URL; **10/58** contain a short prose ref (`#552`, `truesight_me_beta#382`, `#556-#558`).
+    - `agentic_ai_context/handoffs/index.json` schema keys: `auto_start, discord_channel_id, discord_thread_id, handoff_date, last_updated, plan_file, state, status_raw, supervised_by, telegram_thread_id, telegram_thread_id_needs_verification, telegram_thread_id_source, telegram_topic, telegram_topic_url, title`. **There is no PR/PR-URL field**, and `any("pr" in key)` is `False`.
+    - The only PR references in the source are **prose** inside `status_raw` (e.g. `PR1/PR2 merged (#552, #555); PR-C ... (#556-#558)`). The migration *did* carry `status_raw` into the description — that is where the 10/58 come from.
+  - **Conclusion:** "PR links" as a **structured, backfillable field never existed**. No join can recover what the source never recorded. Only explicit prose refs can be lifted, and only for 10/58.
+  - **Also corrected (same audit):** non-terminal count is **58**, not 57 — computed off the real key `state` (`done`=33 of 91; non-terminal = 58). My own earlier ad-hoc filter read a non-existent `status` key and wrongly reported 91/91 non-terminal; that result was discarded.
+  - **Recommended fix:** (a) narrow KAN-79's done-criteria to state that PR links are **prose-only, 10/58 best case**, rather than implying a complete backfill is pending; (b) optionally parse the 10 prose refs into proper hyperlinks and mark the remaining 48 `PR: none recorded`; (c) the durable fix is **forward-looking** — have the handoff writer emit a `pr_urls: []` field so no future migration has this gap.
+  - **Acceptance criteria:** KAN-79's criteria reflect prose-only reality; the 10 with refs are clickable; handoff schema gains `pr_urls` and the writer populates it.
+
 ### Sprint->Jira migration stored thread URLs under a non-standard shape — API field + parser gap left 25 tickets unmapped
 
 **Priority:** HIGH · **Filed:** 2026-11-25 · **Corrected:** 2026-11-25 (see *Correction* below) · **Component:** `app/jira_loop.py`, `app/tools/jira_tools.py`
