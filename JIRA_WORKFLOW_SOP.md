@@ -379,11 +379,24 @@ Offline Owner: <Name> · Discord: <@handle or <@user_id>> · Check-in: <YYYY-MM-
 or, when no offline person has been identified yet:
 
 ```
-Offline Owner: MISSING (no offline person identified yet)
+Offline Owner: UNASSIGNED (no offline person identified yet)
 ```
 
-The `MISSING` spelling is deliberate — greppable, so gaps are visible and countable instead of
-looking like an omission. Same discipline as §10. Never simply leave the line out.
+The `UNASSIGNED` spelling is deliberate — greppable, so gaps are visible and countable instead
+of looking like an omission. Never simply leave the line out.
+
+> ⚠️ **Do NOT reuse §10's `MISSING` sentinel here. (Corrected 2026-11-25 — the original
+> revision of this section specified `MISSING`, which was wrong.)** JQL's `text ~` is
+> **token-based, not phrase-based**: it matches documents containing those *tokens in any
+> order, anywhere*, not the literal contiguous phrase. So `text ~ "Offline Owner: MISSING"`
+> matches a ticket whose `Offline Owner` line names a real person **as long as some other
+> line contains MISSING** — §10's `Thread URL: MISSING` does exactly that.
+>
+> **Proof (KAN-15, 2026-11-25).** After setting `Offline Owner: Jerrie Huang` on KAN-15 while
+> its `Thread URL:` line read `MISSING`, the gap query returned KAN-15 as a supposed gap —
+> a **false positive**. Tokens `Offline Owner` (from line 2) and `MISSING` (from line 1) were
+> matched independently. A distinct sentinel removes the collision, because
+> `Thread URL: MISSING` can never supply the token `UNASSIGNED`.
 
 ### 13a. Assignee ≠ Offline Owner
 
@@ -435,7 +448,7 @@ be nudged and cannot be credited. File it before treating the ticket as actionab
 A supervising LLM does not need to parse `HANDOFF_MANIFEST.md` prose to find who to chase:
 
 ```
-jira_query(action="search", jql='project = KAN AND status != Done AND text ~ "Offline Owner: MISSING"')
+jira_query(action="search", jql='project = KAN AND status != Done AND text ~ "Offline Owner: UNASSIGNED"')
 # -> every ticket with no named offline owner: the gap list
 ```
 
@@ -450,7 +463,6 @@ One board query replaces a scan of every handoff file.
 
 JQL's `text ~` matches the *string*, but it cannot compare or sort a `YYYY-MM-DD` embedded in
 description prose. So this ships in two phases:
-
 | Phase | What | Admin needed |
 |---|---|---|
 | **1 (this spec)** | The greppable description line | **none** — works today |
