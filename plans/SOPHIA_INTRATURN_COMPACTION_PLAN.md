@@ -62,20 +62,51 @@ most recent N rounds' raw tool output plus the running summary.
 | 3 | Validate against the real 94K/72K fixtures from Unit 0 — confirm the turn still completes correctly post-compaction, no dangling tool_calls, and (if reproducible) confirm the DSML-token-leak failure mode doesn't recur on the compacted version | PR + validation checkpoint, same pattern as the original plan's manual-tool-first rollout |
 | 4 | Deploy + monitor for a day of real heavy-round-count turns before considering this done | Gate — confirm real improvement, not just passing tests |
 
-**RESUME HERE: Unit 2.** Unit 0 (fixture capture) shipped 2026-09-14 —
-`truesight_autopilot` PR #446 (merged, sha `b9bf9a4`). Unit 1 (the intra-turn
-folding function) shipped 2026-10-09 — `truesight_autopilot` PR #523 (squash
-`43df6f1`): `app/context_compaction.py` gains `find_open_turn_start`,
-`_scan_rounds`/`find_complete_rounds`, `default_round_summarizer`, and
-`compact_open_turn(messages, keep_last_k_rounds=4, token_threshold=40000,
-round_threshold=8)`. CI's one failing test on first run
-(`test_reaction_go_does_not_deadlock_on_thread_lock`) was independently
-confirmed pre-existing/unrelated flake before merge — the PR only touches
-`context_compaction.py` + its own test file; the test passed 6/6 locally in
-isolation and green on CI re-run. Both independently re-verified via `gh`/API
-(`state: closed, merged: true`) on 2026-10-09. Unit 2 (wire the new check into
-the existing per-round `_maybe_auto_compact` call sites) is not yet started —
-`compact_open_turn` exists but nothing calls it yet.
+**RESUME HERE: Unit 4 (GATE — deploy + monitor). Units 0–3 are COMPLETE.**
+
+| # | Unit | Status | Evidence |
+|---|------|--------|----------|
+| 0 | Capture live 90K+/70K+ fixtures | ✅ shipped 2026-09-14 | PR #446 (merged `b9bf9a4`) |
+| 1 | Intra-turn folding function in `app/context_compaction.py` | ✅ shipped | PR #523 (squash `43df6f1`) — `find_open_turn_start`, `_scan_rounds`/`find_complete_rounds`, `default_round_summarizer`, `compact_open_turn(messages, keep_last_k_rounds=4, token_threshold=40000, round_threshold=8)` |
+| 2 | Wire into the per-round `_maybe_auto_compact` call sites | ✅ shipped | PR #549 (merged `d137c9b`) — `_maybe_compact_open_turn` def at `app/main.py:6314`, call sites at `3803` (`_run_tool_round_loop`) and `5682` (`_chat_blocking_turn`) |
+| 3 | Validate against the real 94K/72K fixtures | ✅ shipped | PR #642 (merged `5707bdb`) — `tests/test_intraturn_validation.py` (313 lines) |
+| 4 | Deploy + monitor a day of heavy-round-count turns | ⛔ **NOT STARTED — HARD GATE** | requires explicit governor go; see below |
+
+Both Unit 2 and Unit 3 were independently re-verified on `main` at `5707bdb` via
+the GitHub API (`state: closed, merged: true`) and by grepping the shipped
+source — not by trusting the prior marker. Unit 2 and Unit 3 were previously
+listed here as "not yet started"; that was stale and is corrected above.
+
+**Unit 3 validation results (real fixtures, not synthetic):** the 20-round /
+46-message `open_turn_discord_long.json` folds **29,197 -> 11,266 tokens** with
+the retained last K=4 rounds byte-identical, the original instruction intact,
+and no new dangling `tool_calls`. The raw journal curves reproduce the
+motivation exactly: **94,264 @ r12, 76,998 @ r24, 111,148 @ r24**, each inside a
+**single still-open turn** — structurally invisible to the inter-turn folder,
+which by design always keeps the in-progress turn in its retained tail.
+
+One real interaction was found by validating against the shipped
+`_sanitise_tool_messages` rather than a stub: its user-merge pass collapses the
+preserved instruction + the rounds summary (two consecutive `user` messages)
+into one. Traced and confirmed **lossless and intentional** — identical to how
+it heals ordinary transcripts — so the test *expects* the merge. This is
+exactly the class of bug Unit 3 existed to catch.
+
+**Honest limitation (does not block Unit 4):** the live UAT probe self-skips on
+DeepSeek's `reasoning_content` replay error, because the Unit-0 fixtures record
+`content` but not `reasoning_content`. An A/B proved this is a **fixture
+fidelity gap, not a compaction defect** — the unfolded (46-msg) and folded
+(11-msg) arms fail with the *identical* error, so the fold introduces no new
+API-level breakage. Tracked in `OPEN_FOLLOWUPS.md`; the "turn still completes
+post-fold under live replay" claim therefore remains **unproven**, and Unit 4's
+monitoring is what should establish it empirically.
+
+**Unit 4 is a gate.** Folding now runs inside the live per-round loops, so
+deploying changes production behaviour. Do not deploy without an explicit
+governor go. Rollback is a single env var — `CONTEXT_INTRATURN_COMPACTION_AUTO=0`
+— needing no redeploy, and every fold writes a pre-compaction backup first.
+Knobs: `CONTEXT_INTRATURN_TOKEN_THRESHOLD` (40000),
+`CONTEXT_INTRATURN_ROUND_THRESHOLD` (8), `CONTEXT_INTRATURN_KEEP_LAST_K_ROUNDS` (4).
 
 ## UAT
 

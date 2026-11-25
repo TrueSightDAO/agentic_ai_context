@@ -39,6 +39,21 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Intra-turn compaction fixtures lack `reasoning_content` — live post-fold replay cannot be validated
+
+**Priority:** LOW · **Filed:** 2026-11-25 · **Owner:** unclaimed · **Component:** `tests/fixtures/intraturn/`, `plans/SOPHIA_INTRATURN_COMPACTION_PLAN.md`
+
+**Symptom.** The Unit 3 live UAT leg (fold a real bloated turn, then ask the model to finish it) cannot run: both arms fail with `litellm.BadRequestError ... "The \`reasoning_content\` in the thinking mode must be passed back to the API"`.
+
+**This is a fixture fidelity gap, not a compaction defect — established by A/B, not assumed.** The unfolded 46-message fixture and its folded 11-message form fail with the *identical* error, so the fold introduces no new API-level breakage. Unit 2's wiring and Unit 1's folder are therefore not implicated. The captured Unit-0 fixtures record each assistant turn's `content` but drop `reasoning_content`, which `deepseek-flash` thinking mode requires whenever assistant turns are replayed as history.
+
+**Why it matters.** It leaves one specific claim **unproven**: that a folded still-open turn lets the model correctly finish the task under live replay. Structural assertions all pass (token drop, byte-identical retained tail, no dangling `tool_calls`, instruction preserved), so the risk is bounded — but "structurally sound" is weaker than "the model still finishes the turn", and the plan's own UAT leg 1 asks for the latter.
+
+**Recommended fix.** Capture a fresh fixture with `reasoning_content` retained on assistant messages (the capture path should persist the full provider message, not a `content`-only projection). Alternatively pin the live probe to a non-thinking model so replay needs no reasoning state.
+
+**Acceptance criteria.** `pytest tests/test_intraturn_validation.py -k live` **passes** (not skips) with a key present, and the plan's UAT leg 1 is confirmed by replay rather than inferred.
+
+
 - **[MEDIUM] sprint.truesight.me -> Jira migration: PR links were never structured data in the source; only 10/58 tickets carry any PR reference (2026-11-25)**
   - **Priority:** MEDIUM · **Filed:** 2026-11-25 · **Owner:** Sophia · **Related:** KAN-79 (umbrella), `JIRA_WORKFLOW_SOP.md`
   - **Symptom:** The migration goal includes "all 58 non-terminal handoffs with status/labels/**PR links**". An audit shows PR-link coverage is effectively absent, but **not because the migration dropped it**.
