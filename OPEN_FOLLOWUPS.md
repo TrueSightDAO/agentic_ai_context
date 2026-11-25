@@ -138,6 +138,19 @@ A further 7 inbox IDs (`crf-anapu-para`, `cristo-rei-pacaje-para`, `facility-coo
   - **Recommended fix:** (a) narrow KAN-79's done-criteria to state that PR links are **prose-only, 10/58 best case**, rather than implying a complete backfill is pending; (b) optionally parse the 10 prose refs into proper hyperlinks and mark the remaining 48 `PR: none recorded`; (c) the durable fix is **forward-looking** — have the handoff writer emit a `pr_urls: []` field so no future migration has this gap.
   - **Acceptance criteria:** KAN-79's criteria reflect prose-only reality; the 10 with refs are clickable; handoff schema gains `pr_urls` and the writer populates it.
 
+### `CONTEXT_INTRATURN_TOKEN_THRESHOLD` (40000) looks inert — the round-1 baseline already exceeds it
+**Priority:** LOW · **Filed:** 2026-11-26 · **Owner:** unclaimed · **Component:** `app/main.py` (`_maybe_compact_open_turn`)
+
+**Symptom.** Now that intra-turn folding is live, a soak measurement over **177 real rounds** (Unit 4 of `plans/SOPHIA_INTRATURN_COMPACTION_PLAN.md`) shows the *minimum* prompt size observed even at **round = 1** is **43,121 tokens** — already above `CONTEXT_INTRATURN_TOKEN_THRESHOLD=40000`. The median is 53,079 and the post-fix peak is 77,474.
+
+**Why it matters.** If the round-1 baseline exceeds the token threshold, then the token arm of `(rounds >= round_threshold) OR (tokens >= token_threshold)` is **true on essentially every round**, so it can never distinguish a bloated turn from a normal one — the round threshold (8) is silently doing 100% of the folding decisions. That is not a correctness bug (the fold itself is sound and the soaked curve is flat), but it means one of the two documented tuning knobs is decorative, and anyone later reasoning about the knobs — or lowering `round_threshold` expecting the token guard to still bound them — will be misled by it.
+
+**Not confirmed.** This is an inference from the observed floor, not a proof: the 43,121 minimum could include rounds whose prompt already carried a large history, so it does not establish the *bare* prompt size. Confirming it needs one clean measurement of `count_tokens` against the system prompt + tool schemas with an empty history.
+
+**Recommended fix.** Measure the bare baseline, then either raise the default above it (so the token arm engages only on genuine growth) or document explicitly that round count is the operative trigger and the token threshold is a secondary backstop. Do this **after** the Unit 4 soak closes, not during it — changing a live threshold mid-soak would invalidate the measurement that is currently running.
+
+---
+
 ### Sprint->Jira migration stored thread URLs under a non-standard shape — API field + parser gap left 25 tickets unmapped
 
 **Priority:** HIGH · **Filed:** 2026-11-25 · **Corrected:** 2026-11-25 (see *Correction* below) · **Component:** `app/jira_loop.py`, `app/tools/jira_tools.py`
