@@ -168,6 +168,17 @@ A further 7 inbox IDs (`crf-anapu-para`, `cristo-rei-pacaje-para`, `facility-coo
 
 **Recommended fix.** Measure the bare baseline, then either raise the default above it (so the token arm engages only on genuine growth) or document explicitly that round count is the operative trigger and the token threshold is a secondary backstop. Do this **after** the Unit 4 soak closes, not during it — changing a live threshold mid-soak would invalidate the measurement that is currently running.
 
+**Update 2026-11-26 — measured at the 2h05m checkpoint; supersedes the "Not confirmed" paragraph above.** Across **282 real rounds** the token arm (`tokens >= 40000`) is satisfied on **281 of them (99.6%)**; round-1 prompt tokens measure **min 39,600 / max 66,104** (n=38), and exactly **1 of 282** rounds fell below 40,000.
+
+Two corrections to this entry's original framing, both from the larger sample:
+
+1. **"Round-1 minimum is 43,121" is not reproducible.** Over 282 rounds the round-1 minimum is **39,600** — i.e. the threshold *is* reachable, just essentially never. The prior 43,121 came from a 177-round sample and should not be quoted as a floor.
+2. **"Inert" is the wrong word — it is effectively *always true*, which is worse.** The original framing worried the token arm *never fires* so the round threshold does everything. The measurement shows the opposite: the arm fires on ~every round, so the `OR` collapses toward **"fold as soon as anything is foldable."** That means the real binding constraint is likely **`keep_last_k_rounds=4`** (a round is only foldable once ~5 complete rounds exist) — **not** `round_threshold=8`.
+
+**Why "always true" matters more than "never fires".** A knob that is always satisfied silently converts a two-condition guard into a single-condition one: `round_threshold=8` may never actually gate anything, so lowering or raising it will look like a no-op while `K` is what really controls fold frequency. Anyone tuning this needs to know K is the lever. Still zero user-visible harm — the folded curve is healthy and bounded — so priority stays LOW; it is a tuning/observability trap, not a defect.
+
+**Acceptance criteria (unchanged, plus one).** Raise the default above the observed baseline (≈70–80K) so the token arm engages only on genuine growth, **or** delete/rename the knob and document that folding is round-count/K-limited; *and* add a test asserting which condition actually triggers a fold, so the effective gate is pinned rather than inferred from production logs.
+
 ---
 
 ### Sprint->Jira migration stored thread URLs under a non-standard shape — API field + parser gap left 25 tickets unmapped
