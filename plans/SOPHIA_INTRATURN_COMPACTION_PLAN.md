@@ -622,6 +622,75 @@ retention follow-up since both are unbounded operator-disk growth on the same bo
 quality question is summary fidelity-vs-depth, which cannot be answered from existing
 logs. Gate remains **governor-sign-off pending**, and closes no earlier than ~21:58Z.
 
+**Unit 4 checkpoint 4 (2026-11-25 ~18:38Z) — reading the code DISPROVES my own
+checkpoint-2 risk, and replaces it with a better-founded one.**
+
+Soak still not closed: **20.62h / 24h, closes 21:58:11Z** (~3.4h out). Clock-gated.
+
+**I was wrong twice in checkpoint 2. Both errors came from inferring behaviour from
+log patterns instead of reading the function.**
+
+1. **"Summariser churn — one LLM call per fold, ~27/hour."** WRONG.
+   `default_round_summarizer` (app/context_compaction.py:360) has **no LLM call at
+   all** — its docstring states "No LLM call — same text-reuse philosophy as the
+   inter-turn path." It walks the folded rounds and emits one line per round (the
+   assistant's pre-call text + tool names + a 200-char result snippet), reusing
+   `extract_done_this_turn` where available. So a fold costs **string formatting**,
+   not a model round-trip. There is no per-fold latency/token cost on the live turn's
+   critical path, and the "cheap fix: raise token_threshold to reduce LLM calls" I
+   proposed was solving a problem that does not exist.
+
+2. **"27-deep summary-of-a-summary, semantic drift with depth."** WRONG.
+   Measured directly against the real module (`compact_open_turn`, K=2,
+   round_threshold=4, three successive folds in ONE turn):
+
+   | Fold | messages | summary msgs | each nested? | total summary chars |
+   |---|---|---|---|---|
+   | 1 | 30 | 1 | **flat** | 736 |
+   | 2 | 31 | 2 | **flat** | 1,627 |
+   | 3 | 8 | 3 | **flat** | 2,518 |
+
+   Every summary contains **exactly one** header — no summary is ever re-summarised.
+   The mechanism: `default_round_summarizer` only consumes `assistant`/`tool` messages
+   in its region, and the prior summary is `role: "user"`, so **it is never fed back
+   into the next summary.** Semantic drift-by-depth therefore **cannot occur**. That
+   was the fidelity risk I said I'd lose sleep over; it is disproven.
+
+**The real, correctly-stated risk — flat summaries ACCUMULATE.** Prior summaries are
+**not** dropped and **not** nested: they persist alongside newer ones. So while raw
+rounds stay capped at K, the **summary region grows monotonically with fold count** —
+736 → 1,627 → 2,518 chars across three folds (≈+890 chars/fold). Context is
+**bounded in the round dimension but not in the fold-count dimension.**
+
+Concretely, on the observed churn session (`a8209b9a63b1`, 27 folds in one hour), a
+single sustained turn could accumulate on the order of **~24,000 chars ≈ 6,000 tokens**
+of stacked summaries. That is far from the 94,264-token pathology and does not
+threaten the primary goal — but it means the fold is **not** a strict constant-space
+operation, and the drift is silently upward.
+
+**Secondary mechanism note (worth a code comment, not a change):** the synthetic
+summary is `role: "user"` with no `tool_calls`, which is exactly what
+`find_open_turn_start` looks for. On a subsequent fold it can therefore be taken as
+the *turn opener*, so each fold re-anchors on the previous summary. This is consistent
+with the observed accumulation and with the 31→8 message collapse at fold 3; it makes
+"the current turn" a moving anchor rather than a fixed one.
+
+**Corrected follow-up recommendation (supersedes checkpoint 2's):**
+- **Drop** the "reduce LLM calls by raising token_threshold" idea — no LLM calls exist.
+- **Keep** fold rate-limiting, but reframe the reason: it bounds **summary
+  accumulation growth**, not summariser cost.
+- **Add a summary-region cap** (e.g. collapse all prior summaries into one, or cap
+  total summary chars) so the fold is genuinely constant-space with respect to fold
+  count.
+- Marker counts from checkpoint 3 (497 / max 21) are now explained: **distinct flat
+  summary messages**, i.e. fold counts — **not** nesting. That reading was correct.
+
+**Method lesson, stated plainly for whoever closes this gate:** three consecutive
+checkpoints produced confident statements about behaviour that only reading
+`default_round_summarizer` could settle. Logs showed *how often* the fold fired; they
+could never show *what it cost or whether it nested*. Behaviour claims need the source,
+not a pattern match.
+
 **Unit 4 is a gate.** Folding now runs inside the live per-round loops, so
 deploying changes production behaviour. Do not deploy without an explicit
 governor go. Rollback is a single env var — `CONTEXT_INTRATURN_COMPACTION_AUTO=0`

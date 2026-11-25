@@ -52,7 +52,17 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 Totals: **223 folds** over ~20.5h, 0 runtime failures.
 
-**Two costs, neither currently measured or bounded:**
+**CORRECTION 2026-11-25 (checkpoint 4) — the "summariser churn" framing above is WRONG. Read the source, not the logs.**
+
+`default_round_summarizer` (app/context_compaction.py:360) makes **no LLM call** — its docstring: "No LLM call — same text-reuse philosophy as the inter-turn path." A fold costs string formatting, not a model round-trip. There is **no** per-fold latency/token cost and the "raise token_threshold to cut LLM calls" suggestion below is void.
+
+Measured directly against the real module (K=2, round_threshold=4, three folds in one turn): every summary contains exactly **one** header — summaries are **flat, never nested**, because the summariser only consumes `assistant`/`tool` messages and the prior summary is `role: "user"`, so it is never re-summarised. **Semantic drift-by-depth cannot occur.**
+
+**The real risk, correctly stated: flat summaries ACCUMULATE.** Prior summaries are neither dropped nor nested — they persist beside newer ones, so while raw rounds stay capped at K the **summary region grows monotonically with fold count**: 736 -> 1,627 -> 2,518 chars over three folds (~+890/fold). Context is **bounded in the round dimension, not in the fold-count dimension**. On the observed 27-fold/hour session this is on the order of ~24,000 chars (~6,000 tokens) of stacked summaries in one sustained turn — nowhere near the 94,264-token pathology, but the fold is **not** a strict constant-space operation.
+
+**Revised fix order:** (a) **summary-region cap** — collapse prior summaries into one or cap total summary chars, making the fold constant-space in fold count; (b) rate-limit folds per session to bound accumulation growth (**not** to save LLM calls); (c) optionally a code comment noting that the synthetic `role:"user"` summary satisfies `find_open_turn_start`, so each fold re-anchors "the current turn" on the previous summary.
+
+**Two costs, neither currently measured or bounded (original, partly superseded — see correction above):**
 
 1. **Summariser LLM calls.** Every fold invokes the summariser. At 27/hour on a busy session this is a real, invisible latency + token cost, and it is paid on the *critical path* of a live turn.
 2. **Summary depth / semantic drift.** Each fold extends the running `[TURN IN PROGRESS — EARLIER ROUNDS SUMMARY]` entry. `default_round_summarizer` re-summarises the previous summary, so a session folding 27× may carry a summary-of-a-summary **27 levels deep**. Drift is likely and **entirely unquantified** — no depth counter is logged.
