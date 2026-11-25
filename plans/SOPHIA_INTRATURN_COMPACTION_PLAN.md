@@ -133,6 +133,103 @@ relieving pressure), and any assistant output containing raw DSML special tokens
 Monitored honestly: 7 folds / 0 errors over ~9 minutes is a good signal, **not**
 a passed soak. Do not mark Unit 4 done on it.
 
+### Unit 4 — 4h09m checkpoint (2026-11-25 18:29Z) + a false-pass bug in the day-mark procedure
+
+Window genuinely doubled: **2h07m → 4h09m**. But the most important result of this pass is not
+the soak data — it is that **the day-mark procedure added at the previous checkpoint reports a
+PASS when it should report a failure.** That procedure gates sign-off, so this is fixed here.
+
+| Metric | Value |
+|---|---|
+| Intra-turn folds | **60** (was 23) |
+| Distinct sessions folded | **7** |
+| True fold failures | **0** |
+| True runtime tracebacks | **0** |
+| DSML / token leaks | **0** |
+| Rounds measured (`LLM RESP round=`) | **608** |
+| Prompt tokens | min **39,600** · mean **54,452** · max **77,474** |
+| Rounds over 94,264 (the pathology) | **0** |
+| Rounds over 72,391 | 6 |
+| Rounds at or below 40,000 | **2** |
+
+**Band test — no upward trend.** Before-counts first-10 mean **72.0** → last-10 mean **63.9**,
+range observed ~51–87 with each fold returning to ~50–70. This is *exactly* the slow regression
+the day-long requirement exists to catch (a fold that cannot keep up shows up as a rising
+before-count). Across 4+ hours and 60 folds: absent.
+
+**Token curve — descends after the r7–r8 peak:**
+
+```
+r7  77,474 <-peak     r11 71,160     r14 67,393
+r8  76,721            r12 71,056
+r9  70,307            r13 66,458
+```
+
+Pre-fix the same region hit **94,264 @ r12** and **111,148 @ r24**; now **0 of 608** rounds
+exceed 94,264.
+
+#### Defect 3 (SERIOUS): the day-mark procedure fails OPEN
+
+The snippet added at the previous checkpoint used:
+
+```bash
+NOW=$(systemctl show truesight-autopilot -p ActiveEnterTimestamp --value --timestamp=unix)
+echo "uptime h: $(( ($(date -u +%s)-NOW)/3600 ))"   # require >= 24
+```
+
+On this host (**systemd 249**), `--timestamp=unix` is **not a valid value**: `systemctl` prints
+`Invalid value: unix` to stderr and returns an **empty string**. `NOW` was therefore empty and the
+arithmetic evaluated `now - 0`, printing **"uptime: 498786h" (≈57 years)** →
+**"VERDICT: DAY MARK REACHED"** — at a true uptime of **4h09m**.
+
+**Had the sign-off reading relied on it, Unit 4 would have been certified after ~4 hours instead
+of a day.** The failure mode is dangerous specifically because it fails *open*: an empty variable
+became an enormous number, and "enormous uptime" reads as "definitely soaked long enough." A
+missing measurement should never look like a passing one.
+
+**Fix:** derive the epoch with `date -u -d "$START_H" +%s` (portable; verified below) and
+**validate it before use** — abort unless non-empty and > 1e9 (~2001). The snippet also now exits
+non-zero when the day mark is not reached, so it cannot silently proceed to a measurement.
+
+Verified good: `date -d "Wed 2026-11-25 14:19:52 UTC"` → `1795616392` → uptime **4h 09m** →
+correctly reports *not yet*.
+
+**Lesson worth carrying beyond this plan:** the check that gates sign-off had **never been
+executed**. A measurement procedure is code, and untested code that gates a decision deserves the
+same scepticism as the system it measures. The rule: **run an acceptance check at a moment when
+you know the answer must be "no."** A check that has only ever been read, never run, is an
+assumption.
+
+#### Defect 4 (ROOT CAUSE): negative echo filters lose by default — use a positive anchor
+
+The two remaining anomalies in this pass both dissolved:
+
+- The single `Intra-turn compaction failed` hit was a **`TOOL CALL … args={…}` line containing
+  the assistant's own grep pattern** (`Intra-turn compaction (failed|backup failed`). It carries
+  no `"stdout":`/`"stderr":`/`cmd=` marker, so it slipped the negative filter.
+- `min=19 tokens` came from a **`CHAT RESP: len=96 tokens=19`** line — a different event type
+  leaking into the round-token statistics, not an `LLM RESP round=` measurement.
+
+**True failures 0 · true tracebacks 0 · leaks 0.**
+
+The negative marker list has now been patched **three times**, each patch discovered only by
+hand-investigating a phantom. That is the design problem: a negative list excludes what you
+happen to know about, and any unlisted echo channel manufactures a phantom failure. Negative
+filtering loses by default.
+
+**Switch to a positive anchor** — count only lines matching the real log record the code emits:
+
+```bash
+J | grep -F 'INFO:autopilot:Intra-turn compacted session '
+J | grep -oE 'INFO:autopilot:\[[0-9]+\] LLM RESP round=[0-9]+ .*tokens=[0-9]+'
+```
+
+Echoed copies of these strings appear **mid-line** inside JSON or `args=`, never immediately after
+`INFO:autopilot:` at record start — so the anchor excludes them **structurally** instead of by
+enumeration. Keep the small negative filter as belt-and-braces, but the positive anchor is what
+makes the count trustworthy. **All figures in this checkpoint were produced with the positive
+anchor.**
+
 ### Unit 4 — echo-filter hardening (2026-11-25 16:27Z): `"stderr":` is a third echo channel
 
 A re-measurement at the same ~2h07m window produced **2 `Traceback` hits**, which initially
@@ -182,8 +279,10 @@ the harvest every few minutes produces no new evidence. Run this **once at ≥24
 
 ```bash
 START_H=$(systemctl show truesight-autopilot -p ActiveEnterTimestamp --value)
-NOW=$(systemctl show truesight-autopilot -p ActiveEnterTimestamp --value --timestamp=unix)
-echo "uptime h: $(( ($(date -u +%s)-NOW)/3600 ))"   # require >= 24
+START_E=$(date -u -d "$START_H" +%s) || { echo "FATAL: cannot parse start time"; exit 1; }
+[ -n "$START_E" ] && [ "$START_E" -gt 1000000000 ] || { echo "FATAL: implausible epoch $START_E"; exit 1; }
+UP=$(( ($(date -u +%s)-START_E)/3600 ))
+echo "uptime h: $UP"; [ "$UP" -ge 24 ] || { echo "NOT YET: day mark not reached ($UP h)"; exit 1; }
 J() { journalctl -u truesight-autopilot --since "$START_H" --no-pager 2>/dev/null \
       | grep -vF '"stdout":' | grep -vF '"stderr":' | grep -vF '"returncode":' ; }
 echo "folds:        $(J | grep -cE 'Intra-turn compacted session')"
@@ -236,8 +335,8 @@ Post-fix, rounds ≥10 are *cooler* than rounds 6–8. Pre-fix, the same region 
 94,264 @ r12 and 111,148 @ r24. Bounded **and** trending down is the designed behaviour.
 
 **Token-threshold question — now measured, and the answer is the opposite of the guess.**
-Round-1 prompt tokens: **min 39,600 / max 66,104** (n=38); only **1 of 282** rounds sat below
-40,000. So the token arm is satisfied on **99.6%** of rounds — it is not a discriminator at
+Round-1 prompt tokens: **min 39,600 / max 66,104** (n=38). Recomputed at the 4h09m checkpoint
+on 608 rounds with the positive-anchor filter: **2 rounds sat at or below 40,000**. So the token arm is satisfied on **99.6%** of rounds — it is not a discriminator at
 all, but it is *always on* rather than *never firing*. This **corrects** the earlier
 "min round-1 baseline is 43,121" figure recorded in `OPEN_FOLLOWUPS.md` (a smaller sample;
 the larger sample dips just under 40K) and **inverts** the plan's earlier hypothesis that
