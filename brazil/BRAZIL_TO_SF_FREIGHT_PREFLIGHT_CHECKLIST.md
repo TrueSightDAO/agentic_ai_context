@@ -8,6 +8,35 @@
 
 ---
 
+## RESUME HERE →
+
+> **Why this marker exists.** The handoff injector tells every resuming agent to *“resume from this file's RESUME HERE marker”* — but the file contained **no such marker**. A resuming agent was therefore pointed at nothing, which is the **most likely cause of the loop repeatedly reporting “goal left open, nothing running”** on this thread. This marker is now the single, canonical resume point. **Keep it current; do not delete it.**
+
+**State as of 2026-10-15 — the lane's *execution* is CLOSED.** Units A–D are done and verified (§5.15): all 8 custody transfers and the currency transformations landed, the Unit D packaging/pallet directive was executed against held-SKU counts, and the freight settlement was booked. A reusable procedure was extracted to **§5.16**.
+
+### 🚫 Do NOT re-run the original 8-line `[INVENTORY MOVEMENT]`
+The custody transfers are **already booked** (§5.15; the double-booking warning in the §5.14/§5.15 narrative stands). Before *any* further inventory movement, apply the governing rule: **read `offchain asset location` at the destination member and compute the delta** — the register records *intent*, the book records *state*.
+
+### What is genuinely still open (none of it blocks the lane being closed)
+
+| # | Item | Status |
+|---|---|---|
+| 1 | **Legal delivery address** — Kirsten says *“my garage”*, not *“1423 Hayes St”*. The file set carries **two importer addresses** (**3041 Taraval St** on the FDA prior notice as registered CBP address vs **1423 Hayes St** as AWB consignee / NF-e *destinatário*). **Custody is evidenced; the address question is separate and still open** (§5.14 caveat 1). | 🔴 open |
+| 2 | **The 27-box physical count never happened.** §5.12's pre-flight control (count boxes vs the Rev-15 **27-box** manifest, spot-check the 8 currency quantities) was **not** completed before custody was booked. Arrival was the only moment a short-ship or damage was detectable. **Record it as a known gap rather than a done control.** | 🔴 open |
+| 3 | **QR landing pages still point at AGL4** — the ledger the governor ruled *out* (§5.11). **187** `8 Ounce Package Kraft Pouch - Ilheus, Brazil 2024` codes route to `agroverse.shop/agl4` (**127**) / `agroverse.shop/shipments/agl4` (**60**); **209** Ceremonial codes route to `agl8`. **Not one of the 396 points at `MAIN`.** Booking ledger ≠ QR landing ledger — a **buyer-facing** defect, and it will multiply if repackaging emits new codes. | 🔴 open · decision needed |
+| 4 | **`Currencies` col F systemic drift** — **18 rows** carry an `…/agl4` value (in **3** spellings); **134 of 167** rows have col F **blank**. Governor's ruling covers the Ilhéus trio first; the wider set is follow-up (§5.11). | 🔴 open |
+| 5 | **Freight-cost dispute.** §5.16 settles air freight at **$4,896.33** (= $4,866.33 + $30 admin). The earlier analysis put actionable dispute exposure at **$937.20** (of a **$1,355.73** quote-vs-invoice gap). **Not re-verified since the settlement** — confirm whether it is closed, waived, or still recoverable. Do **not** assume either way. | ⚠️ unverified |
+| 6 | **Carried risks** — rate basis ($3.40 vs AWB $2.30); **5% late fee**; pallet 2-vs-3 (AWB says `02`, the invoice line says 3); §5.5 gross-weight divergence; **ASTRA dedetização**; the **`/treasury` staleness flag** (`getTrueSightDAOEquityHoldings` literal-string matches `"TrueSight DAO"`, so AGL13/AGL15 are absent from `agl_equity`). | ⚠️ carried |
+| 7 | **§5.4 SISCOMEX/RADAR habilitaç��o** — Black King was dropped *por padrão* after 6 months of inactivity; Iolanda/Saymon re-enabling via A1 certificate. **Watch the 6-month clock on this lane going forward.** | ⚠️ standing risk |
+
+### Hard gates that never relax
+- **No NF-e issuance without Gary's explicit approval** (§0 rule 2).
+- **DAO money covers only Nov-2024-onward Black King obligations** (§0 rule 3).
+- **No production deploy, no money movement, no TDG issuance without an explicit governor command.**
+- **Never write into an array-formula spill tab** (`offchain asset location`, `Balance`) — append to the substrate (`offchain transactions`). This broke production once (§5.15 incident) and is now enforced in code (`agroverse-inventory#18`).
+
+---
+
 ## 0. Read-me-first — operating contract for agents & Envoys
 
 If you (an AI agent or an Envoy) are asked to "move the Brazil shipment along", obey this contract:
@@ -1059,6 +1088,7 @@ Profit booked at the Próspera layer (1% flat tax, ZEDE regime).
 | 2026-10-02 | **Rev 15 — Commercial Invoice + Packing List reissued at gross 349 kg** (Daniel / SeaCoast ask, §5.5). Gross restated 322,06 → **349,00** = net 302,06 + carton tare 26,94 (27 boxes) + pallet tare 20,00 (2 × 10 kg HDPE). **Net, lines, boxes, USD/BRL unchanged.** `exports/2026-10-02_*_rev15_*`; generator gains the Rev-15 gross model + a `GROSS_WEIGHED` invariant. Also **corrected the same-day §5.5 draft** (pallet→carton tare; pallets are plastic HDPE, not heat-treated wood). |
 | 2026-09-29 | **NF-e nº 16 recorded as issued** (22/09/2026, chave `2926…0035`, R$ 35.828,76) — reconciled line-by-line vs. Rev 12 (§5.3); DANFE archived to `brazil/sources/`. Flipped §1 *IE/SEFAZ-BA* and *NF-e issued* 🔴→✅, unblocked DU-E; noted the **blank TRANSPORTADOR/VOLUMES block** (the weights/qty/package-type gap); corrected the now-stale “no NF-e issued” wording in the Correction Letter + ordem de coleta generators (regenerated both PDFs). |
 | 2026-09-29 | **NF-e nº 16 XML archived + reconciled** (SeaCoast-requested; Gary, thread 10800) — signed/authorized XML saved to `brazil/sources/2026-09-22_black_king_nfe_16.xml`; line-by-line match vs Rev 12 PL (fiscal sum **344,00 kg** vs PL commercial 344,06 kg — 3-decimal TON rounding); confirmed the XML `<transp>` is **empty except `modFrete=1` (FOB)** — the same blank the ordem de coleta REV 3 fills. Notes: `brazil/sources/2026-09-22_black_king_nfe_16_xml_reconciliation.md`. |
+| 2026-10-15 | **RESUME HERE marker RESTORED (top of file).** The handoff injector instructs every resuming agent to *“resume from its RESUME HERE marker”*, but the file had **none** — a resuming agent was pointed at nothing, the most likely cause of the thread repeatedly reporting *“goal left open, nothing running.”* The marker now records: **lane execution CLOSED (§5.15)**; **do NOT re-run the 8-line movement** (already booked); and the **7 genuinely-open / carried items** (address, un-done 27-box count, AGL4 QR landing pages, col-F drift, unverified $937.20 dispute, carried risks, SISCOMEX clock). |
 | 2026-10-15 | **§5.15 added — Units A-D execution log, landing/conversion of the Black King corridor CLOSED.** All 8 custody transfers + currency transformations landed and verified; a real duplicate-conversion error (99.5 kg AGL13 leg) was self-caught and reversed cleanly. Governor's Unit D directive (packaging expense-off + pallet transfer) executed against exact held-SKU counts (22/25 Reinforced, 2/2 + 2/2 Foam, 2/3 Plastic Pallet — 1 remains at Matheus's warehouse). **Incident:** the settlement handler broke `offchain asset location` to `#REF!` by writing directly into its array-formula spill range; governor cleared the stray cells, and the handler was fixed to append to the `offchain transactions` substrate instead (`agroverse-inventory#18`, redeployed live + used to correctly process the real settlement). Companion fixes: `agentic_ai_context#1624` (SOP), `dao_protocol#186` (comment). Two tooling gaps filed in `OPEN_FOLLOWUPS.md` (movement Quantity validator; conversion same-intent dedupe). |
 | 2026-10-14 | **§5.16 added — 🔴 CORRECTIONS: §5.15 B RETRACTED (Val Lapidus holdings = governor-approved rebookings, 90+9.5=99.5 reconciles exactly); QR blocker DISSOLVED (`QR Code: N/A` is accepted in live approved movements); §5.15 A's “not booked” marks were a MAIN-tab false negative (lines 5–8 live on AGL8/AGL13). Ledger is AHEAD of this runbook.** |
 | 2026-10-14 | **§5.15 added — 🔴 BOOKING STATE AUDIT: the movement is ALREADY PARTIALLY BOOKED (do not re-run); 70 kg of nibs sit at Val Lapidus; register already flipped to Arrived; §5.14's QR claim CORRECTED; QR codes still route to the ruled-OUT AGL4.** Read live from `offchain asset location` / `Agroverse QR codes` / `offchain assets in transit`. |
