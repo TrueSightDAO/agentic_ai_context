@@ -691,6 +691,69 @@ checkpoints produced confident statements about behaviour that only reading
 could never show *what it cost or whether it nested*. Behaviour claims need the source,
 not a pattern match.
 
+**Unit 4 checkpoint 5 (2026-11-25 ~19:35Z) — strict band test PASSES; accumulation
+measured on real sessions, which corrects #1929 in both directions.**
+
+**Window still open:** audit first fold (Nov 24 21:58:11Z) → **21.57h elapsed,
+2.43h remaining**, closes ~**Nov 25 21:58Z**. Journald first fold: 20.10h / 3.90h
+remaining. Gate remains elapsed-time-bound and governor-gated.
+
+**1. The owed strict band test now runs cleanly and PASSES.** Built on
+`journalctl -o json` with `MESSAGE` required to be a `str`, no newlines, no
+`stdout`/`TOOL CALL` wrapper text, matched against the **full emitted line shape**
+(including the trailing `(round_threshold=N, token_threshold=N)`):
+
+| Metric | Value (n=219 strict folds, ~21.6h) |
+|---|---|
+| Before-count min / max / mean | **34 / 99 / 69.6** |
+| First-quartile → last-quartile | 69.4 → **68.39** |
+| **Trend** | **−1.0 messages (flat)** |
+| Folds with before-count > 100 | **0** |
+| Folds with before-count > 200 | **0** |
+| Strip per fold | 7–13 messages |
+| Distinct sessions | 17 |
+
+**This is the acceptance test the plan has been missing, and it passes:** 219 real
+folds over ~21.6h, flat before-count distribution, **never above 99 messages**, no
+upward drift. The 94,264 / 111,148-token pathology does not recur.
+
+**2. Real-session accumulation — measured, not extrapolated.** #1929 measured
+accumulation synthetically (3 folds, K=2). Measured now across **production session
+files** (count of `role:"user"` summary messages + total chars per session):
+
+| Finding | Value |
+|---|---|
+| Sessions with ≥2 summaries | **12** |
+| **Max summaries in one session** | **5** (`da5590e92b3d`) |
+| **Max total summary chars** | **23,542** (~5,900 tokens) |
+| Real per-summary size | **3,788–6,485 chars** |
+
+**3. Correction to #1929 — the per-fold growth figure understates real size ~6×.**
+#1929 extrapolated **+890 chars/fold** from a synthetic K=2 run whose summaries were
+736–890 chars. Real production summaries average **~5,500 chars**, i.e. ~6× larger.
+Recomputing #1929's own scenario with real sizes: **27 folds × ~5,500 chars ≈ 148,000
+chars ≈ 37,000 tokens**, not the stated ~24,000 chars / ~6,000 tokens. Still well under
+the 94,264 pathology, but materially bigger than #1929 reported. **The direction of
+#1929's finding is right; its magnitude was too optimistic.**
+
+**4. Correction in the other direction — accumulation is bounded per *turn*, and
+resets.** #1929 said the summary region "grows monotonically with fold count." True
+**within a single open turn**, but not across a session's life: observed max is **5
+summaries in any session**, and the 79-fold session `a8209b9a63b1` currently holds
+**fewer than 2 summaries**. The summary region is cleared when a turn completes, so
+accumulation is bounded by the *open turn*, not by lifetime fold count. Practical
+worst case observed: **23.5K chars ≈ 5.9K tokens ≈ 6% of the pathology.**
+
+**Net effect on risk:** #1929's "cap the summary region" fix is **correct but low
+priority** — the observed ceiling is ~6% of the problem it guards against, and it
+self-resets at turn boundaries. Insurance, not urgent. Order stands: cap summaries →
+rate-limit folds.
+
+**Measurement note (fifth instance).** The strict band test now produces 219 where the
+loose method gave 226 and my last strict run gave 218 — the count drifts by ±1 as new
+folds land, and only the full-line-shape match is stable. Every loose count in
+checkpoints 1–3 remains ±8 high and should be read that way.
+
 **Unit 4 is a gate.** Folding now runs inside the live per-round loops, so
 deploying changes production behaviour. Do not deploy without an explicit
 governor go. Rollback is a single env var — `CONTEXT_INTRATURN_COMPACTION_AUTO=0`
