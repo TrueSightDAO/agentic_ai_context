@@ -39,6 +39,21 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Compaction pre-compact backups accumulate unbounded — 6,399 files / 882 MB and growing
+
+**Priority:** MEDIUM · **Filed:** 2026-11-25 · **Owner:** unclaimed · **Component:** `app/context_compaction.py` (`backup_session_file`)
+
+**Symptom.** Every compaction writes a full `<session>.pre-compact-<ts>.json` snapshot and nothing ever prunes them. On the autopilot box: **6,399 files, 882 MB**, oldest **2026-09-14** — growing monotonically, one file per fold, per session. Root is at 35% (54G/155G), so this is **not an incident yet**, but the growth is linear in compaction volume and intra-turn folding (now live) increases fold frequency.
+
+**Why it matters.** The backup convention is a genuine safety property — it is what makes folding reversible and it is the reason a bad fold is recoverable rather than data loss. So the fix must be **retention, not removal**. Left unbounded it silently becomes a disk-pressure risk that will one day present as a confusing "session write failed" rather than as "backups filled the disk".
+
+**Compounding factor.** Intra-turn folding can fire several times within a *single* turn (observed: the same session folded 3× in ~60s). So the file count scales with *rounds*, not with sessions — a much steeper curve than the inter-turn design assumed.
+
+**Recommended fix.** Add retention to the backup path: keep the **most recent N (e.g. 5) per session**, plus **never delete the newest for a session whose last fold is < 24h old**; OR simply prune `*.pre-compact-*.json` older than 7 days on a daily timer, matching the existing `truesight-*` service pattern. Prefer per-session N — a global age cutoff can, in principle, age out the only backup of a dormant-but-important session.
+
+**Acceptance criteria.** Steady-state backup count is bounded (per-session cap enforced); the newest backup per session always survives; the prune is logged with a count; total size plateaus instead of growing linearly.
+
+
 ### Intra-turn compaction fixtures lack `reasoning_content` — live post-fold replay cannot be validated
 
 **Priority:** LOW · **Filed:** 2026-11-25 · **Owner:** unclaimed · **Component:** `tests/fixtures/intraturn/`, `plans/SOPHIA_INTRATURN_COMPACTION_PLAN.md`
