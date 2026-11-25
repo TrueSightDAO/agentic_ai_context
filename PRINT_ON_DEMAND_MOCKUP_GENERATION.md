@@ -302,6 +302,7 @@ Vendor exposes no history API, so this table is the spend record. Append every r
 
 ## Related
 
+- **`GOTDE_POD_API_REPORT_2026-11-19.md`** — bilingual (EN/中文) vendor-facing API evaluation report. This is the artifact to send gotde.cn when raising schema questions.
 - `agroverse/AGROVERSE_PRICE_LIST_AND_ASSETS.md` — logo paths, PDF sizing
 - `PRODUCT_DEVELOPMENT_SPECS.md` — product/packaging spec sheets
 - `plans/WHITE_LABEL_IMPLEMENTATION_PLAN.md` — white-label product context
