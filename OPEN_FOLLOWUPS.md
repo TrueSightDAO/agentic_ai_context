@@ -3758,6 +3758,17 @@ unreadable); unknown error => conservative default (assume CI exists). A draft w
 thread 31187 (autopilot PR #487) then closed as out-of-scope for that thread — re-open as its own
 unit. Add unit tests on `_ci_status()` for the three branches.
 
+**VARIANT (2026-11-25, thread 21264) — repo HAS CI, CI IS GREEN, tool still refuses. The `.github/workflows` probe above would NOT fix this.** This is the case the proposed fix above leaves broken, and it is worth folding into the same unit.
+- **Symptom.** `merge_pr` on `TrueSightDAO/truesight_autopilot` PR **#635** returned
+  `CI not green (ci-unavailable: 403 Resource not accessible by personal access token ... list-check-runs)`.
+  But CI was **green and verifiable on the same token**: `GET /repos/TrueSightDAO/truesight_autopilot/actions/runs?head_sha=2fd936d...` → `200`, three runs all `conclusion=success` (`Tool smoke tests`, `Run tests` ×2).
+- **Why the entry above's fix does not help.** Its proposed branch is *"probe `.github/workflows`; absent ⇒ treat as no-ci"*. Here `.github/workflows` **does** exist, so that logic correctly keeps refusing — the PR can never be merged by the tool no matter how green it is. `gh pr checks` and `gh pr view --json statusCheckRollup` both 403 on the same PAT, so there is no in-tool escape.
+- **Root cause (same as above, different consequence).** `_ci_status()` treats *"I cannot read check-runs"* as *"CI is not proven green"*. With a fine-grained PAT lacking **Checks (read)** but holding **Actions (read)**, check-runs is unreadable while the authoritative run conclusions *are* readable. The discriminator is the *endpoint*, not the token's overall validity.
+- **Proposed additional fallback (fold into the same `_ci_status()` unit).** On `ci-unavailable` from `list-check-runs`, before refusing: (a) probe `.github/workflows` (the entry above); if present, (b) fall back to `GET /repos/{owner}/{repo}/actions/runs?head_sha={sha}` and treat `conclusion=success`/`failure` as decisive, requiring **at least one run whose `head_sha` matches the PR head**; (c) only if both probes fail/are unreadable, keep the conservative refusal. Do **not** treat "no runs found for this sha" as green (a workflow may simply not have been triggered) — that stays a refusal.
+- **Second-order hazard to guard.** Do not "fix" this by calling `PUT /pulls/{n}/merge` directly when check-runs 403s. That routes *around* the safety gate and would merge genuinely-red PRs. The fallback must read an equivalent proof of green, never assume it.
+- **Evidence.** `truesight_autopilot` PR #635, head `2fd936d`; `app/github_client.py::_ci_status`; Actions runs endpoint `200` for the same sha/token; `gh pr checks 635` → 403 `Resource not accessible by personal access token`.
+- **Interim unblock for a governor, if preferred over the code fix:** grant **Checks: read** to the `TRUESIGHT_DAO_AUTOPILOT` fine-grained PAT. That makes the existing gate work as designed with no code change.
+
 ### Source-guide QC: HK import guide #2 carries two unverified figures
 **Filed 2026-09-17. Owner: unclaimed. Governor: Gary (this thread).**
 
