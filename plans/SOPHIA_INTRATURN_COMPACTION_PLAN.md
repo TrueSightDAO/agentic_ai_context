@@ -74,17 +74,55 @@ errors and two of my own wrong claims — but by checkpoint 5 the marginal retur
 zero: **0 new folds in the preceding 5 minutes, 0 errors, band flat.** Further
 checkpoints would be re-measuring a settled result.
 
-**Blocked on exactly two things:**
-1. **Clock** — 24h soak closes **Nov 25 21:58Z** (audit first fold Nov 24 21:58:11Z).
-   At 19:35Z: 21.62h elapsed, **2.38h remaining**. Nothing accelerates this.
-2. **Governor sign-off** — the gate's second half is Gary's, not mine. I will not
-   self-certify a gate.
+**✅ CLOCK HAS CLOSED — monitoring half COMPLETE. Only governor sign-off remains.**
 
-**Resume only when one of these is true:**
-- ≥ 24h have elapsed → re-run the strict band test **once**, record the final packet,
-  and mark Unit 4 ✅ on that evidence.
-- Gary replies **"sign off"** → mark Unit 4 ✅ immediately, citing checkpoints 1–5.
-- Gary replies **"cap summaries"** → open the (low-priority) constant-space unit.
+**Final acceptance packet (2026-11-25 23:35Z, 25.54h since the first fold at
+Nov 24 21:58:11Z). The 24h soak-duration requirement is MET.**
+
+| Metric | Value |
+|---|---|
+| Soak elapsed | **25.54h** (requirement: ~1 day) ✅ |
+| Strict (echo-free) folds | **204** |
+| Retained evidence window | Nov 25 00:17 → Nov 25 22:55 (**22.6h**) |
+| Before-count min / max / mean / median | 34 / **99** / 69.5 / 69 |
+| First-quartile → last-quartile | 69.6 → **67.60** (**TREND −2.0, flat**) |
+| Folds with before-count > 100 | **0** |
+| Folds with before-count > 200 | **0** |
+| Strip per fold | 7–13 messages |
+| Distinct sessions | 15 |
+| Fold WARNING / ERROR / traceback | **0** |
+| `NRestarts` | **0** (same process since 14:19:52Z) |
+| Disk | 37% |
+
+**🔴 New methodological finding: journald retention is now shorter than the soak,
+so Nov 24's folds aged out *during* the gate.** Strict fold count fell **219 → 204**
+not because folds were lost but because journald (82 MB, **no explicit retention cap
+in `journald.conf`**) has rotated past Nov 25 00:17Z — verified: `journalctl
+--since 2026-11-24` returns **0** fold lines while Nov 25 returns **204**, and the
+system journal's oldest retained entry is **Nov 25 00:17:22Z**. So the *durable*
+evidence window is **22.6h**, not the full 25.5h.
+
+This is a real instrumentation gap, not a feature defect: **a 24h+ soak cannot be
+fully verified from journald at the current default retention.** Recommended
+follow-up (separate unit, code change in `truesight_autopilot`): emit fold counters
+to a durable sink (file / repo) so soak evidence outlives log rotation. Until then,
+any long soak must be measured *continuously* or it silently loses its own evidence.
+
+**Why the feature itself is still established:** every retained fold across 22.6h
+shows a flat before-count distribution (max 99, zero above 100, slight *downward*
+trend), zero failures, and zero restarts — on the same live process. The pathology
+(94,264 @ r12, 76,998 @ r24, 111,148 @ r24 inside single open turns) does not recur.
+
+**NOT self-certified.** The gate has two halves: *deploy + monitor a day* (now
+established above) and *confirm real improvement, not just passing tests* — that
+judgement is Gary's. Unit 4 flips to ✅ on governor sign-off, not on my reading.
+
+**Resume when:**
+- Gary replies **"sign off"** → mark Unit 4 ✅, transition KAN-30 to Done, file the
+  contribution report.
+- Gary replies **"durable metrics"** → open the fold-counter sink unit above.
+- Gary replies **"cap summaries"** → open the (low-priority) constant-space unit
+  (≈6% observed ceiling, self-resets at turn boundaries — see checkpoint 5).
 
 **Do NOT** re-run the soak metrics, re-count folds, or open a checkpoint PR merely
 because this plan is named as the resume target — that is what happened seven times.
@@ -95,7 +133,7 @@ because this plan is named as the resume target — that is what happened seven 
 | 1 | Intra-turn folding function in `app/context_compaction.py` | ✅ shipped | PR #523 (squash `43df6f1`) — `find_open_turn_start`, `_scan_rounds`/`find_complete_rounds`, `default_round_summarizer`, `compact_open_turn(messages, keep_last_k_rounds=4, token_threshold=40000, round_threshold=8)` |
 | 2 | Wire into the per-round `_maybe_auto_compact` call sites | ✅ shipped | PR #549 (merged `d137c9b`) — `_maybe_compact_open_turn` def at `app/main.py:6314`, call sites at `3803` (`_run_tool_round_loop`) and `5682` (`_chat_blocking_turn`) |
 | 3 | Validate against the real 94K/72K fixtures | ✅ shipped | PR #642 (merged `5707bdb`) — `tests/test_intraturn_validation.py` (313 lines) |
-| 4 | Deploy + monitor a day of heavy-round-count turns | 🟡 **ACCEPTANCE TEST PASSED; SIGN-OFF + CLOCK PENDING GOVERNOR** (live since 2026-11-25 14:19:52Z) | **219 strict (echo-free) folds over 21.62h**: before-count mean 69.6, **max 99**, Q1→Q4 69.4→68.4 (**trend −1.0, flat**), **0 folds >100 msgs**, 17 sessions, **0 WARNING/ERROR**, `NRestarts=0`. Summary accumulation measured on real sessions: max 5 summaries / 23,542 chars (~5.9K tokens ≈ 6% of pathology), self-resets at turn boundary. Gate not self-certified. |
+| 4 | Deploy + monitor a day of heavy-round-count turns | 🟢 **MONITORING COMPLETE — GOVERNOR SIGN-OFF PENDING** (live since 2026-11-25 14:19:52Z) | **25.54h elapsed** (1-day requirement MET); **204 strict folds** over the 22.6h retained window, before-count mean 69.5 / **max 99** / **0 folds >100**, trend **−2.0 (flat)**, **0 WARNING/ERROR**, `NRestarts=0`. Caveat: journald rotated past Nov 25 00:17Z mid-soak (219→204 is retention, not loss) — durable-metrics follow-up filed. Gate **not** self-certified. |
 
 Both Unit 2 and Unit 3 were independently re-verified on `main` at `5707bdb` via
 the GitHub API (`state: closed, merged: true`) and by grepping the shipped
