@@ -133,6 +133,69 @@ relieving pressure), and any assistant output containing raw DSML special tokens
 Monitored honestly: 7 folds / 0 errors over ~9 minutes is a good signal, **not**
 a passed soak. Do not mark Unit 4 done on it.
 
+### Unit 4 — 4h14m checkpoint: the same snippet failed the OTHER way (false FAIL)
+
+The day-mark snippet was fixed at 18:29Z to fail closed on uptime. This pass ran it **verbatim,
+end to end** and found the *measurement* half still disagreed with the method documented in prose.
+
+**Negative control passed:** the fixed gate now prints `NOT YET ... (4 h)` and exits **1** at a
+true uptime of 4h14m — where the previous version printed a false `DAY MARK REACHED`. That fix holds.
+
+**But the counting half would have failed a working feature.** Run against the same window:
+
+| Metric | Shipped snippet (negative filter) | Positive anchor (truth) | Verdict |
+|---|---|---|---|
+| Folds | 63 | **64** | undercounts by 1 |
+| Failures | **1** | **0** | **phantom** — see below |
+| Tracebacks | 0 | 0 | agree |
+| Leaks | **2** | **1** | overcounts by 1 |
+| Before-counts | **111** | **63** | inflated ~1.76x |
+
+The phantom "failure" is the assistant's own diagnostic command echoed back:
+
+```
+INFO:autopilot:[809652] TOOL CALL: ssh_run args={"command": "echo \"=== the 2 failure lines (full) ===\" ...}
+```
+
+It contains the string `Intra-turn compaction failed` because it **is** a grep for that string, and
+it carries no `"stdout":`/`"stderr":`/`cmd=` marker, so the negative filter let it through.
+
+**The consequence is worse than a cosmetic miscount.** Under the snippet's own pass/fail criteria
+(failures must be 0), this window would be marked **FAIL** → rollback flag `CONTEXT_INTRATURN_COMPACTION_AUTO=0`
+flipped on a feature with **0 real failures**. The before-count inflation (111 vs 63) would also
+have made the band test — the one check purpose-built to detect slow regression — meaningless.
+
+So the snippet has now exhibited **both** failure directions:
+
+| Version | Defect | Effect |
+|---|---|---|
+| pre-18:29Z | empty uptime epoch → `now - 0` | **false PASS** (certify at 4h) |
+| 18:29Z–now | negative echo filter | **false FAIL** (roll back at 4h) |
+
+Both share one root cause: **enumerating what to exclude.** A fix that only corrected the uptime
+arithmetic left the second half of the same script wrong.
+
+**Fix applied:** the runnable snippet now uses the **positive anchors** documented in prose, so code
+and documentation finally agree. Corrected figures for the 4h14m window:
+
+| Metric | Value |
+|---|---|
+| Folds | **64** |
+| Distinct sessions | **7** |
+| True failures | **0** |
+| True tracebacks | **0** |
+| Leaks | **1** |
+| Rounds measured | **628** |
+| Prompt tokens | min **39,600** · mean **54,634** · max **77,474** |
+| Rounds over 94,264 | **0** |
+| Band (n=63) | first-10 mean **72.0** → last-10 mean **66.4** |
+
+Band still has **no upward trend**; curve still bounded well under the 94,264 pathology.
+
+**Process lesson:** a fix validated only at the step that failed before is not a validated fix. The
+18:29Z PR verified the epoch parse and stopped there — the rest of the script was never executed,
+so its second defect survived a "fix" and a merge. **Run the whole artifact, not the repaired line.**
+
 ### Unit 4 — 4h09m checkpoint (2026-11-25 18:29Z) + a false-pass bug in the day-mark procedure
 
 Window genuinely doubled: **2h07m → 4h09m**. But the most important result of this pass is not
@@ -283,13 +346,15 @@ START_E=$(date -u -d "$START_H" +%s) || { echo "FATAL: cannot parse start time";
 [ -n "$START_E" ] && [ "$START_E" -gt 1000000000 ] || { echo "FATAL: implausible epoch $START_E"; exit 1; }
 UP=$(( ($(date -u +%s)-START_E)/3600 ))
 echo "uptime h: $UP"; [ "$UP" -ge 24 ] || { echo "NOT YET: day mark not reached ($UP h)"; exit 1; }
-J() { journalctl -u truesight-autopilot --since "$START_H" --no-pager 2>/dev/null \
-      | grep -vF '"stdout":' | grep -vF '"stderr":' | grep -vF '"returncode":' ; }
-echo "folds:        $(J | grep -cE 'Intra-turn compacted session')"
-echo "failures:     $(J | grep -cE 'Intra-turn compaction failed|backup failed')"
-echo "tracebacks:   $(J | grep -c 'Traceback')"
-echo "leaks:        $(J | grep -cE 'DSML|special.token leak')"
-echo "before-counts: $(J | grep -oE 'compacted session [a-f0-9]+: [0-9]+ ->' \
+# POSITIVE ANCHORS -- count only lines where the real log record starts.
+# Echoed copies appear mid-line inside JSON/args=, never right after 'INFO:autopilot:'.
+J() { journalctl -u truesight-autopilot --since "$START_H" --no-pager 2>/dev/null; }
+echo "folds:        $(J | grep -cF 'INFO:autopilot:Intra-turn compacted session ')"
+echo "failures:     $(J | grep -cF 'INFO:autopilot:Intra-turn compaction failed')"
+echo "tracebacks:   $(J | grep -cF 'INFO:autopilot:Traceback')"
+echo "leaks:        $(J | grep -cE 'INFO:autopilot:.*(DSML|special[.]token leak)')"
+echo "before-counts: $(J | grep -F 'INFO:autopilot:Intra-turn compacted session ' \
+      | grep -oE 'session [a-f0-9]+: [0-9]+ ->' \
       | sed -E 's/.*: ([0-9]+) ->/\1/' | tr '\n' ' ')"
 ```
 
