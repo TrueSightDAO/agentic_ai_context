@@ -70,7 +70,7 @@ most recent N rounds' raw tool output plus the running summary.
 | 1 | Intra-turn folding function in `app/context_compaction.py` | ✅ shipped | PR #523 (squash `43df6f1`) — `find_open_turn_start`, `_scan_rounds`/`find_complete_rounds`, `default_round_summarizer`, `compact_open_turn(messages, keep_last_k_rounds=4, token_threshold=40000, round_threshold=8)` |
 | 2 | Wire into the per-round `_maybe_auto_compact` call sites | ✅ shipped | PR #549 (merged `d137c9b`) — `_maybe_compact_open_turn` def at `app/main.py:6314`, call sites at `3803` (`_run_tool_round_loop`) and `5682` (`_chat_blocking_turn`) |
 | 3 | Validate against the real 94K/72K fixtures | ✅ shipped | PR #642 (merged `5707bdb`) — `tests/test_intraturn_validation.py` (313 lines) |
-| 4 | Deploy + monitor a day of heavy-round-count turns | ⛔ **NOT STARTED — HARD GATE** | requires explicit governor go; see below |
+| 4 | Deploy + monitor a day of heavy-round-count turns | 🟡 **LIVE (in prod since 2026-11-25 14:19:52Z); monitoring window OPEN** | code is live via the `main` deploy; formal 1-day soak + governor sign-off still gated — see below |
 
 Both Unit 2 and Unit 3 were independently re-verified on `main` at `5707bdb` via
 the GitHub API (`state: closed, merged: true`) and by grepping the shipped
@@ -100,6 +100,38 @@ fidelity gap, not a compaction defect** — the unfolded (46-msg) and folded
 API-level breakage. Tracked in `OPEN_FOLLOWUPS.md`; the "turn still completes
 post-fold under live replay" claim therefore remains **unproven**, and Unit 4's
 monitoring is what should establish it empirically.
+
+**Unit 4 pre-flight finding (2026-11-25, read-only) — the wiring is ALREADY LIVE in
+production, ahead of the gate.** This was not a decision taken here; it is a
+consequence of the `main`-branch deploy, and the plan had not recorded it.
+
+- The deployed tree `/opt/truesight_autopilot` has `app/main.py` **byte-identical
+  to `origin/main`**, which contains Unit 2's `_maybe_compact_open_turn` (def at
+  `6314`, call sites `3803` / `5682`).
+- All four `CONTEXT_INTRATURN_*` knobs are **unset** in `.env`, so the **code
+  defaults apply — `CONTEXT_INTRATURN_COMPACTION_AUTO=1` — intra-turn folding is
+  ON right now.**
+- `truesight-autopilot.service` started **2026-11-25 14:19:52 UTC**; the new path
+  is demonstrably executing:
+
+  | Evidence | Value |
+  |---|---|
+  | Intra-turn folds logged | **7** |
+  | Intra-turn exceptions | **0** |
+  | Typical fold | `85 -> 74`, `82 -> 73`, `81 -> 73`, `63 -> 55` messages, last K=4 rounds verbatim |
+  | Thresholds in effect | `round_threshold=8`, `token_threshold=40000` |
+
+So Unit 4's *deploy* half is effectively complete-by-accident; what remains is
+the **soak + sign-off**, which is the part that actually carried the gate. The
+soak is genuinely load-bearing here: because the Unit-0 fixtures lack
+`reasoning_content`, live replay of a folded turn could not be validated
+(see `OPEN_FOLLOWUPS.md`), so **only real production turns can establish that a
+folded turn still completes correctly.** Watch for: threads that fold and then
+fail to converge, repeated folding of the same session (a sign the fold isn't
+relieving pressure), and any assistant output containing raw DSML special tokens.
+
+Monitored honestly: 7 folds / 0 errors over ~9 minutes is a good signal, **not**
+a passed soak. Do not mark Unit 4 done on it.
 
 **Unit 4 is a gate.** Folding now runs inside the live per-round loops, so
 deploying changes production behaviour. Do not deploy without an explicit
