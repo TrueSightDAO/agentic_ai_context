@@ -39,6 +39,62 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### `farm_media_daemon/` — the entire Media Archive Pipeline daemon is UNVERSIONED (never in `origin/main`); its 15 test files too
+
+**Priority:** HIGH · **Filed:** 2026-11-25 · **Component:** `farm_media_daemon/` · **Related:** KAN-71, `MEDIA_ARCHIVE_PIPELINE.md`
+
+**Symptom.** Verified against the remote, not just local state:
+
+| Check | Result |
+|---|---|
+| `git ls-tree origin/main \| grep farm_media` | **nothing** |
+| `git log origin/main -- farm_media_daemon/` | **0 commits, ever** |
+| `git ls-files farm_media_daemon/` | **0 files** |
+| `git check-ignore -v farm_media_daemon/farm_media_backfill_source_zip.py` | `.git/info/exclude:7: farm_media_daemon/` |
+
+The archive worker (`farm_media_archive.py`), intake front door (`farm_media_intake.py`), publisher, captions, gallery, manifest, photo enrich, `farm_media_backfill_source_zip.py` **and all 15 test files** exist only on the autopilot box.
+
+**Why it matters.** Production code with no history, no review path, no CI, and no rollback:
+
+1. `read_repo_file` → 404 and `search_code` → 0 hits for daemon paths. Initially misdiagnosed as a GitHub API rate limit; the code was simply never committed.
+2. The #36 `source_zip` backfill fix cannot obtain a real PR + CI run, so it is hand-patched or deferred indefinitely.
+3. Loss of the box = total loss of the pipeline (no reconstructable source).
+
+**Evidence it's accidental drift, not policy.** The repo *does* track the daemon's companion artifacts — `media_archive_daemon_config.yaml.example` at the root and the `systemd/` units — while the code they configure is absent. `.git/info/exclude` is **box-local** (not a tracked `.gitignore`), consistent with drift rather than a deliberate decision.
+
+**Payload size (verified).** 29 source files, **273.7 KB** total. No `.env`, `*.key`, `*.pem`, or token files. `locations_cache.json` (28.6 KB) is a derived geocode cache — commit it or gitignore it, but decide explicitly.
+
+**Recommended fix.**
+1. Remove `farm_media_daemon/` from `.git/info/exclude`.
+2. Commit source + tests + `DESIGN.md`.
+3. Add `__pycache__/`, `*.pyc`, and optionally `locations_cache.json` to the **tracked** `.gitignore`.
+4. Then land the #36 backfill fix as a normal PR that CI exercises.
+
+**Acceptance criteria.** `git ls-files farm_media_daemon/ | wc -l` > 0 on `main`; the backfill fix ships via a PR with CI evidence; a fresh box can be rebuilt from the repo alone.
+
+### MAP `source_zip` backfill (#36) — precise root cause: `build_zip_index` alias-map collision + single-root scope (refines the entry below)
+
+**Priority:** MEDIUM · **Filed:** 2026-11-25 · **Component:** `farm_media_backfill_source_zip.py` · **Related:** the `MAP source_zip backfill (#36)` entry below, KAN-71
+
+This **refines** the existing `#36 leaves ~235 sidecars unstamped` entry rather than opening a parallel one. Live coverage: **185 / 624** inbox sidecars carry `source_zip`.
+
+**Defect 1 — wrong join key (dominant cause).** `build_zip_index()` builds `(farm_id, sha256) -> zip` and `(farm_id, stem) -> zip`, where `farm_id` is the **inbox folder name**. Archive entries carry a *different* `farm_id`, so the tuple never collides:
+
+| inbox folder | archive `farm_id` |
+|---|---|
+| `raimundo-geniza-para` | `raimundo-geniza` |
+| `rancho-maranta-para` | `rancho-maranta-plot-2` |
+| `santa-ana-fazenda-bahia` | `santa-anna-fazenda` / `fazenda-santa-ana-bahia` |
+| `la-do-sitio` | `paulo-la-do-sitio` ⚠️ **must NOT be aliased** (distinct farms) |
+
+A further 7 inbox IDs (`crf-anapu-para`, `cristo-rei-pacaje-para`, `facility-coopercabruca`, `jedielcio`, `sitio-catarinense-para`, `sitio-torres-pacaja-para`, `tutorial-media`) have no archive counterpart at all. A naive `strip('-para'/'-bahia')` suffix guess resolves only **1 of 10** — an explicit alias map is required, not string munging.
+
+**Defect 2 — single-root scope.** The tool reads only `DEFAULT_PROCESSED` (22 sidecars), missing `/media/upload_zips` (23) and `/home/ubuntu` (17) — **62** exist in total.
+
+**Rejected approach (do not retry).** Unioning same-named zips into a merged index made it **worse**: 199 matched / 361 ambiguous vs 350 / 210. Cross-run stem collisions inflate ambiguity. Keep per-zip indexing and fix the *key* instead.
+
+**Fix.** Explicit inbox→archive alias map (hard conflation guard on `la-do-sitio`), multi-root index input, skip any alias that would merge two distinct farms. Then `--apply` and report coverage from 185/624.
+
 ### Compaction pre-compact backups accumulate unbounded — 6,399 files / 882 MB and growing
 
 **Priority:** MEDIUM · **Filed:** 2026-11-25 · **Owner:** unclaimed · **Component:** `app/context_compaction.py` (`backup_session_file`)
