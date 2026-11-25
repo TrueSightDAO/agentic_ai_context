@@ -39,6 +39,25 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Verifying log-based behaviour by grepping a plan's prose word instead of the code's format string produced a confident false negative
+
+**Priority:** MEDIUM · **Filed:** 2026-11-26 · **Owner:** unclaimed · **Component:** operating discipline / `AGENT_OPERATING_INSTRUCTIONS`, log-diagnosis tooling
+
+**What happened.** Auditing whether intra-turn compaction (KAN-30) had ever fired in production, I grepped 45 days of journal for `"Intra-turn compaction folded"` and got **0 hits**, then built a multi-step conclusion on it: "the feature is dormant by design, the inter-turn folder keeps only 30 messages so a turn never reaches `round_threshold=8`, therefore Unit 4 cannot produce an observation." That conclusion was **wrong and I published it to Jira before re-checking.**
+
+**Actual state.** The code's success line is `logger.info("Intra-turn compacted session %s: %d -> %d messages, last %d rounds kept verbatim ...")`. There is no "folded" message anywhere. Grepping the *real* string over 60 days: **210 folds** (57 on Nov 24, 154 on Nov 25), **0 genuine failures**, first fold Nov 24 21:58:11. The feature had been working the whole time.
+
+**Why the false negative was so convincing — three compounding traps.**
+1. **Pattern invented from prose.** I had *just printed the source* containing the true format string, then searched for the English noun the plan uses ("fold") instead of the string the code emits. Reading the source and then not grepping it is the actual defect.
+2. **A partial-hit grep laundered the error.** Searching `compact_open_turn` returned 26 hits and `TURN IN PROGRESS` returned 13 — all echoes of the assistant's own transcript text inside logged JSON `"stdout"` fields. Seeing *some* hits made "0 folds" look like a refined second signal rather than a broken first one. Echo-noise and real signal share the log stream; counts alone cannot separate them.
+3. **Echoes also fabricate failures.** `"Intra-turn compaction failed"` returned 2 hits which looked like runtime errors but were my own diagnostic command text logged inside a JSON `stdout` field (they contain the literal marker `=== the exact log lines ... emits ===`). Grep counts for failure patterns are unreadable without checking whether the match sits inside an echoed payload.
+
+**Cost.** A working feature nearly got re-scoped as broken; an incorrect claim reached a Jira ticket and had to be publicly retracted; a full turn of investigation was spent refuting my own artifact.
+
+**Recommended fix.** Two cheap guards: (a) a documented discipline rule — *when verifying log-based behaviour, extract the exact format string from the source and grep that, never the English word used in the plan or comment*; (b) better, a small helper that takes the **source file + function name**, pulls its `logger.*` format strings automatically, and greps the journal for those — so the pattern cannot be hand-transcribed. The helper should also report, for each pattern, how many matches occur inside echoed tool payloads (heuristic: match line contains `\"stdout\":` or `cmd=`), since echo-noise is what makes a wrong pattern look plausible.
+
+**Acceptance criteria.** The discipline rule appears where diagnosis is instructed; a log-signature helper exists that derives patterns from source rather than prose; and a zero-hit result from any hand-written pattern is treated as "pattern possibly wrong" — requiring a positive-control grep against a known-present string — before any conclusion is drawn from it.
+
 ### `farm_media_daemon/` — the entire Media Archive Pipeline daemon is UNVERSIONED (never in `origin/main`); its 15 test files too
 
 **Priority:** HIGH · **Filed:** 2026-11-25 · **Component:** `farm_media_daemon/` · **Related:** KAN-71, `MEDIA_ARCHIVE_PIPELINE.md`
