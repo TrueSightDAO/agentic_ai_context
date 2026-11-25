@@ -1259,6 +1259,51 @@ the start and prevents it recurring.
 
 ---
 
+### `jira_stale` nudges can NEVER clear when a PR is linked via `link_pr_in_comment` — `pr_evidence()` never reads comments (25 tickets affected)
+**Filed 2026-11-25 (thread 10800). Owner: unclaimed. Governor: Gary. Fix PR open: `truesight_autopilot#646`.**
+
+**Not a duplicate of the `lost_goal` entry below.** That one is the *thread-goal store* (`data/thread_goals.jsonl`, `app/loop_status.py`). This one is `app/jira_loop.py`'s `jira_stale` classifier. **Two independent loops were firing on the same thread simultaneously** — closing one goal still left this one nudging.
+
+**Symptom.** `Loop needs a nudge` reported `State: jira_stale · Why: in progress with no status change; needs a follow-up (no PR linked)` for ~15h on work that was already merged and shipped (PRs #1906–#1909).
+
+**Root cause (verified in code, not inferred).** `pr_evidence()` (`app/jira_loop.py:324`) builds its evidence list from exactly three stores:
+
+1. the issue **description**,
+2. `GET /rest/api/3/issue/{key}/remotelink`,
+3. GitHub **dev-status** PRs.
+
+It **never reads comments.** But `link_pr_in_comment`'s only write was a comment (`app/tools/jira_tools.py`, `POST …/issue/{key}/comment`). So an agent linking a PR the documented way left `pr_evidence == []` **permanently**, and `(no PR linked)` fired on every sweep no matter how much work shipped. `list_pr_links` — the *read* twin — **does** scan comments, so the tooling looks correct end-to-end: the write and the read live in different stores. Confirmed live: `dev-status status: ok`, `detail: []` (so it was not a false negative — the ticket genuinely carried no PR links), `remotelink count: 0`.
+
+**Measured blast radius (2026-11-25, all 77 open non-Done KAN tickets).**
+
+| Metric | Count |
+|---|---|
+| Open non-Done KAN tickets | 77 |
+| `pr_evidence` empty | **76 / 77** |
+| `In Progress` **with empty evidence** | **25** |
+
+`KAN-69` is the single cleared ticket (4 remotelinks written by hand, after which the nudge text itself shed the `(no PR linked)` clause — direct before/after proof). The other 25 cannot clear their nudge regardless of shipped work: KAN-30, 71, 15, 17, 75, 13, 82, 81, 7, 6, 5, 4, 67, 54, 51, 49, 45, 43, 34, 27, 22, 21, 77, 76, 14.
+
+**Fix (open PR `truesight_autopilot#646`, +84/−0, two tests).** After the successful comment POST, also POST a `/remotelink` per extracted PR URL, wrapped in `try/except` so a remotelink failure can never fail the comment; response gains `remotelinks_created`. The comment stays the **first** request so `test_link_pr_in_comment_posts_inline_cards` (which asserts on `calls[0]`) remains green. **This fixes future links only — it does NOT backfill the 25.**
+
+**Still needed.**
+1. Merge `truesight_autopilot#646`, then `deploy_autopilot` so the box runs it.
+2. **One-off backfill:** for each of the 25, find its real merged PR and POST a remotelink. **Writes 25 tickets → governor-gated.**
+3. Optional hardening: make `pr_evidence()` *also* scan comments so the two stores can never silently diverge again.
+
+---
+
+### GitHub `check-runs` returns 403 on the autopilot box — use `/actions/runs?head_sha=`, not just `mergeable_state`
+**Filed 2026-11-25 (thread 10800). Owner: unclaimed. Governor: Gary.**
+
+**Symptom.** `GET /repos/{org}/{repo}/commits/{sha}/check-runs` returns **403** from the autopilot box (org permission gap). `_dev_status_prs` surfaces this as `{'errors': …, 'detail': []}`, which is easy to misread as *"no PRs linked"* rather than *"the API refused us"* — worth knowing, because that mistake produces exactly the false-negative this file's entry above is about.
+
+**Workaround, and a better one.** `mergeable_state` from the plain pulls endpoint (`clean`) is usable but coarse — a single word. **`GET /repos/{org}/{repo}/actions/runs?head_sha={sha}` gives per-workflow `name` / `status` / `conclusion` without hitting the 403.** Verified on `truesight_autopilot#646`: 3 runs, all `completed / success` (`Run tests` + `Tool smoke tests` on `pull_request`, plus `Run tests` on `push`). Use this to *independently verify* a third party's "CI is green" claim rather than taking it on trust.
+
+**Also recorded here because it cost a turn:** the working GitHub REST credential on this box is vault key **`github_autopilot_pat`**, read via `get_vault().get_value(...)`. `GITHUB_TOKEN` is **not** in the shell env, so bare `curl` calls silently send no credential. Vault key names are enumerable via `get_names()` (57 at time of writing) — **list names, never values**.
+
+---
+
 ### `lost_goal` nudges re-fire forever when a goal never gets a terminal event — and `envoy-nudge-media-pipeline-20261028-v3`'s unit 3 has no premise to act on
 **Filed 2026-10-30. Owner: unclaimed. Governor: Gary. Two related items: one operational, one a real loop-alert defect.**
 
