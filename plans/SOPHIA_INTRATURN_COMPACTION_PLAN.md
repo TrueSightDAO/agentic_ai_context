@@ -62,7 +62,32 @@ most recent N rounds' raw tool output plus the running summary.
 | 3 | Validate against the real 94K/72K fixtures from Unit 0 — confirm the turn still completes correctly post-compaction, no dangling tool_calls, and (if reproducible) confirm the DSML-token-leak failure mode doesn't recur on the compacted version | PR + validation checkpoint, same pattern as the original plan's manual-tool-first rollout |
 | 4 | Deploy + monitor for a day of real heavy-round-count turns before considering this done | Gate — confirm real improvement, not just passing tests |
 
-**RESUME HERE: Unit 4 (GATE — deploy + monitor). Units 0–3 are COMPLETE.**
+**🛑 RESUME HERE — NOT AUTO-ADVANCEABLE. Do NOT open another checkpoint PR.**
+**Unit 4 is the final unit; Units 0–3 are COMPLETE. Everything left is (a) elapsed
+time and (b) a governor decision — neither of which a turn can produce.**
+
+The acceptance test has **passed** (see "Unit 4 soak evidence" below: 219 real folds,
+flat band, 0 failures). Between 2026-11-25 ~18:00Z and ~19:35Z this plan was advanced
+**seven consecutive times** by auto-advance, each time producing another monitoring
+checkpoint. Checkpoints 1–5 were valuable — they caught five of my own measurement
+errors and two of my own wrong claims — but by checkpoint 5 the marginal return hit
+zero: **0 new folds in the preceding 5 minutes, 0 errors, band flat.** Further
+checkpoints would be re-measuring a settled result.
+
+**Blocked on exactly two things:**
+1. **Clock** — 24h soak closes **Nov 25 21:58Z** (audit first fold Nov 24 21:58:11Z).
+   At 19:35Z: 21.62h elapsed, **2.38h remaining**. Nothing accelerates this.
+2. **Governor sign-off** — the gate's second half is Gary's, not mine. I will not
+   self-certify a gate.
+
+**Resume only when one of these is true:**
+- ≥ 24h have elapsed → re-run the strict band test **once**, record the final packet,
+  and mark Unit 4 ✅ on that evidence.
+- Gary replies **"sign off"** → mark Unit 4 ✅ immediately, citing checkpoints 1–5.
+- Gary replies **"cap summaries"** → open the (low-priority) constant-space unit.
+
+**Do NOT** re-run the soak metrics, re-count folds, or open a checkpoint PR merely
+because this plan is named as the resume target — that is what happened seven times.
 
 | # | Unit | Status | Evidence |
 |---|------|--------|----------|
@@ -70,7 +95,7 @@ most recent N rounds' raw tool output plus the running summary.
 | 1 | Intra-turn folding function in `app/context_compaction.py` | ✅ shipped | PR #523 (squash `43df6f1`) — `find_open_turn_start`, `_scan_rounds`/`find_complete_rounds`, `default_round_summarizer`, `compact_open_turn(messages, keep_last_k_rounds=4, token_threshold=40000, round_threshold=8)` |
 | 2 | Wire into the per-round `_maybe_auto_compact` call sites | ✅ shipped | PR #549 (merged `d137c9b`) — `_maybe_compact_open_turn` def at `app/main.py:6314`, call sites at `3803` (`_run_tool_round_loop`) and `5682` (`_chat_blocking_turn`) |
 | 3 | Validate against the real 94K/72K fixtures | ✅ shipped | PR #642 (merged `5707bdb`) — `tests/test_intraturn_validation.py` (313 lines) |
-| 4 | Deploy + monitor a day of heavy-round-count turns | 🟡 **EVIDENCE HARVESTED — SIGN-OFF PENDING GOVERNOR** (live since 2026-11-25 14:19:52Z) | measured on **282** real rounds @ 2h05m: max 77,474 tokens, **0 rounds over 94,264**, **21 folds / 0 errors / 0 leaks** — see "Unit 4 soak evidence" below. Gate not self-certified. |
+| 4 | Deploy + monitor a day of heavy-round-count turns | 🟡 **ACCEPTANCE TEST PASSED; SIGN-OFF + CLOCK PENDING GOVERNOR** (live since 2026-11-25 14:19:52Z) | **219 strict (echo-free) folds over 21.62h**: before-count mean 69.6, **max 99**, Q1→Q4 69.4→68.4 (**trend −1.0, flat**), **0 folds >100 msgs**, 17 sessions, **0 WARNING/ERROR**, `NRestarts=0`. Summary accumulation measured on real sessions: max 5 summaries / 23,542 chars (~5.9K tokens ≈ 6% of pathology), self-resets at turn boundary. Gate not self-certified. |
 
 Both Unit 2 and Unit 3 were independently re-verified on `main` at `5707bdb` via
 the GitHub API (`state: closed, merged: true`) and by grepping the shipped
