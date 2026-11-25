@@ -9,7 +9,7 @@
 ## TL;DR
 
 1. Use **gotde.cn** to render a photoreal *packaging* mockup. Ask it for **no wordmark**.
-2. **Composite the real Agroverse mark ourselves** (Approach A, below). The engine cannot take our logo as input and draws counterfeit letterforms if asked.
+2. **You can pass the mark in** (`logo_base64` + `logo_position` + `logo_width_ratio`) — but placement is *best-effort*, not pixel-exact. For print, still **composite the real Agroverse mark ourselves** (Approach A, below). The engine cannot render our typeface and draws counterfeit letterforms if asked.
 3. Log the `record_id` of every render — the vendor exposes no quota or history API, so **our log is the only spend record**.
 
 ---
@@ -44,13 +44,14 @@ KEY = Vault().get_value("gotde_package_api")
 
 Never write the key into a `.env`, repo, log, or doc. Vault only.
 
-### ⚠️ Transport — HTTP only
+### ✅ Transport — HTTPS (certificate renewed)
 
-The vendor's TLS certificate **expired 2026-11-17 07:59:59 UTC** (`CN=xiaodeapi.gotde.cn`, TrustAsia). HTTPS fails the handshake; only plain HTTP works.
+Verified 2026-11-19: HTTPS works, and the certificate is valid **2026-11-17 → 2027-02-15**.
 
-- Working host: **`xiaodeapi.gotde.cn`**
-- The host named in their own docs, `package.gotde.cn`, has a **separately broken certificate** — do not use it.
-- Consequence: the API key travels **unencrypted** to a Chinese host. Acceptable for internal experimentation; **not acceptable for a customer-facing funnel.** Do not wire this into `/white-label` until the cert is renewed.
+- Working host: **`xiaodeapi.gotde.cn`** — use HTTPS.
+- An earlier revision of this doc said "HTTP only / the key travels unencrypted" — that described a certificate which **expired 2026-11-17 and has since been renewed**. If you hit a TLS failure, re-read the live certificate dates; do not assume this note is current.
+- `package.gotde.cn` (the host named in their own docs) is still worth avoiding; `xiaodeapi.gotde.cn` is what we have verified.
+- **Multipart is rejected outright.** The endpoint takes `application/json` only. `multipart/form-data` returns `400 Input should be a valid dictionary or object` **even with no file attached** — verified as a control. So artwork cannot ride along as a file part; use `logo_url` / `logo_base64`.
 
 ### Endpoints
 
@@ -59,7 +60,9 @@ The vendor's TLS certificate **expired 2026-11-17 07:59:59 UTC** (`CN=xiaodeapi.
 | `/api/v1/templates` | GET | **Public, no key.** `?page=&pageSize=100&include_base_map=true`. Paginate until `total`. |
 | `/api/v1/open/package-generate` | POST | Requires `X-API-Key`. **This is the only generation path.** |
 
-There is **no** `/openapi.json`, `/docs`, or `/redoc` (all 404) — the schema below was recovered from FastAPI 422/400 validation messages.
+There is no spec at the domain root and no `/docs` / `/redoc` (`/openapi.json`, `/api/openapi.json`, `/docs`, `/redoc` all 404) — **but the real OpenAPI document is served at `/api/v1/openapi.json`** (HTTP 200, ~669 KB, 326 paths, `AiCanvaPy 1.0.0`). Fetch it before touching this API: every schema fact below is verifiable there.
+
+> **Method lesson — read the spec, do not probe by guessing.** An earlier revision of this runbook concluded "there is no spec" and recovered the schema by type-bombing field names. That produced two confident, **wrong** conclusions (see the retraction in §1). FastAPI silently ignores unknown keys, so a `200 OK` on a type-bomb proves nothing at all, and a guessed name that fails tells you only that *your guess* was wrong — never that the field is absent.
 
 ### Generation request
 
@@ -78,25 +81,53 @@ body = {
 
 **Download `image_url` immediately** — signed links expire within minutes.
 
+### Logo input and placement — the fields that DO exist
+
+`PackageGenerateRequest` has four logo fields, verified against `/api/v1/openapi.json` and exercised live (rec=59–64).
+
+| Field | Constraints | Meaning |
+|---|---|---|
+| `logo_url` | string, ≤2048 chars, png/jpeg/webp | Public http(s) URL of the mark |
+| `logo_base64` | string, ≤12,000,000 chars | Raw base64, optional `data:image/…;base64,` prefix. Mutually exclusive with `logo_url` |
+| `logo_position` | `top-left`, `top-center`, `top-right`, `center-left`, `center`, `center-right`, `bottom-left`, `bottom-center`, `bottom-right` | Default **`bottom-center`** |
+| `logo_width_ratio` | number, **0.05 – 0.60** | Default **`0.22`** |
+
+```python
+body["logo_base64"] = "data:image/jpeg;base64," + base64.b64encode(open(mark_rgb, "rb").read()).decode()
+body["logo_position"] = "bottom-center"
+body["logo_width_ratio"] = 0.22
+```
+
+Use `logo_base64` whenever the mark is not publicly hosted — that is our case. A 102 KB source JPEG encodes to ~137 KB of base64, far inside the 12 MB cap.
+
+> ⚠️ **These are generative controls, not layout controls.** The vendor's own schema text says the logo is passed to the model as a reference image and the position/size is written into the prompt: *"生成式控制，位置为'尽力对齐'而非像素级精确"* — generative control, position is best-effort, **not pixel-precise**. The response echoes back `logo_url` and `logo_position`, but **an echo is not proof the mark was drawn there — check the pixels.** For print-critical output, keep Approach A (deterministic composite) as the final step.
+
 ### Schema facts, verified
 
 - **Strict validation.** Missing `template_id` → `400 {"success":false,"message":"Field required","field":"body.template_id"}`. Wrong type → `422`.
 - **`price` / `access_type` are marketplace metadata only — NOT enforced.** Generating from a `buyout` template at ¥99 works without purchasing. This is **not** a licence to ship that design commercially.
 - All 73 templates report `rating: 5.0` — the field carries no signal.
 - Output is **1024 × 1536** PNG.
-- No account, quota, history, or records endpoint (`/open/history`, `/open/account`, `/open/quota`, `/open/me`, `/open/records` all 404).
+- **There is a records endpoint:** `GET /api/v1/open/package-generate/records` lists prior renders (record id, `template_id`, logo fields, prompt, `created_at`). Still 404: `/open/history`, `/open/account`, `/open/quota`, `/open/me`, `/open/records`, `/open/packages` — the working path is `/open/package-generate/records`.
 
 ---
 
 ## Two hard limitations
 
-### 1. The engine accepts no image input
+### 1. ~~The engine accepts no image input~~ — **RETRACTED 2026-11-19**
 
-There is **no artwork-upload path**. Proven by type-bombing 16 candidate field names in a single request — `image_url`, `logo`, `logo_url`, `design_image`, `artwork`, `reference_image`, `image_base64`, `mask`, `style_image`, `brand_logo`, `overlay`, `watermark`, `foreground`, `template_image`, `custom_image`, `upload`.
+**This section was wrong. Do not rely on it.** The schema has four real logo fields (see *Logo input and placement* above) and they work live.
 
-The request returned **200 OK**, meaning FastAPI's strict schema **silently ignored every one**. Had any been a real field, a string where a file/URL was expected would have raised 422. Also 404: `/open/upload`, `/open/image-search`, `/open/file`, `/open/package-generate-from-image`.
+How the error happened, because it is the reusable part:
 
-**Consequence:** gotde cannot wrap *our* design onto a bar. It prompts an image model from text to invent a mockup. Useful for **concept exploration**; wrong tool for **previewing a customer's uploaded PNG**.
+- 16 candidate field names were "type-bombed" in one request — `image_url`, `logo`, `logo_url`, `design_image`, `artwork`, `reference_image`, `image_base64`, `mask`, `style_image`, `brand_logo`, `overlay`, `watermark`, `foreground`, `template_image`, `custom_image`, `upload`.
+- It returned **200 OK**, which was read as "every field was ignored." **That inference is invalid.** FastAPI ignores *unknown* keys silently, so `200` is the expected response **whether or not** a field is real. A `422` would only have shown that a *correctly named* field rejected the supplied type.
+- The guessed names simply were not the API's names. `logo_url`, `logo_base64`, `logo_position` and `logo_width_ratio` were real the entire time.
+- The authoritative spec was sitting at `/api/v1/openapi.json` throughout.
+
+**Correct method:** fetch the OpenAPI document and read `components.schemas.PackageGenerateRequest`. Never conclude "the field does not exist" from "my guessed name failed."
+
+**Consequence, corrected:** gotde *can* be handed our mark and told where to put it — best-effort. It still cannot reproduce our typeface (§2), and placement is model-directed rather than exact, so a deterministic composite remains the reliable path for print.
 
 ### 2. It draws counterfeit typography
 
@@ -126,14 +157,23 @@ Confirm the panel is clean (crop + 3× upscale + OCR should return near-nothing)
 
 Threshold on luminance, then take the row/column spans with enough dark pixels:
 
+Segment the bar as the largest **non-background** region — do **not** threshold on absolute luminance:
+
 ```python
-lum = 0.299*R + 0.587*G + 0.114*B
-dark = lum < 70
-cols = where(dark.sum(axis=0) > 300);  rows = where(dark.sum(axis=1) > 300)
+a = np.asarray(Image.open(render).convert("RGB")).astype(int)
+h, w, _ = a.shape
+border = np.concatenate([a[0:3].reshape(-1, 3), a[-3:].reshape(-1, 3),
+                         a[:, 0:3].reshape(-1, 3), a[:, -3:].reshape(-1, 3)])
+bg = np.median(border, axis=0)                 # sample the real background
+mask = np.abs(a - bg).sum(axis=2) > 36         # anything unlike the background
+cols = np.where(mask.sum(axis=0) > max(8, h * 0.05))[0]
+rows = np.where(mask.sum(axis=1) > max(8, w * 0.05))[0]
 # -> x0..x1, y0..y1
 ```
 
-On the reference render: `x106–917, y32–1506` = 812 × 1475 px.
+> **Why not `lum < 70`:** that was the previous recipe and it is broken. Templates with warm or light grounds (saffron, parchment, gold) have almost no pixels below 70, so the detector degenerates and reports a near-full-frame bbox — which is how a **portrait** bar got mis-measured as **landscape (ar 1.34)**. With the recipe above the same renders measure portrait, **ar 0.48–0.67**.
+>
+> **Sanity check:** a genuine bar bbox has `width/height ≈ 0.48–0.67` and is clearly taller than wide. If your detector returns ar > 1, the **detector** is wrong, not the render.
 
 ### Step 3 — key the saffron background off the logo
 
@@ -159,9 +199,12 @@ import numpy as np
 HI = "20230711 - Agroverse logo for trademark filing.jpeg"
 base = Image.open(render_path).convert("RGB")
 a = np.asarray(base).astype(int)
-lum = 0.299*a[:,:,0] + 0.587*a[:,:,1] + 0.114*a[:,:,2]
-dark = lum < 70
-cols = np.where(dark.sum(axis=0) > 300)[0]; rows = np.where(dark.sum(axis=1) > 300)[0]
+border = np.concatenate([a[0:3].reshape(-1, 3), a[-3:].reshape(-1, 3),
+                         a[:, 0:3].reshape(-1, 3), a[:, -3:].reshape(-1, 3)])
+bgc = np.median(border, axis=0)
+maskb = np.abs(a - bgc).sum(axis=2) > 36
+cols = np.where(maskb.sum(axis=0) > max(8, a.shape[0] * 0.05))[0]
+rows = np.where(maskb.sum(axis=1) > max(8, a.shape[1] * 0.05))[0]
 x0, x1, y0, y1 = cols.min(), cols.max(), rows.min(), rows.max()
 
 src = Image.open(HI).convert("RGB"); sa = np.asarray(src).astype(float)
@@ -240,6 +283,14 @@ Vendor exposes no history API, so this table is the spend record. Append every r
 | 46 | 492 | — | — | 16-field type-bomb | 200 OK — **all fields ignored** |
 | 47 | 492 | label | white | no-wordmark | OK — clean base |
 | 48 | 492 | label | kraft | no-wordmark | OK — clean base, **used for Approach A** |
+| 59 | 480 | label | white | A + logo_base64 | OK — mark accepted, `bottom-center` @ 0.22, ar 0.54 |
+| 60 | 482 | label | white | A + logo_base64 | OK — ar 0.51 |
+| 61 | 452 | label | white | A + logo_base64 | OK — ar 0.67 |
+| 62 | 472 | label | white | A + logo_base64 | OK — ar 0.67 |
+| 63 | 536 | label | white | A + logo_base64 | OK — ar 0.66 |
+| 64 | 480 | label | white | A + logo, **top-left @ 0.40** | OK — position control; ar 0.48 |
+
+> Geometry drift is real: template **480 returned ar 0.54 as rec 59 and 0.48 as rec 64** from the same payload apart from logo params. Measure every render; never assume a fixed output size.
 
 ---
 
@@ -247,7 +298,7 @@ Vendor exposes no history API, so this table is the spend record. Append every r
 
 - **Previewing a customer's uploaded artwork** on a bar → use the **local canvas composite** (paste their true PNG into the measured bbox). Faithful by definition; gotde would hallucinate.
 - **Anything needing exact brand typography** → composite locally from real type assets.
-- **Customer-facing, pre-cert-renewal** → HTTP-only makes it unsafe to expose.
+- **Customer-facing exposure** → the certificate is currently valid, so TLS is no longer the blocker. The real blockers are brand fidelity (§2) and best-effort logo placement — not transport.
 
 ## Related
 
