@@ -70,7 +70,7 @@ most recent N rounds' raw tool output plus the running summary.
 | 1 | Intra-turn folding function in `app/context_compaction.py` | ✅ shipped | PR #523 (squash `43df6f1`) — `find_open_turn_start`, `_scan_rounds`/`find_complete_rounds`, `default_round_summarizer`, `compact_open_turn(messages, keep_last_k_rounds=4, token_threshold=40000, round_threshold=8)` |
 | 2 | Wire into the per-round `_maybe_auto_compact` call sites | ✅ shipped | PR #549 (merged `d137c9b`) — `_maybe_compact_open_turn` def at `app/main.py:6314`, call sites at `3803` (`_run_tool_round_loop`) and `5682` (`_chat_blocking_turn`) |
 | 3 | Validate against the real 94K/72K fixtures | ✅ shipped | PR #642 (merged `5707bdb`) — `tests/test_intraturn_validation.py` (313 lines) |
-| 4 | Deploy + monitor a day of heavy-round-count turns | 🟡 **EVIDENCE HARVESTED — SIGN-OFF PENDING GOVERNOR** (live since 2026-11-25 14:19:52Z) | measured on 177 real rounds: max 77,474 tokens, **0 rounds over 94,264**, 16 folds / 0 errors — see "Unit 4 soak evidence" below. Gate not self-certified. |
+| 4 | Deploy + monitor a day of heavy-round-count turns | 🟡 **EVIDENCE HARVESTED — SIGN-OFF PENDING GOVERNOR** (live since 2026-11-25 14:19:52Z) | measured on **282** real rounds @ 2h05m: max 77,474 tokens, **0 rounds over 94,264**, **21 folds / 0 errors / 0 leaks** — see "Unit 4 soak evidence" below. Gate not self-certified. |
 
 Both Unit 2 and Unit 3 were independently re-verified on `main` at `5707bdb` via
 the GitHub API (`state: closed, merged: true`) and by grepping the shipped
@@ -133,6 +133,53 @@ relieving pressure), and any assistant output containing raw DSML special tokens
 Monitored honestly: 7 folds / 0 errors over ~9 minutes is a good signal, **not**
 a passed soak. Do not mark Unit 4 done on it.
 
+### Unit 4 soak — 2h05m checkpoint (measured 2026-11-25 16:25Z, echo-filtered)
+
+Extends the ~15-minute window below. **Every figure here was echo-filtered first** (lines
+containing `"stdout":` or `cmd=` dropped) — the phantom-failure trap documented in this file,
+which a prior checkpoint was nearly misread by.
+
+Window: service up 2026-11-25 14:19:52Z → **2h 05m**.
+
+| Metric | Value |
+|---|---|
+| Intra-turn folds (echo-filtered) | **21** |
+| Distinct sessions folded | 5 |
+| Real fold failures | **0** |
+| Intra-turn tracebacks | **0** |
+| DSML / special-token leaks | **0** |
+| Rounds measured (`LLM RESP round=… tokens=…`) | **282** |
+| Prompt tokens | min **39,600** · mean **55,102** · max **77,474** |
+| Rounds over 94,264 (the pathology) | **0** |
+| Rounds over 72,391 (the other original trigger) | 3 |
+
+**Band test — still holding.** Before-counts chronological: `85 82 63 81 63 81 63 69 64 69 69 69 73 70 69 82 76 76 62 61 66` → band ~61–85, returning to ~53–76 after each fold. No upward drift.
+
+**The token curve now descends after the threshold engages** — stronger than a merely flat band:
+
+```
+round  6: max 75,075      round 12: max 70,671
+round  8: max 76,721 <-peak    round 16: max 69,720
+round 10: max 69,088      round 24: max 71,921
+```
+
+Post-fix, rounds ≥10 are *cooler* than rounds 6–8. Pre-fix, the same region reached
+94,264 @ r12 and 111,148 @ r24. Bounded **and** trending down is the designed behaviour.
+
+**Token-threshold question — now measured, and the answer is the opposite of the guess.**
+Round-1 prompt tokens: **min 39,600 / max 66,104** (n=38); only **1 of 282** rounds sat below
+40,000. So the token arm is satisfied on **99.6%** of rounds — it is not a discriminator at
+all, but it is *always on* rather than *never firing*. This **corrects** the earlier
+"min round-1 baseline is 43,121" figure recorded in `OPEN_FOLLOWUPS.md` (a smaller sample;
+the larger sample dips just under 40K) and **inverts** the plan's earlier hypothesis that
+"round_threshold=8 is probably doing all the folding". See the refined paragraph above.
+
+**Why the gate is still open (unchanged):** the unit asks for **a day**; this is 2h05m. The
+signals are healthy and the band holds, but a slow regression (before-counts trending upward
+across days) would only appear on a longer window, and "a folded turn still completes" remains
+established only empirically — never by replay (Unit-0 fixtures lack `reasoning_content`).
+**Sign-off is the governor's, not the autopilot's.**
+
 ### Unit 4 soak evidence (measured 2026-11-25, ~15 min after the 14:19:52Z start)
 
 Source: `LLM RESP round=N tools=N tokens=X` journal lines — the authoritative
@@ -162,9 +209,13 @@ not the code.
 **Limits on this evidence (why the gate stays open):** the window is ~15 minutes,
 not the day the unit asks for. And `min=43,121` tokens even at round 1 suggests
 the prompt+tools baseline already exceeds
-`CONTEXT_INTRATURN_TOKEN_THRESHOLD=40000`, meaning the **round threshold (8) is
-probably doing all the folding and the token threshold may be effectively
-inert**. That is unconfirmed and is a follow-up ticket, not a change to make
+`CONTEXT_INTRATURN_TOKEN_THRESHOLD=40000`. The 2h05m checkpoint below **refines this
+and partly inverts it**: across 282 rounds the token arm (`tokens >= 40000`) is
+satisfied on **281 of 282 (99.6%)**, so it is not "inert" in the sense of never
+firing — it is **effectively always true**, which collapses the `OR` toward "fold as
+soon as anything is foldable". The binding limiter is therefore probably
+`keep_last_k_rounds=4` (a round only becomes foldable once ~5 complete rounds exist),
+**not** `round_threshold=8`. Recorded in `OPEN_FOLLOWUPS.md`; still not a change to make
 mid-soak.
 
 **Unit 4 soak — verification procedure, and a trap that produces phantom failures
