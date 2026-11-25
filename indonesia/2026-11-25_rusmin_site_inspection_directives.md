@@ -140,7 +140,7 @@ Each item below is written so it can be answered in one line and photographed in
 
 | # | Ascertain | Decision it feeds | Evidence |
 |---|---|---|---|
-| F1 | **Internet access** — can they upload to `sunmint.truesight.me` (or a new mirror) from the farm *and* the factory? Speed, and is it mobile data or fixed line? | Whether farmer-side data entry is even possible. **Test it live** — do not ask "is there internet", ask them to load a page | Photo of a speed test on site |
+| F1 | **Internet access** — can they upload to the supplier data portal from the farm *and* the factory? Speed, and is it mobile data or fixed line? | Whether farmer-side data entry is even possible. **Test it live** — do not ask "is there internet", ask them to load a page | Photo of a speed test on site |
 | F2 | **Payment rail** — what is used locally. Brazil runs on **PIX**; Indonesia's nearest analogues are **QRIS** (QR payments) and **BI-FAST** (instant bank transfer) — *confirm which is actually used in this region* | How we pay farmers without cash and without an OJK-licensed lending structure (see the LOI's trade-advance framing) | Name of service; **fee**, per-transaction and percentage |
 | F3 | **Banking** — which bank, and can they receive an international transfer? | Whether payment runs direct or through an intermediary | Ask |
 | F4 | **Fees, explicitly** — does the payment service charge, and who bears it? | Changes the real cost per kg | Ask directly; do not infer |
