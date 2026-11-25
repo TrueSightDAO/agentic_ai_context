@@ -39,19 +39,40 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
-### Sprint->Jira migration dropped every `Thread URL:` — 0 of 58 migrated tickets link to a thread
+### Sprint->Jira migration stored thread URLs under a non-standard shape — API field + parser gap left 25 tickets unmapped
 
-**Filed 2026-11-25 (Sophia Truesight). Owner: unclaimed. Priority: HIGH — it is the sole reason the new Jira supervisor cannot reach 25 of 27 watched tickets.**
+**Priority:** HIGH · **Filed:** 2026-11-25 · **Corrected:** 2026-11-25 (see *Correction* below) · **Component:** `app/jira_loop.py`, `app/tools/jira_tools.py`
 
-**Symptom.** Verified live against the tenant (58 migrated tickets, KAN-18…KAN-74 + KAN-79). **All 58 have a description and a `sprint-migration:` marker, and 0 of 58 carry a `Thread URL:` line.** The `plan()` path in `app/jira_loop.py` needs a resolvable target per ticket; with no thread URL the only fallback is the Discord channel-name convention, and **only 2 of 84 live channels are keyed** (`kan-15-…`, `kan-16-…`). Live digest after the 2026-11-25 deploy: `scanned=27 keyed_channels=2 via_channel=2 unmapped=25`.
+**Symptom.** `loop_alert.py`'s Jira pass reaches only **2 of 27** watched tickets. Live digest after the 2026-11-25 deploy: `scanned=27 keyed_channels=2 via_channel=2 unmapped=25 errors=0`.
 
-**Why it matters.** The supervisor is deployed and running, but it monitors exactly 2 tickets. The other 25 are reported as `unmapped` on every sweep (correctly — they are not silently dropped), so the feature is live but starved. Backfilling thread URLs is the cheapest repair and needs no channel renames.
+**Correction — the original diagnosis in this entry was WRONG.** It claimed the migration *dropped* every thread URL (**0 of 58**). That is false, and was filed on a schema assumption rather than the data. Verified live against all 58 migrated tickets:
 
-**Source inventory (why this is not a one-liner).** The source `handoffs/index.json` has **57 non-terminal** handoffs; **40 carry a thread reference** and **17 carry none** (`telegram_thread_id: None`, `telegram_topic: "—"`). But my plan-file→marker join only matched **10** of them cleanly, because migrated markers are inconsistent: some are `plans/X.md`, some `OPEN_FOLLOWUPS.md#anchor` (many anchors with no ticket), and some have ADF escape junk captured next to the path. **Writing 40 thread URLs against a 10/40-confident join risks attaching the wrong thread to the wrong ticket** — worse than leaving them missing. Needs a deliberate, reviewed pass, not a bulk script.
+| Thread reference present | Count |
+|---|---|
+| Telegram URL | **33** |
+| Discord URL | **12** |
+| At least one | **33+** |
 
-**Recommended fix.** (1) Rebuild the source→KAN join from `handoffs/index.json` `plan_file` + `telegram_topic_url`/`discord_thread_id`, tolerating the three marker shapes. (2) For the 40 with a thread ref, prepend/replace the `Thread URL:` line via the description-update path already proven on the 58 (read-modify-write ADF). (3) Leave the 17 without a ref explicitly `Thread URL: MISSING (no thread ever created)`. (4) Re-run `loop_alert.py --jira-dry-run` and confirm `unmapped` drops from 25 toward 2.
+The URLs were never dropped. They are stored in a `--- threads ---` description block, **not** as a `Thread URL:` line — the shape `thread_url_of()` was written to match.
 
-**Acceptance.** `unmapped` under 5 on a live dry run; no ticket carries a thread URL that does not resolve to a real thread; the 17 genuinely-threadless tickets say so explicitly rather than looking unfilled.
+**Actual root cause — two layers, both in `jira_tools`.**
+1. `_ISSUE_FIELDS` omits `description`, so the JQL search never *requests* it.
+2. `_compact_issue` never *emits* it even when present.
+
+Net effect: `search_watched()` received dicts with keys `key,id,summary,type,status,assignee,priority,updated,labels` — **no description at all** — so every downstream URL parser was starved. Fixing only the parser changed nothing (verified: `unmapped` stayed 25).
+
+**Fix — staged in PR #635 (CI green, awaiting merge).**
+- Opt-in `include_description` threaded through `jira_query` -> `search` / `list_board_issues`; **board and search defaults byte-identical**, no existing caller changes behaviour.
+- URL harvester for the `--- threads ---` shape with strict validation: Telegram needs >= 5 digit ids; Discord needs **both** guild *and* channel snowflake.
+- Bug caught in review: a duplicate `_adf_to_text` shadowed the original (which handles links/inline cards) — removed.
+
+**Live result of the fix:** `scanned 27 | unmapped 25 -> 13 | 14 resolved`. Full suite **2353 passed**.
+
+**Residual 13 — correctly unresolvable, not a defect.** 11 carry no URL at all; `KAN-22` and `KAN-54` have guild-only Discord links with no channel snowflake.
+
+**Blocked on:** `truesight_autopilot`'s PAT (`TRUESIGHT_DAO_AUTOPILOT`) lacks `checks:read`, so `merge_pr` cannot read check-runs (403) and fails closed even when CI is green. Needs the scope granted, or a merge authorized on Actions-API evidence.
+
+**Acceptance.** `unmapped` <= 13 on a live dry run (reached); no ticket carries a URL that does not resolve to a real thread; the 11 genuinely-threadless tickets say so explicitly rather than looking unfilled.
 
 ### `jira_query` has no `assign_issue` write action — only a throwaway REST script can assign
 
