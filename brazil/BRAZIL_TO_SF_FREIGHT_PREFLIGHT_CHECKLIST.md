@@ -710,6 +710,8 @@ Lines (net kg, matching NF-e nº 18 / Rev 14): Nibs-Kraft-8oz 29 · MassBar-500g
 
 **⚙️ Outstanding mechanical prerequisite — QR codes.** `[INVENTORY MOVEMENT]` takes a **`QR Code`** per line (`lookup_event_docs` → `important_fields`). A prefix scan for `2024OSCAR` returns **no QR code bound to any of the 8 Black King `+ 047-3175-3223` currencies** — the pre-staged currencies have **`Serializable = TRUE`** but no QR row was found. **Verify/register the QR codes before submitting**, or the movement will have nothing to point at.
 
+> 🔴 **CORRECTED 2026-10-14 by §5.15 D.** The statement above is **wrong**: **2 of the 8** currencies *do* carry QR codes (**187** for the 8oz Ilhéus pouch, **209** for the Ceremonial AGL8 pouch) — the scan had tested only the **destination** (`+ AWB`) names and a `2024OSCAR` prefix, never the **origin** names. **6 of 8** still have none. See §5.15 D/E for the full picture and the AGL4-landing-page conflict.
+
 #### 5.15 ✅ Execution log — Units A-D closed (2026-10-14/15)
 
 **Unit A — col F pre-flight.** All 8 arrival currencies' `Currencies` col F corrected to point at `MAIN` per the §5.11 governor ruling (Ilhéus trio → `MAIN`, not `agl4`). Verified row-by-row on the live sheet.
@@ -796,6 +798,70 @@ Mechanism: pallets moved via a normal `[INVENTORY MOVEMENT]` (Matheus → Kirste
 - [ ] Substrate **and** derived view read independently before "done" (Step 10).
 
 ---
+
+#### 5.15 🔴 BOOKING STATE AUDIT — the movement is ALREADY PARTIALLY BOOKED. DO NOT RE-RUN IT. 🟢 NEW 2026-10-14
+
+> **Trigger:** resuming the plan, the next unit was “verify the QR prerequisite, then run the 8-line `[INVENTORY MOVEMENT]`”. **Auditing the live book state first — instead of running it — was the single most valuable action of this thread.** Read live from Main Ledger `offchain asset location` / `Agroverse QR codes` / `offchain assets in transit`, 2026-10-14.
+
+### 🔴 A. DO NOT submit the 8-line `[INVENTORY MOVEMENT]` as planned — 4 lines are already booked
+
+`offchain asset location`, holder **Kirsten Ritschel**, destination (`+ 047-3175-3223`) currencies:
+
+| # | Line | Register col C | **Booked @ Kirsten** | Verdict |
+|---|---|---|---|---|
+| 1 | `8 Ounce Package Kraft Pouch - Ilheus, Brazil 2024 + AWB` | 129 | **129** | ✅ **booked exact** |
+| 2 | `Cacao Mass Bar (500grams) - Ilheus, Brazil 2024 + AWB` | 37 | **37** | ✅ **booked exact** |
+| 3 | `Cacao Nibs (KG) - Ilheus, Brazil 2024 + AWB` | 80 | **4 @ Kirsten + 70 @ Val Lapidus = 74** | 🔴 **6 kg short** · **70 kg at the WRONG member** |
+| 4 | `Coopercabruca Cacao Butter (KG) + 047-3175-3223 - San Francisco` | 5 | **4.5** | 🔴 **0.5 kg short** |
+| 5 | `Cacao Almonds KG from Paulo's farm - AGL8 + AWB` | 10 | — | ⬜ **not booked** |
+| 6 | `Ceremonial … ‖ Ilheus - AGL8 + AWB` | 169 | — | ⬜ **not booked** |
+| 7 | `Cacao Nibs (Kilograms) Santos 20260213 - AGL13 + AWB` | 99,5 | — | ⬜ **not booked** |
+| 8 | `Cacao Tea (Kilograms) Santos 20260213 - AGL13 + AWB` | 21 | — | ⬜ **not booked** |
+
+**⇒ Submitting the full 8-line movement now would DOUBLE-BOOK lines 1–2 and over-book lines 3–4.** The correct next artefact is a **reconciliation / delta movement**, not the original movement.
+
+### 🔴 B. 70 kg of the Ilhéus nibs sits at **Val Lapidus**, not Kirsten
+
+```
+Cacao Nibs (KG) - Ilheus, Brazil 2024 + 047-3175-3223 - San Francisco
+    Kirsten Ritschel ....  4
+    Val Lapidus ......... 70      <-- 70 of the 80 kg are at the WRONG member
+```
+
+The currency is named `… - San Francisco` but is **split across two holders in different cities**, and **87.5 % of the nibs are at Val Lapidus**. This is **the same Kirsten ↔ Val Lapidus mis-attribution this register has already had to un-book once** (2026-10-10 note). It also **massively predates this shipment's arrival** — the register only flipped to `Arrived at Destination` in the last ~12h, so a 70 kg placement at Val cannot be the result of a delivery that hadn't happened.
+**Action (not executed — needs the governor's call):** confirm whether those 70 kg were ever physically at Val's, and if not, un-book them back to Kirsten. **No write performed.**
+
+### 🔴 C. The register Status is NO LONGER `In Transit`
+
+All **8 rows (21–28)** read **`Arrived at Destination`**, col R (`Ledger Name`) = **MAIN ×4 · AGL8 ×2 · AGL13 ×2** — confirming the governor's `MAIN` ruling is already reflected. **The “flip the 8 rows” step from §5.14's RESUME list is therefore already done** — they genuinely read `In Transit` earlier the same day; the flip happened in between.
+
+### ✅ D. CORRECTION to §5.14 — the QR claim was WRONG
+
+§5.14 recorded *“no QR code bound to any of the 8 Black King currencies”*. **That is incorrect and is hereby corrected:**
+
+| Currency | QR rows |
+|---|---|
+| `8 Ounce Package Kraft Pouch - Ilheus, Brazil 2024` | **187** (3 SOLD · 184 MINTED) |
+| `Ceremonial … ‖ Ilheus - AGL8` (long pipe name) | **209** (10 SOLD · 199 MINTED) |
+| the other **6** currencies | **0** |
+| *any* currency name containing AWB `047-3175-3223` | **0** |
+
+The earlier scan tested only the **destination** (`+ AWB`) names and a `2024OSCAR` prefix — it never tested the **origin** names, which is where the codes live. **2 of 8 are QR-licensed; 6 are not.**
+
+### 🔴 E. NEW CONFLICT — the QR codes still route to **AGL4**, the ledger the governor just ruled OUT
+
+```
+8 Ounce … Ilheus 2024   -> 127 x https://agroverse.shop/agl4
+                           60 x https://agroverse.shop/shipments/agl4
+Ceremonial … AGL8       -> 209 x https://agroverse.shop/agl8
+```
+
+**Not one of the 396 codes** points at `MAIN`. So §5.11's ruling (“Main ledger not AGL 4”) governs **where stock is booked**, but the **buyer-facing landing pages on 187 physical pouches still send the buyer to the closed AGL4 ledger page**. That is a **live customer-facing defect**, not just a data-hygiene issue. **Decision needed before any transformation repackaging emits new QR codes:** re-point the 8oz codes, or accept that BOOKING ledger ≠ QR landing ledger.
+
+### 🔴 F. Governing rule added
+
+> **Before submitting ANY `[INVENTORY MOVEMENT]`, read `offchain asset location` for the destination currencies at the destination member and compute the delta.** Never submit from the register's manifest alone — the register records *intent*, the book records *state*, and the two can already have diverged. *(Filed as a tooling gap in `OPEN_FOLLOWUPS.md` §Pending.)*
+
 
 ## 6. Hard rules & approval gates (checklist)
 
@@ -930,6 +996,7 @@ Profit booked at the Próspera layer (1% flat tax, ZEDE regime).
 | 2026-09-29 | **NF-e nº 16 recorded as issued** (22/09/2026, chave `2926…0035`, R$ 35.828,76) — reconciled line-by-line vs. Rev 12 (§5.3); DANFE archived to `brazil/sources/`. Flipped §1 *IE/SEFAZ-BA* and *NF-e issued* 🔴→✅, unblocked DU-E; noted the **blank TRANSPORTADOR/VOLUMES block** (the weights/qty/package-type gap); corrected the now-stale “no NF-e issued” wording in the Correction Letter + ordem de coleta generators (regenerated both PDFs). |
 | 2026-09-29 | **NF-e nº 16 XML archived + reconciled** (SeaCoast-requested; Gary, thread 10800) — signed/authorized XML saved to `brazil/sources/2026-09-22_black_king_nfe_16.xml`; line-by-line match vs Rev 12 PL (fiscal sum **344,00 kg** vs PL commercial 344,06 kg — 3-decimal TON rounding); confirmed the XML `<transp>` is **empty except `modFrete=1` (FOB)** — the same blank the ordem de coleta REV 3 fills. Notes: `brazil/sources/2026-09-22_black_king_nfe_16_xml_reconciliation.md`. |
 | 2026-10-15 | **§5.15 added — Units A-D execution log, landing/conversion of the Black King corridor CLOSED.** All 8 custody transfers + currency transformations landed and verified; a real duplicate-conversion error (99.5 kg AGL13 leg) was self-caught and reversed cleanly. Governor's Unit D directive (packaging expense-off + pallet transfer) executed against exact held-SKU counts (22/25 Reinforced, 2/2 + 2/2 Foam, 2/3 Plastic Pallet — 1 remains at Matheus's warehouse). **Incident:** the settlement handler broke `offchain asset location` to `#REF!` by writing directly into its array-formula spill range; governor cleared the stray cells, and the handler was fixed to append to the `offchain transactions` substrate instead (`agroverse-inventory#18`, redeployed live + used to correctly process the real settlement). Companion fixes: `agentic_ai_context#1624` (SOP), `dao_protocol#186` (comment). Two tooling gaps filed in `OPEN_FOLLOWUPS.md` (movement Quantity validator; conversion same-intent dedupe). |
+| 2026-10-14 | **§5.15 added — 🔴 BOOKING STATE AUDIT: the movement is ALREADY PARTIALLY BOOKED (do not re-run); 70 kg of nibs sit at Val Lapidus; register already flipped to Arrived; §5.14's QR claim CORRECTED; QR codes still route to the ruled-OUT AGL4.** Read live from `offchain asset location` / `Agroverse QR codes` / `offchain assets in transit`. |
 | 2026-10-14 | **§5.11 RULE CONFIRMED — governor ruling: Ilhéus trio → `MAIN`, not AGL4 (thread 10800).** |
 | 2026-10-14 | **§5.14 added — ARRIVAL CONFIRMED; custody gate CLOSED (governor, thread 10800).** iMessage screenshot `d72e9336c8b64726b8d8d9c57f0496bb.jpg`, re-read with **Grok vision** (auto-OCR 84.3% garbled the header). Contact **“Kirsten Ritschel”** (exact match to the register's Destination DAO member + the 1423 Hayes Fund Handler), **2:25 PM**, 4 truck thumbnails + a 0:16 video. **Verbatim:** *“He was so nice to actually load it into my garage. You can't tell shipping company, cause he'd get in trouble…”* ⇒ cargo **in the recipient's possession** = the named gate-closer ⇒ **arrival blocker cleared**; also resolves §5.13's indoor-space ambiguity (garage). Adds a **confidentiality note: DO NOT inform 5 Continent/carrier** (driver exceeded protocol as a favour), and carries forward 4 open caveats — **address (1423 Hayes vs 3041 Taraval)**, **un-done 27-box count**, condition, and screenshot-authenticity. Flags the **QR-code prerequisite** (no QR found yet for the 8 `+ 047-3175-3223` currencies). |
 | 2026-10-14 | **§5.13 added — second arrival photo (governor, thread 10800).** Image `03398d88316848ff8e3a87881be17660.jpg`, read with **Grok vision + zoomed crops** after OCR again correctly returned “no text” (photograph). Shows the cargo **indoors on a warehouse floor** — **2 pallets**, left = brown cartons in yellow wrap/green straps, right = **2 white insulated containers** (consistent with the box model’s thermic boxes); corroborates the AWB’s `02 pallets`; destination unproven (no address/receipt) ⇒ **gate stays open**. ⚠️ Warns that the **low-confidence handwritten `AGL8`/`AGL13`/`VAL` readings must NOT be used to infer a Val Lapidus destination**, and that box-level markings require a human eye before any goods receipt. |
