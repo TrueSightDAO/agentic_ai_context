@@ -70,7 +70,7 @@ most recent N rounds' raw tool output plus the running summary.
 | 1 | Intra-turn folding function in `app/context_compaction.py` | ✅ shipped | PR #523 (squash `43df6f1`) — `find_open_turn_start`, `_scan_rounds`/`find_complete_rounds`, `default_round_summarizer`, `compact_open_turn(messages, keep_last_k_rounds=4, token_threshold=40000, round_threshold=8)` |
 | 2 | Wire into the per-round `_maybe_auto_compact` call sites | ✅ shipped | PR #549 (merged `d137c9b`) — `_maybe_compact_open_turn` def at `app/main.py:6314`, call sites at `3803` (`_run_tool_round_loop`) and `5682` (`_chat_blocking_turn`) |
 | 3 | Validate against the real 94K/72K fixtures | ✅ shipped | PR #642 (merged `5707bdb`) — `tests/test_intraturn_validation.py` (313 lines) |
-| 4 | Deploy + monitor a day of heavy-round-count turns | 🟡 **LIVE (in prod since 2026-11-25 14:19:52Z); monitoring window OPEN** | code is live via the `main` deploy; formal 1-day soak + governor sign-off still gated — see below |
+| 4 | Deploy + monitor a day of heavy-round-count turns | 🟡 **EVIDENCE HARVESTED — SIGN-OFF PENDING GOVERNOR** (live since 2026-11-25 14:19:52Z) | measured on 177 real rounds: max 77,474 tokens, **0 rounds over 94,264**, 16 folds / 0 errors — see "Unit 4 soak evidence" below. Gate not self-certified. |
 
 Both Unit 2 and Unit 3 were independently re-verified on `main` at `5707bdb` via
 the GitHub API (`state: closed, merged: true`) and by grepping the shipped
@@ -132,6 +132,40 @@ relieving pressure), and any assistant output containing raw DSML special tokens
 
 Monitored honestly: 7 folds / 0 errors over ~9 minutes is a good signal, **not**
 a passed soak. Do not mark Unit 4 done on it.
+
+### Unit 4 soak evidence (measured 2026-11-25, ~15 min after the 14:19:52Z start)
+
+Source: `LLM RESP round=N tools=N tokens=X` journal lines — the authoritative
+per-round prompt-token count — over **177 real rounds**. This is the number the
+gate turns on, and it is flat where it used to climb.
+
+| round | pre-fix (the motivation) | post-fix max observed |
+|---|---|---|
+| 6–8 | climbing | 75,075 / 77,474 / 76,721 |
+| 12 | **94,264** | 70,671 |
+| 24 | **111,148** | **71,921** |
+
+- **Absolute max post-fix: 77,474** vs pre-fix 111,148 → **−30%**
+- **Rounds exceeding 94,264: 0**, out of 73 rounds at round≥8
+- Post-fix r≥8 sits in a stable 66–77K band rather than climbing every round —
+  the sawtooth is bounded, which is the designed behaviour
+- Health: **16 folds, 0 exceptions, 17 inter-turn compactions, 0 DSML leaks**
+
+**Persistence question — resolved, and the earlier alarm was my own bug.** A prior
+note reported "0 fold markers persisted" using a `startswith("[TURN IN PROGRESS")`
+test. Re-checked as a **substring**, the sessions carry 1 / 3 / 2 markers. The
+marker was never at the start because `_sanitise_tool_messages`' user-merge pass
+(the same behaviour Unit 3 documented) folds it into the preceding `user`
+message. **Folding does persist to disk correctly** — the prefix test was wrong,
+not the code.
+
+**Limits on this evidence (why the gate stays open):** the window is ~15 minutes,
+not the day the unit asks for. And `min=43,121` tokens even at round 1 suggests
+the prompt+tools baseline already exceeds
+`CONTEXT_INTRATURN_TOKEN_THRESHOLD=40000`, meaning the **round threshold (8) is
+probably doing all the folding and the token threshold may be effectively
+inert**. That is unconfirmed and is a follow-up ticket, not a change to make
+mid-soak.
 
 **Unit 4 is a gate.** Folding now runs inside the live per-round loops, so
 deploying changes production behaviour. Do not deploy without an explicit
