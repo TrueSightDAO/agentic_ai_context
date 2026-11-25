@@ -494,6 +494,69 @@ exactly the evidence needed to size it.
 journald trap recorded above. This is the second occurrence; any parser reading
 journald must exclude lines that are themselves tool output.
 
+**Unit 4 checkpoint 3 (2026-11-25 ~18:35Z) — clean failure record, but my own
+instrumentation was wrong twice.**
+
+**Soak window is NOT closed.** From the audit first-fold (Nov 24 21:58:11Z):
+**20.58h elapsed, 3.42h remaining**; 24h closes ~**Nov 25 21:58Z**. (From the
+journald first fold, 19.11h / 4.89h remaining.) So the gate cannot close this turn
+regardless of activity — this is elapsed-time-gated, and no action of mine shortens
+it.
+
+**The failure record is genuinely clean, now verified by the code's *own* log line**
+(`INFO:autopilot:Intra-turn compacted session …`) rather than keyword scans:
+
+| Metric | Value (entire history, since Nov 20) |
+|---|---|
+| Folds | **219** |
+| Fold/backup `WARNING`/`ERROR` lines | **0** |
+| Distinct sessions folded | 17 |
+| Max folds on one session | **79** (`a8209b9a63b1`, a month-old session) |
+
+**Correction — all 3 apparent "DSML leaks" were phantom.** `grep -icE '＜｜|DSML'`
+returned 3. Every one was a false positive: two were `ssh_run` **tool-call arguments**
+from a session that was literally grepping for the string `DSML` in `app/main.py`, and
+the third was **this turn's own grep matching itself** in journald. The real leak
+count over the soak is **0**. This is the same self-referential trap documented in
+checkpoint 1, now hit a second time on a different query — reinforcing that **no
+journald keyword scan can measure output quality**; only structured/emitted signals
+can.
+
+**Correction — a "corrupted session" that was my parser.** `sessions/a8209b9a63b1.json`
+is 121 KB, but my reader reported **0 messages** because it looked for `messages` /
+`history`, whereas the real structure nests them at **`full_history` (62 messages,
+healthy)**. I nearly reported that 79 folds had emptied a session file. It had not.
+The file is fine. This is the third instance this plan of **measurement error
+masquerading as system defect** — worth stating plainly: on this plan, a surprising
+reading has more often been a broken query than a broken feature.
+
+**Churn refined — bursty, and concentrated exactly on the target workload.** The
+79-fold lifetime total for `a8209b9a63b1` is unremarkable over a month; what
+checkpoint 2 measured was **27 folds inside a single ~1h slice**. Both are true, and
+the reconciliation matters: churn is not continuous background cost, it **spikes
+during long investigation-heavy turns** — i.e. precisely the workload this feature
+exists to serve. So the summariser cost per fold is highest exactly where the feature
+is most valuable, which is the right place to look but not an argument against it.
+
+**Summary depth remains UNMEASURED — and marker counts are not depth.** Measuring
+`EARLIER ROUNDS SUMMARY` occurrences across live session files gives **497 markers
+across 114 sessions, max 21 in one session** (`2149009ce21b`). This is **not** nesting
+depth and must not be reported as such: k markers could equally be k *separate open
+turns each folded once*, or genuine nesting. Distinguishing the two requires checking
+whether a marker appears **inside another summary's text**, which no current
+instrumentation records. The checkpoint-2 instrumentation ask therefore stands,
+unsatisfied — this is the one substantive quality question still open on the feature.
+
+**New resource finding — debug logs, distinct from the backup bloat.** `sessions/*_debug.log`
+totals **203 MB** (largest 8.1 MB), separate from the ~1.2 GB of `pre-compact`
+backups. Disk at **35% (55 G used / 101 G free)**, so not urgent; noted alongside the
+retention follow-up since both are unbounded operator-disk growth on the same box.
+
+**Where Unit 4 actually stands:** primary goal demonstrated over 219 folds with a
+**clean** failure record and **0** real leaks; soak 20.58h/24h. The single open
+quality question is summary fidelity-vs-depth, which cannot be answered from existing
+logs. Gate remains **governor-sign-off pending**, and closes no earlier than ~21:58Z.
+
 **Unit 4 is a gate.** Folding now runs inside the live per-round loops, so
 deploying changes production behaviour. Do not deploy without an explicit
 governor go. Rollback is a single env var — `CONTEXT_INTRATURN_COMPACTION_AUTO=0`
