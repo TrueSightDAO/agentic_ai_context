@@ -39,6 +39,39 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Tickets owed by an external human never get the `blocked-on-human` label — so the suppression that already exists never engages, and they nudge forever
+
+**Priority:** MEDIUM · **Filed:** 2026-11-26 · **Component:** ticket-creation convention (the classifier itself is **correct**) · **Governor:** Gary
+
+**Not a duplicate of either entry below.** Both of those are about `pr_evidence()` being blind to PRs that *do* exist. This one is the opposite case: tickets that will **never** have a PR, and a label that was simply never applied.
+
+**Symptom.** Three identical `Loop needs a nudge` alerts on **KAN-81** (15h → 16h) and two on **KAN-82**, each reading `State: jira_stale · Why: in progress with no status change; needs a follow-up (no PR linked)`. Each cost an agent turn to re-diagnose already-understood work.
+
+**Root cause — checked in code before filing, and the classifier is NOT at fault.** `app/jira_loop.py:664` already skips labelled tickets for the **entire** sweep, not just the auto-advance path:
+
+```python
+if BLOCKED_LABEL in _label_names(issue):
+    # A blocked ticket is awaiting a governor decision; nagging about it
+    # daily trains humans to ignore the channel.
+    out.skipped.append(f"{key}: {BLOCKED_LABEL}")
+    continue          # <-- before BOTH the in_review and jira_stale branches
+```
+
+`BLOCKED_LABEL = "blocked-on-human"` (`jira_loop.py:62`), and the guard sits **above** line 714's `STATE_JIRA_STALE` emission, so labelling suppresses the stale nudge as well as the auto-move. **The mechanism works and needs no code change.**
+
+**The actual defect is label hygiene at ticket creation.** KAN-81/82 are `OWED BY: Elizabeth Wong (ewong@gogreatop.com)` — a human brand/visual design deliverable (logo/wordmark, colour, typography, applied examples). They were bulk-created 2026-11-25 with a single "Assigning to you as In Progress" comment and **no labels**. Sibling tickets in the same owed-by-a-human class — KAN-15, 16, 19, 20, 23 — *do* carry `blocked-on-human`. So the convention exists and is applied inconsistently, not absent.
+
+**Why it matters beyond two tickets.** A brand/design deliverable is **not PR-shaped**. No amount of shipped work will ever add a GitHub link to it, so these tickets are structurally evidence-less. They will nudge until someone labels them or closes them — and the code comment above says exactly what that does: *"nagging about it daily trains humans to ignore the channel."*
+
+**CORRECTION to the entry below (line ~1372).** That entry lists **KAN-82 and KAN-81** among the 25 tickets that "cannot clear their nudge regardless of shipped work" because of `pr_evidence()` never reading comments. **Fixing `pr_evidence()` will not clear these two** — merging `truesight_autopilot#646` and backfilling the 25 remotelinks leaves KAN-81/82 nudging, because they have no PR to link. Someone working that entry should not expect them to go quiet; they need the label instead. The blast radius count of 25 is right, but these two are in it for a different reason.
+
+**Fix.**
+1. **Operational (immediate, governor-gated — a Jira write):** apply `blocked-on-human` to **KAN-81** and **KAN-82**. Nothing else; no code deploy needed.
+2. **Convention:** at ticket creation, any ticket whose deliverable is owed by an **external person** gets `blocked-on-human` in the same motion — a checklist line in the ticket-creation SOP, next to the `Thread URL:` requirement the SOP already writes into descriptions.
+3. Optional audit: list `In Progress` tickets with **no** `pr_evidence` **and** no `blocked-on-human`, since that combination is the exact shape that nags forever. This is a read-only report, safe to run on every sweep.
+
+**Acceptance criteria.** Labelling KAN-81/82 stops the `loop:alert:{key}:jira_stale` nudges at the next sweep without any deploy; a newly-created owed-by-a-human ticket arrives already labelled; no `In Progress` ticket can sit both PR-evidence-less and unlabelled without appearing on an audit report.
+
 ### `jira_stale` loop nudge fires on already-fixed tickets — merged fix is not deployed, and the merge gate misreads green CI as "failing-or-pending"
 
 **Priority:** HIGH (burns a full agent turn per hour) · **Filed:** 2026-11-26 · **Component:** `app/jira_loop.py`, `app/github_client.py`, `scripts/deploy.sh`
