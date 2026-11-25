@@ -3900,6 +3900,13 @@ re-pings don't spam empty commits). **Done: tokenomics#494 (open).** Then GAS `c
 
 **Filed 2026-09-15. Owner: UNCLAIMED — root cause routed to Gary (real person's governor-role data). Governor: Gary (thread 30471).**
 
+**DATA HALF RESOLVED 2026-11-23 (Gary, governor session).** Confirmed: **Elizabeth Wong IS a governor.**
+Therefore `dao_members.json`'s `["governor","member"]` is the **correct** side and her per-key file's
+`["member"]` is the **stale** side. Remaining work is the **CODE half only** (restore the per-key emitter
+dropped by `50999ec`; tokenomics PR #494), after which her file regenerates correctly on its own. Note the
+upgrade in severity: with step 2 live, a *real* governor was being denied governor-gated DApp actions —
+this is a live functional defect, not merely ambiguous data.
+
 **Context.** Found during PR5 step-3/UAT U1 verification. PR5 step 2 makes the DApp `permissions.js` resolve a signed-in RSA via
 `treasury-cache/public_keys/<sha256(base64pubkey)>.json` and treat that file's `roles[]` as authoritative when `status=ACTIVE`.
 Diffing every ACTIVE per-key file against the monolith `dao_members.json`: **exactly one role mismatch — Elizabeth Wong.** Her file says
