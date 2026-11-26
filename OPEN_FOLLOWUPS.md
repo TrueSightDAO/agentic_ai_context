@@ -7166,6 +7166,15 @@ Probed **without executing any script** — no `curl -L`, so a redirect returns 
 
 ## Recently shipped
 
+### `link_pr_in_comment` wrote comments but `pr_evidence` only read remotelinks — every linked PR still nudged "(no PR linked)" — SHIPPED 2026-11-26
+**Shipped 2026-11-26. Governor thread: Telegram `10800` (KAN-69 Brazil → SF freight lane). PR: `truesight_autopilot` #646 (merged `bf691450`).**
+
+`app/jira_loop.py:324` `pr_evidence()` builds the `jira_stale` evidence list from **only** three sources: the issue **description**, **`/rest/api/3/issue/{key}/remotelink`**, and GitHub **dev-status** PRs. It **never reads comments**. But `link_pr_in_comment` — the documented way for an agent to record a PR — wrote **only a comment**, while its read-twin `list_pr_links` *does* scan comments. So the write and the read lived in **different stores**: an agent that linked a PR exactly as intended left `pr_evidence == []`, and the loop reported `(no PR linked)` **forever** on fully shipped work. Cost: ~20 hours of hourly nudges on **KAN-69**, whose lane had already closed (Units A–D, runbook §5.15).
+
+The fix posts the comment **first** (ordering unchanged, keeping `test_link_pr_in_comment_posts_inline_cards` green) and then creates one `POST …/remotelink` per extracted PR URL; a remotelink failure is logged and swallowed so it can never fail the comment, and the response gains `remotelinks_created`. Two new tests; all four local gates green (73 passed). Mitigation on KAN-69 itself: 4 real remote links written directly (#1906/#1907/#1909/#1624) and `pr_evidence()` re-run live to confirm the alert condition cleared.
+
+**Blast radius (measured):** across `project=KAN AND status="In Progress" AND assignee="admin+sophia"`, **11 of 12** tickets — KAN-30/67/54/51/49/45/43/34/27/22/21 — carry **zero** PR remotelinks and are queued to emit the same false nudge; only KAN-69 is healthy, and only because it was mitigated by hand. The `lost_goal` half of the nudge was **not** re-filed — it is already root-caused at lines 1067 / 1123 / 1187 / 1240. **Outstanding:** KAN-69 still `In Progress` ("no status change" is now the only remaining clause); the 11 bare tickets need real PR links or a status decision; and the fix is on `main` but **not yet deployed** — the running box is on `feat/kan84-quarantine-rejected-master`.
+
 ### Currency conversion tooling: live currencies.json publish hardening — SHIPPED 2026-10-14
 **Shipped 2026-10-14. Governor thread: Discord `#currency-conversion`. PR: `truesight_autopilot` #533.**
 
