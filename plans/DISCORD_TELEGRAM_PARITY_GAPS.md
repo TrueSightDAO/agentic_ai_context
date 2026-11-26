@@ -62,3 +62,22 @@ function-by-function on 2026-09-14. Discord already has: mention-gate, governor 
 
 One PR per turn, same convention as every other roadmap this session — work down the list in
 priority order, Tier 1 first. Each item should get its own PR/turn rather than one giant change.
+
+## Shipped since the 2026-09-14 diff
+
+**Reply context** — *third occurrence of the "reply relationship is lost before it reaches the LLM" bug class* (Telegram 2026-09-24 ×2; Discord 2026-11-26), the case that motivated this file. Fixed by **PR #655** (port) and **PR #656** (reconciliation).
+
+Shape difference worth remembering, because it is the whole reason the port was cheap and the port that broke:
+
+- Telegram: `reply_to_message`, with `date` as a **unix int**.
+- Discord: `referenced_message`, arriving **inline** in `MESSAGE_CREATE` (no extra API call), with `timestamp` as **ISO-8601** — so the Telegram `_format_reply_time` helper cannot be reused verbatim, and `_format_discord_reply_time` exists for that reason.
+- Discord sends `referenced_message: null` (not absent) when the replied-to message was **deleted**; `message_reference` is still present. Handle it explicitly — treating `null` as "not a reply" silently drops the relationship, i.e. resurrects the original bug on that edge.
+
+Two edge cases the first port missed, both caught only by reading a **live uncommitted hot-patch** (see the deploy-drift follow-up in `OPEN_FOLLOWUPS.md`):
+
+1. **Voice replies.** Composing the prefix into `prompt`, then later doing `prompt = transcript`, discards it. A voice reply to an earlier message gets answered as if the transcript referred to the newest topic.
+2. **Deleted origin.** As above.
+
+The prefix is composed **only** into the dispatched prompt, never into `raw`/`text`, because `is_mention(raw, bot_id)` decides whether a `member` is dispatched at all — folding context into `raw` would let a member earn dispatch rights by replying to a message that merely *quotes* the bot.
+
+Known limitation (filed in `OPEN_FOLLOWUPS.md`): one hop only — a reply-to-a-reply has no chain, unlike Telegram.

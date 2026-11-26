@@ -39,6 +39,43 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Deploy-tree drift: uncommitted hot-patches on `/opt/truesight_autopilot` are invisible to git and silently destroyed by a naive deploy
+
+**Priority:** HIGH · **Filed:** 2026-11-26 · **Component:** `truesight_autopilot` deploy procedure · **Governor:** Gary
+
+**Found during:** KAN-54 Discord reply-context work (PR #655 → reconciliation PR #656).
+
+**Symptom.** Writing up the KAN-54 record, I checked the deploy tree and found `app/discord_adapter.py` **modified and uncommitted** (mtime 07:19:01 UTC), with the gateway service started 07:21:49 UTC — i.e. a hot-patch applied straight to the running tree and then loaded. `HEAD` there was still the pre-merge `5f84ecf`. That second implementation **exists nowhere in git**. `git status` on the tree:
+
+```
+ M app/discord_adapter.py
+ M config/nginx/sophia.conf
+ M data/active_tracks.json
+ M tests/test_discord_adapter.py
+```
+
+**Why it matters.** Three concrete harms, all observed or narrowly avoided:
+
+1. **A hot-patch can contain genuinely better code than what was merged.** This one did: it composed reply context into the *voice* path (`prompt = reply_ctx + transcript if reply_ctx else transcript`) and surfaced a deleted reply origin. Merged `#655` did neither, so "the fix is on `main`" and "the fix is live" described **two different behaviours** — and `main`'s was worse on two edges.
+2. **A deploy from `main` silently regresses live behaviour.** Deploying before the reconciliation would have reverted the governor-facing fix with no error, no failing test, no log line.
+3. **Uncommitted tests never run in CI.** The hot-patch's test edits were uncommitted too, so CI green on `main` said nothing about the code actually serving traffic.
+
+The immediate instance is resolved (reconciled into a tested superset, PR #656). The **process** gap is not.
+
+**Proposed fix.** Cheap detection first: a startup/health assertion that `git status --porcelain` on the deploy tree is empty (or that `HEAD` matches the deployed ref), surfaced as a warning on the autopilot dashboard and in the deploy notification. Longer term: make hot-patching structurally impossible — deploys only via checkout of a known sha, with the running sha reported in `/health` and compared against `main`. Either way, the invariant to enforce is: **code serving traffic is code that is in git, at a known sha.**
+
+---
+
+### Discord reply context is one level deep — a reply-to-a-reply surfaces no chain
+
+**Priority:** LOW · **Filed:** 2026-11-26 · **Component:** `truesight_autopilot/app/discord_adapter.py` (`_reply_context_prefix`) · **Governor:** Gary
+
+**Found during:** KAN-54, after reconciling PR #655 with the live hot-patch (PR #656).
+
+**Symptom.** Discord's `MESSAGE_CREATE` carries only the *immediately* referenced message in `referenced_message` — there is no nested `referenced_message` on it. So if a governor replies to a bot message and the bot then answers, and the governor replies to *that*, the model sees one hop of context, not the conversation spine. Telegram's equivalent path assembles a fuller chain, so the two platforms give the model different amounts of context for the same conversational shape. **Not a regression** — also true of #655 — and consistent with `referenced_message` arriving inline with no extra API call, which is what made the one-hop fix cheap.
+
+**Proposed fix.** Follow `message_reference.message_id` with a bounded depth (2–3 hops, hard cap on total chars) via `GET /channels/{ch}/messages/{id}`, degrading to the current one-hop behaviour on any error or permission failure. Worth doing only if a reply-to-a-reply misread is actually observed in the wild — each hop costs an API call per reply. Filing so it isn't rediscovered as a fourth occurrence of the "reply context lost" bug class (Telegram 2026-09-24, Telegram follow-up, Discord 2026-11-26).
+
 ### Intra-turn compaction: fold/soak evidence lives only in journald, and journald retention is now SHORTER than a 24h soak — so a long soak silently destroys its own evidence
 
 **Priority:** MEDIUM · **Filed:** 2026-11-26 · **Component:** `truesight_autopilot` (`_maybe_compact_open_turn` instrumentation) · **Governor:** Gary
