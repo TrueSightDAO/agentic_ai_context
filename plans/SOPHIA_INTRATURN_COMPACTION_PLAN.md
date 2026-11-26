@@ -108,6 +108,17 @@ follow-up (separate unit, code change in `truesight_autopilot`): emit fold count
 to a durable sink (file / repo) so soak evidence outlives log rotation. Until then,
 any long soak must be measured *continuously* or it silently loses its own evidence.
 
+> **Correction (2026-11-26 00:31Z):** the baseline *"first fold Nov 24 21:58:11Z"*
+> quoted above **cannot be re-derived** — journald rotated past it, and there are
+> **0** fold lines at `Nov 24 21:5x` in the retained journal. The earliest fold still
+> retained at 2026-11-26 00:31Z was **Nov 24 23:25:58Z**, placing the day mark at
+> **Nov 25 23:25:58Z** (met, 1h05m earlier than the quoted one). Both baselines
+> exceed the ≥24h requirement, so the packet's *conclusion* is unchanged — but the
+> quoted timestamp should not be cited as verifiable evidence. Re-run at 00:31Z
+> (25h05m elapsed) returned **211 strict folds, 2,122 rounds, max 81,943 tokens,
+> 0 rounds >94,264, band 70.1→68.4 (trend −1.8, flat), 0 failures / 0 tracebacks
+> / 0 WARNING** — consistent with, and slightly stronger than, the packet above.
+
 **Why the feature itself is still established:** every retained fold across 22.6h
 shows a flat before-count distribution (max 99, zero above 100, slight *downward*
 trend), zero failures, and zero restarts — on the same live process. The pathology
@@ -123,6 +134,17 @@ judgement is Gary's. Unit 4 flips to ✅ on governor sign-off, not on my reading
 - Gary replies **"durable metrics"** → open the fold-counter sink unit above.
 - Gary replies **"cap summaries"** → open the (low-priority) constant-space unit
   (≈6% observed ceiling, self-resets at turn boundaries — see checkpoint 5).
+
+**An automated auto-advance nudge or loop-alert is NOT one of these triggers.**
+Messages of the form *"Loop needs a nudge — goal left open, nothing running"*,
+*"thread went quiet"*, or *"idle for Nh"* fire on idle time and Jira staleness and
+carry **no governor instruction**. All three resume conditions above are a *direct
+governor message*. Observed behaviour 2026-11-26: after the thread goal was
+dismissed, loop-alerts still arrived at 21h / 22h / 23h / 25h idle and were each
+correctly declined. Note the separation of concerns: the **clock** condition (≥24h)
+was independently satisfied at 2026-11-25 23:25:58Z, but **satisfying a clock is not
+the same as satisfying a gate whose second half is explicitly a human judgement** —
+so a clock-met state still does not authorize a self-certification.
 
 **Do NOT** re-run the soak metrics, re-count folds, or open a checkpoint PR merely
 because this plan is named as the resume target — that is what happened seven times.
