@@ -200,6 +200,47 @@ Board inventory is a **snapshot**, not a constant — re-read it, do not quote t
 
 ---
 
+## 10. Silencing a `jira_stale` loop nudge — `blocked-on-human`
+
+**The problem this solves.** `loop_daemon` sweeps watched tickets (`WATCHED_STATUSES = ("In Progress", "In Review")`, `app/jira_loop.py:57`) and emits a *"Loop needs a nudge — goal left open, nothing running"* Telegram message for a ticket that is *"in progress with no status change"*.
+
+That message is **literally accurate and still wrong.** It fires on *status-transition age*, not on work age. A ticket whose deliverable is finished but which nobody has transitioned yet will nag **hourly, forever** — there is no expiry. The trap: the human-readable fix is "move the ticket", which is a governor decision, so an agent that cannot transition is stuck re-asking indefinitely.
+
+**The cure — a label, not a status change.** `app/jira_loop.py:664` skips any ticket labelled `blocked-on-human`, and the code comment states the rationale:
+
+> *"A blocked ticket is awaiting a human, not the agent — do not nudge it."*
+
+**To silence a stale nudge:**
+
+```
+jira_query(action="update_issue", issue_key="KAN-69", add_label="blocked-on-human")
+```
+
+**Verify it actually suppressed rather than assuming** — run the sweep in dry-run and confirm the ticket lands in `skipped`, not `planned`:
+
+```python
+from app import jira_loop as J
+issues = J.search_watched()
+sw = J.plan(issues, dry_run=True)
+print([s for s in sw.skipped if "KAN-69" in s])   # -> ['KAN-69: blocked-on-human']
+print(any(a.session_id == "KAN-69" for a in sw.planned))   # -> False
+```
+
+`plan(issues, dry_run=True)` sets `dry_run` as an **attribute**, not a kwarg (`app/jira_loop.py:618`).
+
+**Use `blocked-on-human` when** the remaining work is genuinely a human decision (a status change, an approval, a fiscal call). **Do NOT use it** to silence a nudge about work the agent still owes — that converts a true alarm into a permanently silent ticket, which is worse than the noise. It is a *routing* label ("awaiting a human"), not a mute button.
+
+**Two other false-nudge classes worth knowing:**
+
+| Symptom in the nudge | Real cause | Where |
+|---|---|---|
+| `(no PR linked)` when PRs exist | `pr_evidence()` never read comments — only description, `/remotelink`, dev-status, while `link_pr_in_comment` wrote **only a comment** | fixed `truesight_autopilot` #646; see `OPEN_FOLLOWUPS.md` → Recently shipped |
+| `goal left open` on finished work | `lost_goal` fires while a goal has no terminal (`completed`/`dismissed`) event — goals never age out | `app/thread_goal.py:42-47`; root-caused in `OPEN_FOLLOWUPS.md` |
+
+**Verified live 2026-11-26** on the autopilot box: KAN-69 labelled `blocked-on-human` → sweep `dry_run` reported `KAN-69: blocked-on-human` in `skipped` and **excluded it from `planned`**. With the label removed, the same sweep planned it for a nudge — so the label is the causal switch, not a coincidence.
+
+---
+
 ## 10. Thread URL — MANDATORY on every ticket (Gary, 2026-11-25)
 
 > **Amended 2026-11-25 — see §13.** The description URL is now the *primary* routing
