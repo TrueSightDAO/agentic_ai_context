@@ -74,7 +74,51 @@ errors and two of my own wrong claims — but by checkpoint 5 the marginal retur
 zero: **0 new folds in the preceding 5 minutes, 0 errors, band flat.** Further
 checkpoints would be re-measuring a settled result.
 
-**✅ CLOCK HAS CLOSED — monitoring half COMPLETE. Only governor sign-off remains.**
+**✅✅ UNIT 4 COMPLETE — GATE SIGNED OFF BY GOVERNOR GARY TEH, 2026-11-26.**
+**PLAN COMPLETE: Units 0–4 all done.** Governor message in topic 29305: **"sign off"**.
+
+**Never self-certified.** The gate was signed by the governor, on the packet below plus
+the independent 00:31Z re-run, *not* by me. That distinction is the whole point of a gate.
+
+**Final evidence set (two independent measurements, both exceed the ≥24h requirement):**
+
+| Metric | Packet (23:35Z, 25.54h) | Re-run (00:31Z, 25h05m) |
+|---|---|---|
+| Strict (echo-free folds) | 204 | **211** |
+| Rounds | — | 2,122 |
+| Max tokens in a single turn | — | **81,943** |
+| Rounds over 94,264 tokens | 0 | **0** |
+| Before-count max | 99 | — |
+| Band (Q1 → Q4) | 69.6 → 67.6 (trend −2.0) | 70.1 → 68.4 (trend −1.8) |
+| Failures / tracebacks / WARNING | 0 / 0 / 0 | **0 / 0 / 0** |
+| `NRestarts` | 0 | 0 |
+
+**The pathology that motivated this plan does not recur.** Baseline single open turns
+reached **94,264 @ r12, 76,998 @ r24, 111,148 @ r24** tokens. Across 25h of live
+production, the worst observed single turn was **81,943 tokens** — *below the old
+mean*, with **zero** rounds over 94,264 and a **flat-to-declining** fold band.
+
+**Baseline integrity caveat (credit: PR #1935, a concurrent turn):** the originally
+quoted *"first fold Nov 24 21:58:11Z"* **cannot be re-derived** — journald rotated
+past it. The earliest *retained* fold was **Nov 24 23:25:58Z**, placing the day mark at
+**Nov 25 23:25:58Z**. Both baselines exceed ≥24h, so the conclusion is unchanged; the
+21:58:11Z figure should not be cited as verifiable evidence. This correction is
+recorded rather than quietly fixed because the gate was signed partly on my reading.
+
+**Known limitations carried forward (neither blocks completion):**
+1. **No live replay proof a folded turn still completes** — Unit-0 fixtures record
+   `content` but not `reasoning_content`; an A/B showed identical failures folded and
+   unfolded, proving a fixture-fidelity gap rather than a compaction defect. The 25h
+   soak is the empirical substitute, and it held.
+2. **Summary region is not constant-space in fold count** — flat summaries
+   accumulate ~5,500 chars each; observed worst case **5 summaries / 23,542 chars
+   (≈5.9K tokens ≈ 6%** of the pathology), and it **resets at turn boundaries**.
+   Low priority; see OPEN_FOLLOWUPS.md.
+
+**Question that would reopen this:** a single open turn observed **>94,264 tokens** after
+the fold, or repeated folding of one session without pressure relief.
+
+
 
 **Final acceptance packet (2026-11-25 23:35Z, 25.54h since the first fold at
 Nov 24 21:58:11Z). The 24h soak-duration requirement is MET.**
@@ -155,7 +199,7 @@ because this plan is named as the resume target — that is what happened seven 
 | 1 | Intra-turn folding function in `app/context_compaction.py` | ✅ shipped | PR #523 (squash `43df6f1`) — `find_open_turn_start`, `_scan_rounds`/`find_complete_rounds`, `default_round_summarizer`, `compact_open_turn(messages, keep_last_k_rounds=4, token_threshold=40000, round_threshold=8)` |
 | 2 | Wire into the per-round `_maybe_auto_compact` call sites | ✅ shipped | PR #549 (merged `d137c9b`) — `_maybe_compact_open_turn` def at `app/main.py:6314`, call sites at `3803` (`_run_tool_round_loop`) and `5682` (`_chat_blocking_turn`) |
 | 3 | Validate against the real 94K/72K fixtures | ✅ shipped | PR #642 (merged `5707bdb`) — `tests/test_intraturn_validation.py` (313 lines) |
-| 4 | Deploy + monitor a day of heavy-round-count turns | 🟢 **MONITORING COMPLETE — GOVERNOR SIGN-OFF PENDING** (live since 2026-11-25 14:19:52Z) | **25.54h elapsed** (1-day requirement MET); **204 strict folds** over the 22.6h retained window, before-count mean 69.5 / **max 99** / **0 folds >100**, trend **−2.0 (flat)**, **0 WARNING/ERROR**, `NRestarts=0`. Caveat: journald rotated past Nov 25 00:17Z mid-soak (219→204 is retention, not loss) — durable-metrics follow-up filed. Gate **not** self-certified. |
+| 4 | Deploy + monitor a day of heavy-round-count turns | ✅ **COMPLETE — governor signed off 2026-11-26** | **25.5h+ live soak**, two independent measurements: **204** strict folds @23:35Z and **211** @00:31Z (25h05m), 2,122 rounds, **max 81,943 tokens**, **0 rounds >94,264**, band 70.1→68.4 (flat), **0 failures / 0 tracebacks / 0 WARNING**, `NRestarts=0`. Baseline 94,264 / 111,148 tokens does not recur. Signed by governor, **not** self-certified. |
 
 Both Unit 2 and Unit 3 were independently re-verified on `main` at `5707bdb` via
 the GitHub API (`state: closed, merged: true`) and by grepping the shipped
