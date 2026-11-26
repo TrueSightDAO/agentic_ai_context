@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-11-25T21:55:26Z`
-- Look-back: **7** calendar days (`2026-11-18` → today UTC)
+- Generated (UTC): `2026-11-26T08:44:41Z`
+- Look-back: **7** calendar days (`2026-11-19` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -32,14 +32,13 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Event-type rollup
 
-- `[CONTRIBUTION EVENT]` × 29
-- `[PRACTICE EVENT]` × 8
+- `[CONTRIBUTION EVENT]` × 30
+- `[PRACTICE EVENT]` × 7
 - `[EMAIL REGISTERED EVENT]` × 4
 - `[ASSET RECEIPT EVENT]` × 1
 
 ### Latest entries
 
-- `Edgar_20261124113635_3830` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Asian Financial Forum 2027 speaker profile for Gary Teh — v2 through v12, pl…
 - `Edgar_20261124113637_3832` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 64 · Description: Asian Financial Forum 2027 speaker profile for Gary Teh — direction, review …
 - `Edgar_20261124114228_3834` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 180 · Contributor(s): Gary Teh
 - `Edgar_20261124114233_3836` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 0 · Contributor(s): Sophia Truesight
@@ -59,6 +58,7 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20261125091011_3864` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Contributor access onboarding — Jira account provisioning + contributors she…
 - `Edgar_20261125091013_3866` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 30 · Description: Directed contributor access onboarding (Peter Da) — spec, credential routing…
 - `Edgar_20261125163419_3868` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-25T16:34:18.170Z · Program: truesight-grounding · Practice Type: oracle-consultation
+- `Edgar_20261126064936_3870` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 24 · Contributor(s): Sophia Truesight (admin+sophia@truesight.me); Gary Teh
 
 ---
 
@@ -234,9 +234,9 @@ _(+34 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$1,549.82**
+- USD on hand: **$1,549.75**
 - Brazilian Reis: R$-1,385.00 · rate `0.2323` USD/BRL → ≈ **$-321.74**
-- USD provisioned for voting-rights cash-out: **$59.47**
+- USD provisioned for voting-rights cash-out: **$59.54**
 
 ### In-transit freight (0 rows)
 
@@ -251,7 +251,7 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_(No `YYYY-MM-DD |` lines on/after 2026-11-18 in CONTEXT_UPDATES.md.)_
+_(No `YYYY-MM-DD |` lines on/after 2026-11-19 in CONTEXT_UPDATES.md.)_
 
 ---
 
@@ -270,6 +270,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-11-18 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+5325059 | 2026-11-25 21:56:26 +0000 | chore(stats): refresh stats indexes [skip ci]
 7bf9d10 | 2026-11-25 09:01:23 +0000 | chore(stats): refresh stats indexes [skip ci]
 975aeb9 | 2026-11-24 22:42:54 +0000 | chore(stats): refresh stats indexes [skip ci]
 cef6637 | 2026-11-24 10:20:09 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -283,8 +284,6 @@ cb78208 | 2026-11-21 07:38:11 +0000 | chore(stats): refresh stats indexes [skip 
 dab09c2 | 2026-11-20 07:40:43 +0000 | chore(stats): refresh stats indexes [skip ci]
 4f91eb4 | 2026-11-19 20:55:23 +0000 | chore(stats): refresh stats indexes [skip ci]
 268f4f9 | 2026-11-19 07:49:24 +0000 | chore(stats): refresh stats indexes [skip ci]
-386d962 | 2026-11-18 20:51:02 +0000 | chore(stats): refresh stats indexes [skip ci]
-25b2c1a | 2026-11-18 07:52:30 +0000 | chore(stats): refresh stats indexes [skip ci]
 ```
 
 ### `market_research` → `go_to_market`
@@ -296,6 +295,19 @@ dab09c2 | 2026-11-20 07:40:43 +0000 | chore(stats): refresh stats indexes [skip 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+f5dac43 | 2026-11-26 16:33:18 +0800 | KAN-54: record the reply-context third occurrence + deploy-drift follow-up (#1942)
+b4f5e8b | 2026-11-26 14:49:23 +0800 | Add CIC 2026 media asset register PDF (41 clips)
+fe38807 | 2026-11-26 10:34:54 +0800 | SOP: add frame-scan classification pass + frame-0 selection to reel method (#1941)
+1a34ff4 | 2026-11-26 09:33:56 +0800 | JIRA_WORKFLOW_SOP: document blocked-on-human as the nudge-suppression mechanism (#1940)
+f72c471 | 2026-11-26 09:01:51 +0800 | sops: add visual UAT gate SOP (KAN-27 iframe-screenshot false-positive) (#1939)
+52ae881 | 2026-11-26 09:00:03 +0800 | Document house cacao serving ratio + Italian method alternative (#1938)
+99256eb | 2026-11-26 08:43:50 +0800 | docs(kan30): Unit 4 sign-off — plan COMPLETE; manifest closed; durable-metrics gap filed (#1937)
+60efb78 | 2026-11-26 08:33:13 +0800 | docs(kan30): disambiguate resume triggers from auto-advance nudges; correct unverifiable soak baseline (#1935)
+ed15ab4 | 2026-11-26 08:33:05 +0800 | OPEN_FOLLOWUPS: record link_pr_in_comment/pr_evidence mismatch as shipped (#1936)
+216e027 | 2026-11-26 07:32:08 +0800 | docs(intraturn): Unit 4 FINAL acceptance packet — 25.54h soak, monitoring COMPLETE, sign-off pending (#1934)
+6e918b6 | 2026-11-26 06:56:57 +0800 | File: owed-deliverable tickets never get blocked-on-human, so they nudge forever (#1933)
+a7b9f25 | 2026-11-26 05:55:48 +0800 | chore(previews): refresh Beer Hall preview (2026-11-25 UTC)
+cad25fe | 2026-11-26 05:55:46 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-25 UTC)
 c9fef21 | 2026-11-26 03:57:06 +0800 | OPEN_FOLLOWUPS: jira_stale nudge keeps firing after fix merged (deploy lag) + merge-gate CI reader false negative (#1932)
 580f236 | 2026-11-26 03:36:22 +0800 | docs(intraturn): make Unit 4 gate marker non-advanceable (stop 7x auto-advance churn) + refresh evidence row (#1931)
 0e3e3dc | 2026-11-26 03:33:18 +0800 | docs(intraturn): Unit 4 checkpoint 5 — strict band test PASSES; real accumulation corrects #1929 both ways (#1930)
@@ -323,19 +335,6 @@ ebf1a70 | 2026-11-25 22:30:31 +0800 | docs(intraturn): record that Unit 4 is ALR
 49ccb49 | 2026-11-25 20:51:30 +0800 | POD runbook: logo fields exist; fix spec path, retract no-image-input claim, fix bbox detector (#1908)
 78b5cd7 | 2026-11-25 20:21:48 +0800 | Black King §5.16: RETRACT §5.15-B (Val holdings are governor-approved, not mis-attribution); DISSOLVE the QR blocker (QR Code: N/A is accepted); ledger is ahead of the runbook (#1907)
 5055b8d | 2026-11-25 19:20:44 +0800 | Black King §5.15: CRITICAL — movement already PARTIALLY booked (do not re-run); Val Lapidus holds 70kg of the nibs; correct §5.14 QR claim (#1906)
-9229f84 | 2026-11-25 16:59:09 +0800 | chore(previews): refresh Beer Hall preview (2026-11-25 UTC)
-50bd538 | 2026-11-25 16:59:07 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-25 UTC)
-6a46d35 | 2026-11-25 07:55:12 +0000 | followups: add checks-unreadable-but-CI-green variant to merge_pr ci-unavailable entry
-8bb1a19 | 2026-11-25 15:29:36 +0800 | Merge pull request #1905 from TrueSightDAO/auto/advisory-refresh-2026-11-25
-4b0a0c1 | 2026-11-25 07:29:21 +0000 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-25 UTC)
-d257eff | 2026-11-25 06:46:04 +0000 | followups: record PR-link audit result (prose-only, 10/58; no schema field)
-f980250 | 2026-11-25 06:44:17 +0000 | followups: correct the HIGH Jira entry - thread URLs were never dropped (33 tg / 12 dc present); real cause is the description API gap
-3d65c5f | 2026-11-25 01:30:56 +0000 | followups: file the two residual Jira-migration gaps (KAN-79 close-out item 4)
-f3051cd | 2026-11-25 08:50:22 +0800 | SOP §13: change gap sentinel MISSING->UNASSIGNED (JQL text~ tokenizes, proven false positive) (#1904)
-1fe3122 | 2026-11-25 08:38:07 +0800 | Add SOP §13: Offline Owner mandatory convention (Gary, 2026-11-29) (#1903)
-76dbb91 | 2026-11-25 08:36:33 +0800 | Record governor confirmation: Elizabeth Wong IS a governor (resolves roles-drift data half) (#1902)
-0170bfc | 2026-11-25 08:21:07 +0800 | docs(jira): add §13 channel-name convention (kan-<n>-<slug>) + amend §10 (#1901)
-2af80f6 | 2026-11-25 08:12:43 +0800 | Remove internal commentary sections 3-5 from the Rusmin directive (#1900)
 … (truncated)
 ```
 
@@ -397,8 +396,6 @@ edff8a4 | 2026-11-19 17:16:16 +0800 | Add AWB 047-3175-3223 tax-amendment proven
 2c33f16 | 2026-11-19 17:16:06 +0800 | Add AWB 047-3175-3223 tax-amendment provenance: Cacao Mass Bar 500g
 3e7b5d8 | 2026-11-19 17:16:00 +0800 | Add AWB 047-3175-3223 tax-amendment provenance: Cacao Almonds Paulo AGL8
 0b7ff7d | 2026-11-19 17:15:55 +0800 | Add AWB 047-3175-3223 tax-amendment provenance: 8 Ounce Pouch
-4dc35c4 | 2026-11-18 15:57:49 +0000 | chore: refresh currencies.json [skip ci]
-9c9c2f9 | 2026-11-18 15:44:01 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -493,9 +490,9 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
 | 2026-10 | 460 | 18944.34386 | 10/31/2026 |
-| 2026-11 | 276.9 | 19221.24386 | 11/25/2026 13:50:24 |
+| 2026-11 | 276.9 | 19221.24386 | 11/25/2026 23:55:59 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-11-18`; scanned last **600** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-11-19`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
