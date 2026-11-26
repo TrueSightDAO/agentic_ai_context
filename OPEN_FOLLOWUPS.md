@@ -39,6 +39,28 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Intra-turn compaction: fold/soak evidence lives only in journald, and journald retention is now SHORTER than a 24h soak — so a long soak silently destroys its own evidence
+
+**Priority:** MEDIUM · **Filed:** 2026-11-26 · **Component:** `truesight_autopilot` (`_maybe_compact_open_turn` instrumentation) · **Governor:** Gary
+
+**Found during:** Unit 4 soak of `plans/SOPHIA_INTRATURN_COMPACTION_PLAN.md` (gate signed 2026-11-26).
+
+**Symptom.** Strict fold count for the same soak **fell from 219 to 204** between measurements — not because folds were lost, but because journald rotated past them. Verified on the autopilot box:
+
+- `journald.conf` sets **no explicit retention cap** (defaults); unit journal usage **82 MB**
+- `journalctl -u truesight-autopilot --since 2026-11-24` → **0** fold lines
+- `--since 2026-11-25` → **204** fold lines
+- System journal's oldest retained entry: **2026-11-25 00:17:22Z**
+
+So the first ~15 folds of a 25.5h soak **aged out mid-soak**, and the durable evidence window was **22.6h, not 25.5h**. The plan's original baseline ("first fold Nov 24 21:58:11Z") became **unverifiable** and had to be restated from the earliest retained fold.
+
+**Why it matters.** Soak-style acceptance gates (and any "did it fail overnight?" question) are validated from journald by default. If retention < the observation window, the evidence for a passing gate degrades *after* it passes, and a reviewer can neither reproduce nor refute the claim. This is an instrumentation defect, **not** a compaction defect — the feature's evidence held on what was retained.
+
+**Proposed fix.** Emit fold/backup counters to a **durable sink** that outlives log rotation — e.g. append one JSON line per fold to a file under a rotated-but-retained path, and/or periodically publish an aggregate to a repo/ledger. Counters worth persisting: folds, strip size, before/after message counts, rounds, max turn tokens, error count, process start. Small, self-contained, own-repo.
+
+**Interim guidance (until fixed).** For any soak ≥24h, either (a) measure **continuously** and persist each sample as it is taken, or (b) raise journald retention (`SystemMaxUse`) beyond the window *before* starting. Do not rely on end-of-soak `journalctl` queries alone.
+
+
 ### Tickets owed by an external human never get the `blocked-on-human` label — so the suppression that already exists never engages, and they nudge forever
 
 **Priority:** MEDIUM · **Filed:** 2026-11-26 · **Component:** ticket-creation convention (the classifier itself is **correct**) · **Governor:** Gary
