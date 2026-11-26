@@ -417,6 +417,82 @@ clips but **zero** clips of anyone actually tasting/drinking on camera (5 "tasti
 all farmers *discussing* flavor, not performing it) — a story built around "taste this" would
 have had no footage for its own payoff.
 
+### Step 2b — Classify the archive at scale (the frame-scan pass)
+
+Step 2 assumes a human can eyeball the buckets. Past a few hundred clips that stops working, and
+it breaks completely when the footage you need is **not on the box** — the farm/factory split means
+process beats are routinely in a namespace the daemon has already drained to S3.
+
+**The pattern:** list from S3 → download the namespace → extract one frame per clip → batch-classify
+against a **fixed beat taxonomy** → verify the winners with the pipeline's *own* probe → send a
+contact sheet to the governor for the editorial call.
+
+Worked example (2026-11-26, chocolate-process reel): Santos factory **159 clips / 3.45 GB** and
+`fazenda-santa-ana-bahia` **150 clips**; the pool across the archive was **624**. Cross-tabulating
+the labels answered the story question the manifests could not — 117/150 Santa Ana clips contained a
+human, but only **33** contained cacao trees and only **29** contained *both*. That 29 is what made
+an open-on-a-person-in-the-orchard possible.
+
+#### Step 2b.1 — Declare the taxonomy before you classify
+
+Write the beat list as a numbered taxonomy with one-line definitions, e.g. `1 pod_on_tree`,
+`2 harvest` (*a person cutting/harvesting a pod from the tree*), `6 fermentation_tank`,
+`9 melanger`, `12 unmould`. Two rules:
+
+- **Split "object present" from "person performing the action."** `pod_on_tree` (pods only) vs
+  `harvest` (person + tree) are different beats and must be separate codes, or every query
+  conflates them.
+- Classify **one frame per clip**, and treat the label as a *candidate*, not a verdict (see 2b.4).
+
+#### Step 2b.2 — Pitfalls that will cost you a session each
+
+| Symptom | Cause | Fix |
+|---|---|---|
+| boto3 `NoCredentialsError` on the autopilot box | creds are stored as `AWS_ACCESS_KEY_ID_NELANCO` / `AWS_SECRET_ACCESS_KEY_NELANCO`, not plain `AWS_*` | source `.env` then map the NELANCO names onto the plain ones, or pass explicit keys |
+| every clip returns `ERROR`, Gemini 404 | wrong model name (`gemini-2.5-flash` does not exist on this endpoint) | **always** read `GEMINI_MODEL` from `app/reel_factory/render.py` — do not hardcode a guess |
+| classifier output all `ERROR` and no partial results | script only writes its JSON at job end | run it per-directory in background, and `tail` the log for live counts |
+| `resolve_clip` cannot find `IMG_8131.MOV` | the daemon **transcodes `.MOV` → `.mp4`** on intake | reference `.mp4` in the cut, even if the source was shot as `.MOV` |
+| cut ignores `--archive-root` entirely | `archive_path` must be **relative**; an absolute path silently overrides the root | store e.g. `farm-media/santa-ana-fazenda/IMG_8131.mp4` |
+| `CutError: duplicate beat numbers` | one segment per beat, enforced in `Cut.__post_init__` | don't split a beat across two clips — use `in_point`/`duration` within one segment |
+
+#### Step 2b.3 — Verify the shortlist with the pipeline's own probe
+
+Never let a classifier label stand in for the render gate. Re-run the exact probe the pipeline will
+use, on the real frame, and log the tier:
+
+```python
+from app.reel_factory.pipeline import build_probe   # NOT render.py
+probe = build_probe("auto")                          # GeminiFaceProbe on a keyed box
+frame = probe.describe("/path/frame0.jpg")
+# human_tier: 1 face / 2 body / 3 hands / 4 none
+```
+
+A batch model saying "person" and `human_tier=1` disagreeing is a real, observed failure mode —
+trust the probe, because the probe is what will abort the render.
+
+#### Step 2b.4 — Frame 0 is a *selection* step, not an outcome
+
+Assertion #6 aborts on `tier 4` — *"a faceless open is not deliverable"* — and frame 0 is also the
+Reels thumbnail and the feed autoplay frame. Consequences for process/explainer reels, whose natural
+first beat is an object (pods on a tree, a bag of beans):
+
+- **Build the first segment from a verified tier-1 clip**, then run the process beats after it.
+  This satisfies the gate on real archive footage — no `--skip-master-verify`, no weakened assertion.
+- Or, if the story cannot open on a person, raise the conflict with the governor **before** spending
+  encode time. Do not quietly relax the assertion.
+- **The probe proves a face exists, not that the shot is right.** It cannot tell whether the person
+  is harvesting, whether the trees are well framed, or whether they are looking at camera. Always
+  emit a **contact sheet** (`ffmpeg -ss <dur*0.4> -frames:v 1`, tile 6 with PIL, label each tile) and
+  let the governor make the editorial call. Picking frame 0 from a tier number alone is how a
+  technically-passing but editorially-wrong open ships.
+
+#### Step 2b.5 — Commission the same check for the logo
+
+Assertion #8 fails on a **foreign-market** brand only. Before rendering, confirm `cut.variant`
+matches the logo you are passing — an F5-branded master has shipped on an Agroverse cut precisely
+because the logo path was bound to nothing. Naming the mark correctly (`agroverse_logo.png`) and
+declaring the matching `variant` is part of the pre-render check, not an afterthought.
+
 ### Step 3 — Let the clip count pick the format
 
 | Signal | Implication |
