@@ -98,7 +98,7 @@ Flagged because it affects whether any comparison is trustworthy:
 
 - **`Published Content Index` holds only 2 data rows** despite the org having far more published assets.
 - **`F5 Content Schedule` is header-only** (0 rows) — the forward calendar is effectively empty.
-- **Instagram tab status vocabulary is inconsistent:** it uses `PROPOSED` and `SUPERSEDED`, neither of which appears in `Configuration`'s "Instagram Reel Status" list; and **182 of 245 rows have a blank status**.
+- **Instagram tab status vocabulary is inconsistent:** it uses `PROPOSED` and `SUPERSEDED`, neither of which appears in `Configuration`'s "Instagram Reel Status" list; and **182 of 245 rows have a blank status (74%, measured 2026-11-28)**. This has been loosely described in conversation as "~95% empty" — the measured figure is 74%, and the precise number matters because it is the evidence base for building TikTok tracking cleanly from day one.
 
 **Consequence:** do **not** use the Instagram tab's status counts as a reliable denominator for any TikTok-vs-Instagram comparison. TikTok is being tracked cleanly from day one rather than inheriting this. Worth its own follow-up if comparisons matter.
 
@@ -109,9 +109,19 @@ Flagged because it affects whether any comparison is trustworthy:
 | Key | Task | Blocked on |
 |---|---|---|
 | KAN-113 | List 1–3 existing Agroverse products manually in Seller Center | Gary (manual) |
-| KAN-114 | Tracking tab + manual logging cadence | ✅ **Built.** Data entry ongoing. |
-| KAN-115 | Performance data on ~18+ existing @thecacaofanatic videos | Gary supplies raw numbers; Sophia analyses |
+| KAN-114 | Tracking tab + manual logging cadence | ✅ **Verified live 2026-11-28.** All 3 tabs exist with documented columns; all 3 are header-only pending data. Moved to Done. |
+| KAN-115 | Performance data on ~18+ existing @thecacaofanatic videos | 🟨 **In Progress 2026-11-28.** Gary captures views/date/caption (+person-in-frame, content type); Sophia writes rows and does the differentiator analysis. |
 | KAN-116 | New content matched to existing account voice | KAN-115 |
 | KAN-117 | Tag products in new + existing high-performing videos | KAN-113, KAN-115 |
 | KAN-118 | API registration (ISV + AM request) | TikTok rate limit / AM gate |
 | KAN-119 | Define + track the real success metric | ✅ defined; needs order data |
+
+---
+
+## 8. Standing risk: empty tabs are not a build failure
+
+Verified 2026-11-28: `TikTok Content Schedule`, `TikTok Video Metrics` and `TikTok Orders` are all **header-only (0 data rows)**. That is the correct pre-data state, not a defect — KAN-115 supplies metrics, KAN-113 supplies listable products, and order rows only exist once something sells.
+
+The failure mode to avoid is subtler than "the tab is empty". It is reaching week 6 with *nine* filled rows out of forty planned, and then reading a decision off that table as though it were the population. The Instagram tab demonstrates the shape of this: a 245-row schedule where the status column is blank on 182 rows is not a 245-row plan, it is a 63-row plan wearing a 245-row costume.
+
+So the cadence in §5 is the deliverable, not the tab. If the cadence lapses, the honest response is to say the experiment has no data — not to compute a rate off whatever happens to be present.
