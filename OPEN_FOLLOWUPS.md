@@ -98,7 +98,9 @@ So inventory reads **39 in stock** (Kirsten 3 + Gary 36) when `40 − 4 = 36` is
 | → of those, quantity **mismatches** | **35** |
 | Ledger has **no row at all** for that exact SKU under that manager | **22** |
 
-**The 22 "no ledger row" pairs are invisible inventory** — QRs sit with a manager, the ledger has nothing under that SKU string:
+> **CORRECTION 2026-11-27 (same day).** The breakdown below was measured against the **MAIN** book (`offchain transactions`) only. That is wrong for any batch that lives on a managed ledger. Every ledger resolves to its **own spreadsheet** — `Shipment Ledger Listing` col 27 `Resolved URL`: **MAIN** = `1GE7PUq…` (offchain tab), **AGL4** = `1Uo5p3nzWsD6HIw98tCiNYSBmSjXeGkdmopsXpket1Mc`, **AGL13** = `1w3D0y9iPMu7kR9SuS6WNmIAym6FGUql9vUL2pD_qGR4`. A batch booked on AGL13 therefore looks like "no ledger row" when you read MAIN — which is exactly the error that produced the 22-pair figure below. **Treat the 22 as an upper bound, not a defect count.** Verified example: the Vivi batch below is *not* invisible inventory — see the AGL13 reconciliation that follows the table.
+
+**The 22 "no ledger row" pairs — an upper bound** (QRs sit with a manager, MAIN has nothing under that SKU string; each must be re-checked against its OWN ledger before being called a defect):
 
 | Manager | In-stock QRs | Ledger for same string |
 |---|---|---|
@@ -106,7 +108,19 @@ So inventory reads **39 in stock** (Kirsten 3 + Gary 36) when `40 − 4 = 36` is
 | Matheus Reis | 164 | `0.0` |
 | Sophia Truesight | 67 + 42 | none |
 | Paloma | 91 | `-10` |
-| Gary Teh | 36 (`… Vivi Cacao Nibs | Kirsten 20261025 … AGL13`) | none — his nearest string is the **Oscar** SKU (35) |
+| Gary Teh | 36 (`… Vivi Cacao Nibs | Kirsten 20261025 … AGL13`) | none on MAIN — **but 36.0 on AGL13. CORRECT, not a defect.** |
+
+**Verified counter-example — batch `2025_20261025` (Vivi), read from its real book (AGL13 `Transactions`):**
+
+| Manager | In-stock QRs | AGL13 ledger | Verdict |
+|---|---|---|---|
+| Gary Teh | 36 | **36.0** | ✅ exact |
+| Kirsten Ritschel | **0** | **3.0** | ❌ **3 phantom units** |
+| **Total** | **36** | **39.0** | **+3 over** |
+
+So the ledger *location* is right and Gary's own holding ties out exactly (36 = 36) — the residual 3 is a second instance of the **unbooked-sale** pattern, not a location error. The cause is already identified: `QR Code Sales` rows **685/686/696** (`2025_20261025_1`, `_2`, `_40`) are stuck at status `<EMPTY>` for the *same* reason as the Oscar rows — column G holds `https://agroverse.shop/shipments/agl13/index.html`, and `sales_update_managed_agl_ledgers.js` line 324 still carries the un-normalised strict compare. Booking those three drops Kirsten 3 → 0 and the AGL13 total 39 → 36.
+
+**Also note (attribution, not stock):** on the Oscar SKU the *total* reconciles (Gary 35 + Kirsten 1 = 36 = 40 − 4 SOLD) but the split does not — Kirsten holds 1 ledger unit with **0** QRs, while Gary holds 36 QRs against 35 ledger units. A one-unit manager-field drift, not phantom inventory.
 
 **Same-string quantity mismatches** (the comparator agrees on the label, disagrees on the count):
 
