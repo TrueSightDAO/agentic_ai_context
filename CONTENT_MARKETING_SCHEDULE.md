@@ -33,6 +33,43 @@ It is **not** the supply side. The split, per `tokenomics/SCHEMA.md` §5:
 
 ---
 
+## 1a. ⚠️ The Google Sheet IS the source of truth — edit it directly
+
+**Decided by Gary Teh, 2026-11-28 ([KAN-120](https://truesightdao.atlassian.net/browse/KAN-120)).**
+
+The legacy `CSV → Google Sheets` repopulation mechanism is **deprecated**. Do not add rows,
+chapters, or status by editing a CSV and waiting for CI. Edit the sheet directly.
+
+### What the retired mechanism did (read from the code, not assumed)
+
+`go_to_market/online_content/agroverse_shop/social_media/sync_content_schedule.py`, fired by
+`.github/workflows/sync-to-sheets.yml` on any push touching `agroverse_schedule_till_easter_cleaned.csv`:
+
+1. regenerated `primary_key` on every run as `md5("<Post Day>_<Post Type>")[:8]`
+2. called `worksheet.clear()` — **wiped the entire tab**
+3. rewrote every row from the CSV
+4. preserved exactly one thing: **column B (`status`)**, re-applied by key match
+
+### Why it had to go
+
+| Problem | Consequence |
+|---|---|
+| Full-tab `clear()` | Any column a human adds beyond `status` is destroyed on the next CSV push |
+| Only `status` is preserved | `Published Video URL`, `Posted By`, `Notes`, `CTA`, `Hashtags` are all overwritten |
+| Rows not in the CSV are deleted | A row created directly in the sheet vanishes — this is *replace*, not *merge* |
+| `primary_key` = hash of **editable** fields | Editing `Post Day` or `Post Type` changes row identity → its `status` no longer matches → status silently resets to blank. **This is the probable cause of the 182/245 blank-status rows measured 2026-11-28.** |
+| Two-step edit friction | Humans must edit a CSV, commit, wait for CI — for a field they could type in 2 seconds. This friction is *why* the sheet drifts from the CSV. |
+| Backwards flow | Sheets are where humans work. A build artifact pointing *into* the sheet invites editing the wrong side. |
+
+### The rule going forward
+
+- **Google Sheet = sole system of record.** No intermediary, no CSV round-trip.
+- `primary_key` is a **stable human-assigned ID**, not a hash of editable fields. Existing rows keep their current keys; new rows follow the documented format.
+- If a machine-readable view is ever needed (e.g. for the website), it is a **one-way Sheet → JSON publisher**, like the existing inventory publishers. Never write back.
+- The TikTok tabs added 2026-11-28 (`TikTok Content Schedule`, `TikTok Video Metrics`, `TikTok Orders`) were built edit-direct from the start and **do not** inherit this mechanism. Do not reintroduce one.
+
+---
+
 ## 2. Live state of the sheet
 
 Verified by reading the sheet directly on **2026-11-10** (not copied from the schema):
@@ -68,7 +105,7 @@ If these numbers have drifted substantially, re-verify before trusting the plan.
 
 | Col | Name | Type | Notes |
 |---|---|---|---|
-| A | `primary_key` | String | 8-hex content hash — **stable row identity**. `sync_content_schedule.py` matches on this and never overwrites B |
+| A | `primary_key` | String | **Stable row identity.** Historically generated as an 8-hex hash of `Post Day`+`Post Type` by the now-**retired** sync (§1a, KAN-120). Treat as an opaque, durable, human-assigned ID — do not recompute it from other cells |
 | B | `status` | Enum | `PLANNED` → `CRAFTING` → `SCHEDULED` (vocabulary in the `Configuration` tab) |
 | C | `Week` | String | `Week 61` — a **monotonic counter, not an ISO week** |
 | D | `Date Range` | String | `Nov 05-Nov 11, 2026` — display only |
@@ -116,8 +153,11 @@ rows = svc.spreadsheets().values().get(
 
 1. **`Post Day` (F) is a string `YYYYMMDD`, not a date.** Sort/compare as text. A date-typed
    read or a `date()` coercion will misorder or silently null it.
-2. **`primary_key` (A) is the identity.** Match on it; never key a sync on row position, and
-   never overwrite `status` (B) from the source — B is operator-owned state.
+2. **`primary_key` (A) is the identity, and it must not be derived from editable fields.**
+   It was historically `md5(Post Day + Post Type)` — meaning any correction to either field
+   silently orphaned that row's `status`. The generator is retired (KAN-120, §1a). Treat A as
+   opaque and durable: never recompute it, never key on row position.
+3. **`status` (B) is operator-owned state.** Nothing should overwrite it from an external source.
 3. **`Week` (C) is a running counter**, not an ISO week number. `Week 61` ≠ ISO week 61.
 4. **`Description` (J) is mostly templated** — 112 unique strings across 314 rows, with the top
    three templates each repeating 51×. Do not treat J as a bespoke brief per row.
