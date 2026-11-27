@@ -311,6 +311,46 @@ Measured directly against the real module (K=2, round_threshold=4, three folds i
 **Do not "fix" this by disabling intra-turn compaction** — `CONTEXT_INTRATURN_COMPACTION_AUTO=0` restores the original unbounded pathology (94,264-token turns). This is a tuning problem, not a reason to revert.
 
 
+### "Prove the probe" — four confident false negatives in one session, every one caused by an unvalidated instrument (RECURRENCE of the entry below)
+
+**Priority:** MEDIUM · **Filed:** 2026-11-27 · **Owner:** unclaimed · **Component:** operating discipline / diagnosis tooling · **Governor:** Gary
+
+**Why this is filed despite the near-identical entry directly below.** The entry below (2026-11-26) states the rule *"a zero-hit result from any hand-written pattern must be treated as 'pattern possibly wrong' -- requiring a positive-control grep"*. **I violated it the very next day, verbatim.** A prose rule that did not survive 24 hours is not a discipline problem, it is a missing-mechanism problem. This entry records the recurrence and the three failure modes the sibling entry does not cover.
+
+**The shared structure.** All four were **negative** results — *not there*, *no such channel*, *not on main*, *1 hit* — read off a tool whose own validity was never established. Reading a negative from an unvalidated instrument cannot distinguish **"the subject is absent"** from **"my instrument is broken"**, and the agent defaulted to the first in every case. The cost is asymmetric: a false positive is usually caught by someone else, a false negative is *published as a finding* and quietly poisons every conclusion downstream of it.
+
+---
+
+**Incident 1 — grepped the proposed name, not the shipped name (a direct recurrence of the entry below).**
+Reported that a shared-Redis GitHub token bucket was *"not implemented — `BoundedSemaphore` at import time"*. I had grepped for `sophia:gh:budget`, which is the name in the **plan document**. The shipped key is `sophia:gh:inflight`. The feature had been live on `origin/main` and deployed for ~2 weeks, with 24 passing tests. I then cited `BoundedSemaphore(max_concurrency())` as proof of the *old* design — it is retained **on purpose** as a documented in-process fallback layer. Net effect: one unit of real work nearly duplicated, and a false "production risk" reported upward.
+
+**Incident 2 — reference-incompleteness: claimed a commit was absent from `main` using a clone that structurally could not contain it.**
+A depth-1 clone cannot answer "is commit X on main?" for any X older than one commit. The probe returned nothing and I read the emptiness as absence. **Rule: an absence claim requires proof the reference is complete** (`git merge-base --is-ancestor`, full history), not merely that a search returned no rows.
+
+**Incident 3 — HTTP transport: 403 with no Discord JSON envelope is Cloudflare blocking the User-Agent, not a permissions failure.**
+Read-back probes returned bare `403` with `code=None message=None`. I could not distinguish "no permission" from "auth rejected" and nearly reported a healthy channel as inaccessible. Ground truth: **`error code: 1010` — Cloudflare rejecting `Python-urllib/3.10` as the UA**, i.e. the request never reached Discord's API at all (hence no JSON error envelope). Adding a proper UA returned **HTTP 200** immediately. **Rule: a bare 4xx with no service-specific error envelope means the request was rejected *before* reaching the service — suspect the client, not the target.**
+
+**Incident 4 — measurement-scope mismatch: "1 hit" vs "7 hits" for the same lint rule.**
+A gating baseline was cited as *"exactly 1 hit"*. That came from a **path-scoped** check; the repo-wide count on the same tree is **7** (`ruff 0.16.8`, reproduced on a fresh clone). Both numbers were "correct" and one of them was wrong for the purpose it was used for. **Rule: state the scope of a measurement alongside the number; a scoped count must never be quoted as a repo-wide baseline.**
+
+---
+
+**Proposed fix.** All four reduce to one decision procedure, cheap enough to always apply:
+
+1. **Before trusting any negative, run the probe against a known-present control.** If the control also returns nothing, the instrument is broken — fix the instrument, do not report the subject.
+2. **Before any absence claim, prove the reference is complete and current.** Complete (`--is-ancestor`, full clone), and re-checked at the time of assertion — an absence claim ages badly and must not be filed and left standing.
+3. **On a bare 4xx with no service envelope, suspect the client** (UA, TLS, proxy) before the target.
+4. **Quote the scope with every number.**
+
+**Acceptance criteria.**
+- The positive-control requirement is stated in the diagnosis instructions where agents actually read it, **and** enforced by a helper rather than prose — because this entry exists precisely because prose failed: `prove_probe(probe_fn, known_present_control)` returning `INSTRUMENT_OK` / `INSTRUMENT_BROKEN` before any negative is reported.
+- Absence-claim helper refuses to return "absent" unless the reference is a full clone and the check is an ancestor test.
+- Ad-hoc HTTP probes in `truesight_autopilot` send an explicit `User-Agent` by default (see also: Discord read-back verification after posting — a post must be read back from the service, never trusted from the posting tool's return value).
+- Any quoted lint/test count carries its scope.
+- **Success signal for this entry: it never recurs.** If it does, that is evidence the prose approach failed again and the fix must be mechanical.
+
+---
+
 ### Verifying log-based behaviour by grepping a plan's prose word instead of the code's format string produced a confident false negative
 
 **Priority:** MEDIUM · **Filed:** 2026-11-26 · **Owner:** unclaimed · **Component:** operating discipline / `AGENT_OPERATING_INSTRUCTIONS`, log-diagnosis tooling
