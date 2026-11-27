@@ -39,6 +39,49 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### QR scan pipeline: `zbar`/`cv2` silently under-report — use `zxingcpp` plus an inversion pass, or you will wrongly conclude a photo has no QR
+
+**Priority:** HIGH · **Filed:** 2026-11-27 · **Component:** QR/bag intake & audit tooling (`truesight_autopilot`) · **Governor:** Gary
+
+**Found during:** decoding 35 cacao-bar photos (`oscar_chocolate_bars.zip`, `oscar_chocolate_bars_2.zip`, batch `2024_20261027`).
+
+**Symptom.** Three separate, confidently-stated "this photo contains no QR code" conclusions were **all wrong**. Root cause was the decoder, not the photos:
+
+| Decoder | Photos decoded of 35 |
+|---|---|
+| `pyzbar` / `cv2.QRCodeDetector` (multi-scale crop ladder) | 26 |
+| `zxingcpp` at **full resolution, no crop** | 33 |
+| `zxingcpp` + contrast/inversion sweep | **35 (all)** |
+
+Two specific failure modes worth encoding:
+
+- **`zxingcpp` out-decodes zbar/cv2 so completely that the crop ladder is counterproductive** — heavy upscaling destroyed codes that read instantly at native resolution.
+- **Inverted codes exist.** `IMG_3933` (`2024_20261027_36`) is white-on-black and is invisible to *every* scanner until the pixels are inverted. `IMG_3936` (`_38`) needed only `alpha=1.5, beta=30` contrast.
+
+**Why it matters.** A false "no QR in this photo" is indistinguishable from a genuinely missing bag. Here it produced a phantom "7 codes never photographed" gap against a ledger claiming 35 MINTED, and a wrong recommendation to re-shoot bars that were already perfectly photographed. The same class of error would silently under-count any intake audit.
+
+**Also a methodological trap:** two independent `cv2` bounding boxes extended **outside the image frame** (one 4,832 px wide inside a 3,024 px frame) — i.e. cv2 returns unclipped/`None`-ish quads that look like detections. A sloppy box does **not** prove a false positive (a known-good control had one too), and a low finder-pattern count does **not** prove absence (it gave a false negative on `IMG_3965`). Do not use either as a presence test.
+
+**Proposed fix.** A single shared `decode_qr(path)` helper used by every intake path, trying in order: (1) `zxingcpp` native, (2) `zxingcpp` on a small set of contrast variants, (3) `zxingcpp` on inverted pixels, (4) only then the crop ladder. Return `{codes, decoder_used, variants_tried}` so a downstream reader can tell "decoded with effort" from "genuinely absent". Never report "no QR" from a single decoder. Add a regression fixture with `IMG_3933` (inverted) and `IMG_3936` (low-contrast).
+
+---
+
+### Batch `2024_20261027` (Oscar Cacao Nibs | Kirsten): 3 sales SOLD on the QR tab but never booked in the ledger (+3 phantom inventory)
+
+**Priority:** MEDIUM · **Filed:** 2026-11-27 · **Component:** main ledger `offchain transactions` · **Governor:** Gary
+
+**Symptom.** Batch minted 40 bars. The `Agroverse QR codes` tab shows **4 SOLD**: `_1`, `_2`, `_15`, `_31`.
+
+But the ledger books only **one** sale for this SKU — row `6132`, `_15`, qty `-1`, Gary Teh. There is **no `[SALES EVENT]` row for `_1`, `_2`, or `_31`** (verified by full-SKU scan).
+
+So inventory reads **39 in stock** (Kirsten 3 + Gary 36) when `40 − 4 = 36` is the truth. **3 units of phantom inventory**, and `_31` in particular sits under Gary's balance while flagged SOLD ("anonymous cash sale - no customer email").
+
+**Note:** `_1`/`_2` may have been sold at the original price by someone other than Gary (their QR rows still carry manager `Sophia Truesight` and a customer email), whereas `_15` and `_31` were Gary's cash sales. Do **not** assume one event shape covers all three.
+
+**Proposed fix.** Book three `[SALES EVENT]`s for `_1`, `_2`, `_31` (or one correcting `[INVENTORY MOVEMENT]`-style decrement if the sales predate this ledger's cadence), then re-verify the SKU nets to 36. Separately consider a standing reconciliation check: **count(SOLD on QR tab) must equal count(sales rows in ledger)** per SKU — this is exactly the invariant that broke here and it is cheap to assert.
+
+---
+
 ### Deploy-tree drift: uncommitted hot-patches on `/opt/truesight_autopilot` are invisible to git and silently destroyed by a naive deploy
 
 **Priority:** HIGH · **Filed:** 2026-11-26 · **Component:** `truesight_autopilot` deploy procedure · **Governor:** Gary
