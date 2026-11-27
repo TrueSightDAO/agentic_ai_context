@@ -420,6 +420,68 @@ public", keep it gated.
 
 ---
 
+## 5j. Never reason about a SKU from its name alone — read the discriminator columns first (2026-11-27)
+
+Said after a misdiagnosis where the currency `Ceremonial Cacao Kraft Pouch - 20250219006`
+(unit cost **0.6754468485**) was read as *cacao held in Brazil*, then reconciled against finished
+cacao held in San Francisco — producing a fake "115 + 74 = 189 != 170" discrepancy and a
+recommendation to post an inventory movement that was never needed. The row is in fact **empty
+kraft pouches**. Three weeks of confusion traced to two assets sharing one noun phrase.
+
+**Pouch-style SKU names are a noun class, not a product.** `Kraft Pouch` appears in the names of
+empty packaging, partly-filled goods, and sellable finished lots alike:
+
+| Currencies row | Name | Price | Serializable | Actually is |
+|---|---|---|---|---|
+| r113 | `Ceremonial Cacao Kraft Pouch - 20250219006` | 0.6754468485 | *blank* | **empty pouch** (component) |
+| r92 | `Cacao Nibs Kraft Pouch - 20250219006` | 0.6754468485 | *blank* | **empty pouch** (component) |
+| r122 | `... \| Paulo 2024 \| ... \|\| Ilheus - AGL8 + 047-3175-3223 - San Francisco` | 13.85857 | TRUE | **finished ceremonial cacao** (sellable) |
+| r13 | `8 Ounce Package Kraft Pouch - Ilheus, Brazil 2024` | 6.64 | TRUE | **finished nibs pouch** (sellable) |
+
+**The rule:** before making any claim about a SKU's quantity, location, inventory balance, or
+whether it is a valid QR/currency target, run:
+
+```
+python3 scripts/describe_sku.py "<sku or fragment>"
+```
+
+in the `truesight_autopilot` checkout (backed by `app/tools/sku_lookup.py`). It reports the
+classification (`serializable` / `component` / `staged_finished` / `equipment` / `unknown`), the
+axes behind it (`Serializable` flag, unit-cost band, container-name detection), matching
+`Currencies` rows, and MAIN `offchain asset location` holdings. Refresh the checkout first — the
+tool is only as current as `origin/main`.
+
+**Reading the classification:**
+- **`component`** — empty packaging or consumable. Not inventory, never reconciles against
+  finished stock, never a valid QR target. A price near **0.675** (the empty-pouch cost) or
+  **0.34** (Cacao Nibs empty pouch) is the signature.
+- **`serializable`** — sellable finished good; THIS is what QR codes point at.
+- **`staged_finished`** — blank flag but priced in the finished band, or carrying a fill/delivery
+  qualifier. A real finished lot in a *pre-arrival* state. **Look for its AWB-suffixed arrived
+  counterpart before reasoning about quantity or location** — the two rows are the same physical
+  goods at two stages, and summing or comparing them double-counts.
+- **`unknown`** — blank flag, price in the $1–$5 ambiguous band, no qualifier. Verify manually;
+  do not guess.
+
+**Two further traps this encodes:**
+1. **Origin vs arrived lines are one asset, two stages.** `... \|\| Ilheus - AGL8` (blank flag,
+   non-serializable) and `... \|\| Ilheus - AGL8 + <AWB> - San Francisco` (TRUE, serializable) are
+   the same pouches before and after freight. QR codes belong on the **arrived** line only.
+2. **`Serializable=TRUE` is not proof a QR is needed.** On chocolate-block currencies the flag is
+   sometimes a creation leftover — see `agroverse/CHOCOLATE_BLOCK_PRODUCTION_SOP.md` §9. The flag
+   is reliable in the *negative* (blank/false means definitely not a sellable serializable lot);
+   it needs care in the positive.
+
+**Scope — this does NOT relax any gate.** The classifier resolves *what an asset is*; it never
+authorises a write. Inventory movements, QR repoints, and sales events remain gated exactly as
+before. Its purpose is to stop a naming ambiguity from being mistaken for a data discrepancy —
+it is not licence to act on the ledger.
+
+Full detail, worked failure cases, and the reasoning behind the price bands:
+`agroverse/SKU_NAMING_COMPONENT_VS_PRODUCT.md`.
+
+---
+
 ## 6. Contribution reporting — use dao_client (dao_protocol repo)
 
 When Gary Teh asks you to report a contribution (time, expenses, or any `[CONTRIBUTION EVENT]`), **do not** use the `create_dao_submission` or `submit_contribution` tools. Instead, use the **dao_client** CLI from the **`dao_protocol`** repo:
