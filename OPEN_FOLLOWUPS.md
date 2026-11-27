@@ -80,6 +80,56 @@ So inventory reads **39 in stock** (Kirsten 3 + Gary 36) when `40 − 4 = 36` is
 
 **Proposed fix.** Book three `[SALES EVENT]`s for `_1`, `_2`, `_31` (or one correcting `[INVENTORY MOVEMENT]`-style decrement if the sales predate this ledger's cadence), then re-verify the SKU nets to 36. Separately consider a standing reconciliation check: **count(SOLD on QR tab) must equal count(sales rows in ledger)** per SKU — this is exactly the invariant that broke here and it is cheap to assert.
 
+**RESOLVED 2026-11-27.** Root cause was not missing submissions — it was a silent skip in the tokenizer. `sales_update_main_dao_offchain_ledger.js` gated on a strict `=== 'https://agroverse.shop/agl4'` against `QR Code Sales` column G; the sales site had begun emitting deep-links (`https://agroverse.shop/shipments/agl4`), so rows 681/682/697 were parsed with QR + price but never tokenised — no status, no ledger rows, no error. Fixed in tokenomics PR #639 (`normalizeAgroverseUrl_()`), deployed via `clasp push` (`deploy_20261127T121555Z`), webhook triggered. Ledger rows **6137–6145** written, $33.60 booked. SKU now reconciles exactly: **Gary 35 + Kirsten 1 = 36**, matching 40 minted − 4 SOLD. Rows 685/686/696 (`shipments/agl13/index.html`) remain open — they belong to the agl13 ledger and the mirrored strict comparison at line 324 of `sales_update_managed_agl_ledgers.js` still needs the same normalisation.
+
+---
+
+### Inventory ↔ ledger reconciliation has no valid join key: `Currency` (SKU) is NOT unique per batch — per-manager QR counts drift from ledger balances by hundreds of units
+
+**Priority:** HIGH · **Filed:** 2026-11-27 · **Component:** `Agroverse QR codes` tab ↔ main ledger `offchain transactions` · **Governor:** Gary
+
+**Found during:** reconciling batch `2024_20261027` after the silent-skip fix. Provoked by Gary's question: *"is the location of the QR code with manager but the SKU does not match the stuff the manager has?"* — **yes, and this is the dominant defect class in the ledger, larger than the Oscar bug.**
+
+**Measured on the live tabs** (1,859 QR rows: 1,327 in-stock + 532 SOLD; 44 distinct `Currency` strings; 343 ledger `(member, SKU)` pairs):
+
+| Bucket | `(manager, SKU)` pairs |
+|---|---|
+| Ledger has the **same** member+SKU string | 53 |
+| → of those, quantity **mismatches** | **35** |
+| Ledger has **no row at all** for that exact SKU under that manager | **22** |
+
+**The 22 "no ledger row" pairs are invisible inventory** — QRs sit with a manager, the ledger has nothing under that SKU string:
+
+| Manager | In-stock QRs | Ledger for same string |
+|---|---|---|
+| Sacred Earth Farms | 297 | **none** |
+| Matheus Reis | 164 | `0.0` |
+| Sophia Truesight | 67 + 42 | none |
+| Paloma | 91 | `-10` |
+| Gary Teh | 36 (`… Vivi Cacao Nibs | Kirsten 20261025 … AGL13`) | none — his nearest string is the **Oscar** SKU (35) |
+
+**Same-string quantity mismatches** (the comparator agrees on the label, disagrees on the count):
+
+| Manager | QR in stock | Ledger | Δ |
+|---|---|---|---|
+| Gary Teh | 69 | −1 | **+70** |
+| Gary Teh | 36 | −5 | +41 |
+| Kirsten Ritschel | 35 | 0 | +35 |
+| Gary Teh | 17 | 0 | +17 |
+| Kirsten Ritschel | 12 | 0 | +12 |
+
+**The deeper structural finding — `Currency` cannot be the join key.** **23 of 44** SKUs have QRs spanning more than one code-prefix pattern, i.e. one SKU label covers several distinct physical mints. Concretely: **103 in-stock QRs** carry the exact string `Agroverse 81% Cacao Chocolate Bar 50g | Oscar Cacao Nibs | Kirsten 20261027 | San Francisco - MAIN`, **while the ledger holds 36 units** for it. A per-SKU comparison at that grain compares 103 labels to 36 units and can never reconcile.
+
+**Why it matters.** Every downstream surface — holdings pages, `RESTOCK_RECOMMENDER`, consignment quantity proposals — reads one side or the other. Where they disagree the dashboard is simply wrong, silently. The Oscar defect was one instance at 3 units; the population is in the hundreds.
+
+**Proposed fix (report first — do NOT auto-correct).**
+1. Read-only reconciliation keyed by **(QR batch prefix, manager)** — the prefix (e.g. `2024_20261027`) is the real mint-lot identity, not `Currency`.
+2. Classify SKU families before comparing (`bag` / `grams` / `money` / `pledge`). All four coexist in `offchain transactions`; a naive `sum(qty)` subtracts gram-fractions and BRL from bar counts and manufactures phantom ±300 deltas — observed with `cacao mass bar (loose grams)` (+96.6 vs 17 QRs) and `brazilian reis`.
+3. Emit an exceptions table `(manager, batch, qty_qr, qty_ledger, delta, sku_family)` for human review. **No writes.**
+4. Only then adjudicate each pair — several are re-issued labels or multi-batch SKU reuse, **not** missing stock.
+
+**Do not** "fix" a mismatch by booking an `[INVENTORY MOVEMENT]`. A wrong movement is worse than a visible mismatch: it moves real inventory to make a report agree with itself.
+
 ---
 
 ### Deploy-tree drift: uncommitted hot-patches on `/opt/truesight_autopilot` are invisible to git and silently destroyed by a naive deploy
