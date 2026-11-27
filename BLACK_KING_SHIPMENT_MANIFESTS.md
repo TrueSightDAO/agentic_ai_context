@@ -34,11 +34,24 @@ Machine-readable mirror: `black_king_shipments.json`. Tracking-number index: `CO
 > cacao"~~ and named the AGL8 line
 > *"Ceremonial Cacao Kraft Pouch - 20250219006"* as the ceremonial cacao, "held by *Matheus Reis*".
 > **Both attributions were wrong.** That string is the **empty kraft pouch component**
-> (unit cost **USD 0.6754468485**; `Currencies` col C `Serializable` **blank** ⇒ component, not
-> stock), not cacao. The **finished** ceremonial cacao is the AWB-suffixed SKU
+> (unit cost **USD 0.6754468485**), not cacao. Note the *reason*: it is a component because of its
+> **sub-dollar unit cost**, **not** because `Currencies` col C `Serializable` is blank — a blank flag
+> only means "not a serialization target", and it also appears on finished staging rows (see
+> `agroverse/SKU_NAMING_COMPONENT_VS_PRODUCT.md` §3 and Revision 12). The **finished** ceremonial cacao is the AWB-suffixed SKU
 > (`… \|\| Ilheus - AGL8 + 047-3175-3223 - San Francisco`, unit cost **USD 13.85857**,
 > `Serializable` **TRUE**) held by **Kirsten Ritschel** in **San Francisco** — **170 pouches,
 > already landed**. It is **not** held in Brazil and is **not** a blocked lot.
+
+> **Revision 12 (2026-11-27): the *reasoning* in Rev-10/Rev-11 was wrong even where the *conclusion*
+> was right.** Those revisions justified "empty pouch" and "the origin row is a component" with
+> `Serializable = blank ⇒ component`. That implication is **false** — blank means only "not a
+> serialization target", and it also marks **finished** staging rows (`8 Ounce … - Zurich` at
+> USD 9.45, Oscar ceremonial at USD 8.315, the Paulo/AGL8 origin line at USD 10.37). The correct
+> discriminator is **price magnitude first** (component ≲ USD 1 · finished ≳ USD 5 · ambiguous in
+> between), with `Serializable` reliable only in the **negative**. Full taxonomy:
+> `agroverse/SKU_NAMING_COMPONENT_VS_PRODUCT.md`; the classifier fix is `truesight_autopilot` #661.
+> **The conclusions above stand** — r113 *is* an empty pouch, and the QRs *do* belong on the arrived
+> SKU under Kirsten Ritschel — only the stated rule was wrong.
 
 ---
 
@@ -83,11 +96,13 @@ Machine-readable mirror: `black_king_shipments.json`. Tracking-number index: `CO
 > **Revision 10 (2026-11-27, thread 26215): AGL8 ceremonial cacao is NOT held in Brazil — pouch-vs-cacao
 > naming correction.** Revision 5 named `Ceremonial Cacao Kraft Pouch - 20250219006` as "the AGL8
 > ceremonial cacao, held by Matheus Reis". **This was a misread of the ledger, now corrected.**
-> That exact string is the **empty kraft pouch component** — `Currencies` col C `Serializable` blank,
-> unit cost **USD 0.6754468485**. It is *not* ceremonial cacao and never was stock to be shipped.
+> That exact string is the **empty kraft pouch component** — unit cost **USD 0.6754468485**.
+> It is *not* ceremonial cacao and never was stock to be shipped. (`Serializable` is also blank on
+> this row, but **blank is not the discriminator** — see Revision 12.)
 > Same trap elsewhere in `Currencies`: `8 Ounce Package Kraft Pouch - Ilheus, Brazil 2024`
-> (USD 6.64) is a **finished** sellable pouch, while `Cacao Nibs Kraft Pouch - 20250219006`
-> (USD 0.34) is an **empty** one — identical noun phrases, opposite meaning.
+> (USD 6.64) is a **finished** sellable pouch, while `Cacao Nibs Kraft Pouch` (USD 0.34) and
+> `Cacao Nibs Kraft Pouch - 20250219006` (USD 0.6754468485) are both **empty** ones — identical
+> noun phrases, opposite meaning. **Price magnitude, not the name and not the flag, separates them.**
 >
 > **Actual AGL8 state** (AGL8 ledger `1pdI1lM…`, `Balance` tab, read 2026-11-27):
 > the **finished** ceremonial cacao **170 pouches** sits under **Kirsten Ritschel** (San Francisco)
@@ -118,9 +133,12 @@ Machine-readable mirror: `black_king_shipments.json`. Tracking-number index: `CO
 
 >
 > **Consequence:** the "blocked lot" candidate list for Revision 5 narrows to the **Poland package**
-> only. This also corrects the QR code position: the AGL8 **origin** row is `Serializable` blank
-> (component), so QR codes pointing there were aimed at a non-serializable line; they now point at
-> the `Serializable = TRUE` arrival SKU under **Kirsten Ritschel**.
+> only. This also corrects the QR code position: the AGL8 **unsuffixed origin/staging** line is
+> `Serializable` blank, so QR codes pointing there were aimed at a **non-serialization-target** line.
+> To be precise, that line is **not a component** — blank only marks it as not-serializable, and the
+> origin row carries finished cacao at production cost. The serializable record is the **arrived**
+> (AWB-suffixed) SKU, so the QRs now point at the `Serializable = TRUE` arrival SKU under
+> **Kirsten Ritschel**.
 > **Discriminator rule:** `agroverse/SKU_NAMING_COMPONENT_VS_PRODUCT.md`; helper
 > `truesight_autopilot` `scripts/describe_sku.py`.
 
