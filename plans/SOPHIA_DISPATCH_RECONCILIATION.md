@@ -80,7 +80,7 @@ What this cancels in Plan 2 (`SOPHIA_MULTI_PROCESS_WORKER_PLAN.md`):
 | PR4 shared-state migration | **LARGELY SHIPPED** (see §1 rows 4–6); residual = §1 row 9 (marks reaper) |
 | PR5 producers enqueue | **CANCELLED** — no `DISPATCH_MODE`, no queue to roll back to |
 | PR6 shared GitHub budget | **SURVIVES, promoted to first** (PR-C) |
-| PR7 front-end singleton guard | **SURVIVES** (PR-E) — see §1 row 10 |
+| PR7 front-end singleton guard | **RETIRED — premise FALSE** (was PR-E) — the adapters are separate single-process units, so no 4× race exists. See §4 row PR-E + §5. |
 | PR8 dashboard | **SURVIVES** (PR-B), split 8a/8b as already specified in #1740 §4a |
 | PR9 systemd `sophia-worker@.service` | **CANCELLED** — template units exist only for dedicated workers |
 | PR10 load test + cutover | **DEGRADED** to "watch CPU/mem under real load" — the cutover already happened |
