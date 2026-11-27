@@ -25,10 +25,20 @@ Machine-readable mirror: `black_king_shipments.json`. Tracking-number index: `CO
 > has no prior notice on file** — the documentary signature of **blocked / never-shipped** cargo
 > (nothing was filed to clear it). Per the governor (thread 26215), the large blocked lot is
 > **DAO inventory carried on the Main Ledger** (`offchain asset location` tab) rather than a line in
-> this Black King manifest; candidate lots still held in Brazil include the **AGL8 ceremonial cacao**
-> (Santos/Martinus-produced; ledger line *"Ceremonial Cacao Kraft Pouch - 20250219006"*, held by
-> *Matheus Reis*) and the **Poland package** (500 g bars, rejected). **Row-level flagging remains
-> pending governor confirmation of the exact ledger line.**
+> this Black King manifest; the remaining candidate lot still held in Brazil is the **Poland package**
+> (500 g bars, rejected). ~~AGL8 ceremonial cacao~~ — **struck, see correction below**; it is neither
+> in Brazil nor a blocked lot. **Row-level flagging remains pending governor confirmation of the
+> exact ledger line.**
+>
+> ⚠️ **CORRECTED 2026-11-27 — see Revision 10.** This passage previously listed ~~"the AGL8 ceremonial
+> cacao"~~ and named the AGL8 line
+> *"Ceremonial Cacao Kraft Pouch - 20250219006"* as the ceremonial cacao, "held by *Matheus Reis*".
+> **Both attributions were wrong.** That string is the **empty kraft pouch component**
+> (unit cost **USD 0.6754468485**; `Currencies` col C `Serializable` **blank** ⇒ component, not
+> stock), not cacao. The **finished** ceremonial cacao is the AWB-suffixed SKU
+> (`… \|\| Ilheus - AGL8 + 047-3175-3223 - San Francisco`, unit cost **USD 13.85857**,
+> `Serializable` **TRUE**) held by **Kirsten Ritschel** in **San Francisco** — **170 pouches,
+> already landed**. It is **not** held in Brazil and is **not** a blocked lot.
 
 ---
 
@@ -69,6 +79,30 @@ Machine-readable mirror: `black_king_shipments.json`. Tracking-number index: `CO
 > (182.67 kg · USD 4,884.60).**
 
 ---
+
+> **Revision 10 (2026-11-27, thread 26215): AGL8 ceremonial cacao is NOT held in Brazil — pouch-vs-cacao
+> naming correction.** Revision 5 named `Ceremonial Cacao Kraft Pouch - 20250219006` as "the AGL8
+> ceremonial cacao, held by Matheus Reis". **This was a misread of the ledger, now corrected.**
+> That exact string is the **empty kraft pouch component** — `Currencies` col C `Serializable` blank,
+> unit cost **USD 0.6754468485**. It is *not* ceremonial cacao and never was stock to be shipped.
+> Same trap elsewhere in `Currencies`: `8 Ounce Package Kraft Pouch - Ilheus, Brazil 2024`
+> (USD 6.64) is a **finished** sellable pouch, while `Cacao Nibs Kraft Pouch - 20250219006`
+> (USD 0.34) is an **empty** one — identical noun phrases, opposite meaning.
+>
+> **Actual AGL8 state** (AGL8 ledger `1pdI1lM…`, `Balance` tab, read 2026-11-27):
+> the **finished** ceremonial cacao **170 pouches** sits under **Kirsten Ritschel** (San Francisco)
+> on the AWB-suffixed SKU — i.e. **already arrived and received, not a blocked/never-shipped lot**.
+> **No ceremonial cacao is held in Brazil.** The Matheus Reis quantity still on AGL8 `Balance` is
+> **263.5851 kg of Cacao Almonds** (a different product), not pouches.
+> The MAIN `offchain asset location` empty-pouch rows formerly at Matheus Reis (115) and Gary Teh (74)
+> are **no longer present** on that tab as of 2026-11-27.
+>
+> **Consequence:** the "blocked lot" candidate list for Revision 5 narrows to the **Poland package**
+> only. This also corrects the QR code position: the AGL8 **origin** row is `Serializable` blank
+> (component), so QR codes pointing there were aimed at a non-serializable line; they now point at
+> the `Serializable = TRUE` arrival SKU under **Kirsten Ritschel**.
+> **Discriminator rule:** `agroverse/SKU_NAMING_COMPONENT_VS_PRODUCT.md`; helper
+> `truesight_autopilot` `scripts/describe_sku.py`.
 
 ## Origin unit-cost reference (USD, pre-export / ex-works Ilhéus)
 
@@ -442,5 +476,6 @@ numbered shipments above):
 
 - FDA FSVP records: `TrueSightDAO/fda_fsvp/suppliers/black_king/` (11 prior notices + invoices/notas fiscais, read 2026-09-11).
 - Ledger: Main Ledger `1GE7PUq-…` — `Currencies` col B, `offchain asset location` col D (read 2026-09-11).
+- Ledger (AGL8, read 2026-11-27): `1pdI1lM…` — `Balance` tab (cols H/I/J: resource location, quantity, asset name); `Currencies` cols B/C `Price in USD` / `Serializable`.
 - FX: ledger rate **1 BRL = 0.19405 USD** (⇒ 1 USD = 5.1534 BRL) — `Currencies` row `BRL`.
 - FX (destination reference, *indicative*, live 2026-09-11): **1 USD = 3.7129 PLN** (Poland) · **1 USD = 0.8127 CHF** (Switzerland). Mid-market; informational only.
