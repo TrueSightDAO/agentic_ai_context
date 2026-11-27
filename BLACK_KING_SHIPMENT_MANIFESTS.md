@@ -94,8 +94,28 @@ Machine-readable mirror: `black_king_shipments.json`. Tracking-number index: `CO
 > on the AWB-suffixed SKU — i.e. **already arrived and received, not a blocked/never-shipped lot**.
 > **No ceremonial cacao is held in Brazil.** The Matheus Reis quantity still on AGL8 `Balance` is
 > **263.5851 kg of Cacao Almonds** (a different product), not pouches.
-> The MAIN `offchain asset location` empty-pouch rows formerly at Matheus Reis (115) and Gary Teh (74)
-> are **no longer present** on that tab as of 2026-11-27.
+>
+> **Corrected 2026-11-27 (Revision 11): the empty pouches ARE still in MAIN.** An earlier draft of
+> this revision claimed the `offchain asset location` empty-pouch rows "formerly at Matheus Reis (115)
+> and Gary Teh (74)" were **no longer present**. **That was false** — a probe error that read the
+> `offchain transactions` tab instead of `offchain asset location`. Both rows are present and always
+> were. Verified `offchain asset location` (read 2026-11-27), 13 rows matching `20250219006`:
+>
+> | Row | Currency | Held by | Qty | Unit cost |
+> |---|---|---|---|---|
+> | r78 | `Ceremonial Cacao Kraft Pouch - 20250219006` | Gary Teh | **74** | 0.6754468485 |
+> | r79 | `Ceremonial Cacao Kraft Pouch - 20250219006` | Matheus Reis | **115** | 0.6754468485 |
+> | r61 | `Cacao Nibs Kraft Pouch - 20250219006` | Kirsten Ritschel | **100** | 0.6754468485 |
+> | r62 | `Cacao Nibs Kraft Pouch - 20250219006` | Val Lapidus | **430** | 0.6754468485 |
+>
+> **Why this does not create a discrepancy.** 74 + 115 = **189 empty pouches**, a perfectly valid
+> packaging count — there is nothing to reconcile it *against*. The fake "189 != 170" gap is a
+> category error: **189 empty pouches vs 170 finished cacao are different assets**, and empty
+> packaging is *supposed* to sit in stock ahead of filling. No inventory movement is implied, and
+> none was ever needed. (Rows r80–r87 are a separate thing again: filled bars on the
+> `+ Cacao Mass Bar CP340993299BR San Francisco` qualifier at unit cost 9.019.×.)
+
+
 >
 > **Consequence:** the "blocked lot" candidate list for Revision 5 narrows to the **Poland package**
 > only. This also corrects the QR code position: the AGL8 **origin** row is `Serializable` blank
@@ -103,6 +123,24 @@ Machine-readable mirror: `black_king_shipments.json`. Tracking-number index: `CO
 > the `Serializable = TRUE` arrival SKU under **Kirsten Ritschel**.
 > **Discriminator rule:** `agroverse/SKU_NAMING_COMPONENT_VS_PRODUCT.md`; helper
 > `truesight_autopilot` `scripts/describe_sku.py`.
+
+> **Revision 11 (2026-11-27, thread 26215): correction to Revision 10 — the empty pouches are still
+> in MAIN; "189 != 170" was never a discrepancy.** Revision 10 correctly established that
+> `Ceremonial Cacao Kraft Pouch - 20250219006` is **empty packaging**, not cacao. It then overreached,
+> asserting those MAIN rows were "no longer present". **They are present**: `offchain asset location`
+> r78 Gary Teh **74**, r79 Matheus Reis **115** (unit cost 0.6754468485 each). The claim came from
+> querying the wrong tab (`offchain transactions`); the rows never moved.
+>
+> The durable lesson is the *second* half of the same error: having correctly identified a component,
+> Revision 10 still treated a component count as something that ought to reconcile against finished
+> goods. **It should not.** Empty packaging (189 pouches) and finished cacao (170 pouches) are
+> distinct assets at distinct stages; their sum or difference is meaningless. Both "the rows are
+> gone" and "there is a 19-pouch shortfall" are artifacts of comparing a component to a product.
+>
+> Everything else in Revision 10 stands: the finished ceremonial cacao is the AWB-suffixed SKU
+> (`Serializable` TRUE, unit cost USD 13.85857) held by **Kirsten Ritschel** in San Francisco, already
+> arrived; **no ceremonial cacao is held in Brazil**; the blocked-lot list narrows to the Poland
+> package only.
 
 ## Origin unit-cost reference (USD, pre-export / ex-works Ilhéus)
 
