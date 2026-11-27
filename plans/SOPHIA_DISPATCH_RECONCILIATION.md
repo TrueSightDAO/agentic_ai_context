@@ -119,11 +119,11 @@ production risk, not a sequencing preference. Hence PR-C first.
 
 | # | Unit | Scope | Gate |
 |---|---|---|---|
-| **PR-C** | **Shared GitHub token bucket (Redis)** | Replace the import-time per-process `BoundedSemaphore(4)` with a Redis token bucket (`sophia:gh:budget`) so all workers share **one** 4-permit / 5,000-h budget. Keep fail-open-on-timeout semantics. Cross-process test. | auto (merge) |
+| **PR-C** | **Shared GitHub token bucket (Redis)** — **SHIPPED** | Replace the import-time per-process `BoundedSemaphore(4)` with a Redis token bucket so all workers share **one** 4-permit / 5,000-h budget. Keep fail-open-on-timeout semantics. Cross-process test. **⚠️ Shipped under the key `sophia:gh:inflight`, NOT `sophia:gh:budget` as written here** — grepping the proposed name yields 0 hits and has already produced one false "not implemented" report (2026-11-27). Live and deployed, 24 passing tests; the `BoundedSemaphore` line is retained *deliberately* as the documented in-process fallback layer, not as evidence of the old design. | done |
 | **PR-D** | **Redis `maxmemory` 64 MB → 512 MB** | Config + documented; `noeviction` stays (correct for a queue). Also decide the `marks` reaper (§1 row 9). | auto + documented |
 | **PR-A** | **Dispatch registry** | `app/dispatch_registry.py`: worker id, 30 s heartbeat `sophia:worker:<id>` (TTL 30 s), session→worker affinity key, TTL'd. Read-only observable surface first; no routing change. | auto |
 | **PR-B** | **Governor-JWT dashboard** | Read-only view on `sophia.truesight.me`: live workers, heartbeat age, in-flight claims + TTL remaining, queue depth, marks backlog, dead/lost count. **No action buttons.** Reuses existing auth gate (#379). | auto |
-| **PR-E** | **Front-end singleton guard** | Startup `SET NX` guard so a second telegram poller / discord gateway refuses to start (Plan 2 PR7). | auto |
+| ~~**PR-E**~~ | ~~Front-end singleton guard~~ — **RETIRED 2026-11-27: premise FALSE** | ~~Startup `SET NX` guard so a second telegram poller / discord gateway refuses to start (Plan 2 PR7).~~ **The 4× race this would guard against cannot occur in the current topology.** The adapters are two *separate, single-process* systemd units (`truesight-autopilot-telegram` → `python -m app.telegram_adapter`; `truesight-autopilot-discord` → `python -m app.discord_adapter`), while `--workers 4` applies **only** to `uvicorn app.main:app`. `main.py` imports just `send_deploy_notification` and `_handoff_plan_for_thread` for use *inside request handlers* — it never starts a poller loop, so there is no second in-process poller to dedupe. Two narrower gaps survive; see §5. | n/a |
 | **PR-F** | **Affinity routing** | Actually use the registry: wrong-child handoff via `session_state`. This is Gary's goal 2 proper. | **gate: human** |
 
 ### Dashboard placement (carried over from #1740 §4a, still correct)
@@ -138,7 +138,18 @@ production risk, not a sequencing preference. Hence PR-C first.
 ## 5. Open items
 
 - **Filed in `OPEN_FOLLOWUPS.md`:** §1 row 7 (16 permits / 1 PAT) and row 8 (64 MB + swallowing `mark()`).
-- **Still open, not yet scoped:** adapters have no singleton guard (row 10) — tracked as PR-E.
+- ~~**Still open, not yet scoped:** adapters have no singleton guard (row 10) — tracked as PR-E.~~
+  **PR-E RETIRED 2026-11-27 — its stated hazard does not exist** (see §4 row PR-E). A startup `SET NX`
+  guard protects against a *second instance* of the same adapter, and the current topology does not
+  create one. Two narrower, genuine gaps replace it:
+  - **No second-instance dedupe (real, narrower).** If `truesight-autopilot-telegram.service` and a
+    hand-started `python -m app.telegram_adapter` ever ran together, both would poll the same bot
+    token. systemd runs exactly one unit and `Restart=` handles crashes, so this is not reachable by
+    normal operation — but nothing *enforces* it. A pidfile/flock at adapter startup closes it. This
+    is single-instance dedupe, **not** a workers×N race.
+  - **`--workers 4` is unenforced and unmeasured.** It lives in the unit file by go-ahead rather than
+    by measurement, and neither code nor CI asserts it. On a 2-vCPU host that is a question to answer
+    with data, not to assume in either direction; PR-B's dashboard is what makes it answerable.
 - **Now measurable, previously not:** whether 4 workers on 2 vCPU is right. `--workers 4` was set by
 go-ahead, not by measurement. PR-B's dashboard is what makes that question answerable.
 - **Plan 2 (#1740)** is rescoped in place; its remaining value is §4a (dashboard split), §5 (gap
