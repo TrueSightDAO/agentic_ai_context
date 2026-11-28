@@ -20,8 +20,8 @@ _When two paths both appear valid, prefer the one that more directly advances th
 
 ## Meta
 
-- Generated (UTC): `2026-11-27T21:31:42Z`
-- Look-back: **7** calendar days (`2026-11-20` → today UTC)
+- Generated (UTC): `2026-11-28T08:15:51Z`
+- Look-back: **7** calendar days (`2026-11-21` → today UTC)
 - Curated clone set: **12** repos (same table as Beer Hall preview)
 
 ---
@@ -40,12 +40,6 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 
 ### Latest entries
 
-- `Edgar_20261127055214_3910` · **Edgar** · [CONTRIBUTION EVENT] Contributor(s): Sophia Truesight · Type: Time (Minutes) · Amount: 35
-- `Edgar_20261127060142_3912` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 330 · Description: SKU component-vs-finished-good discriminator: diagnose, spec, and correct ow…
-- `Edgar_20261127060204_3914` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: SCHEMA.md col AD (Recipient Name): live-value write + two doc corrections, a…
-- `Edgar_20261127103600_3916` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 465 · Description: SKU component-vs-product discrimination: 3 units + QR repoint primitive (dao…
-- `Edgar_20261127110854_3918` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 45 · Description: Governor direction — SKU component-vs-product discrimination + repoint primi…
-- `Edgar_20261127112724_3920` · **Edgar** · [INVENTORY MOVEMENT] Manager Name: Kirsten Ritschel · Recipient Name: Gary Teh · Inventory Item: Agroverse 81% Cacao Chocolate Bar 50g \| Oscar Cacao Nibs \| Kirsten 202610…
 - `Edgar_20261127122742_3922` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Oscar Nibs QR batch: decode escalation, movement guard, and custody reconcil…
 - `Edgar_20261127140238_3924` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-27T14:02:36.439Z · Program: truesight-grounding · Practice Type: oracle-consultation
 - `Edgar_20261127162102_3926` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: Fix QR extraction reliability + build callable inventory-movement guard and …
@@ -60,6 +54,12 @@ _Real-time event stream across the DAO: each row is an Edgar-routed contribution
 - `Edgar_20261127190404_3944` · **Edgar** · [SALES EVENT] Attached Filename: 89ad7287cbdb499aa4c02718021786aa.jpg · Cash proceeds collected by: Gary Teh · Item: 2024_20261027_36
 - `Edgar_20261127190409_3946` · **Edgar** · [SALES EVENT] Attached Filename: 1adc2120891f4bb58c4f14a0d0b4a4c9.jpg · Cash proceeds collected by: Gary Teh · Item: 2024_20261027_28
 - `Edgar_20261127211143_3948` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 240 · Description: QR movement integrity: individual-code guard, decode escalation, ledger-targ…
+- `Edgar_20261127221603_3950` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 540 · Description: QR-code integrity tooling: movement guard, decode escalation, ledger-targete…
+- `Edgar_20261127222346_3952` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 40 · Contributor(s): Sophia Truesight
+- `Edgar_20261127222348_3954` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 50 · Contributor(s): Sophia Truesight
+- `Edgar_20261127222351_3956` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 40 · Contributor(s): Gary Teh
+- `Edgar_20261127225030_3958` · **Edgar** · [CONTRIBUTION EVENT] Type: Time (Minutes) · Amount: 90 · Description: Ledger integrity review + agl13 money-bug investigation (KAN-106–111)
+- `Edgar_20261128072333_3960` · **Edgar** · [PRACTICE EVENT] Timestamp: 2026-11-28T07:23:32.799Z · Program: truesight-grounding · Practice Type: oracle-consultation
 
 ---
 
@@ -186,12 +186,12 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
 ### Stock at production shippers
 
 **Kirsten Ritschel** _( San Francisco — retail / online fulfilment / partner restock )_
-- Manager record: `Kirsten Ritschel` · 32 SKU lines · 1,528.55 total units · $6,571.91
+- Manager record: `Kirsten Ritschel` · 32 SKU lines · 1,526.55 total units · $6,567.94
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
   | Packaging Material | Bulk | 4 | 892 | $649.90 |
-  | (uncategorized) | (unspecified) | 18 | 249.95 | $852.66 |
+  | (uncategorized) | (unspecified) | 18 | 247.95 | $848.69 |
   | Cacao Mass | Retail Ready | 1 | 170 | $2,355.96 |
   | Cacao Nib | Retail Ready | 1 | 110 | $1,165.90 |
   | Cacao Mass | Bulk | 2 | 87 | $905.33 |
@@ -209,11 +209,11 @@ _Live snapshot for the oracle / advisor: per-shipper stock from the public **`tr
   | Cacao Nib | Retail Ready | 1 | 5 | $33.20 |
 
 **Gary Teh** _( Operational cash + assorted retail inventory )_
-- Manager record: `Gary Teh` · 34 SKU lines · 8,421.86 total units · $7,541.33
+- Manager record: `Gary Teh` · 34 SKU lines · 8,481.46 total units · $7,595.55
 
   | Inventory type | Unit format | Items | Units | Value (USD) |
   |----------------|-------------|-------|-------|-------------|
-  | (uncategorized) | (unspecified) | 31 | 8,326.68 | $7,289.97 |
+  | (uncategorized) | (unspecified) | 31 | 8,386.28 | $7,344.18 |
   | Packaging Material | Bulk | 1 | 74 | $49.98 |
   | Cacao Nib | Retail Ready | 1 | 19 | $201.38 |
   | Cacao Tea | Bulk | 1 | 2.18 | $0.00 |
@@ -235,9 +235,9 @@ _(+34 more in JSON snapshot.)_
 
 ### Cash float (`off chain asset balance`)
 
-- USD on hand: **$1,663.28**
+- USD on hand: **$1,683.23**
 - Brazilian Reis: R$-1,385.00 · rate `0.2323` USD/BRL → ≈ **$-321.74**
-- USD provisioned for voting-rights cash-out: **$59.62**
+- USD provisioned for voting-rights cash-out: **$59.66**
 
 ### In-transit freight (0 rows)
 
@@ -252,7 +252,7 @@ _Burn rate / days-of-cover is v2 — needs a sales × `inventory_type` join. The
 
 _No lines matched name/keyword heuristics in this window._
 
-_(No `YYYY-MM-DD |` lines on/after 2026-11-20 in CONTEXT_UPDATES.md.)_
+_(No `YYYY-MM-DD |` lines on/after 2026-11-21 in CONTEXT_UPDATES.md.)_
 
 ---
 
@@ -271,6 +271,7 @@ _(No `YYYY-MM-DD |` lines on/after 2026-11-20 in CONTEXT_UPDATES.md.)_
 ### `truesight_me` → `truesight_me_beta`
 
 ```
+f2fc103 | 2026-11-27 21:34:37 +0000 | chore(stats): refresh stats indexes [skip ci]
 71d206f | 2026-11-27 08:58:54 +0000 | chore(stats): refresh stats indexes [skip ci]
 cb0b913 | 2026-11-26 21:51:22 +0000 | chore(stats): refresh stats indexes [skip ci]
 28e6e69 | 2026-11-26 08:49:52 +0000 | chore(stats): refresh stats indexes [skip ci]
@@ -284,19 +285,28 @@ b0e99f9 | 2026-11-22 19:55:50 +0000 | chore(stats): refresh stats indexes [skip 
 9c655f1 | 2026-11-22 07:20:36 +0000 | chore(stats): refresh stats indexes [skip ci]
 74a5f58 | 2026-11-21 19:42:18 +0000 | chore(stats): refresh stats indexes [skip ci]
 cb78208 | 2026-11-21 07:38:11 +0000 | chore(stats): refresh stats indexes [skip ci]
-751f10c | 2026-11-20 20:40:02 +0000 | chore(stats): refresh stats indexes [skip ci]
-dab09c2 | 2026-11-20 07:40:43 +0000 | chore(stats): refresh stats indexes [skip ci]
 ```
 
 ### `market_research` → `go_to_market`
 
 ```
-bf21224 | 2026-11-26 20:01:14 +0800 | Record chocolate-process reel v5 as PUBLISHED (row c2651838) (#213)
+1a2d5b4 | 2026-11-28 15:15:44 +0800 | fix(inventory): coerce priceUsd to bare numeric string (#216)
 ```
 
 ### `agentic_ai_context` → `agentic_ai_context`
 
 ```
+3c4cb1c | 2026-11-28 12:52:58 +0800 | KAN-113: draft TikTok listing copy for 3 SKUs + asset gap checklist (#1960)
+de7e362 | 2026-11-28 11:43:14 +0800 | KAN-113 findings: food category restricted + file skus.json price bug (#1959)
+d29c775 | 2026-11-28 10:50:39 +0800 | Document the checks:read dead end + squash-merge revert trap (KAN-97) (#1957)
+1a372a7 | 2026-11-28 10:31:54 +0800 | KAN-120 closeout: record retirement evidence + file 2 pending follow-ups (#1958)
+4e7b2d0 | 2026-11-28 06:59:02 +0800 | Sheet is source of truth; deprecate CSV repopulation (KAN-120) (#1956)
+42fe803 | 2026-11-28 06:56:47 +0800 | Record KAN-114 verification + KAN-115 in flight (TikTok ops doc) (#1955)
+1c1d340 | 2026-11-28 06:54:23 +0800 | Add TikTok manual-first experiment runbook (KAN-112) (#1954)
+ecda568 | 2026-11-28 05:53:35 +0800 | docs(dispatch): retire PR-E (false hazard premise) + record the two narrower surviving gaps (#1952)
+0cb118d | 2026-11-28 05:45:59 +0800 | docs(followups): file 'prove the probe' rule + record recurrence of the 2026-11-26 false-negative class (#1951)
+4336aff | 2026-11-28 05:32:06 +0800 | chore(previews): refresh Beer Hall preview (2026-11-27 UTC)
+15034df | 2026-11-28 05:32:04 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-27 UTC)
 9a9cb4d | 2026-11-27 20:28:33 +0800 | Correct recon finding: cross-ledger comparison inflated mismatch counts (#1950)
 e4dea8a | 2026-11-27 20:26:19 +0800 | File follow-up: QR-vs-ledger reconciliation has no valid join key (#1949)
 fbbbfd5 | 2026-11-27 19:42:47 +0800 | File follow-ups: QR scan pipeline must use zxingcpp + inversion; Oscar 20261027 batch reconcile (#1948)
@@ -326,23 +336,15 @@ a7b9f25 | 2026-11-26 05:55:48 +0800 | chore(previews): refresh Beer Hall preview
 cad25fe | 2026-11-26 05:55:46 +0800 | chore(advisory): refresh ADVISORY_SNAPSHOT (2026-11-25 UTC)
 c9fef21 | 2026-11-26 03:57:06 +0800 | OPEN_FOLLOWUPS: jira_stale nudge keeps firing after fix merged (deploy lag) + merge-gate CI reader false negative (#1932)
 580f236 | 2026-11-26 03:36:22 +0800 | docs(intraturn): make Unit 4 gate marker non-advanceable (stop 7x auto-advance churn) + refresh evidence row (#1931)
-0e3e3dc | 2026-11-26 03:33:18 +0800 | docs(intraturn): Unit 4 checkpoint 5 — strict band test PASSES; real accumulation corrects #1929 both ways (#1930)
-fe3f358 | 2026-11-26 03:29:49 +0800 | docs(intraturn): Unit 4 checkpoint 4 — source DISPROVES my checkpoint-2 risk (no LLM call, no nesting); real risk is summary accumulation (#1929)
-1160745 | 2026-11-26 02:35:04 +0800 | docs(kan30): runnable day-mark snippet now uses positive anchors (fixes false FAIL) (#1928)
-dd6980c | 2026-11-26 02:33:49 +0800 | docs(intraturn): Unit 4 checkpoint 3 — clean 219-fold record, 2 self-measurement errors caught (#1927)
-2a9fbd8 | 2026-11-26 02:32:22 +0800 | docs(intraturn): Unit 4 checkpoint 2 — soak is ~20h not 4h; fold churn (27/h) exposed by my own weak band test (#1926)
-d284389 | 2026-11-26 02:30:46 +0800 | docs(kan30): fix false-pass bug in day-mark procedure + 4h09m checkpoint (#1925)
-dec0486 | 2026-11-26 02:26:19 +0800 | docs(runbook): preserve Black King freight dispute figures + fix dangling §5.13 ref (#1924)
-b57f6b9 | 2026-11-26 01:52:36 +0800 | Formalize "Post text" term + record Agroverse frame-0 brand decision (#1923)
-2230c19 | 2026-11-26 01:35:30 +0800 | KAN-71: mark source_zip backfill DONE; retract false 'unversioned daemon' entry (#1922)
-471b577 | 2026-11-26 01:25:16 +0800 | docs(followups): file jira_stale/pr_evidence closed-loop bug + check-runs 403 workaround (#1921)
-1b41f7c | 2026-11-26 00:28:03 +0800 | docs(kan30): harden the echo filter ('stderr:' is a 3rd channel) + day-mark procedure (#1920)
 … (truncated)
 ```
 
 ### `tokenomics` → `tokenomics`
 
 ```
+27aad8a | 2026-11-28 06:41:14 +0800 | fix(tokenomics): rename shadowed proxy so SALES_AGL4 actually processes sales (#642)
+66cd353 | 2026-11-28 06:40:14 +0800 | Fix extractAglContractName corrupting deep-link URLs (KAN-108) (#641)
+5c45051 | 2026-11-28 06:28:18 +0800 | fix(qr-gen): stop writing landing_page into Ledger col C + guard on Shipment Ledger Listing (#640)
 6e034c2 | 2026-11-27 20:02:14 +0800 | Fix sales tokenizer: normalize column G shipment URLs so sales stop being silently skipped (#639)
 ea09671 | 2026-11-27 13:56:42 +0800 | docs(SCHEMA): QR col AD — record retired backfill, reject email→name join, deferred naming (#638)
 8c93753 | 2026-11-27 13:41:34 +0800 | Retire populate_recipient_name.py — AD is hand-written only (#637)
@@ -382,6 +384,14 @@ _(no commits on origin/main in window)_
 ### `agroverse-inventory` → `agroverse-inventory`
 
 ```
+d969ef4 | 2026-11-28 10:29:55 +0800 | chore: refresh Agroverse SKU catalog snapshot
+edef21b | 2026-11-28 10:29:51 +0800 | chore: refresh Agroverse store inventory snapshot
+20331ba | 2026-11-28 09:28:52 +0800 | chore: refresh Agroverse SKU catalog snapshot
+0f6326e | 2026-11-28 09:28:50 +0800 | chore: refresh Agroverse store inventory snapshot
+f4791f5 | 2026-11-28 08:28:42 +0800 | chore: refresh Agroverse SKU catalog snapshot
+2975d20 | 2026-11-28 08:28:40 +0800 | chore: refresh Agroverse store inventory snapshot
+768a17e | 2026-11-28 07:28:52 +0800 | chore: refresh Agroverse SKU catalog snapshot
+aa80998 | 2026-11-28 07:28:50 +0800 | chore: refresh Agroverse store inventory snapshot
 13276a0 | 2026-11-28 02:28:48 +0800 | chore: refresh Agroverse SKU catalog snapshot
 79f424d | 2026-11-28 02:28:46 +0800 | chore: refresh Agroverse store inventory snapshot
 d5b4cf2 | 2026-11-27 16:58:41 +0000 | chore: refresh currencies.json [skip ci]
@@ -407,8 +417,6 @@ da9db4a | 2026-11-22 14:54:08 +0000 | chore: refresh currencies.json [skip ci]
 7003894 | 2026-11-22 14:39:17 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 62bfa43 | 2026-11-21 14:55:53 +0000 | chore: refresh currencies.json [skip ci]
 ae499a7 | 2026-11-21 14:43:00 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
-8635229 | 2026-11-20 15:45:09 +0000 | chore: refresh currencies.json [skip ci]
-4b89e93 | 2026-11-20 15:31:09 +0000 | chore: refresh store, partner inventory, and SKU catalog snapshots [skip ci]
 ```
 
 ### `agroverse_shop` → `agroverse_shop_beta`
@@ -503,20 +511,20 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-08 | 528.78 | 17439.84386 | 8/31/2026 19:51:11 |
 | 2026-09 | 1044.5 | 18484.34386 | 9/30/2026 19:51:16 |
 | 2026-10 | 460 | 18944.34386 | 10/31/2026 |
-| 2026-11 | 415.5 | 19359.84386 | 11/27/2026 12:53:39 |
+| 2026-11 | 479.1 | 19423.44386 | 11/27/2026 23:50:48 |
 
-### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-11-20`; scanned last **600** data rows)
+### `QR Code Sales` (up to **25** rows; `Sales Date` ≥ `2026-11-21`; scanned last **600** data rows)
 
 | Sales date | Price | Currency / product | Status | QR (trunc.) | Stripe (suffix) | Remarks (trunc.) |
 |-------------|-------|--------------------|--------|-------------|-------------------|--------------------|
 | 2026-11-26 | 25 | 8 Ounce Package Kraft Pouch - Ilheus, B… | TOKENIZED | 2024OSCAR_20250826_NIBS_22 | — | — |
 | 2026-11-26 | 10 | Agroverse 81% Cacao Chocolate Bar 50g \… | TOKENIZED | 2024_20261027_15 | — | — |
 | 2026-11-26 | 10 | Agroverse 81% Cacao Chocolate Bar 50g \… | ACCOUNTED | 2025_20261025_7 | — | — |
-| 2026-11-27 | 10 | Agroverse 81% Cacao Chocolate Bar 50g \… | — | 2024_20261027_28 | Cash sale | — |
-| 2026-11-27 | 10 | Agroverse 81% Cacao Chocolate Bar 50g \… | — | 2024_20261027_36 | Cash sale | — |
-| 2026-11-27 | 10 | Agroverse 81% Cacao Chocolate Bar 50g \… | — | 2025_20261025_43 | Cash sale | — |
-| 2026-11-27 | 10 | Agroverse 81% Cacao Chocolate Bar 50g \… | — | 2025_20261025_42 | Cash sale | — |
-| 2026-11-27 | 10 | Agroverse 81% Cacao Chocolate Bar 50g \… | — | 2025_20261025_41 | Cash sale | — |
+| 2026-11-27 | 10 | Agroverse 81% Cacao Chocolate Bar 50g \… | TOKENIZED | 2024_20261027_28 | Cash sale | — |
+| 2026-11-27 | 10 | Agroverse 81% Cacao Chocolate Bar 50g \… | TOKENIZED | 2024_20261027_36 | Cash sale | — |
+| 2026-11-27 | 10 | Agroverse 81% Cacao Chocolate Bar 50g \… | ACCOUNTED | 2025_20261025_43 | Cash sale | — |
+| 2026-11-27 | 10 | Agroverse 81% Cacao Chocolate Bar 50g \… | PROCESSING | 2025_20261025_42 | Cash sale | — |
+| 2026-11-27 | 10 | Agroverse 81% Cacao Chocolate Bar 50g \… | ACCOUNTED | 2025_20261025_41 | Cash sale | — |
 | 2026-11-27 | — | — | IGNORED | — | — | IGNORED: QR in message already on QR Code Sales; structured parse had n… |
 | 2026-11-27 | 15 | 8 Ounce Package Kraft Pouch - Ilheus, B… | TOKENIZED | 2024OSCAR_20250826_NIBS_18 | — | — |
 | 2026-11-27 | 15 | 8 Ounce Package Kraft Pouch - Ilheus, B… | TOKENIZED | 2024OSCAR_20250826_NIBS_15 | — | — |
@@ -524,7 +532,7 @@ _Canonical layouts: `tokenomics/SCHEMA.md` — **Monthly Statistics** on the mai
 | 2026-11-27 | 15 | 8 Ounce Package Kraft Pouch - AGL6 | ACCOUNTED | 2024SJ_20250710_NIBS_2 | — | — |
 | 2026-11-27 | — | — | IGNORED | — | — | IGNORED: Grok API error. |
 | 2026-11-27 | 10 | Agroverse 81% Cacao Chocolate Bar 50g \… | TOKENIZED | 2024_20261027_31 | Cash sale | — |
-| 2026-11-27 | 10 | Agroverse 81% Cacao Chocolate Bar 50g \… | — | 2025_20261025_40 | Cash sale | — |
+| 2026-11-27 | 10 | Agroverse 81% Cacao Chocolate Bar 50g \… | PROCESSING | 2025_20261025_40 | Cash sale | — |
 
 _Source IDs: main ledger `1GE7PUq-UT6x2rBN-Q2ksogbWpgyuh2SaxJyG_uEK6PU`, submissions `1qbZZhf-_7xzmDTriaJVWj6OZshyQsFkdsAV8-pyzASQ`._
 
