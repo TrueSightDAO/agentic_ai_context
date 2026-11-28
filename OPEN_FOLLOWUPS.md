@@ -39,6 +39,39 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### Loop classifier cannot tell a reaction go-signal anchor from a real decision prompt — KAN-122 (residual of KAN-102)
+
+**Priority:** MEDIUM · **Filed:** 2026-11-28 · **Component:** `truesight_autopilot` — `app/loop_daemon.py`, `app/loop_status.py`, `app/discord_resume_registry.py` · **Governor:** Gary · **Owner:** Sophia · **Ticket:** KAN-122
+
+**Found during:** KAN-102 closeout. KAN-102 is **Done**, but this entry exists precisely because *what shipped was not what the ticket specified* — recorded here so the gap does not evaporate with the ticket.
+
+**The discrepancy.** KAN-102's FIX section specified decision-**tagging** at the `load_awaiting()` boundary (tag an entry as a decision prompt only when the reply genuinely asks for one; clear a session's entries on `complete_thread_goal` / `dismiss_thread_goal`). What actually shipped (#673) was goal-**terminality** gating at the classifier — `classify_session` gained `goal_status` and gates `AWAITING` / `AWAITING_STALE` on `not goal_terminal`.
+
+**Verified gap** (by inspection of deployed `main` @ `c50cc7f`):
+
+- `load_awaiting()` still passes **all** registry entries through `loop_status.parse_awaiting()` — no decision-tag filter.
+- No `kind` / `is_decision` / `decision_prompt` field exists anywhere in `app/`.
+- No `clear_resume` / `clear_entries` path on `complete_thread_goal` or `dismiss_thread_goal`.
+
+**Why it matters.** The terminal-goal gate removed the loudest false positive (a completed goal nagging forever) without building the actual distinction. A plain status report in a session whose goal is still **open** can still surface as "decision needed" — and this is not theoretical: the live `reconcile()` right after deploy showed exactly one `awaiting_stale` session, whose goal status was `open` (`"Work through all 6 Jira tickets..."`). Today that reads as a true positive, but the classifier has no way to tell *"I posted a status update"* from *"I am asking you to decide"*. `LOOP_DAEMON_PLAN.md` already records the failure mode at scale: `_discord_resume_awaiting.json` reached 2430 entries with no GC, at which point almost every Discord channel classifies AWAITING and the signal drowns.
+
+**Do NOT regress emoji-go.** Keep `mark_resume_awaiting()` on **every** posted message. The registry is a REACTION GO-SIGNAL map — any standard emoji reaction (except 👎) on any Sophia message means *continue* (KAN-31 / `SOPHIA_EMOJI_REACTION_GO_PLAN.md`). Filtering what goes *into* the registry would break reaction handling. Filter only what the *classifier* reads as a pending question.
+
+**Proposed fix.**
+
+1. Add a prompt-kind field to registry entries (e.g. `kind: "go_signal" | "decision"`), **defaulting to `go_signal`** so every existing entry stays reaction-resolvable.
+2. Set `kind=decision` only from the explicit `resume_awaiting=True` path and the `options[]` / `mark_options` path.
+3. Add a narrow accessor (e.g. `load_decision_awaiting()`) and point the classifier's waiting-age sources at it; leave all reaction lookups on the full map.
+4. Clear or supersede a session's entries on `complete_thread_goal` / `dismiss_thread_goal`, so a closed goal cannot leave a live prompt behind.
+
+**Acceptance.** Plain status report is NOT surfaced as a decision prompt; `resume_awaiting=True` or `options[]` IS surfaced; reaction lookup still resolves plain entries (no go-signal regression); completing a goal clears that session's entries.
+
+**Conflict hazard, already paid for once.** `app/loop_daemon.py` now holds `load_goal_ages()` (#613) and `load_goal_states()` (#673), which **share a `return out` trailer**. A careless conflict resolution during #673's rebase concatenated both and silently dropped it — 14 test failures, caught only because the suite was run after rebasing. Re-run the full suite after any rebase touching this file; a clean-looking rebase is not evidence.
+
+**Blocker:** none. Self-contained, single repo, no ledger or production impact.
+
+---
+
 ### `skus.json` ships `priceUsd: "$30.00"` for the flagship ceremonial cacao — DApp price input renders blank
 
 **Priority:** HIGH · **Filed:** 2026-11-28 · **Component:** Main Ledger tab `Agroverse SKUs` cell **C2** + `go_to_market/scripts/sync_agroverse_store_inventory.py` · **Governor:** Gary
