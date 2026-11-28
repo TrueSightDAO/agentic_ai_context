@@ -7527,6 +7527,17 @@ Probed **without executing any script** — no `curl -L`, so a redirect returns 
 
 ## Recently shipped
 
+### `skus.json` shipped `priceUsd: "$30.00"` for the flagship ceremonial cacao — DApp price input rendered blank — SHIPPED 2026-11-28
+**Shipped 2026-11-28. PR: `go_to_market` #217 (squash-merged `889ca37`). Governor: Gary.**
+
+`skus.json` published `"priceUsd": "$30.00"` for `ceremonial-cacao-paulo-s-la-do-sitio-farm-200g` (170 units — the highest-stock retail SKU) against a documented contract requiring the unformatted `"30"`. The DApp drops `priceUsd` straight into `<input type="number" id="priceInput">`, so the field **rendered blank** on the flagship's quoting flow, independent of TikTok.
+
+Root cause was **sheet-side, not publisher-side**: Main Ledger tab `Agroverse SKUs` cell **C2** is typed as text, so `UNFORMATTED_VALUE` returns the string `'$30.00'` while every other priced row returns a number. The publisher faithfully passed text through — same bug class `go_to_market` #175 fixed, re-entered via hand entry. `check_product_price_consistency.py` did **not** cover this (it compares `products.js` vs HTML — a different boundary), so the sheet→`skus.json` path was genuinely unguarded.
+
+Fix adds `_price_usd_str()`, wired at **both** call sites: numeric cells keep the existing `0 → ""` behaviour; text cells get `$`, `,` and NBSP stripped and re-parsed; anything still unparseable publishes as `""` with a warning naming the value — visibly **absent** beats silently **malformed**. 8 new tests; suite 176 → 184 passed. Tolerated ruff errors on the touched file are byte-identical to baseline (diff shows only line-number shifts). Verified end-to-end against the live sheet: 16 SKUs, **zero** non-numeric `priceUsd` remaining.
+
+**Still outstanding (durable guard makes them non-urgent, not done):** (1) cell **C2** is still text on the sheet — correcting it to the numeric `30` is a one-cell governor edit and was deliberately **not** performed unasked; (2) `skus.json` only regenerates at the **next publish**; (3) the proposed **data-validation rule** on the `priceUsd` column was not added.
+
 ### `link_pr_in_comment` wrote comments but `pr_evidence` only read remotelinks — every linked PR still nudged "(no PR linked)" — SHIPPED 2026-11-26
 **Shipped 2026-11-26. Governor thread: Telegram `10800` (KAN-69 Brazil → SF freight lane). PR: `truesight_autopilot` #646 (merged `bf691450`).**
 
