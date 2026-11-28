@@ -20,11 +20,66 @@ The *listing* is gated by category qualification, a GTIN route, and pack data. N
 |---|---|---|
 | **Brand** | **Agroverse** | §2 brand field resolved. Needs Agroverse selectable in the brand dropdown, or added via "Add a brand" first — and it must match the brand the GTIN (if any) is licensed to. "Unbranded" is no longer used. |
 | **Slate size** | **One single-estate SKU at launch**, not a 3-variant spread | §3 is the **only** live listing. §4, §5, §6 are parked drafts, kept because the copy is reusable. |
-| **Estate naming** | **OPEN** — governor's instinct is to lead with the brand and not name the estate | Analysed below. Both title variants are written out in §3 so either can be pasted. |
+| **Estate naming** | **RESOLVED — Oscar's** (2026-11-28) | §0a.1–0a.3 below. Two consequences the decision surfaces: the launch SKU changes (§0a.1), and the naming advice **inverts for bars** (§0a.3). |
 
 **Why one SKU is the better call, independent of preference.** One estate = one lot = one packaging-photo review, one ingredient/nutrition transcription, one qualification submission. A four-variant launch multiplies the review surface while returning the same learning — all four would screenshot the same buyer behaviour. This is the same reasoning that settled the China SKU format (one estate = one lot = one GACC/CIFER filing). Ship one, iterate.
 
 **What it deliberately gives up.** `TIKTOK_SHOP_AGENTIC_OPS.md` §7a argued for three SKUs across three price points ($10 / $25 / $30) so attribution could learn *which product type* converts. With one SKU the experiment measures one product's conversion rate, not product-type fit. That is an acceptable trade now: KAN-113 asked for 1–3, and KAN-115 / KAN-117 supply the content-side learning.
+
+### 0a.1 Estate = Oscar's — and it moves the launch SKU
+
+Governor decision 2026-11-28: **the estate is Oscar's.** Verified against `skus.json` (`generatedAt` 2026-11-28T09:28:46Z): the `farm` field confirms four distinct estates — **Paulo**, **Oscar**, **Vivi**, **Fazenda Santa Ana** — so "Oscar's" is unambiguous.
+
+**⚠️ But Oscar's + ceremonial cacao has nothing to ship.**
+
+| SKU | Farm | Price | Stock |
+|---|---|---|---|
+| `oscar-bahia-ceremonial-cacao-200g` | **Oscar** | $25 | **0** |
+| `ceremonial-cacao-paulo-s-la-do-sitio-farm-200g` | Paulo | $30 | **170** |
+
+This section previously assumed the Paulo's 200g bag (170 units) was the launch SKU. Naming **Oscar's** makes that impossible: the 170-unit bag is a different farm, and Oscar's ceremonial bag is at zero. Listing it would generate refunds, not data.
+
+**Oscar's in-stock products — the real launch candidates:**
+
+| SKU | Price | Stock | Form |
+|---|---|---|---|
+| `8-ounce-organic-cacao-nibs` | $25 | **131** | nibs |
+| `cacao-mass-bar-500g-ilheus-2024` | $60 | **37** | cacao mass |
+| `organic-81-dark-chocolate-bar-50g-oscar-bahia-2024` | $10 | **34** | finished bar |
+
+**Recommended: the 81% bar.** It is the named estate (`Oscar's Farm, Bahia` in `productName`), it is literally "the chocolate bar" from the original GTIN question, and 34 units is a real first batch. The 8oz nibs carry more stock, but Oscar's farm there is a *sourcing* attribution rather than a branded estate claim.
+
+> ⚠️ **§3 below still contains the Paulo's ceremonial listing and is NO LONGER the launch listing.** It is retained as the reusable template. Rewriting §3 around the Oscar's bar is the next unit.
+
+### 0a.2 The launch-SKU question, and whether to switch estates instead
+
+Two coherent resolutions; this doc recommends the first:
+
+- **(i) Keep Oscar's, change product → the 81% bar.** Estate decision honoured, deepest in-stock Oscar's finished good, and the bar is the stronger TikTok visual anyway.
+- **(ii) Keep ceremonial cacao, change estate → Paulo's.** Keeps the 170-unit bag and the $30 AOV, but *contradicts* the governor's estate decision.
+
+This doc cannot choose between a governor's decision and a stock constraint — **(i) is recorded as the recommendation, (ii) as the alternative.** Flag which is intended and §3 is rewritten accordingly.
+
+### 0a.3 The pack is anonymous — which inverts the naming advice for bars
+
+§7 treated the single shared packaging photo across four bar variants as a defect. OCR of that image (`81-dark-chocolate-bar-50g-packaging.jpg`, 1597×900) shows otherwise:
+
+> *"81% Brazil Single Estate Chocolate — Saving our Amazon Rainforest, one cacao at a time…"*
+
+**The wrapper names no farm.** "Single Estate" is the claim; the estate is withheld on the pack itself. That explains why one photo legitimately serves all four variants — the pack genuinely is generic — and it **downgrades §7's shared-photo finding** from a blocker to a cosmetic gap. Per-variant photos would be nice; they are not required by the pack.
+
+**But it reverses the naming advice for bars.** §9.5 of the ops doc argued for naming the estate in the listing, on the grounds that an unnamed estate is an unverifiable label claim. That logic holds for a **farm-specific ceremonial bag** (where the bag itself is the farm's). It does *not* hold for a **bar whose own packaging says "Brazil Single Estate" and names nothing**: a TikTok listing titling itself "Oscar's Farm" while the pack in the review photos says only "Brazil" reads as a listing-vs-pack mismatch, which is precisely what qualification review checks.
+
+**Revised guidance:**
+
+| Product form | Title should say | Why |
+|---|---|---|
+| Farm-specific ceremonial bag (Paulo's 200g) | **Name the farm** | The bag wrapper *is* the farm's; the name matches the pack and is the differentiator |
+| 81% bar | **"Single Estate, Brazil"** — estate named in description/QR, not the title | Matches the anonymous pack; naming it in the title creates the mismatch |
+
+The estate decision still does real work either way: it determines **which SKU** is listed and **which lot the QR resolves to**. It just should not be printed on a title whose packaging prints something else.
+
+---
 
 ### The estate-name question, stated properly
 
@@ -215,6 +270,6 @@ Items 1 and 2 therefore stop mattering at launch: the shared-barise photograph (
 |---|---|---|
 | 1 | **Category qualification** — run Seller Center → Qualification Center → Category Qualification, screenshot the document list | Decides the timeline for every listing. Five minutes. Highest information per minute of anything on this list. |
 | 2 | **FDA facility registration** — held, or only FSVP / prior-notice records? | §7a of the ops doc rates this a **hard blocker**: restricted categories cannot be listed until qualification is approved, and the registration is a required document. FSVP records are a different instrument. |
-| 3 | **Estate naming** — §0a Reading A (named) or B (anonymised)? | Both title variants are written in §3; B additionally requires stripping the farm from the long description. |
+| 3 | **Estate naming** | ✅ **RESOLVED — Oscar's** (§0a.1). Note §0a.3: resolved estate ≠ estate printed in the title — for the 81% bar the pack is anonymous, so the title stays "Single Estate, Brazil". |
 | 4 | **Price parity** — list at $30 (agroverse.shop parity) or at an uplift? | Recommended: **match $30**. A higher TikTok price than our own site is screenshot bait. |
 | 5 | **GEPIR check on `860010660`** — is that prefix licensed to Agroverse? | Only matters if we ever list *with* a GTIN. Moot while we take the exemption, but it is the cheapest way to retire the question. |

@@ -234,3 +234,10 @@ Governor's instinct: lead with the brand, don't name the estate. Two readings, n
 **Recommendation: A.** A **named single estate** is the first of four documented positioning pillars. Unnamed, "single estate" is indistinguishable from a label assertion — every craft chocolate brand already claims single origin. The name is what makes it checkable. B also fights the QR (the name is one scan away) and risks a mismatch between the listing and the pack images qualification reviews.
 
 **The one legitimate case for B is disintermediation** — fear of a buyer going direct to the farm. That is not solved by B, since the name is in the QR record either way. The real fix is the **QR landing page**: batch, lot, region, harvest, assay, traceability chain, *without* the farm's contact identity.
+
+**✅ Resolved 2026-11-28 — the estate is Oscar's.** Applying it produced two findings that qualify the recommendation above:
+
+1. **Oscar's has no ceremonial cacao in stock** (0 units). The 170-unit 200g bag is **Paulo's**. The named-estate launch SKU therefore moves to `organic-81-dark-chocolate-bar-50g-oscar-bahia-2024` (34 in stock). Stock truth outranks the earlier SKU rationale.
+2. **The bar wrapper names no farm** — it reads *"81% Brazil Single Estate Chocolate"*. So for **bars**, naming the estate in the listing title creates a listing-vs-pack mismatch at qualification review. The recommendation inverts by product form: **name the farm on farm-specific ceremonial bags; use "Single Estate, Brazil" on bar titles**, with the estate carried in the description and QR record.
+
+The estate decision still determines **which SKU** ships and **which lot the QR resolves to** — it just isn't always printable in the title. Full detail: `TIKTOK_LISTING_COPY_DRAFT.md` §0a.1–0a.3.
