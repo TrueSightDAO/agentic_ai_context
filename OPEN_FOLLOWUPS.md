@@ -39,6 +39,82 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### `QR Code Sales` cannot process multi-QR bundle rows — 41 codes in one cell will never reconcile
+
+**Priority:** MEDIUM · **Filed:** 2026-11-28 · **Component:** `tokenomics` — `sales_update_managed_agl_ledgers.js` (`processNonAgl4Transactions`), Main Ledger `QR Code Sales` · **Governor:** Gary
+
+**Found during:** the backfill audit after PR #645 (non-AGL4 idempotency guard). The audit cleared 616 rows — **0** silently half-booked — but surfaced 13 permanently-stuck rows, and 3 of them are a distinct bug class.
+
+**Symptom.** Row 535 carries **41 QR codes concatenated in a single cell** (comma-separated: `2024OSCAR_20260330_1, … 2024SA_20251227_42`), $680, dated 20260620. Rows 534 (`Ceremonial Cacao Kraft Pouch (40 bags)`, $680) and 536 (`Ceremonial Cacao`, $17) are the same family — a bulk/pouch SKU where the unit is a *collection* of bags, not one bag.
+
+**Root cause.** Every processor in this family assumes **one QR per row**. `processNonAgl4Transactions` extracts a single contract name / QR from the row's columns and writes one set of legs. A row naming 41 codes matches nothing, throws nothing, and never advances — it sits with a blank status forever. The status filter only ever sees rows where col J is blank, so it retries every run and fails identically every run. Silent, unbounded, and not self-healing.
+
+**Impact.** These rows are visible failures (blank status, not falsely `ACCOUNTED`), so no money is misreported — but $1,377 of recorded revenue across rows 534–536 will never reach a ledger, and the stuck tail grows with each bundle sale.
+
+**Not the same as the #645 bug.** #645 was *false completion* (marked ACCOUNTED, no legs). This is *permanent incompletion*. Different fix, different code path.
+
+**Proposed fix.** Split the row into its constituent codes at intake (or reject it with an explicit `MULTI_QR_NEEDS_SPLIT` status that surfaces in an exception report), and write one leg set per code. Decide explicitly whether a bundle is booked as N unit legs or 1 aggregate leg — do not let it fall through to "neither".
+
+**Acceptance.** A row naming multiple QRs either (a) reconciles into per-code legs, or (b) fails **visibly** with a named status a human can act on. No row may sit blank forever.
+
+**Blocker:** none. Needs a product decision on aggregate-vs-unit booking before implementation.
+
+---
+
+### Telegram QR intake lands OCR-corrupted codes that can never match a real bag
+
+**Priority:** MEDIUM · **Filed:** 2026-11-28 · **Component:** `truesight_autopilot` QR transcription path + Main Ledger `QR Code Sales` · **Governor:** Gary
+
+**Found during:** the same backfill audit (PR #645 aftermath), enumerating non-terminal `QR Code Sales` rows.
+
+**Symptom.** Of the 13 stuck rows, at least 6 carry QR strings that are provably not real codes — they are transcription damage, not bags:
+
+| Row | Recorded string | Damage |
+|---|---|---|
+| 100 | `2024 hemisph_20250515_N ш т_20` | Cyrillic `ш т` substituted mid-code |
+| 264 | `不.50_20250710_13` | CJK character at start |
+| 98 | `2024PF_202_alert05_12` | vowel-corrupted `2025` → `202_`, `al` inserted |
+| 77 | `2024SJ_20250515 20250515_NIBS_4` | duplicated date fragment, space instead of `_` |
+| 99 | `2024 hemisph_20250515_NIBS_20` | `hemisph` for `HEMISPHERE`, leading junk |
+| 534–536 | see multi-QR entry | bundle, not corruption |
+
+**Root cause.** These rows were written from Telegram-transcribed QR text that was never validated against the registry. A code that exists nowhere in the ledger cannot be sold, cannot be tokenized, and cannot be repaired by any downstream fix — it is permanently inert. Same root gap as **KAN-125** (decode must be registry-anchored), but on the *text intake* side rather than the image-decode side.
+
+**Why it matters.** These are not silent — but they are unattended, and they inflate the stuck tail while looking like ordinary backlog. Anyone counting "rows awaiting processing" gets a number that includes rows which can never process.
+
+**Proposed fix.** Reject at intake: on QR write, look the string up in the registry; if absent, do not write it as a sale row — route it to a quarantine/exception list naming the raw string so a human can compare against the physical bag label. Reuse the fuzzy digit/CJK/space normalisation proposed in KAN-125 (strip non-ASCII, collapse whitespace to `_`, try bounded variants) to offer a *probable* match without asserting one.
+
+**Acceptance.** No new `QR Code Sales` row may carry a code absent from the registry without being flagged for human review. The 6 known-bad rows are triaged (corrected from the physical label, or closed as `UNREADABLE`).
+
+**Blocker:** none. Overlaps KAN-125 — implement the registry gate once, in one place, and call it from both paths.
+
+---
+
+### No audit trail for who deploys to a Google Apps Script project
+
+**Priority:** MEDIUM · **Filed:** 2026-11-28 · **Component:** `tokenomics` (`google_app_scripts/*`) + deploy tooling · **Governor:** Gary
+
+**Found during:** deploying the KAN-98 epic fixes on 2026-11-28. I ran the drift check, intended to `clasp push`, and found **live already byte-identical to merged `main`** (matching md5, `markerRows` present at the guard) for project `1duQFfTO0Pj0lC4tPVNmMOhNOS1GvJgzqVxXbsEDu-eqt_64DwxvrOVyl` — a push **I never performed**.
+
+**What I ruled out** (all checked, all negative): no cron entry, no systemd timer, no GitHub workflow in `tokenomics` deploys GAS; no `clasp` version-history entry mentions the fix; the only local action was a `cp` into the **repo checkout**, which does not touch live.
+
+**Why it matters.** Two consequences, both real:
+
+1. **Unattributable production change.** Some actor with write access to the GAS project deployed it. I cannot prove who, or when, or that it matched a reviewed commit. For a system whose whole value proposition is auditability, "production changed and nobody knows by whom" is a serious gap.
+2. **Drift is undetectable.** PR #496 (parity guard) is still open. Without it, a hand-edit or rogue push to live is invisible until a ledger breaks. This session I had to hand-diff every project before pushing — and caught pre-existing drift in `process_currency_definitions_telegram_logs.js` that a blind `--force` push would have silently reverted. That was luck plus diligence, not a control.
+
+**Proposed fix.**
+
+1. Land the PR #496 parity guard so drift is detected automatically, not by hand-diffing.
+2. Record a deploy ledger for GAS: append `(timestamp, projectId, commitSha, files, deployer)` on every push, in the same spirit as the existing `test_deploy_ledger` accounting. Absence of a row for a live change is then itself an alert.
+3. Identify and account for every identity holding write access to a production GAS project — enumerate, then reduce to those that need it.
+
+**Acceptance.** For any live GAS project, "what is deployed, from which commit, by whom, when" is answerable from records alone. A live state diverging from every recorded push raises an alert.
+
+**Blocker:** none for items 1–2. Item 3 needs a governor to enumerate GAS editor access.
+
+---
+
 ### Loop classifier cannot tell a reaction go-signal anchor from a real decision prompt — KAN-122 (residual of KAN-102)
 
 **Priority:** MEDIUM · **Filed:** 2026-11-28 · **Component:** `truesight_autopilot` — `app/loop_daemon.py`, `app/loop_status.py`, `app/discord_resume_registry.py` · **Governor:** Gary · **Owner:** Sophia · **Ticket:** KAN-122
