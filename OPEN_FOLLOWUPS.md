@@ -39,6 +39,57 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### CI status is readable without `checks:read` — and CI-green does NOT imply merge-safe
+**Filed 2026-11-28. Owner: Sophia. Governor: Gary. Closes KAN-97. Shipped in truesight_autopilot #674 + #678.**
+
+Two findings, each of which cost a session to rediscover. Read this before writing any
+CI-checking or merge-guarding code.
+
+**1. The `checks:read` dead end — use `actions/runs`, not the obvious endpoints.**
+The autopilot PAT has **no `checks:read`**, so every intuitive path fails identically:
+```
+gh pr checks                        -> GraphQL 403 (statusCheckRollup)
+gh api .../commits/$SHA/status      -> HTTP 403
+gh api .../commits/$SHA/check-runs  -> HTTP 403
+gh run list --branch X              -> "unknown flag: --branch"  (flag does not exist)
+```
+The one rung that works without the scope:
+```
+gh api "repos/OWNER/REPO/actions/runs?branch=<URL-ENCODED>&per_page=5"
+```
+The branch **must** be URL-encoded (`fix/foo` -> `fix%2Ffoo`) or the query silently returns
+an empty list — indistinguishable from "no CI yet". A single check also reports
+`in_progress` for a long time (one session needed 11 polls to settle), so poll until settled
+with a bounded timeout; never report `in_progress`/`queued` as green.
+All of this is now `GitHubClient.ci_status(repo, branch=|sha=|pr_number=, wait=True)` in
+`app/github_client.py`, which walks the ladder and **falls through on 403** instead of
+raising. Do not build a parallel helper — extend that one.
+
+**Watch the transport arity:** PyGithub's `requestJsonAndCheck` returns a **2-tuple
+`(headers, data)`** via `__postProcess` — NOT `(status, headers, data)`. A 3-tuple unpack
+raises `ValueError` on *every* rung, and a stub mirroring the wrong arity makes the whole
+suite pass while the live tool returns `unknown` for everything. That happened.
+`_ci_get()` now validates arity and names the real contract.
+
+**2. Squash-merge breaks ancestry — a "CLEAN" PR can silently revert shipped work.**
+Squash-merging leaves the branch tip **not** an ancestor of the base. Re-opening a PR from
+that branch yields a PR GitHub reports as `CLEAN` / `MERGEABLE`, and CI passes — because CI
+ran on the **stale tree**. Both existing gates say SAFE while the merge would overwrite the
+touched files with the branch's version, deleting everything the base gained since the fork
+point. Live example: PR #676 read `CLEAN` + green CI and would have deleted **102 lines** of
+shipped work.
+
+`GitHubClient._stale_revert_reason()` now guards this in `merge_pr`: it compares against the
+base's **gained** content and blocks only when the branch is *behind the base* AND the
+base->head diff is *net-deleting* (fails open on API error so it can never freeze all merges).
+Neither `mergeable_state` nor CI conclusions can see this — necessary but not sufficient.
+
+**Practical rule:** always branch fresh from `origin/main`; never re-open a PR from a
+squash-merged branch. Before any merge you care about, check the real diff
+(`git diff --stat origin/main...HEAD`) rather than trusting `mergeStateStatus`.
+
+---
+
 ### `Instagram Content Schedule`: 182 of 245 rows have a blank `status` — the retired sync is the likely cause, but the rows must be triaged, not blanket-filled
 
 **Priority:** MEDIUM · **Filed:** 2026-11-28 · **Component:** content workbook `1ghZXeMqFq97Vl6yLKrtDmMQdQkd-4EN5yQs34NA_sBQ`, tab `Instagram Content Schedule` · **Governor:** Gary
