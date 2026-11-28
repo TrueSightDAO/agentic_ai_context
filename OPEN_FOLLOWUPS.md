@@ -39,6 +39,30 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### `skus.json` ships `priceUsd: "$30.00"` for the flagship ceremonial cacao — DApp price input renders blank
+
+**Priority:** HIGH · **Filed:** 2026-11-28 · **Component:** Main Ledger tab `Agroverse SKUs` cell **C2** + `go_to_market/scripts/sync_agroverse_store_inventory.py` · **Governor:** Gary
+
+**Found during:** KAN-113 (preparing the TikTok listing, pulling real prices).
+
+**Symptom.** The published catalog `https://raw.githubusercontent.com/TrueSightDAO/agroverse-inventory/main/skus.json` carries `"priceUsd": "$30.00"` for `ceremonial-cacao-paulo-s-la-do-sitio-farm-200g`. The documented contract (`AGROVERSE_INVENTORY_PUBLISHERS.md` §4) requires the unformatted string `"30"`, and calls out this exact failure: the DApp drops `priceUsd` directly into `<input type="number" id="priceInput">`, so a currency-formatted value **renders the field blank**.
+
+**Root cause — sheet-side, not publisher-side.** Reading the Main Ledger tab with `valueRenderOption=UNFORMATTED_VALUE` returns the *string* `'$30.00'` for C2, while every other priced row returns a number (`25`, `10`, `60`). The cell was typed (or pasted) as text, so Sheets stores text and the publisher faithfully passes text through. Same bug class go_to_market #175 fixed — it has re-entered via hand entry.
+
+**Impact.** The highest-stock retail SKU (170 units) — the flagship — has a broken price input on any surface consuming `skus.json`. Quoting/currency-definition flows for it are degraded right now, independent of TikTok.
+
+**Proposed fix — do both.**
+
+1. **Immediate:** set C2 to the numeric value `30` (not text) in the `Agroverse SKUs` tab. One cell.
+2. **Durable:** in `sync_agroverse_store_inventory.py`, coerce `priceUsd` defensively — strip `$`, `,` and whitespace before serialising, and emit `""` when the result is non-numeric so the failure shows as *absent* rather than shipped as *malformed*. Log a warning naming the offending productId. Discarding the currency symbol is safe; silently shipping `"$30.00"` is what breaks the consumer.
+3. Consider a **data-validation rule** on the `priceUsd` column restricting it to numbers, so text-vs-number drift cannot recur silently.
+
+**Why not just fix it silently:** the sheet is hand-edited by governors, so this will happen again. The publisher guard is the part that makes the bug *class* stop, and it needs its own PR + test.
+
+**Blocker:** none. Item 1 is a one-cell governor edit and would fix the live symptom today.
+
+---
+
 ### CI status is readable without `checks:read` — and CI-green does NOT imply merge-safe
 **Filed 2026-11-28. Owner: Sophia. Governor: Gary. Closes KAN-97. Shipped in truesight_autopilot #674 + #678.**
 
