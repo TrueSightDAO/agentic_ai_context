@@ -39,6 +39,53 @@ cross-session** items that would otherwise rot in chat transcripts.
 
 ## Pending
 
+### `Instagram Content Schedule`: 182 of 245 rows have a blank `status` — the retired sync is the likely cause, but the rows must be triaged, not blanket-filled
+
+**Priority:** MEDIUM · **Filed:** 2026-11-28 · **Component:** content workbook `1ghZXeMqFq97Vl6yLKrtDmMQdQkd-4EN5yQs34NA_sBQ`, tab `Instagram Content Schedule` · **Governor:** Gary
+
+**Found during:** KAN-120 closeout (retiring the destructive CSV→Sheets repopulation).
+
+**Symptom (measured live 2026-11-28).** 245 data rows; **182 have a blank `status` (74.3%)**. Non-blank: `PLANNED` 37, `SCHEDULED` 16, `PROPOSED` 6, `PUBLISHED` 3, `SUPERSEDED` 1.
+
+**Why this is not auto-fixable.** The old sync blanked a row's status whenever `primary_key` drifted from `md5(Post Day + Post Type)` — and the workflow's own pre-disable measurement recorded **45 of 245 rows** in exactly that state. So the blanks are a **mixture** of two unrelated things:
+
+1. rows that were **never triaged** by a human, and
+2. rows whose status was **destroyed by the old sync**.
+
+A blanket `blank → PLANNED` would erase that distinction and would resurrect posts that were deliberately skipped.
+
+**Two further defects in the same column, worth fixing in the same pass:**
+
+- The column uses `PROPOSED` and `SUPERSEDED`, **neither of which appears in** the `Configuration` tab's "Instagram Reel Status" vocabulary (which lists PLANNED / CRAFTING / SCHEDULED / PUBLISHED). Two of six observed values are undocumented.
+- Nothing prevents a blank. There is no data-validation rule on the column, so the same drift can recur silently even with the sync gone.
+
+**Proposed fix.**
+
+1. Cross-reference the `Published Content Index` tab (gid `2086825052`) to back-fill `PUBLISHED` rows — that tab is an independent record and can recover some of what the sync destroyed.
+2. Triage the remainder **oldest-first**: any row whose `Post Day` is in the past with no `Published Video URL` is a candidate for `SUPERSEDED`; anything genuinely upcoming becomes `PLANNED`. Do it as one deliberate pass, not a formula.
+3. Reconcile the vocabulary: either add `PROPOSED` / `SUPERSEDED` to the `Configuration` list, or migrate those 7 rows to documented values.
+4. Add a **dropdown data-validation rule** on the `status` column so a blank or an undocumented value is rejected at entry.
+
+**Blocker:** item 2 needs either Gary's ~15-minute triage pass, or an explicit "mark every past-dated blank as SUPERSEDED" instruction. Items 1, 3 and 4 can ship without that. Don't guess at step 2 — a wrong blanket value here is what makes the schedule instrument unusable a second time.
+
+---
+
+### Delete the now-inert content-sync scripts (KAN-120 step 2), including the reverse `pull_from_sheets.py`
+
+**Priority:** LOW · **Filed:** 2026-11-28 · **Component:** `go_to_market` (`online_content/agroverse_shop/social_media/`) · **Governor:** Gary
+
+**Background.** KAN-120 deliberately split *make inert* from *delete* — "first make the workflow inert, confirm nothing depends on it, then remove." Step 1 is done (`.github/workflows/sync-to-sheets.yml` retains only a guarded `workflow_dispatch`).
+
+**Verified 2026-11-28:** the only reference to `sync_content_schedule.py` or `sync_hashtags.py` anywhere in the repo is that one workflow file. No cron entry, no other workflow, no script imports them.
+
+**Three scripts to remove, not two.** `pull_from_sheets.py` is the **reverse** direction (Sheets → local `agroverse_schedule_till_easter_cleaned.csv`). Under KAN-120 the CSV is a build artifact with no consumer, so this script now writes a file nobody reads — and actively invites the belief that the CSV is current. Leaving it in place preserves the exact confusion the ticket set out to end.
+
+**Proposed fix.** One PR deleting the three scripts, the CSV, and the now-empty workflow; update any README that points at them. Nothing calls them, so the blast radius is zero.
+
+**Blocker:** none.
+
+---
+
 ### QR scan pipeline: `zbar`/`cv2` silently under-report — use `zxingcpp` plus an inversion pass, or you will wrongly conclude a photo has no QR
 
 **Priority:** HIGH · **Filed:** 2026-11-27 · **Component:** QR/bag intake & audit tooling (`truesight_autopilot`) · **Governor:** Gary

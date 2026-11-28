@@ -68,6 +68,36 @@ chapters, or status by editing a CSV and waiting for CI. Edit the sheet directly
 - If a machine-readable view is ever needed (e.g. for the website), it is a **one-way Sheet → JSON publisher**, like the existing inventory publishers. Never write back.
 - The TikTok tabs added 2026-11-28 (`TikTok Content Schedule`, `TikTok Video Metrics`, `TikTok Orders`) were built edit-direct from the start and **do not** inherit this mechanism. Do not reintroduce one.
 
+### Retirement status — verified live 2026-11-28
+
+| Acceptance item (KAN-120) | State |
+|---|---|
+| Dated snapshot preserved | ✅ Tab `Instagram Content Schedule SNAPSHOT 2026-11-28` (gid `1559787727`), verified **content-identical** to the live tab: 246 non-empty rows (1 header + 245 data) × 14 populated columns |
+| Workflow no longer triggers on CSV pushes | ✅ All `push` / `pull_request` triggers removed from `.github/workflows/sync-to-sheets.yml`. Only `workflow_dispatch` remains, and it is guarded twice: it refuses when `target=none`, and a real write additionally requires typing `I-WIPE-THE-SHEET` |
+| SOP + context updated | ✅ this section |
+| No data loss | ✅ 245 data rows present; status distribution below is intact |
+| Blank-status cleanup documented as follow-up | ✅ filed in `OPEN_FOLLOWUPS.md` § Pending |
+
+**Live status distribution on `Instagram Content Schedule` (2026-11-28):**
+
+| status | rows |
+|---|---|
+| *(blank)* | 182 (74.3%) |
+| PLANNED | 37 |
+| SCHEDULED | 16 |
+| PROPOSED | 6 |
+| PUBLISHED | 3 |
+| SUPERSEDED | 1 |
+| **total** | **245** |
+
+**Residual damage that *would* have occurred, measured 2026-11-27 immediately before disabling** — this is the justification, not a hypothetical:
+
+- **44 sheet rows existed that were absent from the CSV** → would have been deleted, and all 44 carried a status.
+- **45 of 245 rows had a stored `primary_key` no longer equal to `md5(Post Day + Post Type)`** → status lookup failed → status silently blanked.
+-  `sync_hashtags.py` preserved **nothing** — it was a full wipe of 476 rows.
+
+Two follow-ups filed: the 182-blank-status triage, and removing the now-inert sync scripts (KAN-120 deliberately split *make inert* from *delete*).
+
 ---
 
 ## 2. Live state of the sheet
