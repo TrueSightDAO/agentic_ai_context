@@ -155,6 +155,8 @@ From `skus.json` (generated 2026-11-28T02:29:53Z). Every retail SKU except these
 
 **Recommended three:** ceremonial 200g + Vivi 50g bar + 8oz nibs — three price points ($10/$25/$30) across three sub-categories, so attribution learns *which product type* converts rather than measuring one product three ways.
 
+> ⚠️ **Superseded 2026-11-28** by the governor's decision to launch a **single SKU** (`ceremonial-cacao-paulo-s-la-do-sitio-farm-200g`). See **§9.4**. The three-price-point rationale below stands as recorded reasoning; it is not the current plan.
+
 ---
 
 ## 8. Standing risk: empty tabs are not a build failure
@@ -164,3 +166,71 @@ Verified 2026-11-28: `TikTok Content Schedule`, `TikTok Video Metrics` and `TikT
 The failure mode to avoid is subtler than "the tab is empty". It is reaching week 6 with *nine* filled rows out of forty planned, and then reading a decision off that table as though it were the population. The Instagram tab demonstrates the shape of this: a 245-row schedule where the status column is blank on 182 rows is not a 245-row plan, it is a 63-row plan wearing a 245-row costume.
 
 So the cadence in §5 is the deliverable, not the tab. If the cadence lapses, the honest response is to say the experiment has no data — not to compute a rate off whatever happens to be present.
+
+---
+
+## 9. KAN-113 decision record (2026-11-28) — one SKU, brand Agroverse, exemption route
+
+Governor decisions taken this date, plus two findings that changed the §7a recommendation.
+
+### 9.1 The three gates are independent
+
+§7a established that skipping the API does not skip the restrictions. There are now **three** gates, and they clear separately. Treating any two as one gate is what stalls a launch for weeks.
+
+| Gate | Applies to | How it clears |
+|---|---|---|
+| **Category qualification** (restricted: Packaged Food & Beverage) | any food listing, API or not | Qualification Center → Category Qualification |
+| **FDA facility registration** | the selling entity | document uploaded during qualification |
+| **GTIN** | most categories, **exemption available** | Catalog → GTIN Exemptions |
+
+**Brand** is a fourth, lighter step: select an existing brand or "Add a brand". Decided: **Agroverse**. Note the coupling — if a listing carries a GTIN, the brand must match the brand that GTIN is licensed to.
+
+### 9.2 GTIN is not a hard prerequisite (correcting an earlier reading)
+
+An earlier pass treated missing GTINs on the 81% bars as a reason to prefer other SKUs. That was too strong. TikTok's own Seller Academy documents a **GTIN exemption** for private-label, handmade, or brands that do not use UPCs. Per TikTok's walkthrough:
+
+1. Seller Center → **Catalog → GTIN Exemptions → Apply for GTIN exemptions**
+2. Store information (up to 3 store URLs — optional, but speeds review)
+3. Up to **10 categories**, then up to **100 product types**. The exemption covers **only the types ticked**.
+4. Choose brand per line (type "Unbranded" if none — not our case now)
+5. Reason, then Submit. Status starts **Processing**.
+   - **Needs info** → respond within **5 days** or the request auto-closes
+   - **Approved** → wait **≥ 4 hours** before creating items so the system updates
+
+Because the exemption is granted per product type under a category, it is **downstream of** category qualification in practice. Sequence qualification first.
+
+### 9.3 Our existing GTINs carry ownership risk
+
+Both codes we hold check-digit correctly, but the prefix is the problem:
+
+| GTIN | Length | Check digit | Prefix | Prefix owner (GS1) |
+|---|---|---|---|---|
+| `860010660232` | 12 | ✅ valid | `860` | **GS1 Serbia** |
+| `860010660218` | 12 | ✅ valid | `860` | **GS1 Serbia** |
+
+Both share the single company prefix `860010660` — the signature of a **bought-in barcode block**, not a prefix licensed to the brand owner. GS1 prefixes do not indicate country of origin, so a Serbian prefix on Brazilian cacao is not itself an error; the error would be **not owning the prefix**.
+
+TikTok validates GTINs via **GEPIR and GTIN.cloud** to confirm the UPC Company Prefix is licensed to the seller as brand owner. Other marketplaces have delisted sellers for exactly this shared-prefix pattern. **A GTIN that fails ownership validation is worse than no GTIN** — it risks listing rejection or account action, whereas an approved exemption is clean and sanctioned.
+
+**Decision: take the exemption route. Do not buy more barcodes.** Buying a resold block is what created this exposure. Before those codes are used on any marketplace, verify `860010660` in GEPIR.
+
+### 9.4 Launch slate: one SKU
+
+Governor decision: **list one single-estate SKU**, not a variant spread. The launch SKU is `ceremonial-cacao-paulo-s-la-do-sitio-farm-200g` — $30, 170 units, Paulo's farm, Pará, 2024 harvest.
+
+**Why one.** One estate = one lot = one packaging-photo review, one ingredient/nutrition transcription, one qualification submission. Four variants would screenshot the same buyer behaviour while multiplying the review surface. Identical reasoning to the China entry, where one estate resolved the consolidation objection.
+
+**What it costs.** §7a chose three price points so attribution could learn *which product type* converts. One SKU measures one product's conversion rate instead. Accepted: KAN-113 asked for 1–3, and KAN-115 / KAN-117 carry the content-side learning.
+
+**Why this SKU.** It is the only product clearing all three gates at once — exemption-eligible, deepest stock (no refunds-as-data), and one farm / one harvest / one lot so the photography and ingredient transcription happen once.
+
+### 9.5 Estate naming — open, and it is two different questions
+
+Governor's instinct: lead with the brand, don't name the estate. Two readings, not one:
+
+- **Reading A** — brand is the headline, estate is named as substantiation (`Agroverse Single Estate … Paulo's Farm, Pará`).
+- **Reading B** — estate never named in the listing; name lives only in the QR / batch record.
+
+**Recommendation: A.** A **named single estate** is the first of four documented positioning pillars. Unnamed, "single estate" is indistinguishable from a label assertion — every craft chocolate brand already claims single origin. The name is what makes it checkable. B also fights the QR (the name is one scan away) and risks a mismatch between the listing and the pack images qualification reviews.
+
+**The one legitimate case for B is disintermediation** — fear of a buyer going direct to the farm. That is not solved by B, since the name is in the QR record either way. The real fix is the **QR landing page**: batch, lot, region, harvest, assay, traceability chain, *without* the farm's contact identity.
