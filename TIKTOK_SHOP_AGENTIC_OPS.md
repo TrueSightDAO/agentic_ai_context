@@ -118,6 +118,45 @@ Flagged because it affects whether any comparison is trustworthy:
 
 ---
 
+## 7a. KAN-113 — the manual listing path has its own gate (verified 2026-11-28)
+
+**The assumption this section exists to kill:** that skipping the API (KAN-118) also skips the restrictions. It does not. There are **two independent gates**, and only one of them is about developer access.
+
+| Gate | Applies to | Blocks |
+|---|---|---|
+| Partner Center / ISV registration | anyone wanting API access | KAN-118 |
+| **Category qualification (this one)** | **anyone listing food, API or not** | KAN-113 |
+
+**Packaged Food and Beverage is a RESTRICTED category** per TikTok Seller University §3.3. Chocolate, sweets and snacks fall explicitly inside the covered list. Documentation required at listing time:
+
+1. Proof of a valid **FDA registration**
+2. **A complete set of images of the product's packaging and labeling**, including all information printed on the pack
+
+Sellers are additionally responsible for NLEA (nutrition labeling), FD&C Act and FPLA compliance. And the operative sentence: *"Products in restricted categories cannot be listed until qualification is approved."*
+
+**Verified path to the real answer:** Seller Center → Settings → My Account → **Qualification Center → Category Qualification**. TikTok surfaces the exact document list for the account and region there. Do not research this from blogs — the account-specific list is authoritative and takes five minutes to obtain.
+
+**What this doc does NOT assert:** whether TrueSight holds a valid FDA facility registration. The repo contains extensive **FDA FSVP** material (supplier entities, prior notices, import entries), but FSVP supplier records and import prior notices are *different instruments* from a facility registration for the selling entity. Do not conflate them when answering TikTok.
+
+### Referral fee (for unit economics)
+
+Food & Beverages carries a **6% referral fee** — consistent across all sub-categories (Pantry Food, Snacks, Drinks). Calculated on `(customer payment + platform discount − tax)`. Creator commission is seller-set; food open-plan norms run ~10–15%. So a $30 bag nets roughly **$23.70** before shipping and affiliate.
+
+### Listing slate — chosen from live stock, not from preference
+
+From `skus.json` (generated 2026-11-28T02:29:53Z). Every retail SKU except these four sits at **zero stock**, so listing them would generate refunds rather than data.
+
+| SKU | Price | Stock | Role |
+|---|---|---|---|
+| `ceremonial-cacao-paulo-s-la-do-sitio-farm-200g` | $30 | 170 | hero / flagship |
+| `8-ounce-organic-cacao-nibs` | $25 | 131 | shelf-stable snack |
+| `cacao-mass-bar-500g-ilheus-2024` | $60 | 37 | high-AOV alternative |
+| `organic-81-dark-chocolate-bar-50g-vivi-jesus-do-deus` | $10 | 35 | $10 impulse entry |
+
+**Recommended three:** ceremonial 200g + Vivi 50g bar + 8oz nibs — three price points ($10/$25/$30) across three sub-categories, so attribution learns *which product type* converts rather than measuring one product three ways.
+
+---
+
 ## 8. Standing risk: empty tabs are not a build failure
 
 Verified 2026-11-28: `TikTok Content Schedule`, `TikTok Video Metrics` and `TikTok Orders` are all **header-only (0 data rows)**. That is the correct pre-data state, not a defect — KAN-115 supplies metrics, KAN-113 supplies listable products, and order rows only exist once something sells.
