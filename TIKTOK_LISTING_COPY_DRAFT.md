@@ -1,6 +1,6 @@
 # TikTok Shop — listing copy drafts (KAN-113)
 
-**Status:** drafted 2026-11-28 (Sophia Truesight), pending category qualification + governor sign-off.
+**Status:** drafted 2026-11-28 (Sophia Truesight); **revised 2026-11-28** to a single-SKU slate per governor decisions (§0a). Pending category qualification + GTIN exemption + pack data.
 **Governor:** Gary Teh · **Parent:** [KAN-113](https://truesightdao.atlassian.net/browse/KAN-113) · **Blocks:** nothing — ready to paste once qualification clears.
 
 > **Nothing in this document has been submitted to TikTok.** No products created, no sheet cells written.
@@ -10,7 +10,38 @@
 
 ## 0. Why this exists before the decisions are made
 
-Three open questions gate the *listing* (which SKUs, what price, and whether category qualification passes). None of them gate the *copy*. Titles, descriptions, specs and compliance fields are identical regardless of the final SKU mix, so this work is reusable and does not need to wait.
+The *listing* is gated by category qualification, a GTIN route, and pack data. None of those gate the *copy*. Titles, descriptions, specs and compliance fields are reusable regardless of the final SKU mix, which is why this was drafted before the slate was settled.
+
+---
+
+## 0a. Governor decisions (2026-11-28) — slate collapsed to ONE SKU
+
+| Decision | Governor's call | Effect on this doc |
+|---|---|---|
+| **Brand** | **Agroverse** | §2 brand field resolved. Needs Agroverse selectable in the brand dropdown, or added via "Add a brand" first — and it must match the brand the GTIN (if any) is licensed to. "Unbranded" is no longer used. |
+| **Slate size** | **One single-estate SKU at launch**, not a 3-variant spread | §3 is the **only** live listing. §4, §5, §6 are parked drafts, kept because the copy is reusable. |
+| **Estate naming** | **OPEN** — governor's instinct is to lead with the brand and not name the estate | Analysed below. Both title variants are written out in §3 so either can be pasted. |
+
+**Why one SKU is the better call, independent of preference.** One estate = one lot = one packaging-photo review, one ingredient/nutrition transcription, one qualification submission. A four-variant launch multiplies the review surface while returning the same learning — all four would screenshot the same buyer behaviour. This is the same reasoning that settled the China SKU format (one estate = one lot = one GACC/CIFER filing). Ship one, iterate.
+
+**What it deliberately gives up.** `TIKTOK_SHOP_AGENTIC_OPS.md` §7a argued for three SKUs across three price points ($10 / $25 / $30) so attribution could learn *which product type* converts. With one SKU the experiment measures one product's conversion rate, not product-type fit. That is an acceptable trade now: KAN-113 asked for 1–3, and KAN-115 / KAN-117 supply the content-side learning.
+
+### The estate-name question, stated properly
+
+"Single estate without specifically naming the estate" has two possible readings, and they are not the same decision:
+
+- **Reading A — humanise, don't anonymise.** The listing leads with the **Agroverse** brand, and the farm appears as a named place (`Paulo's farm, Pará`). The *brand* is the headline; the estate is the substantiation underneath it.
+- **Reading B — anonymise.** The listing says "single estate, Brazil" and never names the farm. The name lives only in the QR / batch record.
+
+**Recommendation: A.** The documented positioning puts a **named single estate** as the *first* of four pillars — *"no shelf found … combines a named single estate, vintage/lot, third-party lab testing, and per-unit QR traceability."* Drop the name and three of four survive, but the one a shopper grasps in two seconds without scanning anything is gone. "Single estate" *unnamed* is indistinguishable from a label claim; every craft chocolate brand already says "single origin." The name is what makes the claim checkable rather than asserted.
+
+Three practical objections to B:
+
+1. **It contradicts the QR.** Our differentiator is a per-unit code resolving to farm and harvest. If the QR page names the farm — and it should, that is the entire point — the listing withholding it is a speed bump, not a protection. The name is one scan away.
+2. **Qualification compares listing against pack.** The packaging/label images submitted are reviewed against what the listing says. If the wrapper or back label prints the farm, a listing that omits it reads as a mismatch.
+3. **The category's own convention is named origin.** Ceremonial cacao buyers actively ask where a cacao is from; named-origin competitors name theirs. An unnamed estate reads as commodity to precisely the smallest viable audience we want.
+
+**The one legitimate reason to withhold — disintermediation.** If the concern is a buyer going direct to the farm and cutting us out, that is real and it is not answered by Reading A or B, because the name is in the QR record either way. The correct fix is the **QR landing page**: show batch, lot, region, harvest, assay and the traceability chain *without* the farm's contact identity. Which of the two is the actual worry changes the recommendation — flag it and this section gets rewritten.
 
 ---
 
@@ -54,7 +85,15 @@ Cacao sits in TikTok's **restricted Packaged Food & Beverage** category (§7a of
 
 **Title** (≤ 120 chars; front-loads what a buyer searches):
 
-> Ceremonial Cacao 200g — Single-Farm Pará Brazil 2024, Stone-Ground, Sugar-Free
+> **Variant A (recommended — brand-lead, estate substantiates):**
+>
+> Agroverse Single Estate Ceremonial Cacao 200g — Paulo's Farm, Pará Brazil 2024, Stone-Ground
+>
+> **Variant B (if §0a Reading B applies):**
+>
+> Agroverse Single Estate Ceremonial Cacao 200g — Pará Brazil 2024, Stone-Ground, Sugar-Free
+>
+> Both are under the 120-character limit. Variant B requires the farm name stripped from the long description below as well — otherwise the title and body contradict each other, which is a review flag.
 
 **Short description:**
 
@@ -110,7 +149,7 @@ Cacao sits in TikTok's **restricted Packaged Food & Beverage** category (§7a of
 
 ---
 
-## 5. `organic-81-dark-chocolate-bar-50g-vivi-jesus-do-deus-bahia-2025` — HOLD (see §7)
+## 5. `organic-81-dark-chocolate-bar-50g-vivi-jesus-do-deus-bahia-2025` — PARKED (not in launch slate, §0a)
 
 **Ledger record:** $10.00 · 50g (1.76 oz) · **stock 35** · shipment AGL13 · farm Vivi · **GTIN blank**
 
@@ -148,19 +187,34 @@ These are the actual blockers, and two of them are new findings rather than rest
 | # | Gap | Severity | Detail |
 |---|---|---|---|
 | 1 | **All four 81% bar variants share ONE image file** | **HIGH** | `81-dark-chocolate-bar-50g-packaging.jpg` is referenced by Oscar 2024, Santa Ana 2023, São Jorge 2024 **and** Vivi 2025. Qualification requires *"a complete set of images of the product's packaging and labeling"* **per listing**. One shared stock photo across four vintages cannot satisfy that — and if the packs genuinely differ (farm, year), the photo is wrong for at least three of them. |
-| 2 | **GTIN missing on all three bar variants** | MEDIUM | Ceremonial (`860010660232`) and nibs (`860010660218`) have GTINs; the bars do not. TikTok has a GTIN-exemption path, but a listing *with* an identifier is smoother. This is a further argument for leading with ceremonial + nibs. |
+| 2 | **GTIN: bars have none — and the two we DO have are questionable on TikTok** | **Resolved on approach** | Correction to an earlier reading: GTIN is **not a hard prerequisite** for Food & Beverage. TikTok documents a **GTIN-exemption** route for private-label / own-brand / brands without UPCs, applied per category + product type (see ops doc §9). So the bars are not blocked by GTIN. **But our existing codes carry risk:** `860010660232` and `860010660218` both begin `860` = **GS1 Serbia**, and share one company prefix (`860010660`) — the signature of a bought-in barcode block, not a prefix licensed to Agroverse. Check digits verify, but TikTok validates prefix *ownership* via GEPIR / GTIN.cloud, so a prefix we do not own is worse than no identifier. **Decision: take the exemption route; do not buy more barcodes; verify `860010660` in GEPIR before using it anywhere.** |
 | 3 | Pack & label photography | **HIGH** | Required by policy. Needs back-of-pack shots with the nutrition panel legible — a lifestyle photo will not do. |
 | 4 | Ingredients + nutrition panel | **HIGH** | Must be transcribed from the physical packs. Not inferable from the ledger. |
 | 5 | FDA facility registration | **BLOCKER** | Governor-side. See §7a of the ops doc — FSVP records are not this instrument. |
 | 6 | Return policy, shipping lead time | LOW | Needed to complete the listing form. |
 
-**Net effect on the recommendation.** §7 items 1 and 2 make the **$10 Vivi bar the weakest of the three recommended SKUs**, despite being the best impulse price point. If the bar's label photography and GTIN cannot be produced quickly, the pragmatic first batch is **ceremonial 200g + 8oz nibs** (both GTIN'd, both deep stock, two price points), with the bar following once per-variant images exist. A 2-SKU start is fine — KAN-113 asked for 1–3.
+**Net effect on the recommendation.** Per §0a the launch slate is a **single SKU: `ceremonial-cacao-paulo-s-la-do-sitio-farm-200g`**. It is the only product that clears all three gates at once — exemption-eligible on GTIN, deepest stock (170 units, so no refunds-as-data), and one farm / one harvest / one lot, which means a single packaging-photo set and a single ingredient transcription.
+
+Items 1 and 2 therefore stop mattering at launch: the shared-barise photograph (item 1) is irrelevant to a ceremonial-cacao listing, and the bars' missing GTIN (item 2) is moot once the exemption covers the launch SKU. Both return to relevance only when the bars are added later — at which point item 1 becomes the hard blocker, not item 2.
 
 ---
 
-## 8. Open decisions (governor)
+## 8. Decision status
 
-1. **Category qualification** — run Seller Center → Qualification Center → Category Qualification, screenshot the document list. Decides the timeline for everything above.
-2. **FDA facility registration** — held, or only FSVP/prior-notice records?
-3. **SKU count** — 3 as drafted, or the 2-SKU start in §7?
-4. **Price parity** — listing at agroverse.shop prices ($30 / $25 / $10). Recommended: yes, match. A higher TikTok price than our own site is screenshot bait.
+### Resolved (2026-11-28)
+
+| Decision | Call |
+|---|---|
+| Brand | **Agroverse** |
+| SKU count | **One** — ceremonial 200g only |
+| GTIN approach | **Exemption route**, not new/existing barcodes |
+
+### Still open (governor)
+
+| # | Decision | Why it blocks |
+|---|---|---|
+| 1 | **Category qualification** — run Seller Center → Qualification Center → Category Qualification, screenshot the document list | Decides the timeline for every listing. Five minutes. Highest information per minute of anything on this list. |
+| 2 | **FDA facility registration** — held, or only FSVP / prior-notice records? | §7a of the ops doc rates this a **hard blocker**: restricted categories cannot be listed until qualification is approved, and the registration is a required document. FSVP records are a different instrument. |
+| 3 | **Estate naming** — §0a Reading A (named) or B (anonymised)? | Both title variants are written in §3; B additionally requires stripping the farm from the long description. |
+| 4 | **Price parity** — list at $30 (agroverse.shop parity) or at an uplift? | Recommended: **match $30**. A higher TikTok price than our own site is screenshot bait. |
+| 5 | **GEPIR check on `860010660`** — is that prefix licensed to Agroverse? | Only matters if we ever list *with* a GTIN. Moot while we take the exemption, but it is the cheapest way to retire the question. |
